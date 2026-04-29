@@ -1,0 +1,26 @@
+name: Replay First Real Loop
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run replayable loop
+        run: python -m agialpha_first_loop.run --out runs/ci-loop
+      - name: Run tests
+        run: python -m unittest discover -s tests
+      - name: Upload Evidence Docket artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-docket-ci-loop
+          path: runs/ci-loop
