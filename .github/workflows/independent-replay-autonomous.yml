@@ -1,0 +1,86 @@
+name: AGI ALPHA Independent Replay / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      docket_root:
+        description: "Evidence Docket root to replay. Leave blank to use autonomous seed dockets or evidence-docket."
+        required: false
+        default: ""
+  workflow_run:
+    workflows: ["AGI ALPHA Seed Runner / Autonomous"]
+    types: [completed]
+  schedule:
+    - cron: "57 6 * * *"
+
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+
+env:
+  PYTHONUNBUFFERED: "1"
+  INPUT_DOCKET_ROOT: ${{ github.event.inputs.docket_root || '' }}
+  REPLAY_OUT: autonomous/independent-replay/${{ github.run_id }}
+
+jobs:
+  independent-replay:
+    name: Clean independent workflow replay
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Try to download Seed Runner artifact when triggered by workflow_run
+        if: ${{ github.event_name == 'workflow_run' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ github.event.workflow_run.id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p replay-input
+          gh run download "$SOURCE_RUN_ID" --name seed-dockets --dir replay-input || true
+          find replay-input -maxdepth 3 -type f | head -50 || true
+
+      - name: Resolve docket root
+        id: resolve
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "$INPUT_DOCKET_ROOT" ]]; then
+            ROOT="$INPUT_DOCKET_ROOT"
+          elif [[ -d "replay-input" ]] && find replay-input -name 00_manifest.json | grep -q .; then
+            ROOT="replay-input"
+          elif [[ -d "autonomous/seed-dockets" ]] && find autonomous/seed-dockets -name 00_manifest.json | grep -q .; then
+            ROOT="autonomous/seed-dockets"
+          else
+            ROOT="evidence-docket"
+          fi
+          echo "root=$ROOT" >> "$GITHUB_OUTPUT"
+          echo "Replaying root: $ROOT"
+
+      - name: Run autonomous independent replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -S -m agialpha_seed_runner independent-replay \
+            --docket-root "${{ steps.resolve.outputs.root }}" \
+            --out "$REPLAY_OUT"
+
+      - name: Upload independent replay report
+        uses: actions/upload-artifact@v7
+        with:
+          name: independent-replay-report
+          path: ${{ env.REPLAY_OUT }}
+          retention-days: 30
+
