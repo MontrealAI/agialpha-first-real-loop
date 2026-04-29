@@ -1,6 +1,6 @@
 ---
 name: Evidence Factory follow-up
-description: Promote an Evidence Docket through replay, baselines, and safety review.
+about: Promote an Evidence Docket through replay, baselines, and safety review.
 title: "Evidence Factory: independent replay + baselines for <run-id>"
 labels: ["evidence-docket", "replay", "baseline", "safety"]
 ---
