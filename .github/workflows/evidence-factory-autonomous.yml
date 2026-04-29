@@ -6,7 +6,7 @@ on:
       docket_dir:
         description: "Evidence Docket output directory"
         required: false
-        default: "runs/evidence/${{ github.run_id }}"
+        default: ""
       run_command:
         description: "Command that generates a base Evidence Docket; DOCKET_DIR is provided"
         required: false
