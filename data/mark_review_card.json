@@ -1,0 +1,19 @@
+{
+  "seed_id": "ColdChain-Energy-Seed-001",
+  "review_type": "manual_structured_mark_review_v0",
+  "reviewer": "internal_structured_review_demo_replace_with_independent_reviewer_for_external_proof",
+  "scores": {
+    "coherence": 5,
+    "evidence_availability": 5,
+    "economic_usefulness": 4,
+    "safety": 4,
+    "reusability": 5,
+    "executability": 5
+  },
+  "notes": [
+    "Opportunity is understandable and low-risk if kept advisory.",
+    "There are credible public sources for refrigeration efficiency measures.",
+    "Safety boundary must block food-safety-critical control changes and refrigerant handling."
+  ],
+  "green_flame_threshold": "average >= 4.0, safety >= 4, executability >= 4, reusability >= 4"
+}

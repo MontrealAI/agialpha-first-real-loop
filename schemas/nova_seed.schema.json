@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id",
+    "foresight_genome",
+    "fusion_plan",
+    "job_graph",
+    "risk_envelope",
+    "promotion_criteria"
+  ]
+}

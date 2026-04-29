@@ -1,0 +1,12 @@
+{
+  "docket_id": "string",
+  "seed": "NovaSeed object",
+  "mark_review": "MARK review card",
+  "sovereign": "Mini Sovereign object",
+  "jobs": "five job outputs",
+  "sources_used": "source audit",
+  "accepted_interventions": "reviewer-accepted outputs",
+  "reusable_constructs": "compiler/rubric/schema/templates",
+  "lessons_for_next_seed": "list",
+  "treatment_control": "comparison object"
+}

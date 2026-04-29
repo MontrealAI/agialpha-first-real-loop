@@ -1,0 +1,312 @@
+[
+  {
+    "id": "I001",
+    "title": "Create a refrigeration metering and monitoring baseline",
+    "target_energy_sink": "controls and operational visibility",
+    "mechanism": "Measure electricity, temperature, defrost events, and operating patterns so waste can be identified before interventions are claimed.",
+    "capex_bucket": "low",
+    "source_ids": [
+      "S001",
+      "S002",
+      "S003"
+    ],
+    "causal_chain": [
+      "submetering reveals load patterns",
+      "load patterns expose waste windows",
+      "audits target highest-value interventions"
+    ],
+    "preconditions": [
+      "access to utility interval data or temporary metering",
+      "facility permission"
+    ],
+    "failure_modes": [
+      "data too coarse",
+      "seasonal variation misread"
+    ],
+    "risk_notes": [
+      "advisory only; no control change implied"
+    ],
+    "evidence_gaps": [
+      "facility-specific load data required"
+    ]
+  },
+  {
+    "id": "I002",
+    "title": "Audit door seals, strip curtains, airlocks, and door discipline",
+    "target_energy_sink": "doors and infiltration",
+    "mechanism": "Reduce warm moist air infiltration so refrigeration load and frost formation decline.",
+    "capex_bucket": "low",
+    "source_ids": [
+      "S002",
+      "S003",
+      "S010",
+      "S011"
+    ],
+    "causal_chain": [
+      "less infiltration",
+      "less heat/moisture load",
+      "less compressor runtime and frost burden"
+    ],
+    "preconditions": [
+      "door traffic observation",
+      "seal inspection"
+    ],
+    "failure_modes": [
+      "curtains interfere with workflow",
+      "poor installation"
+    ],
+    "risk_notes": [
+      "must not compromise emergency egress or food handling workflow"
+    ],
+    "evidence_gaps": [
+      "door-open frequency data"
+    ]
+  },
+  {
+    "id": "I003",
+    "title": "Review defrost schedules for over-defrosting",
+    "target_energy_sink": "defrost cycles",
+    "mechanism": "Excess defrost adds heat and electrical load; review can identify unnecessary frequency or duration.",
+    "capex_bucket": "no-cost",
+    "source_ids": [
+      "S002",
+      "S003",
+      "S006"
+    ],
+    "causal_chain": [
+      "excess defrost adds heat",
+      "heat raises refrigeration load",
+      "optimized schedule reduces avoidable load"
+    ],
+    "preconditions": [
+      "historical frost/temperature records",
+      "qualified refrigeration review"
+    ],
+    "failure_modes": [
+      "under-defrosting impairs coils",
+      "temperature excursions"
+    ],
+    "risk_notes": [
+      "controls change requires expert review; food-safety constraints apply"
+    ],
+    "evidence_gaps": [
+      "coil frost data and product temperature logs"
+    ]
+  },
+  {
+    "id": "I004",
+    "title": "Clean condenser and evaporator coils and verify airflow paths",
+    "target_energy_sink": "maintenance and coil cleanliness",
+    "mechanism": "Dirty coils and blocked airflow reduce heat-transfer efficiency and increase compressor/fan runtime.",
+    "capex_bucket": "low",
+    "source_ids": [
+      "S003",
+      "S005",
+      "S010"
+    ],
+    "causal_chain": [
+      "cleaner heat exchangers",
+      "better heat transfer",
+      "lower runtime for same cooling"
+    ],
+    "preconditions": [
+      "maintenance access",
+      "cleaning schedule"
+    ],
+    "failure_modes": [
+      "damage during cleaning",
+      "temporary downtime"
+    ],
+    "risk_notes": [
+      "maintenance should follow manufacturer and facility procedures"
+    ],
+    "evidence_gaps": [
+      "before/after temperature and amperage data"
+    ]
+  },
+  {
+    "id": "I005",
+    "title": "Switch off or schedule lighting and anti-condensation heaters where safe",
+    "target_energy_sink": "lighting and internal heat gain",
+    "mechanism": "Lights and heaters add direct electricity load and heat that refrigeration must remove.",
+    "capex_bucket": "no-cost",
+    "source_ids": [
+      "S003",
+      "S004",
+      "S005"
+    ],
+    "causal_chain": [
+      "less internal heat",
+      "less refrigeration load",
+      "less direct electricity use"
+    ],
+    "preconditions": [
+      "confirm safety, visibility, and condensation requirements"
+    ],
+    "failure_modes": [
+      "condensation risk",
+      "worker visibility issues"
+    ],
+    "risk_notes": [
+      "must preserve safety and product integrity"
+    ],
+    "evidence_gaps": [
+      "heater schedule and condensation observations"
+    ]
+  },
+  {
+    "id": "I006",
+    "title": "Review thermostat, sensor calibration, and zone temperature policies",
+    "target_energy_sink": "controls and sensors",
+    "mechanism": "Sensor drift or overcooling can cause unnecessary refrigeration while still appearing compliant.",
+    "capex_bucket": "low",
+    "source_ids": [
+      "S003",
+      "S006",
+      "S010"
+    ],
+    "causal_chain": [
+      "accurate sensing",
+      "less overcooling",
+      "lower compressor runtime"
+    ],
+    "preconditions": [
+      "qualified review",
+      "food-safety/product temperature requirements"
+    ],
+    "failure_modes": [
+      "setpoints changed without safety review",
+      "sensor calibration error"
+    ],
+    "risk_notes": [
+      "no food-safety-critical setpoint changes without expert review"
+    ],
+    "evidence_gaps": [
+      "temperature mapping and product requirements"
+    ]
+  },
+  {
+    "id": "I007",
+    "title": "Evaluate floating head-pressure / condensing-pressure control audit",
+    "target_energy_sink": "condenser fans and head pressure",
+    "mechanism": "Lower condensing pressure when ambient/load allow can reduce compressor lift and energy use.",
+    "capex_bucket": "low-to-moderate",
+    "source_ids": [
+      "S001",
+      "S002",
+      "S003",
+      "S008"
+    ],
+    "causal_chain": [
+      "lower head pressure",
+      "lower compressor lift",
+      "lower compressor energy"
+    ],
+    "preconditions": [
+      "system supports control change",
+      "qualified refrigeration engineer"
+    ],
+    "failure_modes": [
+      "control instability",
+      "equipment constraint violations"
+    ],
+    "risk_notes": [
+      "CAUTION: controls change requires professional review"
+    ],
+    "evidence_gaps": [
+      "system type and ambient/load data"
+    ]
+  },
+  {
+    "id": "I008",
+    "title": "Assess evaporator fan scheduling or efficient fan motor opportunity",
+    "target_energy_sink": "evaporator fans",
+    "mechanism": "Fans consume electricity and add heat; efficient motors or appropriate scheduling can reduce both loads.",
+    "capex_bucket": "low-to-moderate",
+    "source_ids": [
+      "S005",
+      "S006",
+      "S003"
+    ],
+    "causal_chain": [
+      "lower fan energy",
+      "less motor heat in cold space",
+      "less refrigeration load"
+    ],
+    "preconditions": [
+      "airflow requirements known",
+      "temperature uniformity check"
+    ],
+    "failure_modes": [
+      "poor air circulation",
+      "product temperature variation"
+    ],
+    "risk_notes": [
+      "must maintain air distribution and food-safety requirements"
+    ],
+    "evidence_gaps": [
+      "airflow and temperature distribution data"
+    ]
+  },
+  {
+    "id": "I009",
+    "title": "Reduce overstocking and blocked air-grille conditions",
+    "target_energy_sink": "airflow and operations",
+    "mechanism": "Blocked grilles and overstocking impair airflow, increasing cooling time and temperature variability.",
+    "capex_bucket": "no-cost",
+    "source_ids": [
+      "S003",
+      "S005",
+      "S010"
+    ],
+    "causal_chain": [
+      "clear airflow",
+      "more uniform temperature",
+      "less excessive runtime"
+    ],
+    "preconditions": [
+      "warehouse layout review",
+      "operator training"
+    ],
+    "failure_modes": [
+      "operational noncompliance over time"
+    ],
+    "risk_notes": [
+      "advisory operational practice"
+    ],
+    "evidence_gaps": [
+      "layout photographs and walkthrough data"
+    ]
+  },
+  {
+    "id": "I010",
+    "title": "Create heat-recovery screening note for later engineering study",
+    "target_energy_sink": "waste heat",
+    "mechanism": "Recovered compressor/condenser heat may offset hot-water, space-heating, or underfloor-heating loads.",
+    "capex_bucket": "low-to-moderate",
+    "source_ids": [
+      "S002",
+      "S003",
+      "S008"
+    ],
+    "causal_chain": [
+      "capture rejected heat",
+      "offset separate heating energy",
+      "reduce total site energy"
+    ],
+    "preconditions": [
+      "coincident heat demand",
+      "engineering feasibility"
+    ],
+    "failure_modes": [
+      "insufficient temperature or demand match",
+      "controls complexity"
+    ],
+    "risk_notes": [
+      "screening only; not a retrofit recommendation"
+    ],
+    "evidence_gaps": [
+      "hot-water/heating load profile"
+    ]
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "reviewer": "internal_structured_review_demo_replace_for_external_proof",
+  "decisions": {
+    "I001": "accepted",
+    "I002": "accepted",
+    "I003": "accepted",
+    "I004": "accepted",
+    "I005": "accepted",
+    "I006": "needs_expert_review",
+    "I007": "needs_expert_review",
+    "I008": "accepted",
+    "I009": "accepted",
+    "I010": "needs_engineering_study"
+  }
+}

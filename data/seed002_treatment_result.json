@@ -1,0 +1,9 @@
+{
+  "condition": "treatment_with_ColdChain-Energy-Compiler-v0",
+  "accepted_useful_interventions": 5,
+  "total_cost_units": 10,
+  "hallucinated_sources": 0,
+  "unsupported_claims": 0,
+  "safety_flags": 1,
+  "notes": "Treatment reuses source rules, facility schema, intervention schema, causalization rubric, and red-team rules."
+}

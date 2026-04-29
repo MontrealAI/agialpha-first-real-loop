@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "docket_id",
+    "seed_id",
+    "mark_green_flamed",
+    "sovereign_id",
+    "jobs_success",
+    "accepted_interventions",
+    "reusable_construct",
+    "vnext_seed",
+    "treatment_control",
+    "loop_passed"
+  ]
+}

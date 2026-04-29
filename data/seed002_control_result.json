@@ -1,0 +1,9 @@
+{
+  "condition": "control_without_ColdChain-Energy-Compiler-v0",
+  "accepted_useful_interventions": 3,
+  "total_cost_units": 10,
+  "hallucinated_sources": 0,
+  "unsupported_claims": 1,
+  "safety_flags": 1,
+  "notes": "Control uses same sources but no reusable compiler rubrics or red-team templates."
+}

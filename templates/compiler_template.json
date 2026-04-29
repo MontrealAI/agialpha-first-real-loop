@@ -1,0 +1,11 @@
+{
+  "id": "Capability-Compiler-v0",
+  "source_discovery_prompts": [],
+  "facility_model_schema": {},
+  "intervention_generation_schema": {},
+  "causalization_rubric": [],
+  "scoring_rubric": [],
+  "red_team_rules": [],
+  "final_output_template": {},
+  "evidence_docket_template": {}
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id",
+    "source_discovery_rules",
+    "facility_model_schema",
+    "intervention_schema",
+    "causalization_rubric",
+    "red_team_rules"
+  ]
+}

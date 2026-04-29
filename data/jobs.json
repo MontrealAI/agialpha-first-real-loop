@@ -1,0 +1,32 @@
+[
+  {
+    "job_id": "J1",
+    "name": "Source Discovery",
+    "goal": "Find credible sources for cold-chain electricity-saving interventions.",
+    "success_metric": "At least 10 credible sources, including 2 government/institutional, 2 manufacturer/technical, and 2 industry/engineering sources."
+  },
+  {
+    "job_id": "J2",
+    "name": "Facility Model Extraction",
+    "goal": "Convert the facility brief into a structured facility model.",
+    "success_metric": "Model is usable and does not invent unsupported details."
+  },
+  {
+    "job_id": "J3",
+    "name": "Intervention Generation",
+    "goal": "Generate 10 candidate low-capex interventions.",
+    "success_metric": "At least 7 candidates survive basic sanity review."
+  },
+  {
+    "job_id": "J4",
+    "name": "Causalization + Red-Team",
+    "goal": "Turn candidates into mechanism-aware recommendations and catch unsafe or unsupported claims.",
+    "success_metric": "No restricted or unsupported recommendation enters final ranking."
+  },
+  {
+    "job_id": "J5",
+    "name": "Ranking + Evidence Docket",
+    "goal": "Produce final ranked package and Evidence Docket.",
+    "success_metric": "At least 3 interventions are accepted by reviewer."
+  }
+]
