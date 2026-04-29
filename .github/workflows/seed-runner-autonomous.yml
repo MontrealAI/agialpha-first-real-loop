@@ -1,0 +1,138 @@
+name: AGI ALPHA Seed Runner / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_docket:
+        description: "Base Evidence Docket path"
+        required: false
+        default: "evidence-docket"
+      seed_count:
+        description: "Number of seed dockets to complete"
+        required: false
+        default: "10"
+      publish_pages:
+        description: "Publish Seed Runner scoreboard to GitHub Pages"
+        type: boolean
+        required: false
+        default: true
+  workflow_run:
+    workflows: ["AGI ALPHA Evidence Factory / Autonomous"]
+    types: [completed]
+  schedule:
+    - cron: "31 6 * * *"
+  push:
+    branches: ["main"]
+    paths:
+      - "evidence-docket/**"
+      - "agialpha_seed_runner/**"
+      - ".github/workflows/seed-runner-autonomous.yml"
+
+permissions:
+  contents: write
+  actions: read
+  issues: write
+  pull-requests: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: seed-runner-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: "1"
+  BASE_DOCKET: ${{ github.event.inputs.base_docket || 'evidence-docket' }}
+  SEED_COUNT: ${{ github.event.inputs.seed_count || '10' }}
+  PUBLISH_PAGES: ${{ github.event.inputs.publish_pages || 'true' }}
+  SEED_ROOT: autonomous/seed-dockets/${{ github.run_id }}
+  SEED_SCOREBOARD: docs/seed-runner
+
+jobs:
+  run-seeds:
+    name: Complete pending seeds into Evidence Dockets
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    outputs:
+      seed_root: ${{ env.SEED_ROOT }}
+      seed_scoreboard: ${{ env.SEED_SCOREBOARD }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Run Seed Runner v0.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -S -m agialpha_seed_runner run-seeds \
+            --base-docket "$BASE_DOCKET" \
+            --out "$SEED_ROOT" \
+            --count "$SEED_COUNT" \
+            --scoreboard "$SEED_SCOREBOARD"
+
+      - name: Run basic tests if present
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -d tests ]]; then
+            python -S -m unittest discover -s tests
+          else
+            echo "No tests directory present; skipping."
+          fi
+
+      - name: Build GitHub Pages landing page
+        if: ${{ github.ref_name == 'main' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p docs
+          cat > docs/index.html <<'HTML'
+          <!doctype html>
+          <html><head><meta charset="utf-8"><title>AGI ALPHA Evidence Factory</title>
+          <style>body{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;margin:24px;background:#f8fafc;color:#111827}.card{background:white;border:1px solid #e5e7eb;border-radius:12px;padding:16px;margin:16px 0}a{color:#2563eb}</style></head>
+          <body><h1>AGI ALPHA Evidence Factory</h1>
+          <div class="card"><strong>Claim boundary:</strong> No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.</div>
+          <ul>
+            <li><a href="./seed-runner/">Seed Runner v0.1 scoreboard</a></li>
+            <li><a href="./evidence-factory/">Evidence Factory scoreboard, if present</a></li>
+          </ul>
+          </body></html>
+          HTML
+
+      - name: Upload seed Evidence Dockets
+        uses: actions/upload-artifact@v7
+        with:
+          name: seed-dockets
+          path: |
+            ${{ env.SEED_ROOT }}
+            ${{ env.SEED_SCOREBOARD }}
+          retention-days: 30
+
+      - name: Upload Pages artifact
+        if: ${{ github.ref_name == 'main' }}
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: docs
+
+  deploy-pages:
+    name: Publish Seed Runner scoreboard
+    needs: run-seeds
+    runs-on: ubuntu-latest
+    if: ${{ github.ref_name == 'main' }}
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
