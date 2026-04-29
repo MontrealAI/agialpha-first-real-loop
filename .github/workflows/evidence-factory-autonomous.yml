@@ -1,0 +1,305 @@
+name: AGI ALPHA Evidence Factory / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      docket_dir:
+        description: "Evidence Docket output directory"
+        required: false
+        default: "runs/evidence/${{ github.run_id }}"
+      run_command:
+        description: "Command that generates a base Evidence Docket; DOCKET_DIR is provided"
+        required: false
+        default: "python -m agialpha_first_loop.run --out ${DOCKET_DIR}"
+      strict:
+        description: "Require publication-grade files in lint"
+        type: boolean
+        required: false
+        default: false
+      create_next_seed_pr:
+        description: "Autonomously open a next-seed PR after success"
+        type: boolean
+        required: false
+        default: true
+      publish_pages:
+        description: "Publish scoreboard to GitHub Pages"
+        type: boolean
+        required: false
+        default: true
+  schedule:
+    - cron: "17 6 * * *"
+  push:
+    branches: ["main"]
+    paths:
+      - "agialpha_evidence_factory/**"
+      - "agialpha_first_loop/**"
+      - "evidence-docket/**"
+      - "config/evidence_factory_config.json"
+      - ".github/workflows/evidence-factory-autonomous.yml"
+      - "tests/**"
+
+permissions:
+  contents: write
+  actions: read
+  issues: write
+  pull-requests: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: evidence-factory-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: "1"
+  DEFAULT_DOCKET_DIR: runs/evidence/${{ github.run_id }}
+  DEFAULT_REPLAY_DIR: runs/replay/${{ github.run_id }}
+  DEFAULT_COMPLETED_DIR: runs/completed/${{ github.run_id }}
+  RUN_COMMAND: ${{ github.event.inputs.run_command || 'python -m agialpha_first_loop.run --out ${DOCKET_DIR}' }}
+  STRICT: ${{ github.event.inputs.strict || 'false' }}
+  CREATE_NEXT_SEED_PR: ${{ github.event.inputs.create_next_seed_pr || 'true' }}
+  PUBLISH_PAGES: ${{ github.event.inputs.publish_pages || 'true' }}
+
+jobs:
+  evidence-factory:
+    name: Generate, replay, audit, package, and score Evidence Docket
+    runs-on: ubuntu-latest
+    outputs:
+      completed_docket: ${{ steps.paths.outputs.completed_docket }}
+      docs_dir: ${{ steps.paths.outputs.docs_dir }}
+      claim_level: ${{ steps.claim.outputs.claim_level }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Resolve paths
+        id: paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${{ github.event.inputs.docket_dir || '' }}" ]]; then
+            DOCKET_DIR="${{ github.event.inputs.docket_dir }}"
+          else
+            DOCKET_DIR="$DEFAULT_DOCKET_DIR"
+          fi
+          COMPLETED_DOCKET="$DEFAULT_COMPLETED_DIR"
+          DOCS_DIR="docs/evidence-factory"
+          echo "docket_dir=$DOCKET_DIR" >> "$GITHUB_OUTPUT"
+          echo "completed_docket=$COMPLETED_DOCKET" >> "$GITHUB_OUTPUT"
+          echo "docs_dir=$DOCS_DIR" >> "$GITHUB_OUTPUT"
+          echo "DOCKET_DIR=$DOCKET_DIR" >> "$GITHUB_ENV"
+          echo "COMPLETED_DOCKET=$COMPLETED_DOCKET" >> "$GITHUB_ENV"
+          echo "DOCS_DIR=$DOCS_DIR" >> "$GITHUB_ENV"
+
+      - name: Generate or seed base Evidence Docket
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_evidence_factory run-or-seed --out "$DOCKET_DIR" --command "$RUN_COMMAND" --clean
+
+      - name: Run unit tests if present
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -d tests ]]; then
+            python -m unittest discover -s tests
+          else
+            echo "No tests directory present; skipping unittest discovery."
+          fi
+
+      - name: Internal clean replay
+        shell: bash
+        env:
+          DOCKET_DIR: ${{ env.DEFAULT_REPLAY_DIR }}
+        run: |
+          set -euo pipefail
+          python -m agialpha_evidence_factory run-or-seed --out "$DOCKET_DIR" --command "$RUN_COMMAND" --clean
+
+      - name: Complete publication-grade scaffold files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_evidence_factory complete "$DOCKET_DIR" --out "$COMPLETED_DOCKET" --actual-replay "$DEFAULT_REPLAY_DIR"
+
+      - name: Lint completed Evidence Docket
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$STRICT" == "true" ]]; then
+            python -m agialpha_evidence_factory lint "$COMPLETED_DOCKET" --strict --out runs/docket_lint_${{ github.run_id }}.json
+          else
+            python -m agialpha_evidence_factory lint "$COMPLETED_DOCKET" --out runs/docket_lint_${{ github.run_id }}.json
+          fi
+
+      - name: Generate autonomous seed matrix
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_evidence_factory seed-matrix "$COMPLETED_DOCKET" --count 10 --out runs/seed-matrix/${{ github.run_id }}
+
+      - name: Generate coordination scaling proxy
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_evidence_factory scaling-curve --out runs/scaling/${{ github.run_id }}
+
+      - name: Generate next-seed proposal
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_evidence_factory next-seed "$COMPLETED_DOCKET" --out autonomous/next_seed_proposals
+
+      - name: Build live scoreboard
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$DOCS_DIR/runs/${{ github.run_id }}"
+          cp -R "$COMPLETED_DOCKET" "$DOCS_DIR/runs/${{ github.run_id }}/evidence-docket"
+          cp -R "runs/seed-matrix/${{ github.run_id }}" "$DOCS_DIR/runs/${{ github.run_id }}/seed-matrix"
+          cp -R "runs/scaling/${{ github.run_id }}" "$DOCS_DIR/runs/${{ github.run_id }}/scaling"
+          python -m agialpha_evidence_factory scoreboard "$COMPLETED_DOCKET" --scan "$DOCS_DIR/runs" "runs/completed" --out "$DOCS_DIR"
+
+      - name: Extract claim level
+        id: claim
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          p = os.environ['COMPLETED_DOCKET'] + '/claim_level.json'
+          level = json.load(open(p))['current_level']
+          print(f"claim_level={level}")
+          PY
+
+      - name: Upload completed Evidence Docket artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: evidence-docket-${{ github.run_id }}
+          path: |
+            ${{ env.COMPLETED_DOCKET }}/
+            runs/docket_lint_${{ github.run_id }}.json
+            runs/seed-matrix/${{ github.run_id }}/
+            runs/scaling/${{ github.run_id }}/
+            autonomous/next_seed_proposals/
+            ${{ env.DOCS_DIR }}/
+          retention-days: 30
+
+      - name: Upload GitHub Pages artifact
+        if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ env.DOCS_DIR }}
+
+  deploy-pages:
+    name: Publish live Evidence Factory scoreboard
+    needs: evidence-factory
+    if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  autonomous-followup:
+    name: Autonomous issue and next-seed PR
+    needs: evidence-factory
+    if: ${{ always() && github.ref_name == 'main' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Download Evidence Docket artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: evidence-docket-${{ github.run_id }}
+          path: evidence_factory_artifact
+
+      - name: Create issue on failure
+        if: ${{ needs.evidence-factory.result != 'success' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh issue create \
+            --title "Evidence Factory failed: run ${{ github.run_id }}" \
+            --body "Automated Evidence Factory run ${{ github.run_id }} failed. Claim boundary: this failure does not invalidate the architecture; it blocks promotion of this evidence docket. Review Actions logs and artifact state."
+
+      - name: Prepare next-seed PR branch
+        if: ${{ needs.evidence-factory.result == 'success' && env.CREATE_NEXT_SEED_PR == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          BRANCH="evidence-factory/autonomous-${{ github.run_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          mkdir -p autonomous/evidence_runs/${{ github.run_id }} docs/evidence-factory
+          cp -R evidence_factory_artifact/* autonomous/evidence_runs/${{ github.run_id }}/
+          if [[ -d evidence_factory_artifact/docs/evidence-factory ]]; then
+            cp -R evidence_factory_artifact/docs/evidence-factory/* docs/evidence-factory/
+          fi
+          cat > autonomous/evidence_runs/${{ github.run_id }}/AUTONOMOUS_RUN_SUMMARY.md <<'MD'
+          # Autonomous Evidence Factory Run
+
+          This branch was generated by GitHub Actions.
+
+          It contains a completed Evidence Docket scaffold, seed matrix, scaling proxy, claim level, cost ledger, safety ledger, hash manifest, and next-seed proposal.
+
+          Claim boundary: autonomous evidence generation is allowed; autonomous claim promotion is not. This branch does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, guaranteed economic return, or civilization-scale capability.
+          MD
+          git add autonomous docs/evidence-factory
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Evidence Factory autonomous run ${{ github.run_id }}"
+          git push --set-upstream origin "$BRANCH"
+          echo "BRANCH=$BRANCH" >> "$GITHUB_ENV"
+
+      - name: Open next-seed PR
+        if: ${{ needs.evidence-factory.result == 'success' && env.CREATE_NEXT_SEED_PR == 'true' && env.BRANCH != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/evidence_factory_pr_body.md <<'MD'
+          ## Evidence Factory autonomous run
+
+          This PR was opened automatically by the AGI ALPHA Evidence Factory.
+
+          It adds the latest completed Evidence Docket scaffold and next-seed proposal. It does not autonomously promote any empirical claim.
+
+          **Review gates**
+          - [ ] Evidence Docket files present
+          - [ ] Replay report reviewed
+          - [ ] Cost ledger reviewed
+          - [ ] Safety ledger reviewed
+          - [ ] Baseline status reviewed
+          - [ ] Claim level remains conservative
+          - [ ] No empirical SOTA claim without independent replay and full baselines
+          MD
+          gh pr create \
+            --title "Evidence Factory autonomous run ${{ github.run_id }}" \
+            --body-file /tmp/evidence_factory_pr_body.md \
+            --head "$BRANCH" \
+            --base main || true
