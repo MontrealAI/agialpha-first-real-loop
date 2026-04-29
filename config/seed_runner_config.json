@@ -1,0 +1,5 @@
+{
+  "schema_version": "seed-runner-v0.1",
+  "default_seed_count": 10,
+  "claim_boundary": "Autonomous evidence generation is allowed; autonomous claim promotion is not. Independent reproduction and full baselines are required for stronger claims."
+}
