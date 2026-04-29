@@ -1,0 +1,13 @@
+{
+  "api_cost_usd": 0.0,
+  "ci_runtime_seconds": 0.0,
+  "claim_boundary": "Cost ledger is scaffold-level unless model/API/tool invoices and hardware logs are attached. This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+  "generated_at_epoch": 1777500425,
+  "github_run_attempt": "1",
+  "github_run_id": "25136369798",
+  "human_review_minutes": 0.0,
+  "schema": "agialpha.cost_ledger.v1",
+  "tokens": 0,
+  "tool_calls": 0,
+  "wall_seconds": 0.0
+}
