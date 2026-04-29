@@ -1,0 +1,19 @@
+{
+  "schema": "agialpha.evidence_factory_config.v0_3",
+  "default_docket_dir": "runs/evidence/${GITHUB_RUN_ID:-local}",
+  "run_command": "python -m agialpha_first_loop.run --out ${DOCKET_DIR}",
+  "claim_policy": {
+    "no_empirical_sota_without_evidence_docket": true,
+    "independent_replay_required_for_L4": true,
+    "full_baseline_suite_required_for_L5": true,
+    "zero_critical_safety_violations_required": true
+  },
+  "automation": {
+    "schedule_enabled": true,
+    "create_issue_on_failure": true,
+    "create_next_seed_pr": true,
+    "deploy_github_pages_scoreboard": true,
+    "autonomous_evidence_generation": true,
+    "autonomous_claim_promotion": false
+  }
+}
