@@ -687,12 +687,18 @@ def _discover_experiment_runs(site: Path, slug: str) -> list[str]:
     root = site / slug
     if not root.exists():
         return []
-    run_links: list[str] = []
-    for idx in sorted(root.rglob("index.html")):
+    run_indexes = []
+    for idx in root.rglob("index.html"):
         rel = idx.relative_to(site)
         if rel.parts == (slug, "index.html"):
             continue
-        run_links.append("./" + "/".join(rel.parts[:-1]) + "/")
+        try:
+            mtime = idx.stat().st_mtime
+        except OSError:
+            mtime = 0.0
+        run_indexes.append((mtime, "./" + "/".join(rel.parts[:-1]) + "/"))
+    run_indexes.sort(key=lambda x: (x[0], x[1]), reverse=True)
+    run_links = [link for _, link in run_indexes]
     return run_links
 
 def build_site(docket: Path, site: Path) -> None:
