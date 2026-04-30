@@ -1,0 +1,18 @@
+{
+  "reviewer": "default-local",
+  "claim_boundary_reviewed": true,
+  "tasks": [
+    {
+      "id": "default-external-claim-001",
+      "family": "default external claim-boundary challenge",
+      "difficulty": 5,
+      "required_capability": "claim"
+    },
+    {
+      "id": "default-external-proof-001",
+      "family": "default external ProofBundle challenge",
+      "difficulty": 4,
+      "required_capability": "proof"
+    }
+  ]
+}

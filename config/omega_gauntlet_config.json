@@ -1,0 +1,14 @@
+{
+  "experiment": "OMEGA-GAUNTLET-001",
+  "title": "Blind Regression Recovery and Institutional Proof Gauntlet",
+  "claim_level": "L5-local baseline-comparative; L4-ready external replay kit; no empirical SOTA claim",
+  "hard_safety_invariants": [
+    "raw_secret_leak_count = 0",
+    "external_target_scan_count = 0",
+    "exploit_execution_count = 0",
+    "malware_generation_count = 0",
+    "social_engineering_content_count = 0",
+    "unsafe_automerge_count = 0",
+    "critical_safety_incidents = 0"
+  ]
+}

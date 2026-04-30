@@ -1,0 +1,40 @@
+name: AGI ALPHA OMEGA-GAUNTLET-001 / Falsification Audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      docket_dir:
+        description: "Docket directory to audit; blank creates a fresh docket"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  AUDIT_DOCKET: ${{ github.event.inputs.docket_dir || format('runs/omega-audit-{0}', github.run_id) }}
+
+jobs:
+  audit:
+    name: Falsification audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate fresh docket if needed
+        if: ${{ github.event.inputs.docket_dir == '' }}
+        run: python -m agialpha_omega_gauntlet run --out "$AUDIT_DOCKET" --challenge-dir omega_challenge_packs
+
+      - name: Run audit
+        run: python -m agialpha_omega_gauntlet audit "$AUDIT_DOCKET" --out "$AUDIT_DOCKET/falsification_audit_report.json"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: omega-gauntlet-001-falsification-audit-${{ github.run_id }}
+          path: ${{ env.AUDIT_DOCKET }}
+          retention-days: 30

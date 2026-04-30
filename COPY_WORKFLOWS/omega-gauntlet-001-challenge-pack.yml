@@ -1,0 +1,46 @@
+name: AGI ALPHA OMEGA-GAUNTLET-001 / External Challenge Pack
+
+on:
+  pull_request:
+    paths:
+      - "omega_challenge_packs/**"
+  workflow_dispatch:
+    inputs:
+      challenge_dir:
+        description: "Challenge pack directory"
+        required: false
+        default: "omega_challenge_packs"
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  CHALLENGE_DIR: ${{ github.event.inputs.challenge_dir || 'omega_challenge_packs' }}
+  DOCKET_DIR: runs/omega-challenge-${{ github.run_id }}
+
+jobs:
+  challenge-pack:
+    name: Run reviewer challenge pack
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run OMEGA with challenge pack
+        run: python -m agialpha_omega_gauntlet run --out "$DOCKET_DIR" --challenge-dir "$CHALLENGE_DIR"
+
+      - name: Replay
+        run: python -m agialpha_omega_gauntlet replay "$DOCKET_DIR"
+
+      - name: Audit
+        run: python -m agialpha_omega_gauntlet audit "$DOCKET_DIR"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: omega-gauntlet-001-challenge-pack-${{ github.run_id }}
+          path: ${{ env.DOCKET_DIR }}
+          retention-days: 30
