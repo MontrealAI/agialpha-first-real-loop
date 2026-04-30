@@ -1,0 +1,88 @@
+name: AGI ALPHA External Reviewer Replay / L4
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_docket:
+        description: "Source Evidence Docket path"
+        required: false
+        default: "evidence-docket"
+      reviewer_name:
+        description: "Reviewer name or handle"
+        required: false
+        default: "external-reviewer"
+      reviewer_org:
+        description: "Reviewer organization or independent affiliation"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  PYTHONUNBUFFERED: "1"
+  SOURCE_DOCKET: ${{ github.event.inputs.source_docket || 'evidence-docket' }}
+  REVIEWER_NAME: ${{ github.event.inputs.reviewer_name || 'external-reviewer' }}
+  REVIEWER_ORG: ${{ github.event.inputs.reviewer_org || '' }}
+  RUN_DIR: reviewer-replay/${{ github.run_id }}
+
+jobs:
+  external-replay:
+    name: External reviewer clean replay
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Generate reviewer replay portfolio
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_l4_l7 run-all \
+            --source-docket "$SOURCE_DOCKET" \
+            --out "$RUN_DIR/portfolio" \
+            --docs "$RUN_DIR/site" \
+            --agents "1,2,4" \
+            --nodes "1,2" \
+            --repo-root "."
+
+      - name: Replay reviewer portfolio
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_l4_l7 replay --bundle "$RUN_DIR/portfolio" --out "$RUN_DIR/replay_report"
+
+      - name: Write reviewer attestation template
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUN_DIR/external_reviewer_attestation"
+          cat > "$RUN_DIR/external_reviewer_attestation/attestation.template.json" <<EOF
+          {
+            "reviewer_name": "$REVIEWER_NAME",
+            "reviewer_org": "$REVIEWER_ORG",
+            "replayed_from_clean_checkout": true,
+            "artifact_hashes_match": null,
+            "baselines_reviewed": null,
+            "cost_ledger_reviewed": null,
+            "safety_ledger_reviewed": null,
+            "result_reproduced": null,
+            "claim_boundary": "This is external replay evidence only when completed by an outside reviewer. It does not by itself prove empirical SOTA."
+          }
+          EOF
+
+      - name: Upload external reviewer replay artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: external-reviewer-replay-${{ github.run_id }}
+          path: ${{ env.RUN_DIR }}
+          if-no-files-found: error
+          retention-days: 30
