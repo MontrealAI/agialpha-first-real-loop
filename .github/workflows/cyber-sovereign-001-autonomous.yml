@@ -1,0 +1,93 @@
+name: AGI ALPHA Cybersecurity Sovereign 001 / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      output_dir:
+        description: "Output directory"
+        required: false
+        default: ""
+      publish_pages:
+        description: "Publish Cybersecurity Sovereign scoreboard to GitHub Pages"
+        type: boolean
+        required: false
+        default: true
+  schedule:
+    - cron: "41 4 * * 1"
+  push:
+    branches: ["main"]
+    paths:
+      - "agialpha_sovereign_capstone/**"
+      - "config/**"
+      - ".github/workflows/cyber-sovereign-001-autonomous.yml"
+      - "evidence-docket/**"
+
+permissions:
+  contents: write
+  actions: read
+  issues: write
+  pull-requests: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: cyber-sovereign-001-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  DEFAULT_OUT: runs/cyber-sovereign-001/${{ github.run_id }}
+  PUBLISH_PAGES: ${{ github.event.inputs.publish_pages || 'true' }}
+
+jobs:
+  cyber-sovereign:
+    name: Generate defensive Cybersecurity Sovereign Evidence Docket
+    runs-on: ubuntu-latest
+    outputs:
+      out: ${{ steps.paths.outputs.out }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Resolve output path
+        id: paths
+        shell: bash
+        run: |
+          if [[ -n "${{ github.event.inputs.output_dir || '' }}" ]]; then
+            OUT="${{ github.event.inputs.output_dir }}"
+          else
+            OUT="$DEFAULT_OUT"
+          fi
+          echo "out=$OUT" >> "$GITHUB_OUTPUT"
+          echo "OUT=$OUT" >> "$GITHUB_ENV"
+      - name: Run Cybersecurity Sovereign 001
+        run: python -m agialpha_sovereign_capstone cyber --out "$OUT" --root .
+      - name: Upload Cybersecurity Sovereign artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: cyber-sovereign-001-${{ github.run_id }}
+          path: ${{ env.OUT }}
+          retention-days: 30
+      - name: Upload Pages artifact
+        if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ env.OUT }}
+
+  deploy-pages:
+    name: Publish Cybersecurity Sovereign scoreboard
+    needs: cyber-sovereign
+    if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

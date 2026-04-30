@@ -1,0 +1,32 @@
+name: AGI ALPHA Cybersecurity Sovereign 001 Delayed Outcome Sentinel
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 5 * * 2"
+  workflow_run:
+    workflows: ["AGI ALPHA Cybersecurity Sovereign 001 / Autonomous"]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  delayed-outcome:
+    name: Generate delayed-outcome sentinel
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Generate delayed-outcome sentinel
+        run: python -m agialpha_sovereign_capstone delayed --out runs/cyber-sovereign-delayed/${{ github.run_id }}
+      - name: Upload delayed-outcome artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: cyber-sovereign-delayed-outcome-${{ github.run_id }}
+          path: runs/cyber-sovereign-delayed/${{ github.run_id }}
+          retention-days: 30
