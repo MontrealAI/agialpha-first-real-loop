@@ -7,6 +7,7 @@ import os
 import shutil
 import subprocess
 import time
+from urllib.parse import quote
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -522,7 +523,7 @@ def _row_from_docket(docket: Path) -> dict[str, Any] | None:
 def _experiment_key(row: dict[str, Any]) -> str:
     run_id = str(row.get("run_id") or "")
     if "-" not in run_id:
-        return "misc"
+        return run_id or "unknown"
     parts = run_id.split("-")
     if len(parts) >= 2 and parts[-1].isdigit():
         return "-".join(parts[:-1])
@@ -557,7 +558,10 @@ def build_scoreboard(dockets: list[Path], out: Path) -> dict[str, Any]:
         "experiments": {k: len(v) for k, v in sorted(experiments.items())},
     }
     write_json(out / "evidence-index.json", index)
-    links = " ".join(f"<a href='#{html.escape(name)}'>{html.escape(name)}</a>" for name in sorted(experiments))
+    links = " ".join(
+        f"<a href='#{quote(name, safe='')}'>{html.escape(name)}</a>"
+        for name in sorted(experiments)
+    )
     html_lines = [
         "<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>",
         "<title>AGI ALPHA Evidence Factory Scoreboard</title>",
@@ -569,7 +573,7 @@ def build_scoreboard(dockets: list[Path], out: Path) -> dict[str, Any]:
     ]
     for experiment_name in sorted(experiments):
         html_lines.append(
-            f"<tr id='{html.escape(experiment_name)}'><th colspan='9'>"
+            f"<tr id='{quote(experiment_name, safe='')}'><th colspan='9'>"
             f"Experiment: {html.escape(experiment_name)} ({len(experiments[experiment_name])} runs)"
             "</th></tr>"
         )

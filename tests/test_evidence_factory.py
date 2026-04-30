@@ -1,5 +1,6 @@
 from pathlib import Path
 from agialpha_evidence_factory.core import complete_docket, lint_docket, build_scoreboard
+import json
 
 
 def test_seed_docket_completes(tmp_path: Path):
@@ -21,3 +22,14 @@ def test_scoreboard_builds(tmp_path: Path):
     assert (docs / "index.html").exists()
     html = (docs / "index.html").read_text(encoding="utf-8")
     assert "Experiments:" in html
+
+
+def test_scoreboard_preserves_non_hyphen_run_id_and_encodes_anchor(tmp_path: Path):
+    docs = tmp_path / "docs"
+    docket = tmp_path / "alpha dossier"
+    docket.mkdir(parents=True)
+    (docket / "00_manifest.json").write_text(json.dumps({"docket_id": "alpha dossier"}), encoding="utf-8")
+    index = build_scoreboard([docket], docs)
+    assert index["experiments"]["alpha dossier"] == 1
+    html = (docs / "index.html").read_text(encoding="utf-8")
+    assert "href='#alpha%20dossier'" in html
