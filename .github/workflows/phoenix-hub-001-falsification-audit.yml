@@ -1,0 +1,52 @@
+name: AGI ALPHA PHOENIX-HUB-001 / Falsification Audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "Optional PHOENIX-HUB-001 run id to audit. Leave blank to run fresh."
+        required: false
+        default: ""
+  schedule:
+    - cron: "31 6 * * *"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Prepare docket
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -n "${{ github.event.inputs.source_run_id }}" ]; then
+            mkdir -p downloaded
+            gh run download "${{ github.event.inputs.source_run_id }}" --name "phoenix-hub-001-${{ github.event.inputs.source_run_id }}" --dir downloaded
+            DOCKET="$(find downloaded -type f -name 00_manifest.json -print -quit | xargs dirname)"
+            echo "DOCKET=$DOCKET" >> "$GITHUB_ENV"
+          else
+            python -m agialpha_phoenix_gauntlet run --repo-root . --out fresh_docket --site-out fresh_site --challenge-dir phoenix_challenge_packs
+            echo "DOCKET=fresh_docket" >> "$GITHUB_ENV"
+          fi
+      - name: Audit docket
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_phoenix_gauntlet audit --docket "$DOCKET" --out falsification_audit --strict
+      - name: Upload falsification artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: phoenix-hub-001-falsification-${{ github.run_id }}
+          path: falsification_audit
+          retention-days: 30
