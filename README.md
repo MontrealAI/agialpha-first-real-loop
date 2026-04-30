@@ -113,4 +113,13 @@ python -m unittest discover -s tests
 ```
 
 That confirms the loop remains replayable after every commit.
-\n## Evidence Hub publishing architecture\nSee README_EVIDENCE_HUB.md for central registry + single deploy workflow design.
+\n
+
+## Evidence Hub publishing architecture
+
+- One central Pages publisher (`.github/workflows/evidence-hub-publish.yml`) builds and deploys the full site snapshot.
+- Experiment workflows emit evidence manifests plus artifacts, and do not deploy Pages directly.
+- A persistent registry in `evidence_registry/` retains run history beyond artifact expiration.
+- Dynamic discovery scans manifests, workflow metadata, docs outputs, artifacts, and historical evidence for future autonomous experiments.
+- No Evidence Docket, no empirical SOTA claim.
+
