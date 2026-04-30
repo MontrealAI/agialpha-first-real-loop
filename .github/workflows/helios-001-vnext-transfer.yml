@@ -1,0 +1,77 @@
+name: AGI ALPHA HELIOS-001 vNext Transfer / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_dir:
+        description: "Optional local source directory; leave blank to download latest HELIOS artifact or fallback"
+        required: false
+        default: ""
+  workflow_run:
+    workflows: ["AGI ALPHA HELIOS-001 / Autonomous"]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+
+env:
+  PYTHONUNBUFFERED: "1"
+
+jobs:
+  vnext:
+    name: vNext transfer challenge
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Download triggering HELIOS artifact if available
+        if: ${{ github.event_name == 'workflow_run' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p downloaded_helios
+          gh run download "${{ github.event.workflow_run.id }}" -n helios-001-evidence -D downloaded_helios || true
+
+      - name: Resolve source directory
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${{ github.event.inputs.source_dir || '' }}" ]]; then
+            SOURCE="${{ github.event.inputs.source_dir }}"
+          else
+            SOURCE=""
+            CANDIDATE=$(find downloaded_helios -name helios_summary.json -print -quit 2>/dev/null || true)
+            if [[ -n "$CANDIDATE" ]]; then SOURCE=$(dirname "$CANDIDATE"); fi
+            if [[ -z "$SOURCE" ]]; then SOURCE="runs/helios/generated-fallback"; fi
+          fi
+          echo "SOURCE=$SOURCE" >> "$GITHUB_ENV"
+
+      - name: Run vNext transfer report
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! -f "$SOURCE/helios_summary.json" ]]; then
+            python -m agialpha_helios run --out "$SOURCE"
+          fi
+          python -m agialpha_helios vnext --source "$SOURCE" --out "runs/helios-vnext/${{ github.run_id }}"
+
+      - name: Upload vNext transfer artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: helios-001-vnext-transfer
+          path: runs/helios-vnext/${{ github.run_id }}
+          retention-days: 30
