@@ -76,8 +76,8 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf _pages && mkdir -p _pages
-          git fetch origin gh-pages:gh-pages || true
-          if git show-ref --verify --quiet refs/heads/gh-pages; then
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
+            git fetch origin gh-pages:gh-pages
             git --work-tree _pages checkout gh-pages -- .
           fi
           mkdir -p _pages/cyber-sovereign-001
