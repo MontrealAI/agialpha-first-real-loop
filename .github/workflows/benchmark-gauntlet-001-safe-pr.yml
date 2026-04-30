@@ -1,0 +1,68 @@
+name: AGI ALPHA Benchmark Gauntlet 001 / Safe PR Proposal
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch_name:
+        description: "Branch name for safe PR"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  safe-pr:
+    name: Open safe reviewer-protocol PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Create safe PR files
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          BRANCH="${{ github.event.inputs.branch_name }}"
+          if [ -z "$BRANCH" ]; then
+            BRANCH="benchmark-gauntlet-001-safe-pr-${GITHUB_RUN_ID}"
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          python -m agialpha_benchmark_gauntlet safe-pr-files --repo-root .
+          git add docs/benchmark-gauntlet-001
+          if git diff --cached --quiet; then
+            echo "No changes to propose."
+            exit 0
+          fi
+          git commit -m "Add BENCHMARK-GAUNTLET-001 reviewer protocol"
+          git push --set-upstream origin "$BRANCH"
+          cat > /tmp/pr_body.md <<'MD'
+          ## BENCHMARK-GAUNTLET-001 safe PR
+
+          This PR adds reviewer-facing protocol files for the AGI ALPHA Benchmark Gauntlet.
+
+          Claim boundary: this does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability.
+
+          Review gates:
+          - [ ] Files are documentation / reviewer protocol only
+          - [ ] No automatic merge is requested
+          - [ ] No secrets are printed
+          - [ ] No external target scanning is introduced
+          - [ ] Claim boundary is preserved
+          - [ ] Stronger claims require external replay and official public benchmark execution
+          MD
+          gh pr create \
+            --title "BENCHMARK-GAUNTLET-001 safe reviewer protocol" \
+            --body-file /tmp/pr_body.md \
+            --head "$BRANCH" \
+            --base main || true
