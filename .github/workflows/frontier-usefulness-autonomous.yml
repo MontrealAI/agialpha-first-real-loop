@@ -115,13 +115,13 @@ jobs:
 
       - name: Upload Pages artifact
         if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
           path: public
 
   deploy-pages:
     name: Publish Frontier Usefulness scoreboard
-    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
+    if: ${{ false }}
     needs: frontier-usefulness
     runs-on: ubuntu-latest
     environment:
@@ -133,4 +133,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/upload-artifact@v4

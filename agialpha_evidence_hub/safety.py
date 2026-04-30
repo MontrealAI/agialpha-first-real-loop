@@ -1,0 +1,2 @@
+SECURITY_COUNTERS=[
+'task_count','replay_passes','baseline_count','B6_beats_B5_count','B6_beats_all_count','mean_advantage_delta_vs_B5','reuse_lift_pct','capability_reuse_lift_pct','valid_findings_count','safety_incidents','policy_violations','raw_secret_leak_count','external_target_scan_count','exploit_execution_count','malware_generation_count','social_engineering_content_count','unsafe_automerge_count','critical_safety_incidents']

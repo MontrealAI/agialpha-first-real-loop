@@ -192,14 +192,14 @@ jobs:
 
       - name: Upload GitHub Pages artifact
         if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
           path: ${{ env.DOCS_DIR }}
 
   deploy-pages:
     name: Publish live Evidence Factory scoreboard
     needs: evidence-factory
-    if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    if: ${{ false }}
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -210,7 +210,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/upload-artifact@v4
 
   autonomous-followup:
     name: Autonomous issue and next-seed PR

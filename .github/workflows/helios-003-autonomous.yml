@@ -114,14 +114,14 @@ jobs:
           cp -a "${DOCS_DIR}/." "_pages/helios-003/"
       - name: Upload GitHub Pages artifact
         if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
           path: _pages
 
   deploy-pages:
     name: Publish HELIOS-003 scoreboard to GitHub Pages
     needs: helios-003
-    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
+    if: ${{ false }}
     runs-on: ubuntu-latest
     concurrency:
       group: pages-publish-main
@@ -135,4 +135,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/upload-artifact@v4

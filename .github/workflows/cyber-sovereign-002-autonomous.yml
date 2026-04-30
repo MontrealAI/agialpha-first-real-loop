@@ -112,14 +112,14 @@ jobs:
           cp -a "${SITE_DIR}/." "_pages/"
       - name: Upload GitHub Pages artifact
         if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
           path: _pages
 
   deploy-pages:
     name: Publish CYBER-SOVEREIGN-002 scoreboard to GitHub Pages
     needs: cyber-sovereign-002
-    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
+    if: ${{ false }}
     runs-on: ubuntu-latest
     concurrency:
       group: pages-publish-main
@@ -133,4 +133,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/upload-artifact@v4

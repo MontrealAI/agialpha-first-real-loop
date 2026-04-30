@@ -97,7 +97,7 @@ jobs:
 
       - name: Upload Pages artifact
         if: ${{ github.ref_name == 'main' && env.PUBLISH_PAGES == 'true' }}
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
           path: docs
 
@@ -105,7 +105,7 @@ jobs:
     name: Publish Falsification Audit scoreboard
     needs: falsification-audit
     runs-on: ubuntu-latest
-    if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    if: ${{ false }}
     permissions:
       pages: write
       id-token: write
@@ -115,4 +115,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/upload-artifact@v4
