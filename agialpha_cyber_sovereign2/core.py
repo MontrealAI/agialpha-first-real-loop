@@ -746,7 +746,7 @@ def build_site(docket: Path, site: Path) -> None:
         run_links = _discover_experiment_runs(site, slug)
         run_html = ""
         if run_links:
-            run_items = "".join([f"<li><a href='{html.escape(run)}'>{html.escape(run)}</a></li>" for run in run_links[-10:]])
+            run_items = "".join([f"<li><a href='{html.escape(run)}'>{html.escape(run)}</a></li>" for run in run_links[:10]])
             run_html = f"<details><summary>Recent runs ({len(run_links)})</summary><ul>{run_items}</ul></details>"
         cards_parts.append(f"<div class='tile'><h3>{html.escape(t)}</h3><p>{html.escape(desc)}</p><p><a href='{href}'>Open</a></p>{run_html}</div>")
     cards = "".join(cards_parts)
