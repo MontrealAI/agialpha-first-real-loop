@@ -23,10 +23,12 @@ on:
       - "evidence-docket/**"
 
 permissions:
-  contents: write
+  contents: read
   actions: read
   issues: write
   pull-requests: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: cyber-sovereign-001-${{ github.ref }}
@@ -68,11 +70,36 @@ jobs:
           name: cyber-sovereign-001-${{ github.run_id }}
           path: ${{ env.OUT }}
           retention-days: 30
-      - name: Publish cyber-sovereign-001 page to GitHub Pages branch
+      - name: Prepare merged Pages content
         if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
-        uses: peaceiris/actions-gh-pages@v4
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _pages && mkdir -p _pages
+          git fetch origin gh-pages:gh-pages || true
+          if git show-ref --verify --quiet refs/heads/gh-pages; then
+            git --work-tree _pages checkout gh-pages -- .
+          fi
+          mkdir -p _pages/cyber-sovereign-001
+          cp -a "${OUT}/." "_pages/cyber-sovereign-001/"
+      - name: Upload GitHub Pages artifact
+        if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
+        uses: actions/upload-pages-artifact@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ env.OUT }}
-          destination_dir: cyber-sovereign-001
-          keep_files: true
+          path: _pages
+
+  deploy-pages:
+    name: Publish Cybersecurity Sovereign scoreboard
+    needs: cyber-sovereign
+    if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
