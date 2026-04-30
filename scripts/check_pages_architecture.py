@@ -1,14 +1,37 @@
 from pathlib import Path
-forbidden=['actions/deploy-pages','actions/upload-pages-artifact','github-pages-deploy-action','peaceiris/actions-gh-pages','jamesives/github-pages-deploy-action']
-allowed='evidence-hub-publish.yml'
-viol=[]
-for p in Path('.github/workflows').glob('*.yml'):
-    t=p.read_text().lower()
-    for f in forbidden:
-        if f in t and p.name!=allowed:
-            viol.append((p.name,f))
-if viol:
-    raise SystemExit('forbidden pages deploy references: '+str(viol))
-if 'actions/deploy-pages' not in Path('.github/workflows',allowed).read_text().lower():
-    raise SystemExit('central publisher missing deploy-pages')
-print('ok')
+import re
+
+forbidden_refs = [
+    "actions/deploy-pages",
+    "actions/upload-pages-artifact",
+    "github-pages-deploy-action",
+    "peaceiris/actions-gh-pages",
+    "jamesives/github-pages-deploy-action",
+]
+forbidden_cmd_patterns = [
+    r"\bgit\s+push\s+.*\bgh-pages\b",
+    r"\bgh-pages\b",
+]
+allowed = "evidence-hub-publish.yml"
+violations = []
+
+for workflow in Path(".github/workflows").glob("*.yml"):
+    text = workflow.read_text().lower()
+    if workflow.name == allowed:
+        continue
+    for ref in forbidden_refs:
+        if ref in text:
+            violations.append((workflow.name, ref))
+    for cmd_pattern in forbidden_cmd_patterns:
+        if re.search(cmd_pattern, text):
+            violations.append((workflow.name, f"cmd:{cmd_pattern}"))
+
+if violations:
+    raise SystemExit(f"forbidden pages deploy references: {violations}")
+
+central_text = Path(".github/workflows", allowed).read_text().lower()
+for required in ("actions/deploy-pages", "actions/upload-pages-artifact"):
+    if required not in central_text:
+        raise SystemExit(f"central publisher missing {required}")
+
+print("ok")
