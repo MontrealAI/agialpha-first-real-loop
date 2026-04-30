@@ -8,6 +8,14 @@ def _load(base):
     runs=json.loads((b/'runs.json').read_text()) if (b/'runs.json').exists() else []
     exps=json.loads((b/'experiments.json').read_text()) if (b/'experiments.json').exists() else []
     wfs=json.loads((b/'workflows.json').read_text()) if (b/'workflows.json').exists() else []
+    catalog_path = b / 'workflow_catalog.json'
+    catalog = json.loads(catalog_path.read_text()) if catalog_path.exists() else {'workflows': []}
+    if isinstance(catalog, dict):
+        catalog_workflows = catalog.get('workflows', [])
+    else:
+        catalog_workflows = catalog
+    if catalog_workflows:
+        wfs = catalog_workflows
     return runs,exps,wfs
 
 def build_site(registry='evidence_registry', out='_site'):
@@ -26,12 +34,12 @@ def build_site(registry='evidence_registry', out='_site'):
     o.joinpath('index.html').write_text(page('AGI ALPHA Evidence Hub',f"<h2>Unified Evidence Docket registry for AGI ALPHA workflows, experiments, replay, baselines, safety ledgers, and external review.</h2><p>{CLAIM_BOUNDARY}</p><h3>Recent Runs</h3><table>{rows}</table>"))
     o.joinpath('404.html').write_text(page('Not Found','<a href="/agialpha-first-real-loop/">Back to hub</a>'))
     o.joinpath('experiments/index.html').write_text(page('Experiments',''.join([f"<li><a href='/agialpha-first-real-loop/experiments/{e['slug']}/'>{e['slug']}</a></li>" for e in exps])))
-    o.joinpath('workflows/index.html').write_text(page('Workflows',''.join([f"<li><a href='/agialpha-first-real-loop/workflows/{w['slug']}/'>{w['name']}</a></li>" for w in wfs])))
+    o.joinpath('workflows/index.html').write_text(page('Workflows',''.join([f"<li><a href='/agialpha-first-real-loop/workflows/{(w.get('slug') or Path(w.get('workflow_file','')).stem)}/'>{w.get('name') or w.get('workflow_name') or Path(w.get('workflow_file','')).name}</a></li>" for w in wfs])))
     o.joinpath('runs/index.html').write_text(page('Runs',''.join([f"<li><a href='/agialpha-first-real-loop/runs/{r['run_id']}/'>{r['run_id']}</a></li>" for r in runs])))
     for s in ['artifacts','external-review','safety','legacy','falsification']:
         o.joinpath(s,'index.html').write_text(page(s.title(),'<a href="/agialpha-first-real-loop/">Back</a>'))
 
-    launch_rows=''.join([f"<tr><td>{w.get('name')}</td><td>{w.get('workflow_file')}</td><td><a href='https://github.com/MontrealAI/agialpha-first-real-loop/actions/workflows/{Path(w.get('workflow_file','')).name}'>{w.get('workflow_file')}</a></td><td><code>gh workflow run {Path(w.get('workflow_file','')).name}</code></td></tr>" for w in wfs])
+    launch_rows=''.join([f"<tr><td>{w.get('name') or w.get('workflow_name') or Path(w.get('workflow_file','')).name}</td><td>{w.get('workflow_file')}</td><td><a href='https://github.com/MontrealAI/agialpha-first-real-loop/actions/workflows/{Path(w.get('workflow_file','')).name}'>{w.get('workflow_file')}</a></td><td><code>{w.get('gh_command') or ('gh workflow run ' + Path(w.get('workflow_file','')).name)}</code></td></tr>" for w in wfs])
     o.joinpath('launchpad/index.html').write_text(page('Workflow Launchpad', f"<p>Click the button, then click Run workflow on GitHub.</p><table>{launch_rows}</table>"))
 
     for exp,runs_exp in by_exp.items():

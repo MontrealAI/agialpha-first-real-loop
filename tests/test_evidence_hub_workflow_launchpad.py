@@ -41,6 +41,22 @@ class TestEvidenceHubWorkflowLaunchpad(unittest.TestCase):
             self.assertIn('replay.yml', html)
             self.assertIn('gh workflow run replay.yml', html)
 
+    def test_build_consumes_workflow_catalog_when_workflows_json_empty(self):
+        with tempfile.TemporaryDirectory() as td:
+            reg = Path(td) / 'registry'
+            out = Path(td) / 'site'
+            reg.mkdir(parents=True)
+            (reg / 'runs.json').write_text('[]')
+            (reg / 'experiments.json').write_text('[]')
+            (reg / 'workflows.json').write_text('[]')
+            (reg / 'workflow_catalog.json').write_text(json.dumps({'workflows':[{'workflow_file':'.github/workflows/replay.yml','name':'Replay','gh_command':'gh workflow run replay.yml'}]}))
+            build_site(str(reg), str(out))
+            html = (out / 'launchpad' / 'index.html').read_text()
+            self.assertIn('Replay', html)
+            self.assertIn('gh workflow run replay.yml', html)
+            published = json.loads((out / 'data' / 'workflow_catalog.json').read_text())
+            self.assertEqual(1, len(published['workflows']))
+
 
 if __name__ == '__main__':
     unittest.main()
