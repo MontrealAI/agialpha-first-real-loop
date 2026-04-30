@@ -31,7 +31,7 @@ def build_site(registry='evidence_registry', out='_site'):
     for s in ['artifacts','external-review','safety','legacy','falsification']:
         o.joinpath(s,'index.html').write_text(page(s.title(),'<a href="/agialpha-first-real-loop/">Back</a>'))
 
-    launch_rows=''.join([f"<tr><td>{w.get('name')}</td><td>{w.get('file')}</td><td><a href='https://github.com/MontrealAI/agialpha-first-real-loop/actions/workflows/{w.get('file','')}'>{w.get('file')}</a></td><td><code>gh workflow run {w.get('file','')}</code></td></tr>" for w in wfs])
+    launch_rows=''.join([f"<tr><td>{w.get('name')}</td><td>{w.get('workflow_file')}</td><td><a href='https://github.com/MontrealAI/agialpha-first-real-loop/actions/workflows/{Path(w.get('workflow_file','')).name}'>{w.get('workflow_file')}</a></td><td><code>gh workflow run {Path(w.get('workflow_file','')).name}</code></td></tr>" for w in wfs])
     o.joinpath('launchpad/index.html').write_text(page('Workflow Launchpad', f"<p>Click the button, then click Run workflow on GitHub.</p><table>{launch_rows}</table>"))
 
     for exp,runs_exp in by_exp.items():
