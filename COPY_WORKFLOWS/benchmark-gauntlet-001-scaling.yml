@@ -1,0 +1,40 @@
+name: AGI ALPHA Benchmark Gauntlet 001 / L6 Scaling Proxy
+
+on:
+  workflow_dispatch:
+    inputs:
+      challenge_dir:
+        description: "External challenge pack directory"
+        required: false
+        default: "external_challenge_packs"
+  workflow_run:
+    workflows: ["AGI ALPHA Benchmark Gauntlet 001 / Autonomous"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  scaling:
+    name: CI scaling proxy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run scaling proxy
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHALLENGE_DIR="${{ github.event.inputs.challenge_dir || 'external_challenge_packs' }}"
+          OUT="runs/scaling-${GITHUB_RUN_ID}"
+          python -m agialpha_benchmark_gauntlet run --out "$OUT" --challenge-dir "$CHALLENGE_DIR"
+          mkdir -p scaling-proxy
+          cp "$OUT/benchmark-gauntlet-001-evidence-docket/12_scaling_matrix.json" scaling-proxy/
+          cp "$OUT/benchmark-gauntlet-001-evidence-docket/15_summary_tables/summary.json" scaling-proxy/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-gauntlet-001-scaling-${{ github.run_id }}
+          path: scaling-proxy
+          retention-days: 30

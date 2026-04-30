@@ -1,0 +1,9 @@
+{
+  "experiment": "BENCHMARK-GAUNTLET-001",
+  "title": "External Benchmark Evidence Docket for Scalable, Efficient, Safe Multi-Agent Coordination",
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, real-world certification, or civilization-scale capability.",
+  "official_public_benchmark_claim": false,
+  "physical_node_scaling_claim": false,
+  "external_network_required": false,
+  "llm_api_required": false
+}

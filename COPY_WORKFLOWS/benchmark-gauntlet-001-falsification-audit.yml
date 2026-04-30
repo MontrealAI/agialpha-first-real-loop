@@ -1,0 +1,44 @@
+name: AGI ALPHA Benchmark Gauntlet 001 / Falsification Audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      challenge_dir:
+        description: "External challenge pack directory"
+        required: false
+        default: "external_challenge_packs"
+  workflow_run:
+    workflows: ["AGI ALPHA Benchmark Gauntlet 001 / Autonomous"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Falsification audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHALLENGE_DIR="${{ github.event.inputs.challenge_dir || 'external_challenge_packs' }}"
+          OUT="runs/falsification-${GITHUB_RUN_ID}"
+          python -m agialpha_benchmark_gauntlet run --out "$OUT" --challenge-dir "$CHALLENGE_DIR"
+          python -m agialpha_benchmark_gauntlet falsification-audit --docket "$OUT/benchmark-gauntlet-001-evidence-docket"
+          mkdir -p falsification-audit
+          cp "$OUT/benchmark-gauntlet-001-evidence-docket/14_falsification_audit.json" falsification-audit/
+          cp "$OUT/benchmark-gauntlet-001-evidence-docket/15_summary_tables/summary.json" falsification-audit/
+      - name: Upload audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-gauntlet-001-falsification-${{ github.run_id }}
+          path: falsification-audit
+          retention-days: 30

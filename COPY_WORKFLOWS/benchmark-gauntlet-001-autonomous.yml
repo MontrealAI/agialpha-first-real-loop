@@ -1,0 +1,103 @@
+name: AGI ALPHA Benchmark Gauntlet 001 / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      challenge_dir:
+        description: "External challenge pack directory"
+        required: false
+        default: "external_challenge_packs"
+      publish_pages:
+        description: "Publish scoreboard to GitHub Pages"
+        type: boolean
+        required: false
+        default: true
+  push:
+    branches: ["main"]
+    paths:
+      - "agialpha_benchmark_gauntlet/**"
+      - "benchmark_gauntlet_tasks/**"
+      - "external_challenge_packs/**"
+      - "config/benchmark_gauntlet_config.json"
+      - "tests/**"
+      - ".github/workflows/benchmark-gauntlet-001-autonomous.yml"
+
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: benchmark-gauntlet-001-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: "1"
+  CHALLENGE_DIR: ${{ github.event.inputs.challenge_dir || 'external_challenge_packs' }}
+  PUBLISH_PAGES: ${{ github.event.inputs.publish_pages || 'true' }}
+
+jobs:
+  benchmark-gauntlet:
+    name: Generate BENCHMARK-GAUNTLET-001 Evidence Docket
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run unit tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -d tests ]; then
+            python -m unittest discover -s tests
+          fi
+
+      - name: Generate Evidence Docket and scoreboard
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="runs/benchmark-gauntlet-001-${GITHUB_RUN_ID}"
+          python -m agialpha_benchmark_gauntlet run --out "$OUT" --challenge-dir "$CHALLENGE_DIR" --docs-dir docs
+          python -m agialpha_benchmark_gauntlet replay --docket "$OUT/benchmark-gauntlet-001-evidence-docket"
+          python -m agialpha_benchmark_gauntlet falsification-audit --docket "$OUT/benchmark-gauntlet-001-evidence-docket"
+          echo "DOCKET=$OUT/benchmark-gauntlet-001-evidence-docket" >> "$GITHUB_ENV"
+          echo "OUT=$OUT" >> "$GITHUB_ENV"
+
+      - name: Upload Evidence Docket artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-gauntlet-001-${{ github.run_id }}
+          path: |
+            ${{ env.DOCKET }}
+            docs
+          retention-days: 30
+
+      - name: Upload GitHub Pages artifact
+        if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy-pages:
+    name: Publish BENCHMARK-GAUNTLET-001 scoreboard
+    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
+    needs: benchmark-gauntlet
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

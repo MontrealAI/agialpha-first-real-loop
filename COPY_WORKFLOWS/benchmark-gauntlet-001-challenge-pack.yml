@@ -1,0 +1,47 @@
+name: AGI ALPHA Benchmark Gauntlet 001 / External Challenge Pack
+
+on:
+  pull_request:
+    paths:
+      - "external_challenge_packs/**"
+      - "agialpha_benchmark_gauntlet/**"
+      - "tests/**"
+  workflow_dispatch:
+    inputs:
+      challenge_dir:
+        description: "External challenge pack directory"
+        required: false
+        default: "external_challenge_packs"
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  challenge-pack:
+    name: Run challenge pack docket
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run challenge pack
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHALLENGE_DIR="${{ github.event.inputs.challenge_dir || 'external_challenge_packs' }}"
+          OUT="runs/challenge-pack-${GITHUB_RUN_ID}"
+          python -m agialpha_benchmark_gauntlet run --out "$OUT" --challenge-dir "$CHALLENGE_DIR"
+          python -m agialpha_benchmark_gauntlet replay --docket "$OUT/benchmark-gauntlet-001-evidence-docket"
+          python -m agialpha_benchmark_gauntlet falsification-audit --docket "$OUT/benchmark-gauntlet-001-evidence-docket"
+          mkdir -p challenge-pack-result
+          cp -R "$OUT/benchmark-gauntlet-001-evidence-docket" challenge-pack-result/
+      - name: Upload challenge pack artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-gauntlet-001-challenge-pack-${{ github.run_id }}
+          path: challenge-pack-result
+          retention-days: 30
