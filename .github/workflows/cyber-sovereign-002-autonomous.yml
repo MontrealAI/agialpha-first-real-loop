@@ -101,16 +101,16 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf _pages && mkdir -p _pages
-          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
-            git fetch origin gh-pages:gh-pages
-            git --work-tree _pages checkout gh-pages -- .
+          if git ls-remote --exit-code --heads origin pages-branch-disabled >/dev/null; then
+            git fetch origin pages-branch-disabled:pages-branch-disabled
+            git --work-tree _pages checkout pages-branch-disabled -- .
           fi
           for entry in "${SITE_DIR}"/*; do
             name="$(basename "$entry")"
             rm -rf "_pages/${name}"
           done
           cp -a "${SITE_DIR}/." "_pages/"
-      - name: Upload GitHub Pages artifact
+      - name: Upload experiment bundle artifact
         if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
         uses: actions/upload-artifact@v4
         with:
