@@ -1,0 +1,13 @@
+{
+  "actor": "MontrealAI",
+  "branch": "main",
+  "claim_boundary": "This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+  "commit": "cb72b1298ff75022ba5e5a69a0ad550428166bbf",
+  "dirty_status": "?? agialpha_evidence_factory/__pycache__/\n?? agialpha_first_loop/__pycache__/\n?? agialpha_helios/__pycache__/__init__.cpython-311.pyc\n?? agialpha_helios/__pycache__/core.cpython-311.pyc\n?? agialpha_helios2/__pycache__/__init__.cpython-311.pyc\n?? agialpha_helios2/__pycache__/core.cpython-311.pyc\n?? agialpha_helios3/__pycache__/__init__.cpython-311.pyc\n?? agialpha_helios3/__pycache__/core.cpython-311.pyc\n?? agialpha_l4_l7/__pycache__/\n?? agialpha_seed_runner/__pycache__/\n?? agialpha_usefulness_frontier/__pycache__/\n?? runs/\n?? tests/__pycache__/test_edge_seed_runner.cpython-311.pyc\n?? tests/__pycache__/test_evidence_factory.cpython-311.pyc\n?? tests/__pycache__/test_frontier_usefulness.cpython-311.pyc\n?? tests/__pycache__/test_helios.cpython-311.pyc\n?? tests/__pycache__/test_helios2.cpython-311.pyc\n?? tests/__pycache__/test_helios3.cpython-311.pyc\n?? tests/__pycache__/test_l4_l7.cpython-311.pyc\n?? tests/__pycache__/test_replay.cpython-311.pyc\n?? tests/__pycache__/test_seed_runner.cpython-311.pyc",
+  "generated_at_epoch": 1777554181,
+  "repository": "MontrealAI/agialpha-first-real-loop",
+  "run_attempt": "1",
+  "run_id": "25166893077",
+  "schema": "agialpha.source_snapshot.v1",
+  "workflow": "AGI ALPHA Evidence Factory / Autonomous"
+}
