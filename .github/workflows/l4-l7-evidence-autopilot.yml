@@ -1,0 +1,137 @@
+name: AGI ALPHA L4-L7 Evidence Autopilot
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_docket:
+        description: "Source Evidence Docket path"
+        required: false
+        default: "evidence-docket"
+      agents:
+        description: "Agent-count scaling matrix, comma-separated"
+        required: false
+        default: "1,2,4,8,16"
+      nodes:
+        description: "Node-count scaling matrix, comma-separated"
+        required: false
+        default: "1,2,4,8"
+      publish_pages:
+        description: "Publish L4-L7 scoreboard to GitHub Pages"
+        required: false
+        type: boolean
+        default: true
+  schedule:
+    - cron: "34 7 * * *"
+  push:
+    branches: ["main"]
+    paths:
+      - "agialpha_l4_l7/**"
+      - "config/l4_l7_config.json"
+      - ".github/workflows/l4-l7-evidence-autopilot.yml"
+      - "evidence-docket/**"
+      - "tests/test_l4_l7.py"
+
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+  issues: write
+
+concurrency:
+  group: l4-l7-evidence-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: "1"
+  SOURCE_DOCKET: ${{ github.event.inputs.source_docket || 'evidence-docket' }}
+  AGENTS: ${{ github.event.inputs.agents || '1,2,4,8,16' }}
+  NODES: ${{ github.event.inputs.nodes || '1,2,4,8' }}
+  PUBLISH_PAGES: ${{ github.event.inputs.publish_pages || 'true' }}
+  RUN_DIR: runs/l4-l7/${{ github.run_id }}
+  DOCS_DIR: docs/l4-l7
+
+jobs:
+  l4-l7-autopilot:
+    name: Generate L4-L7 evidence, replay, falsify, and publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Sanity-check uploaded files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -d agialpha_l4_l7
+          test -f agialpha_l4_l7/core.py
+          echo "L4-L7 package found."
+
+      - name: Run L4-L7 unit tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p 'test_l4_l7.py'
+
+      - name: Generate L4-L7 Evidence Portfolio
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_l4_l7 run-all \
+            --source-docket "$SOURCE_DOCKET" \
+            --out "$RUN_DIR" \
+            --docs "$DOCS_DIR" \
+            --agents "$AGENTS" \
+            --nodes "$NODES" \
+            --repo-root "."
+
+      - name: Run clean CI replay on generated portfolio
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_l4_l7 replay --bundle "$RUN_DIR" --out "$RUN_DIR/l4_ci_replay"
+
+      - name: Run autonomous falsification audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_l4_l7 falsify --bundle "$RUN_DIR" --out "$RUN_DIR/falsification_audit"
+
+      - name: Upload L4-L7 evidence artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: l4-l7-evidence-${{ github.run_id }}
+          path: |
+            ${{ env.RUN_DIR }}
+            ${{ env.DOCS_DIR }}
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload GitHub Pages artifact
+        if: ${{ env.PUBLISH_PAGES == 'true' }}
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ env.DOCS_DIR }}
+
+  deploy-pages:
+    name: Publish L4-L7 scoreboard to GitHub Pages
+    needs: l4-l7-autopilot
+    if: ${{ always() && needs.l4-l7-autopilot.result == 'success' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
