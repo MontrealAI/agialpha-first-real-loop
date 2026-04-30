@@ -113,3 +113,8 @@ python -m unittest discover -s tests
 ```
 
 That confirms the loop remains replayable after every commit.
+
+
+## Evidence Hub publishing architecture
+
+See `README_EVIDENCE_HUB.md` for central publisher + persistent registry architecture.
