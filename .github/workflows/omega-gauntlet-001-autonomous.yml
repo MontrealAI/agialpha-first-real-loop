@@ -89,7 +89,7 @@ jobs:
         with:
           path: pages
 
-  deploy-pages:
+  notify-evidence-hub:
     name: Publish OMEGA scoreboard to GitHub Pages
     if: ${{ false }}
     needs: omega-gauntlet

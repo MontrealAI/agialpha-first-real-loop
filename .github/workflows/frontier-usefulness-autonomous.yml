@@ -119,7 +119,7 @@ jobs:
         with:
           path: public
 
-  deploy-pages:
+  notify-evidence-hub:
     name: Publish Frontier Usefulness scoreboard
     if: ${{ false }}
     needs: frontier-usefulness

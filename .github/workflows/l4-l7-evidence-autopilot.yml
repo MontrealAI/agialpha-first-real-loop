@@ -120,7 +120,7 @@ jobs:
         with:
           path: ${{ env.DOCS_DIR }}
 
-  deploy-pages:
+  notify-evidence-hub:
     name: Publish L4-L7 scoreboard to GitHub Pages
     needs: l4-l7-autopilot
     if: ${{ false }}

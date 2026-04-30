@@ -86,7 +86,7 @@ jobs:
         with:
           path: docs
 
-  deploy-pages:
+  notify-evidence-hub:
     name: Publish BENCHMARK-GAUNTLET-001 scoreboard
     if: ${{ false }}
     needs: benchmark-gauntlet

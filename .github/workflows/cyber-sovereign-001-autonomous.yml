@@ -89,7 +89,7 @@ jobs:
         with:
           path: _pages
 
-  deploy-pages:
+  notify-evidence-hub:
     name: Publish Cybersecurity Sovereign scoreboard
     needs: cyber-sovereign
     if: ${{ false }}
