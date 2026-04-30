@@ -1,0 +1,36 @@
+name: evidence-hub-publish
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_run:
+    workflows: ['*']
+    types: [completed]
+  push:
+    paths:
+      - 'evidence_registry/**'
+      - '.github/workflows/evidence-hub-publish.yml'
+concurrency:
+  group: evidence-hub-publish
+  cancel-in-progress: false
+permissions:
+  contents: write
+  actions: read
+  pages: write
+  id-token: write
+  pull-requests: read
+  issues: read
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m agialpha_evidence_hub backfill --repo-root . --out evidence_registry/registry
+      - run: python -m agialpha_evidence_hub build --registry evidence_registry/registry --out _site
+      - run: python -m agialpha_evidence_hub validate --site _site --registry evidence_registry/registry
+      - run: python -m agialpha_evidence_hub linkcheck --site _site
+      - uses: actions/upload-pages-artifact@v3
+        with: {path: _site}
+      - uses: actions/deploy-pages@v4

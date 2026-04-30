@@ -85,7 +85,7 @@ jobs:
           cp -a "${OUT}/." "_pages/cyber-sovereign-001/"
       - name: Upload GitHub Pages artifact
         if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
           path: _pages
 
@@ -106,4 +106,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/upload-artifact@v4

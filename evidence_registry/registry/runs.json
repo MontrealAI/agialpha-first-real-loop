@@ -1,0 +1,26 @@
+[
+  {
+    "schema_version": "agialpha.evidence_run.v1",
+    "experiment_slug": "helios-001",
+    "experiment_name": "AGI ALPHA HELIOS-001",
+    "workflow_name": "helios-001-autonomous",
+    "workflow_file": ".github/workflows/helios-001-autonomous.yml",
+    "run_id": "historical-helios-001",
+    "run_attempt": "1",
+    "run_url": "https://github.com/MontrealAI/agialpha-first-real-loop/actions",
+    "commit_sha": "historical",
+    "branch": "main",
+    "actor": "historical_backfill",
+    "generated_at": "2026-04-30T00:00:00Z",
+    "status": "discovered",
+    "claim_level": "pending",
+    "claim_boundary": "Historical backfill entry; does not claim achieved AGI, ASI, or empirical SOTA.",
+    "artifact_names": [],
+    "artifact_urls": [],
+    "root_hash": "unavailable",
+    "metrics": {"safety_incidents": "unavailable", "policy_violations": "unavailable", "raw_secret_leak_count": "unavailable", "external_target_scan_count": "unavailable", "exploit_execution_count": "unavailable", "malware_generation_count": "unavailable", "unsafe_automerge_count": "unavailable"},
+    "external_review": {"status":"not_started","attestations":0,"issue_url":null},
+    "pr_review": {"status":"not_applicable","pr_url":null},
+    "links": {"public_page":"/experiments/helios-001/","run_page":"/runs/historical-helios-001/","raw_json":"/runs/historical-helios-001/manifest.json"}
+  }
+]
