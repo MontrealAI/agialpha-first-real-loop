@@ -80,6 +80,7 @@ jobs:
             git fetch origin gh-pages:gh-pages
             git --work-tree _pages checkout gh-pages -- .
           fi
+          rm -rf _pages/cyber-sovereign-001
           mkdir -p _pages/cyber-sovereign-001
           cp -a "${OUT}/." "_pages/cyber-sovereign-001/"
       - name: Upload GitHub Pages artifact
@@ -93,6 +94,9 @@ jobs:
     needs: cyber-sovereign
     if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
     runs-on: ubuntu-latest
+    concurrency:
+      group: pages-publish-main
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

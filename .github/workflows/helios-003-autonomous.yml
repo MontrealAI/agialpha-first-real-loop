@@ -109,6 +109,7 @@ jobs:
             git fetch origin gh-pages:gh-pages
             git --work-tree _pages checkout gh-pages -- .
           fi
+          rm -rf _pages/helios-003
           mkdir -p _pages/helios-003
           cp -a "${DOCS_DIR}/." "_pages/helios-003/"
       - name: Upload GitHub Pages artifact
@@ -122,6 +123,9 @@ jobs:
     needs: helios-003
     if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
     runs-on: ubuntu-latest
+    concurrency:
+      group: pages-publish-main
+      cancel-in-progress: false
     permissions:
       pages: write
       id-token: write
