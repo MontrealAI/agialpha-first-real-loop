@@ -1,0 +1,67 @@
+{
+  "claim_boundary": "This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+  "count": 10,
+  "rows": [
+    {
+      "claim_level": "L3",
+      "docket": "runs/seed-matrix/25167480105/seed-001",
+      "reuse_lift_percent": 66.67,
+      "seed": 1
+    },
+    {
+      "claim_level": "L3",
+      "docket": "runs/seed-matrix/25167480105/seed-002",
+      "reuse_lift_percent": 66.67,
+      "seed": 2
+    },
+    {
+      "claim_level": "L3",
+      "docket": "runs/seed-matrix/25167480105/seed-003",
+      "reuse_lift_percent": 66.67,
+      "seed": 3
+    },
+    {
+      "claim_level": "L3",
+      "docket": "runs/seed-matrix/25167480105/seed-004",
+      "reuse_lift_percent": 66.67,
+      "seed": 4
+    },
+    {
+      "claim_level": "L3",
+      "docket": "runs/seed-matrix/25167480105/seed-005",
+      "reuse_lift_percent": 66.67,
+      "seed": 5
+    },
+    {
+      "claim_level": "L3",
+      "docket": "runs/seed-matrix/25167480105/seed-006",
+      "reuse_lift_percent": 66.67,
+      "seed": 6
+    },
+    {
+      "claim_level": "L3",
+      "docket": "runs/seed-matrix/25167480105/seed-007",
+      "reuse_lift_percent": 66.67,
+      "seed": 7
+    },
+    {
+      "claim_level": "L3",
+      "docket": "runs/seed-matrix/25167480105/seed-008",
+      "reuse_lift_percent": 66.67,
+      "seed": 8
+    },
+    {
+      "claim_level": "L3",
+      "docket": "runs/seed-matrix/25167480105/seed-009",
+      "reuse_lift_percent": 66.67,
+      "seed": 9
+    },
+    {
+      "claim_level": "L3",
+      "docket": "runs/seed-matrix/25167480105/seed-010",
+      "reuse_lift_percent": 66.67,
+      "seed": 10
+    }
+  ],
+  "schema": "agialpha.seed_matrix.v1"
+}
