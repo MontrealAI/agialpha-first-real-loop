@@ -1,0 +1,128 @@
+name: AGI ALPHA HELIOS-001 / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      output_dir:
+        description: "HELIOS output directory; leave blank for automatic run path"
+        required: false
+        default: ""
+      publish_pages:
+        description: "Publish HELIOS scoreboard to GitHub Pages"
+        type: boolean
+        required: false
+        default: true
+  schedule:
+    - cron: "19 7 * * *"
+  push:
+    branches: ["main"]
+    paths:
+      - "agialpha_helios/**"
+      - "config/helios_config.json"
+      - ".github/workflows/helios-001-autonomous.yml"
+      - "tests/**"
+
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: helios-001-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: "1"
+  DEFAULT_HELIOS_DIR: runs/helios/${{ github.run_id }}
+  DOCS_DIR: docs
+  PUBLISH_PAGES: ${{ github.event.inputs.publish_pages || 'true' }}
+
+jobs:
+  helios:
+    name: Generate HELIOS-001 Evidence Dockets
+    runs-on: ubuntu-latest
+    outputs:
+      helios_dir: ${{ steps.paths.outputs.helios_dir }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Resolve paths
+        id: paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${{ github.event.inputs.output_dir || '' }}" ]]; then
+            HELIOS_DIR="${{ github.event.inputs.output_dir }}"
+          else
+            HELIOS_DIR="$DEFAULT_HELIOS_DIR"
+          fi
+          echo "helios_dir=$HELIOS_DIR" >> "$GITHUB_OUTPUT"
+          echo "HELIOS_DIR=$HELIOS_DIR" >> "$GITHUB_ENV"
+          echo "HELIOS_PAGES_DIR=$DOCS_DIR" >> "$GITHUB_ENV"
+
+      - name: Run HELIOS-001 autonomous experiment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_helios run --out "$HELIOS_DIR" --publish-dir "$HELIOS_PAGES_DIR"
+
+      - name: Run package tests if present
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -d tests ]]; then
+            python -m unittest discover -s tests
+          fi
+
+      - name: Replay/check HELIOS artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_helios replay --source "$HELIOS_DIR" --out "runs/helios-replay/${{ github.run_id }}"
+
+      - name: Falsification audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_helios audit --source "$HELIOS_DIR" --out "runs/helios-audit/${{ github.run_id }}"
+
+      - name: Upload HELIOS Evidence Docket artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: helios-001-evidence
+          path: |
+            ${{ env.HELIOS_DIR }}
+            runs/helios-replay/${{ github.run_id }}
+            runs/helios-audit/${{ github.run_id }}
+          retention-days: 30
+
+      - name: Upload GitHub Pages artifact
+        if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ env.DOCS_DIR }}
+
+  deploy-pages:
+    name: Publish HELIOS scoreboard to GitHub Pages
+    needs: helios
+    if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
