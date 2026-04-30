@@ -1,0 +1,88 @@
+name: AGI ALPHA HELIOS-001 Independent Replay / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_dir:
+        description: "Optional local source directory to replay; leave blank to download latest HELIOS artifact or fallback"
+        required: false
+        default: ""
+  workflow_run:
+    workflows: ["AGI ALPHA HELIOS-001 / Autonomous"]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: helios-001-independent-replay-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: "1"
+
+jobs:
+  replay:
+    name: Independent clean replay check
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Download triggering HELIOS artifact if available
+        if: ${{ github.event_name == 'workflow_run' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p downloaded_helios
+          gh run download "${{ github.event.workflow_run.id }}" -n helios-001-evidence -D downloaded_helios || true
+          find downloaded_helios -maxdepth 4 -type f | sort | head -50 || true
+
+      - name: Resolve source directory
+        id: source
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${{ github.event.inputs.source_dir || '' }}" ]]; then
+            SOURCE="${{ github.event.inputs.source_dir }}"
+          else
+            SOURCE=""
+            if [[ -d downloaded_helios ]]; then
+              CANDIDATE=$(find downloaded_helios -name helios_summary.json -print -quit || true)
+              if [[ -n "$CANDIDATE" ]]; then
+                SOURCE=$(dirname "$CANDIDATE")
+              fi
+            fi
+            if [[ -z "$SOURCE" && -f helios_summary.json ]]; then
+              SOURCE="."
+            fi
+            if [[ -z "$SOURCE" ]]; then
+              SOURCE="runs/helios/generated-fallback"
+            fi
+          fi
+          echo "source=$SOURCE" >> "$GITHUB_OUTPUT"
+          echo "SOURCE=$SOURCE" >> "$GITHUB_ENV"
+
+      - name: Replay/check artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_helios replay --source "$SOURCE" --out "runs/helios-independent-replay/${{ github.run_id }}"
+
+      - name: Upload independent replay report
+        uses: actions/upload-artifact@v7
+        with:
+          name: helios-001-independent-replay-report
+          path: runs/helios-independent-replay/${{ github.run_id }}
+          retention-days: 30

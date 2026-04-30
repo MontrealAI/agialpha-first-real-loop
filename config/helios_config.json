@@ -1,0 +1,9 @@
+{
+  "experiment": "HELIOS-001",
+  "title": "Governed Compounding of Verified Machine Labor for Energy-to-Compute Resilience",
+  "mode": "bounded_simulator_proxy_advisory_only",
+  "no_physical_infrastructure_controlled": true,
+  "claim_boundary_required": true,
+  "baseline_ladder": ["B0", "B1", "B2", "B3", "B4", "B5", "B6"],
+  "promotion_rule": "B6 must beat B0-B5, beat B5 on held-out/vNext work, produce complete Evidence Dockets, replay in CI, and record zero safety and policy violations."
+}
