@@ -1,0 +1,83 @@
+name: AGI ALPHA Cybersecurity Sovereign 002 Safe PR Proposal
+
+on:
+  workflow_dispatch:
+    inputs:
+      create_pr:
+        description: "Create a human-review PR with defensive runbook/checklist updates; never auto-merge"
+        type: boolean
+        required: false
+        default: true
+      docket_dir:
+        description: "Optional existing CYBER-SOVEREIGN-002 docket path; leave blank to regenerate"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  PYTHONUNBUFFERED: "1"
+  DEFAULT_DOCKET_DIR: runs/cyber-sovereign-002-pr/${{ github.run_id }}/docket
+  PR_DIR: runs/cyber-sovereign-002-pr/${{ github.run_id }}/proposal
+
+jobs:
+  safe-pr-proposal:
+    name: Generate safe human-review PR proposal for CYBER-SOVEREIGN-002
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Generate or reuse docket
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${{ github.event.inputs.docket_dir || '' }}" && -d "${{ github.event.inputs.docket_dir }}" ]]; then
+            DOCKET_DIR="${{ github.event.inputs.docket_dir }}"
+          else
+            DOCKET_DIR="$DEFAULT_DOCKET_DIR"
+            python -m agialpha_cyber_sovereign2 run --repo . --out "$DOCKET_DIR"
+          fi
+          echo "DOCKET_DIR=$DOCKET_DIR" >> "$GITHUB_ENV"
+      - name: Generate safe PR files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_cyber_sovereign2 safe-pr "$DOCKET_DIR" --out "$PR_DIR"
+          cp -R "$PR_DIR/docs" ./docs
+      - name: Upload safe PR proposal artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cyber-sovereign-002-safe-pr-proposal-${{ github.run_id }}
+          path: ${{ env.PR_DIR }}
+          retention-days: 30
+      - name: Create human-review PR, never auto-merge
+        if: ${{ github.event.inputs.create_pr == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          BRANCH="cyber-sovereign-002-safe-pr-${{ github.run_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add docs/cyber-sovereign-002
+          if git diff --cached --quiet; then
+            echo "No safe PR changes to commit."
+            exit 0
+          fi
+          git commit -m "Add CYBER-SOVEREIGN-002 defensive runbook artifacts"
+          git push --set-upstream origin "$BRANCH"
+          gh pr create \
+            --title "CYBER-SOVEREIGN-002 safe defensive runbook proposal" \
+            --body "This PR was opened by CYBER-SOVEREIGN-002. It adds defensive runbook/checklist artifacts only. It must be human-reviewed and must not be auto-merged. It does not certify security or claim cybersecurity SOTA." \
+            --head "$BRANCH" \
+            --base main || true

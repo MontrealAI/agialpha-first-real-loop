@@ -1,0 +1,57 @@
+name: AGI ALPHA Cybersecurity Sovereign 002 Falsification Audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      docket_dir:
+        description: "Optional existing CYBER-SOVEREIGN-002 docket path; leave blank to regenerate"
+        required: false
+        default: ""
+  workflow_run:
+    workflows: ["AGI ALPHA Cybersecurity Sovereign 002 / Autonomous"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: "1"
+  DEFAULT_DOCKET_DIR: runs/cyber-sovereign-002-audit/${{ github.run_id }}/docket
+  AUDIT_DIR: runs/cyber-sovereign-002-audit/${{ github.run_id }}/audit
+
+jobs:
+  falsification-audit:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    name: Audit CYBER-SOVEREIGN-002 for overclaim, leakage, and missing evidence
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Generate or reuse docket
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${{ github.event.inputs.docket_dir || '' }}" && -d "${{ github.event.inputs.docket_dir }}" ]]; then
+            DOCKET_DIR="${{ github.event.inputs.docket_dir }}"
+          else
+            DOCKET_DIR="$DEFAULT_DOCKET_DIR"
+            python -m agialpha_cyber_sovereign2 run --repo . --out "$DOCKET_DIR"
+          fi
+          echo "DOCKET_DIR=$DOCKET_DIR" >> "$GITHUB_ENV"
+      - name: Run falsification audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_cyber_sovereign2 audit "$DOCKET_DIR" --out "$AUDIT_DIR"
+      - name: Upload falsification audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cyber-sovereign-002-falsification-audit-${{ github.run_id }}
+          path: ${{ env.AUDIT_DIR }}
+          retention-days: 30

@@ -1,0 +1,40 @@
+name: AGI ALPHA Cybersecurity Sovereign 002 Delayed Outcome Sentinel
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "37 6 * * 1"
+  workflow_run:
+    workflows: ["AGI ALPHA Cybersecurity Sovereign 002 / Autonomous"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: "1"
+  DELAYED_DIR: runs/cyber-sovereign-002-delayed/${{ github.run_id }}
+
+jobs:
+  delayed-outcome:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    name: Run delayed-outcome sentinel for CYBER-SOVEREIGN-002
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Generate delayed-outcome sentinel report
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_cyber_sovereign2 delayed --out "$DELAYED_DIR"
+      - name: Upload delayed-outcome artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cyber-sovereign-002-delayed-outcome-${{ github.run_id }}
+          path: ${{ env.DELAYED_DIR }}
+          retention-days: 30
