@@ -21,9 +21,7 @@ on:
       - "COPY_WORKFLOWS/cyber-sovereign-002-autonomous.yml"
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 env:
   PYTHONUNBUFFERED: "1"
@@ -95,24 +93,10 @@ jobs:
             ${{ env.SITE_DIR }}
           retention-days: 30
 
-      - name: Upload GitHub Pages artifact
-        if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' }}
-        uses: actions/upload-pages-artifact@v3
+      - name: Publish Evidence Hub to GitHub Pages branch
+        if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ${{ env.SITE_DIR }}
-
-  deploy-pages:
-    name: Publish CYBER-SOVEREIGN-002 scoreboard to GitHub Pages
-    needs: cyber-sovereign-002
-    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' }}
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    permissions:
-      pages: write
-      id-token: write
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ env.SITE_DIR }}
+          keep_files: true

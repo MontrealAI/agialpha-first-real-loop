@@ -23,10 +23,8 @@ on:
     - cron: "37 5 * * *"
 
 permissions:
-  contents: read
+  contents: write
   actions: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: helios-003-${{ github.ref }}
@@ -99,24 +97,11 @@ jobs:
             ${{ env.DOCS_DIR }}
           retention-days: 30
 
-      - name: Upload GitHub Pages artifact
-        if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
-        uses: actions/upload-pages-artifact@v3
+      - name: Publish helios-003 page to GitHub Pages branch
+        if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ${{ env.DOCS_DIR }}
-
-  deploy-pages:
-    name: Publish HELIOS-003 scoreboard to GitHub Pages
-    needs: helios-003
-    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ env.DOCS_DIR }}
+          destination_dir: helios-003
+          keep_files: true

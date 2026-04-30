@@ -28,10 +28,8 @@ on:
       - "tests/**"
 
 permissions:
-  contents: read
+  contents: write
   actions: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: helios-002-${{ github.ref }}
@@ -100,24 +98,11 @@ jobs:
           retention-days: 30
           if-no-files-found: error
 
-      - name: Upload GitHub Pages artifact
+      - name: Publish HELIOS-002 page to GitHub Pages branch
         if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
-        uses: actions/upload-pages-artifact@v5
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ${{ env.DOCS_DIR }}
-
-  deploy-pages:
-    name: Publish HELIOS-002 scoreboard to GitHub Pages
-    if: ${{ (inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
-    needs: helios-002
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ env.DOCS_DIR }}
+          destination_dir: helios-002
+          keep_files: true

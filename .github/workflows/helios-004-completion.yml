@@ -22,8 +22,6 @@ on:
 permissions:
   contents: write
   actions: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: helios-004-${{ github.ref }}
@@ -61,24 +59,11 @@ jobs:
           name: helios-004-completion-${{ github.run_id }}
           path: ${{ env.OUT }}
           retention-days: 30
-      - name: Upload Pages artifact
+      - name: Publish helios-004 page to GitHub Pages branch
         if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
-        uses: actions/upload-pages-artifact@v5
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ${{ env.OUT }}
-
-  deploy-pages:
-    name: Publish HELIOS completion page
-    needs: helios-complete
-    if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    permissions:
-      pages: write
-      id-token: write
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ env.OUT }}
+          destination_dir: helios-004
+          keep_files: true
