@@ -121,7 +121,7 @@ jobs:
   deploy-pages:
     name: Publish HELIOS-003 scoreboard to GitHub Pages
     needs: helios-003
-    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
+    if: ${{ false }}
     runs-on: ubuntu-latest
     concurrency:
       group: pages-publish-main

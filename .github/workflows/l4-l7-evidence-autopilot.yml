@@ -123,7 +123,7 @@ jobs:
   deploy-pages:
     name: Publish L4-L7 scoreboard to GitHub Pages
     needs: l4-l7-autopilot
-    if: ${{ always() && needs.l4-l7-autopilot.result == 'success' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    if: ${{ false }}
     runs-on: ubuntu-latest
     permissions:
       pages: write

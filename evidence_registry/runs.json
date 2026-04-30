@@ -1,0 +1,64 @@
+[
+  {
+    "schema_version": "agialpha.evidence_run.v1",
+    "experiment_slug": "cyber-sovereign-002",
+    "experiment_name": "AGI ALPHA CYBER-SOVEREIGN-002",
+    "experiment_family": "cyber-sovereign",
+    "workflow_name": "cyber-sovereign-002-autonomous",
+    "workflow_file": ".github/workflows/cyber-sovereign-002-autonomous.yml",
+    "run_id": "historical-cyber-sovereign-002",
+    "run_attempt": "1",
+    "run_url": "https://github.com/MontrealAI/agialpha-first-real-loop/actions",
+    "commit_sha": "historical",
+    "branch": "main",
+    "actor": "historical_backfill",
+    "event": "workflow_dispatch",
+    "generated_at": "2026-04-30T00:00:00+00:00",
+    "status": "discovered",
+    "conclusion": "unknown",
+    "claim_level": "historical-local",
+    "claim_boundary": "Historical backfill; does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world security certification, guaranteed economic return, or civilization-scale capability.",
+    "evidence_docket_path": "unavailable",
+    "scoreboard_path": "unavailable",
+    "artifact_names": [],
+    "artifact_ids": [],
+    "artifact_urls": [],
+    "root_hash": "unavailable",
+    "source": "historical_backfill",
+    "metrics": {
+      "task_count": "unavailable",
+      "replay_passes": "unavailable",
+      "baseline_count": "unavailable",
+      "B6_beats_B5_count": "unavailable",
+      "B6_beats_all_count": "unavailable",
+      "mean_advantage_delta_vs_B5": "unavailable",
+      "reuse_lift_pct": "unavailable",
+      "capability_reuse_lift_pct": "unavailable",
+      "valid_findings_count": "unavailable",
+      "safety_incidents": "unavailable",
+      "policy_violations": "unavailable",
+      "raw_secret_leak_count": "unavailable",
+      "external_target_scan_count": "unavailable",
+      "exploit_execution_count": "unavailable",
+      "malware_generation_count": "unavailable",
+      "social_engineering_content_count": "unavailable",
+      "unsafe_automerge_count": "unavailable",
+      "critical_safety_incidents": "unavailable"
+    },
+    "external_review": {
+      "status": "not_started",
+      "attestations": "not_reported",
+      "issue_url": null
+    },
+    "pr_review": {
+      "status": "not_applicable",
+      "pr_url": null
+    },
+    "links": {
+      "public_page": "/agialpha-first-real-loop/",
+      "experiment_page": "/agialpha-first-real-loop/experiments/cyber-sovereign-002/",
+      "run_page": "/agialpha-first-real-loop/runs/historical-cyber-sovereign-002/",
+      "raw_json": "/agialpha-first-real-loop/runs/historical-cyber-sovereign-002/manifest.json"
+    }
+  }
+]

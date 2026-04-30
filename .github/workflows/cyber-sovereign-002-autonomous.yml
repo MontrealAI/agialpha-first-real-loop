@@ -119,7 +119,7 @@ jobs:
   deploy-pages:
     name: Publish CYBER-SOVEREIGN-002 scoreboard to GitHub Pages
     needs: cyber-sovereign-002
-    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
+    if: ${{ false }}
     runs-on: ubuntu-latest
     concurrency:
       group: pages-publish-main

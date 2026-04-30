@@ -1,6 +1,10 @@
-from agialpha_evidence_hub.build import build_site
+import unittest, tempfile
 from pathlib import Path
-
-def test_build(tmp_path):
-    build_site('evidence_registry/registry', tmp_path)
-    assert (tmp_path/'index.html').exists()
+from agialpha_evidence_hub.build import build_site
+class T(unittest.TestCase):
+    def test_build(self):
+        with tempfile.TemporaryDirectory() as d:
+            build_site('evidence_registry', d)
+            self.assertTrue((Path(d)/'index.html').exists())
+            self.assertTrue((Path(d)/'data/runs.json').exists())
+if __name__=='__main__': unittest.main()

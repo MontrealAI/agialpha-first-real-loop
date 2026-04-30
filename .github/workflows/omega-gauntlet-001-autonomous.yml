@@ -91,7 +91,7 @@ jobs:
 
   deploy-pages:
     name: Publish OMEGA scoreboard to GitHub Pages
-    if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    if: ${{ false }}
     needs: omega-gauntlet
     runs-on: ubuntu-latest
     permissions:

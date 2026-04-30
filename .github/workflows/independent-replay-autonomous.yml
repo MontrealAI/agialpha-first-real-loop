@@ -107,7 +107,7 @@ jobs:
     name: Publish Independent Replay scoreboard
     needs: independent-replay
     runs-on: ubuntu-latest
-    if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    if: ${{ false }}
     permissions:
       pages: write
       id-token: write

@@ -83,7 +83,7 @@ jobs:
   deploy-pages:
     name: Publish HELIOS completion page
     needs: helios-complete
-    if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    if: ${{ false }}
     runs-on: ubuntu-latest
     concurrency:
       group: pages-publish-main

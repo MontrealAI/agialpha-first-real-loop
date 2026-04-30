@@ -88,7 +88,7 @@ jobs:
 
   deploy-pages:
     name: Publish BENCHMARK-GAUNTLET-001 scoreboard
-    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
+    if: ${{ false }}
     needs: benchmark-gauntlet
     runs-on: ubuntu-latest
     permissions:

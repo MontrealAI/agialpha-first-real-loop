@@ -62,7 +62,7 @@ jobs:
           path: ${{ env.DOCS_DIR }}
 
   deploy-pages:
-    if: ${{ (inputs.publish_pages || 'false') == 'true' && github.ref_name == 'main' }}
+    if: ${{ false }}
     needs: adapters
     runs-on: ubuntu-latest
     permissions:

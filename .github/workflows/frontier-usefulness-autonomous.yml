@@ -121,7 +121,7 @@ jobs:
 
   deploy-pages:
     name: Publish Frontier Usefulness scoreboard
-    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
+    if: ${{ false }}
     needs: frontier-usefulness
     runs-on: ubuntu-latest
     environment:

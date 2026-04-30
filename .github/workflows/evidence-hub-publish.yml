@@ -1,15 +1,16 @@
 name: evidence-hub-publish
 on:
   workflow_dispatch:
+  repository_dispatch:
+    types: [evidence_run_completed]
   schedule:
-    - cron: '17 3 * * *'
-  workflow_run:
-    workflows: ['*']
-    types: [completed]
+    - cron: '0 */4 * * *'
   push:
     paths:
       - 'evidence_registry/**'
-      - '.github/workflows/evidence-hub-publish.yml'
+      - 'agialpha_evidence_hub/**'
+      - 'docs/**'
+      - '.github/workflows/**'
 concurrency:
   group: evidence-hub-publish
   cancel-in-progress: false
@@ -22,15 +23,28 @@ permissions:
   issues: read
 jobs:
   build-and-deploy:
+    if: ${{ !contains(github.event.head_commit.message || '', '[skip evidence-hub-loop]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '3.11'}
-      - run: python -m agialpha_evidence_hub backfill --repo-root . --out evidence_registry/registry
-      - run: python -m agialpha_evidence_hub build --registry evidence_registry/registry --out _site
-      - run: python -m agialpha_evidence_hub validate --site _site --registry evidence_registry/registry
-      - run: python -m agialpha_evidence_hub linkcheck --site _site
-      - uses: actions/upload-pages-artifact@v3
-        with: {path: _site}
-      - uses: actions/deploy-pages@v4
+        with:
+          python-version: '3.11'
+      - name: Architecture check
+        run: python scripts/check_pages_architecture.py
+      - name: Discover repo evidence
+        run: python -m agialpha_evidence_hub discover --repo-root . --out evidence_registry/discovered.json
+      - name: Backfill registry
+        run: python -m agialpha_evidence_hub backfill --repo-root . --registry evidence_registry
+      - name: Build site
+        run: python -m agialpha_evidence_hub build --registry evidence_registry --out _site
+      - name: Validate site and registry
+        run: python -m agialpha_evidence_hub validate --registry evidence_registry --site _site
+      - name: Linkcheck
+        run: python -m agialpha_evidence_hub linkcheck --site _site
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy Pages
+        uses: actions/deploy-pages@v4

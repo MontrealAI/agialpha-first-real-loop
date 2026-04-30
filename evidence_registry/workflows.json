@@ -1,0 +1,7 @@
+[
+  {
+    "slug": "cyber-sovereign-002-autonomous",
+    "name": "cyber-sovereign-002-autonomous",
+    "workflow_file": ".github/workflows/cyber-sovereign-002-autonomous.yml"
+  }
+]
