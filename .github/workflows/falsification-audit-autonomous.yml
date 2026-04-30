@@ -1,0 +1,118 @@
+name: AGI ALPHA Falsification Audit / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      docket_root:
+        description: "Evidence Docket root to audit. Leave blank to use Independent Replay artifact, seed dockets, or evidence-docket."
+        required: false
+        default: ""
+      publish_pages:
+        description: "Publish falsification audit scoreboard to GitHub Pages"
+        type: boolean
+        required: false
+        default: true
+  workflow_run:
+    workflows: ["AGI ALPHA Independent Replay / Autonomous"]
+    types: [completed]
+  schedule:
+    - cron: "17 7 * * *"
+
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+
+env:
+  PYTHONUNBUFFERED: "1"
+  INPUT_DOCKET_ROOT: ${{ github.event.inputs.docket_root || '' }}
+  PUBLISH_PAGES: ${{ github.event.inputs.publish_pages || 'true' }}
+  AUDIT_OUT: autonomous/falsification-audit/${{ github.run_id }}
+  AUDIT_SITE: docs/falsification-audit
+
+jobs:
+  falsification-audit:
+    name: Run autonomous falsification audit
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Download Independent Replay artifact when triggered by workflow_run
+        if: ${{ github.event_name == 'workflow_run' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ github.event.workflow_run.id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-input
+          gh run download "$SOURCE_RUN_ID" --name independent-replay-report --dir audit-input || true
+          find audit-input -maxdepth 5 -type f | head -100 || true
+
+      - name: Resolve audit root
+        id: resolve
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "$INPUT_DOCKET_ROOT" ]]; then
+            ROOT="$INPUT_DOCKET_ROOT"
+          elif [[ -d "audit-input" ]] && find audit-input -name 00_manifest.json | grep -q .; then
+            ROOT="audit-input"
+          elif [[ -d "autonomous/edge-seed-dockets" ]] && find autonomous/edge-seed-dockets -name 00_manifest.json | grep -q .; then
+            ROOT="autonomous/edge-seed-dockets"
+          else
+            ROOT="evidence-docket"
+          fi
+          echo "root=$ROOT" >> "$GITHUB_OUTPUT"
+          echo "Auditing root: $ROOT"
+
+      - name: Run falsification audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -S -m agialpha_seed_runner falsification-audit \
+            --docket-root "${{ steps.resolve.outputs.root }}" \
+            --out "$AUDIT_OUT" \
+            --site "$AUDIT_SITE"
+          python -S -m agialpha_seed_runner landing --docs docs
+
+      - name: Upload falsification audit report
+        uses: actions/upload-artifact@v7
+        with:
+          name: falsification-audit-report
+          path: |
+            ${{ env.AUDIT_OUT }}
+            ${{ env.AUDIT_SITE }}
+          retention-days: 30
+
+      - name: Upload Pages artifact
+        if: ${{ github.ref_name == 'main' && env.PUBLISH_PAGES == 'true' }}
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: docs
+
+  deploy-pages:
+    name: Publish Falsification Audit scoreboard
+    needs: falsification-audit
+    runs-on: ubuntu-latest
+    if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
