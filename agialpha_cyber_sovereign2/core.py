@@ -683,6 +683,18 @@ def _write_portfolio_stub_pages(site: Path, css: str, required_slugs: list[str])
 </body></html>"""
         write_text(index, body)
 
+def _discover_experiment_runs(site: Path, slug: str) -> list[str]:
+    root = site / slug
+    if not root.exists():
+        return []
+    run_links: list[str] = []
+    for idx in sorted(root.rglob("index.html")):
+        rel = idx.relative_to(site)
+        if rel.parts == (slug, "index.html"):
+            continue
+        run_links.append("./" + "/".join(rel.parts[:-1]) + "/")
+    return run_links
+
 def build_site(docket: Path, site: Path) -> None:
     site.mkdir(parents=True, exist_ok=True)
     manifest = read_json(docket / "00_manifest.json", {})
@@ -722,7 +734,16 @@ def build_site(docket: Path, site: Path) -> None:
         title = f"AGI ALPHA {_label_from_slug(slug)}"
         desc = curated.get(slug, "experiment run")
         hub_links.append((title, f"./{slug}/", desc))
-    cards = "".join([f"<div class='tile'><h3>{html.escape(t)}</h3><p>{html.escape(desc)}</p><p><a href='{href}'>Open</a></p></div>" for t, href, desc in hub_links])
+    cards_parts = []
+    for t, href, desc in hub_links:
+        slug = href.strip("./").strip("/")
+        run_links = _discover_experiment_runs(site, slug)
+        run_html = ""
+        if run_links:
+            run_items = "".join([f"<li><a href='{html.escape(run)}'>{html.escape(run)}</a></li>" for run in run_links[-10:]])
+            run_html = f"<details><summary>Recent runs ({len(run_links)})</summary><ul>{run_items}</ul></details>"
+        cards_parts.append(f"<div class='tile'><h3>{html.escape(t)}</h3><p>{html.escape(desc)}</p><p><a href='{href}'>Open</a></p>{run_html}</div>")
+    cards = "".join(cards_parts)
     hub = f"""<!doctype html><html><head><meta charset='utf-8'><title>AGI ALPHA Evidence Hub</title><style>{css}</style></head><body>
     <h1>AGI ALPHA Evidence Hub</h1>
     <div class='card boundary'><b>Claim boundary:</b> This hub records bounded Evidence Docket experiments. It does not claim achieved AGI, ASI, empirical SOTA, real-world certification, or safe autonomy.</div>
