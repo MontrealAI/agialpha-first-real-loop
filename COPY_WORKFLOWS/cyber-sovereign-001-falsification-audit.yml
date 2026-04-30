@@ -1,0 +1,45 @@
+name: AGI ALPHA Cybersecurity Sovereign 001 Falsification Audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_dir:
+        description: "Optional source directory to audit"
+        required: false
+        default: ""
+  workflow_run:
+    workflows: ["AGI ALPHA Cybersecurity Sovereign 001 / Autonomous"]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  falsification-audit:
+    name: Audit for missing evidence and overclaim risk
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Resolve source
+        shell: bash
+        run: |
+          if [[ -n "${{ github.event.inputs.source_dir || '' }}" ]]; then
+            SRC="${{ github.event.inputs.source_dir }}"
+          else
+            SRC="evidence-docket"
+          fi
+          echo "SRC=$SRC" >> "$GITHUB_ENV"
+          echo "OUT=runs/cyber-sovereign-audit/${{ github.run_id }}" >> "$GITHUB_ENV"
+      - name: Run falsification audit
+        run: python -m agialpha_sovereign_capstone audit --source "$SRC" --out "$OUT"
+      - name: Upload falsification audit artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: cyber-sovereign-falsification-audit-${{ github.run_id }}
+          path: ${{ env.OUT }}
+          retention-days: 30

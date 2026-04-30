@@ -1,0 +1,22 @@
+{
+  "experiment": "CYBER-SOVEREIGN-001",
+  "scope": "defensive, repo-owned, sandbox-only",
+  "forbidden": [
+    "external target scanning",
+    "exploit execution",
+    "credential disclosure",
+    "malware generation",
+    "social engineering",
+    "high-impact actuation"
+  ],
+  "capability_archive": "CyberSecurityCapabilityArchive-v0",
+  "baselines": [
+    "B0_static_or_no_agent",
+    "B1_single_agent",
+    "B2_fixed_workflow",
+    "B3_unstructured_swarm",
+    "B4_agialpha_no_rsi",
+    "B5_agialpha_rsi_no_reuse",
+    "B6_full_agialpha_rsi_proofbundle_reuse"
+  ]
+}
