@@ -652,24 +652,36 @@ def html_table(rows: list[dict[str, Any]], columns: list[str]) -> str:
 
 
 
-def _write_portfolio_stub_pages(site: Path, css: str) -> None:
-    pages = [
-        ("helios-001", "AGI ALPHA HELIOS-001", "Governed compounding experiment summary."),
-        ("helios-002", "AGI ALPHA HELIOS-002", "Transfer and reviewer replay readiness experiment summary."),
-        ("helios-003", "AGI ALPHA HELIOS-003", "Public benchmark bridge experiment summary."),
-        ("helios-004", "AGI ALPHA HELIOS-004", "Completion and handoff experiment summary."),
-        ("cyber-sovereign-001", "AGI ALPHA CYBER-SOVEREIGN-001", "First defensive security organ experiment summary."),
-    ]
-    for slug, title, subtitle in pages:
+def _label_from_slug(slug: str) -> str:
+    return slug.replace("-", " ").upper()
+
+
+def _subtitle_from_slug(slug: str) -> str:
+    if slug.startswith("helios-"):
+        return "HELIOS experiment summary."
+    if slug.startswith("cyber-sovereign-"):
+        return "Cyber Sovereign experiment summary."
+    if slug.startswith("l4-l7"):
+        return "L4-L7 evidence autopilot summary."
+    return "Experiment summary."
+
+
+def _write_portfolio_stub_pages(site: Path, css: str, required_slugs: list[str]) -> None:
+    for slug in sorted(set(required_slugs)):
         d = site / slug
+        index = d / "index.html"
+        if index.exists():
+            continue
         d.mkdir(parents=True, exist_ok=True)
+        title = f"AGI ALPHA {_label_from_slug(slug)}"
+        subtitle = _subtitle_from_slug(slug)
         body = f"""<!doctype html><html><head><meta charset='utf-8'><title>{html.escape(title)}</title><style>{css}</style></head><body>
 <h1>{html.escape(title)}</h1>
 <div class='card'><p>{html.escape(subtitle)}</p>
 <p>This page is intentionally bounded and points to per-experiment evidence artifacts produced by the matching autonomous workflow.</p>
 <p><a href='../'>Back to AGI ALPHA Evidence Hub</a></p></div>
 </body></html>"""
-        write_text(d / "index.html", body)
+        write_text(index, body)
 
 def build_site(docket: Path, site: Path) -> None:
     site.mkdir(parents=True, exist_ok=True)
@@ -693,14 +705,23 @@ def build_site(docket: Path, site: Path) -> None:
     (site / "cyber-sovereign-002").mkdir(exist_ok=True)
     write_text(site / "cyber-sovereign-002" / "index.html", cyber_html)
     write_json(site / "cyber-sovereign-002" / "evidence-index.json", {"summary": manifest, "tasks": tasks})
-    hub_links = [
-        ("HELIOS-001", "./helios-001/", "local governed compounding"),
-        ("HELIOS-002", "./helios-002/", "transfer and reviewer replay readiness"),
-        ("HELIOS-003", "./helios-003/", "public benchmark bridge"),
-        ("HELIOS-004", "./helios-004/", "completion and handoff"),
-        ("Cyber Sovereign 001", "./cyber-sovereign-001/", "first defensive security organ"),
-        ("Cyber Sovereign 002", "./cyber-sovereign-002/", "defensive capability compounding"),
-    ]
+    curated = {
+        "helios-001": "local governed compounding",
+        "helios-002": "transfer and reviewer replay readiness",
+        "helios-003": "public benchmark bridge",
+        "helios-004": "completion and handoff",
+        "cyber-sovereign-001": "first defensive security organ",
+        "cyber-sovereign-002": "defensive capability compounding",
+    }
+    discovered_slugs = sorted(p.name for p in site.iterdir() if p.is_dir() and (p / "index.html").exists())
+    required_slugs = sorted(set(discovered_slugs) | set(curated.keys()))
+    _write_portfolio_stub_pages(site, css, required_slugs)
+    all_slugs = sorted(p.name for p in site.iterdir() if p.is_dir() and (p / "index.html").exists())
+    hub_links = []
+    for slug in all_slugs:
+        title = f"AGI ALPHA {_label_from_slug(slug)}"
+        desc = curated.get(slug, "experiment run")
+        hub_links.append((title, f"./{slug}/", desc))
     cards = "".join([f"<div class='tile'><h3>{html.escape(t)}</h3><p>{html.escape(desc)}</p><p><a href='{href}'>Open</a></p></div>" for t, href, desc in hub_links])
     hub = f"""<!doctype html><html><head><meta charset='utf-8'><title>AGI ALPHA Evidence Hub</title><style>{css}</style></head><body>
     <h1>AGI ALPHA Evidence Hub</h1>
@@ -709,7 +730,6 @@ def build_site(docket: Path, site: Path) -> None:
     <div class='card'><h2>Latest highlighted run</h2><p><b>CYBER-SOVEREIGN-002:</b> defensive capability compounding for the AGI ALPHA evidence infrastructure.</p><p><a href='./cyber-sovereign-002/'>Open latest scoreboard</a></p></div>
     </body></html>"""
     write_text(site / "index.html", hub)
-    _write_portfolio_stub_pages(site, css)
 
 
 def main(argv: list[str] | None = None) -> int:
