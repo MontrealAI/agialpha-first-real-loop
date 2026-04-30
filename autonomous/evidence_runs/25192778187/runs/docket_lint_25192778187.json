@@ -1,0 +1,34 @@
+{
+  "base_required_files": [
+    "00_manifest.json",
+    "01_seed_001.json",
+    "02_mark_review_card.json",
+    "03_sovereign_001.json",
+    "04_job_outputs.json",
+    "05_sources_used.json",
+    "06_accepted_interventions.json",
+    "07_coldchain_energy_compiler_v0.json",
+    "08_seed_002.json",
+    "09_treatment_control_comparison.json",
+    "10_decision_memo.md",
+    "REPLAY_INSTRUCTIONS.md"
+  ],
+  "claim_boundary": "This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+  "errors": [],
+  "publication_required_files": [
+    "11_cost_ledger.json",
+    "12_safety_ledger.json",
+    "13_baseline_results.json",
+    "14_replay_report.json",
+    "15_hash_manifest.json",
+    "16_independent_review.md",
+    "17_state_for_next_run.json",
+    "18_source_snapshot.json",
+    "19_claim_boundary.json",
+    "claim_level.json"
+  ],
+  "schema": "agialpha.docket_lint.v1",
+  "status": "pass",
+  "strict": false,
+  "warnings": []
+}
