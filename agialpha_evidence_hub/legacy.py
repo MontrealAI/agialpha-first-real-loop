@@ -1,0 +1,1 @@
+LEGACY_SLUGS=['helios-001','helios-002','helios-003','helios-004','cyber-sovereign-001','cyber-sovereign-002','cyber-sovereign-003','benchmark-gauntlet-001','omega-gauntlet-001','evidence-factory','first-rsi-loop']

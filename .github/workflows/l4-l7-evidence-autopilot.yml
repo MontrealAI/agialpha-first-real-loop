@@ -116,14 +116,14 @@ jobs:
 
       - name: Upload GitHub Pages artifact
         if: ${{ env.PUBLISH_PAGES == 'true' }}
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
           path: ${{ env.DOCS_DIR }}
 
   deploy-pages:
     name: Publish L4-L7 scoreboard to GitHub Pages
     needs: l4-l7-autopilot
-    if: ${{ always() && needs.l4-l7-autopilot.result == 'success' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    if: ${{ false }}
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -134,4 +134,6 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/upload-artifact@v4
+        with:
+          path: .

@@ -1,0 +1,24 @@
+{
+  "omega": [
+    "historical-omega-gauntlet-001"
+  ],
+  "benchmark": [
+    "historical-benchmark-gauntlet-001"
+  ],
+  "cyber": [
+    "historical-cyber-sovereign-002",
+    "historical-cyber-sovereign-001"
+  ],
+  "helios": [
+    "historical-helios-004",
+    "historical-helios-003",
+    "historical-helios-002",
+    "historical-helios-001"
+  ],
+  "l4": [
+    "historical-l4-l7-evidence-autopilot"
+  ],
+  "coldchain": [
+    "historical-coldchain-energy-loop-001"
+  ]
+}

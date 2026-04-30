@@ -113,3 +113,4 @@ python -m unittest discover -s tests
 ```
 
 That confirms the loop remains replayable after every commit.
+\n## Evidence Hub publishing architecture\nSee README_EVIDENCE_HUB.md for central registry + single deploy workflow design.
