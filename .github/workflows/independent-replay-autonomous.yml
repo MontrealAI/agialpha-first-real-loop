@@ -4,14 +4,19 @@ on:
   workflow_dispatch:
     inputs:
       docket_root:
-        description: "Evidence Docket root to replay. Leave blank to use autonomous seed dockets or evidence-docket."
+        description: "Evidence Docket root to replay. Leave blank to use Seed Runner artifact or evidence-docket."
         required: false
         default: ""
+      publish_pages:
+        description: "Publish replay scoreboard to GitHub Pages"
+        type: boolean
+        required: false
+        default: true
   workflow_run:
-    workflows: ["AGI ALPHA Seed Runner / Autonomous"]
+    workflows: ["AGI ALPHA Edge Seed Runner / Autonomous"]
     types: [completed]
   schedule:
-    - cron: "57 6 * * *"
+    - cron: "59 6 * * *"
 
 permissions:
   contents: read
@@ -22,7 +27,9 @@ permissions:
 env:
   PYTHONUNBUFFERED: "1"
   INPUT_DOCKET_ROOT: ${{ github.event.inputs.docket_root || '' }}
+  PUBLISH_PAGES: ${{ github.event.inputs.publish_pages || 'true' }}
   REPLAY_OUT: autonomous/independent-replay/${{ github.run_id }}
+  REPLAY_SITE: docs/independent-replay
 
 jobs:
   independent-replay:
@@ -40,7 +47,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Try to download Seed Runner artifact when triggered by workflow_run
+      - name: Download Seed Runner artifact when triggered by workflow_run
         if: ${{ github.event_name == 'workflow_run' }}
         env:
           GH_TOKEN: ${{ github.token }}
@@ -50,7 +57,7 @@ jobs:
           set -euo pipefail
           mkdir -p replay-input
           gh run download "$SOURCE_RUN_ID" --name seed-dockets --dir replay-input || true
-          find replay-input -maxdepth 3 -type f | head -50 || true
+          find replay-input -maxdepth 4 -type f | head -80 || true
 
       - name: Resolve docket root
         id: resolve
@@ -61,6 +68,8 @@ jobs:
             ROOT="$INPUT_DOCKET_ROOT"
           elif [[ -d "replay-input" ]] && find replay-input -name 00_manifest.json | grep -q .; then
             ROOT="replay-input"
+          elif [[ -d "autonomous/edge-seed-dockets" ]] && find autonomous/edge-seed-dockets -name 00_manifest.json | grep -q .; then
+            ROOT="autonomous/edge-seed-dockets"
           elif [[ -d "autonomous/seed-dockets" ]] && find autonomous/seed-dockets -name 00_manifest.json | grep -q .; then
             ROOT="autonomous/seed-dockets"
           else
@@ -75,12 +84,37 @@ jobs:
           set -euo pipefail
           python -S -m agialpha_seed_runner independent-replay \
             --docket-root "${{ steps.resolve.outputs.root }}" \
-            --out "$REPLAY_OUT"
+            --out "$REPLAY_OUT" \
+            --site "$REPLAY_SITE"
+          python -S -m agialpha_seed_runner landing --docs docs
 
       - name: Upload independent replay report
         uses: actions/upload-artifact@v7
         with:
           name: independent-replay-report
-          path: ${{ env.REPLAY_OUT }}
+          path: |
+            ${{ env.REPLAY_OUT }}
+            ${{ env.REPLAY_SITE }}
           retention-days: 30
 
+      - name: Upload Pages artifact
+        if: ${{ github.ref_name == 'main' && env.PUBLISH_PAGES == 'true' }}
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: docs
+
+  deploy-pages:
+    name: Publish Independent Replay scoreboard
+    needs: independent-replay
+    runs-on: ubuntu-latest
+    if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
