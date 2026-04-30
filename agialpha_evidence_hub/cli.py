@@ -46,7 +46,8 @@ def main():
     elif a.cmd=='workflow-catalog':
         root=Path(a.repo_root)
         rows=[]
-        for wf in sorted((root/'.github/workflows').glob('*.yml')):
+        workflow_files = sorted((root/'.github/workflows').glob('*.yml')) + sorted((root/'.github/workflows').glob('*.yaml'))
+        for wf in sorted(workflow_files):
             text=wf.read_text()
             has_dispatch='workflow_dispatch' in text
             rows.append({'workflow_file':str(wf.relative_to(root)),'has_workflow_dispatch':has_dispatch,'inputs':parse_workflow_dispatch_inputs(text),'gh_command':workflow_gh_command(str(wf),has_dispatch)})

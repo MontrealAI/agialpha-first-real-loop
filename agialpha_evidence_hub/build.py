@@ -39,7 +39,7 @@ def build_site(registry='evidence_registry', out='_site'):
     for s in ['artifacts','external-review','safety','legacy','falsification']:
         o.joinpath(s,'index.html').write_text(page(s.title(),'<a href="/agialpha-first-real-loop/">Back</a>'))
 
-    launch_rows=''.join([f"<tr><td>{w.get('name') or w.get('workflow_name') or Path(w.get('workflow_file','')).name}</td><td>{w.get('workflow_file')}</td><td><a href='https://github.com/MontrealAI/agialpha-first-real-loop/actions/workflows/{Path(w.get('workflow_file','')).name}'>{w.get('workflow_file')}</a></td><td><code>{w.get('gh_command') or ('gh workflow run ' + Path(w.get('workflow_file','')).name)}</code></td></tr>" for w in wfs])
+    launch_rows=''.join([f"<tr><td>{w.get('name') or w.get('workflow_name') or Path(w.get('workflow_file','')).name}</td><td>{w.get('workflow_file')}</td><td><a href='https://github.com/MontrealAI/agialpha-first-real-loop/actions/workflows/{Path(w.get('workflow_file','')).name}'>{w.get('workflow_file')}</a></td><td><code>{w.get('gh_command') or 'workflow_dispatch not enabled'}</code></td></tr>" for w in wfs])
     o.joinpath('launchpad/index.html').write_text(page('Workflow Launchpad', f"<p>Click the button, then click Run workflow on GitHub.</p><table>{launch_rows}</table>"))
 
     for exp,runs_exp in by_exp.items():
