@@ -1,0 +1,49 @@
+name: AGI ALPHA PHOENIX-HUB-001 / Safe PR Proposal
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  safe-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Generate safe PR materials
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_phoenix_gauntlet run --repo-root . --out phoenix_safe_pr_docket --site-out phoenix_safe_pr_site --challenge-dir phoenix_challenge_packs
+      - name: Create PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          BRANCH="phoenix-hub-001-safe-pr-${{ github.run_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          mkdir -p docs/phoenix-hub-001 evidence_registry/phoenix-hub-001
+          cp -R phoenix_safe_pr_site/* docs/phoenix-hub-001/
+          cp phoenix_safe_pr_docket/evidence-run-manifest.json evidence_registry/phoenix-hub-001/manifest-${{ github.run_id }}.json
+          cp phoenix_safe_pr_docket/00_manifest.json evidence_registry/phoenix-hub-001/summary-${{ github.run_id }}.json
+          cp phoenix_safe_pr_docket/SCOREBOARD.html docs/phoenix-hub-001/scoreboard.html
+          git add docs/phoenix-hub-001 evidence_registry/phoenix-hub-001
+          git commit -m "Add PHOENIX-HUB-001 evidence preview ${{ github.run_id }}" || exit 0
+          git push --set-upstream origin "$BRANCH"
+          gh pr create \
+            --title "PHOENIX-HUB-001: self-healing evidence institution preview" \
+            --body-file phoenix_safe_pr_docket/11_safe_pr_materials/SAFE_PR_BODY.md \
+            --base main \
+            --head "$BRANCH" || true

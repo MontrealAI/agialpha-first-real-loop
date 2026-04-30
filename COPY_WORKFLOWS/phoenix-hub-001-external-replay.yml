@@ -1,0 +1,48 @@
+name: AGI ALPHA PHOENIX-HUB-001 / External Replay
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "PHOENIX-HUB-001 autonomous run id to replay"
+        required: true
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  external-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download source artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p downloaded
+          gh run download "${{ github.event.inputs.source_run_id }}" --name "phoenix-hub-001-${{ github.event.inputs.source_run_id }}" --dir downloaded
+          find downloaded -maxdepth 4 -type f | sort
+      - name: Replay downloaded docket
+        shell: bash
+        run: |
+          set -euo pipefail
+          DOCKET="downloaded/runs/phoenix-hub-001/${{ github.event.inputs.source_run_id }}"
+          if [ ! -d "$DOCKET" ]; then
+            DOCKET="$(find downloaded -type f -name 00_manifest.json -print -quit | xargs dirname)"
+          fi
+          python -m agialpha_phoenix_gauntlet replay --docket "$DOCKET" --out external_replay_out
+          python -m agialpha_phoenix_gauntlet audit --docket "$DOCKET" --out external_replay_out/audit --strict
+      - name: Upload external replay artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: phoenix-hub-001-external-replay-${{ github.run_id }}
+          path: external_replay_out
+          retention-days: 30

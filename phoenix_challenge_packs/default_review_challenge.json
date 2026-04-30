@@ -1,0 +1,24 @@
+{
+  "reviewer": "default-local-reviewer",
+  "claim_boundary_reviewed": true,
+  "tasks": [
+    {
+      "id": "future-experiment-discovery-review-001",
+      "family": "dynamic future experiment discovery",
+      "difficulty": 5,
+      "required_capability": "registry"
+    },
+    {
+      "id": "claim-boundary-regression-review-001",
+      "family": "claim-boundary regression",
+      "difficulty": 5,
+      "required_capability": "safety"
+    },
+    {
+      "id": "pages-overwrite-architecture-review-001",
+      "family": "GitHub Pages architecture",
+      "difficulty": 5,
+      "required_capability": "publication"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+name: AGI ALPHA PHOENIX-HUB-001 / Reviewer Challenge Pack
+
+on:
+  pull_request:
+    paths:
+      - "phoenix_challenge_packs/**"
+      - "agialpha_phoenix_gauntlet/**"
+      - "tests/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  challenge-pack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run gauntlet with reviewer challenge packs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_phoenix_gauntlet run --repo-root . --out challenge_docket --site-out challenge_site --challenge-dir phoenix_challenge_packs
+          python -m agialpha_phoenix_gauntlet audit --docket challenge_docket --out challenge_docket/audit --strict
+      - name: Upload challenge-pack artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: phoenix-hub-001-challenge-pack-${{ github.run_id }}
+          path: challenge_docket
+          retention-days: 30

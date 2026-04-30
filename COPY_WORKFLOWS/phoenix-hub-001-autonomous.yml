@@ -1,0 +1,120 @@
+name: AGI ALPHA PHOENIX-HUB-001 / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      challenge_dir:
+        description: "Challenge pack directory"
+        required: false
+        default: "phoenix_challenge_packs"
+      create_safe_pr:
+        description: "Open safe PR after success"
+        type: boolean
+        required: false
+        default: false
+  push:
+    branches: ["main"]
+    paths:
+      - "agialpha_phoenix_gauntlet/**"
+      - "phoenix_challenge_packs/**"
+      - "COPY_WORKFLOWS/phoenix-hub-001-autonomous.yml"
+      - ".github/workflows/phoenix-hub-001-autonomous.yml"
+      - "tests/**"
+
+permissions:
+  contents: write
+  actions: read
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: phoenix-hub-001-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: "1"
+  DOCKET_DIR: runs/phoenix-hub-001/${{ github.run_id }}
+  SITE_DIR: runs/phoenix-hub-001-site/${{ github.run_id }}
+
+jobs:
+  phoenix:
+    name: Generate self-healing Evidence Institution Docket
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run unit tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests || true
+          python -m unittest discover -s tests -p 'test_phoenix_gauntlet.py'
+
+      - name: Run PHOENIX-HUB-001 gauntlet
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHALLENGE_DIR="${{ github.event.inputs.challenge_dir || 'phoenix_challenge_packs' }}"
+          python -m agialpha_phoenix_gauntlet run \
+            --repo-root . \
+            --out "$DOCKET_DIR" \
+            --site-out "$SITE_DIR" \
+            --challenge-dir "$CHALLENGE_DIR" \
+            --run-id "${{ github.run_id }}" \
+            --commit "${{ github.sha }}" \
+            --branch "${{ github.ref_name }}" \
+            --actor "${{ github.actor }}" \
+            --workflow "${{ github.workflow }}"
+
+      - name: Replay docket
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_phoenix_gauntlet replay --docket "$DOCKET_DIR" --out "$DOCKET_DIR/16_replay_check"
+
+      - name: Falsification audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_phoenix_gauntlet audit --docket "$DOCKET_DIR" --out "$DOCKET_DIR/17_audit_check" --strict
+
+      - name: Upload PHOENIX Evidence Docket
+        uses: actions/upload-artifact@v4
+        with:
+          name: phoenix-hub-001-${{ github.run_id }}
+          path: |
+            ${{ env.DOCKET_DIR }}
+            ${{ env.SITE_DIR }}
+          retention-days: 30
+
+      - name: Optional safe PR handoff
+        if: ${{ github.event.inputs.create_safe_pr == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          BRANCH="phoenix-hub-001-safe-pr-${{ github.run_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          mkdir -p docs/phoenix-hub-001 evidence_registry/phoenix-hub-001
+          cp -R "$SITE_DIR"/* docs/phoenix-hub-001/
+          cp "$DOCKET_DIR/evidence-run-manifest.json" evidence_registry/phoenix-hub-001/manifest-${{ github.run_id }}.json
+          cp "$DOCKET_DIR/00_manifest.json" evidence_registry/phoenix-hub-001/summary-${{ github.run_id }}.json
+          git add docs/phoenix-hub-001 evidence_registry/phoenix-hub-001
+          git commit -m "Add PHOENIX-HUB-001 evidence preview ${{ github.run_id }}" || exit 0
+          git push --set-upstream origin "$BRANCH"
+          gh pr create \
+            --title "PHOENIX-HUB-001: safe evidence-hub recovery preview" \
+            --body-file "$DOCKET_DIR/11_safe_pr_materials/SAFE_PR_BODY.md" \
+            --base main \
+            --head "$BRANCH" || true
