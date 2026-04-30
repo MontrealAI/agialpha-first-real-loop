@@ -106,7 +106,8 @@ jobs:
 
       - name: Upload Pages artifact
         if: ${{ github.ref_name == 'main' && env.PUBLISH_PAGES == 'true' }}
-        uses: actions/upload-pages-artifact@v5
+        if: ${{ false }}
+        run: echo "Disabled direct pages artifact upload; use evidence-hub-publish"
         with:
           path: docs
 
@@ -124,4 +125,5 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        if: ${{ false }}
+        run: echo "Disabled direct deploy; use evidence-hub-publish"
