@@ -7,6 +7,7 @@ from .registry import update_registry
 from .build import build_site
 from .linkcheck import linkcheck
 from .discover import discover_to_file
+from .workflow_dispatch import parse_workflow_dispatch_inputs, workflow_gh_command
 
 def _default_manifest(args):
     return {
@@ -24,6 +25,7 @@ def main():
     bs=sp.add_parser('build'); bs.add_argument('--registry',default='evidence_registry'); bs.add_argument('--out',default='_site')
     v=sp.add_parser('validate'); v.add_argument('--registry',default='evidence_registry'); v.add_argument('--site',default='_site')
     l=sp.add_parser('linkcheck'); l.add_argument('--site',default='_site')
+    wc=sp.add_parser('workflow-catalog'); wc.add_argument('--repo-root',default='.'); wc.add_argument('--registry',default='evidence_registry')
     a=ap.parse_args()
     if a.cmd=='discover': print(json.dumps(discover_to_file(a.repo_root,a.out),indent=2))
     elif a.cmd=='register-run': m=load_input(a.input); validate_manifest(m); update_registry(a.registry,m)
@@ -41,4 +43,16 @@ def main():
     elif a.cmd=='linkcheck': linkcheck(a.site)
     elif a.cmd=='ingest-artifacts': print('0')
     elif a.cmd=='github-discover': print(json.dumps({'limit':a.limit,'runs':[]},indent=2))
+    elif a.cmd=='workflow-catalog':
+        root=Path(a.repo_root)
+        rows=[]
+        workflow_files = sorted((root/'.github/workflows').glob('*.yml')) + sorted((root/'.github/workflows').glob('*.yaml'))
+        for wf in sorted(workflow_files):
+            text=wf.read_text()
+            has_dispatch='workflow_dispatch' in text
+            rows.append({'workflow_file':str(wf.relative_to(root)),'has_workflow_dispatch':has_dispatch,'inputs':parse_workflow_dispatch_inputs(text),'gh_command':workflow_gh_command(str(wf),has_dispatch)})
+        out=Path(a.registry)/'workflow_catalog.json'
+        out.parent.mkdir(parents=True,exist_ok=True)
+        out.write_text(json.dumps({'workflows':rows},indent=2))
+        print(json.dumps({'workflows':rows},indent=2))
 if __name__=='__main__': main()
