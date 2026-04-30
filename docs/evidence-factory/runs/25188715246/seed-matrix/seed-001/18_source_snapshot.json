@@ -1,0 +1,13 @@
+{
+  "actor": "MontrealAI",
+  "branch": "main",
+  "claim_boundary": "This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+  "commit": "f78efbd079b7cf7a86e50fb3e02a315d09ddcf2f",
+  "dirty_status": "?? agialpha_benchmark_gauntlet/__pycache__/__init__.cpython-311.pyc\n?? agialpha_benchmark_gauntlet/__pycache__/core.cpython-311.pyc\n?? agialpha_cyber_sovereign2/__pycache__/\n?? agialpha_evidence_factory/__pycache__/\n?? agialpha_first_loop/__pycache__/\n?? agialpha_helios/__pycache__/__init__.cpython-311.pyc\n?? agialpha_helios/__pycache__/core.cpython-311.pyc\n?? agialpha_helios2/__pycache__/__init__.cpython-311.pyc\n?? agialpha_helios2/__pycache__/core.cpython-311.pyc\n?? agialpha_helios3/__pycache__/__init__.cpython-311.pyc\n?? agialpha_helios3/__pycache__/core.cpython-311.pyc\n?? agialpha_l4_l7/__pycache__/\n?? agialpha_seed_runner/__pycache__/\n?? agialpha_sovereign_capstone/__pycache__/__init__.cpython-311.pyc\n?? agialpha_sovereign_capstone/__pycache__/core.cpython-311.pyc\n?? agialpha_usefulness_frontier/__pycache__/\n?? runs/\n?? tests/__pycache__/test_benchmark_gauntlet.cpython-311.pyc\n?? tests/__pycache__/test_cyber_sovereign2.cpython-311.pyc\n?? tests/__pycache__/test_edge_seed_runner.cpython-311.pyc\n?? tests/__pycache__/test_evidence_factory.cpython-311.pyc\n?? tests/__pycache__/test_frontier_usefulness.cpython-311.pyc\n?? tests/__pycache__/test_helios.cpython-311.pyc\n?? tests/__pycache__/test_helios2.cpython-311.pyc\n?? tests/__pycache__/test_helios3.cpython-311.pyc\n?? tests/__pycache__/test_l4_l7.cpython-311.pyc\n?? tests/__pycache__/test_replay.cpython-311.pyc\n?? tests/__pycache__/test_seed_runner.cpython-311.pyc\n?? tests/__pycache__/test_sovereign_capstone.cpython-311.pyc",
+  "generated_at_epoch": 1777582318,
+  "repository": "MontrealAI/agialpha-first-real-loop",
+  "run_attempt": "1",
+  "run_id": "25188715246",
+  "schema": "agialpha.source_snapshot.v1",
+  "workflow": "AGI ALPHA Evidence Factory / Autonomous"
+}
