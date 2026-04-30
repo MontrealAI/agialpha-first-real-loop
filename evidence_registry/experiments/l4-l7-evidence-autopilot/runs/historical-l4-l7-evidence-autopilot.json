@@ -1,0 +1,62 @@
+{
+  "schema_version": "agialpha.evidence_run.v1",
+  "experiment_slug": "l4-l7-evidence-autopilot",
+  "experiment_name": "L4-L7-EVIDENCE-AUTOPILOT",
+  "experiment_family": "l4",
+  "workflow_name": "historical_backfill",
+  "workflow_file": "unknown",
+  "run_id": "historical-l4-l7-evidence-autopilot",
+  "run_attempt": "1",
+  "run_url": "",
+  "commit_sha": "historical",
+  "branch": "main",
+  "actor": "backfill",
+  "event": "backfill",
+  "generated_at": "2026-04-30T22:13:53.548541Z",
+  "status": "discovered",
+  "conclusion": "unknown",
+  "claim_level": "historical-local",
+  "claim_boundary": "This record does not claim achieved AGI, ASI, or empirical SOTA.",
+  "evidence_docket_path": "unavailable",
+  "scoreboard_path": "unavailable",
+  "artifact_names": [],
+  "artifact_ids": [],
+  "artifact_urls": [],
+  "root_hash": "unavailable",
+  "source": "historical_backfill",
+  "metrics": {
+    "task_count": "not_reported",
+    "replay_passes": "not_reported",
+    "baseline_count": "not_reported",
+    "B6_beats_B5_count": "not_reported",
+    "B6_beats_all_count": "not_reported",
+    "mean_advantage_delta_vs_B5": "not_reported",
+    "reuse_lift_pct": "not_reported",
+    "capability_reuse_lift_pct": "not_reported",
+    "valid_findings_count": "not_reported",
+    "safety_incidents": "not_reported",
+    "policy_violations": "not_reported",
+    "raw_secret_leak_count": "not_reported",
+    "external_target_scan_count": "not_reported",
+    "exploit_execution_count": "not_reported",
+    "malware_generation_count": "not_reported",
+    "social_engineering_content_count": "not_reported",
+    "unsafe_automerge_count": "not_reported",
+    "critical_safety_incidents": "not_reported"
+  },
+  "external_review": {
+    "status": "not_started",
+    "attestations": "not_reported",
+    "issue_url": null
+  },
+  "pr_review": {
+    "status": "not_applicable",
+    "pr_url": null
+  },
+  "links": {
+    "public_page": "",
+    "experiment_page": "",
+    "run_page": "",
+    "raw_json": ""
+  }
+}

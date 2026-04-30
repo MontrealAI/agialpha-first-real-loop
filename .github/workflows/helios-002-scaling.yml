@@ -57,12 +57,12 @@ jobs:
           if-no-files-found: error
       - name: Upload GitHub Pages artifact
         if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
           path: ${{ env.DOCS_DIR }}
 
   deploy-pages:
-    if: ${{ (inputs.publish_pages || 'false') == 'true' && github.ref_name == 'main' }}
+    if: ${{ false }}
     needs: scaling
     runs-on: ubuntu-latest
     permissions:
@@ -74,4 +74,6 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/upload-artifact@v4
+        with:
+          path: .
