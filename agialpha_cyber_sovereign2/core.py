@@ -650,6 +650,27 @@ def html_table(rows: list[dict[str, Any]], columns: list[str]) -> str:
     return "".join(out)
 
 
+
+
+def _write_portfolio_stub_pages(site: Path, css: str) -> None:
+    pages = [
+        ("helios-001", "AGI ALPHA HELIOS-001", "Governed compounding experiment summary."),
+        ("helios-002", "AGI ALPHA HELIOS-002", "Transfer and reviewer replay readiness experiment summary."),
+        ("helios-003", "AGI ALPHA HELIOS-003", "Public benchmark bridge experiment summary."),
+        ("helios-004", "AGI ALPHA HELIOS-004", "Completion and handoff experiment summary."),
+        ("cyber-sovereign-001", "AGI ALPHA CYBER-SOVEREIGN-001", "First defensive security organ experiment summary."),
+    ]
+    for slug, title, subtitle in pages:
+        d = site / slug
+        d.mkdir(parents=True, exist_ok=True)
+        body = f"""<!doctype html><html><head><meta charset='utf-8'><title>{html.escape(title)}</title><style>{css}</style></head><body>
+<h1>{html.escape(title)}</h1>
+<div class='card'><p>{html.escape(subtitle)}</p>
+<p>This page is intentionally bounded and points to per-experiment evidence artifacts produced by the matching autonomous workflow.</p>
+<p><a href='../'>Back to AGI ALPHA Evidence Hub</a></p></div>
+</body></html>"""
+        write_text(d / "index.html", body)
+
 def build_site(docket: Path, site: Path) -> None:
     site.mkdir(parents=True, exist_ok=True)
     manifest = read_json(docket / "00_manifest.json", {})
@@ -688,6 +709,7 @@ def build_site(docket: Path, site: Path) -> None:
     <div class='card'><h2>Latest highlighted run</h2><p><b>CYBER-SOVEREIGN-002:</b> defensive capability compounding for the AGI ALPHA evidence infrastructure.</p><p><a href='./cyber-sovereign-002/'>Open latest scoreboard</a></p></div>
     </body></html>"""
     write_text(site / "index.html", hub)
+    _write_portfolio_stub_pages(site, css)
 
 
 def main(argv: list[str] | None = None) -> int:
