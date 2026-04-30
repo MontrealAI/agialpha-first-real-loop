@@ -17,4 +17,7 @@ def test_scoreboard_builds(tmp_path: Path):
     complete_docket(src, out)
     index = build_scoreboard([out], docs)
     assert index["runs"]
+    assert index["experiments"]
     assert (docs / "index.html").exists()
+    html = (docs / "index.html").read_text(encoding="utf-8")
+    assert "Experiments:" in html
