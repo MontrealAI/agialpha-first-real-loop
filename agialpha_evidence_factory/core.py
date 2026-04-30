@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import hashlib
+import html
 import json
 import os
 import shutil
 import subprocess
 import time
+from urllib.parse import quote
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -518,6 +520,16 @@ def _row_from_docket(docket: Path) -> dict[str, Any] | None:
     }
 
 
+def _experiment_key(row: dict[str, Any]) -> str:
+    run_id = str(row.get("run_id") or "")
+    if "-" not in run_id:
+        return run_id or "unknown"
+    parts = run_id.split("-")
+    if len(parts) >= 2 and parts[-1].isdigit():
+        return "-".join(parts[:-1])
+    return run_id
+
+
 def build_scoreboard(dockets: list[Path], out: Path) -> dict[str, Any]:
     out.mkdir(parents=True, exist_ok=True)
     rows = []
@@ -535,32 +547,52 @@ def build_scoreboard(dockets: list[Path], out: Path) -> dict[str, Any]:
         if row:
             rows.append(row)
     rows = sorted(rows, key=lambda r: (str(r.get("run_id")), str(r.get("path"))))
-    index = {"schema": "agialpha.evidence_scoreboard.v1", "generated_at_epoch": now_epoch(), "claim_boundary": CLAIM_BOUNDARY, "runs": rows}
+    experiments: dict[str, list[dict[str, Any]]] = {}
+    for row in rows:
+        experiments.setdefault(_experiment_key(row), []).append(row)
+    index = {
+        "schema": "agialpha.evidence_scoreboard.v1",
+        "generated_at_epoch": now_epoch(),
+        "claim_boundary": CLAIM_BOUNDARY,
+        "runs": rows,
+        "experiments": {k: len(v) for k, v in sorted(experiments.items())},
+    }
     write_json(out / "evidence-index.json", index)
-    html = [
+    links = " ".join(
+        f"<a href='#{quote(name, safe='')}'>{html.escape(name)}</a>"
+        for name in sorted(experiments)
+    )
+    html_lines = [
         "<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>",
         "<title>AGI ALPHA Evidence Factory Scoreboard</title>",
         "<style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:2rem;line-height:1.45;color:#172033;background:#fbfbfd}h1{letter-spacing:.02em}.box{background:#fff;border:1px solid #ddd;border-radius:12px;padding:1rem;margin:1rem 0}table{border-collapse:collapse;width:100%;background:#fff}td,th{border:1px solid #e1e4e8;padding:.55rem;text-align:left;vertical-align:top}th{background:#f3f5f8}.pass{color:#087a2e;font-weight:700}.pending{color:#8a6100;font-weight:700}.fail{color:#b42318;font-weight:700}code{background:#f2f2f2;padding:.15rem .3rem;border-radius:4px}</style></head><body>",
         "<h1>AGI ALPHA Evidence Factory Scoreboard</h1>",
+        f"<div class='box'><strong>Experiments:</strong> {links or 'none yet'}</div>",
         f"<div class='box'><strong>Claim boundary:</strong> {CLAIM_BOUNDARY}</div>",
         "<table><thead><tr><th>Run</th><th>Claim level</th><th>Replay</th><th>Baseline win</th><th>Full baselines?</th><th>Reuse lift</th><th>Safety incidents</th><th>Root hash</th><th>Path</th></tr></thead><tbody>"
     ]
-    for r in rows:
-        replay_class = "pass" if r["replay_status"] == "pass" else ("fail" if r["replay_status"] == "fail" else "pending")
-        html.append("<tr>" + "".join([
-            f"<td>{r['run_id']}</td>",
-            f"<td><code>{r['claim_level']}</code></td>",
-            f"<td class='{replay_class}'>{r['replay_status']}</td>",
-            f"<td>{r['baseline_win_against_B0']}</td>",
-            f"<td>{r['full_baseline_suite_executed']}</td>",
-            f"<td>{r['reuse_lift_percent']}</td>",
-            f"<td>{r['critical_safety_violations']}</td>",
-            f"<td><code>{(r.get('root_sha256') or '')[:16]}</code></td>",
-            f"<td><code>{r['path']}</code></td>",
-        ]) + "</tr>")
-    html.append("</tbody></table><p>No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.</p></body></html>")
-    (out / "scoreboard.html").write_text("\n".join(html), encoding="utf-8")
-    (out / "index.html").write_text("\n".join(html), encoding="utf-8")
+    for experiment_name in sorted(experiments):
+        html_lines.append(
+            f"<tr id='{quote(experiment_name, safe='')}'><th colspan='9'>"
+            f"Experiment: {html.escape(experiment_name)} ({len(experiments[experiment_name])} runs)"
+            "</th></tr>"
+        )
+        for r in experiments[experiment_name]:
+            replay_class = "pass" if r["replay_status"] == "pass" else ("fail" if r["replay_status"] == "fail" else "pending")
+            html_lines.append("<tr>" + "".join([
+                f"<td>{html.escape(str(r['run_id']))}</td>",
+                f"<td><code>{html.escape(str(r['claim_level']))}</code></td>",
+                f"<td class='{replay_class}'>{html.escape(str(r['replay_status']))}</td>",
+                f"<td>{html.escape(str(r['baseline_win_against_B0']))}</td>",
+                f"<td>{html.escape(str(r['full_baseline_suite_executed']))}</td>",
+                f"<td>{html.escape(str(r['reuse_lift_percent']))}</td>",
+                f"<td>{html.escape(str(r['critical_safety_violations']))}</td>",
+                f"<td><code>{html.escape(str((r.get('root_sha256') or '')[:16]))}</code></td>",
+                f"<td><code>{html.escape(str(r['path']))}</code></td>",
+            ]) + "</tr>")
+    html_lines.append("</tbody></table><p>No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.</p></body></html>")
+    (out / "scoreboard.html").write_text("\n".join(html_lines), encoding="utf-8")
+    (out / "index.html").write_text("\n".join(html_lines), encoding="utf-8")
     return index
 
 
