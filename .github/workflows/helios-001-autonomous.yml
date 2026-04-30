@@ -124,7 +124,7 @@ jobs:
         with:
           path: _pages
 
-  deploy-pages:
+  notify-evidence-hub:
     name: Notify central Evidence Hub publisher
     needs: helios
     if: ${{ false }}

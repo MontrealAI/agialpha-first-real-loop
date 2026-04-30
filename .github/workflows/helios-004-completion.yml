@@ -80,7 +80,7 @@ jobs:
         with:
           path: _pages
 
-  deploy-pages:
+  notify-evidence-hub:
     name: Publish HELIOS completion page
     needs: helios-complete
     if: ${{ false }}

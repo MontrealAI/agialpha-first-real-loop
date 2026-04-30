@@ -119,7 +119,7 @@ jobs:
         with:
           path: _pages
 
-  deploy-pages:
+  notify-evidence-hub:
     name: Publish HELIOS-002 scoreboard to GitHub Pages
     if: ${{ false }}
     needs: helios-002

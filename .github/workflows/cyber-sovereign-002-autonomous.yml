@@ -116,7 +116,7 @@ jobs:
         with:
           path: _pages
 
-  deploy-pages:
+  notify-evidence-hub:
     name: Publish CYBER-SOVEREIGN-002 scoreboard to GitHub Pages
     needs: cyber-sovereign-002
     if: ${{ false }}
