@@ -1,0 +1,46 @@
+name: AGI ALPHA OMEGA-GAUNTLET-001 / External Replay L4
+
+on:
+  workflow_dispatch:
+    inputs:
+      docket_dir:
+        description: "Existing docket directory to replay; blank creates a fresh docket"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  REPLAY_DOCKET: ${{ github.event.inputs.docket_dir || format('runs/omega-replay-{0}', github.run_id) }}
+
+jobs:
+  replay:
+    name: Clean checkout external replay
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate fresh docket if needed
+        if: ${{ github.event.inputs.docket_dir == '' }}
+        run: python -m agialpha_omega_gauntlet run --out "$REPLAY_DOCKET" --challenge-dir omega_challenge_packs
+
+      - name: Replay docket
+        run: python -m agialpha_omega_gauntlet replay "$REPLAY_DOCKET" --out "$REPLAY_DOCKET/external_replay_report.json"
+
+      - name: Audit docket
+        run: python -m agialpha_omega_gauntlet audit "$REPLAY_DOCKET" --out "$REPLAY_DOCKET/external_audit_report.json"
+
+      - name: Upload external replay artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: omega-gauntlet-001-external-replay-${{ github.run_id }}
+          path: ${{ env.REPLAY_DOCKET }}
+          retention-days: 30

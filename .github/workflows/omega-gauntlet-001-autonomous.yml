@@ -1,0 +1,106 @@
+name: AGI ALPHA OMEGA-GAUNTLET-001 / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      challenge_dir:
+        description: "External challenge pack directory"
+        required: false
+        default: "omega_challenge_packs"
+      publish_pages:
+        description: "Publish scoreboard to GitHub Pages"
+        required: false
+        default: "true"
+  push:
+    branches: ["main"]
+    paths:
+      - "agialpha_omega_gauntlet/**"
+      - "omega_challenge_packs/**"
+      - "config/omega_gauntlet_config.json"
+      - ".github/workflows/omega-gauntlet-001-autonomous.yml"
+      - "tests/**"
+
+permissions:
+  contents: write
+  actions: read
+  pages: write
+  id-token: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: omega-gauntlet-001-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  DOCKET_DIR: runs/omega-gauntlet-${{ github.run_id }}
+  CHALLENGE_DIR: ${{ github.event.inputs.challenge_dir || 'omega_challenge_packs' }}
+  PUBLISH_PAGES: ${{ github.event.inputs.publish_pages || 'true' }}
+
+jobs:
+  omega-gauntlet:
+    name: Generate OMEGA Evidence Docket
+    runs-on: ubuntu-latest
+    outputs:
+      docket_dir: ${{ env.DOCKET_DIR }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run package tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Run OMEGA-GAUNTLET-001
+        run: python -m agialpha_omega_gauntlet run --out "$DOCKET_DIR" --challenge-dir "$CHALLENGE_DIR"
+
+      - name: Replay generated docket
+        run: python -m agialpha_omega_gauntlet replay "$DOCKET_DIR" --out "$DOCKET_DIR/replay_report.json"
+
+      - name: Falsification audit
+        run: python -m agialpha_omega_gauntlet audit "$DOCKET_DIR" --out "$DOCKET_DIR/falsification_audit_report.json"
+
+      - name: Scaling proxy
+        run: python -m agialpha_omega_gauntlet scaling --out "$DOCKET_DIR/scaling_proxy"
+
+      - name: Upload OMEGA Evidence Docket
+        uses: actions/upload-artifact@v4
+        with:
+          name: omega-gauntlet-001-${{ github.run_id }}
+          path: |
+            ${{ env.DOCKET_DIR }}
+          retention-days: 30
+
+      - name: Prepare GitHub Pages artifact
+        if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
+        run: |
+          mkdir -p pages
+          cp -R "$DOCKET_DIR/public_site/"* pages/
+          mkdir -p pages/omega-gauntlet-001/run-${{ github.run_id }}
+          cp -R "$DOCKET_DIR/"* pages/omega-gauntlet-001/run-${{ github.run_id }}/ || true
+
+      - name: Upload Pages artifact
+        if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages
+
+  deploy-pages:
+    name: Publish OMEGA scoreboard to GitHub Pages
+    if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
+    needs: omega-gauntlet
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

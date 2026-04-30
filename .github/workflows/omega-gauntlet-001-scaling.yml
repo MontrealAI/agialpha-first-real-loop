@@ -1,0 +1,24 @@
+name: AGI ALPHA OMEGA-GAUNTLET-001 / L6 Scaling Proxy
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  scaling:
+    name: Generate scaling proxy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m agialpha_omega_gauntlet scaling --out runs/omega-scaling-${{ github.run_id }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: omega-gauntlet-001-scaling-${{ github.run_id }}
+          path: runs/omega-scaling-${{ github.run_id }}
+          retention-days: 30

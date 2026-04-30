@@ -1,0 +1,51 @@
+name: AGI ALPHA OMEGA-GAUNTLET-001 / Safe PR Proposal
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  DOCKET_DIR: runs/omega-safe-pr-${{ github.run_id }}
+  BRANCH: omega-gauntlet-001-safe-pr-${{ github.run_id }}
+
+jobs:
+  safe-pr:
+    name: Create human-review safe PR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate OMEGA docket
+        run: python -m agialpha_omega_gauntlet run --out "$DOCKET_DIR" --challenge-dir omega_challenge_packs
+
+      - name: Prepare safe PR files
+        run: |
+          mkdir -p docs/omega-gauntlet-001
+          python -m agialpha_omega_gauntlet safe-pr-materials "$DOCKET_DIR" --out docs/omega-gauntlet-001
+          cp "$DOCKET_DIR/SCOREBOARD.html" docs/omega-gauntlet-001/SCOREBOARD.html
+
+      - name: Commit safe PR branch
+        run: |
+          git config user.name "AGI ALPHA Evidence Bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add docs/omega-gauntlet-001
+          git commit -m "Add OMEGA-GAUNTLET-001 safe remediation materials" || echo "No changes to commit"
+          git push --set-upstream origin "$BRANCH"
+
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr create \
+            --title "OMEGA-GAUNTLET-001 safe remediation materials" \
+            --body "Human review required. This PR does not claim AGI, ASI, empirical SOTA, safe autonomy, real-world certification, or automatic production remediation. It adds reviewer-facing Evidence Docket and claim-boundary materials." \
+            --head "$BRANCH" \
+            --base main || true
