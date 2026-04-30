@@ -95,17 +95,35 @@ jobs:
             ${{ env.SITE_DIR }}
           retention-days: 30
 
+      - name: Prepare merged Pages content
+        if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _pages && mkdir -p _pages
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
+            git fetch origin gh-pages:gh-pages
+            git --work-tree _pages checkout gh-pages -- .
+          fi
+          for entry in "${SITE_DIR}"/*; do
+            name="$(basename "$entry")"
+            rm -rf "_pages/${name}"
+          done
+          cp -a "${SITE_DIR}/." "_pages/"
       - name: Upload GitHub Pages artifact
-        if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' }}
-        uses: actions/upload-pages-artifact@v3
+        if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
+        uses: actions/upload-pages-artifact@v5
         with:
-          path: ${{ env.SITE_DIR }}
+          path: _pages
 
   deploy-pages:
     name: Publish CYBER-SOVEREIGN-002 scoreboard to GitHub Pages
     needs: cyber-sovereign-002
-    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' }}
+    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
     runs-on: ubuntu-latest
+    concurrency:
+      group: pages-publish-main
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

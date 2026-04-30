@@ -105,17 +105,33 @@ jobs:
             runs/helios-audit/${{ github.run_id }}
           retention-days: 30
 
+      - name: Prepare merged Pages content
+        if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _pages && mkdir -p _pages
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
+            git fetch origin gh-pages:gh-pages
+            git --work-tree _pages checkout gh-pages -- .
+          fi
+          rm -rf _pages/helios-001
+          mkdir -p _pages/helios-001
+          cp -a "${DOCS_DIR}/." "_pages/helios-001/"
       - name: Upload GitHub Pages artifact
         if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
         uses: actions/upload-pages-artifact@v5
         with:
-          path: ${{ env.DOCS_DIR }}
+          path: _pages
 
   deploy-pages:
     name: Publish HELIOS scoreboard to GitHub Pages
     needs: helios
     if: ${{ github.ref_name == 'main' && (github.event.inputs.publish_pages || 'true') == 'true' }}
     runs-on: ubuntu-latest
+    concurrency:
+      group: pages-publish-main
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

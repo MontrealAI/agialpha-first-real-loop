@@ -100,17 +100,33 @@ jobs:
           retention-days: 30
           if-no-files-found: error
 
+      - name: Prepare merged Pages content
+        if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _pages && mkdir -p _pages
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
+            git fetch origin gh-pages:gh-pages
+            git --work-tree _pages checkout gh-pages -- .
+          fi
+          rm -rf _pages/helios-002
+          mkdir -p _pages/helios-002
+          cp -a "${DOCS_DIR}/." "_pages/helios-002/"
       - name: Upload GitHub Pages artifact
         if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
         uses: actions/upload-pages-artifact@v5
         with:
-          path: ${{ env.DOCS_DIR }}
+          path: _pages
 
   deploy-pages:
     name: Publish HELIOS-002 scoreboard to GitHub Pages
     if: ${{ (inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
     needs: helios-002
     runs-on: ubuntu-latest
+    concurrency:
+      group: pages-publish-main
+      cancel-in-progress: false
     permissions:
       pages: write
       id-token: write
