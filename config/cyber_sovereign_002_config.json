@@ -1,0 +1,23 @@
+{
+  "experiment": "CYBER-SOVEREIGN-002",
+  "title": "Defensive Capability Compounding for the AGI ALPHA Evidence Infrastructure",
+  "scope": "repo-owned defensive sandbox-only",
+  "forbidden": [
+    "external_target_scanning",
+    "exploit_execution",
+    "credential_disclosure",
+    "malware_generation",
+    "social_engineering",
+    "unsafe_automerge"
+  ],
+  "baselines": [
+    "B0_no_review",
+    "B1_static_checklist",
+    "B2_basic_static_scan",
+    "B3_single_agent_review",
+    "B4_unstructured_multi_agent",
+    "B5_no_archive_reuse",
+    "B6_archive_reuse"
+  ],
+  "primary_comparison": "B6_archive_reuse_vs_B5_no_archive_reuse"
+}

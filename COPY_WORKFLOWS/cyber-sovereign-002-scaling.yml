@@ -1,0 +1,38 @@
+name: AGI ALPHA Cybersecurity Sovereign 002 Scaling / L6 Proxy
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["AGI ALPHA Cybersecurity Sovereign 002 / Autonomous"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: "1"
+  SCALING_DIR: runs/cyber-sovereign-002-scaling/${{ github.run_id }}
+
+jobs:
+  scaling:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    name: Generate CYBER-SOVEREIGN-002 L6 CI scaling proxy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run scaling proxy
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_cyber_sovereign2 scaling --out "$SCALING_DIR"
+      - name: Upload scaling proxy artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cyber-sovereign-002-scaling-${{ github.run_id }}
+          path: ${{ env.SCALING_DIR }}
+          retention-days: 30

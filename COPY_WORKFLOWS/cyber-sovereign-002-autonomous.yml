@@ -1,0 +1,118 @@
+name: AGI ALPHA Cybersecurity Sovereign 002 / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      output_dir:
+        description: "Evidence Docket output directory; leave blank for automatic path"
+        required: false
+        default: ""
+      publish_pages:
+        description: "Publish CYBER-SOVEREIGN-002 scoreboard to GitHub Pages"
+        type: boolean
+        required: false
+        default: true
+  push:
+    branches: ["main"]
+    paths:
+      - "agialpha_cyber_sovereign2/**"
+      - "config/cyber_sovereign_002_config.json"
+      - ".github/workflows/cyber-sovereign-002-autonomous.yml"
+      - "COPY_WORKFLOWS/cyber-sovereign-002-autonomous.yml"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+env:
+  PYTHONUNBUFFERED: "1"
+  DEFAULT_OUTPUT_DIR: runs/cyber-sovereign-002/${{ github.run_id }}
+  SITE_DIR: public-site
+
+concurrency:
+  group: cyber-sovereign-002-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  cyber-sovereign-002:
+    name: Generate CYBER-SOVEREIGN-002 defensive compounding Evidence Docket
+    runs-on: ubuntu-latest
+    outputs:
+      docket_dir: ${{ steps.paths.outputs.docket_dir }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Resolve paths
+        id: paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${{ github.event.inputs.output_dir || '' }}" ]]; then
+            DOCKET_DIR="${{ github.event.inputs.output_dir }}"
+          else
+            DOCKET_DIR="$DEFAULT_OUTPUT_DIR"
+          fi
+          echo "docket_dir=$DOCKET_DIR" >> "$GITHUB_OUTPUT"
+          echo "DOCKET_DIR=$DOCKET_DIR" >> "$GITHUB_ENV"
+
+      - name: Run unit tests if present
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -d tests ]]; then
+            python -m unittest discover -s tests
+          else
+            echo "No tests directory present."
+          fi
+
+      - name: Generate defensive Evidence Docket
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_cyber_sovereign2 run --repo . --out "$DOCKET_DIR"
+
+      - name: Build CYBER-SOVEREIGN-002 Evidence Hub scoreboard
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_cyber_sovereign2 scoreboard "$DOCKET_DIR" --out "$SITE_DIR"
+
+      - name: Upload CYBER-SOVEREIGN-002 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cyber-sovereign-002-${{ github.run_id }}
+          path: |
+            ${{ env.DOCKET_DIR }}
+            ${{ env.SITE_DIR }}
+          retention-days: 30
+
+      - name: Upload GitHub Pages artifact
+        if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.SITE_DIR }}
+
+  deploy-pages:
+    name: Publish CYBER-SOVEREIGN-002 scoreboard to GitHub Pages
+    needs: cyber-sovereign-002
+    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
