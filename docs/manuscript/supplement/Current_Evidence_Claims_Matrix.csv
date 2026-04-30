@@ -1,0 +1,10 @@
+Evidence line,Status,Claim,Boundary
+First Deterministic RSI Loop,E3.5 CI scaffold; 66.67% reuse lift,Replayable Evidence Docket mechanics,"Not SOTA, not external reproduction"
+L4-L7 Evidence Autopilot,L4-ready; L5-local; L6-CI-proxy; L7-local,Autonomous evidence production pipeline,External attestation pending
+HELIOS-001,Local/proxy; six dockets; zero incidents,Governed compounding in simulator/proxy domain,No real-world energy savings claim
+HELIOS-002,Local/proxy transfer; B6>B5 on five transfer tasks,Reusable compiler transfers to adjacent tasks,External benchmark pending
+HELIOS-003,Benchmark bridge readiness and delayed sentinel,Adapters and monitoring operational,No official benchmark victory
+HELIOS-004,Local completion/handoff,HELIOS lineage complete locally,External validation pending
+CYBER-SOVEREIGN-001,First defensive organ,Bounded defensive security organ instantiated,No certification/offensive capability
+CYBER-SOVEREIGN-002,9/9 B6>B5; archive-v1; zero hard safety invariant violations,Local defensive intra-domain compounding,No SOTA/certification/external audit
+CYBER-SOVEREIGN-003,Implemented / pending or exact workflow metrics if run,Human-governed remediation readiness,B7 meaningful only after human review decision
