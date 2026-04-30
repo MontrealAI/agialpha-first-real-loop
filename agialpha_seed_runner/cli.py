@@ -1,53 +1,56 @@
-
 from __future__ import annotations
 
 import argparse
 from pathlib import Path
+from . import core
 
-from .core import (
-    CLAIM_BOUNDARY,
-    build_seed_scoreboard,
-    independent_replay,
-    run_seed_runner,
-)
 
-def cmd_run_seeds(args: argparse.Namespace) -> int:
-    index = run_seed_runner(Path(args.base_docket), Path(args.out), int(args.count))
-    if args.scoreboard:
-        build_seed_scoreboard(index, Path(args.scoreboard))
-    print(f"seed-runner completed {index['count']} seed dockets at {args.out}")
-    return 0
+def main() -> None:
+    parser = argparse.ArgumentParser(prog="agialpha_seed_runner", description="AGI ALPHA Edge Seed Runner v0.2")
+    sub = parser.add_subparsers(dest="cmd", required=True)
 
-def cmd_independent_replay(args: argparse.Namespace) -> int:
-    report = independent_replay(Path(args.docket_root), Path(args.out))
-    print(f"independent replay checked {report['total_dockets']} dockets: {report['passed']} pass, {report['failed']} fail")
-    return 0 if report["failed"] == 0 else 1
+    p = sub.add_parser("run-seeds")
+    p.add_argument("--base-docket", required=True)
+    p.add_argument("--out", required=True)
+    p.add_argument("--count", type=int, default=10)
+    p.add_argument("--scoreboard", default="docs/seed-runner")
 
-def cmd_claim_boundary(args: argparse.Namespace) -> int:
-    print(CLAIM_BOUNDARY)
-    return 0
+    p = sub.add_parser("independent-replay")
+    p.add_argument("--docket-root", required=True)
+    p.add_argument("--out", required=True)
+    p.add_argument("--site", default="docs/independent-replay")
 
-def main(argv: list[str] | None = None) -> None:
-    p = argparse.ArgumentParser(prog="python -m agialpha_seed_runner")
-    sub = p.add_subparsers(dest="cmd", required=True)
+    p = sub.add_parser("falsification-audit")
+    p.add_argument("--docket-root", required=True)
+    p.add_argument("--out", required=True)
+    p.add_argument("--site", default="docs/falsification-audit")
 
-    s = sub.add_parser("run-seeds")
-    s.add_argument("--base-docket", default="evidence-docket")
-    s.add_argument("--out", required=True)
-    s.add_argument("--count", type=int, default=10)
-    s.add_argument("--scoreboard")
-    s.set_defaults(func=cmd_run_seeds)
+    p = sub.add_parser("landing")
+    p.add_argument("--docs", default="docs")
 
-    s = sub.add_parser("independent-replay")
-    s.add_argument("--docket-root", required=True)
-    s.add_argument("--out", required=True)
-    s.set_defaults(func=cmd_independent_replay)
+    args = parser.parse_args()
 
-    s = sub.add_parser("claim-boundary")
-    s.set_defaults(func=cmd_claim_boundary)
+    if args.cmd == "run-seeds":
+        index = core.run_seed_runner(Path(args.base_docket), Path(args.out), args.count)
+        core.build_seed_scoreboard(index, Path(args.scoreboard))
+    elif args.cmd == "independent-replay":
+        report = core.independent_replay(Path(args.docket_root), Path(args.out))
+        # Copy built site to requested docs path
+        src = Path(args.out) / "site"
+        dst = Path(args.site)
+        if dst.exists():
+            import shutil; shutil.rmtree(dst)
+        import shutil; shutil.copytree(src, dst)
+    elif args.cmd == "falsification-audit":
+        summary = core.aggregate_falsification(Path(args.docket_root), Path(args.out))
+        src = Path(args.out) / "site"
+        dst = Path(args.site)
+        if dst.exists():
+            import shutil; shutil.rmtree(dst)
+        import shutil; shutil.copytree(src, dst)
+    elif args.cmd == "landing":
+        core.build_landing_page(Path(args.docs))
 
-    args = p.parse_args(argv)
-    raise SystemExit(args.func(args))
 
 if __name__ == "__main__":
     main()
