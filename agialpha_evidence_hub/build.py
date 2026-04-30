@@ -13,21 +13,33 @@ def _load(base):
 def build_site(registry='evidence_registry', out='_site'):
     runs,exps,wfs=_load(registry)
     o=Path(out); o.mkdir(parents=True,exist_ok=True)
-    for d in ['data','experiments','workflows','runs','artifacts','legacy','external-review','safety']:(o/d).mkdir(exist_ok=True)
+    for d in ['data','experiments','workflows','runs','artifacts','legacy','external-review','safety','launchpad','falsification','assets']:
+        (o/d).mkdir(exist_ok=True)
+
+    o.joinpath('assets/app.css').write_text(':root{--bg:#f7f9fc;--text:#0f172a;--panel:#fff;--line:#dbe3ef;--accent:#2563eb}body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}table{width:100%;border-collapse:collapse}td,th{border:1px solid var(--line);padding:.45rem}a{color:var(--accent)}')
+    o.joinpath('assets/app.js').write_text('document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>navigator.clipboard?.writeText(b.dataset.copy));')
+
     by_exp={}
-    for r in sorted(runs,key=lambda x:x.get('generated_at',''), reverse=True): by_exp.setdefault(r['experiment_slug'],[]).append(r)
+    for r in sorted(runs,key=lambda x:x.get('generated_at',''), reverse=True):
+        by_exp.setdefault(r['experiment_slug'],[]).append(r)
     rows=''.join([f"<tr><td>{html.escape(r.get('generated_at',''))}</td><td><a href='/agialpha-first-real-loop/experiments/{r['experiment_slug']}/'>{r['experiment_slug']}</a></td><td>{html.escape(r.get('workflow_name',''))}</td><td>{r.get('status')}</td><td>{r.get('claim_level')}</td><td>{r.get('metrics',{}).get('replay_passes','not_reported')}</td><td>{r.get('metrics',{}).get('baseline_count','not_reported')}</td><td>{r.get('metrics',{}).get('safety_incidents','not_reported')}</td><td>{r.get('external_review',{}).get('status','not_started')}</td><td>{r.get('pr_review',{}).get('status','not_applicable')}</td><td><a href='/agialpha-first-real-loop/runs/{r['run_id']}/'>run page</a></td><td><a href='{r.get('run_url','#')}'>actions</a></td></tr>" for r in runs])
     o.joinpath('index.html').write_text(page('AGI ALPHA Evidence Hub',f"<h2>Unified Evidence Docket registry for AGI ALPHA workflows, experiments, replay, baselines, safety ledgers, and external review.</h2><p>{CLAIM_BOUNDARY}</p><h3>Recent Runs</h3><table>{rows}</table>"))
     o.joinpath('404.html').write_text(page('Not Found','<a href="/agialpha-first-real-loop/">Back to hub</a>'))
     o.joinpath('experiments/index.html').write_text(page('Experiments',''.join([f"<li><a href='/agialpha-first-real-loop/experiments/{e['slug']}/'>{e['slug']}</a></li>" for e in exps])))
     o.joinpath('workflows/index.html').write_text(page('Workflows',''.join([f"<li><a href='/agialpha-first-real-loop/workflows/{w['slug']}/'>{w['name']}</a></li>" for w in wfs])))
     o.joinpath('runs/index.html').write_text(page('Runs',''.join([f"<li><a href='/agialpha-first-real-loop/runs/{r['run_id']}/'>{r['run_id']}</a></li>" for r in runs])))
-    for s in ['artifacts','external-review','safety','legacy']: o.joinpath(s,'index.html').write_text(page(s.title(),'<a href="/agialpha-first-real-loop/">Back</a>'))
+    for s in ['artifacts','external-review','safety','legacy','falsification']:
+        o.joinpath(s,'index.html').write_text(page(s.title(),'<a href="/agialpha-first-real-loop/">Back</a>'))
+
+    launch_rows=''.join([f"<tr><td>{w.get('name')}</td><td>{w.get('file')}</td><td><a href='https://github.com/MontrealAI/agialpha-first-real-loop/actions/workflows/{w.get('file','')}'>{w.get('file')}</a></td><td><code>gh workflow run {w.get('file','')}</code></td></tr>" for w in wfs])
+    o.joinpath('launchpad/index.html').write_text(page('Workflow Launchpad', f"<p>Click the button, then click Run workflow on GitHub.</p><table>{launch_rows}</table>"))
+
     for exp,runs_exp in by_exp.items():
         ep=o/'experiments'/exp; (ep/'runs').mkdir(parents=True,exist_ok=True)
         latest=runs_exp[0]
         run_rows=''.join([f"<tr><td>{r['run_id']}</td><td>{r.get('status')}</td><td><a href='{r.get('run_url','#')}'>actions</a></td></tr>" for r in runs_exp])
         ep.joinpath('index.html').write_text(page(exp,f"<div>claim boundary: {html.escape(latest.get('claim_boundary','missing'))}</div><div>latest status: {latest.get('status')}</div><div>safety incidents: {latest.get('metrics',{}).get('safety_incidents','not_reported')}</div><table>{run_rows}</table><a href='/agialpha-first-real-loop/'>Back to hub</a>"))
+
     for r in runs:
         rp=o/'runs'/r['run_id']; rp.mkdir(parents=True,exist_ok=True)
         rp.joinpath('manifest.json').write_text(json.dumps(r,indent=2))
@@ -35,9 +47,17 @@ def build_site(registry='evidence_registry', out='_site'):
         exp_rp=o/'experiments'/r['experiment_slug']/'runs'/r['run_id']; exp_rp.mkdir(parents=True,exist_ok=True)
         exp_rp.joinpath('index.html').write_text(rp.joinpath('index.html').read_text())
         exp_rp.joinpath('manifest.json').write_text(json.dumps(r,indent=2))
+
     for slug in LEGACY_SLUGS:
         lp=o/slug; lp.mkdir(exist_ok=True)
         target=f"/agialpha-first-real-loop/experiments/{slug}/" if slug in by_exp else '/agialpha-first-real-loop/'
         msg='backfill required' if slug not in by_exp else 'legacy route mapped'
         lp.joinpath('index.html').write_text(page(slug,f"<meta http-equiv='refresh' content='0; url={target}'/><p>{msg}</p><a href='{target}'>Canonical page</a>"))
-    o.joinpath('data/runs.json').write_text(json.dumps(runs,indent=2)); o.joinpath('data/experiments.json').write_text(json.dumps(exps,indent=2)); o.joinpath('data/workflows.json').write_text(json.dumps(wfs,indent=2)); o.joinpath('data/latest.json').write_text(json.dumps(runs[0] if runs else {},indent=2)); o.joinpath('data/safety.json').write_text(json.dumps({'runs':len(runs)},indent=2)); o.joinpath('data/external_review.json').write_text(json.dumps({'runs':len(runs)},indent=2))
+
+    o.joinpath('data/runs.json').write_text(json.dumps(runs,indent=2))
+    o.joinpath('data/experiments.json').write_text(json.dumps(exps,indent=2))
+    o.joinpath('data/workflows.json').write_text(json.dumps(wfs,indent=2))
+    o.joinpath('data/latest.json').write_text(json.dumps(runs[0] if runs else {},indent=2))
+    o.joinpath('data/safety.json').write_text(json.dumps({'runs':len(runs)},indent=2))
+    o.joinpath('data/external_review.json').write_text(json.dumps({'runs':len(runs)},indent=2))
+    o.joinpath('data/workflow_catalog.json').write_text(json.dumps({'workflows':wfs},indent=2))
