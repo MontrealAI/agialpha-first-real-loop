@@ -1,0 +1,136 @@
+name: AGI ALPHA Frontier Usefulness / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      output_dir:
+        description: "Frontier usefulness output directory"
+        required: false
+        default: ""
+      publish_pages:
+        description: "Publish usefulness scoreboard to GitHub Pages"
+        type: boolean
+        required: false
+        default: true
+  schedule:
+    - cron: "27 6 * * *"
+  push:
+    branches: ["main"]
+    paths:
+      - "agialpha_usefulness_frontier/**"
+      - "config/frontier_usefulness_config.json"
+      - ".github/workflows/frontier-usefulness-autonomous.yml"
+      - "evidence-docket/**"
+      - "README*.md"
+
+permissions:
+  contents: write
+  actions: read
+  pages: write
+  id-token: write
+  issues: write
+  pull-requests: write
+
+env:
+  PYTHONUNBUFFERED: "1"
+  DEFAULT_OUT: runs/frontier-usefulness/${{ github.run_id }}
+  PUBLISH_PAGES: ${{ github.event.inputs.publish_pages || 'true' }}
+
+jobs:
+  frontier-usefulness:
+    name: Generate usefulness dockets, adapters, replay kit, and scoreboard
+    runs-on: ubuntu-latest
+    outputs:
+      output_dir: ${{ steps.paths.outputs.output_dir }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Resolve output path
+        id: paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${{ github.event.inputs.output_dir || '' }}" ]]; then
+            OUT="${{ github.event.inputs.output_dir }}"
+          else
+            OUT="$DEFAULT_OUT"
+          fi
+          echo "output_dir=$OUT" >> "$GITHUB_OUTPUT"
+          echo "OUTPUT_DIR=$OUT" >> "$GITHUB_ENV"
+
+      - name: Run Frontier Usefulness Experiment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_usefulness_frontier run --repo . --out "$OUTPUT_DIR"
+
+      - name: Run tests if present
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -d tests ]]; then
+            python -m unittest discover -s tests || true
+          fi
+
+      - name: Replay generated portfolio
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_usefulness_frontier replay --portfolio "$OUTPUT_DIR" --out "runs/frontier-usefulness-replay/${{ github.run_id }}"
+
+      - name: Upload Frontier Usefulness artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: frontier-usefulness-${{ github.run_id }}
+          path: |
+            ${{ steps.paths.outputs.output_dir }}
+            runs/frontier-usefulness-replay/${{ github.run_id }}
+          retention-days: 30
+
+      - name: Prepare GitHub Pages content
+        if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf public
+          mkdir -p public/frontier-usefulness
+          cp -R "$OUTPUT_DIR"/* public/frontier-usefulness/
+          cat > public/index.html <<'HTML'
+          <!doctype html><html><head><meta charset="utf-8"><title>AGI ALPHA Evidence Hub</title></head><body>
+          <h1>AGI ALPHA Evidence Hub</h1>
+          <ul>
+            <li><a href="frontier-usefulness/">Frontier Usefulness Experiment</a></li>
+          </ul>
+          <p>Autonomous evidence production is allowed; autonomous claim promotion is not.</p>
+          </body></html>
+          HTML
+
+      - name: Upload Pages artifact
+        if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: public
+
+  deploy-pages:
+    name: Publish Frontier Usefulness scoreboard
+    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
+    needs: frontier-usefulness
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

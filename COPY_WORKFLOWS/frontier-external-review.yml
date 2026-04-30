@@ -1,0 +1,59 @@
+name: AGI ALPHA Frontier External Review / L4+
+
+on:
+  workflow_dispatch:
+    inputs:
+      portfolio_path:
+        description: "Portfolio directory to replay; leave blank to use runs/frontier-usefulness/latest if present"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  PYTHONUNBUFFERED: "1"
+
+jobs:
+  external-review-replay:
+    name: Clean replay and reviewer attestation kit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Resolve portfolio path
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${{ github.event.inputs.portfolio_path || '' }}" ]]; then
+            PORTFOLIO="${{ github.event.inputs.portfolio_path }}"
+          elif [[ -d runs/frontier-usefulness/latest ]]; then
+            PORTFOLIO="runs/frontier-usefulness/latest"
+          elif [[ -d evidence-docket ]]; then
+            PORTFOLIO="evidence-docket"
+          else
+            PORTFOLIO="."
+          fi
+          echo "PORTFOLIO=$PORTFOLIO" >> "$GITHUB_ENV"
+
+      - name: Replay frontier usefulness portfolio
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_usefulness_frontier replay --portfolio "$PORTFOLIO" --out "external-review/frontier-usefulness-${{ github.run_id }}"
+
+      - name: Upload external review replay artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: frontier-external-review-${{ github.run_id }}
+          path: external-review/
+          retention-days: 30

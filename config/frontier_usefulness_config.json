@@ -1,0 +1,7 @@
+{
+  "experiment": "AGI ALPHA Frontier Usefulness Experiment v0.1",
+  "claim_boundary": "Autonomous evidence production is allowed; autonomous empirical claim promotion is not.",
+  "default_mode": "local-ci-usefulness",
+  "external_benchmarks": ["swe-bench-verified", "gaia", "browsergym-webarena-workarena", "osworld", "tau-bench"],
+  "requires_external_for_world_claims": true
+}
