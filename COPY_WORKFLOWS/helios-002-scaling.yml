@@ -1,0 +1,77 @@
+name: AGI ALPHA HELIOS-002 Scaling / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_pages:
+        description: "Publish HELIOS-002 scaling scoreboard to GitHub Pages"
+        type: boolean
+        required: false
+        default: false
+  workflow_run:
+    workflows: ["AGI ALPHA HELIOS-002 / Autonomous"]
+    types: [completed]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+env:
+  PYTHONUNBUFFERED: "1"
+  PUBLISH_PAGES: ${{ inputs.publish_pages || 'false' }}
+
+jobs:
+  scaling:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    name: Generate HELIOS-002 L6 CI scaling proxy
+    runs-on: ubuntu-latest
+    outputs:
+      docs_dir: ${{ steps.paths.outputs.docs_dir }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Resolve paths
+        id: paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT_DIR="runs/helios-002-scaling/${GITHUB_RUN_ID}"
+          DOCS_DIR="docs"
+          echo "OUT_DIR=${OUT_DIR}" >> "$GITHUB_ENV"
+          echo "DOCS_DIR=${DOCS_DIR}" >> "$GITHUB_ENV"
+          echo "docs_dir=${DOCS_DIR}" >> "$GITHUB_OUTPUT"
+      - name: Run scaling proxy
+        shell: bash
+        run: python -m agialpha_helios2 scaling --out "$OUT_DIR" --docs "$DOCS_DIR"
+      - name: Upload scaling artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: helios-002-scaling-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          retention-days: 30
+          if-no-files-found: error
+      - name: Upload GitHub Pages artifact
+        if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ env.DOCS_DIR }}
+
+  deploy-pages:
+    if: ${{ (inputs.publish_pages || 'false') == 'true' && github.ref_name == 'main' }}
+    needs: scaling
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

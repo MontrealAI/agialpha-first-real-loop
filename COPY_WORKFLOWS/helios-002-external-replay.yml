@@ -1,0 +1,66 @@
+name: AGI ALPHA HELIOS-002 External Replay / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_dir:
+        description: "Optional source directory containing HELIOS-002 artifact"
+        required: false
+        default: ""
+  workflow_run:
+    workflows: ["AGI ALPHA HELIOS-002 / Autonomous"]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  PYTHONUNBUFFERED: "1"
+
+jobs:
+  external-replay:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    name: Clean replay and external reviewer kit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Resolve paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT_DIR="runs/helios-002-external-replay/${GITHUB_RUN_ID}"
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && -n "${{ inputs.source_dir }}" ]]; then
+            SOURCE_DIR="${{ inputs.source_dir }}"
+          else
+            SOURCE_DIR=""
+          fi
+          echo "OUT_DIR=${OUT_DIR}" >> "$GITHUB_ENV"
+          echo "SOURCE_DIR=${SOURCE_DIR}" >> "$GITHUB_ENV"
+
+      - name: Run HELIOS-002 external replay scaffold
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "$SOURCE_DIR" ]]; then
+            python -m agialpha_helios2 external-replay --out "$OUT_DIR" --source "$SOURCE_DIR"
+          else
+            python -m agialpha_helios2 external-replay --out "$OUT_DIR"
+          fi
+
+      - name: Upload HELIOS-002 external replay artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: helios-002-external-replay-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          retention-days: 30
+          if-no-files-found: error

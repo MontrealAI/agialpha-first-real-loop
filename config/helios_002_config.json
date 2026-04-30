@@ -1,0 +1,13 @@
+{
+  "experiment": "HELIOS-002",
+  "title": "External Transfer and Reviewer Replay for Governed Compounding of Verified Machine Labor",
+  "reusable_capability": "EnergyComputeResilienceCompiler-v0",
+  "claim_boundary": "Bounded simulator/proxy experiment; no AGI, ASI, empirical SOTA, real-world energy savings, safe autonomy, or civilization-scale capability claim.",
+  "baselines": ["B0", "B1", "B2", "B3", "B4", "B5", "B6"],
+  "l_status_targets": {
+    "L4": "external reviewer replay ready",
+    "L5": "local baseline-comparative transfer evidence",
+    "L6": "CI proxy scaling evidence only",
+    "L7": "local transfer portfolio evidence"
+  }
+}
