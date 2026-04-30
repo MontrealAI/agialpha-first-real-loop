@@ -1,0 +1,74 @@
+name: AGI ALPHA HELIOS-003 External Replay / L4+
+
+on:
+  workflow_dispatch:
+    inputs:
+      docket_root:
+        description: "Optional HELIOS-003 docket root to replay; blank generates a fresh clean docket"
+        required: false
+        default: ""
+  workflow_run:
+    workflows: ["AGI ALPHA HELIOS-003 / Autonomous"]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  PYTHONUNBUFFERED: "1"
+  DEFAULT_REPLAY_ROOT: runs/helios-003-external-replay/${{ github.run_id }}
+
+jobs:
+  external-replay:
+    name: External-reviewer-style clean replay
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Resolve replay root
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${{ github.event.inputs.docket_root || '' }}" ]]; then
+            ROOT="${{ github.event.inputs.docket_root }}"
+          else
+            ROOT="$DEFAULT_REPLAY_ROOT"
+            python -m agialpha_helios3 run --out "$ROOT"
+          fi
+          echo "REPLAY_ROOT=$ROOT" >> "$GITHUB_ENV"
+
+      - name: Replay and verify HELIOS-003
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_helios3 replay --root "$REPLAY_ROOT" --out "$REPLAY_ROOT/external_replay_report.json"
+          cat > "$REPLAY_ROOT/EXTERNAL_REVIEW_ATTESTATION_TEMPLATE.md" <<'MD'
+          # HELIOS-003 External Reviewer Attestation
+          
+          - [ ] Clean fork or clean checkout used
+          - [ ] HELIOS-003 replay completed
+          - [ ] Task dockets reviewed
+          - [ ] B0-B6 baselines reviewed
+          - [ ] Cost ledgers reviewed
+          - [ ] Safety ledgers reviewed
+          - [ ] ProofBundles reviewed
+          - [ ] Scaling proxy reviewed
+          - [ ] Benchmark adapters reviewed
+          - [ ] Delayed-outcome sentinel reviewed
+          - [ ] Claim boundary reviewed
+          - [ ] No empirical SOTA, AGI, ASI, safe autonomy, or real-world energy claim certified
+          MD
+
+      - name: Upload external replay artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: helios-003-external-replay-${{ github.run_id }}
+          path: ${{ env.REPLAY_ROOT }}
+          retention-days: 30

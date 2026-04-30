@@ -1,0 +1,122 @@
+name: AGI ALPHA HELIOS-003 / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      output_dir:
+        description: "Optional HELIOS-003 output directory"
+        required: false
+        default: ""
+      publish_pages:
+        description: "Publish HELIOS-003 scoreboard to GitHub Pages"
+        required: false
+        type: boolean
+        default: true
+  push:
+    branches: ["main"]
+    paths:
+      - "agialpha_helios3/**"
+      - "config/helios3_config.json"
+      - ".github/workflows/helios-003-autonomous.yml"
+      - "tests/**"
+  schedule:
+    - cron: "37 5 * * *"
+
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: helios-003-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: "1"
+  DEFAULT_OUTPUT_DIR: runs/helios-003/${{ github.run_id }}
+  DOCS_DIR: docs
+  PUBLISH_PAGES: ${{ github.event.inputs.publish_pages || 'true' }}
+
+jobs:
+  helios-003:
+    name: Generate HELIOS-003 evidence, replay, audit, and scoreboard
+    runs-on: ubuntu-latest
+    outputs:
+      output_dir: ${{ steps.paths.outputs.output_dir }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Resolve paths
+        id: paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${{ github.event.inputs.output_dir || '' }}" ]]; then
+            OUT="${{ github.event.inputs.output_dir }}"
+          else
+            OUT="$DEFAULT_OUTPUT_DIR"
+          fi
+          echo "output_dir=$OUT" >> "$GITHUB_OUTPUT"
+          echo "OUTPUT_DIR=$OUT" >> "$GITHUB_ENV"
+
+      - name: Run HELIOS-003 autonomous experiment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_helios3 run --out "$OUTPUT_DIR"
+
+      - name: Replay HELIOS-003 docket
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_helios3 replay --root "$OUTPUT_DIR" --out "$OUTPUT_DIR/replay_report.json"
+
+      - name: Falsification audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_helios3 falsification --root "$OUTPUT_DIR"
+
+      - name: Build public scoreboard
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_helios3 scoreboard --root "$OUTPUT_DIR" --docs "$DOCS_DIR"
+
+      - name: Upload HELIOS-003 evidence artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: helios-003-evidence-${{ github.run_id }}
+          path: |
+            ${{ env.OUTPUT_DIR }}
+            ${{ env.DOCS_DIR }}
+          retention-days: 30
+
+      - name: Upload GitHub Pages artifact
+        if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.DOCS_DIR }}
+
+  deploy-pages:
+    name: Publish HELIOS-003 scoreboard to GitHub Pages
+    needs: helios-003
+    if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

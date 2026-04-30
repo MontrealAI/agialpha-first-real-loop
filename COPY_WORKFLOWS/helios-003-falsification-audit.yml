@@ -1,0 +1,47 @@
+name: AGI ALPHA HELIOS-003 Falsification Audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      docket_root:
+        description: "Optional HELIOS-003 docket root to audit; blank generates a fresh docket"
+        required: false
+        default: ""
+  workflow_run:
+    workflows: ["AGI ALPHA HELIOS-003 / Autonomous"]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  PYTHONUNBUFFERED: "1"
+  DEFAULT_AUDIT_ROOT: runs/helios-003-audit/${{ github.run_id }}
+
+jobs:
+  falsification-audit:
+    name: Audit HELIOS-003 for missing evidence and overclaim risk
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Generate or audit docket
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="${{ github.event.inputs.docket_root || '' }}"
+          if [[ -z "$ROOT" ]]; then
+            ROOT="$DEFAULT_AUDIT_ROOT"
+            python -m agialpha_helios3 run --out "$ROOT"
+          fi
+          echo "ROOT=$ROOT" >> "$GITHUB_ENV"
+          python -m agialpha_helios3 falsification --root "$ROOT"
+      - name: Upload falsification audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: helios-003-falsification-audit-${{ github.run_id }}
+          path: ${{ env.ROOT }}
+          retention-days: 30

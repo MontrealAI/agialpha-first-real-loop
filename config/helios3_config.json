@@ -1,0 +1,8 @@
+{
+  "experiment_id": "HELIOS-003",
+  "title": "Public Benchmark Bridge and Delayed-Outcome Gauntlet for Governed Compounding of Verified Machine Labor",
+  "claim_boundary": "bounded local/proxy Evidence Docket experiment; no empirical SOTA claim",
+  "agent_counts": [1, 2, 4, 8, 16],
+  "node_proxy_counts": [1, 2, 4, 8],
+  "baseline_ladder": ["B0_static_heuristic", "B1_single_agent", "B2_fixed_workflow", "B3_unstructured_swarm", "B4_agialpha_no_rsi", "B5_agialpha_rsi_no_reuse", "B6_full_agialpha_reuse"]
+}

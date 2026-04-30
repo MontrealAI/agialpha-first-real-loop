@@ -1,0 +1,49 @@
+name: AGI ALPHA HELIOS-003 Delayed Outcome Sentinel
+
+on:
+  workflow_dispatch:
+    inputs:
+      docket_root:
+        description: "Optional HELIOS-003 docket root; blank generates a fresh docket"
+        required: false
+        default: ""
+  workflow_run:
+    workflows: ["AGI ALPHA HELIOS-003 / Autonomous"]
+    types: [completed]
+  schedule:
+    - cron: "11 7 * * *"
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  PYTHONUNBUFFERED: "1"
+  DEFAULT_DELAYED_ROOT: runs/helios-003-delayed/${{ github.run_id }}
+
+jobs:
+  delayed-outcome:
+    name: Run delayed-outcome proxy and claim-boundary sentinel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Generate or inspect delayed outcome report
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="${{ github.event.inputs.docket_root || '' }}"
+          if [[ -z "$ROOT" ]]; then
+            ROOT="$DEFAULT_DELAYED_ROOT"
+            python -m agialpha_helios3 run --out "$ROOT"
+          fi
+          echo "ROOT=$ROOT" >> "$GITHUB_ENV"
+          python -m agialpha_helios3 delayed --root "$ROOT" --out "$ROOT/delayed_outcome_sentinel_report.json"
+      - name: Upload delayed outcome artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: helios-003-delayed-outcome-${{ github.run_id }}
+          path: ${{ env.ROOT }}
+          retention-days: 30

@@ -1,0 +1,44 @@
+name: AGI ALPHA HELIOS-003 Scaling / L6 Proxy
+
+on:
+  workflow_dispatch:
+    inputs:
+      output_dir:
+        description: "Optional scaling output directory"
+        required: false
+        default: ""
+  workflow_run:
+    workflows: ["AGI ALPHA HELIOS-003 / Autonomous"]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  PYTHONUNBUFFERED: "1"
+  DEFAULT_OUTPUT_DIR: runs/helios-003-scaling/${{ github.run_id }}
+
+jobs:
+  scaling:
+    name: Generate HELIOS-003 L6 CI scaling proxy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run scaling matrix
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="${{ github.event.inputs.output_dir || '' }}"
+          if [[ -z "$OUT" ]]; then OUT="$DEFAULT_OUTPUT_DIR"; fi
+          echo "OUT=$OUT" >> "$GITHUB_ENV"
+          python -m agialpha_helios3 scaling --out "$OUT"
+      - name: Upload scaling artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: helios-003-scaling-${{ github.run_id }}
+          path: ${{ env.OUT }}
+          retention-days: 30
