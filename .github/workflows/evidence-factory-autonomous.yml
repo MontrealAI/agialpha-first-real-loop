@@ -190,7 +190,7 @@ jobs:
             ${{ env.DOCS_DIR }}/
           retention-days: 30
 
-      - name: Upload GitHub Pages artifact
+      - name: Upload experiment bundle artifact
         if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
         uses: actions/upload-artifact@v4
         with:

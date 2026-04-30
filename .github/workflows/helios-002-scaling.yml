@@ -55,7 +55,7 @@ jobs:
           path: ${{ env.OUT_DIR }}
           retention-days: 30
           if-no-files-found: error
-      - name: Upload GitHub Pages artifact
+      - name: Upload experiment bundle artifact
         if: ${{ env.PUBLISH_PAGES == 'true' && github.ref_name == 'main' }}
         uses: actions/upload-artifact@v4
         with:

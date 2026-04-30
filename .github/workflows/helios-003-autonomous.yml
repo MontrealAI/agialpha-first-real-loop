@@ -105,14 +105,14 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf _pages && mkdir -p _pages
-          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
-            git fetch origin gh-pages:gh-pages
-            git --work-tree _pages checkout gh-pages -- .
+          if git ls-remote --exit-code --heads origin pages-branch-disabled >/dev/null; then
+            git fetch origin pages-branch-disabled:pages-branch-disabled
+            git --work-tree _pages checkout pages-branch-disabled -- .
           fi
           rm -rf _pages/helios-003
           mkdir -p _pages/helios-003
           cp -a "${DOCS_DIR}/." "_pages/helios-003/"
-      - name: Upload GitHub Pages artifact
+      - name: Upload experiment bundle artifact
         if: ${{ (github.event.inputs.publish_pages || 'true') == 'true' && github.ref_name == 'main' }}
         uses: actions/upload-artifact@v4
         with:
