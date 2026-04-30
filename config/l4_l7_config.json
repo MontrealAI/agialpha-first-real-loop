@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "agent_counts": [1, 2, 4, 8, 16],
+  "node_counts": [1, 2, 4, 8],
+  "claim_boundary": "Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "levels": {
+    "L4": "real external reviewer replay: requires outside reviewer attestation",
+    "L5": "baseline-comparative evidence: B0-B4 under equal constraints",
+    "L6": "scaling evidence across agents/nodes",
+    "L7": "real-task portfolio evidence across task families"
+  }
+}
