@@ -1,0 +1,44 @@
+name: Evidence Hub Canary
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Emit synthetic canary manifest
+        run: |
+          python -m agialpha_evidence_hub emit-manifest \
+            --experiment-slug evidence-hub-canary-001 \
+            --experiment-name "Evidence Hub Canary 001" \
+            --workflow-name "Evidence Hub Canary" \
+            --workflow-file .github/workflows/evidence-hub-canary.yml \
+            --run-id "$GITHUB_RUN_ID" \
+            --run-attempt "$GITHUB_RUN_ATTEMPT" \
+            --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
+            --commit "$GITHUB_SHA" \
+            --branch "$GITHUB_REF_NAME" \
+            --out evidence-run-manifest.json
+
+      - name: Upload canary manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-hub-canary-manifest
+          path: evidence-run-manifest.json
+
+      - name: Claim boundary note
+        run: |
+          echo "This canary tests Evidence Hub publication mechanics only. It does not claim experimental performance."

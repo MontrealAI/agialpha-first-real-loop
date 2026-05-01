@@ -1,0 +1,51 @@
+name: Evidence Hub Repair
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 3 * * *"
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Architecture guard
+        run: python scripts/check_pages_architecture.py
+
+      - name: Build and validate Evidence Hub
+        run: |
+          python -m agialpha_evidence_hub build --registry evidence_registry --out _site
+          python -m agialpha_evidence_hub validate --registry evidence_registry --site _site
+          python -m agialpha_evidence_hub linkcheck --site _site
+
+      - name: Create diagnostics issue on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = 'Evidence Mission Control publisher validation failure';
+            const body = [
+              'Automated repair detected a validation failure.',
+              '',
+              'This workflow does not auto-merge and does not fabricate metrics.',
+              'Please inspect workflow logs and runbooks before manual remediation.'
+            ].join('\n');
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body
+            });
