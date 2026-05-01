@@ -114,6 +114,8 @@
     "docs/evidence-factory/runs/25189773749/seed-matrix/seed-009/00_manifest.json",
     "docs/evidence-factory/runs/25189773749/seed-matrix/seed-010/00_manifest.json",
     "evidence-docket/00_manifest.json",
+    "rsi-governor-runs/test-lifecycle/rsi-governor-evidence-docket/00_manifest.json",
+    "rsi-governor-runs/test-lifecycle/rsi-governor-evidence-docket/19_summary_tables/scoreboard.json",
     "rsi-governor-runs/test/rsi-governor-evidence-docket/00_manifest.json",
     "rsi-governor-runs/test/rsi-governor-evidence-docket/19_summary_tables/scoreboard.json",
     "sample_outputs/coldchain-energy-loop-001/00_manifest.json",
