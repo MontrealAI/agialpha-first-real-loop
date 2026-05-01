@@ -1,6 +1,10 @@
 {
   "repo_root": ".",
   "discovered_files": [
+    ".github/workflows/ascension-001-autonomous.yml",
+    ".github/workflows/ascension-001-falsification-audit.yml",
+    ".github/workflows/ascension-001-independent-replay.yml",
+    ".github/workflows/ascension-001-vnext.yml",
     ".github/workflows/benchmark-gauntlet-001-autonomous.yml",
     ".github/workflows/benchmark-gauntlet-001-challenge-pack.yml",
     ".github/workflows/benchmark-gauntlet-001-external-replay.yml",
