@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AGI ALPHA ASCENSION-001 Evidence Run Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "experiment_slug",
+    "experiment_name",
+    "run_id",
+    "claim_level",
+    "claim_boundary",
+    "metrics"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "experiment_slug": {
+      "type": "string"
+    },
+    "experiment_name": {
+      "type": "string"
+    },
+    "experiment_family": {
+      "type": "string"
+    },
+    "workflow_name": {
+      "type": "string"
+    },
+    "workflow_file": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "run_attempt": {
+      "type": "string"
+    },
+    "run_url": {
+      "type": "string"
+    },
+    "commit_sha": {
+      "type": "string"
+    },
+    "branch": {
+      "type": "string"
+    },
+    "actor": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "claim_level": {
+      "type": "string"
+    },
+    "claim_boundary": {
+      "type": "string"
+    },
+    "evidence_docket_path": {
+      "type": "string"
+    },
+    "scoreboard_path": {
+      "type": "string"
+    },
+    "artifact_names": {
+      "type": "array"
+    },
+    "root_hash": {
+      "type": "string"
+    },
+    "metrics": {
+      "type": "object"
+    },
+    "external_review": {
+      "type": "object"
+    },
+    "pr_review": {
+      "type": "object"
+    },
+    "links": {
+      "type": "object"
+    }
+  }
+}
