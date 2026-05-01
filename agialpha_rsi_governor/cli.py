@@ -148,6 +148,15 @@ def validate_autonomy_contract(contract: str):
     }
     pre = set(_require_action_list("autonomous_pre_promotion_actions"))
     post = set(_require_action_list("autonomous_post_merge_actions"))
+    forbidden_auto = set(_require_action_list("forbidden_autonomous_actions"))
+
+    forbidden_overlap = sorted((pre | post) & forbidden_auto)
+    if forbidden_overlap:
+        raise SystemExit(
+            "forbidden autonomous actions present in autonomous action lists: "
+            + ", ".join(forbidden_overlap)
+        )
+
     missing_pre = sorted(required_pre - pre)
     missing_post = sorted(required_post - post)
     if missing_pre or missing_post:
