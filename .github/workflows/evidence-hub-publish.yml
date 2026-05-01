@@ -30,7 +30,11 @@ on:
       - '.github/workflows/**'
       - 'scripts/check_pages_architecture.py'
       - 'tests/**'
+      - 'schemas/**'
+      - 'scripts/**'
+      - 'README*'
   push:
+    branches: [main]
     paths:
       - 'evidence_registry/**'
       - 'agialpha_evidence_hub/**'
@@ -38,11 +42,14 @@ on:
       - '.github/workflows/**'
       - 'scripts/check_pages_architecture.py'
       - 'tests/**'
+      - 'schemas/**'
+      - 'scripts/**'
+      - 'README*'
   workflow_dispatch:
   repository_dispatch:
     types: [evidence_run_completed, evidence_registry_changed, evidence_hub_rebuild_requested]
   schedule:
-    - cron: '0 */4 * * *'
+    - cron: "17 */4 * * *"
 
 concurrency:
   group: evidence-hub-publish
