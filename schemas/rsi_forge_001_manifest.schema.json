@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AGI ALPHA RSI-FORGE-001 Evidence Manifest",
+  "type": "object",
+  "required": ["schema_version", "experiment_slug", "experiment_name", "run_id", "claim_boundary", "metrics"],
+  "properties": {
+    "schema_version": {"const": "agialpha.evidence_run.v1"},
+    "experiment_slug": {"const": "rsi-forge-001"},
+    "experiment_name": {"type": "string"},
+    "run_id": {"type": "string"},
+    "claim_boundary": {"type": "string"},
+    "metrics": {"type": "object"}
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "experiment": "RSI-FORGE-001",
+  "title": "Source-Code Recursive Self-Improvement of the Evidence Kernel",
+  "default_cycles": 6,
+  "default_seed": 1001,
+  "claim_boundary": "Bounded repo-owned CI/proxy evidence only; no achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability claim.",
+  "promotion_gates": {
+    "B6_must_beat_B5_on_heldout": true,
+    "replay_must_pass": true,
+    "falsification_audit_must_pass": true,
+    "vnext_transfer_must_pass": true,
+    "hard_safety_counters_must_be_zero": true
+  }
+}
