@@ -34,3 +34,16 @@ This audit records repository health findings identified from static inspection 
 **No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.**
 
 This invariant remains mandatory for docs, workflows, registry, and generated site pages.
+
+
+## 2026-05-01 Verification Pass (Codex)
+
+| Scope | Check | Result | Notes |
+|---|---|---|---|
+| Pages architecture | `python scripts/check_pages_architecture.py` | pass | Exactly one workflow deploys Pages (`.github/workflows/evidence-hub-publish.yml`). |
+| Test suite | `python -m unittest discover -s tests` | pass | 53 tests passed, including link, schema, launchpad, sorting, and claim-boundary checks. |
+| Site build | `python -m agialpha_evidence_hub build --registry evidence_registry --out _site` | pass | Mission Control site generated with required assets and routes. |
+| Validation | `python -m agialpha_evidence_hub validate --registry evidence_registry --site _site` | pass | Claim boundaries and safety validation passed. |
+| Linkcheck | `python -m agialpha_evidence_hub linkcheck --site _site` | pass | Internal links verified. |
+
+Invariant reaffirmed: **No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.**
