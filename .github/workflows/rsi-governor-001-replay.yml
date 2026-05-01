@@ -1,12 +1,28 @@
 name: rsi-governor-001-replay
 on:
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      autonomous_artifact:
+        required: true
+        type: string
+      out_dir:
+        required: false
+        type: string
+        default: rsi-governor-runs/lifecycle
+permissions:
+  contents: read
+  actions: read
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.autonomous_artifact }}
+          path: ${{ inputs.out_dir }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -m agialpha_rsi_governor replay --docket rsi-governor-runs/test/rsi-governor-evidence-docket
+      - run: python -m agialpha_rsi_governor replay --docket "${{ inputs.out_dir }}/rsi-governor-evidence-docket"
