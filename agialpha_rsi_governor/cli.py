@@ -12,6 +12,19 @@ from .promotion import promotion_gate
 from .render import scoreboard_html
 
 
+POLICY_FORBIDDEN_AUTONOMOUS_ACTIONS = {
+    "merge_pr",
+    "enable_automerge",
+    "persist_kernel_without_pr",
+    "delete_rejected_candidates",
+    "hide_failed_evaluations",
+    "relax_claim_boundaries",
+    "mark_missing_metrics_as_zero",
+    "execute_downloaded_artifact_code",
+    "deploy_pages_directly_from_rsi_workflow",
+}
+
+
 def _next_run_id(outp: Path) -> str:
     existing = sorted(p.name for p in outp.glob("run-*") if p.is_dir())
     if not existing:
@@ -148,9 +161,15 @@ def validate_autonomy_contract(contract: str):
     }
     pre = set(_require_action_list("autonomous_pre_promotion_actions"))
     post = set(_require_action_list("autonomous_post_merge_actions"))
-    forbidden_auto = set(_require_action_list("forbidden_autonomous_actions"))
+    contract_forbidden_auto = set(_require_action_list("forbidden_autonomous_actions"))
+    missing_forbidden_policy_actions = sorted(POLICY_FORBIDDEN_AUTONOMOUS_ACTIONS - contract_forbidden_auto)
+    if missing_forbidden_policy_actions:
+        raise SystemExit(
+            "contract missing required forbidden_autonomous_actions policy entries: "
+            + ", ".join(missing_forbidden_policy_actions)
+        )
 
-    forbidden_overlap = sorted((pre | post) & forbidden_auto)
+    forbidden_overlap = sorted((pre | post) & POLICY_FORBIDDEN_AUTONOMOUS_ACTIONS)
     if forbidden_overlap:
         raise SystemExit(
             "forbidden autonomous actions present in autonomous action lists: "
