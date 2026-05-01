@@ -1,6 +1,9 @@
 name: AGI ALPHA Evidence Mission Control / Autopublisher
 
 on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [evidence_run_completed, evidence_registry_changed, evidence_hub_rebuild_requested]
   workflow_run:
     workflows:
       - Replay First Real Loop
@@ -15,122 +18,152 @@ on:
       - AGI ALPHA HELIOS-004 Completion / Autonomous
       - AGI ALPHA Cybersecurity Sovereign 001 / Autonomous
       - AGI ALPHA Cybersecurity Sovereign 002 / Autonomous
+      - AGI ALPHA Cybersecurity Sovereign 003 / Evidence Hub Remediation
       - AGI ALPHA Benchmark Gauntlet 001 / Autonomous
       - AGI ALPHA OMEGA-GAUNTLET-001 / Autonomous
       - AGI ALPHA PHOENIX-HUB-001 / Autonomous
       - RSI Forge 001 Autonomous
+      - AGI ALPHA RSI-GOVERNOR-001 / Autonomous
       - AGI ALPHA ASCENSION-001 / Autonomous RSI Compounding
       - AGI ALPHA L4-L7 Evidence Autopilot
     types: [completed]
+  schedule:
+    - cron: '17 */4 * * *'
   pull_request:
     paths:
-      - 'evidence_registry/**'
-      - 'agialpha_evidence_hub/**'
-      - 'docs/**'
       - '.github/workflows/**'
-      - 'scripts/check_pages_architecture.py'
-      - 'tests/**'
+      - 'agialpha_evidence_hub/**'
       - 'schemas/**'
+      - 'evidence_registry/**'
+      - 'docs/**'
+      - 'tests/**'
       - 'scripts/**'
       - 'README*'
   push:
     branches: [main]
     paths:
-      - 'evidence_registry/**'
-      - 'agialpha_evidence_hub/**'
-      - 'docs/**'
       - '.github/workflows/**'
-      - 'scripts/check_pages_architecture.py'
-      - 'tests/**'
+      - 'agialpha_evidence_hub/**'
       - 'schemas/**'
+      - 'evidence_registry/**'
+      - 'docs/**'
+      - 'tests/**'
       - 'scripts/**'
       - 'README*'
-  workflow_dispatch:
-  repository_dispatch:
-    types: [evidence_run_completed, evidence_registry_changed, evidence_hub_rebuild_requested]
-  schedule:
-    - cron: "17 */4 * * *"
 
 concurrency:
   group: evidence-hub-publish
   cancel-in-progress: false
 
+permissions:
+  contents: write
+  actions: read
+  pages: write
+  id-token: write
+  issues: read
+  pull-requests: read
+
 jobs:
-  build-validate:
-    if: ${{ !contains(github.event.head_commit.message || '', '[skip evidence-hub-loop]') && (github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion != 'skipped' && github.event.workflow_run.name != 'evidence-hub-publish')) }}
+  preflight:
+    if: ${{ !contains(github.event.head_commit.message || '', '[skip evidence-hub-loop]') }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      actions: read
-      issues: read
-      pull-requests: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Architecture check
+      - name: Verify pages architecture
         run: python scripts/check_pages_architecture.py
-      - name: Discover repo evidence
-        run: python -m agialpha_evidence_hub discover --repo-root . --out evidence_registry/discovered.json
-      - name: Backfill registry
-        run: python -m agialpha_evidence_hub backfill --repo-root . --registry evidence_registry
-      - name: Build site
-        run: python -m agialpha_evidence_hub build --registry evidence_registry --out _site
-      - name: Ensure Pages root files
+      - name: Validate registry schema
+        run: python -m agialpha_evidence_hub validate-registry --registry evidence_registry
+
+  discover:
+    needs: preflight
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Discover evidence
         run: |
-          test -f _site/index.html || { echo 'Missing _site/index.html' >&2; exit 1; }
+          python -m agialpha_evidence_hub workflow-catalog --repo-root . --registry evidence_registry
+          python -m agialpha_evidence_hub discover --repo-root . --registry evidence_registry
+          python -m agialpha_evidence_hub github-discover --registry evidence_registry --limit 1000
+      - name: Backfill
+        run: python -m agialpha_evidence_hub backfill --repo-root . --registry evidence_registry
+      - name: Compute needed update
+        run: python -m agialpha_evidence_hub needed-update --repo-root . --registry evidence_registry --out evidence_registry/needed_update.json
+      - name: Upload discovery diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-hub-discovery
+          path: evidence_registry
+
+  build_validate:
+    needs: discover
+    runs-on: ubuntu-latest
+    outputs:
+      should_deploy: ${{ steps.check.outputs.should_deploy }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check needed update flag
+        id: check
+        run: |
+          SHOULD_DEPLOY=true
+          if [ -f evidence_registry/needed_update.json ]; then
+            if python - <<'PY'
+import json
+from pathlib import Path
+p=Path('evidence_registry/needed_update.json')
+d=json.loads(p.read_text())
+raise SystemExit(0 if d.get('needed', True) else 1)
+PY
+            then
+              SHOULD_DEPLOY=true
+            else
+              SHOULD_DEPLOY=false
+            fi
+          fi
+          echo "should_deploy=${SHOULD_DEPLOY}" >> "$GITHUB_OUTPUT"
+      - name: Build site
+        if: steps.check.outputs.should_deploy == 'true'
+        run: |
+          python -m agialpha_evidence_hub build --registry evidence_registry --out _site
           touch _site/.nojekyll
-      - name: Validate site and registry
-        run: python -m agialpha_evidence_hub validate --registry evidence_registry --site _site
-      - name: Linkcheck
-        run: python -m agialpha_evidence_hub linkcheck --site _site
-      - name: Upload build diagnostics artifact
+      - name: Validate site
+        if: steps.check.outputs.should_deploy == 'true'
+        run: |
+          python -m agialpha_evidence_hub validate --registry evidence_registry --site _site
+          python -m agialpha_evidence_hub linkcheck --site _site
+      - name: PR/non-main deploy note
+        if: ${{ github.ref != 'refs/heads/main' || github.event_name == 'pull_request' }}
+        run: echo "Build/validate completed. Deployment skipped because this is not main."
+      - name: Upload site diagnostics
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: evidence-hub-site-preview
           path: _site
-      - name: PR/non-main deploy note
-        if: ${{ github.ref != 'refs/heads/main' || github.event_name == 'pull_request' }}
-        run: echo "Build/validate completed. Deployment skipped because this is not main."
 
-  deploy-pages:
-    needs: build-validate
+  deploy:
+    needs: build_validate
     if: >
+      needs.build_validate.outputs.should_deploy == 'true' &&
       github.repository == 'MontrealAI/agialpha-first-real-loop' &&
       github.ref == 'refs/heads/main' &&
       (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch')
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-      actions: read
-      issues: read
-      pull-requests: read
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Discover and backfill registry
-        run: |
-          python -m agialpha_evidence_hub discover --repo-root . --out evidence_registry/discovered.json
-          python -m agialpha_evidence_hub backfill --repo-root . --registry evidence_registry
-      - name: Build site for Pages artifact
-        run: |
-          python -m agialpha_evidence_hub build --registry evidence_registry --out _site
-          python -m agialpha_evidence_hub validate --registry evidence_registry --site _site
-          python -m agialpha_evidence_hub linkcheck --site _site
-          test -f _site/index.html
-          touch _site/.nojekyll
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
-      - name: Deploy Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
