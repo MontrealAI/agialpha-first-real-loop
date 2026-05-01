@@ -38,12 +38,18 @@ jobs:
         run: python -m agialpha_evidence_hub backfill --repo-root . --registry evidence_registry
       - name: Build site
         run: python -m agialpha_evidence_hub build --registry evidence_registry --out _site
+      - name: Ensure Pages root files
+        run: |
+          test -f _site/index.html || { echo 'Missing _site/index.html' >&2; exit 1; }
+          touch _site/.nojekyll
       - name: Validate site and registry
         run: python -m agialpha_evidence_hub validate --registry evidence_registry --site _site
       - name: Linkcheck
         run: python -m agialpha_evidence_hub linkcheck --site _site
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: _site
       - name: Deploy Pages
