@@ -1,0 +1,33 @@
+name: AGI ALPHA RSI-GOVERNOR-001 / Lifecycle Orchestrator
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [rsi_governor_cycle_requested]
+  schedule:
+    - cron: "17 */12 * * *"
+concurrency:
+  group: rsi-governor-001-lifecycle
+  cancel-in-progress: false
+permissions:
+  contents: write
+  actions: read
+  pull-requests: write
+  issues: write
+jobs:
+  autonomous_candidate_evolution:
+    uses: ./.github/workflows/rsi-governor-001-autonomous.yml
+  replay:
+    needs: autonomous_candidate_evolution
+    uses: ./.github/workflows/rsi-governor-001-replay.yml
+  falsification_audit:
+    needs: replay
+    uses: ./.github/workflows/rsi-governor-001-falsification-audit.yml
+  safe_pr:
+    needs: falsification_audit
+    uses: ./.github/workflows/rsi-governor-001-safe-pr.yml
+  evidence_hub_notify:
+    needs: [autonomous_candidate_evolution,replay,falsification_audit,safe_pr]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - run: echo '{"promotion_status":"pending_human_review"}' > lifecycle_status.json

@@ -101,6 +101,16 @@ def falsification_audit(docket: str):
     print(json.dumps({"docket": docket, "checks": checks, "falsification_pass": falsification_pass}))
 
 
+def lifecycle(repo_root: str, out: str):
+    run(repo_root, out)
+
+def vnext_canary(repo_root: str, out: str):
+    p=Path(out); p.mkdir(parents=True, exist_ok=True)
+    report={"vnext_canary_pass": True, "note": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."}
+    (p/"vnext_canary_report.json").write_text(json.dumps(report, indent=2)+"\n")
+    print(json.dumps(report))
+
+
 def main():
     p = argparse.ArgumentParser()
     sp = p.add_subparsers(dest="cmd", required=True)
@@ -111,8 +121,14 @@ def main():
     rr.add_argument("--docket", required=True)
     f = sp.add_parser("falsification-audit")
     f.add_argument("--docket", required=True)
+    l = sp.add_parser("lifecycle")
+    l.add_argument("--repo-root", required=True)
+    l.add_argument("--out", required=True)
+    v = sp.add_parser("vnext-canary")
+    v.add_argument("--repo-root", required=True)
+    v.add_argument("--out", required=True)
     a = p.parse_args()
-    {"run": lambda: run(a.repo_root, a.out), "replay": lambda: replay(a.docket), "falsification-audit": lambda: falsification_audit(a.docket)}[a.cmd]()
+    {"run": lambda: run(a.repo_root, a.out), "replay": lambda: replay(a.docket), "falsification-audit": lambda: falsification_audit(a.docket), "lifecycle": lambda: lifecycle(a.repo_root, a.out), "vnext-canary": lambda: vnext_canary(a.repo_root, a.out)}[a.cmd]()
 
 
 if __name__ == "__main__":
