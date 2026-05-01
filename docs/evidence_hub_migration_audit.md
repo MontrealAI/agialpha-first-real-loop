@@ -4,7 +4,7 @@ Date: 2026-05-01
 
 ## 1) Workflows under `.github/workflows/`
 
-All workflow files were enumerated directly from repository state:
+All workflow files were enumerated directly from repository state (79 workflow definitions as of 2026-05-01):
 
 - `ascension-001-autonomous.yml`
 - `ascension-001-falsification-audit.yml`
