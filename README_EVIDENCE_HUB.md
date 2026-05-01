@@ -74,3 +74,18 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 
 
 See also: [`CONTENT_PRESERVATION_MIGRATION_NOTES.md`](CONTENT_PRESERVATION_MIGRATION_NOTES.md).
+
+## Strict Prompt Profile (Mission Control Hard Mode)
+
+For large-scale Codex migrations, enforce these invariants explicitly in the prompt:
+
+- **No evidence downgrade:** lower-information backfill must never overwrite richer manifests/scoreboards.
+- **Project-path-safe assets:** nested pages must resolve `/agialpha-first-real-loop/assets/app.css` and `app.js`.
+- **Single Pages deployer:** only `evidence-hub-publish.yml` may publish GitHub Pages.
+- **Rich experiment pages required:** if evidence exists, render metrics/safety/replay tables (no shallow placeholders).
+- **Workflow launch controls:** per-workflow GitHub UI links and copyable `gh workflow run ...` commands only (no browser tokens).
+- **Persistent registry first:** preserve run history, artifacts, raw references, and conflict notes in `evidence_registry/CHANGELOG.md`.
+- **Claim boundary doctrine:** every page must include `No Evidence Docket, no empirical SOTA claim.`
+
+This profile keeps the site operator-friendly while preserving publication-grade evidence discipline.
+
