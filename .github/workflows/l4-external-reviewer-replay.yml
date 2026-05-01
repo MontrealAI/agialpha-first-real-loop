@@ -80,7 +80,7 @@ jobs:
           EOF
 
       - name: Upload external reviewer replay artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: external-reviewer-replay-${{ github.run_id }}
           path: ${{ env.RUN_DIR }}

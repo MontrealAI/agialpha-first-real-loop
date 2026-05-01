@@ -23,7 +23,7 @@ jobs:
       - name: Generate scaling matrix
         run: python -m agialpha_sovereign_capstone scaling --out runs/cyber-sovereign-scaling/${{ github.run_id }}
       - name: Upload scaling artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: cyber-sovereign-scaling-${{ github.run_id }}
           path: runs/cyber-sovereign-scaling/${{ github.run_id }}

@@ -96,7 +96,7 @@ jobs:
           python -S -m agialpha_seed_runner landing --docs docs
 
       - name: Upload seed Evidence Dockets
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: seed-dockets
           path: |

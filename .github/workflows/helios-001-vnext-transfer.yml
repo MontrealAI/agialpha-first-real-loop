@@ -70,7 +70,7 @@ jobs:
           python -m agialpha_helios vnext --source "$SOURCE" --out "runs/helios-vnext/${{ github.run_id }}"
 
       - name: Upload vNext transfer artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: helios-001-vnext-transfer
           path: runs/helios-vnext/${{ github.run_id }}

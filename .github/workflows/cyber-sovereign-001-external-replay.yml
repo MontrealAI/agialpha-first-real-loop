@@ -28,7 +28,7 @@ jobs:
       - name: Try downloading prior Cybersecurity Sovereign artifact
         if: ${{ github.event_name == 'workflow_run' }}
         continue-on-error: true
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@v4
         with:
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ github.token }}
@@ -50,7 +50,7 @@ jobs:
       - name: Run external replay report
         run: python -m agialpha_sovereign_capstone external-replay --source "$SRC" --out "$OUT"
       - name: Upload external replay artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: cyber-sovereign-external-replay-${{ github.run_id }}
           path: ${{ env.OUT }}

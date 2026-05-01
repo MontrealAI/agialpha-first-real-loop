@@ -96,7 +96,7 @@ jobs:
           python -m agialpha_helios audit --source "$HELIOS_DIR" --out "runs/helios-audit/${{ github.run_id }}"
 
       - name: Upload HELIOS Evidence Docket artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: helios-001-evidence
           path: |
