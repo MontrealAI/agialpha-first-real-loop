@@ -9,6 +9,7 @@ from .linkcheck import linkcheck
 from .discover import discover_to_file
 from .workflow_dispatch import parse_workflow_dispatch_inputs, workflow_gh_command
 from .needed_update import needed_update
+from .repair import generate_repair_plan, resolve_registry_path
 
 def _default_manifest(args):
     return {
@@ -29,6 +30,7 @@ def main():
     l=sp.add_parser('linkcheck'); l.add_argument('--site',default='_site')
     wc=sp.add_parser('workflow-catalog'); wc.add_argument('--repo-root',default='.'); wc.add_argument('--registry',default='evidence_registry')
     nu=sp.add_parser('needed-update'); nu.add_argument('--registry',default='evidence_registry'); nu.add_argument('--repo-root',default='.'); nu.add_argument('--out')
+    rp=sp.add_parser('repair'); rp.add_argument('--registry',default='evidence_registry'); rp.add_argument('--repo-root',default='.'); rp.add_argument('--out')
     a=ap.parse_args()
     if a.cmd=='discover': print(json.dumps(discover_to_file(a.repo_root,a.out),indent=2))
     elif a.cmd=='register-run': m=load_input(a.input); validate_manifest(m); update_registry(a.registry,m)
@@ -50,6 +52,12 @@ def main():
     elif a.cmd=='needed-update':
         result=needed_update(a.registry, a.repo_root)
         out_path = Path(a.out) if a.out else Path(a.registry)/'needed_update.json'
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(json.dumps(result, indent=2))
+        print(json.dumps(result, indent=2))
+    elif a.cmd=='repair':
+        result=generate_repair_plan(a.registry, a.repo_root)
+        out_path = Path(a.out) if a.out else resolve_registry_path(a.registry, a.repo_root)/'repair_plan.json'
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(json.dumps(result, indent=2))
         print(json.dumps(result, indent=2))
