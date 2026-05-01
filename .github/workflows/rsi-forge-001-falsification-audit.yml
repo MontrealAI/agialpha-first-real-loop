@@ -1,0 +1,36 @@
+name: AGI ALPHA RSI-FORGE-001 / Falsification Audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      cycles:
+        description: "Cycles to regenerate for audit"
+        required: false
+        default: "6"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  audit:
+    name: Falsification audit for source-code RSI
+    runs-on: ubuntu-latest
+    env:
+      OUT_DIR: runs/rsi-forge-001-audit/${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Generate and audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_rsi_forge_001 run --out "$OUT_DIR" --cycles "${{ github.event.inputs.cycles || '6' }}"
+          python -m agialpha_rsi_forge_001 audit --docket "$OUT_DIR"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rsi-forge-001-falsification-audit-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          retention-days: 30

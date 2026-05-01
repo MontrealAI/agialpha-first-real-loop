@@ -1,0 +1,77 @@
+name: AGI ALPHA RSI-FORGE-001 / Autonomous Source-Code RSI
+
+on:
+  workflow_dispatch:
+    inputs:
+      cycles:
+        description: "Number of RSI source-code improvement cycles"
+        required: false
+        default: "6"
+      seed:
+        description: "Deterministic seed"
+        required: false
+        default: "1001"
+  push:
+    branches: ["main"]
+    paths:
+      - "agialpha_rsi_forge_001/**"
+      - "config/rsi_forge_001_config.json"
+      - ".github/workflows/rsi-forge-001-autonomous.yml"
+      - "tests/test_rsi_forge_001.py"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  rsi-forge-001:
+    name: Generate proof-bearing source-code RSI Evidence Docket
+    runs-on: ubuntu-latest
+    env:
+      OUT_DIR: runs/rsi-forge-001/${{ github.run_id }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run unit tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p "test_rsi_forge_001.py"
+
+      - name: Run autonomous source-code RSI loop
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_rsi_forge_001 run --out "$OUT_DIR" --cycles "${{ github.event.inputs.cycles || '6' }}" --seed "${{ github.event.inputs.seed || '1001' }}"
+
+      - name: Run independent replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_rsi_forge_001 replay --docket "$OUT_DIR"
+
+      - name: Run falsification audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_rsi_forge_001 audit --docket "$OUT_DIR"
+
+      - name: Run vNext transfer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_rsi_forge_001 vnext --docket "$OUT_DIR"
+
+      - name: Upload RSI-FORGE-001 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: rsi-forge-001-${{ github.run_id }}
+          path: |
+            ${{ env.OUT_DIR }}
+          retention-days: 30
