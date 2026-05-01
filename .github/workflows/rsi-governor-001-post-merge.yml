@@ -1,0 +1,26 @@
+name: AGI ALPHA RSI-GOVERNOR-001 / Post-Merge Verification
+on:
+  pull_request:
+    types: [closed]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+  issues: write
+jobs:
+  gate:
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+    outputs:
+      run_ok: ${{ steps.chk.outputs.run_ok }}
+    steps:
+      - id: chk
+        run: echo "run_ok=true" >> $GITHUB_OUTPUT
+  delayed_outcome:
+    needs: gate
+    if: needs.gate.outputs.run_ok == 'true'
+    uses: ./.github/workflows/rsi-governor-001-delayed-outcome.yml
+  vnext_canary:
+    needs: delayed_outcome
+    uses: ./.github/workflows/rsi-governor-001-vnext-canary.yml
