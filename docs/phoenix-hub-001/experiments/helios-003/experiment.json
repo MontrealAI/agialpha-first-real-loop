@@ -1,0 +1,47 @@
+{
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+  "experiment_name": "HELIOS 003",
+  "experiment_slug": "helios-003",
+  "family": "HELIOS",
+  "latest_status": "discovered",
+  "metrics": {},
+  "page_path": "experiments/helios-003/index.html",
+  "sources": [
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA HELIOS-003 / Autonomous",
+      "path": ".github/workflows/helios-003-autonomous.yml",
+      "type": "workflow"
+    },
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA HELIOS-003 Public Benchmark Adapters",
+      "path": ".github/workflows/helios-003-benchmark-adapters.yml",
+      "type": "workflow"
+    },
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA HELIOS-003 Delayed Outcome Sentinel",
+      "path": ".github/workflows/helios-003-delayed-outcome.yml",
+      "type": "workflow"
+    },
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA HELIOS-003 External Replay / L4+",
+      "path": ".github/workflows/helios-003-external-replay.yml",
+      "type": "workflow"
+    },
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA HELIOS-003 Falsification Audit",
+      "path": ".github/workflows/helios-003-falsification-audit.yml",
+      "type": "workflow"
+    },
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA HELIOS-003 Scaling / L6 Proxy",
+      "path": ".github/workflows/helios-003-scaling.yml",
+      "type": "workflow"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+  "experiment_name": "RSI FORGE 002",
+  "experiment_slug": "rsi-forge-002",
+  "family": "Other / Discovered",
+  "has_evidence_docket": true,
+  "latest_status": "discovered",
+  "metrics": {},
+  "page_path": "experiments/rsi-forge-002/index.html",
+  "sources": [
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA RSI-FORGE-002 / Autonomous",
+      "path": ".github/workflows/rsi-forge-002-autonomous.yml",
+      "type": "workflow"
+    },
+    {
+      "manifest_file": "sample_outputs/rsi-forge-002/00_manifest.json",
+      "path": "sample_outputs/rsi-forge-002",
+      "type": "docket"
+    }
+  ]
+}

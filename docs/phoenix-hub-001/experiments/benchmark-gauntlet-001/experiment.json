@@ -1,0 +1,47 @@
+{
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+  "experiment_name": "BENCHMARK GAUNTLET 001",
+  "experiment_slug": "benchmark-gauntlet-001",
+  "family": "Benchmark Gauntlet",
+  "latest_status": "discovered",
+  "metrics": {},
+  "page_path": "experiments/benchmark-gauntlet-001/index.html",
+  "sources": [
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA Benchmark Gauntlet 001 / Autonomous",
+      "path": ".github/workflows/benchmark-gauntlet-001-autonomous.yml",
+      "type": "workflow"
+    },
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA Benchmark Gauntlet 001 / External Challenge Pack",
+      "path": ".github/workflows/benchmark-gauntlet-001-challenge-pack.yml",
+      "type": "workflow"
+    },
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA Benchmark Gauntlet 001 / External Replay L4",
+      "path": ".github/workflows/benchmark-gauntlet-001-external-replay.yml",
+      "type": "workflow"
+    },
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA Benchmark Gauntlet 001 / Falsification Audit",
+      "path": ".github/workflows/benchmark-gauntlet-001-falsification-audit.yml",
+      "type": "workflow"
+    },
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA Benchmark Gauntlet 001 / Safe PR Proposal",
+      "path": ".github/workflows/benchmark-gauntlet-001-safe-pr.yml",
+      "type": "workflow"
+    },
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA Benchmark Gauntlet 001 / L6 Scaling Proxy",
+      "path": ".github/workflows/benchmark-gauntlet-001-scaling.yml",
+      "type": "workflow"
+    }
+  ]
+}
