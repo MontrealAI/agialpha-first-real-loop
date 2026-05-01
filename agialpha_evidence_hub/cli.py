@@ -9,7 +9,7 @@ from .linkcheck import linkcheck
 from .discover import discover_to_file
 from .workflow_dispatch import parse_workflow_dispatch_inputs, workflow_gh_command
 from .needed_update import needed_update
-from .repair import generate_repair_plan
+from .repair import generate_repair_plan, resolve_registry_path
 
 def _default_manifest(args):
     return {
@@ -57,7 +57,7 @@ def main():
         print(json.dumps(result, indent=2))
     elif a.cmd=='repair':
         result=generate_repair_plan(a.registry, a.repo_root)
-        out_path = Path(a.out) if a.out else Path(a.registry)/'repair_plan.json'
+        out_path = Path(a.out) if a.out else resolve_registry_path(a.registry, a.repo_root)/'repair_plan.json'
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(json.dumps(result, indent=2))
         print(json.dumps(result, indent=2))
