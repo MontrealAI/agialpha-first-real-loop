@@ -1,0 +1,65 @@
+name: AGI ALPHA OMEGA-AEGIS-001 / External Replay
+
+on:
+  workflow_dispatch:
+    inputs:
+      expected_root_hash:
+        description: "Optional expected root hash from the original OMEGA-AEGIS-001 run"
+        type: string
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: omega-aegis-001-external-replay-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  OUT_DIR: runs/omega-aegis-001-external-replay/${{ github.run_id }}
+
+jobs:
+  external-replay:
+    name: Clean-checkout replay of adversarial Evidence Docket gauntlet
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Rebuild OMEGA-AEGIS-001 from clean checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m omega_aegis_001 run --out "$OUT_DIR"
+          python -m omega_aegis_001 verify --docket "$OUT_DIR/evidence-docket" --expected-root-hash "${{ inputs.expected_root_hash }}" --out "$OUT_DIR/external_replay_report.json"
+          cat > "$OUT_DIR/external_reviewer_attestation_template.md" <<'MD'
+          # OMEGA-AEGIS-001 External Replay Attestation
+
+          - Reviewer:
+          - Date:
+          - Clean checkout used: yes/no
+          - Replay passed: yes/no
+          - Root hash reviewed:
+          - Claim boundary reviewed: yes/no
+          - Safety counters reviewed: yes/no
+          - Baselines reviewed: yes/no
+          - Notes:
+
+          This attestation does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, or civilization-scale capability.
+          MD
+
+      - name: Upload external replay artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: omega-aegis-001-external-replay-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          retention-days: 30

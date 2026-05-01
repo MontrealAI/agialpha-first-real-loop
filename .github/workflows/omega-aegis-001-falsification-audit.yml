@@ -1,0 +1,38 @@
+name: AGI ALPHA OMEGA-AEGIS-001 / Falsification Audit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: omega-aegis-001-falsification-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  OUT_DIR: runs/omega-aegis-001-falsification/${{ github.run_id }}
+
+jobs:
+  falsification-audit:
+    name: Audit overclaims, ledgers, replay, and safety invariants
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Generate and audit docket
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m omega_aegis_001 run --out "$OUT_DIR"
+          python -m omega_aegis_001 audit --docket "$OUT_DIR/evidence-docket" --out "$OUT_DIR/falsification_audit.json"
+      - name: Upload falsification audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: omega-aegis-001-falsification-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          retention-days: 30

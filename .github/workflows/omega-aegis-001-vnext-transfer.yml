@@ -1,0 +1,38 @@
+name: AGI ALPHA OMEGA-AEGIS-001 / vNext Transfer
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: omega-aegis-001-vnext-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  OUT_DIR: runs/omega-aegis-001-vnext/${{ github.run_id }}
+
+jobs:
+  vnext-transfer:
+    name: Test EvidenceShieldArchive-v0 on novel attack mix
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run vNext transfer gauntlet
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m omega_aegis_001 run --variant vnext --out "$OUT_DIR"
+          python -m omega_aegis_001 audit --docket "$OUT_DIR/evidence-docket" --out "$OUT_DIR/vnext_audit.json"
+      - name: Upload vNext artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: omega-aegis-001-vnext-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          retention-days: 30

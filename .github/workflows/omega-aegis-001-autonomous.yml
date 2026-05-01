@@ -1,0 +1,99 @@
+name: AGI ALPHA OMEGA-AEGIS-001 / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_docs:
+        description: "Commit generated docs/omega-aegis-001 page and registry entry"
+        type: boolean
+        required: false
+        default: true
+      trigger_evidence_hub:
+        description: "Trigger central Evidence Hub publisher if available"
+        type: boolean
+        required: false
+        default: true
+  push:
+    branches: ["main"]
+    paths:
+      - "omega_aegis_001/**"
+      - "tests/test_omega_aegis_001.py"
+      - ".github/workflows/omega-aegis-001-autonomous.yml"
+
+permissions:
+  contents: write
+  actions: read
+  pages: read
+  id-token: write
+
+concurrency:
+  group: omega-aegis-001-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  EXPERIMENT_SLUG: omega-aegis-001
+  OUT_DIR: runs/omega-aegis-001/${{ github.run_id }}
+  DOCS_DIR: docs/omega-aegis-001
+
+jobs:
+  omega-aegis-001:
+    name: Generate adversarial Evidence Docket immunity gauntlet
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run unit tests
+        shell: bash
+        run: python -m unittest discover -s tests -p "test_omega_aegis_001.py"
+
+      - name: Run OMEGA-AEGIS-001 autonomous gauntlet
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m omega_aegis_001 run --out "$OUT_DIR" --docs-dir "$DOCS_DIR"
+          python -m omega_aegis_001 audit --docket "$OUT_DIR/evidence-docket" --out "$OUT_DIR/falsification_audit.json"
+          python -m omega_aegis_001 verify --docket "$OUT_DIR/evidence-docket" --out "$OUT_DIR/replay_verification.json"
+
+      - name: Upload OMEGA-AEGIS-001 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: omega-aegis-001-${{ github.run_id }}
+          path: |
+            ${{ env.OUT_DIR }}
+            ${{ env.DOCS_DIR }}
+          retention-days: 30
+
+      - name: Commit generated Evidence Hub subpage and registry pointer
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.commit_docs == true }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence_registry/experiments/omega-aegis-001/runs
+          cp "$OUT_DIR/evidence-run-manifest.json" "evidence_registry/experiments/omega-aegis-001/latest.json"
+          cp "$OUT_DIR/evidence-run-manifest.json" "evidence_registry/experiments/omega-aegis-001/runs/${GITHUB_RUN_ID}.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$DOCS_DIR" evidence_registry/experiments/omega-aegis-001
+          if git diff --cached --quiet; then
+            echo "No generated docs or registry changes to commit."
+          else
+            git commit -m "Add OMEGA-AEGIS-001 adversarial evidence immunity results [skip evidence-hub-loop]"
+            git push
+          fi
+
+      - name: Trigger central Evidence Hub publisher if available
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.trigger_evidence_hub == true }}
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run evidence-hub-publish.yml || echo "Central publisher workflow not found or not dispatchable; artifact and docs page are still generated."
