@@ -57,7 +57,7 @@ def _audit_claims(repo_root: Path) -> int:
             for m in re.finditer(re.escape(phrase), text):
                 idx = m.start()
                 window = text[max(0, idx-120): idx+120]
-                if not any(token in window for token in ['does not', 'not claim', 'forbidden', 'must not', 'no ']):
+                if not any(token in window for token in ['does not', 'not claim', 'forbidden', 'must not', "doesn't", 'not evidence of', 'no empirical sota claim']):
                     violations.append({'file': str(rel), 'phrase': phrase, 'index': idx})
     out = repo_root / 'docs/_generated/claim_audit.json'
     out.parent.mkdir(parents=True, exist_ok=True)

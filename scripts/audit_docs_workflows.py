@@ -8,7 +8,8 @@ from pathlib import Path
 
 
 def _workflow_files(repo_root: Path) -> list[Path]:
-    return sorted((repo_root / '.github' / 'workflows').glob('*.yml'))
+    wf_dir = repo_root / '.github' / 'workflows'
+    return sorted(list(wf_dir.glob('*.yml')) + list(wf_dir.glob('*.yaml')))
 
 
 def main() -> int:
@@ -21,7 +22,7 @@ def main() -> int:
     wf_names = [p.name for p in wf_paths]
 
     catalog = (root / 'docs' / 'WORKFLOW_CATALOG.md').read_text(encoding='utf-8')
-    documented = sorted(set(re.findall(r'`([^`]+\.yml)`', catalog)))
+    documented = sorted(set(re.findall(r'`([^`]+\.ya?ml)`', catalog)))
 
     undocumented = sorted([w for w in wf_names if w not in documented])
     missing_files = sorted([d for d in documented if d not in wf_names])
