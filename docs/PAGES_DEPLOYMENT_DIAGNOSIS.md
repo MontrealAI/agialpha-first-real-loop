@@ -28,3 +28,8 @@ PR/non-main runs are build+validate only and emit:
 - `scripts/check_pages_architecture.py` fails if any workflow besides `.github/workflows/evidence-hub-publish.yml` contains direct Pages deploy mechanisms.
 - `tests/test_pages_architecture.py` enforces exactly one Pages deploy workflow and verifies central publisher ownership.
 - `tests/test_evidence_hub_pr_deploy_guard.py` enforces that PR execution paths do not deploy Pages.
+
+
+## Superseding successful deployment
+- **Successful main deployment run URL:** https://github.com/MontrealAI/agialpha-first-real-loop/actions/runs/25202377683
+- **Result:** successful `github-pages` deployment from `main` superseded the failed `codex/...` deployment record in the `github-pages` environment.
