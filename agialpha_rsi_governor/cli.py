@@ -47,10 +47,17 @@ def _next_run_id(outp: Path) -> str:
         return f"run-{int(time.time())}"
 
 
+def _resolve_run_id(outp: Path) -> str:
+    run_id = outp.name
+    if run_id:
+        return run_id
+    return _next_run_id(outp)
+
+
 def run(repo_root: str, out: str, candidate_count: int = 2):
     root, outp = Path(repo_root), Path(out)
     outp.mkdir(parents=True, exist_ok=True)
-    run_id = outp.name
+    run_id = _resolve_run_id(outp)
     run_dir = outp
     run_dir.mkdir(exist_ok=True)
 
