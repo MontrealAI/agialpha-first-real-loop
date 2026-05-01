@@ -9,7 +9,8 @@ from typing import Any, Dict, List
 
 def generate_repair_plan(registry_dir: str = "evidence_registry", repo_root: str = ".") -> Dict[str, Any]:
     """Create a safe, non-destructive repair plan from known index/health files."""
-    reg = Path(registry_dir)
+    repo = Path(repo_root).resolve()
+    reg = (Path(registry_dir) if Path(registry_dir).is_absolute() else (repo / registry_dir)).resolve()
     idx = reg / "indexes"
 
     def _load(path: Path, default):
@@ -39,6 +40,6 @@ def generate_repair_plan(registry_dir: str = "evidence_registry", repo_root: str
         "safe_only": True,
         "auto_merge": False,
         "registry": str(reg),
-        "repo_root": str(Path(repo_root)),
+        "repo_root": str(repo),
         "actions": actions,
     }
