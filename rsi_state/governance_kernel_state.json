@@ -1,0 +1,20 @@
+{
+  "schema_version": "agialpha.rsi_state.v1",
+  "cycle_index": 0,
+  "accepted_kernel_version": "0.1.0",
+  "accepted_kernel_hash": "f1f461fbbfe95cf78323014e417069e3933872d2ea07c450488e97f15103b739",
+  "candidate_kernels": [],
+  "rejected_kernels": [],
+  "promotion_queue": [],
+  "eci_ledger": [],
+  "evidence_objects": [],
+  "baseline_comparisons": [],
+  "move37_dossiers": [],
+  "human_review_records": [],
+  "state_hash_chain": [],
+  "drift_sentinel": {
+    "prompt_pack_hash": "pending",
+    "runner_config_hash": "pending",
+    "state_payload_hash": "pending"
+  }
+}

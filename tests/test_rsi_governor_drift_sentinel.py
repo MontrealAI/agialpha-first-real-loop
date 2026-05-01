@@ -1,0 +1,10 @@
+import unittest
+from agialpha_rsi_governor.promotion import promotion_gate
+
+class T(unittest.TestCase):
+    def test_gate_respects_threshold(self):
+        self.assertFalse(promotion_gate(0.1, 'E3_REPLAYED'))
+        self.assertTrue(promotion_gate(0.2, 'E3_REPLAYED'))
+
+if __name__ == '__main__':
+    unittest.main()
