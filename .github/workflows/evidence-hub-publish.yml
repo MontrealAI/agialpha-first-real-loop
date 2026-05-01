@@ -2,7 +2,26 @@ name: evidence-hub-publish
 
 on:
   workflow_run:
-    workflows: ['*']
+    workflows:
+      - replay
+      - evidence-factory-autonomous
+      - seed-runner-autonomous
+      - independent-replay-autonomous
+      - falsification-audit-autonomous
+      - frontier-usefulness-autonomous
+      - helios-001-autonomous
+      - helios-002-autonomous
+      - helios-003-autonomous
+      - helios-004-completion
+      - cyber-sovereign-001-autonomous
+      - cyber-sovereign-002-autonomous
+      - cyber-sovereign-003-autonomous
+      - benchmark-gauntlet-001-autonomous
+      - omega-gauntlet-001-autonomous
+      - phoenix-hub-001-autonomous
+      - rsi-forge-001-autonomous
+      - ascension-001-autonomous
+      - l4-l7-evidence-autopilot
     types: [completed]
   pull_request:
     paths:
@@ -32,7 +51,7 @@ concurrency:
 
 jobs:
   build-validate:
-    if: ${{ !contains(github.event.head_commit.message || '', '[skip evidence-hub-loop]') }}
+    if: ${{ !contains(github.event.head_commit.message || '', '[skip evidence-hub-loop]') && (github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion != 'skipped' && github.event.workflow_run.name != 'evidence-hub-publish')) }}
     runs-on: ubuntu-latest
     permissions:
       contents: read

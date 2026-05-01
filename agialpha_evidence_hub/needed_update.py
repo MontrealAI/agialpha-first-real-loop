@@ -35,11 +35,18 @@ def needed_update(registry: str, repo_root: str) -> dict:
     current = _collect(repo_root)
     previous = json.loads(state_file.read_text()) if state_file.exists() else {}
     needed = current.get('catalog_hash') != previous.get('catalog_hash')
+    prev_map = {r['path']: r.get('sha256') for r in previous.get('files', [])} if previous else {}
+    curr_map = {r['path']: r.get('sha256') for r in current.get('files', [])}
+    changed_paths = sorted({
+        path
+        for path in set(prev_map) | set(curr_map)
+        if prev_map.get(path) != curr_map.get(path)
+    })
     out = {
         'needed': needed,
         'previous_catalog_hash': previous.get('catalog_hash'),
         'current_catalog_hash': current.get('catalog_hash'),
-        'changed_files': [r['path'] for r in current.get('files', []) if previous and r not in previous.get('files', [])],
+        'changed_files': changed_paths,
     }
     state_file.write_text(json.dumps(current, indent=2))
     return out
