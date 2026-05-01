@@ -1,28 +1,41 @@
 name: evidence-hub-publish
+
 on:
-  workflow_dispatch:
-  repository_dispatch:
-    types: [evidence_run_completed]
-  schedule:
-    - cron: '0 */4 * * *'
-  push:
+  pull_request:
     paths:
       - 'evidence_registry/**'
       - 'agialpha_evidence_hub/**'
       - 'docs/**'
       - '.github/workflows/**'
+      - 'scripts/check_pages_architecture.py'
+      - 'tests/**'
+  push:
+    branches: [main]
+    paths:
+      - 'evidence_registry/**'
+      - 'agialpha_evidence_hub/**'
+      - 'docs/**'
+      - '.github/workflows/**'
+      - 'scripts/check_pages_architecture.py'
+      - 'tests/**'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [evidence_run_completed]
+  schedule:
+    - cron: '0 */4 * * *'
+
 concurrency:
-  group: evidence-hub-publish
+  group: evidence-hub-publish-${{ github.ref }}
   cancel-in-progress: false
+
 permissions:
-  contents: write
+  contents: read
   actions: read
-  pages: write
-  id-token: write
   pull-requests: read
   issues: read
+
 jobs:
-  build-and-deploy:
+  build-validate:
     if: ${{ !contains(github.event.head_commit.message || '', '[skip evidence-hub-loop]') }}
     runs-on: ubuntu-latest
     steps:
@@ -46,6 +59,49 @@ jobs:
         run: python -m agialpha_evidence_hub validate --registry evidence_registry --site _site
       - name: Linkcheck
         run: python -m agialpha_evidence_hub linkcheck --site _site
+      - name: Upload build diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-hub-site-preview
+          path: _site
+      - name: PR/non-main deploy guard message
+        if: ${{ github.ref != 'refs/heads/main' || github.event_name == 'pull_request' }}
+        run: echo "Build/validate completed. Deployment skipped because this is not main."
+
+  deploy-pages:
+    needs: build-validate
+    if: >
+      github.repository == 'MontrealAI/agialpha-first-real-loop' &&
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+      pages: write
+      id-token: write
+      pull-requests: read
+      issues: read
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Architecture check
+        run: python scripts/check_pages_architecture.py
+      - name: Discover repo evidence
+        run: python -m agialpha_evidence_hub discover --repo-root . --out evidence_registry/discovered.json
+      - name: Backfill registry
+        run: python -m agialpha_evidence_hub backfill --repo-root . --registry evidence_registry
+      - name: Build site
+        run: python -m agialpha_evidence_hub build --registry evidence_registry --out _site
+      - name: Validate site and registry
+        run: python -m agialpha_evidence_hub validate --registry evidence_registry --site _site
+      - name: Linkcheck
+        run: python -m agialpha_evidence_hub linkcheck --site _site
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
@@ -53,4 +109,5 @@ jobs:
         with:
           path: _site
       - name: Deploy Pages
+        id: deployment
         uses: actions/deploy-pages@v4
