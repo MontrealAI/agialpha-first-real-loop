@@ -1,6 +1,6 @@
 {
   "experiment": "RSI-GOVERNOR-001",
-  "run_id": "run-005",
+  "run_id": "run-001",
   "candidate_count": 2,
   "candidate_kernels_executed": 2,
   "best_candidate_id": "candidate-002",

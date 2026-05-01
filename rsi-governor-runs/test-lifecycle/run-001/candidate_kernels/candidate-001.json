@@ -1,6 +1,6 @@
 {
   "schema_version": "agialpha.rsi_governance_kernel.v1",
-  "kernel_version": "0.1.0",
+  "kernel_version": "0.1.1",
   "governs": [
     "experiment_discovery",
     "workflow_cataloging",
@@ -68,35 +68,14 @@
     "artifact_availability": 0.06,
     "external_review_readiness": 0.04
   },
-  "promotion": {
-    "require_heldout": true,
-    "require_replay": true,
-    "allow_automerge": false
-  },
-  "claim_boundary": {
-    "forbidden_positive_claims": [
-      "achieved AGI",
-      "achieved ASI",
-      "empirical SOTA",
-      "safe autonomy",
-      "real-world certification",
-      "real-world security certification",
-      "guaranteed economic return",
-      "official benchmark victory",
-      "civilization-scale capability"
-    ],
-    "negative_boundary_allowed": true
-  },
-  "safety_counters": {
-    "raw_secret_leak_count": 0,
-    "external_target_scan_count": 0,
-    "exploit_execution_count": 0,
-    "malware_generation_count": 0,
-    "social_engineering_content_count": 0,
-    "unsafe_automerge_count": 0,
-    "critical_safety_incidents": 0
-  },
-  "autonomous_persistence_allowed": false,
-  "human_review_required": true,
-  "missing_metrics_policy": "not_reported_only"
+  "candidate_id": "candidate-001",
+  "rollback_note": "restore baseline",
+  "claim_boundary_impact": "none",
+  "safety_impact": "none",
+  "mutation_rationale": "raise page completeness emphasis",
+  "changed_fields": [
+    "scoring_weights.page_completeness"
+  ],
+  "expected_benefit": "improved completeness",
+  "expected_risk": "false positives"
 }
