@@ -71,3 +71,6 @@ status messaging rather than silent deletion.
 
 ## Claim boundary
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+
+
+See also: [`CONTENT_PRESERVATION_MIGRATION_NOTES.md`](CONTENT_PRESERVATION_MIGRATION_NOTES.md).
