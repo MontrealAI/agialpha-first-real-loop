@@ -1,0 +1,46 @@
+{
+  "schema_version": "agialpha.rsi_governor_autonomy_contract.v1",
+  "experiment_slug": "rsi-governor-001",
+  "operator_required_actions": [
+    "start_lifecycle_orchestrator_or_allow_schedule",
+    "review_promotion_pr",
+    "approve_reject_request_changes_or_merge_pr"
+  ],
+  "autonomous_pre_promotion_actions": [
+    "load_incumbent_kernel",
+    "verify_state_and_drift_sentinel",
+    "generate_candidate_kernels",
+    "lock_candidate_hashes",
+    "generate_heldout_tasks_after_lock",
+    "evaluate_baselines_B0_to_B6",
+    "select_candidate_or_reject_all",
+    "produce_evidence_docket",
+    "run_replay",
+    "run_falsification_audit",
+    "run_safety_and_claim_boundary_gates",
+    "produce_promotion_dossier",
+    "open_safe_pr_if_candidate_passes",
+    "publish_evidence_manifest",
+    "notify_evidence_hub_publisher"
+  ],
+  "autonomous_post_merge_actions": [
+    "detect_human_merge",
+    "verify_human_review_record",
+    "run_delayed_outcome_sentinel",
+    "run_vnext_canary",
+    "update_rsi_state_after_verified_merge",
+    "publish_final_evidence_manifest",
+    "notify_evidence_hub_publisher"
+  ],
+  "forbidden_autonomous_actions": [
+    "merge_pr",
+    "enable_automerge",
+    "persist_kernel_without_pr",
+    "delete_rejected_candidates",
+    "hide_failed_evaluations",
+    "relax_claim_boundaries",
+    "mark_missing_metrics_as_zero",
+    "execute_downloaded_artifact_code",
+    "deploy_pages_directly_from_rsi_workflow"
+  ]
+}

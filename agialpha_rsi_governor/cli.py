@@ -116,6 +116,53 @@ def vnext_canary(repo_root: str, out: str):
     print(json.dumps(report))
 
 
+def validate_autonomy_contract(contract: str):
+    payload = json.loads(Path(contract).read_text())
+    required = {
+        "schema_version": "agialpha.rsi_governor_autonomy_contract.v1",
+        "experiment_slug": "rsi-governor-001",
+    }
+    for key, val in required.items():
+        if payload.get(key) != val:
+            raise SystemExit(f"invalid {key}: expected {val}")
+
+    required_pre = {
+        "run_replay",
+        "run_falsification_audit",
+        "open_safe_pr_if_candidate_passes",
+        "notify_evidence_hub_publisher",
+    }
+    required_post = {
+        "run_delayed_outcome_sentinel",
+        "run_vnext_canary",
+        "notify_evidence_hub_publisher",
+    }
+    pre = set(payload.get("autonomous_pre_promotion_actions", []))
+    post = set(payload.get("autonomous_post_merge_actions", []))
+    missing_pre = sorted(required_pre - pre)
+    missing_post = sorted(required_post - post)
+    if missing_pre or missing_post:
+        raise SystemExit(
+            "contract requires manual chaining for: "
+            + ", ".join(missing_pre + missing_post)
+        )
+
+    op = set(payload.get("operator_required_actions", []))
+    forbidden_manual = {
+        "run_replay",
+        "run_falsification_audit",
+        "run_safe_pr",
+        "run_delayed_outcome",
+        "run_vnext_canary",
+        "notify_evidence_hub_publisher",
+    }
+    overlap = sorted(op & forbidden_manual)
+    if overlap:
+        raise SystemExit(f"forbidden manual actions present: {', '.join(overlap)}")
+
+    print(json.dumps({"status": "ok", "contract": contract}))
+
+
 def main():
     p = argparse.ArgumentParser()
     sp = p.add_subparsers(dest="cmd", required=True)
@@ -132,8 +179,17 @@ def main():
     v = sp.add_parser("vnext-canary")
     v.add_argument("--repo-root", required=True)
     v.add_argument("--out", required=True)
+    c = sp.add_parser("validate-autonomy-contract")
+    c.add_argument("--contract", required=True)
     a = p.parse_args()
-    {"run": lambda: run(a.repo_root, a.out), "replay": lambda: replay(a.docket), "falsification-audit": lambda: falsification_audit(a.docket), "lifecycle": lambda: lifecycle(a.repo_root, a.out), "vnext-canary": lambda: vnext_canary(a.repo_root, a.out)}[a.cmd]()
+    {
+        "run": lambda: run(a.repo_root, a.out),
+        "replay": lambda: replay(a.docket),
+        "falsification-audit": lambda: falsification_audit(a.docket),
+        "lifecycle": lambda: lifecycle(a.repo_root, a.out),
+        "vnext-canary": lambda: vnext_canary(a.repo_root, a.out),
+        "validate-autonomy-contract": lambda: validate_autonomy_contract(a.contract),
+    }[a.cmd]()
 
 
 if __name__ == "__main__":
