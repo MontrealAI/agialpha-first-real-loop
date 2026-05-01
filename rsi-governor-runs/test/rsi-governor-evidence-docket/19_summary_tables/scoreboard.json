@@ -1,0 +1,13 @@
+{
+  "experiment": "RSI-GOVERNOR-001",
+  "run_id": "run-001",
+  "candidate_count": 2,
+  "B6_beats_B5": true,
+  "Governance Compounding Advantage": 0.03621591743119268,
+  "heldout_task_count": 12,
+  "adversarial_task_count": 12,
+  "ECI_level": "E3_REPLAYED",
+  "promotion_status": "queued",
+  "PR_status": "prepared",
+  "accepted_kernel_version": "0.1.0"
+}

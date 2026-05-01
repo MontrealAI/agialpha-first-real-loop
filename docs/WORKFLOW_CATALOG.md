@@ -95,4 +95,13 @@ Current as of 2026-05-01.
 | `rsi-forge-001-vnext-transfer.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `seed-runner-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 
+| `rsi-forge-002-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `rsi-forge-002-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `rsi-forge-002-independent-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `rsi-governor-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `rsi-governor-001-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `rsi-governor-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `rsi-governor-001-safe-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `rsi-governor-001-delayed-outcome.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.

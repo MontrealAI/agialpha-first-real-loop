@@ -49,3 +49,7 @@ python -m agialpha_evidence_hub validate --registry evidence_registry --site _si
 First RSI Loop / ColdChain-Energy-Loop-001, Evidence Factory, HELIOS, Cyber Sovereign, Benchmark Gauntlet, OMEGA/OMEGA-AEGIS, Phoenix Hub, replay, falsification, scaling.
 
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+
+## RSI-GOVERNOR-001
+
+RSI-GOVERNOR-001 tests whether AGI ALPHA can modify the mechanism that governs future evidence work, prove the modification improves held-out future-work performance, and persist the improvement only through Evidence Docket and human-reviewed PR promotion.

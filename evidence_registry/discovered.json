@@ -68,6 +68,14 @@
     ".github/workflows/rsi-forge-001-independent-replay.yml",
     ".github/workflows/rsi-forge-001-safe-pr.yml",
     ".github/workflows/rsi-forge-001-vnext-transfer.yml",
+    ".github/workflows/rsi-forge-002-autonomous.yml",
+    ".github/workflows/rsi-forge-002-falsification-audit.yml",
+    ".github/workflows/rsi-forge-002-independent-replay.yml",
+    ".github/workflows/rsi-governor-001-autonomous.yml",
+    ".github/workflows/rsi-governor-001-delayed-outcome.yml",
+    ".github/workflows/rsi-governor-001-falsification-audit.yml",
+    ".github/workflows/rsi-governor-001-replay.yml",
+    ".github/workflows/rsi-governor-001-safe-pr.yml",
     ".github/workflows/seed-runner-autonomous.yml",
     "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/evidence-docket/00_manifest.json",
     "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-001/00_manifest.json",
@@ -103,6 +111,8 @@
     "docs/evidence-factory/runs/25189773749/seed-matrix/seed-009/00_manifest.json",
     "docs/evidence-factory/runs/25189773749/seed-matrix/seed-010/00_manifest.json",
     "evidence-docket/00_manifest.json",
-    "sample_outputs/coldchain-energy-loop-001/00_manifest.json"
+    "sample_outputs/coldchain-energy-loop-001/00_manifest.json",
+    "sample_outputs/rsi-forge-002/00_manifest.json",
+    "sample_outputs/rsi-forge-002/evidence-run-manifest.json"
   ]
 }
