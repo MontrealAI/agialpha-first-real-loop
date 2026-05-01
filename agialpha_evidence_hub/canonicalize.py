@@ -13,7 +13,10 @@ def canonical_experiment_slug(value: str) -> str:
 def canonical_family(slug: str) -> str:
     """Infer family from canonical slug prefix."""
     token = canonical_experiment_slug(slug)
-    return token.rsplit("-", 1)[0] if "-" in token else token
+    if "-" not in token:
+        return token
+    head, tail = token.rsplit("-", 1)
+    return head if tail.isdigit() else token
 
 
 def canonical_metric(value: Any) -> Any:
