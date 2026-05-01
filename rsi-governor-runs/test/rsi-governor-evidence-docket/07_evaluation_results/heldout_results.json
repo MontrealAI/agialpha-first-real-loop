@@ -17,22 +17,51 @@
     },
     "d_governance": 0.3621591743119266
   },
-  "B6": {
-    "task_count": 12,
-    "metrics": {
-      "page_completeness_score": 0.66,
-      "evidence_integrity_score": 0.95,
-      "replay_readiness_score": 0.95,
-      "claim_boundary_integrity": 1.0,
-      "safety_integrity": 1.0,
-      "workflow_launchability": 0.9,
-      "registry_persistence_score": 0.9,
-      "future_work_recommendation_score": 0.9,
-      "human_review_gate_integrity": 1.0,
-      "coordination_overhead": 0.05,
-      "false_positive_penalty": 0.02,
-      "false_negative_penalty": 0.02
+  "candidates": [
+    {
+      "candidate_id": "candidate-001",
+      "B6": {
+        "task_count": 12,
+        "metrics": {
+          "page_completeness_score": 0.66,
+          "evidence_integrity_score": 0.95,
+          "replay_readiness_score": 0.95,
+          "claim_boundary_integrity": 1.0,
+          "safety_integrity": 1.0,
+          "workflow_launchability": 0.9,
+          "registry_persistence_score": 0.9,
+          "future_work_recommendation_score": 0.9,
+          "human_review_gate_integrity": 1.0,
+          "coordination_overhead": 0.05,
+          "false_positive_penalty": 0.02,
+          "false_negative_penalty": 0.02
+        },
+        "d_governance": 0.3983750917431193
+      },
+      "delta": 0.03621591743119268
     },
-    "d_governance": 0.3983750917431193
-  }
+    {
+      "candidate_id": "candidate-002",
+      "B6": {
+        "task_count": 12,
+        "metrics": {
+          "page_completeness_score": 0.66,
+          "evidence_integrity_score": 0.95,
+          "replay_readiness_score": 0.95,
+          "claim_boundary_integrity": 1.0,
+          "safety_integrity": 1.0,
+          "workflow_launchability": 0.9,
+          "registry_persistence_score": 0.9,
+          "future_work_recommendation_score": 0.9,
+          "human_review_gate_integrity": 1.0,
+          "coordination_overhead": 0.05,
+          "false_positive_penalty": 0.02,
+          "false_negative_penalty": 0.02
+        },
+        "d_governance": 0.3983750917431193
+      },
+      "delta": 0.03621591743119268
+    }
+  ],
+  "selected": "candidate-001"
 }

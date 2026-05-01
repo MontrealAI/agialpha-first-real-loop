@@ -1,1 +1,4 @@
-{"replay_pass": true}
+{
+  "replay_pass": "not_reported",
+  "status": "pending_replay_workflow"
+}
