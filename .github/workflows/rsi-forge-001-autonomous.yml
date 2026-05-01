@@ -1,0 +1,41 @@
+name: RSI Forge 001 Autonomous
+on:
+  workflow_dispatch:
+    inputs:
+      cycles:
+        description: "Number of bounded forge cycles"
+        required: false
+        default: "1"
+      seed:
+        description: "Deterministic seed"
+        required: false
+        default: "rsi-forge-001"
+permissions:
+  contents: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Emit bounded manifest
+        run: |
+          python -m agialpha_evidence_hub emit-manifest \
+            --experiment-slug "rsi-forge-001" \
+            --experiment-name "${GITHUB_WORKFLOW}" \
+            --workflow-name "${GITHUB_WORKFLOW}" \
+            --workflow-file "${GITHUB_WORKFLOW_REF:-unknown}" \
+            --run-id "${GITHUB_RUN_ID}" \
+            --run-attempt "${GITHUB_RUN_ATTEMPT}" \
+            --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
+            --commit "${GITHUB_SHA}" \
+            --branch "${GITHUB_REF_NAME}" \
+            --docket "." \
+            --scoreboard "pending" \
+            --out evidence-run-manifest.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rsi-forge-001-manifest
+          path: evidence-run-manifest.json

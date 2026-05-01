@@ -1,0 +1,17 @@
+name: RSI Forge 001 Safe PR
+on:
+  workflow_dispatch:
+    inputs:
+      cycles:
+        description: "Cycle scope"
+        required: false
+        default: "1"
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  safe-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Safe PR proposal is human-governed and bounded."

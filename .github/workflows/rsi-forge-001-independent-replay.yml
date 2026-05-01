@@ -1,0 +1,20 @@
+name: RSI Forge 001 Independent Replay
+on:
+  workflow_dispatch:
+    inputs:
+      cycles:
+        description: "Cycle scope"
+        required: false
+        default: "1"
+      seed:
+        description: "Replay seed"
+        required: false
+        default: "rsi-forge-001"
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Independent replay scaffold for RSI Forge 001"
