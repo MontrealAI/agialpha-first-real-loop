@@ -1,17 +1,17 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "AGI ALPHA Evidence Run Manifest",
+  "title": "AGI ALPHA RSI-FORGE-002 Evidence Manifest",
   "type": "object",
-  "required": ["schema_version", "experiment_slug", "experiment_name", "experiment_family", "generated_at", "status", "claim_level", "claim_boundary", "metrics"],
+  "required": ["schema_version", "experiment_slug", "experiment_name", "generated_at", "status", "claim_level", "claim_boundary", "metrics"],
   "properties": {
     "schema_version": {"const": "agialpha.evidence_run.v1"},
-    "experiment_slug": {"type": "string"},
+    "experiment_slug": {"const": "rsi-forge-002"},
     "experiment_name": {"type": "string"},
-    "experiment_family": {"type": "string"},
     "generated_at": {"type": "string"},
-    "status": {"type": "string"},
+    "status": {"enum": ["success", "failure", "pending", "discovered"]},
     "claim_level": {"type": "string"},
     "claim_boundary": {"type": "string"},
+    "root_hash": {"type": "string"},
     "metrics": {"type": "object"}
   }
 }

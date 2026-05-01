@@ -1,0 +1,222 @@
+{
+  "B5": {
+    "aggregate": {
+      "D_real": 0.1542,
+      "mean_cost": 1.6749,
+      "replay_rate": 0.8942,
+      "safety_rate": 0.9059,
+      "success_rate": 0.5821
+    },
+    "baseline": "B5_rsi_no_archive",
+    "kernel_id": "B5_rsi_no_archive",
+    "tasks": [
+      {
+        "D_real": 0.1846,
+        "baseline": "B5_rsi_no_archive",
+        "cost": 1.4965,
+        "family": "evidence infrastructure",
+        "quality": 0.5464,
+        "replay": 0.8995,
+        "safety": 0.9254,
+        "success": 0.6076,
+        "task_id": "evidence-hub-recovery",
+        "verified_work": 0.2763
+      },
+      {
+        "D_real": 0.1757,
+        "baseline": "B5_rsi_no_archive",
+        "cost": 1.5804,
+        "family": "workflow safety",
+        "quality": 0.5668,
+        "replay": 0.8935,
+        "safety": 0.9034,
+        "success": 0.6071,
+        "task_id": "workflow-guard-hardening",
+        "verified_work": 0.2778
+      },
+      {
+        "D_real": 0.1921,
+        "baseline": "B5_rsi_no_archive",
+        "cost": 1.5385,
+        "family": "proof settlement",
+        "quality": 0.5748,
+        "replay": 0.8971,
+        "safety": 0.9166,
+        "success": 0.6252,
+        "task_id": "proofbundle-completeness",
+        "verified_work": 0.2955
+      },
+      {
+        "D_real": 0.1608,
+        "baseline": "B5_rsi_no_archive",
+        "cost": 1.7168,
+        "family": "RSI governance",
+        "quality": 0.576,
+        "replay": 0.8911,
+        "safety": 0.8946,
+        "success": 0.6013,
+        "task_id": "eci-inflation-resistance",
+        "verified_work": 0.2761
+      },
+      {
+        "D_real": 0.118,
+        "baseline": "B5_rsi_no_archive",
+        "cost": 1.7693,
+        "family": "RSI state integrity",
+        "quality": 0.4942,
+        "replay": 0.8923,
+        "safety": 0.899,
+        "success": 0.5268,
+        "task_id": "drift-sentinel-continuity",
+        "verified_work": 0.2088
+      },
+      {
+        "D_real": 0.1373,
+        "baseline": "B5_rsi_no_archive",
+        "cost": 1.8113,
+        "family": "breakthrough governance",
+        "quality": 0.5474,
+        "replay": 0.8875,
+        "safety": 0.8814,
+        "success": 0.5809,
+        "task_id": "move37-dossier-packaging",
+        "verified_work": 0.2487
+      },
+      {
+        "D_real": 0.1609,
+        "baseline": "B5_rsi_no_archive",
+        "cost": 1.6539,
+        "family": "comparative evidence",
+        "quality": 0.5448,
+        "replay": 0.8977,
+        "safety": 0.9188,
+        "success": 0.5923,
+        "task_id": "baseline-ladder-selection",
+        "verified_work": 0.2661
+      },
+      {
+        "D_real": 0.1046,
+        "baseline": "B5_rsi_no_archive",
+        "cost": 1.8323,
+        "family": "future task generation",
+        "quality": 0.4581,
+        "replay": 0.8947,
+        "safety": 0.9078,
+        "success": 0.5153,
+        "task_id": "vnext-transfer-seed",
+        "verified_work": 0.1917
+      }
+    ]
+  },
+  "B6": {
+    "aggregate": {
+      "D_real": 0.2119,
+      "mean_cost": 1.6749,
+      "replay_rate": 0.8942,
+      "safety_rate": 0.9059,
+      "success_rate": 0.6839
+    },
+    "baseline": "B6_rsi_forge_archive_reuse",
+    "kernel_id": "EvidenceKernel-c3-k01",
+    "tasks": [
+      {
+        "D_real": 0.2635,
+        "baseline": "B6_rsi_forge_archive_reuse",
+        "cost": 1.4965,
+        "family": "evidence infrastructure",
+        "quality": 0.6566,
+        "replay": 0.8995,
+        "safety": 0.9254,
+        "success": 0.7217,
+        "task_id": "evidence-hub-recovery",
+        "verified_work": 0.3944
+      },
+      {
+        "D_real": 0.217,
+        "baseline": "B6_rsi_forge_archive_reuse",
+        "cost": 1.5804,
+        "family": "workflow safety",
+        "quality": 0.6277,
+        "replay": 0.8935,
+        "safety": 0.9034,
+        "success": 0.677,
+        "task_id": "workflow-guard-hardening",
+        "verified_work": 0.343
+      },
+      {
+        "D_real": 0.2373,
+        "baseline": "B6_rsi_forge_archive_reuse",
+        "cost": 1.5385,
+        "family": "proof settlement",
+        "quality": 0.6375,
+        "replay": 0.8971,
+        "safety": 0.9166,
+        "success": 0.6965,
+        "task_id": "proofbundle-completeness",
+        "verified_work": 0.3651
+      },
+      {
+        "D_real": 0.2065,
+        "baseline": "B6_rsi_forge_archive_reuse",
+        "cost": 1.7168,
+        "family": "RSI governance",
+        "quality": 0.651,
+        "replay": 0.8911,
+        "safety": 0.8946,
+        "success": 0.6831,
+        "task_id": "eci-inflation-resistance",
+        "verified_work": 0.3545
+      },
+      {
+        "D_real": 0.1906,
+        "baseline": "B6_rsi_forge_archive_reuse",
+        "cost": 1.7693,
+        "family": "RSI state integrity",
+        "quality": 0.632,
+        "replay": 0.8923,
+        "safety": 0.899,
+        "success": 0.6651,
+        "task_id": "drift-sentinel-continuity",
+        "verified_work": 0.3372
+      },
+      {
+        "D_real": 0.1836,
+        "baseline": "B6_rsi_forge_archive_reuse",
+        "cost": 1.8113,
+        "family": "breakthrough governance",
+        "quality": 0.633,
+        "replay": 0.8875,
+        "safety": 0.8814,
+        "success": 0.6717,
+        "task_id": "move37-dossier-packaging",
+        "verified_work": 0.3326
+      },
+      {
+        "D_real": 0.199,
+        "baseline": "B6_rsi_forge_archive_reuse",
+        "cost": 1.6539,
+        "family": "comparative evidence",
+        "quality": 0.604,
+        "replay": 0.8977,
+        "safety": 0.9188,
+        "success": 0.6607,
+        "task_id": "baseline-ladder-selection",
+        "verified_work": 0.3291
+      },
+      {
+        "D_real": 0.1979,
+        "baseline": "B6_rsi_forge_archive_reuse",
+        "cost": 1.8323,
+        "family": "future task generation",
+        "quality": 0.6424,
+        "replay": 0.8947,
+        "safety": 0.9078,
+        "success": 0.6951,
+        "task_id": "vnext-transfer-seed",
+        "verified_work": 0.3627
+      }
+    ]
+  },
+  "B6_beats_all_count": 6,
+  "advantage_delta": 0.0577
+}

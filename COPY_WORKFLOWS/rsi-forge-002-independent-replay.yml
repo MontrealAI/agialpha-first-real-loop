@@ -1,0 +1,47 @@
+name: AGI ALPHA RSI-FORGE-002 / Independent Replay
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Source RSI-FORGE-002 GitHub Actions run ID"
+        required: true
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  replay:
+    name: Independent clean-checkout replay
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download source artifact
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.inputs.run_id }}
+        run: |
+          set -euo pipefail
+          mkdir -p replay_source
+          gh run download "$RUN_ID" --name "rsi-forge-002-${RUN_ID}" --dir replay_source || gh run download "$RUN_ID" --dir replay_source
+      - name: Locate and replay docket
+        shell: bash
+        run: |
+          set -euo pipefail
+          DOCKET=$(find replay_source -name 00_manifest.json -print -quit | xargs dirname)
+          echo "Docket: $DOCKET"
+          python -m rsi_forge_002 replay --docket "$DOCKET"
+          mkdir -p independent-replay/rsi-forge-002
+          cp "$DOCKET/18_independent_replay_report.json" independent-replay/rsi-forge-002/replay-report.json
+      - name: Upload independent replay report
+        uses: actions/upload-artifact@v4
+        with:
+          name: rsi-forge-002-independent-replay-${{ github.run_id }}
+          path: independent-replay/rsi-forge-002/

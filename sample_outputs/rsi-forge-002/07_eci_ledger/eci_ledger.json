@@ -1,0 +1,32 @@
+[
+  {
+    "advantage_delta_vs_B5": 0.0511,
+    "baseline_comparative": true,
+    "candidate_id": "EvidenceKernel-c1-k07",
+    "cycle_index": 1,
+    "eci_level": "E3_REPLAYED",
+    "executed_tasks": 8,
+    "replayed": true,
+    "timestamp": "2026-05-01T13:57:11Z"
+  },
+  {
+    "advantage_delta_vs_B5": 0.062,
+    "baseline_comparative": true,
+    "candidate_id": "EvidenceKernel-c2-k05",
+    "cycle_index": 2,
+    "eci_level": "E3_REPLAYED",
+    "executed_tasks": 8,
+    "replayed": true,
+    "timestamp": "2026-05-01T13:57:11Z"
+  },
+  {
+    "advantage_delta_vs_B5": 0.085,
+    "baseline_comparative": true,
+    "candidate_id": "EvidenceKernel-c3-k01",
+    "cycle_index": 3,
+    "eci_level": "E3_REPLAYED",
+    "executed_tasks": 8,
+    "replayed": true,
+    "timestamp": "2026-05-01T13:57:11Z"
+  }
+]

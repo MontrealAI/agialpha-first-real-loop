@@ -1,0 +1,14 @@
+{
+  "experiment": "RSI-FORGE-002",
+  "title": "Self-Amending Evidence Kernel for Governed Recursive Self-Improvement",
+  "default_cycles": 5,
+  "default_candidates_per_cycle": 18,
+  "default_seed": 37,
+  "promotion_rule": {
+    "B6_advantage_delta_vs_B5": "> 0",
+    "vnext_advantage_delta_vs_B5": "> 0",
+    "state_hash_continuity": true,
+    "hard_safety_counters": "all zero",
+    "human_review_required_for_persistent_policy_promotion": true
+  }
+}

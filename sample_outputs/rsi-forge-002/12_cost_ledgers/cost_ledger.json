@@ -1,0 +1,7 @@
+{
+  "compute_seconds_proxy": 6.0,
+  "currency": "not_applicable",
+  "human_review_minutes": 0,
+  "runner": "github-actions",
+  "token_cost_proxy": 0
+}

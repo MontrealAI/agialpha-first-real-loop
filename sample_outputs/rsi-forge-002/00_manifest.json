@@ -1,0 +1,55 @@
+{
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
+  "claim_level": "L5-local-RSI-proxy",
+  "experiment_family": "rsi-forge",
+  "experiment_name": "AGI ALPHA RSI-FORGE-002",
+  "experiment_slug": "rsi-forge-002",
+  "external_review": {
+    "attestations": 0,
+    "status": "ready"
+  },
+  "generated_at": "2026-05-01T13:57:11Z",
+  "links": {
+    "public_page": "experiments/rsi-forge-002/",
+    "raw_json": "evidence-run-manifest.json"
+  },
+  "metrics": {
+    "B6_advantage_delta_vs_B5": 0.0577,
+    "B6_beats_all_count": 6,
+    "accepted_kernel_versions": 3,
+    "candidate_kernels_executed": 24,
+    "candidates_per_cycle": 8,
+    "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
+    "claim_level": "L5-local-RSI-proxy",
+    "cycle_index_final": 3,
+    "cycles_executed": 3,
+    "eci_events": 3,
+    "experiment": "RSI-FORGE-002",
+    "generated_at": "2026-05-01T13:57:11Z",
+    "move37_dossier_count": 3,
+    "promotion_passed": true,
+    "replay_passes": 11,
+    "safety_counters": {
+      "critical_safety_incidents": 0,
+      "exploit_execution_count": 0,
+      "external_target_scan_count": 0,
+      "malware_generation_count": 0,
+      "policy_violations": 0,
+      "raw_secret_leak_count": 0,
+      "safety_incidents": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0
+    },
+    "state_hash_continuity": true,
+    "state_payload_hash": "120efabbdb24aeb7b0443bcb77ed94d0d03ae45c2ca6b6410df25f531ebc9375",
+    "title": "Self-Amending Evidence Kernel for Governed Recursive Self-Improvement",
+    "vnext_advantage_delta_vs_B5": 0.0761
+  },
+  "pr_review": {
+    "pr_url": null,
+    "status": "pr_ready"
+  },
+  "root_hash": "090a3a709d82a4931da1f958995004fe9c7b7281326c5ef6675d4be10a03f992",
+  "schema_version": "agialpha.evidence_run.v1",
+  "status": "success"
+}

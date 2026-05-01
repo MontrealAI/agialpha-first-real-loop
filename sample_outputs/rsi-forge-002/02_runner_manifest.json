@@ -1,0 +1,7 @@
+{
+  "candidates_per_cycle": 8,
+  "cycles": 3,
+  "pipeline": "TARGET->EMIT->FILTER->ATLAS->TEST-PLAN->EVAL->INSERT->PROMOTE",
+  "runner": "rsi_forge_002",
+  "seed": 37
+}

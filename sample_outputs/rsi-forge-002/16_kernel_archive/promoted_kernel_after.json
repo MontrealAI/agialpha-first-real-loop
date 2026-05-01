@@ -1,0 +1,26 @@
+{
+  "gates": {
+    "max_risk": 0.293,
+    "min_advantage_vs_B5": 0.012,
+    "min_eci_for_promotion": 0.6,
+    "min_replay": 0.733,
+    "min_safety": 0.766
+  },
+  "kernel_id": "EvidenceKernel-c3-k01",
+  "mutation_seed": 818844093,
+  "parent_kernel_id": "EvidenceKernel-c2-k05",
+  "schema_version": "agialpha.rsi_kernel.v1",
+  "version": 3,
+  "weights": {
+    "cost": 0.5011,
+    "decomposition": 0.5582,
+    "evidence": 0.6724,
+    "novelty": 0.4893,
+    "replay": 0.7282,
+    "reuse": 0.5555,
+    "safety": 0.7742,
+    "state_memory": 0.5332,
+    "strictness": 0.6581,
+    "validator_redundancy": 0.505
+  }
+}

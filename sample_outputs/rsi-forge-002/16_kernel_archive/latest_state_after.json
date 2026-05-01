@@ -1,0 +1,185 @@
+{
+  "archive": {
+    "accepted_kernels": [
+      {
+        "advantage_delta_vs_B5": 0.0511,
+        "cycle_index": 1,
+        "kernel_id": "EvidenceKernel-c1-k07",
+        "parent": "EvidenceKernel-v0",
+        "state_hash_before": "0bcbcb09b085eb434cb9b3677d73409a7413abb495a4f4b9f7f7ec3debe626c1"
+      },
+      {
+        "advantage_delta_vs_B5": 0.062,
+        "cycle_index": 2,
+        "kernel_id": "EvidenceKernel-c2-k05",
+        "parent": "EvidenceKernel-c1-k07",
+        "state_hash_before": "6b3a5014a6d04b04f9866cf5c065cf38604e808b8b9c9562af9d3c8140735512"
+      },
+      {
+        "advantage_delta_vs_B5": 0.085,
+        "cycle_index": 3,
+        "kernel_id": "EvidenceKernel-c3-k01",
+        "parent": "EvidenceKernel-c2-k05",
+        "state_hash_before": "618c4d8e53f98882bf05fa7fd61ba2f2e76c9cc932c32a5591090a0f755a2573"
+      }
+    ],
+    "candidates": [
+      {
+        "D_real": 0.1341,
+        "advantage_delta_vs_B5": 0.0511,
+        "candidate_id": "EvidenceKernel-c1-k07",
+        "cycle_index": 1,
+        "eligible": true
+      },
+      {
+        "D_real": 0.1668,
+        "advantage_delta_vs_B5": 0.062,
+        "candidate_id": "EvidenceKernel-c2-k05",
+        "cycle_index": 2,
+        "eligible": true
+      },
+      {
+        "D_real": 0.2119,
+        "advantage_delta_vs_B5": 0.085,
+        "candidate_id": "EvidenceKernel-c3-k01",
+        "cycle_index": 3,
+        "eligible": true
+      }
+    ],
+    "cells": {}
+  },
+  "causal_atlas": {
+    "triples": []
+  },
+  "cost_ledger": [],
+  "created_at": "2026-05-01T13:57:05Z",
+  "current_kernel": {
+    "gates": {
+      "max_risk": 0.293,
+      "min_advantage_vs_B5": 0.012,
+      "min_eci_for_promotion": 0.6,
+      "min_replay": 0.733,
+      "min_safety": 0.766
+    },
+    "kernel_id": "EvidenceKernel-c3-k01",
+    "mutation_seed": 818844093,
+    "parent_kernel_id": "EvidenceKernel-c2-k05",
+    "schema_version": "agialpha.rsi_kernel.v1",
+    "version": 3,
+    "weights": {
+      "cost": 0.5011,
+      "decomposition": 0.5582,
+      "evidence": 0.6724,
+      "novelty": 0.4893,
+      "replay": 0.7282,
+      "reuse": 0.5555,
+      "safety": 0.7742,
+      "state_memory": 0.5332,
+      "strictness": 0.6581,
+      "validator_redundancy": 0.505
+    }
+  },
+  "cycle_index": 3,
+  "eci_ledger": [
+    {
+      "advantage_delta_vs_B5": 0.0511,
+      "baseline_comparative": true,
+      "candidate_id": "EvidenceKernel-c1-k07",
+      "cycle_index": 1,
+      "eci_level": "E3_REPLAYED",
+      "executed_tasks": 8,
+      "replayed": true,
+      "timestamp": "2026-05-01T13:57:11Z"
+    },
+    {
+      "advantage_delta_vs_B5": 0.062,
+      "baseline_comparative": true,
+      "candidate_id": "EvidenceKernel-c2-k05",
+      "cycle_index": 2,
+      "eci_level": "E3_REPLAYED",
+      "executed_tasks": 8,
+      "replayed": true,
+      "timestamp": "2026-05-01T13:57:11Z"
+    },
+    {
+      "advantage_delta_vs_B5": 0.085,
+      "baseline_comparative": true,
+      "candidate_id": "EvidenceKernel-c3-k01",
+      "cycle_index": 3,
+      "eci_level": "E3_REPLAYED",
+      "executed_tasks": 8,
+      "replayed": true,
+      "timestamp": "2026-05-01T13:57:11Z"
+    }
+  ],
+  "lineage": [
+    {
+      "cycle_index": 1,
+      "previous_state_hash": "0bcbcb09b085eb434cb9b3677d73409a7413abb495a4f4b9f7f7ec3debe626c1",
+      "selected_kernel": "EvidenceKernel-c1-k07"
+    },
+    {
+      "cycle_index": 2,
+      "previous_state_hash": "6b3a5014a6d04b04f9866cf5c065cf38604e808b8b9c9562af9d3c8140735512",
+      "selected_kernel": "EvidenceKernel-c2-k05"
+    },
+    {
+      "cycle_index": 3,
+      "previous_state_hash": "618c4d8e53f98882bf05fa7fd61ba2f2e76c9cc932c32a5591090a0f755a2573",
+      "selected_kernel": "EvidenceKernel-c3-k01"
+    }
+  ],
+  "move37_dossiers": [
+    {
+      "advantage_delta_vs_B5": 0.0511,
+      "candidate_id": "EvidenceKernel-c1-k07",
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
+      "decision": "accepted for governed kernel promotion",
+      "dossier_id": "move37-cycle-1-EvidenceKernel-c1-k07",
+      "eci_level": "E3_REPLAYED",
+      "novelty_distance": 0.057,
+      "stress_tests": [
+        "alternate seeds",
+        "nearby baseline",
+        "policy shock",
+        "replay determinism"
+      ]
+    },
+    {
+      "advantage_delta_vs_B5": 0.062,
+      "candidate_id": "EvidenceKernel-c2-k05",
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
+      "decision": "accepted for governed kernel promotion",
+      "dossier_id": "move37-cycle-2-EvidenceKernel-c2-k05",
+      "eci_level": "E3_REPLAYED",
+      "novelty_distance": 0.0557,
+      "stress_tests": [
+        "alternate seeds",
+        "nearby baseline",
+        "policy shock",
+        "replay determinism"
+      ]
+    },
+    {
+      "advantage_delta_vs_B5": 0.085,
+      "candidate_id": "EvidenceKernel-c3-k01",
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
+      "decision": "accepted for governed kernel promotion",
+      "dossier_id": "move37-cycle-3-EvidenceKernel-c3-k01",
+      "eci_level": "E3_REPLAYED",
+      "novelty_distance": 0.0601,
+      "stress_tests": [
+        "alternate seeds",
+        "nearby baseline",
+        "policy shock",
+        "replay determinism"
+      ]
+    }
+  ],
+  "proof_bundles": [],
+  "safety_ledger": [],
+  "scaffolds": [],
+  "schema_version": "agialpha.rsi_state.v1",
+  "state_payload_hash": "120efabbdb24aeb7b0443bcb77ed94d0d03ae45c2ca6b6410df25f531ebc9375",
+  "updated_at": "2026-05-01T13:57:11Z"
+}
