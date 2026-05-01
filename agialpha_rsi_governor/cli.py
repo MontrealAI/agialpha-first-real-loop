@@ -151,8 +151,8 @@ def validate_autonomy_contract(contract: str):
     forbidden_manual = {
         "run_replay",
         "run_falsification_audit",
-        "run_safe_pr",
-        "run_delayed_outcome",
+        "open_safe_pr_if_candidate_passes",
+        "run_delayed_outcome_sentinel",
         "run_vnext_canary",
         "notify_evidence_hub_publisher",
     }
