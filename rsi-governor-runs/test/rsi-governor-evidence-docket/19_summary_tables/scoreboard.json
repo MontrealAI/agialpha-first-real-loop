@@ -1,11 +1,11 @@
 {
   "experiment": "RSI-GOVERNOR-001",
-  "run_id": "run-006",
+  "run_id": "run-007",
   "candidate_count": 2,
   "candidate_kernels_executed": 2,
   "best_candidate_id": "candidate-002",
   "B6_beats_B5": true,
-  "Governance Compounding Advantage": 0.005495817676856363,
+  "Governance Compounding Advantage": 0.007321609455409328,
   "heldout_task_count": 12,
   "adversarial_task_count": 12,
   "ECI_level": "E3_REPLAYED",
