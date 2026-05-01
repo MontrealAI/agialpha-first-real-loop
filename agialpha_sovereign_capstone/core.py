@@ -30,7 +30,7 @@ ROOT = Path.cwd()
 
 
 def now_iso() -> str:
-    return dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+    return dt.datetime.now(dt.UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
 def canonical(obj: Any) -> bytes:
