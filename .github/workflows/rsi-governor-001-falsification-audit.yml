@@ -9,4 +9,4 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -m agialpha_rsi_governor run --repo-root . --out rsi-governor-runs/test
+      - run: python -m agialpha_rsi_governor falsification-audit --docket rsi-governor-runs/test/rsi-governor-evidence-docket
