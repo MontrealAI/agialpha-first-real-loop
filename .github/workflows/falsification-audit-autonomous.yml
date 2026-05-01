@@ -87,7 +87,7 @@ jobs:
           python -S -m agialpha_seed_runner landing --docs docs
 
       - name: Upload falsification audit report
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: falsification-audit-report
           path: |

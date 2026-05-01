@@ -49,7 +49,7 @@ jobs:
         shell: bash
         run: python -m agialpha_helios2 adapters --out "$OUT_DIR" --docs "$DOCS_DIR"
       - name: Upload adapter artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: helios-002-benchmark-adapters-${{ github.run_id }}
           path: ${{ env.OUT_DIR }}

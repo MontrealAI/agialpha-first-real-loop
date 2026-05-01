@@ -25,7 +25,7 @@ jobs:
       - name: Generate delayed-outcome sentinel
         run: python -m agialpha_sovereign_capstone delayed --out runs/cyber-sovereign-delayed/${{ github.run_id }}
       - name: Upload delayed-outcome artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: cyber-sovereign-delayed-outcome-${{ github.run_id }}
           path: runs/cyber-sovereign-delayed/${{ github.run_id }}

@@ -87,7 +87,7 @@ jobs:
           python -m agialpha_usefulness_frontier replay --portfolio "$OUTPUT_DIR" --out "runs/frontier-usefulness-replay/${{ github.run_id }}"
 
       - name: Upload Frontier Usefulness artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: frontier-usefulness-${{ github.run_id }}
           path: |

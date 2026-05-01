@@ -56,7 +56,7 @@ jobs:
       - name: Generate HELIOS completion dossier
         run: python -m agialpha_sovereign_capstone helios-complete --out "$OUT"
       - name: Upload HELIOS completion artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: helios-004-completion-${{ github.run_id }}
           path: ${{ env.OUT }}

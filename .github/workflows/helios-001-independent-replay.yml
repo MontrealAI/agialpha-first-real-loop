@@ -81,7 +81,7 @@ jobs:
           python -m agialpha_helios replay --source "$SOURCE" --out "runs/helios-independent-replay/${{ github.run_id }}"
 
       - name: Upload independent replay report
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: helios-001-independent-replay-report
           path: runs/helios-independent-replay/${{ github.run_id }}

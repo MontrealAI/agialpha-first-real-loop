@@ -52,7 +52,7 @@ jobs:
           python -m agialpha_usefulness_frontier replay --portfolio "$PORTFOLIO" --out "external-review/frontier-usefulness-${{ github.run_id }}"
 
       - name: Upload external review replay artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: frontier-external-review-${{ github.run_id }}
           path: external-review/
