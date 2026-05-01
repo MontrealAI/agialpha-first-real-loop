@@ -10,7 +10,6 @@ on:
       - 'scripts/check_pages_architecture.py'
       - 'tests/**'
   push:
-    branches: [main]
     paths:
       - 'evidence_registry/**'
       - 'agialpha_evidence_hub/**'
@@ -89,6 +88,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Discover repo evidence
+        run: python -m agialpha_evidence_hub discover --repo-root . --out evidence_registry/discovered.json
+      - name: Backfill registry
+        run: python -m agialpha_evidence_hub backfill --repo-root . --registry evidence_registry
       - name: Build site for Pages artifact
         run: |
           python -m agialpha_evidence_hub build --registry evidence_registry --out _site
