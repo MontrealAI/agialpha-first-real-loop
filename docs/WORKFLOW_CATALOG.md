@@ -26,6 +26,10 @@ Current as of 2026-05-01.
 ## Workflow inventory
 | Workflow file | How to run | Pages publisher? |
 |---|---|---|
+| `ascension-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `ascension-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `ascension-001-independent-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `ascension-001-vnext.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `benchmark-gauntlet-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `benchmark-gauntlet-001-challenge-pack.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `benchmark-gauntlet-001-external-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
