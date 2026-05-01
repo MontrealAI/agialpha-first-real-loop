@@ -1,0 +1,13 @@
+name: AGI ALPHA RSI-GOVERNOR-001 / vNext Canary
+on:
+  workflow_dispatch:
+  workflow_call:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  vnext:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m agialpha_rsi_governor vnext-canary --repo-root . --out rsi-governor-runs/vnext

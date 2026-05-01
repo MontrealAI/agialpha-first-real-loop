@@ -1,12 +1,43 @@
 name: rsi-governor-001-autonomous
 on:
   workflow_dispatch:
+    inputs:
+      out_dir:
+        required: false
+        default: rsi-governor-runs/lifecycle
+  workflow_call:
+    inputs:
+      out_dir:
+        required: false
+        type: string
+        default: rsi-governor-runs/lifecycle
+    outputs:
+      evidence_docket_path:
+        value: ${{ jobs.run.outputs.evidence_docket_path }}
+      artifact_name:
+        value: ${{ jobs.run.outputs.artifact_name }}
+permissions:
+  contents: write
+  actions: read
+  pull-requests: write
+  issues: write
 jobs:
   run:
     runs-on: ubuntu-latest
+    outputs:
+      evidence_docket_path: ${{ steps.meta.outputs.evidence_docket_path }}
+      artifact_name: ${{ steps.meta.outputs.artifact_name }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -m agialpha_rsi_governor run --repo-root . --out rsi-governor-runs/test
+      - run: python -m agialpha_rsi_governor run --repo-root . --out "${{ inputs.out_dir }}"
+      - id: meta
+        run: |
+          echo "evidence_docket_path=${{ inputs.out_dir }}/rsi-governor-evidence-docket" >> $GITHUB_OUTPUT
+          echo "artifact_name=rsi-governor-autonomous-${GITHUB_RUN_ID}" >> $GITHUB_OUTPUT
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rsi-governor-autonomous-${{ github.run_id }}
+          path: ${{ inputs.out_dir }}/rsi-governor-evidence-docket
