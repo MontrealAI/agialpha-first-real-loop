@@ -1,6 +1,17 @@
 name: rsi-governor-001-falsification-audit
 on:
   workflow_dispatch:
+    inputs:
+      autonomous_artifact:
+        description: Artifact name from autonomous run (optional for standalone fixture audit).
+        required: false
+        default: ''
+        type: string
+      out_dir:
+        description: Output directory containing docket.
+        required: false
+        default: rsi-governor-runs/test
+        type: string
   workflow_call:
     inputs:
       autonomous_artifact:
@@ -18,11 +29,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - id: cfg
+        run: echo "out_dir=${{ inputs.out_dir || 'rsi-governor-runs/test' }}" >> $GITHUB_OUTPUT
       - uses: actions/download-artifact@v4
+        if: ${{ inputs.autonomous_artifact != '' }}
         with:
           name: ${{ inputs.autonomous_artifact }}
-          path: ${{ inputs.out_dir }}
+          path: ${{ steps.cfg.outputs.out_dir }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -m agialpha_rsi_governor falsification-audit --docket "${{ inputs.out_dir }}/rsi-governor-evidence-docket"
+      - run: python -m agialpha_rsi_governor falsification-audit --docket "${{ steps.cfg.outputs.out_dir }}/rsi-governor-evidence-docket"

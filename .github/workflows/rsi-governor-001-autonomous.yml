@@ -1,6 +1,12 @@
 name: rsi-governor-001-autonomous
 on:
   workflow_dispatch:
+    inputs:
+      out_dir:
+        description: Output directory for run artifacts.
+        required: false
+        default: rsi-governor-runs/test
+        type: string
   workflow_call:
     inputs:
       out_dir:
@@ -28,12 +34,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -m agialpha_rsi_governor run --repo-root . --out "${{ inputs.out_dir }}"
+      - id: cfg
+        run: echo "out_dir=${{ inputs.out_dir || 'rsi-governor-runs/test' }}" >> $GITHUB_OUTPUT
+      - run: python -m agialpha_rsi_governor run --repo-root . --out "${{ steps.cfg.outputs.out_dir }}"
       - id: meta
         run: |
           echo "artifact_name=rsi-governor-autonomous-${GITHUB_RUN_ID}" >> $GITHUB_OUTPUT
-          echo "docket_path=${{ inputs.out_dir }}/rsi-governor-evidence-docket" >> $GITHUB_OUTPUT
+          echo "docket_path=${{ steps.cfg.outputs.out_dir }}/rsi-governor-evidence-docket" >> $GITHUB_OUTPUT
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.meta.outputs.artifact_name }}
-          path: ${{ inputs.out_dir }}/
+          path: ${{ steps.cfg.outputs.out_dir }}/
