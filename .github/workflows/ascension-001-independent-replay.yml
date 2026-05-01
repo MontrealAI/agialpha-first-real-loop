@@ -1,0 +1,63 @@
+name: AGI ALPHA ASCENSION-001 / Independent Replay
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: "Optional ASCENSION-001 run id to download. Leave blank to generate and replay a fresh docket."
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  replay:
+    name: Independent replay of ASCENSION-001 Evidence Docket
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Try downloading prior artifact
+        if: ${{ github.event.inputs.source_run_id != '' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: ascension-001-${{ github.event.inputs.source_run_id }}
+          run-id: ${{ github.event.inputs.source_run_id }}
+          path: replay_input
+          github-token: ${{ github.token }}
+
+      - name: Prepare replay docket
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -d "replay_input" ] && find replay_input -name 00_manifest.json | grep -q .; then
+            DOCKET="$(dirname "$(find replay_input -name 00_manifest.json | head -n 1)")"
+            echo "DOCKET=$DOCKET" >> "$GITHUB_ENV"
+          else
+            OUT_DIR="runs/ascension-001-replay/${GITHUB_RUN_ID}"
+            python -m agialpha_ascension_001 run --repo-root . --out "$OUT_DIR" --cycles 3 --task-count 9 --seed 1001
+            echo "DOCKET=$OUT_DIR/ascension-001-evidence-docket" >> "$GITHUB_ENV"
+          fi
+
+      - name: Replay and audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_ascension_001 replay --docket "$DOCKET"
+          python -m agialpha_ascension_001 audit --docket "$DOCKET"
+
+      - name: Upload independent replay artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ascension-001-independent-replay-${{ github.run_id }}
+          path: |
+            ${{ env.DOCKET }}/
+          retention-days: 30

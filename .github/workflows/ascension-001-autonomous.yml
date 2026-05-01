@@ -1,0 +1,69 @@
+name: AGI ALPHA ASCENSION-001 / Autonomous RSI Compounding
+
+on:
+  workflow_dispatch:
+    inputs:
+      cycles:
+        description: "Number of governed RSI cycles"
+        required: false
+        default: "3"
+      task_count:
+        description: "Number of task families to include"
+        required: false
+        default: "9"
+      seed:
+        description: "Deterministic seed"
+        required: false
+        default: "1001"
+  schedule:
+    - cron: "17 4 * * 1"
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: ascension-001-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  ascension-001:
+    name: Generate governed RSI Evidence Docket
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run unit tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p "test_ascension_001.py"
+
+      - name: Run ASCENSION-001 autonomous RSI compounding experiment
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT_DIR="runs/ascension-001/${GITHUB_RUN_ID}"
+          python -m agialpha_ascension_001 run \
+            --repo-root . \
+            --out "$OUT_DIR" \
+            --cycles "${{ github.event.inputs.cycles || '3' }}" \
+            --task-count "${{ github.event.inputs.task_count || '9' }}" \
+            --seed "${{ github.event.inputs.seed || '1001' }}"
+          python -m agialpha_ascension_001 replay --docket "$OUT_DIR/ascension-001-evidence-docket"
+          python -m agialpha_ascension_001 audit --docket "$OUT_DIR/ascension-001-evidence-docket"
+          echo "ASCENSION_OUT=$OUT_DIR" >> "$GITHUB_ENV"
+
+      - name: Upload ASCENSION-001 Evidence Docket artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ascension-001-${{ github.run_id }}
+          path: |
+            ${{ env.ASCENSION_OUT }}/
+          retention-days: 30

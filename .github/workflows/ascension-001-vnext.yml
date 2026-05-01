@@ -1,0 +1,45 @@
+name: AGI ALPHA ASCENSION-001 / vNext Transfer
+
+on:
+  workflow_dispatch:
+    inputs:
+      cycles:
+        description: "Cycles for vNext stress-transfer run"
+        required: false
+        default: "4"
+
+permissions:
+  contents: read
+
+jobs:
+  vnext:
+    name: ASCENSION-001 vNext transfer stress test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run vNext held-out transfer
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT_DIR="runs/ascension-001-vnext/${GITHUB_RUN_ID}"
+          python -m agialpha_ascension_001 run \
+            --repo-root . \
+            --out "$OUT_DIR" \
+            --cycles "${{ github.event.inputs.cycles || '4' }}" \
+            --task-count 9 \
+            --seed 2002
+          python -m agialpha_ascension_001 replay --docket "$OUT_DIR/ascension-001-evidence-docket"
+          python -m agialpha_ascension_001 audit --docket "$OUT_DIR/ascension-001-evidence-docket"
+          echo "ASCENSION_OUT=$OUT_DIR" >> "$GITHUB_ENV"
+      - name: Upload vNext artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ascension-001-vnext-${{ github.run_id }}
+          path: |
+            ${{ env.ASCENSION_OUT }}/
+          retention-days: 30
