@@ -49,7 +49,9 @@ Current as of 2026-05-01.
 | `docs-audit.yml` | Internal CI workflow; no manual dispatch required. | no |
 | `cyber-sovereign-002-scaling.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `evidence-factory-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `evidence-hub-canary.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `evidence-hub-publish.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | yes |
+| `evidence-hub-repair.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `falsification-audit-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `frontier-external-review.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `frontier-usefulness-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
