@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RSI Governance Kernel",
+  "type": "object",
+  "required": ["kernel_version","autonomous_persistence_allowed","human_review_required","claim_boundary","safety_counters","promotion"],
+  "properties": {
+    "kernel_version": {"type": "string"},
+    "autonomous_persistence_allowed": {"const": false},
+    "human_review_required": {"const": true},
+    "claim_boundary": {"type": "object"},
+    "safety_counters": {"type": "object", "required":["unsafe_automerge_count","critical_safety_incidents"]},
+    "promotion": {"type": "object", "required":["require_heldout","require_replay","allow_automerge"], "properties": {"require_heldout":{"const": true},"require_replay":{"const": true},"allow_automerge":{"const": false}}},
+    "missing_metrics_policy": {"type":"string", "not": {"const":"zero"}}
+  }
+}

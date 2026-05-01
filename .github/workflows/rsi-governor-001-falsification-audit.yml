@@ -1,6 +1,25 @@
 name: rsi-governor-001-falsification-audit
 on:
   workflow_dispatch:
+    inputs:
+      evidence_artifact_name:
+        required: true
+        default: rsi-governor-autonomous
+      out_dir:
+        required: false
+        default: rsi-governor-runs/falsification
+  workflow_call:
+    inputs:
+      evidence_artifact_name:
+        required: true
+        type: string
+      out_dir:
+        required: false
+        type: string
+        default: rsi-governor-runs/falsification
+permissions:
+  contents: read
+  actions: read
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -9,4 +28,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -m agialpha_rsi_governor falsification-audit --docket rsi-governor-runs/test/rsi-governor-evidence-docket
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.evidence_artifact_name }}
+          path: ${{ inputs.out_dir }}/rsi-governor-evidence-docket
+      - run: python -m agialpha_rsi_governor falsification-audit --docket "${{ inputs.out_dir }}/rsi-governor-evidence-docket"
+      - run: echo '{"falsification_source":"${{ inputs.evidence_artifact_name }}"}' > falsification_audit.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rsi-governor-falsification-${{ github.run_id }}
+          path: falsification_audit.json

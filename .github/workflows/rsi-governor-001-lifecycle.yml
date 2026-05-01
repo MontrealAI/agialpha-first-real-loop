@@ -1,0 +1,48 @@
+name: AGI ALPHA RSI-GOVERNOR-001 / Lifecycle Orchestrator
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [rsi_governor_cycle_requested]
+  schedule:
+    - cron: "17 */12 * * *"
+concurrency:
+  group: rsi-governor-001-lifecycle
+  cancel-in-progress: false
+permissions:
+  contents: write
+  actions: read
+  pull-requests: write
+  issues: write
+jobs:
+  autonomous_candidate_evolution:
+    uses: ./.github/workflows/rsi-governor-001-autonomous.yml
+    with:
+      out_dir: rsi-governor-runs/lifecycle
+  replay:
+    needs: autonomous_candidate_evolution
+    uses: ./.github/workflows/rsi-governor-001-replay.yml
+    with:
+      evidence_artifact_name: ${{ needs.autonomous_candidate_evolution.outputs.artifact_name }}
+      out_dir: rsi-governor-runs/replay
+  falsification_audit:
+    needs: [autonomous_candidate_evolution, replay]
+    uses: ./.github/workflows/rsi-governor-001-falsification-audit.yml
+    with:
+      evidence_artifact_name: ${{ needs.autonomous_candidate_evolution.outputs.artifact_name }}
+      out_dir: rsi-governor-runs/falsification
+  safe_pr:
+    needs: falsification_audit
+    uses: ./.github/workflows/rsi-governor-001-safe-pr.yml
+  evidence_hub_notify:
+    needs: [autonomous_candidate_evolution,replay,falsification_audit,safe_pr]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - run: |
+          cat > lifecycle_status.json <<'JSON'
+          {"promotion_status":"pending_human_review","selected_candidate_id":"pending","evidence_docket_artifact_name":"${{ needs.autonomous_candidate_evolution.outputs.artifact_name }}"}
+          JSON
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rsi-governor-lifecycle-status-${{ github.run_id }}
+          path: lifecycle_status.json

@@ -1,6 +1,25 @@
 name: rsi-governor-001-replay
 on:
   workflow_dispatch:
+    inputs:
+      evidence_artifact_name:
+        required: true
+        default: rsi-governor-autonomous
+      out_dir:
+        required: false
+        default: rsi-governor-runs/replay
+  workflow_call:
+    inputs:
+      evidence_artifact_name:
+        required: true
+        type: string
+      out_dir:
+        required: false
+        type: string
+        default: rsi-governor-runs/replay
+permissions:
+  contents: read
+  actions: read
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -9,4 +28,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -m agialpha_rsi_governor replay --docket rsi-governor-runs/test/rsi-governor-evidence-docket
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.evidence_artifact_name }}
+          path: ${{ inputs.out_dir }}/rsi-governor-evidence-docket
+      - run: python -m agialpha_rsi_governor replay --docket "${{ inputs.out_dir }}/rsi-governor-evidence-docket"
+      - run: echo '{"replay_source":"${{ inputs.evidence_artifact_name }}"}' > replay_report.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rsi-governor-replay-${{ github.run_id }}
+          path: replay_report.json
