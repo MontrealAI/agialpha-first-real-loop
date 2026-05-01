@@ -66,6 +66,26 @@ def _audit_claims(repo_root: Path) -> int:
     return 0 if not violations else 1
 
 
+
+
+def _build_index(repo_root: Path, out_path: Path) -> None:
+    docs_dir = repo_root / 'docs'
+    md_files = sorted([p for p in docs_dir.glob('*.md') if p.name != out_path.name])
+    lines = [
+        '# Documentation Index',
+        '',
+        'Generated index of top-level docs pages.',
+        '',
+        '| Document | Link |',
+        '|---|---|',
+    ]
+    for p in md_files:
+        title = p.stem.replace('_', ' ')
+        lines.append(f'| {title} | [{p.name}]({p.name}) |')
+    lines.append('')
+    lines.append('No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.')
+    out_path.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+
 def _audit_readmes(repo_root: Path) -> int:
     readme = repo_root / 'README.md'
     if not readme.exists():
@@ -92,7 +112,10 @@ def main():
     if a.cmd=='audit-links': raise SystemExit(_audit_links(root))
     if a.cmd=='audit-claims': raise SystemExit(_audit_claims(root))
     if a.cmd=='audit-readmes': raise SystemExit(_audit_readmes(root))
-    if a.cmd=='build-index': Path(a.out or root/'docs/README.md').write_text('# Docs Index\n', encoding='utf-8'); return
+    if a.cmd=='build-index':
+        out_path = Path(a.out).resolve() if a.out else (root / 'docs/README.md')
+        _build_index(root, out_path)
+        return
     if a.cmd=='freshness':
         out=root/'docs/_generated/freshness_report.json'; out.parent.mkdir(parents=True, exist_ok=True); out.write_text(json.dumps({'status':'pass'}), encoding='utf-8')
 
