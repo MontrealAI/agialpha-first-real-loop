@@ -1,4 +1,5 @@
 import argparse
+import sys
 import json
 import time
 from pathlib import Path
@@ -84,13 +85,14 @@ def run(repo_root: str, out: str):
     print(json.dumps({"run_id": run_id, "delta": best["delta"], "promotion_gate": promotion_ok, "best_candidate_id": best["candidate_id"]}, indent=2))
 
 
-def replay(docket: str):
+def replay(docket: str) -> bool:
     d = Path(docket)
     ok = (d / "00_manifest.json").exists() and (d / "07_evaluation_results/heldout_results.json").exists()
     print(json.dumps({"docket": docket, "replay_pass": ok}))
+    return ok
 
 
-def falsification_audit(docket: str):
+def falsification_audit(docket: str) -> bool:
     d = Path(docket)
     checks = {
         "manifest_present": (d / "00_manifest.json").exists(),
@@ -99,6 +101,7 @@ def falsification_audit(docket: str):
     }
     falsification_pass = all(checks.values())
     print(json.dumps({"docket": docket, "checks": checks, "falsification_pass": falsification_pass}))
+    return falsification_pass
 
 
 def lifecycle(repo_root: str, out: str):
@@ -128,7 +131,16 @@ def main():
     v.add_argument("--repo-root", required=True)
     v.add_argument("--out", required=True)
     a = p.parse_args()
-    {"run": lambda: run(a.repo_root, a.out), "replay": lambda: replay(a.docket), "falsification-audit": lambda: falsification_audit(a.docket), "lifecycle": lambda: lifecycle(a.repo_root, a.out), "vnext-canary": lambda: vnext_canary(a.repo_root, a.out)}[a.cmd]()
+    if a.cmd == "run":
+        run(a.repo_root, a.out)
+    elif a.cmd == "replay":
+        sys.exit(0 if replay(a.docket) else 1)
+    elif a.cmd == "falsification-audit":
+        sys.exit(0 if falsification_audit(a.docket) else 1)
+    elif a.cmd == "lifecycle":
+        lifecycle(a.repo_root, a.out)
+    elif a.cmd == "vnext-canary":
+        vnext_canary(a.repo_root, a.out)
 
 
 if __name__ == "__main__":
