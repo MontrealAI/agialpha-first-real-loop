@@ -85,7 +85,7 @@ OVERCLAIM_PATTERNS = [
 
 
 def now_iso() -> str:
-    return _dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+    return _dt.datetime.now(_dt.UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
 def ensure_dir(path: str | pathlib.Path) -> pathlib.Path:
