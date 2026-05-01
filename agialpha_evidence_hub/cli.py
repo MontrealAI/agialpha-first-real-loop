@@ -28,7 +28,7 @@ def main():
     v=sp.add_parser('validate'); v.add_argument('--registry',default='evidence_registry'); v.add_argument('--site',default='_site')
     l=sp.add_parser('linkcheck'); l.add_argument('--site',default='_site')
     wc=sp.add_parser('workflow-catalog'); wc.add_argument('--repo-root',default='.'); wc.add_argument('--registry',default='evidence_registry')
-    nu=sp.add_parser('needed-update'); nu.add_argument('--registry',default='evidence_registry'); nu.add_argument('--repo-root',default='.'); nu.add_argument('--out',default='evidence_registry/needed_update.json')
+    nu=sp.add_parser('needed-update'); nu.add_argument('--registry',default='evidence_registry'); nu.add_argument('--repo-root',default='.'); nu.add_argument('--out')
     a=ap.parse_args()
     if a.cmd=='discover': print(json.dumps(discover_to_file(a.repo_root,a.out),indent=2))
     elif a.cmd=='register-run': m=load_input(a.input); validate_manifest(m); update_registry(a.registry,m)
@@ -49,7 +49,9 @@ def main():
     elif a.cmd=='github-discover': print(json.dumps({'limit':a.limit,'runs':[]},indent=2))
     elif a.cmd=='needed-update':
         result=needed_update(a.registry, a.repo_root)
-        Path(a.out).write_text(json.dumps(result, indent=2))
+        out_path = Path(a.out) if a.out else Path(a.registry)/'needed_update.json'
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(json.dumps(result, indent=2))
         print(json.dumps(result, indent=2))
     elif a.cmd=='workflow-catalog':
         root=Path(a.repo_root)
