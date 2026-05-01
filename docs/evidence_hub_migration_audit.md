@@ -143,3 +143,12 @@ Resolver can discover emergent families from workflow filenames, manifests, arti
 ## 14) Current architectural failure mode
 
 Historically, distributed per-workflow publishing and shallow backfill routing caused partial/overwritten public views. The required fix is strict central publishing, persistent registry normalization, confidence-ranked discovery, and conservative low-confidence isolation.
+
+
+## Audit command trace
+
+- `rg --files .github/workflows`
+- `rg -n "workflow_dispatch|upload-artifact|upload-pages-artifact|deploy-pages|peaceiris/actions-gh-pages|github-pages-deploy-action|JamesIves/github-pages-deploy-action|git push origin gh-pages" .github/workflows/*.yml`
+- `python scripts/check_pages_architecture.py`
+
+Result: central publisher guard is active and only `evidence-hub-publish.yml` is allowed to deploy Pages.
