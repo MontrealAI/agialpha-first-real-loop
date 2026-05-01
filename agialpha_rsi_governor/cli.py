@@ -118,6 +118,15 @@ def vnext_canary(repo_root: str, out: str):
 
 def validate_autonomy_contract(contract: str):
     payload = json.loads(Path(contract).read_text())
+
+    def _require_action_list(field: str) -> list[str]:
+        value = payload.get(field)
+        if not isinstance(value, list):
+            raise SystemExit(f"invalid {field}: expected JSON array of action strings")
+        if not all(isinstance(x, str) for x in value):
+            raise SystemExit(f"invalid {field}: all actions must be strings")
+        return value
+
     required = {
         "schema_version": "agialpha.rsi_governor_autonomy_contract.v1",
         "experiment_slug": "rsi-governor-001",
@@ -137,8 +146,8 @@ def validate_autonomy_contract(contract: str):
         "run_vnext_canary",
         "notify_evidence_hub_publisher",
     }
-    pre = set(payload.get("autonomous_pre_promotion_actions", []))
-    post = set(payload.get("autonomous_post_merge_actions", []))
+    pre = set(_require_action_list("autonomous_pre_promotion_actions"))
+    post = set(_require_action_list("autonomous_post_merge_actions"))
     missing_pre = sorted(required_pre - pre)
     missing_post = sorted(required_post - post)
     if missing_pre or missing_post:
@@ -147,7 +156,7 @@ def validate_autonomy_contract(contract: str):
             + ", ".join(missing_pre + missing_post)
         )
 
-    op = set(payload.get("operator_required_actions", []))
+    op = set(_require_action_list("operator_required_actions"))
     forbidden_manual = {
         "run_replay",
         "run_falsification_audit",
