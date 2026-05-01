@@ -3,25 +3,24 @@ name: evidence-hub-publish
 on:
   workflow_run:
     workflows:
-      - replay
-      - evidence-factory-autonomous
-      - seed-runner-autonomous
-      - independent-replay-autonomous
-      - falsification-audit-autonomous
-      - frontier-usefulness-autonomous
-      - helios-001-autonomous
-      - helios-002-autonomous
-      - helios-003-autonomous
-      - helios-004-completion
-      - cyber-sovereign-001-autonomous
-      - cyber-sovereign-002-autonomous
-      - cyber-sovereign-003-autonomous
-      - benchmark-gauntlet-001-autonomous
-      - omega-gauntlet-001-autonomous
-      - phoenix-hub-001-autonomous
-      - rsi-forge-001-autonomous
-      - ascension-001-autonomous
-      - l4-l7-evidence-autopilot
+      - Replay First Real Loop
+      - AGI ALPHA Evidence Factory / Autonomous
+      - AGI ALPHA Edge Seed Runner / Autonomous
+      - AGI ALPHA Independent Replay / Autonomous
+      - AGI ALPHA Falsification Audit / Autonomous
+      - AGI ALPHA Frontier Usefulness / Autonomous
+      - AGI ALPHA HELIOS-001 / Autonomous
+      - AGI ALPHA HELIOS-002 / Autonomous
+      - AGI ALPHA HELIOS-003 / Autonomous
+      - AGI ALPHA HELIOS-004 Completion / Autonomous
+      - AGI ALPHA Cybersecurity Sovereign 001 / Autonomous
+      - AGI ALPHA Cybersecurity Sovereign 002 / Autonomous
+      - AGI ALPHA Benchmark Gauntlet 001 / Autonomous
+      - AGI ALPHA OMEGA-GAUNTLET-001 / Autonomous
+      - AGI ALPHA PHOENIX-HUB-001 / Autonomous
+      - RSI Forge 001 Autonomous
+      - AGI ALPHA ASCENSION-001 / Autonomous RSI Compounding
+      - AGI ALPHA L4-L7 Evidence Autopilot
     types: [completed]
   pull_request:
     paths:
