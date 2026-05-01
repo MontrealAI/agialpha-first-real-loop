@@ -33,3 +33,11 @@ PR/non-main runs are build+validate only and emit:
 ## Superseding successful deployment
 - **Successful main deployment run URL:** https://github.com/MontrealAI/agialpha-first-real-loop/actions/runs/25202377683
 - **Result:** successful `github-pages` deployment from `main` superseded the failed `codex/...` deployment record in the `github-pages` environment.
+
+## Stabilization re-verification snapshot (2026-05-01)
+- Confirmed a single Pages deployment workflow policy remains enforced: only `.github/workflows/evidence-hub-publish.yml` includes Pages deploy actions.
+- Re-ran the local validation gate (`python scripts/check_pages_architecture.py`) with success.
+- Re-ran repository tests (`python -m unittest discover -s tests`) with all tests passing.
+- Re-ran Evidence Mission Control build/validate/linkcheck with success.
+- Reconfirmed invariant language in public-facing outputs:
+  - **No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.**
