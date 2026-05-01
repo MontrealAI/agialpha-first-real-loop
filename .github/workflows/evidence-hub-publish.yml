@@ -1,6 +1,27 @@
 name: evidence-hub-publish
 
 on:
+  workflow_run:
+    workflows:
+      - Replay First Real Loop
+      - AGI ALPHA Evidence Factory / Autonomous
+      - AGI ALPHA Edge Seed Runner / Autonomous
+      - AGI ALPHA Independent Replay / Autonomous
+      - AGI ALPHA Falsification Audit / Autonomous
+      - AGI ALPHA Frontier Usefulness / Autonomous
+      - AGI ALPHA HELIOS-001 / Autonomous
+      - AGI ALPHA HELIOS-002 / Autonomous
+      - AGI ALPHA HELIOS-003 / Autonomous
+      - AGI ALPHA HELIOS-004 Completion / Autonomous
+      - AGI ALPHA Cybersecurity Sovereign 001 / Autonomous
+      - AGI ALPHA Cybersecurity Sovereign 002 / Autonomous
+      - AGI ALPHA Benchmark Gauntlet 001 / Autonomous
+      - AGI ALPHA OMEGA-GAUNTLET-001 / Autonomous
+      - AGI ALPHA PHOENIX-HUB-001 / Autonomous
+      - RSI Forge 001 Autonomous
+      - AGI ALPHA ASCENSION-001 / Autonomous RSI Compounding
+      - AGI ALPHA L4-L7 Evidence Autopilot
+    types: [completed]
   pull_request:
     paths:
       - 'evidence_registry/**'
@@ -24,12 +45,12 @@ on:
     - cron: '0 */4 * * *'
 
 concurrency:
-  group: evidence-hub-publish-${{ github.ref }}
+  group: evidence-hub-publish
   cancel-in-progress: false
 
 jobs:
   build-validate:
-    if: ${{ !contains(github.event.head_commit.message || '', '[skip evidence-hub-loop]') }}
+    if: ${{ !contains(github.event.head_commit.message || '', '[skip evidence-hub-loop]') && (github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion != 'skipped' && github.event.workflow_run.name != 'evidence-hub-publish')) }}
     runs-on: ubuntu-latest
     permissions:
       contents: read

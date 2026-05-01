@@ -8,6 +8,7 @@ from .build import build_site
 from .linkcheck import linkcheck
 from .discover import discover_to_file
 from .workflow_dispatch import parse_workflow_dispatch_inputs, workflow_gh_command
+from .needed_update import needed_update
 
 def _default_manifest(args):
     return {
@@ -26,6 +27,7 @@ def main():
     v=sp.add_parser('validate'); v.add_argument('--registry',default='evidence_registry'); v.add_argument('--site',default='_site')
     l=sp.add_parser('linkcheck'); l.add_argument('--site',default='_site')
     wc=sp.add_parser('workflow-catalog'); wc.add_argument('--repo-root',default='.'); wc.add_argument('--registry',default='evidence_registry')
+    nu=sp.add_parser('needed-update'); nu.add_argument('--registry',default='evidence_registry'); nu.add_argument('--repo-root',default='.')
     a=ap.parse_args()
     if a.cmd=='discover': print(json.dumps(discover_to_file(a.repo_root,a.out),indent=2))
     elif a.cmd=='register-run': m=load_input(a.input); validate_manifest(m); update_registry(a.registry,m)
@@ -43,6 +45,8 @@ def main():
     elif a.cmd=='linkcheck': linkcheck(a.site)
     elif a.cmd=='ingest-artifacts': print('0')
     elif a.cmd=='github-discover': print(json.dumps({'limit':a.limit,'runs':[]},indent=2))
+    elif a.cmd=='needed-update':
+        print(json.dumps(needed_update(a.registry, a.repo_root), indent=2))
     elif a.cmd=='workflow-catalog':
         root=Path(a.repo_root)
         rows=[]
