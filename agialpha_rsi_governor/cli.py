@@ -1,5 +1,6 @@
 import argparse
 import json
+import time
 from pathlib import Path
 
 from .candidates import generate_candidates
@@ -10,10 +11,23 @@ from .promotion import promotion_gate
 from .render import scoreboard_html
 
 
+def _next_run_id(outp: Path) -> str:
+    existing = sorted(p.name for p in outp.glob("run-*") if p.is_dir())
+    if not existing:
+        return "run-001"
+    last = existing[-1]
+    try:
+        n = int(last.split("-")[1]) + 1
+        return f"run-{n:03d}"
+    except Exception:
+        return f"run-{int(time.time())}"
+
+
 def run(repo_root: str, out: str):
     root, outp = Path(repo_root), Path(out)
     outp.mkdir(parents=True, exist_ok=True)
-    run_dir = outp / "run-001"
+    run_id = _next_run_id(outp)
+    run_dir = outp / run_id
     run_dir.mkdir(exist_ok=True)
 
     base = load_kernel(root / "config/rsi_governance_kernel_baseline.json")
@@ -41,7 +55,7 @@ def run(repo_root: str, out: str):
         (docket / p).mkdir(parents=True, exist_ok=True)
 
     (docket / "00_manifest.json").write_text(
-        json.dumps({"experiment": "RSI-GOVERNOR-001", "run_id": "run-001", "kernel_hash": kernel_hash(base)}, indent=2) + "\n"
+        json.dumps({"experiment": "RSI-GOVERNOR-001", "run_id": run_id, "kernel_hash": kernel_hash(base)}, indent=2) + "\n"
     )
     (docket / "07_evaluation_results/heldout_results.json").write_text(
         json.dumps({"B5": b5, "candidates": candidate_results, "selected": best["candidate_id"]}, indent=2) + "\n"
@@ -52,7 +66,7 @@ def run(repo_root: str, out: str):
 
     sb = {
         "experiment": "RSI-GOVERNOR-001",
-        "run_id": "run-001",
+        "run_id": run_id,
         "candidate_count": len(cands),
         "candidate_kernels_executed": len(candidate_results),
         "best_candidate_id": best["candidate_id"],
@@ -67,15 +81,24 @@ def run(repo_root: str, out: str):
     }
     (docket / "19_summary_tables/scoreboard.json").write_text(json.dumps(sb, indent=2) + "\n")
     (docket / "19_summary_tables/scoreboard.html").write_text(scoreboard_html(sb))
-    print(json.dumps({"delta": best["delta"], "promotion_gate": promotion_ok, "best_candidate_id": best["candidate_id"]}, indent=2))
+    print(json.dumps({"run_id": run_id, "delta": best["delta"], "promotion_gate": promotion_ok, "best_candidate_id": best["candidate_id"]}, indent=2))
 
 
 def replay(docket: str):
-    print(json.dumps({"docket": docket, "replay_pass": True}))
+    d = Path(docket)
+    ok = (d / "00_manifest.json").exists() and (d / "07_evaluation_results/heldout_results.json").exists()
+    print(json.dumps({"docket": docket, "replay_pass": ok}))
 
 
 def falsification_audit(docket: str):
-    print(json.dumps({"docket": docket, "falsification_pass": True}))
+    d = Path(docket)
+    checks = {
+        "manifest_present": (d / "00_manifest.json").exists(),
+        "heldout_results_present": (d / "07_evaluation_results/heldout_results.json").exists(),
+        "promotion_dossier_present": (d / "13_promotion_dossier/promotion_dossier.md").exists(),
+    }
+    falsification_pass = all(checks.values())
+    print(json.dumps({"docket": docket, "checks": checks, "falsification_pass": falsification_pass}))
 
 
 def main():

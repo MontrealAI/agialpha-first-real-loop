@@ -2,20 +2,20 @@
   "B5": {
     "task_count": 12,
     "metrics": {
-      "page_completeness_score": 0.6,
-      "evidence_integrity_score": 0.95,
-      "replay_readiness_score": 0.95,
-      "claim_boundary_integrity": 1.0,
+      "page_completeness_score": 0.64,
+      "evidence_integrity_score": 0.7959999999999999,
+      "replay_readiness_score": 0.7959999999999999,
+      "claim_boundary_integrity": 0.7959999999999999,
       "safety_integrity": 1.0,
-      "workflow_launchability": 0.9,
-      "registry_persistence_score": 0.9,
+      "workflow_launchability": 0.648,
+      "registry_persistence_score": 0.68,
       "future_work_recommendation_score": 0.9,
       "human_review_gate_integrity": 1.0,
       "coordination_overhead": 0.05,
       "false_positive_penalty": 0.02,
       "false_negative_penalty": 0.02
     },
-    "d_governance": 0.3621591743119266
+    "d_governance": 0.1174408287457092
   },
   "candidates": [
     {
@@ -24,21 +24,21 @@
         "task_count": 12,
         "metrics": {
           "page_completeness_score": 0.66,
-          "evidence_integrity_score": 0.95,
-          "replay_readiness_score": 0.95,
-          "claim_boundary_integrity": 1.0,
+          "evidence_integrity_score": 0.7959999999999999,
+          "replay_readiness_score": 0.7959999999999999,
+          "claim_boundary_integrity": 0.7959999999999999,
           "safety_integrity": 1.0,
-          "workflow_launchability": 0.9,
-          "registry_persistence_score": 0.9,
+          "workflow_launchability": 0.648,
+          "registry_persistence_score": 0.68,
           "future_work_recommendation_score": 0.9,
           "human_review_gate_integrity": 1.0,
           "coordination_overhead": 0.05,
           "false_positive_penalty": 0.02,
           "false_negative_penalty": 0.02
         },
-        "d_governance": 0.3983750917431193
+        "d_governance": 0.12111085464401257
       },
-      "delta": 0.03621591743119268
+      "delta": 0.0036700258983033696
     },
     {
       "candidate_id": "candidate-002",
@@ -46,21 +46,21 @@
         "task_count": 12,
         "metrics": {
           "page_completeness_score": 0.66,
-          "evidence_integrity_score": 0.95,
-          "replay_readiness_score": 0.95,
-          "claim_boundary_integrity": 1.0,
+          "evidence_integrity_score": 0.7959999999999999,
+          "replay_readiness_score": 0.7959999999999999,
+          "claim_boundary_integrity": 0.7959999999999999,
           "safety_integrity": 1.0,
-          "workflow_launchability": 0.9,
-          "registry_persistence_score": 0.9,
+          "workflow_launchability": 0.648,
+          "registry_persistence_score": 0.68,
           "future_work_recommendation_score": 0.9,
           "human_review_gate_integrity": 1.0,
           "coordination_overhead": 0.05,
           "false_positive_penalty": 0.02,
           "false_negative_penalty": 0.02
         },
-        "d_governance": 0.3983750917431193
+        "d_governance": 0.12111085464401257
       },
-      "delta": 0.03621591743119268
+      "delta": 0.0036700258983033696
     }
   ],
   "selected": "candidate-001"
