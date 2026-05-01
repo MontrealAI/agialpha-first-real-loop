@@ -1,26 +1,30 @@
-# GitHub Pages Deployment Diagnosis
+# GitHub Pages Deployment Diagnosis (2026-05-01)
 
-## Failing run
-- **Run URL:** https://github.com/MontrealAI/agialpha-first-real-loop/actions/runs/25192121986
+## Failing run inspected
+- **Run URL:** https://github.com/MontrealAI/agialpha-first-real-loop/actions/runs/25191403229
 - **Workflow:** `evidence-hub-publish`
-- **Ref/branch:** `codex/fix-github-pages-evidence-architecture-348bok` (`push` event)
-- **Failing job/step:** `build-and-deploy` → `python -m agialpha_evidence_hub backfill --repo-root . --out evidence_registry/registry`
+- **Branch / ref:** `codex/fix-github-pages-evidence-architecture` (`push` event)
+- **Failed job:** `deploy`
+- **Failed step:** job failed before any steps executed (`steps: []` in Actions Jobs API)
+
+## Failure mode
+The workflow attempted to execute the GitHub Pages deploy job on a non-`main` branch (`codex/...`).
+
+The build/publish job completed and uploaded a Pages artifact, but deployment failed at the environment/protection boundary for `github-pages` (untrusted ref deployment attempt), leaving a failed active deployment record.
 
 ## Root cause
-The failing deployment was initiated from a non-main `codex/*` branch push, while the workflow still attempted a combined build-and-deploy pattern. The run failed in backfill before deploy, and the deployment path was not isolated behind a strict trusted-branch deploy gate.
+Deployment gating was insufficiently strict in the failing revision: the deploy path could be reached from an experimental branch run instead of only trusted default-branch contexts.
 
 ## Exact fix
-1. Split central publisher into `build-validate` and `deploy-pages` jobs.
-2. Add explicit deploy guard so deployment only runs when all conditions are true:
-   - repository is `MontrealAI/agialpha-first-real-loop`
-   - ref is `refs/heads/main`
-   - event is `push`, `workflow_dispatch`, `schedule`, or `repository_dispatch`
-3. Keep PR/non-main behavior build+validate only, with explicit skip message:
-   - "Build/validate completed. Deployment skipped because this is not main."
-4. Keep only `.github/workflows/evidence-hub-publish.yml` authorized to call:
-   - `actions/upload-pages-artifact`
-   - `actions/deploy-pages`
+`evidence-hub-publish.yml` now enforces a strict deploy guard:
+- repository must be `MontrealAI/agialpha-first-real-loop`
+- ref must be `refs/heads/main`
+- event must be one of: `push`, `workflow_dispatch`, `schedule`, `repository_dispatch`
 
-## Prevention test added
-- `tests/test_evidence_hub_pr_deploy_guard.py` verifies deploy guard conditions and PR skip behavior.
-- `scripts/check_pages_architecture.py` + `tests/test_pages_architecture.py` enforce single-workflow Pages deployment architecture.
+PR/non-main runs are build+validate only and emit:
+> Build/validate completed. Deployment skipped because this is not main.
+
+## Prevention checks
+- `scripts/check_pages_architecture.py` fails if any workflow besides `.github/workflows/evidence-hub-publish.yml` contains direct Pages deploy mechanisms.
+- `tests/test_pages_architecture.py` enforces exactly one Pages deploy workflow and verifies central publisher ownership.
+- `tests/test_evidence_hub_pr_deploy_guard.py` enforces that PR execution paths do not deploy Pages.
