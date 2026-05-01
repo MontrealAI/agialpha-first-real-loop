@@ -28,6 +28,13 @@ POLICY_FORBIDDEN_AUTONOMOUS_ACTIONS = {
 }
 
 
+def _positive_int(value: str) -> int:
+    parsed = int(value)
+    if parsed < 1:
+        raise argparse.ArgumentTypeError("must be >= 1")
+    return parsed
+
+
 def _next_run_id(outp: Path) -> str:
     existing = sorted(p.name for p in outp.glob("run-*") if p.is_dir())
     if not existing:
@@ -204,7 +211,7 @@ def main():
     r = sp.add_parser("run")
     r.add_argument("--repo-root", required=True)
     r.add_argument("--out", required=True)
-    r.add_argument("--candidate-count", type=int, default=2)
+    r.add_argument("--candidate-count", type=_positive_int, default=2)
     rr = sp.add_parser("replay")
     rr.add_argument("--docket", required=True)
     f = sp.add_parser("falsification-audit")
@@ -212,7 +219,7 @@ def main():
     l = sp.add_parser("lifecycle")
     l.add_argument("--repo-root", required=True)
     l.add_argument("--out", required=True)
-    l.add_argument("--candidate-count", type=int, default=2)
+    l.add_argument("--candidate-count", type=_positive_int, default=2)
     v = sp.add_parser("vnext-canary")
     v.add_argument("--repo-root", required=True)
     v.add_argument("--out", required=True)
