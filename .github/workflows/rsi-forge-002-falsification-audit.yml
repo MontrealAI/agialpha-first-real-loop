@@ -1,0 +1,53 @@
+name: AGI ALPHA RSI-FORGE-002 / Falsification Audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Source RSI-FORGE-002 GitHub Actions run ID"
+        required: true
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  audit:
+    name: Falsify or downgrade RSI claim
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download artifact and audit
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.inputs.run_id }}
+        run: |
+          set -euo pipefail
+          mkdir -p audit_source audit_out
+          gh run download "$RUN_ID" --name "rsi-forge-002-${RUN_ID}" --dir audit_source || gh run download "$RUN_ID" --dir audit_source
+          DOCKET=$(find audit_source -name 00_manifest.json -print -quit | xargs dirname)
+          python -m rsi_forge_002 replay --docket "$DOCKET"
+          python - <<'PY'
+          import json, pathlib
+          d = pathlib.Path('audit_source')
+          manifest = json.loads(next(d.rglob('00_manifest.json')).read_text())
+          summary = json.loads(next(d.rglob('summary.json')).read_text())
+          safety = summary.get('safety_counters', {})
+          failures=[]
+          if not manifest.get('claim_boundary'): failures.append('missing claim boundary')
+          if summary.get('B6_advantage_delta_vs_B5', 0) <= 0: failures.append('no B6 advantage')
+          if summary.get('vnext_advantage_delta_vs_B5', 0) <= 0: failures.append('no vNext transfer advantage')
+          for k,v in safety.items():
+              if isinstance(v, int) and v != 0: failures.append(f'safety counter nonzero: {k}')
+          out={'falsification_status':'fail' if failures else 'pass','failures':failures,'claim_level':'downgrade-required' if failures else summary.get('claim_level','L5-local-RSI-proxy')}
+          pathlib.Path('audit_out/falsification_audit.json').write_text(json.dumps(out, indent=2, sort_keys=True))
+          print(json.dumps(out, indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rsi-forge-002-falsification-audit-${{ github.run_id }}
+          path: audit_out/

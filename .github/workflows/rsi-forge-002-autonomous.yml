@@ -1,0 +1,135 @@
+name: AGI ALPHA RSI-FORGE-002 / Autonomous
+
+on:
+  workflow_dispatch:
+    inputs:
+      cycles:
+        description: "Number of recursive RSI cycles"
+        required: false
+        default: "5"
+      candidates:
+        description: "Candidate kernels per cycle"
+        required: false
+        default: "18"
+      seed:
+        description: "Deterministic seed"
+        required: false
+        default: "37"
+      create_policy_pr:
+        description: "Open a human-governed PR with promoted kernel/state"
+        type: boolean
+        required: false
+        default: true
+  schedule:
+    - cron: "11 6 * * *"
+
+permissions:
+  contents: write
+  actions: read
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: rsi-forge-002-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  rsi-forge-002:
+    name: Run recursive self-improvement evidence forge
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Initialize RSI-FORGE state if absent
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -f data/rsi_forge_002/current_kernel.json ] || [ ! -f data/rsi_forge_002/latest_state.json ]; then
+            python -m rsi_forge_002 init --repo-root .
+          fi
+      - name: Run unit tests if present
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -d tests ]; then python -m unittest discover -s tests; fi
+      - name: Run RSI-FORGE-002 recursive loop
+        shell: bash
+        env:
+          CYCLES: ${{ github.event.inputs.cycles || '5' }}
+          CANDIDATES: ${{ github.event.inputs.candidates || '18' }}
+          SEED: ${{ github.event.inputs.seed || '37' }}
+        run: |
+          set -euo pipefail
+          OUT="runs/rsi-forge-002/${GITHUB_RUN_ID}"
+          mkdir -p "$OUT"
+          python -m rsi_forge_002 run --repo-root . --out "$OUT" --cycles "$CYCLES" --candidates "$CANDIDATES" --seed "$SEED"
+          python -m rsi_forge_002 replay --docket "$OUT"
+          mkdir -p docs/experiments/rsi-forge-002
+          cp "$OUT/scoreboard.html" docs/experiments/rsi-forge-002/index.html
+          cp "$OUT/evidence-run-manifest.json" docs/experiments/rsi-forge-002/evidence-run-manifest.json
+      - name: Upload RSI-FORGE-002 Evidence Docket
+        uses: actions/upload-artifact@v4
+        with:
+          name: rsi-forge-002-${{ github.run_id }}
+          path: |
+            runs/rsi-forge-002/${{ github.run_id }}/
+            docs/experiments/rsi-forge-002/
+          retention-days: 30
+      - name: Open human-governed policy/state PR
+        if: ${{ (github.event.inputs.create_policy_pr || 'true') == 'true' }}
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          BRANCH="rsi-forge-002/promoted-kernel-${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          mkdir -p data/rsi_forge_002 docs/experiments/rsi-forge-002
+          cp "runs/rsi-forge-002/${GITHUB_RUN_ID}/16_kernel_archive/promoted_kernel_after.json" data/rsi_forge_002/current_kernel.json
+          cp "runs/rsi-forge-002/${GITHUB_RUN_ID}/16_kernel_archive/latest_state_after.json" data/rsi_forge_002/latest_state.json
+          git add data/rsi_forge_002 docs/experiments/rsi-forge-002 runs/rsi-forge-002/${GITHUB_RUN_ID}
+          if git diff --cached --quiet; then
+            echo "No RSI-FORGE-002 state changes to propose."
+            exit 0
+          fi
+          git commit -m "RSI-FORGE-002 promoted kernel/state $GITHUB_RUN_ID"
+          git push --set-upstream origin "$BRANCH"
+          cat > /tmp/rsi_forge_002_pr.md <<'MD'
+          # RSI-FORGE-002 promoted kernel/state
+
+          This PR is opened by the bounded RSI-FORGE-002 experiment. It proposes a **policy/state update only** after a replayable, baseline-comparative, safety-gated recursive self-improvement run.
+
+          Review gates:
+          - [ ] Evidence Docket artifact present
+          - [ ] Replay report passes
+          - [ ] B6 beats B5 under equal proxy tasks
+          - [ ] vNext transfer beats no-archive baseline
+          - [ ] State hash continuity preserved
+          - [ ] Move-37 dossiers inspected if present
+          - [ ] No hard safety invariant failed
+          - [ ] Claim boundary preserved
+          - [ ] Human reviewer accepts, rejects, or requests changes
+
+          Claim boundary: this does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability.
+          MD
+          gh pr create --title "RSI-FORGE-002 promoted evidence kernel $GITHUB_RUN_ID" --body-file /tmp/rsi_forge_002_pr.md --head "$BRANCH" --base main || true
+      - name: Dispatch Evidence Hub publisher if present
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api repos/${GITHUB_REPOSITORY}/dispatches \
+            -f event_type=evidence_run_completed \
+            -F client_payload[experiment_slug]="rsi-forge-002" \
+            -F client_payload[run_id]="${GITHUB_RUN_ID}" \
+            -F client_payload[workflow]="${GITHUB_WORKFLOW}" || true
