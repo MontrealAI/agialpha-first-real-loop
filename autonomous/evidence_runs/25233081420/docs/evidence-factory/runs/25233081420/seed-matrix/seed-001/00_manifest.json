@@ -1,0 +1,286 @@
+{
+  "accepted_interventions": [
+    {
+      "allowed_for_ranking": true,
+      "capex_bucket": "low",
+      "causal_chain": [
+        "less infiltration",
+        "less heat/moisture load",
+        "less compressor runtime and frost burden"
+      ],
+      "enough_sources": true,
+      "evidence_gaps": [
+        "door-open frequency data"
+      ],
+      "failure_modes": [
+        "curtains interfere with workflow",
+        "poor installation"
+      ],
+      "id": "I002",
+      "low_capex": true,
+      "mechanism": "Reduce warm moist air infiltration so refrigeration load and frost formation decline.",
+      "preconditions": [
+        "door traffic observation",
+        "seal inspection"
+      ],
+      "quality_score": 4.18,
+      "red_team_verdict": "ALLOW",
+      "reviewer_label": "accepted",
+      "risk_notes": [
+        "must not compromise emergency egress or food handling workflow"
+      ],
+      "risk_tier": "ALLOW",
+      "source_ids": [
+        "S002",
+        "S003",
+        "S010",
+        "S011"
+      ],
+      "target_energy_sink": "doors and infiltration",
+      "title": "Audit door seals, strip curtains, airlocks, and door discipline",
+      "unsupported_source_ids": false
+    },
+    {
+      "allowed_for_ranking": true,
+      "capex_bucket": "no-cost",
+      "causal_chain": [
+        "less internal heat",
+        "less refrigeration load",
+        "less direct electricity use"
+      ],
+      "enough_sources": true,
+      "evidence_gaps": [
+        "heater schedule and condensation observations"
+      ],
+      "failure_modes": [
+        "condensation risk",
+        "worker visibility issues"
+      ],
+      "id": "I005",
+      "low_capex": true,
+      "mechanism": "Lights and heaters add direct electricity load and heat that refrigeration must remove.",
+      "preconditions": [
+        "confirm safety, visibility, and condensation requirements"
+      ],
+      "quality_score": 4.0,
+      "red_team_verdict": "ALLOW",
+      "reviewer_label": "accepted",
+      "risk_notes": [
+        "must preserve safety and product integrity"
+      ],
+      "risk_tier": "ALLOW",
+      "source_ids": [
+        "S003",
+        "S004",
+        "S005"
+      ],
+      "target_energy_sink": "lighting and internal heat gain",
+      "title": "Switch off or schedule lighting and anti-condensation heaters where safe",
+      "unsupported_source_ids": false
+    },
+    {
+      "allowed_for_ranking": true,
+      "capex_bucket": "no-cost",
+      "causal_chain": [
+        "clear airflow",
+        "more uniform temperature",
+        "less excessive runtime"
+      ],
+      "enough_sources": true,
+      "evidence_gaps": [
+        "layout photographs and walkthrough data"
+      ],
+      "failure_modes": [
+        "operational noncompliance over time"
+      ],
+      "id": "I009",
+      "low_capex": true,
+      "mechanism": "Blocked grilles and overstocking impair airflow, increasing cooling time and temperature variability.",
+      "preconditions": [
+        "warehouse layout review",
+        "operator training"
+      ],
+      "quality_score": 4.0,
+      "red_team_verdict": "ALLOW",
+      "reviewer_label": "accepted",
+      "risk_notes": [
+        "advisory operational practice"
+      ],
+      "risk_tier": "ALLOW",
+      "source_ids": [
+        "S003",
+        "S005",
+        "S010"
+      ],
+      "target_energy_sink": "airflow and operations",
+      "title": "Reduce overstocking and blocked air-grille conditions",
+      "unsupported_source_ids": false
+    },
+    {
+      "allowed_for_ranking": true,
+      "capex_bucket": "low",
+      "causal_chain": [
+        "cleaner heat exchangers",
+        "better heat transfer",
+        "lower runtime for same cooling"
+      ],
+      "enough_sources": true,
+      "evidence_gaps": [
+        "before/after temperature and amperage data"
+      ],
+      "failure_modes": [
+        "damage during cleaning",
+        "temporary downtime"
+      ],
+      "id": "I004",
+      "low_capex": true,
+      "mechanism": "Dirty coils and blocked airflow reduce heat-transfer efficiency and increase compressor/fan runtime.",
+      "preconditions": [
+        "maintenance access",
+        "cleaning schedule"
+      ],
+      "quality_score": 3.88,
+      "red_team_verdict": "ALLOW",
+      "reviewer_label": "accepted",
+      "risk_notes": [
+        "maintenance should follow manufacturer and facility procedures"
+      ],
+      "risk_tier": "ALLOW",
+      "source_ids": [
+        "S003",
+        "S005",
+        "S010"
+      ],
+      "target_energy_sink": "maintenance and coil cleanliness",
+      "title": "Clean condenser and evaporator coils and verify airflow paths",
+      "unsupported_source_ids": false
+    }
+  ],
+  "claim_boundary": "This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+  "created_at": "2026-05-01T21:04:02Z",
+  "docket_hash": "bb5e82ccc32fd857a5e02be0b76a493a7ce42113e6511dfdc7bf20e6a5a7b617",
+  "docket_id": "ColdChain-Energy-Loop-001-seed-001",
+  "jobs_success": {
+    "J1": true,
+    "J2": true,
+    "J3": true,
+    "J4": true,
+    "J5": true
+  },
+  "loop_passed": true,
+  "mark_green_flamed": true,
+  "matrix_seed_index": 1,
+  "reusable_construct": {
+    "causalization_rubric": [
+      "show how the intervention reduces load, runtime, lift, heat gain, or control waste",
+      "list preconditions and missing measurements",
+      "separate advisory recommendations from operational changes"
+    ],
+    "evidence_docket_template": "templates/evidence_docket_template.json",
+    "extracted_from": [
+      "J1",
+      "J2",
+      "J3",
+      "J4",
+      "J5"
+    ],
+    "facility_model_schema": {
+      "constraints": "list[string]",
+      "evidence_references": "list[source_id]",
+      "facility_type": "string",
+      "major_energy_sinks": "list[string]",
+      "missing_assumptions": "list[string]"
+    },
+    "final_output_template": "ranked_interventions_with_evidence_and_risk_notes",
+    "id": "ColdChain-Energy-Compiler-v0",
+    "intervention_schema": {
+      "capex_bucket": "no-cost|low|low-to-moderate|moderate|high",
+      "failure_modes": "list[string]",
+      "mechanism": "string",
+      "preconditions": "list[string]",
+      "risk_notes": "list[string]",
+      "source_ids": "list[source_id]",
+      "target_energy_sink": "string",
+      "title": "string"
+    },
+    "purpose": "Reusable cold-chain energy evidence workflow extracted from Seed-001.",
+    "red_team_rules": [
+      "block refrigerant-handling recommendations",
+      "block food-safety-critical setpoint changes without expert review",
+      "block electrical work recommendations without licensed review",
+      "block guaranteed savings claims",
+      "label controls/defrost/head-pressure work as CAUTION unless framed as audit/review"
+    ],
+    "source_discovery_rules": [
+      "prefer government, utility, institutional, engineering, manufacturer, and standards sources",
+      "require at least three evidence traces per accepted intervention",
+      "separate evidence for mechanism, implementation precondition, and risk boundary"
+    ]
+  },
+  "seed_id": "ColdChain-Energy-Seed-001",
+  "sovereign_id": "ColdChain-Energy-Sovereign-001",
+  "success_conditions": {
+    "compiler_extracted": true,
+    "evidence_docket_exists": true,
+    "mark_reviewed": true,
+    "seed_created": true,
+    "sovereign_executed": true,
+    "vnext_improved": true
+  },
+  "treatment_control": {
+    "claim_boundary": "This treatment/control result is deterministic first-loop evidence. External proof requires independent reviewer replication and archived source verification.",
+    "control_yield": 0.3,
+    "hallucination_delta": 0,
+    "passed": true,
+    "primary_metric": "accepted_useful_interventions / total_cost_units",
+    "reuse_lift": 0.6667,
+    "reuse_lift_percent": 66.67,
+    "safety_delta": 0,
+    "treatment_yield": 0.5
+  },
+  "vnext_seed": {
+    "added_constraints": [
+      "stronger food-safety review emphasis",
+      "stronger restriction on setpoint and defrost recommendations",
+      "recommend measurement and review before operational control changes"
+    ],
+    "foresight_genome": [
+      "Cold-chain energy efficiency is a high-leverage opportunity because facilities have repeated refrigeration energy sinks.",
+      "Many interventions are low-capex or operational-review interventions.",
+      "Public evidence exists from government, utility, institutional, engineering, manufacturer, and standards sources.",
+      "Recommendations can be reviewed through evidence traces and safety gates.",
+      "Workflows should transfer to adjacent cold-chain facilities.",
+      "Food-processing cold-chain facilities combine refrigeration loads with process, hygiene, scheduling, and product-safety constraints."
+    ],
+    "fusion_plan": [
+      "Build a facility model",
+      "Discover credible evidence",
+      "Generate candidate interventions",
+      "Causalize each intervention",
+      "Score and red-team each intervention",
+      "Rank final recommendations",
+      "Produce an Evidence Docket",
+      "Extract reusable capability package"
+    ],
+    "id": "ColdChain-Energy-Seed-002",
+    "mutation": "target facility changes from refrigerated warehouse to food-processing cold-chain facility",
+    "parent_seed_id": "ColdChain-Energy-Seed-001",
+    "promotion_criteria": [
+      "at least 5 useful interventions are produced",
+      "each accepted intervention has at least 3 credible evidence traces",
+      "no hallucinated sources",
+      "reviewer accepts at least 3 interventions",
+      "one reusable workflow or rubric is extracted"
+    ],
+    "reused_capability": "ColdChain-Energy-Compiler-v0",
+    "risk_envelope": [
+      "no unsupported savings claims",
+      "no food-safety changes without review",
+      "no refrigerant-handling recommendations",
+      "no claims without citations",
+      "no recommendation requiring major shutdown",
+      "advisory only; facility professionals must review before implementation",
+      "no food-safety-critical process recommendation without expert review"
+    ]
+  }
+}

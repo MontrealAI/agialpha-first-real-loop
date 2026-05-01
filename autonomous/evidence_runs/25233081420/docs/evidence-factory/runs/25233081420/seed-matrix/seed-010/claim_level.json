@@ -1,0 +1,61 @@
+{
+  "claim_boundary": "Claim level is deliberately conservative. This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+  "current_level": "L3",
+  "generated_at_epoch": 1777669445,
+  "levels": [
+    {
+      "description": "Formal system described.",
+      "level": "L0",
+      "name": "Architecture only"
+    },
+    {
+      "description": "Code exists and can be inspected or run locally.",
+      "level": "L1",
+      "name": "Implementation scaffold"
+    },
+    {
+      "description": "GitHub Actions runs a deterministic loop and uploads an artifact.",
+      "level": "L2",
+      "name": "CI replay scaffold"
+    },
+    {
+      "description": "Run produces manifest, job outputs, review card, compiler, comparison, decision memo, and replay instructions.",
+      "level": "L3",
+      "name": "Evidence Docket scaffold"
+    },
+    {
+      "description": "A clean CI job replays the docket, but no independent reviewer has signed off yet.",
+      "level": "L3.5",
+      "name": "Internal clean-CI replay"
+    },
+    {
+      "description": "An independent reviewer or clean external fork reproduces the docket.",
+      "level": "L4",
+      "name": "Independently replayed Evidence Docket"
+    },
+    {
+      "description": "Full baseline suite B0-B4 is run under equal constraints and the AGI ALPHA loop wins without worse safety.",
+      "level": "L5",
+      "name": "Baseline-comparative evidence"
+    },
+    {
+      "description": "More agents/nodes improve verified work per cost or task coverage without unacceptable overhead.",
+      "level": "L6",
+      "name": "Scaling evidence"
+    },
+    {
+      "description": "Runs across software, web/API, data/science, and protocol-native tasks.",
+      "level": "L7",
+      "name": "Real-task portfolio evidence"
+    },
+    {
+      "description": "External benchmark, delayed outcome, or independent validator confirms the result.",
+      "level": "L8",
+      "name": "External validation"
+    }
+  ],
+  "promotion_reasons": [
+    "base Evidence Docket files present"
+  ],
+  "schema": "agialpha.claim_level.v1"
+}
