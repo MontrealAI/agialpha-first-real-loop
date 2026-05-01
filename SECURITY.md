@@ -1,5 +1,5 @@
-# README EVIDENCE HUB
+# SECURITY
 
-Evidence Hub and Mission Control architecture and publisher boundaries.
+Security reporting and defensive scope boundaries.
 
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.

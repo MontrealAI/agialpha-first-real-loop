@@ -1,5 +1,5 @@
-# README EVIDENCE HUB
+# CHANGELOG
 
-Evidence Hub and Mission Control architecture and publisher boundaries.
+Documentation architecture upgrade log.
 
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
