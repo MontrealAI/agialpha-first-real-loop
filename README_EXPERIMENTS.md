@@ -1,5 +1,5 @@
-# README EVIDENCE HUB
+# README EXPERIMENTS
 
-Evidence Hub and Mission Control architecture and publisher boundaries.
+Experiment families and status pointers.
 
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.

@@ -1,5 +1,5 @@
-# README EVIDENCE HUB
+# CODE OF CONDUCT
 
-Evidence Hub and Mission Control architecture and publisher boundaries.
+Community expectations and respectful conduct.
 
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.

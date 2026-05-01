@@ -1,5 +1,5 @@
-# README EVIDENCE HUB
+# CONTRIBUTING
 
-Evidence Hub and Mission Control architecture and publisher boundaries.
+Contribution process and documentation expectations.
 
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
