@@ -10,6 +10,9 @@ from .evaluator import eval_kernel
 from .kernel import kernel_hash, load_kernel
 from .promotion import promotion_gate
 from .render import scoreboard_html
+from .replay import replay_docket
+from .falsification import falsification_report
+from .canary import default_canary_report
 
 
 POLICY_FORBIDDEN_AUTONOMOUS_ACTIONS = {
@@ -100,22 +103,17 @@ def run(repo_root: str, out: str):
 
 def replay(docket: str):
     d = Path(docket)
-    ok = (d / "00_manifest.json").exists() and (d / "07_evaluation_results/heldout_results.json").exists()
-    print(json.dumps({"docket": docket, "replay_pass": ok}))
-    if not ok:
+    result = replay_docket(d)
+    print(json.dumps(result))
+    if not result["replay_pass"]:
         raise SystemExit(1)
 
 
 def falsification_audit(docket: str):
     d = Path(docket)
-    checks = {
-        "manifest_present": (d / "00_manifest.json").exists(),
-        "heldout_results_present": (d / "07_evaluation_results/heldout_results.json").exists(),
-        "promotion_dossier_present": (d / "13_promotion_dossier/promotion_dossier.md").exists(),
-    }
-    falsification_pass = all(checks.values())
-    print(json.dumps({"docket": docket, "checks": checks, "falsification_pass": falsification_pass}))
-    if not falsification_pass:
+    result = falsification_report(d)
+    print(json.dumps(result))
+    if not result["falsification_pass"]:
         raise SystemExit(1)
 
 
@@ -124,7 +122,7 @@ def lifecycle(repo_root: str, out: str):
 
 def vnext_canary(repo_root: str, out: str):
     p=Path(out); p.mkdir(parents=True, exist_ok=True)
-    report={"vnext_canary_pass": True, "note": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."}
+    report=default_canary_report()
     (p/"vnext_canary_report.json").write_text(json.dumps(report, indent=2)+"\n")
     print(json.dumps(report))
 
