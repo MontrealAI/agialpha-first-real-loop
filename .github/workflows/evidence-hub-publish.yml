@@ -1,6 +1,9 @@
 name: evidence-hub-publish
 
 on:
+  workflow_run:
+    workflows: ['*']
+    types: [completed]
   pull_request:
     paths:
       - 'evidence_registry/**'
@@ -24,7 +27,7 @@ on:
     - cron: '0 */4 * * *'
 
 concurrency:
-  group: evidence-hub-publish-${{ github.ref }}
+  group: evidence-hub-publish
   cancel-in-progress: false
 
 jobs:
