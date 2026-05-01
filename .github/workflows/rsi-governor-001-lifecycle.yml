@@ -1,0 +1,44 @@
+name: AGI ALPHA RSI-GOVERNOR-001 / Lifecycle Orchestrator
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [rsi_governor_cycle_requested]
+  schedule:
+    - cron: "17 */12 * * *"
+concurrency:
+  group: rsi-governor-001-lifecycle
+  cancel-in-progress: false
+permissions:
+  contents: write
+  actions: read
+  pull-requests: write
+  issues: write
+jobs:
+  autonomous_candidate_evolution:
+    uses: ./.github/workflows/rsi-governor-001-autonomous.yml
+    with:
+      out_dir: rsi-governor-runs/lifecycle
+  replay:
+    needs: autonomous_candidate_evolution
+    uses: ./.github/workflows/rsi-governor-001-replay.yml
+    with:
+      autonomous_artifact: ${{ needs.autonomous_candidate_evolution.outputs.artifact_name }}
+      out_dir: rsi-governor-runs/lifecycle
+  falsification_audit:
+    needs: [autonomous_candidate_evolution, replay]
+    uses: ./.github/workflows/rsi-governor-001-falsification-audit.yml
+    with:
+      autonomous_artifact: ${{ needs.autonomous_candidate_evolution.outputs.artifact_name }}
+      out_dir: rsi-governor-runs/lifecycle
+  safe_pr:
+    needs: [autonomous_candidate_evolution, falsification_audit]
+    uses: ./.github/workflows/rsi-governor-001-safe-pr.yml
+    with:
+      autonomous_artifact: ${{ needs.autonomous_candidate_evolution.outputs.artifact_name }}
+  evidence_hub_notify:
+    needs: [autonomous_candidate_evolution, replay, falsification_audit, safe_pr]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - run: |
+          echo '{"promotion_status":"pending_human_review","artifact":"${{ needs.autonomous_candidate_evolution.outputs.artifact_name }}"}' > lifecycle_status.json

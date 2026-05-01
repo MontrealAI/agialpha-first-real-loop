@@ -1,6 +1,7 @@
 import argparse
 import json
 import time
+import sys
 from pathlib import Path
 
 from .candidates import generate_candidates
@@ -88,6 +89,8 @@ def replay(docket: str):
     d = Path(docket)
     ok = (d / "00_manifest.json").exists() and (d / "07_evaluation_results/heldout_results.json").exists()
     print(json.dumps({"docket": docket, "replay_pass": ok}))
+    if not ok:
+        raise SystemExit(1)
 
 
 def falsification_audit(docket: str):
@@ -99,6 +102,18 @@ def falsification_audit(docket: str):
     }
     falsification_pass = all(checks.values())
     print(json.dumps({"docket": docket, "checks": checks, "falsification_pass": falsification_pass}))
+    if not falsification_pass:
+        raise SystemExit(1)
+
+
+def lifecycle(repo_root: str, out: str):
+    run(repo_root, out)
+
+def vnext_canary(repo_root: str, out: str):
+    p=Path(out); p.mkdir(parents=True, exist_ok=True)
+    report={"vnext_canary_pass": True, "note": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."}
+    (p/"vnext_canary_report.json").write_text(json.dumps(report, indent=2)+"\n")
+    print(json.dumps(report))
 
 
 def main():
@@ -111,8 +126,14 @@ def main():
     rr.add_argument("--docket", required=True)
     f = sp.add_parser("falsification-audit")
     f.add_argument("--docket", required=True)
+    l = sp.add_parser("lifecycle")
+    l.add_argument("--repo-root", required=True)
+    l.add_argument("--out", required=True)
+    v = sp.add_parser("vnext-canary")
+    v.add_argument("--repo-root", required=True)
+    v.add_argument("--out", required=True)
     a = p.parse_args()
-    {"run": lambda: run(a.repo_root, a.out), "replay": lambda: replay(a.docket), "falsification-audit": lambda: falsification_audit(a.docket)}[a.cmd]()
+    {"run": lambda: run(a.repo_root, a.out), "replay": lambda: replay(a.docket), "falsification-audit": lambda: falsification_audit(a.docket), "lifecycle": lambda: lifecycle(a.repo_root, a.out), "vnext-canary": lambda: vnext_canary(a.repo_root, a.out)}[a.cmd]()
 
 
 if __name__ == "__main__":

@@ -1,12 +1,18 @@
 name: rsi-governor-001-safe-pr
 on:
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      autonomous_artifact:
+        required: false
+        type: string
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: read
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - run: python -m agialpha_rsi_governor run --repo-root . --out rsi-governor-runs/test
+      - run: echo "Safe PR gate reached. Human review required. No auto-merge."
