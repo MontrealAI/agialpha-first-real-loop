@@ -1,4 +1,6 @@
 name: RSI Forge 001 VNext Transfer
+name: AGI ALPHA RSI-FORGE-001 / vNext Transfer
+
 on:
   workflow_dispatch:
     inputs:
@@ -14,3 +16,33 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo "VNext transfer scaffold for RSI Forge 001"
+        description: "Cycles to regenerate before vNext transfer"
+        required: false
+        default: "6"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  vnext:
+    name: vNext transfer after RSI source-code improvement
+    runs-on: ubuntu-latest
+    env:
+      OUT_DIR: runs/rsi-forge-001-vnext/${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Generate and test vNext transfer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m agialpha_rsi_forge_001 run --out "$OUT_DIR" --cycles "${{ github.event.inputs.cycles || '6' }}"
+          python -m agialpha_rsi_forge_001 vnext --docket "$OUT_DIR"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rsi-forge-001-vnext-transfer-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          retention-days: 30
