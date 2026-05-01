@@ -28,6 +28,13 @@ POLICY_FORBIDDEN_AUTONOMOUS_ACTIONS = {
 }
 
 
+def _positive_int(value: str) -> int:
+    parsed = int(value)
+    if parsed < 1:
+        raise argparse.ArgumentTypeError("must be >= 1")
+    return parsed
+
+
 def _next_run_id(outp: Path) -> str:
     existing = sorted(p.name for p in outp.glob("run-*") if p.is_dir())
     if not existing:
@@ -40,15 +47,22 @@ def _next_run_id(outp: Path) -> str:
         return f"run-{int(time.time())}"
 
 
-def run(repo_root: str, out: str):
+def _resolve_run_id(outp: Path) -> str:
+    run_id = outp.name
+    if run_id:
+        return run_id
+    return _next_run_id(outp)
+
+
+def run(repo_root: str, out: str, candidate_count: int = 2):
     root, outp = Path(repo_root), Path(out)
     outp.mkdir(parents=True, exist_ok=True)
-    run_id = _next_run_id(outp)
-    run_dir = outp / run_id
+    run_id = _resolve_run_id(outp)
+    run_dir = outp
     run_dir.mkdir(exist_ok=True)
 
     base = load_kernel(root / "config/rsi_governance_kernel_baseline.json")
-    cands = generate_candidates(base, 2)
+    cands = generate_candidates(base, candidate_count)
     cdir = run_dir / "candidate_kernels"
     cdir.mkdir(exist_ok=True)
     for c in cands:
@@ -117,8 +131,8 @@ def falsification_audit(docket: str):
         raise SystemExit(1)
 
 
-def lifecycle(repo_root: str, out: str):
-    run(repo_root, out)
+def lifecycle(repo_root: str, out: str, candidate_count: int = 2):
+    run(repo_root, out, candidate_count)
 
 def vnext_canary(repo_root: str, out: str):
     p=Path(out); p.mkdir(parents=True, exist_ok=True)
@@ -204,6 +218,7 @@ def main():
     r = sp.add_parser("run")
     r.add_argument("--repo-root", required=True)
     r.add_argument("--out", required=True)
+    r.add_argument("--candidate-count", type=_positive_int, default=2)
     rr = sp.add_parser("replay")
     rr.add_argument("--docket", required=True)
     f = sp.add_parser("falsification-audit")
@@ -211,6 +226,7 @@ def main():
     l = sp.add_parser("lifecycle")
     l.add_argument("--repo-root", required=True)
     l.add_argument("--out", required=True)
+    l.add_argument("--candidate-count", type=_positive_int, default=2)
     v = sp.add_parser("vnext-canary")
     v.add_argument("--repo-root", required=True)
     v.add_argument("--out", required=True)
@@ -218,10 +234,10 @@ def main():
     c.add_argument("--contract", required=True)
     a = p.parse_args()
     {
-        "run": lambda: run(a.repo_root, a.out),
+        "run": lambda: run(a.repo_root, a.out, a.candidate_count),
         "replay": lambda: replay(a.docket),
         "falsification-audit": lambda: falsification_audit(a.docket),
-        "lifecycle": lambda: lifecycle(a.repo_root, a.out),
+        "lifecycle": lambda: lifecycle(a.repo_root, a.out, a.candidate_count),
         "vnext-canary": lambda: vnext_canary(a.repo_root, a.out),
         "validate-autonomy-contract": lambda: validate_autonomy_contract(a.contract),
     }[a.cmd]()
