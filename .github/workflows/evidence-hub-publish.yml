@@ -1,4 +1,4 @@
-name: evidence-hub-publish
+name: AGI ALPHA Evidence Mission Control / Autopublisher
 
 on:
   workflow_run:
@@ -40,7 +40,7 @@ on:
       - 'tests/**'
   workflow_dispatch:
   repository_dispatch:
-    types: [evidence_run_completed]
+    types: [evidence_run_completed, evidence_registry_changed, evidence_hub_rebuild_requested]
   schedule:
     - cron: '0 */4 * * *'
 
