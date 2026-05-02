@@ -20,7 +20,7 @@ def _load(base):
 
 def build_site(registry='evidence_registry', out='_site'):
     runs,exps,wfs=_load(registry)
-    repo_root = Path(registry).resolve().parent
+    repo_root = Path(__file__).resolve().parent.parent
     o=Path(out); o.mkdir(parents=True,exist_ok=True)
     for d in ['data','experiments','workflows','runs','artifacts','legacy','external-review','safety','launchpad','falsification','assets','strong-rsi']:
         (o/d).mkdir(exist_ok=True)
