@@ -5,16 +5,9 @@
   "required": [
     "experiment_slug",
     "experiment_family",
-    "experiment_name",
-    "workflow_name",
-    "workflow_file",
-    "claim_boundary",
-    "evidence_docket_path",
-    "scoreboard_path",
-    "metrics",
-    "safety_counters",
     "public_page",
-    "experiment_page"
+    "experiment_page",
+    "metrics"
   ],
   "properties": {
     "experiment_slug": {

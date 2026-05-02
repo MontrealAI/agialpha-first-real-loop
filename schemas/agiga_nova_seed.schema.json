@@ -37,7 +37,8 @@
         "cost",
         "runbook",
         "capability",
-        "descendant"
+        "descendant",
+        "kernel_mutation"
       ]
     },
     "variant_family": {

@@ -19,4 +19,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: agiga-foundry-001-safe-policy-pr
-          path: agiga-foundry-runs/safe-policy-pr/agiga-foundry-evidence-docket/25_foundry_policy_vnext
+          path: agiga-foundry-runs/safe-policy-pr/agiga-foundry-evidence-docket/12_foundry_kernel_rsi
