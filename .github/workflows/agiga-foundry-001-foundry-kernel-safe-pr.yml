@@ -74,6 +74,8 @@ jobs:
             - No auto-merge
 
             No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+          add-paths: |
+            docs/agiga-foundry/foundry-kernel-promotion-*.md
           labels: |
             agiga-foundry
             human-review-required
