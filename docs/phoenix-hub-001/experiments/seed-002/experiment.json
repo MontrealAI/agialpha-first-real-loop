@@ -1,0 +1,17 @@
+{
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+  "experiment_name": "SEED 002",
+  "experiment_slug": "seed-002",
+  "family": "Other / Discovered",
+  "has_evidence_docket": true,
+  "latest_status": "discovered",
+  "metrics": {},
+  "page_path": "experiments/seed-002/index.html",
+  "sources": [
+    {
+      "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-002/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-002",
+      "type": "docket"
+    }
+  ]
+}

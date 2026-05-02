@@ -1,0 +1,35 @@
+{
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+  "experiment_name": "INDEPENDENT REPLAY",
+  "experiment_slug": "independent-replay",
+  "family": "Evidence Infrastructure",
+  "latest_status": "discovered",
+  "metrics": {},
+  "page_path": "experiments/independent-replay/index.html",
+  "sources": [
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA ASCENSION-001 / Independent Replay",
+      "path": ".github/workflows/ascension-001-independent-replay.yml",
+      "type": "workflow"
+    },
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA Independent Replay / Autonomous",
+      "path": ".github/workflows/independent-replay-autonomous.yml",
+      "type": "workflow"
+    },
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA RSI-FORGE-001 / Independent Replay",
+      "path": ".github/workflows/rsi-forge-001-independent-replay.yml",
+      "type": "workflow"
+    },
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA RSI-FORGE-002 / Independent Replay",
+      "path": ".github/workflows/rsi-forge-002-independent-replay.yml",
+      "type": "workflow"
+    }
+  ]
+}

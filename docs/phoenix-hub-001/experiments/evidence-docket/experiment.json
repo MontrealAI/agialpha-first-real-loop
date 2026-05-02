@@ -1,0 +1,17 @@
+{
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+  "experiment_name": "EVIDENCE DOCKET",
+  "experiment_slug": "evidence-docket",
+  "family": "Other / Discovered",
+  "has_evidence_docket": true,
+  "latest_status": "discovered",
+  "metrics": {},
+  "page_path": "experiments/evidence-docket/index.html",
+  "sources": [
+    {
+      "manifest_file": "evidence-docket/00_manifest.json",
+      "path": "evidence-docket",
+      "type": "docket"
+    }
+  ]
+}
