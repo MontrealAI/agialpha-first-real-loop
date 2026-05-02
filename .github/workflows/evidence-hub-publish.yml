@@ -88,7 +88,7 @@ jobs:
       - name: Discover evidence
         run: |
           python -m agialpha_evidence_hub workflow-catalog --repo-root .
-          python -m agialpha_evidence_hub discover --repo-root . --registry evidence_registry
+          python -m agialpha_evidence_hub discover --repo-root . --out evidence_registry/discovered_runs.json
           python -m agialpha_evidence_hub github-discover --registry evidence_registry --limit 1000
       - name: Backfill
         run: python -m agialpha_evidence_hub backfill --repo-root . --registry evidence_registry
