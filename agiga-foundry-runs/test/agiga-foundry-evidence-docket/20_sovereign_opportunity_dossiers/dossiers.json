@@ -48,5 +48,115 @@
     "next_action": "run lifecycle",
     "risk_tier": "low",
     "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve policy-bound tool-use task",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-006",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve energy-to-compute scheduling proxy",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-007",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve external reviewer replay task",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-008",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve benchmark adapter readiness task",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-009",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve RSI governance task",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-010",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve documentation/usability task",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-011",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve AGI Jobs protocol-native proof task",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-012",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve Evidence Hub / Mission Control task",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-013",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve operator runbook task",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-014",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve capability package compression task",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-015",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve vNext transfer task",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-016",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
   }
 ]

@@ -1,0 +1,13 @@
+{
+  "incumbent_score": 0.6,
+  "candidate_scores": {
+    "candidate-001": 0.5333,
+    "candidate-002": 0.6
+  },
+  "best_candidate_id": "candidate-002",
+  "best_candidate_score": 0.6,
+  "heldout_task_count": 15,
+  "delta": 0.0,
+  "win_rate": 0.0,
+  "beats": false
+}
