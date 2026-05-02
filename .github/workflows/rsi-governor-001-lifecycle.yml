@@ -62,11 +62,21 @@ jobs:
     with:
       autonomous_artifact: ${{ needs.autonomous_candidate_evolution.outputs.artifact_name }}
 
-  delayed_outcome:
-    if: ${{ inputs.phase == 'post_merge' || inputs.phase == 'full_if_allowed' }}
+  delayed_outcome_post_merge:
+    if: ${{ inputs.phase == 'post_merge' }}
     uses: ./.github/workflows/rsi-governor-001-delayed-outcome.yml
 
-  vnext_canary:
-    if: ${{ inputs.phase == 'post_merge' || inputs.phase == 'full_if_allowed' }}
-    needs: delayed_outcome
+  vnext_canary_post_merge:
+    if: ${{ inputs.phase == 'post_merge' }}
+    needs: delayed_outcome_post_merge
+    uses: ./.github/workflows/rsi-governor-001-vnext-canary.yml
+
+  delayed_outcome_full_if_allowed:
+    if: ${{ inputs.phase == 'full_if_allowed' }}
+    needs: safe_pr
+    uses: ./.github/workflows/rsi-governor-001-delayed-outcome.yml
+
+  vnext_canary_full_if_allowed:
+    if: ${{ inputs.phase == 'full_if_allowed' }}
+    needs: delayed_outcome_full_if_allowed
     uses: ./.github/workflows/rsi-governor-001-vnext-canary.yml
