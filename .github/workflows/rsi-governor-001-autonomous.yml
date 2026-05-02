@@ -7,12 +7,21 @@ on:
         required: false
         default: rsi-governor-runs/test
         type: string
+      candidate_count:
+        description: Number of governance-kernel candidates
+        required: false
+        default: "6"
+        type: string
   workflow_call:
     inputs:
       out_dir:
         required: false
         type: string
         default: rsi-governor-runs/lifecycle
+      candidate_count:
+        required: false
+        type: string
+        default: "6"
     outputs:
       artifact_name:
         value: ${{ jobs.run.outputs.artifact_name }}
@@ -36,7 +45,7 @@ jobs:
           python-version: '3.11'
       - id: cfg
         run: echo "out_dir=${{ inputs.out_dir || 'rsi-governor-runs/test' }}" >> $GITHUB_OUTPUT
-      - run: python -m agialpha_rsi_governor run --repo-root . --out "${{ steps.cfg.outputs.out_dir }}"
+      - run: python -m agialpha_rsi_governor run --repo-root . --out "${{ steps.cfg.outputs.out_dir }}" --candidate-count "${{ inputs.candidate_count || '6' }}"
       - id: meta
         run: |
           echo "artifact_name=rsi-governor-autonomous-${GITHUB_RUN_ID}" >> $GITHUB_OUTPUT
