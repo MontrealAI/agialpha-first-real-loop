@@ -42,6 +42,8 @@ class T(unittest.TestCase):
                 run_lifecycle('.',1,1,-1,1,td)
             with self.assertRaises(ValueError):
                 run_lifecycle('.',1,1,0,-1,td)
+            with self.assertRaises(ValueError):
+                run_lifecycle('.',1,1,0,1,td,candidate_kernel_mutations=0)
 
 
     def test_all_opportunities_have_dossiers(self):

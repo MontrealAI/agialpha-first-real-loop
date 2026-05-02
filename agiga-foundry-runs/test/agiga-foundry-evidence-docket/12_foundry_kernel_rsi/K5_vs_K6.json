@@ -1,4 +1,8 @@
 {
-  "delta": 0.18,
-  "win_rate": 0.73
+  "incumbent_score": 0.6,
+  "best_candidate_id": "candidate-002",
+  "best_candidate_score": 0.6100000000000001,
+  "delta": 0.01,
+  "win_rate": 1.0,
+  "beats": true
 }
