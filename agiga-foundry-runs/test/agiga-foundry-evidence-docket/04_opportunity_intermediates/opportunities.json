@@ -1,0 +1,354 @@
+[
+  {
+    "opportunity_id": "opp-001",
+    "operator_goal": "Improve evidence infrastructure repair",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-001",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-002",
+    "operator_goal": "Improve workflow launchpad improvement",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-002",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-003",
+    "operator_goal": "Improve defensive cybersecurity hygiene",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-003",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-004",
+    "operator_goal": "Improve software repair microtask",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-004",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-005",
+    "operator_goal": "Improve data/science workflow microtask",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-005",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-006",
+    "operator_goal": "Improve policy-bound tool-use task",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-006",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-007",
+    "operator_goal": "Improve energy-to-compute scheduling proxy",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-007",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-008",
+    "operator_goal": "Improve external reviewer replay task",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-008",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-009",
+    "operator_goal": "Improve benchmark adapter readiness task",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-009",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-010",
+    "operator_goal": "Improve RSI governance task",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-010",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-011",
+    "operator_goal": "Improve documentation/usability task",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-011",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-012",
+    "operator_goal": "Improve AGI Jobs protocol-native proof task",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-012",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-013",
+    "operator_goal": "Improve Evidence Hub / Mission Control task",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-013",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-014",
+    "operator_goal": "Improve operator runbook task",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-014",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-015",
+    "operator_goal": "Improve capability package compression task",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-015",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  },
+  {
+    "opportunity_id": "opp-016",
+    "operator_goal": "Improve vNext transfer task",
+    "domain": "software ops",
+    "pain_point": "manual burden",
+    "current_bottleneck": "validation fragmentation",
+    "available_tools": [
+      "python"
+    ],
+    "constraints": [
+      "no external scanning"
+    ],
+    "risk_envelope": "low",
+    "proof_goal": "replay pass",
+    "validator_hint": "deterministic validator",
+    "useful_capacity_hypothesis": "higher useful-capacity proxy",
+    "commercial_usefulness_class": "operator-productivity",
+    "candidate_capability_package": "cap-016",
+    "descendant_niche_hint": "harder descendant",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+  }
+]

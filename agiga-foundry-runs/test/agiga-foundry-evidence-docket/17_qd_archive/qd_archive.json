@@ -1,0 +1,82 @@
+[
+  {
+    "niche_id": "niche-001",
+    "descriptor": "evidence infrastructure repair",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-002",
+    "descriptor": "workflow launchpad improvement",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-003",
+    "descriptor": "defensive cybersecurity hygiene",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-004",
+    "descriptor": "software repair microtask",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-005",
+    "descriptor": "data/science workflow microtask",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-006",
+    "descriptor": "policy-bound tool-use task",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-007",
+    "descriptor": "energy-to-compute scheduling proxy",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-008",
+    "descriptor": "external reviewer replay task",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-009",
+    "descriptor": "benchmark adapter readiness task",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-010",
+    "descriptor": "RSI governance task",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-011",
+    "descriptor": "documentation/usability task",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-012",
+    "descriptor": "AGI Jobs protocol-native proof task",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-013",
+    "descriptor": "Evidence Hub / Mission Control task",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-014",
+    "descriptor": "operator runbook task",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-015",
+    "descriptor": "capability package compression task",
+    "status": "candidate"
+  },
+  {
+    "niche_id": "niche-016",
+    "descriptor": "vNext transfer task",
+    "status": "candidate"
+  }
+]

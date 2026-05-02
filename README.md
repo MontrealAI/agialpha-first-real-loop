@@ -53,3 +53,6 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 ## RSI-GOVERNOR-001
 
 RSI-GOVERNOR-001 tests whether AGI ALPHA can modify the mechanism that governs future evidence work, prove the modification improves held-out future-work performance, and persist the improvement only through Evidence Docket and human-reviewed PR promotion.
+
+## AGI-GA Foundry
+AGI-GA Foundry is a proof-gated open-ended directed evolution engine for sovereign work capabilities. Public page: `agiga-foundry/index.html`.

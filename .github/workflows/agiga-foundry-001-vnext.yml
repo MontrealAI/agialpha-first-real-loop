@@ -1,0 +1,19 @@
+name: AGI ALPHA AGI-GA Foundry 001 / Vnext
+on:
+  workflow_dispatch:
+    inputs:
+      cycles: {default: '3', required: false}
+      candidate_niches: {default: '32', required: false}
+      evaluate_niches: {default: '12', required: false}
+      local_variants_per_niche: {default: '4', required: false}
+      publish_agiga_tab: {default: 'true', required: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m agialpha_agiga_foundry lifecycle --repo-root . --cycles 1 --candidate-niches 32 --evaluate-niches 12 --local-variants-per-niche 4 --out agiga-foundry-runs/ci
+      - run: python -m agialpha_agiga_foundry replay --docket agiga-foundry-runs/ci/agiga-foundry-evidence-docket
+      - run: python -m agialpha_agiga_foundry falsification-audit --docket agiga-foundry-runs/ci/agiga-foundry-evidence-docket

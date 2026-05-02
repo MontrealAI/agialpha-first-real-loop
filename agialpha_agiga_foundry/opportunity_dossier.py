@@ -1,0 +1,1 @@
+def make_dossier(o): return {"purpose":o["operator_goal"],"target_operator":"operators","proof_task":o["proof_goal"],"validator":o["validator_hint"],"capability_package":o["candidate_capability_package"],"next_action":"run lifecycle","risk_tier":"low","claim_boundary":o["claim_boundary"]}

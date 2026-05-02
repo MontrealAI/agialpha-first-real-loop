@@ -1,0 +1,10 @@
+{
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "forbidden": [
+    "external target scanning",
+    "exploit execution",
+    "malware generation",
+    "social engineering",
+    "automatic merge"
+  ]
+}

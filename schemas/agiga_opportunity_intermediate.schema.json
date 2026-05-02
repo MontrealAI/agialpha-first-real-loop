@@ -1,0 +1,1 @@
+{"type":"object","required":["schema_version","opportunity_id","operator_goal","claim_boundary"]}
