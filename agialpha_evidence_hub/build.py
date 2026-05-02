@@ -44,8 +44,10 @@ def build_site(registry='evidence_registry', out='_site'):
     o.joinpath('launchpad/index.html').write_text(page('Workflow Launchpad', f"<p>Click the button, then click Run workflow on GitHub.</p><table>{launch_rows}</table>"))
     strong_rsi_source = Path('strong-rsi/index.html')
     if strong_rsi_source.exists():
-        strong_body = strong_rsi_source.read_text(encoding='utf-8')
-        o.joinpath('strong-rsi/index.html').write_text(page('Strong RSI', f"<div>{strong_body}</div>"), encoding='utf-8')
+        o.joinpath('strong-rsi/index.html').write_text(
+            strong_rsi_source.read_text(encoding='utf-8'),
+            encoding='utf-8',
+        )
 
     for exp,runs_exp in by_exp.items():
         ep=o/'experiments'/exp; (ep/'runs').mkdir(parents=True,exist_ok=True)
@@ -56,8 +58,10 @@ def build_site(registry='evidence_registry', out='_site'):
     if custom_experiment_source.exists() and 'rsi-governor-001' not in by_exp:
         exp_dir = o / 'experiments' / 'rsi-governor-001'
         exp_dir.mkdir(parents=True, exist_ok=True)
-        custom_body = custom_experiment_source.read_text(encoding='utf-8')
-        exp_dir.joinpath('index.html').write_text(page('RSI-GOVERNOR-001', f"<div>{custom_body}</div>"), encoding='utf-8')
+        exp_dir.joinpath('index.html').write_text(
+            custom_experiment_source.read_text(encoding='utf-8'),
+            encoding='utf-8',
+        )
 
     for r in runs:
         rp=o/'runs'/r['run_id']; rp.mkdir(parents=True,exist_ok=True)
