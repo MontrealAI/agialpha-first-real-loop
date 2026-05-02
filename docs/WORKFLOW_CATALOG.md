@@ -48,6 +48,14 @@ Current as of 2026-05-01.
 | `cyber-sovereign-002-safe-pr-proposal.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `docs-audit.yml` | Internal CI workflow; no manual dispatch required. | no |
 | `cyber-sovereign-002-scaling.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `cyber-ga-sovereign-001-lifecycle.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `cyber-ga-sovereign-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `cyber-ga-sovereign-001-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `cyber-ga-sovereign-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `cyber-ga-sovereign-001-safe-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `cyber-ga-sovereign-001-policy-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `cyber-ga-sovereign-001-delayed-outcome.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `cyber-ga-sovereign-001-vnext.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `evidence-factory-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `evidence-hub-canary.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `evidence-hub-publish.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | yes |
