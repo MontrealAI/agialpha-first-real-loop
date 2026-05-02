@@ -2,49 +2,45 @@ name: AGI ALPHA RSI-GOVERNOR-001 / Lifecycle Orchestrator
 on:
   workflow_dispatch:
     inputs:
+      phase:
+        description: "Lifecycle phase selector"
+        required: false
+        default: "pre_promotion"
+        type: choice
+        options: ["pre_promotion", "post_merge", "full_if_allowed"]
       candidate_count:
         description: "Number of governance-kernel candidates"
         required: false
         default: "6"
-      open_promotion_pr:
-        description: "Open safe promotion PR if candidate passes"
-        required: false
-        default: "true"
-        type: choice
-        options: ["true", "false"]
-      run_replay:
-        description: "Run replay after autonomous evaluation"
-        required: false
-        default: "true"
-        type: choice
-        options: ["true", "false"]
-      run_falsification:
-        description: "Run falsification audit after replay"
+      open_pr_if_passes:
+        description: "Open safe promotion PR if and only if all gates pass"
         required: false
         default: "true"
         type: choice
         options: ["true", "false"]
   repository_dispatch:
     types: [rsi_governor_cycle_requested]
-  schedule:
-    - cron: "17 */12 * * *"
+
 concurrency:
   group: rsi-governor-001-lifecycle
   cancel-in-progress: false
+
 permissions:
   contents: write
   actions: read
   pull-requests: write
   issues: write
+
 jobs:
   autonomous_candidate_evolution:
+    if: ${{ github.event_name != 'pull_request' && (inputs.phase == 'pre_promotion' || inputs.phase == 'full_if_allowed' || inputs.phase == '') }}
     uses: ./.github/workflows/rsi-governor-001-autonomous.yml
     with:
       out_dir: rsi-governor-runs/lifecycle
       candidate_count: ${{ inputs.candidate_count || '6' }}
 
   replay:
-    if: ${{ inputs.run_replay != 'false' }}
+    if: ${{ github.event_name != 'pull_request' && (inputs.phase == 'pre_promotion' || inputs.phase == 'full_if_allowed' || inputs.phase == '') }}
     needs: autonomous_candidate_evolution
     uses: ./.github/workflows/rsi-governor-001-replay.yml
     with:
@@ -52,7 +48,7 @@ jobs:
       out_dir: rsi-governor-runs/lifecycle
 
   falsification_audit:
-    if: ${{ inputs.run_falsification != 'false' }}
+    if: ${{ github.event_name != 'pull_request' && (inputs.phase == 'pre_promotion' || inputs.phase == 'full_if_allowed' || inputs.phase == '') }}
     needs: [autonomous_candidate_evolution, replay]
     uses: ./.github/workflows/rsi-governor-001-falsification-audit.yml
     with:
@@ -60,16 +56,17 @@ jobs:
       out_dir: rsi-governor-runs/lifecycle
 
   safe_pr:
-    if: ${{ inputs.open_promotion_pr != 'false' }}
+    if: ${{ github.event_name != 'pull_request' && inputs.open_pr_if_passes != 'false' && (inputs.phase == 'pre_promotion' || inputs.phase == 'full_if_allowed' || inputs.phase == '') }}
     needs: [autonomous_candidate_evolution, falsification_audit]
     uses: ./.github/workflows/rsi-governor-001-safe-pr.yml
     with:
       autonomous_artifact: ${{ needs.autonomous_candidate_evolution.outputs.artifact_name }}
 
-  evidence_hub_notify:
-    needs: [autonomous_candidate_evolution, replay, falsification_audit, safe_pr]
-    runs-on: ubuntu-latest
-    if: always()
-    steps:
-      - run: |
-          echo '{"promotion_status":"pending_human_review","artifact":"${{ needs.autonomous_candidate_evolution.outputs.artifact_name }}","doctrine":"No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."}' > lifecycle_status.json
+  delayed_outcome:
+    if: ${{ inputs.phase == 'post_merge' || inputs.phase == 'full_if_allowed' }}
+    uses: ./.github/workflows/rsi-governor-001-delayed-outcome.yml
+
+  vnext_canary:
+    if: ${{ inputs.phase == 'post_merge' || inputs.phase == 'full_if_allowed' }}
+    needs: delayed_outcome
+    uses: ./.github/workflows/rsi-governor-001-vnext-canary.yml
