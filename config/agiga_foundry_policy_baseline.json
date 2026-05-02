@@ -1,0 +1,26 @@
+{
+  "schema_version": "agialpha.agiga.foundry_policy.v1",
+  "policy_version": "0.1.0-baseline",
+  "governs": [
+    "insight_detection",
+    "nova_seed_generation",
+    "mark_allocation",
+    "sovereign_formation",
+    "niche_selection",
+    "validator_generation",
+    "local_evolution",
+    "archive_update",
+    "descendant_generation",
+    "promotion"
+  ],
+  "scoring_weights": {},
+  "safety_policy": {},
+  "claim_boundary_policy": {},
+  "promotion_policy": {
+    "autonomous_persistence_allowed": false,
+    "human_review_required": true,
+    "replay_required": true,
+    "falsification_required": true,
+    "heldout_descendant_test_required": true
+  }
+}
