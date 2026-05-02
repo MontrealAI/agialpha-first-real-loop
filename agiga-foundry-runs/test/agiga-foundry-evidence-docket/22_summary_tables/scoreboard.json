@@ -28,7 +28,7 @@
   "foundry_kernel_candidates_generated": 2,
   "candidate_kernels_locked_before_heldout": true,
   "K6_beats_K5": true,
-  "K6_advantage_delta_vs_K5": 0.1,
+  "K6_advantage_delta_vs_K5": 0.2,
   "K6_heldout_win_rate": 1.0,
   "kernel_promotion_pr_opened": false,
   "kernel_promotion_pr_url": "pending",

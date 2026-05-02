@@ -24,7 +24,7 @@ from .policy import CLAIM_BOUNDARY
 def _heldout_eval_score(kernel_token:str, heldout_tasks:list)->float:
     passes = 0
     for t in heldout_tasks:
-        signal = sum(ord(ch) for ch in (kernel_token + t["task_id"] + t["lock_hash"][:8]))
+        signal = sum(ord(ch) for ch in (kernel_token + t["task_id"] + t["public_seed"]))
         passes += 1 if (signal % 7) >= 2 else 0
     return round(passes / max(1, len(heldout_tasks)), 4)
 
@@ -65,8 +65,7 @@ def run_lifecycle(repo_root, cycles, candidate_niches, evaluate_niches, local_va
     kernel=load_kernel(Path(repo_root)/"config/agiga_foundry_kernel.json")
     candidates=[mutate_kernel(kernel,i+1) for i in range(candidate_kernel_mutations)]
     lock=lock_candidates(candidates, Path(out)/"agiga-foundry-evidence-docket"/"12_foundry_kernel_rsi")
-    locked_hashes=list(lock["candidate_hashes"].values())
-    heldout_tasks=generate_heldout_tasks(locked_hashes,15)
+    heldout_tasks=generate_heldout_tasks(lock["lock_root_hash"],15)
     incumbent_score = _heldout_eval_score("K5-incumbent", heldout_tasks)
     candidate_scores = {
         c["candidate_id"]: _heldout_eval_score(lock["candidate_hashes"][c["candidate_id"]], heldout_tasks)

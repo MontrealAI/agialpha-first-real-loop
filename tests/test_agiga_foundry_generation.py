@@ -55,14 +55,13 @@ class T(unittest.TestCase):
             self.assertEqual(len(dossiers),len(opps))
 
 
-    def test_heldout_tasks_bind_all_locked_candidate_hashes(self):
+    def test_heldout_tasks_anchor_to_lock_root_hash(self):
         with tempfile.TemporaryDirectory() as td:
             run_lifecycle('.',1,4,2,1,td,candidate_kernel_mutations=3)
             base=Path(td)/'agiga-foundry-evidence-docket'
             lock=json.loads((base/'12_foundry_kernel_rsi/candidate_lock_manifest.json').read_text())
             heldout=json.loads((base/'12_foundry_kernel_rsi/heldout_tasks.json').read_text())
-            represented={t['lock_hash'] for t in heldout}
-            self.assertEqual(represented,set(lock['candidate_hashes'].values()))
+            self.assertTrue(all(t['reveal_anchor']==lock['lock_root_hash'] for t in heldout))
 
 
     def test_k5_k6_metrics_come_from_heldout_artifact(self):
