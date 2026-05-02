@@ -1,21 +1,9 @@
-name: RSI Forge 001 VNext Transfer
 name: AGI ALPHA RSI-FORGE-001 / vNext Transfer
 
 on:
   workflow_dispatch:
     inputs:
       cycles:
-        description: "Cycle scope"
-        required: false
-        default: "1"
-permissions:
-  contents: read
-jobs:
-  transfer:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: echo "VNext transfer scaffold for RSI Forge 001"
         description: "Cycles to regenerate before vNext transfer"
         required: false
         default: "6"
