@@ -91,7 +91,7 @@ def run_lifecycle(repo_root, cycles, candidate_niches, evaluate_niches, local_va
         "17_qd_archive/qd_archive.json": qd,
         "18_lineage_graph/lineage_graph.json": lineage,
         "19_capability_archive/capability_archive.json": [{"capability": s["niche"]["niche_id"]} for s in solved],
-        "20_sovereign_opportunity_dossiers/dossiers.json": [make_dossier(o) for o in opps[:5]],
+        "20_sovereign_opportunity_dossiers/dossiers.json": [make_dossier(o) for o in all_opps[:5]],
         "21_vnext_descendant_tasks/descendants.json": [{"from": s["niche"]["niche_id"], "task": "harder descendant"} for s in solved],
         "22_summary_tables/scoreboard.json": score,
         "evidence-run-manifest.json": {"experiment_slug":"agiga-foundry-001","experiment_family":"agiga-foundry","public_page":"/agiga-foundry/","experiment_page":"/experiments/agiga-foundry-001/","metrics":score},
