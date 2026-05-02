@@ -22,7 +22,7 @@ def run_lifecycle(repo_root, cycles, candidate_niches, evaluate_niches, local_va
         raise ValueError("cycles must be >= 1")
     all_opps, all_niches, validated, rejected, solved, variants = [], [], [], [], [], []
     for cycle in range(cycles):
-        opps = generate_opportunities(candidate_niches)
+        opps = generate_opportunities(candidate_niches, start_index=cycle * candidate_niches)
         niches = [codesign(make_niche((cycle * candidate_niches) + i + 1, FAMILIES[i % len(FAMILIES)], opps[i])) for i in range(candidate_niches)]
         all_opps.extend(opps); all_niches.extend(niches)
         cycle_validated = [n for n in niches[:evaluate_niches] if validate_niche(n)]
@@ -45,7 +45,7 @@ def run_lifecycle(repo_root, cycles, candidate_niches, evaluate_niches, local_va
     score = {
         "cycle_index": cycles,
         "candidate_niches_generated": candidate_niches * cycles,
-        "candidate_niches_evaluated": evaluate_niches * cycles,
+        "candidate_niches_evaluated": min(evaluate_niches, candidate_niches) * cycles,
         "valid_niches": len(validated),
         "solved_niches": len(solved),
         "rejected_niches": len(rejected),
