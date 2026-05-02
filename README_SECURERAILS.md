@@ -25,13 +25,7 @@ Use workflow dispatch for:
 
 ## Run with GitHub CLI
 ```bash
-gh workflow run cyber-ga-sovereign-001-lifecycle.yml \
-  -f cycles=3 \
-  -f candidate_niches=64 \
-  -f evaluate_niches=24 \
-  -f local_variants_per_niche=5 \
-  -f publish_securerails_tab=true \
-  -f publish_cyber_sovereign_tab=true \
-  -f open_safe_pr_if_passed=false \
-  -f open_policy_pr_if_passed=false
+gh workflow run cyber-ga-sovereign-001-lifecycle.yml
 ```
+
+Current repository workflow uses fixed lifecycle defaults in workflow code (cycles=3, candidate_niches=64, evaluate_niches=24, local_variants_per_niche=5).
