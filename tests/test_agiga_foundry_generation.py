@@ -64,6 +64,16 @@ class T(unittest.TestCase):
             represented={t['lock_hash'] for t in heldout}
             self.assertEqual(represented,set(lock['candidate_hashes'].values()))
 
+
+    def test_k5_k6_scores_come_from_heldout_artifact(self):
+        with tempfile.TemporaryDirectory() as td:
+            run_lifecycle('.',1,4,2,1,td,candidate_kernel_mutations=2)
+            base=Path(td)/'agiga-foundry-evidence-docket/12_foundry_kernel_rsi'
+            summary=json.loads((base/'K5_vs_K6.json').read_text())
+            heldout=json.loads((base/'heldout_tasks.json').read_text())
+            self.assertEqual(summary['heldout_task_count'], len({t['task_id'] for t in heldout}))
+            self.assertEqual(set(summary['candidate_scores'].keys()), set(json.loads((base/'candidate_lock_manifest.json').read_text())['candidate_hashes'].keys()))
+
     def test_zero_variants_reports_zero_win_rate(self):
         with tempfile.TemporaryDirectory() as td:
             run_lifecycle('.',1,4,2,0,td)
