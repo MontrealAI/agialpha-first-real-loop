@@ -56,3 +56,10 @@ RSI-GOVERNOR-001 tests whether AGI ALPHA can modify the mechanism that governs f
 
 ## AGI-GA Foundry
 AGI-GA Foundry is a proof-gated open-ended directed evolution engine for sovereign work capabilities. Public page: `agiga-foundry/index.html`.
+
+
+## α-AGI Protocol Cybersecurity Sovereign
+
+Defensive, proof-gated cybersecurity sovereign for repo-owned work. See `/cybersecurity-sovereign/`.
+
+No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
