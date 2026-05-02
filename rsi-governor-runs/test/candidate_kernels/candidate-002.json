@@ -1,0 +1,81 @@
+{
+  "schema_version": "agialpha.rsi_governance_kernel.v1",
+  "kernel_version": "0.1.2",
+  "governs": [
+    "experiment_discovery",
+    "workflow_cataloging",
+    "evidence_manifest_validation",
+    "claim_level_assignment",
+    "artifact_ingestion_priority",
+    "page_completeness_scoring",
+    "shallow_page_detection",
+    "linkcheck_policy",
+    "overclaim_detection",
+    "safety_counter_requirements",
+    "external_replay_recommendations",
+    "falsification_audit_recommendations",
+    "workflow_launchpad_recommendations",
+    "human_review_gate",
+    "promotion_thresholds"
+  ],
+  "promotion_policy": {
+    "autonomous_persistence_allowed": false,
+    "human_review_required": true,
+    "minimum_eci_for_promotion": "E3_REPLAYED",
+    "minimum_advantage_delta": 0.15,
+    "zero_hard_safety_incidents_required": true,
+    "claim_boundary_required": true,
+    "replay_required": true,
+    "heldout_task_required": true
+  },
+  "claim_boundary_policy": {
+    "forbidden_positive_claims": [
+      "achieved AGI",
+      "achieved ASI",
+      "empirical SOTA",
+      "safe autonomy",
+      "real-world certification",
+      "real-world security certification",
+      "guaranteed economic return",
+      "official benchmark victory",
+      "civilization-scale capability"
+    ],
+    "negative_boundary_allowed": true
+  },
+  "safety_policy": {
+    "raw_secret_leak_count": 0,
+    "external_target_scan_count": 0,
+    "exploit_execution_count": 0,
+    "malware_generation_count": 0,
+    "social_engineering_content_count": 0,
+    "unsafe_automerge_count": 0,
+    "critical_safety_incidents": 0
+  },
+  "future_work_recommendation_policy": {
+    "recommend_external_replay_if_missing": true,
+    "recommend_falsification_if_missing": true,
+    "recommend_rerun_if_artifact_expired": true,
+    "recommend_backfill_if_page_shallow": true,
+    "recommend_human_review_if_pr_ready": true
+  },
+  "scoring_weights": {
+    "page_completeness": 0.2,
+    "evidence_manifest_quality": 0.16,
+    "replayability": 0.2,
+    "claim_boundary_integrity": 0.16,
+    "safety_integrity": 0.14,
+    "workflow_launchability": 0.08,
+    "artifact_availability": 0.06,
+    "external_review_readiness": 0.04
+  },
+  "candidate_id": "candidate-002",
+  "rollback_note": "restore baseline",
+  "claim_boundary_impact": "none",
+  "safety_impact": "none",
+  "mutation_rationale": "raise replay readiness emphasis",
+  "changed_fields": [
+    "scoring_weights.replayability"
+  ],
+  "expected_benefit": "improved replay recommendation quality",
+  "expected_risk": "reduced sensitivity to shallow pages"
+}
