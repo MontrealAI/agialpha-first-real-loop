@@ -1,6 +1,7 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "AGIGA MARK Allocation",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://montrealai.github.io/agialpha-first-real-loop/schemas/agiga_mark_allocation.schema.json",
+  "title": "AGI-GA MARK Allocation",
   "type": "object",
   "required": [
     "schema_version",
@@ -17,50 +18,18 @@
     "rejection_reason_if_any"
   ],
   "properties": {
-    "schema_version": {
-      "const": "agialpha.agiga.mark_allocation.v1"
-    },
-    "allocation_id": {
-      "type": "string"
-    },
-    "nova_seed_id": {
-      "type": "string"
-    },
-    "allocated_budget_proxy": {
-      "type": "number"
-    },
-    "review_priority": {
-      "enum": [
-        "low",
-        "medium",
-        "high",
-        "critical"
-      ]
-    },
-    "risk_tier": {
-      "enum": [
-        "low",
-        "medium",
-        "high"
-      ]
-    },
-    "validator_required": {
-      "type": "boolean"
-    },
-    "replay_required": {
-      "type": "boolean"
-    },
-    "falsification_required": {
-      "type": "boolean"
-    },
-    "human_review_required_for_promotion": {
-      "type": "boolean"
-    },
-    "promotion_threshold": {
-      "type": "object"
-    },
-    "rejection_reason_if_any": {
-      "type": "string"
-    }
-  }
+    "schema_version": {"const": "agialpha.agiga.mark_allocation.v1"},
+    "allocation_id": {"type": "string", "minLength": 1},
+    "nova_seed_id": {"type": "string", "minLength": 1},
+    "allocated_budget_proxy": {"type": "number", "minimum": 0},
+    "review_priority": {"type": "string", "enum": ["low", "medium", "high", "critical"]},
+    "risk_tier": {"type": "string", "enum": ["low", "medium", "high"]},
+    "validator_required": {"type": "boolean"},
+    "replay_required": {"type": "boolean"},
+    "falsification_required": {"type": "boolean"},
+    "human_review_required_for_promotion": {"type": "boolean"},
+    "promotion_threshold": {"type": "object"},
+    "rejection_reason_if_any": {"type": "string"}
+  },
+  "additionalProperties": true
 }
