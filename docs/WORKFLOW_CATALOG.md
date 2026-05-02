@@ -119,4 +119,5 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 | `agiga-foundry-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `agiga-foundry-001-delayed-outcome.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `agiga-foundry-001-vnext.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `agiga-foundry-001-foundry-kernel-safe-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `agiga-foundry-001-safe-policy-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
