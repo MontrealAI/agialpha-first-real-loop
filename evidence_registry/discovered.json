@@ -4,6 +4,7 @@
     ".github/workflows/agiga-foundry-001-autonomous.yml",
     ".github/workflows/agiga-foundry-001-delayed-outcome.yml",
     ".github/workflows/agiga-foundry-001-falsification-audit.yml",
+    ".github/workflows/agiga-foundry-001-foundry-kernel-safe-pr.yml",
     ".github/workflows/agiga-foundry-001-lifecycle.yml",
     ".github/workflows/agiga-foundry-001-replay.yml",
     ".github/workflows/agiga-foundry-001-safe-policy-pr.yml",
