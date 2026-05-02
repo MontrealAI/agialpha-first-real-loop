@@ -9,4 +9,4 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: python -m agialpha_cyber_ga_sovereign lifecycle --repo-root . --cycles 1 --candidate-niches 16 --evaluate-niches 6 --local-variants-per-niche 3 --out cyber-ga-sovereign-runs/test
+      - run: python -m agialpha_cyber_ga_sovereign vnext --docket cyber-ga-sovereign-runs/lifecycle/cyber-ga-sovereign-evidence-docket
