@@ -156,6 +156,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Download built site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: evidence-hub-site-preview
+          path: _site
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
