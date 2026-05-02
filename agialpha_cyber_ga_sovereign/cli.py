@@ -47,6 +47,16 @@ def main():
             raise SystemExit(1)
     else:
         d = Path(a.docket)
+        required = [
+            d / 'evidence-run-manifest.json',
+            d / '28_summary_tables/scoreboard.json',
+            d / '17_replay_logs/replay_report.json',
+            d / '18_falsification_audit/falsification_audit.json',
+        ]
+        missing = [str(x) for x in required if not x.exists()]
+        if missing:
+            write_json(d / f"{a.cmd.replace('-', '_')}.json", {"status": "blocked_missing_evidence", "missing_paths": missing, "claim_boundary": disclaimer(), "automerge": False})
+            raise SystemExit(1)
         write_json(d / f"{a.cmd.replace('-', '_')}.json", {"status": "pending_human_review", "claim_boundary": disclaimer(), "automerge": False})
 
 if __name__ == "__main__":

@@ -36,3 +36,8 @@ class T(unittest.TestCase):
         run_lifecycle(Path('.'),1,2,1,1,out)
         manifest=json.loads((out/'cyber-ga-sovereign-evidence-docket/evidence-run-manifest.json').read_text())
         self.assertIn('repo_root', manifest)
+
+    def test_policy_pr_requires_evidence(self):
+        import subprocess, sys
+        proc=subprocess.run([sys.executable,'-m','agialpha_cyber_ga_sovereign','policy-pr','--docket','cyber-ga-sovereign-runs/missing-policy-docket'],check=False)
+        self.assertNotEqual(proc.returncode,0)
