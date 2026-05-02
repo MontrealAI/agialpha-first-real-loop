@@ -35,10 +35,10 @@ def run_lifecycle(repo_root, cycles, candidate_niches, evaluate_niches, local_va
                 rejected.append(n)
                 continue
             res = run_validator(ev["winner"])
-        if res["pass"]:
-            solved.append({"niche": n, "attempt": solve(n), "validator": res, "proof": make_proofbundle(n, res)})
-        else:
-            rejected.append(n)
+            if res["pass"]:
+                solved.append({"niche": n, "attempt": solve(n), "validator": res, "proof": make_proofbundle(n, res)})
+            else:
+                rejected.append(n)
     qd = build_qd(all_niches)
     lineage = lineage_edges(all_opps, all_niches)
     safety = safety_counters()
