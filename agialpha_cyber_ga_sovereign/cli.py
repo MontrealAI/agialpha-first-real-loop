@@ -34,7 +34,9 @@ def main():
     f = sp.add_parser("falsification-audit"); f.add_argument("--docket", required=True)
     a = p.parse_args()
     if a.cmd in {"lifecycle", "autonomous"}:
-        run_lifecycle(Path(getattr(a, 'repo_root', '.')), getattr(a, 'cycles', 1), getattr(a, 'candidate_niches', 16), getattr(a, 'evaluate_niches', 6), getattr(a, 'local_variants_per_niche', 3), Path(getattr(a, 'out', 'cyber-ga-sovereign-runs/test')))
+        wf_name = 'AGI ALPHA Cyber-GA Sovereign 001 / Autonomous' if a.cmd == 'autonomous' else 'AGI ALPHA Cyber-GA Sovereign 001 / Lifecycle'
+        wf_file = '.github/workflows/cyber-ga-sovereign-001-autonomous.yml' if a.cmd == 'autonomous' else '.github/workflows/cyber-ga-sovereign-001-lifecycle.yml'
+        run_lifecycle(Path(getattr(a, 'repo_root', '.')), getattr(a, 'cycles', 1), getattr(a, 'candidate_niches', 16), getattr(a, 'evaluate_niches', 6), getattr(a, 'local_variants_per_niche', 3), Path(getattr(a, 'out', 'cyber-ga-sovereign-runs/test')), wf_name, wf_file)
     elif a.cmd == "replay":
         result = run_replay(Path(a.docket))
         if result.get("status") != "pass":

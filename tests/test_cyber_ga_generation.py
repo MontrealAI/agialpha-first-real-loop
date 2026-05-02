@@ -21,3 +21,18 @@ class T(unittest.TestCase):
         out='cyber-ga-sovereign-runs/custom-auto'
         subprocess.run([sys.executable,'-m','agialpha_cyber_ga_sovereign','autonomous','--out',out,'--cycles','1','--candidate-niches','2','--evaluate-niches','1','--local-variants-per-niche','1'],check=True)
         self.assertTrue((Path(out)/'cyber-ga-sovereign-evidence-docket/evidence-run-manifest.json').exists())
+
+    def test_autonomous_manifest_provenance(self):
+        import subprocess, sys, json
+        out='cyber-ga-sovereign-runs/custom-auto-manifest'
+        subprocess.run([sys.executable,'-m','agialpha_cyber_ga_sovereign','autonomous','--out',out],check=True)
+        manifest=json.loads((Path(out)/'cyber-ga-sovereign-evidence-docket/evidence-run-manifest.json').read_text())
+        self.assertIn('Autonomous', manifest['workflow_name'])
+        self.assertTrue(manifest['workflow_file'].endswith('cyber-ga-sovereign-001-autonomous.yml'))
+
+    def test_repo_root_recorded(self):
+        import json
+        out=Path('cyber-ga-sovereign-runs/repo-root-test')
+        run_lifecycle(Path('.'),1,2,1,1,out)
+        manifest=json.loads((out/'cyber-ga-sovereign-evidence-docket/evidence-run-manifest.json').read_text())
+        self.assertIn('repo_root', manifest)
