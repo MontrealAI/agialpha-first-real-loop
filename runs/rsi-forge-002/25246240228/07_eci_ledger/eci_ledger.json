@@ -1,0 +1,52 @@
+[
+  {
+    "advantage_delta_vs_B5": 0.0511,
+    "baseline_comparative": true,
+    "candidate_id": "EvidenceKernel-c1-k07",
+    "cycle_index": 1,
+    "eci_level": "E3_REPLAYED",
+    "executed_tasks": 8,
+    "replayed": true,
+    "timestamp": "2026-05-02T06:53:14Z"
+  },
+  {
+    "advantage_delta_vs_B5": 0.0617,
+    "baseline_comparative": true,
+    "candidate_id": "EvidenceKernel-c2-k15",
+    "cycle_index": 2,
+    "eci_level": "E3_REPLAYED",
+    "executed_tasks": 8,
+    "replayed": true,
+    "timestamp": "2026-05-02T06:53:14Z"
+  },
+  {
+    "advantage_delta_vs_B5": 0.0823,
+    "baseline_comparative": true,
+    "candidate_id": "EvidenceKernel-c3-k16",
+    "cycle_index": 3,
+    "eci_level": "E3_REPLAYED",
+    "executed_tasks": 8,
+    "replayed": true,
+    "timestamp": "2026-05-02T06:53:14Z"
+  },
+  {
+    "advantage_delta_vs_B5": 0.1106,
+    "baseline_comparative": true,
+    "candidate_id": "EvidenceKernel-c4-k16",
+    "cycle_index": 4,
+    "eci_level": "E3_REPLAYED",
+    "executed_tasks": 8,
+    "replayed": true,
+    "timestamp": "2026-05-02T06:53:14Z"
+  },
+  {
+    "advantage_delta_vs_B5": 0.1434,
+    "baseline_comparative": true,
+    "candidate_id": "EvidenceKernel-c5-k13",
+    "cycle_index": 5,
+    "eci_level": "E3_REPLAYED",
+    "executed_tasks": 8,
+    "replayed": true,
+    "timestamp": "2026-05-02T06:53:14Z"
+  }
+]
