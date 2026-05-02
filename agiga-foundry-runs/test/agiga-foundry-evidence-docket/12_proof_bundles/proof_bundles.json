@@ -1,0 +1,10 @@
+[
+  {
+    "niche_id": "niche-006",
+    "validator": {
+      "score": 0.6,
+      "pass": true
+    },
+    "complete": true
+  }
+]

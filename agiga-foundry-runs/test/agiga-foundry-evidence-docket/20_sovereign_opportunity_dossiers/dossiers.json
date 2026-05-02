@@ -1,0 +1,52 @@
+[
+  {
+    "purpose": "Improve evidence infrastructure repair",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-001",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve workflow launchpad improvement",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-002",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve defensive cybersecurity hygiene",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-003",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve software repair microtask",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-004",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  },
+  {
+    "purpose": "Improve data/science workflow microtask",
+    "target_operator": "operators",
+    "proof_task": "replay pass",
+    "validator": "deterministic validator",
+    "capability_package": "cap-005",
+    "next_action": "run lifecycle",
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only"
+  }
+]

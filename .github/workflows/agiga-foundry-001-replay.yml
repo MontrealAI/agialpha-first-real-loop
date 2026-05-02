@@ -1,0 +1,16 @@
+name: AGI ALPHA AGI-GA Foundry 001 / Replay
+on:
+  workflow_dispatch:
+    inputs:
+      docket_path: {default: 'agiga-foundry-runs/test/agiga-foundry-evidence-docket', required: false}
+      publish_agiga_tab: {default: 'true', required: false}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: test -d "${{ inputs.docket_path }}"
+      - run: python -m agialpha_agiga_foundry replay --docket "${{ inputs.docket_path }}"
+      - run: python -m agialpha_agiga_foundry falsification-audit --docket "${{ inputs.docket_path }}"

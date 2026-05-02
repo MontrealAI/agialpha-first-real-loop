@@ -1,0 +1,1 @@
+{"type":"object","required":["niche_id","family","validator_spec","claim_boundary"]}

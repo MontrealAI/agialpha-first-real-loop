@@ -1,0 +1,1244 @@
+[
+  {
+    "niche_id": "niche-001",
+    "family": "evidence infrastructure repair",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-001",
+      "operator_goal": "Improve evidence infrastructure repair",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-001",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve evidence infrastructure repair",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v1"
+  },
+  {
+    "niche_id": "niche-001",
+    "family": "evidence infrastructure repair",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-001",
+      "operator_goal": "Improve evidence infrastructure repair",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-001",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve evidence infrastructure repair",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v2"
+  },
+  {
+    "niche_id": "niche-001",
+    "family": "evidence infrastructure repair",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-001",
+      "operator_goal": "Improve evidence infrastructure repair",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-001",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve evidence infrastructure repair",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v3"
+  },
+  {
+    "niche_id": "niche-002",
+    "family": "workflow launchpad improvement",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-002",
+      "operator_goal": "Improve workflow launchpad improvement",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-002",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve workflow launchpad improvement",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v1"
+  },
+  {
+    "niche_id": "niche-002",
+    "family": "workflow launchpad improvement",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-002",
+      "operator_goal": "Improve workflow launchpad improvement",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-002",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve workflow launchpad improvement",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v2"
+  },
+  {
+    "niche_id": "niche-002",
+    "family": "workflow launchpad improvement",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-002",
+      "operator_goal": "Improve workflow launchpad improvement",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-002",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve workflow launchpad improvement",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v3"
+  },
+  {
+    "niche_id": "niche-003",
+    "family": "defensive cybersecurity hygiene",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-003",
+      "operator_goal": "Improve defensive cybersecurity hygiene",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-003",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve defensive cybersecurity hygiene",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v1"
+  },
+  {
+    "niche_id": "niche-003",
+    "family": "defensive cybersecurity hygiene",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-003",
+      "operator_goal": "Improve defensive cybersecurity hygiene",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-003",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve defensive cybersecurity hygiene",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v2"
+  },
+  {
+    "niche_id": "niche-003",
+    "family": "defensive cybersecurity hygiene",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-003",
+      "operator_goal": "Improve defensive cybersecurity hygiene",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-003",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve defensive cybersecurity hygiene",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v3"
+  },
+  {
+    "niche_id": "niche-004",
+    "family": "software repair microtask",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-004",
+      "operator_goal": "Improve software repair microtask",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-004",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve software repair microtask",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v1"
+  },
+  {
+    "niche_id": "niche-004",
+    "family": "software repair microtask",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-004",
+      "operator_goal": "Improve software repair microtask",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-004",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve software repair microtask",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v2"
+  },
+  {
+    "niche_id": "niche-004",
+    "family": "software repair microtask",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-004",
+      "operator_goal": "Improve software repair microtask",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-004",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve software repair microtask",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v3"
+  },
+  {
+    "niche_id": "niche-005",
+    "family": "data/science workflow microtask",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-005",
+      "operator_goal": "Improve data/science workflow microtask",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-005",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve data/science workflow microtask",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v1"
+  },
+  {
+    "niche_id": "niche-005",
+    "family": "data/science workflow microtask",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-005",
+      "operator_goal": "Improve data/science workflow microtask",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-005",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve data/science workflow microtask",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v2"
+  },
+  {
+    "niche_id": "niche-005",
+    "family": "data/science workflow microtask",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-005",
+      "operator_goal": "Improve data/science workflow microtask",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-005",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve data/science workflow microtask",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v3"
+  },
+  {
+    "niche_id": "niche-006",
+    "family": "policy-bound tool-use task",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-006",
+      "operator_goal": "Improve policy-bound tool-use task",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-006",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve policy-bound tool-use task",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v1"
+  },
+  {
+    "niche_id": "niche-006",
+    "family": "policy-bound tool-use task",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-006",
+      "operator_goal": "Improve policy-bound tool-use task",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-006",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve policy-bound tool-use task",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v2"
+  },
+  {
+    "niche_id": "niche-006",
+    "family": "policy-bound tool-use task",
+    "opportunity_intermediate": {
+      "opportunity_id": "opp-006",
+      "operator_goal": "Improve policy-bound tool-use task",
+      "domain": "software ops",
+      "pain_point": "manual burden",
+      "current_bottleneck": "validation fragmentation",
+      "available_tools": [
+        "python"
+      ],
+      "constraints": [
+        "no external scanning"
+      ],
+      "risk_envelope": "low",
+      "proof_goal": "replay pass",
+      "validator_hint": "deterministic validator",
+      "useful_capacity_hypothesis": "higher useful-capacity proxy",
+      "commercial_usefulness_class": "operator-productivity",
+      "candidate_capability_package": "cap-006",
+      "descendant_niche_hint": "harder descendant",
+      "claim_boundary": "bounded local/proxy evidence only",
+      "schema_version": "agialpha.agiga.opportunity_intermediate.v1"
+    },
+    "challenge_statement": "Solve policy-bound tool-use task",
+    "task_manifest": {
+      "task": "bounded"
+    },
+    "solver_spec": {
+      "strategy": "deterministic"
+    },
+    "validator_spec": {
+      "type": "threshold"
+    },
+    "baseline_spec": {
+      "baseline": "B5"
+    },
+    "safety_policy": {},
+    "replay_instructions": "cli replay",
+    "cost_ledger_template": {},
+    "evidence_docket_template": {},
+    "success_criteria": {
+      "score_gte": 0.6
+    },
+    "risk_tier": "low",
+    "claim_boundary": "bounded local/proxy evidence only",
+    "useful_capacity_hypothesis": "increase validated work",
+    "local_mutation_operators": [
+      "task"
+    ],
+    "descendant_niche_hints": [
+      "harder"
+    ],
+    "codesign": {
+      "task": {
+        "task": "bounded"
+      },
+      "solver": {
+        "strategy": "deterministic"
+      },
+      "validator": {
+        "type": "threshold"
+      },
+      "evidence": {},
+      "replay_plan": "deterministic"
+    },
+    "variant_id": "v3"
+  }
+]
