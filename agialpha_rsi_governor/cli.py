@@ -54,6 +54,27 @@ def _resolve_run_id(outp: Path) -> str:
     return _next_run_id(outp)
 
 
+def preflight(repo_root: str):
+    root = Path(repo_root)
+    report_path = root / "docs/rsi_governor_001_preflight_audit.md"
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    sections = {
+        "rsi_governor_files": sorted(str(p.relative_to(root)) for p in root.glob("agialpha_rsi_governor/*.py")),
+        "governance_kernel_files": sorted(str(p.relative_to(root)) for p in root.glob("agialpha_governance_kernel/*.py")),
+        "workflows": sorted(str(p.relative_to(root)) for p in root.glob(".github/workflows/*rsi-governor-001*.yml")),
+        "tests": sorted(str(p.relative_to(root)) for p in root.glob("tests/test_rsi_governor*.py")),
+    }
+    lines = ["# RSI-GOVERNOR-001 Preflight Audit", "", "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.", ""]
+    for key, values in sections.items():
+        lines.append(f"## {key}")
+        if values:
+            lines.extend([f"- `{v}`" for v in values])
+        else:
+            lines.append("- none found")
+        lines.append("")
+    report_path.write_text("\n".join(lines)+"\n", encoding="utf-8")
+    print(str(report_path))
+
 def run(repo_root: str, out: str, candidate_count: int = 2):
     root, outp = Path(repo_root), Path(out)
     outp.mkdir(parents=True, exist_ok=True)
@@ -131,8 +152,15 @@ def falsification_audit(docket: str):
         raise SystemExit(1)
 
 
-def lifecycle(repo_root: str, out: str, candidate_count: int = 2):
+def lifecycle(repo_root: str, out: str, candidate_count: int = 2, mode: str = "pre_review"):
+    if mode == "post_merge":
+        vnext_canary(repo_root, out)
+        return
+    preflight(repo_root)
     run(repo_root, out, candidate_count)
+    docket = str(Path(out) / "rsi-governor-evidence-docket")
+    replay(docket)
+    falsification_audit(docket)
 
 def vnext_canary(repo_root: str, out: str):
     p=Path(out); p.mkdir(parents=True, exist_ok=True)
@@ -219,14 +247,17 @@ def main():
     r.add_argument("--repo-root", required=True)
     r.add_argument("--out", required=True)
     r.add_argument("--candidate-count", type=_positive_int, default=2)
+    pf = sp.add_parser("preflight")
+    pf.add_argument("--repo-root", required=True)
     rr = sp.add_parser("replay")
     rr.add_argument("--docket", required=True)
     f = sp.add_parser("falsification-audit")
     f.add_argument("--docket", required=True)
     l = sp.add_parser("lifecycle")
     l.add_argument("--repo-root", required=True)
-    l.add_argument("--out", required=True)
+    l.add_argument("--out", required=False, default="rsi-governor-runs/lifecycle")
     l.add_argument("--candidate-count", type=_positive_int, default=2)
+    l.add_argument("--mode", choices=["pre_review", "post_merge"], default="pre_review")
     v = sp.add_parser("vnext-canary")
     v.add_argument("--repo-root", required=True)
     v.add_argument("--out", required=True)
@@ -237,7 +268,8 @@ def main():
         "run": lambda: run(a.repo_root, a.out, a.candidate_count),
         "replay": lambda: replay(a.docket),
         "falsification-audit": lambda: falsification_audit(a.docket),
-        "lifecycle": lambda: lifecycle(a.repo_root, a.out, a.candidate_count),
+        "preflight": lambda: preflight(a.repo_root),
+        "lifecycle": lambda: lifecycle(a.repo_root, a.out, a.candidate_count, a.mode),
         "vnext-canary": lambda: vnext_canary(a.repo_root, a.out),
         "validate-autonomy-contract": lambda: validate_autonomy_contract(a.contract),
     }[a.cmd]()
