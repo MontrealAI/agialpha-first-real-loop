@@ -55,7 +55,8 @@ def run_lifecycle(repo_root, cycles, candidate_niches, evaluate_niches, local_va
     kernel=load_kernel(Path(repo_root)/"config/agiga_foundry_kernel.json")
     candidates=[mutate_kernel(kernel,i+1) for i in range(max(1,candidate_kernel_mutations))]
     lock=lock_candidates(candidates, Path(out)/"agiga-foundry-evidence-docket"/"12_foundry_kernel_rsi")
-    heldout_tasks=generate_heldout_tasks(next(iter(lock["candidate_hashes"].values())),15)
+    locked_hashes=list(lock["candidate_hashes"].values())
+    heldout_tasks=generate_heldout_tasks(locked_hashes,15)
     score = {
         "cycle_index": cycles,
         "candidate_niches_generated": candidate_niches * cycles,
