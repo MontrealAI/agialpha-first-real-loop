@@ -115,13 +115,7 @@ jobs:
         run: |
           SHOULD_DEPLOY=true
           if [ -f evidence_registry/needed_update.json ]; then
-            if python - <<'PY'
-import json
-from pathlib import Path
-p=Path('evidence_registry/needed_update.json')
-d=json.loads(p.read_text())
-raise SystemExit(0 if d.get('needed', True) else 1)
-PY
+            if python -c "import json, pathlib; d=json.loads(pathlib.Path('evidence_registry/needed_update.json').read_text()); raise SystemExit(0 if d.get('needed', True) else 1)"
             then
               SHOULD_DEPLOY=true
             else
