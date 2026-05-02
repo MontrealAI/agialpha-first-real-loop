@@ -126,5 +126,9 @@
     "sample_outputs/coldchain-energy-loop-001/00_manifest.json",
     "sample_outputs/rsi-forge-002/00_manifest.json",
     "sample_outputs/rsi-forge-002/evidence-run-manifest.json"
+  ],
+  "candidate_manifest_paths": [
+    "rsi-governor-runs/lifecycle/rsi-governor-evidence-docket/00_manifest.json",
+    "rsi-governor-runs/lifecycle/rsi-governor-evidence-docket/19_summary_tables/scoreboard.json"
   ]
 }
