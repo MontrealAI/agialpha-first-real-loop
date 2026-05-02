@@ -45,6 +45,10 @@ def main():
             raise SystemExit(1)
     else:
         d = Path(a.docket)
+        manifest = d / "evidence-run-manifest.json"
+        if not manifest.exists():
+            write_json(d / f"{a.cmd.replace('-', '_')}.json", {"status": "fail", "reason": "missing_required_evidence", "required": str(manifest), "claim_boundary": disclaimer(), "automerge": False})
+            raise SystemExit(1)
         write_json(d / f"{a.cmd.replace('-', '_')}.json", {"status": "pending_human_review", "claim_boundary": disclaimer(), "automerge": False})
 
 if __name__ == "__main__":
