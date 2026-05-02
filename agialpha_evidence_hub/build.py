@@ -20,8 +20,9 @@ def _load(base):
 
 def build_site(registry='evidence_registry', out='_site'):
     runs,exps,wfs=_load(registry)
+    repo_root = Path(registry).resolve().parent
     o=Path(out); o.mkdir(parents=True,exist_ok=True)
-    for d in ['data','experiments','workflows','runs','artifacts','legacy','external-review','safety','launchpad','falsification','assets']:
+    for d in ['data','experiments','workflows','runs','artifacts','legacy','external-review','safety','launchpad','falsification','assets','strong-rsi']:
         (o/d).mkdir(exist_ok=True)
 
     o.joinpath('.nojekyll').write_text('')
@@ -42,12 +43,29 @@ def build_site(registry='evidence_registry', out='_site'):
 
     launch_rows=''.join([f"<tr><td>{w.get('name') or w.get('workflow_name') or Path(w.get('workflow_file','')).name}</td><td>{w.get('workflow_file')}</td><td><a href='https://github.com/MontrealAI/agialpha-first-real-loop/actions/workflows/{Path(w.get('workflow_file','')).name}'>{w.get('workflow_file')}</a></td><td><code>{w.get('gh_command') or 'workflow_dispatch not enabled'}</code></td></tr>" for w in wfs])
     o.joinpath('launchpad/index.html').write_text(page('Workflow Launchpad', f"<p>Click the button, then click Run workflow on GitHub.</p><table>{launch_rows}</table>"))
+    strong_rsi_source = repo_root / 'strong-rsi' / 'index.html'
+    if strong_rsi_source.exists():
+        o.joinpath('strong-rsi/index.html').write_text(
+            strong_rsi_source.read_text(encoding='utf-8'),
+            encoding='utf-8',
+        )
 
     for exp,runs_exp in by_exp.items():
         ep=o/'experiments'/exp; (ep/'runs').mkdir(parents=True,exist_ok=True)
         latest=runs_exp[0]
         run_rows=''.join([f"<tr><td>{r['run_id']}</td><td>{r.get('status')}</td><td><a href='{r.get('run_url','#')}'>actions</a></td></tr>" for r in runs_exp])
-        ep.joinpath('index.html').write_text(page(exp,f"<div>claim boundary: {html.escape(latest.get('claim_boundary','missing'))}</div><div>latest status: {latest.get('status')}</div><div>safety incidents: {latest.get('metrics',{}).get('safety_incidents','not_reported')}</div><table>{run_rows}</table><a href='/agialpha-first-real-loop/'>Back to hub</a>"))
+        extra = ""
+        if exp == 'rsi-governor-001':
+            extra = "<p><a href='/agialpha-first-real-loop/strong-rsi/'>Open Strong RSI control room</a></p>"
+        ep.joinpath('index.html').write_text(page(exp,f"<div>claim boundary: {html.escape(latest.get('claim_boundary','missing'))}</div><div>latest status: {latest.get('status')}</div><div>safety incidents: {latest.get('metrics',{}).get('safety_incidents','not_reported')}</div><table>{run_rows}</table>{extra}<a href='/agialpha-first-real-loop/'>Back to hub</a>"))
+    custom_experiment_source = repo_root / 'experiments' / 'rsi-governor-001' / 'index.html'
+    if custom_experiment_source.exists() and 'rsi-governor-001' not in by_exp:
+        exp_dir = o / 'experiments' / 'rsi-governor-001'
+        exp_dir.mkdir(parents=True, exist_ok=True)
+        exp_dir.joinpath('index.html').write_text(
+            custom_experiment_source.read_text(encoding='utf-8'),
+            encoding='utf-8',
+        )
 
     for r in runs:
         rp=o/'runs'/r['run_id']; rp.mkdir(parents=True,exist_ok=True)
