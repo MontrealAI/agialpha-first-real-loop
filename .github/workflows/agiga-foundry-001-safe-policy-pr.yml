@@ -1,0 +1,22 @@
+name: AGI ALPHA AGI-GA Foundry 001 / Safe Policy PR
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  safe-policy-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare safe policy PR artifact
+        run: |
+          python -m agialpha_agiga_foundry lifecycle --repo-root . --cycles 1 --candidate-niches 16 --evaluate-niches 6 --local-variants-per-niche 3 --out agiga-foundry-runs/safe-policy-pr
+          echo "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+      - name: Upload policy candidate artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: agiga-foundry-001-safe-policy-pr
+          path: agiga-foundry-runs/safe-policy-pr/agiga-foundry-evidence-docket/25_foundry_policy_vnext

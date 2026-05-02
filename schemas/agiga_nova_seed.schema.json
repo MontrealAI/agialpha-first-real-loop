@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AGIGA NovaSeed",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "nova_seed_id",
+    "parent_opportunity_id",
+    "seed_type",
+    "variant_family",
+    "seed_payload",
+    "expected_benefit",
+    "risk_tier",
+    "proof_requirement",
+    "mutation_operators",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "agialpha.agiga.nova_seed.v1"
+    },
+    "nova_seed_id": {
+      "type": "string"
+    },
+    "parent_opportunity_id": {
+      "type": "string"
+    },
+    "seed_type": {
+      "enum": [
+        "task",
+        "validator",
+        "solver",
+        "workflow",
+        "evidence",
+        "replay",
+        "safety",
+        "cost",
+        "runbook",
+        "capability",
+        "descendant"
+      ]
+    },
+    "variant_family": {
+      "type": "string"
+    },
+    "seed_payload": {
+      "type": "object"
+    },
+    "expected_benefit": {
+      "type": "string"
+    },
+    "risk_tier": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "proof_requirement": {
+      "type": "string"
+    },
+    "mutation_operators": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "claim_boundary": {
+      "type": "string"
+    }
+  }
+}

@@ -6,6 +6,7 @@
     ".github/workflows/agiga-foundry-001-falsification-audit.yml",
     ".github/workflows/agiga-foundry-001-lifecycle.yml",
     ".github/workflows/agiga-foundry-001-replay.yml",
+    ".github/workflows/agiga-foundry-001-safe-policy-pr.yml",
     ".github/workflows/agiga-foundry-001-vnext.yml",
     ".github/workflows/ascension-001-autonomous.yml",
     ".github/workflows/ascension-001-falsification-audit.yml",
