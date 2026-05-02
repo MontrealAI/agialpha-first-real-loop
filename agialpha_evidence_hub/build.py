@@ -55,7 +55,7 @@ def build_site(registry='evidence_registry', out='_site'):
         run_rows=''.join([f"<tr><td>{r['run_id']}</td><td>{r.get('status')}</td><td><a href='{r.get('run_url','#')}'>actions</a></td></tr>" for r in runs_exp])
         ep.joinpath('index.html').write_text(page(exp,f"<div>claim boundary: {html.escape(latest.get('claim_boundary','missing'))}</div><div>latest status: {latest.get('status')}</div><div>safety incidents: {latest.get('metrics',{}).get('safety_incidents','not_reported')}</div><table>{run_rows}</table><a href='/agialpha-first-real-loop/'>Back to hub</a>"))
     custom_experiment_source = Path('experiments/rsi-governor-001/index.html')
-    if custom_experiment_source.exists() and 'rsi-governor-001' not in by_exp:
+    if custom_experiment_source.exists():
         exp_dir = o / 'experiments' / 'rsi-governor-001'
         exp_dir.mkdir(parents=True, exist_ok=True)
         exp_dir.joinpath('index.html').write_text(
