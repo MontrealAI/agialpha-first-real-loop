@@ -1,0 +1,11 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Strong RSI Control Room</title></head>
+<body>
+<h1>Strong RSI</h1>
+<p><strong>No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.</strong></p>
+<section><h2>Lifecycle</h2><ol><li>Candidate lock</li><li>Held-out evaluation</li><li>Replay</li><li>Falsification</li><li>Human-review PR gate</li></ol></section>
+<section><h2>Status Cards</h2><ul><li>B5 vs B6 comparison</li><li>Promotion gate</li><li>PR review state</li></ul></section>
+<section><h2>Actions</h2><p><a href="https://github.com/MontrealAI/agialpha-first-real-loop/actions/workflows/rsi-governor-001-lifecycle-orchestrator.yml">Lifecycle Orchestrator Workflow</a></p></section>
+<section><h2>CLI</h2><pre>gh workflow run rsi-governor-001-lifecycle-orchestrator.yml -f mode=pre_review -f candidate_count=6 -f open_promotion_pr=true</pre></section>
+<p><a href="/agialpha-first-real-loop/experiments/rsi-governor-001/">Experiment page</a></p>
+</body></html>
