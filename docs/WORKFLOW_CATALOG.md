@@ -109,5 +109,6 @@ Current as of 2026-05-01.
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
 
 | `rsi-governor-001-lifecycle.yml` | RSI-GOVERNOR-001 end-to-end autonomous lifecycle orchestrator. | No |
+| `rsi-governor-001-lifecycle-orchestrator.yml` | RSI-GOVERNOR-001 lifecycle orchestrator with schedule + PR-closed hooks. | No |
 | `rsi-governor-001-vnext-canary.yml` | RSI-GOVERNOR-001 vNext canary verification workflow. | No |
 | `rsi-governor-001-post-merge.yml` | RSI-GOVERNOR-001 automatic post-merge delayed outcome + canary gate. | No |
