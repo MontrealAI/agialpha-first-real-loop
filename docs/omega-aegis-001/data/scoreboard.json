@@ -1,0 +1,275 @@
+{
+  "baseline_rows": [
+    {
+      "attack_catch_rate": 0.0,
+      "baseline": "B0_null_no_validation",
+      "evidence_immunity_score": -7.0,
+      "false_accepts": 21,
+      "false_rejects": 0
+    },
+    {
+      "attack_catch_rate": 0.2381,
+      "baseline": "B1_schema_only",
+      "evidence_immunity_score": 37.429,
+      "false_accepts": 16,
+      "false_rejects": 0
+    },
+    {
+      "attack_catch_rate": 0.381,
+      "baseline": "B2_claim_boundary_regex",
+      "evidence_immunity_score": 47.289,
+      "false_accepts": 13,
+      "false_rejects": 0
+    },
+    {
+      "attack_catch_rate": 0.4286,
+      "baseline": "B3_hash_replay_only",
+      "evidence_immunity_score": 50.573,
+      "false_accepts": 12,
+      "false_rejects": 0
+    },
+    {
+      "attack_catch_rate": 0.7619,
+      "baseline": "B4_generic_ledger_validator",
+      "evidence_immunity_score": 73.571,
+      "false_accepts": 5,
+      "false_rejects": 0
+    },
+    {
+      "attack_catch_rate": 0.7143,
+      "baseline": "B5_current_evidence_stack_no_archive_memory",
+      "evidence_immunity_score": 70.287,
+      "false_accepts": 6,
+      "false_rejects": 0
+    },
+    {
+      "attack_catch_rate": 1.0,
+      "baseline": "B6_omega_aegis_archive_reuse",
+      "evidence_immunity_score": 90.0,
+      "false_accepts": 0,
+      "false_rejects": 0
+    }
+  ],
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, real-world security certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned, synthetic adversarial Evidence Docket immunity gauntlet testing whether forged or corrupted evidence can be detected, quarantined, replayed, and prevented from claim promotion.",
+  "metrics": {
+    "B5_evidence_immunity_score": 70.287,
+    "B6_attack_catch_rate_pct": 100.0,
+    "B6_caught_adversarial": 21,
+    "B6_evidence_immunity_score": 90.0,
+    "B6_false_accepts": 0,
+    "B6_false_rejects": 0,
+    "B6_precision_proxy_pct": 100.0,
+    "adversarial_cases": 21,
+    "claim_level": "L5-local-adversarial-evidence-immunity",
+    "external_attestations": 0,
+    "immunity_lift_vs_B5_pct": 19.713,
+    "policy_violations": 0,
+    "replay_status": "pass",
+    "safety_incidents": 0,
+    "task_count": 25,
+    "valid_control_cases": 4
+  },
+  "root_hash": "42bdf27c5ef121022a440fa1cd84678276e489c705c61b01354aeb3178822720",
+  "task_rows": [
+    {
+      "B5": "accepted",
+      "B6": "accepted",
+      "B6_issues": 0,
+      "case_id": "valid-control-001",
+      "expected": "accept",
+      "family": "valid-control"
+    },
+    {
+      "B5": "accepted",
+      "B6": "accepted",
+      "B6_issues": 0,
+      "case_id": "valid-control-002",
+      "expected": "accept",
+      "family": "valid-control"
+    },
+    {
+      "B5": "accepted",
+      "B6": "accepted",
+      "B6_issues": 0,
+      "case_id": "valid-control-003",
+      "expected": "accept",
+      "family": "valid-control"
+    },
+    {
+      "B5": "accepted",
+      "B6": "accepted",
+      "B6_issues": 0,
+      "case_id": "valid-control-004",
+      "expected": "accept",
+      "family": "valid-control"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 3,
+      "case_id": "overclaim-positive-001",
+      "expected": "quarantine",
+      "family": "overclaim-positive"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 2,
+      "case_id": "missing-claim-boundary-001",
+      "expected": "quarantine",
+      "family": "missing-claim-boundary"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 1,
+      "case_id": "missing-safety-ledger-001",
+      "expected": "quarantine",
+      "family": "missing-safety-ledger"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 2,
+      "case_id": "missing-cost-ledger-001",
+      "expected": "quarantine",
+      "family": "missing-cost-ledger"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 1,
+      "case_id": "replay-mismatch-001",
+      "expected": "quarantine",
+      "family": "replay-mismatch"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 1,
+      "case_id": "proofbundle-root-tamper-001",
+      "expected": "quarantine",
+      "family": "proofbundle-root-tamper"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 1,
+      "case_id": "fake-benchmark-victory-001",
+      "expected": "quarantine",
+      "family": "fake-benchmark-victory"
+    },
+    {
+      "B5": "accepted",
+      "B6": "quarantined",
+      "B6_issues": 1,
+      "case_id": "fabricated-metrics-001",
+      "expected": "quarantine",
+      "family": "fabricated-metrics"
+    },
+    {
+      "B5": "accepted",
+      "B6": "quarantined",
+      "B6_issues": 1,
+      "case_id": "negative-safety-counter-001",
+      "expected": "quarantine",
+      "family": "negative-safety-counter"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 2,
+      "case_id": "synthetic-secret-leak-001",
+      "expected": "quarantine",
+      "family": "synthetic-secret-leak"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 1,
+      "case_id": "external-scan-claim-001",
+      "expected": "quarantine",
+      "family": "external-scan-claim"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 2,
+      "case_id": "unsafe-automerge-001",
+      "expected": "quarantine",
+      "family": "unsafe-automerge"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 2,
+      "case_id": "validator-collusion-001",
+      "expected": "quarantine",
+      "family": "validator-collusion"
+    },
+    {
+      "B5": "accepted",
+      "B6": "quarantined",
+      "B6_issues": 2,
+      "case_id": "timestamp-regression-001",
+      "expected": "quarantine",
+      "family": "timestamp-regression"
+    },
+    {
+      "B5": "accepted",
+      "B6": "quarantined",
+      "B6_issues": 2,
+      "case_id": "artifact-404-001",
+      "expected": "quarantine",
+      "family": "artifact-404"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 1,
+      "case_id": "quorum-failure-001",
+      "expected": "quarantine",
+      "family": "quorum-failure"
+    },
+    {
+      "B5": "accepted",
+      "B6": "quarantined",
+      "B6_issues": 1,
+      "case_id": "cost-laundering-001",
+      "expected": "quarantine",
+      "family": "cost-laundering"
+    },
+    {
+      "B5": "accepted",
+      "B6": "quarantined",
+      "B6_issues": 1,
+      "case_id": "lineage-poisoning-001",
+      "expected": "quarantine",
+      "family": "lineage-poisoning"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 1,
+      "case_id": "claim-level-inflation-001",
+      "expected": "quarantine",
+      "family": "claim-level-inflation"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 1,
+      "case_id": "schema-shape-shift-001",
+      "expected": "quarantine",
+      "family": "schema-shape-shift"
+    },
+    {
+      "B5": "quarantined",
+      "B6": "quarantined",
+      "B6_issues": 1,
+      "case_id": "missing-proofbundle-001",
+      "expected": "quarantine",
+      "family": "missing-proofbundle"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "artifact_status": "available",
+  "branch": "main",
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, real-world security certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned, synthetic adversarial Evidence Docket immunity gauntlet testing whether forged or corrupted evidence can be detected, quarantined, replayed, and prevented from claim promotion.",
+  "claim_level": "L5-local-adversarial-evidence-immunity",
+  "commit_sha": "f1c4eeb34fa0f0acc025bb8ee76fc34a1a34e5b0",
+  "experiment": "OMEGA-AEGIS-001",
+  "experiment_name": "AGI ALPHA OMEGA-AEGIS-001",
+  "experiment_slug": "omega-aegis-001",
+  "external_review": {
+    "attestations": 0,
+    "status": "ready"
+  },
+  "generated_at": "2026-05-02T02:53:25Z",
+  "links": {
+    "public_page": "omega-aegis-001/index.html",
+    "raw_json": "omega-aegis-001/evidence-run-manifest.json"
+  },
+  "metrics": {
+    "B5_evidence_immunity_score": 70.287,
+    "B6_attack_catch_rate_pct": 100.0,
+    "B6_caught_adversarial": 21,
+    "B6_evidence_immunity_score": 90.0,
+    "B6_false_accepts": 0,
+    "B6_false_rejects": 0,
+    "B6_precision_proxy_pct": 100.0,
+    "adversarial_cases": 21,
+    "claim_level": "L5-local-adversarial-evidence-immunity",
+    "external_attestations": 0,
+    "immunity_lift_vs_B5_pct": 19.713,
+    "policy_violations": 0,
+    "replay_status": "pass",
+    "safety_incidents": 0,
+    "task_count": 25,
+    "valid_control_cases": 4
+  },
+  "pr_review": {
+    "status": "not_applicable"
+  },
+  "root_hash": "42bdf27c5ef121022a440fa1cd84678276e489c705c61b01354aeb3178822720",
+  "run_attempt": "1",
+  "run_id": "25242014637",
+  "run_url": "https://github.com/MontrealAI/agialpha-first-real-loop/actions/runs/25242014637",
+  "safety_ledger": {
+    "critical_safety_incidents": 0,
+    "exploit_execution_count": 0,
+    "external_target_scan_count": 0,
+    "malware_generation_count": 0,
+    "policy_violations": 0,
+    "raw_secret_leak_count": 0,
+    "social_engineering_content_count": 0,
+    "unsafe_automerge_count": 0
+  },
+  "schema_version": "agialpha.evidence_run.v1",
+  "source": "omega-aegis-generator",
+  "status": "success",
+  "title": "Adversarial Evidence Immunity Gauntlet",
+  "variant": "main",
+  "workflow_file": "MontrealAI/agialpha-first-real-loop/.github/workflows/omega-aegis-001-autonomous.yml@refs/heads/main",
+  "workflow_name": "AGI ALPHA OMEGA-AEGIS-001 / Autonomous"
+}
