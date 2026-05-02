@@ -36,6 +36,12 @@ class TestRsiGovernorHelpers(unittest.TestCase):
             with self.assertRaises(CandidateLockError):
                 build_candidate_lock_manifest([candidate])
 
+
+    def test_prepare_safe_pr_plan_accepts_canonical_scoreboard_delta_field(self):
+        plan = prepare_safe_pr_plan({"Governance Compounding Advantage": 0.2, "ECI_level": "E3_REPLAYED"})
+        self.assertTrue(plan["open_pr"])
+        self.assertEqual(plan["promotion_gate"]["delta"], 0.2)
+
     def test_prepare_safe_pr_plan_uses_boolean_promotion_gate(self):
         plan = prepare_safe_pr_plan({"B6_advantage_delta_vs_B5": 0.2, "ECI_level": "E3_REPLAYED"})
         self.assertTrue(plan["open_pr"])

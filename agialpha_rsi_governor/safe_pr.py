@@ -7,7 +7,8 @@ from .promotion import MINIMUM_ADVANTAGE_DELTA, promotion_gate
 
 def prepare_safe_pr_plan(metrics: dict) -> dict:
     """Prepare safe-PR decision artifact without creating or merging a PR."""
-    delta = float(metrics.get("B6_advantage_delta_vs_B5", 0.0))
+    delta_raw = metrics.get("B6_advantage_delta_vs_B5", metrics.get("Governance Compounding Advantage", 0.0))
+    delta = float(delta_raw)
     eci = str(metrics.get("ECI_level", ""))
     passes = promotion_gate(delta, eci, minimum_advantage_delta=MINIMUM_ADVANTAGE_DELTA)
     return {
