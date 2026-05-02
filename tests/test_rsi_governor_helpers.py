@@ -2,6 +2,7 @@ import unittest
 
 from agialpha_rsi_governor.adversarial import evaluate_adversarial_tasks
 from agialpha_rsi_governor.safe_pr import prepare_safe_pr_plan
+from agialpha_rsi_governor.candidate_lock import CandidateLockError, build_candidate_lock_manifest
 
 
 class TestRsiGovernorHelpers(unittest.TestCase):
@@ -22,6 +23,18 @@ class TestRsiGovernorHelpers(unittest.TestCase):
         tasks = [{"a": 1, "b": 2}, {"x": 3, "y": 4, "z": 5}]
         results = evaluate_adversarial_tasks(kernel, tasks)
         self.assertEqual([r["task_count"] for r in results], [1, 1])
+
+
+    def test_candidate_lock_fails_on_missing_required_artifacts(self):
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as td:
+            candidate = Path(td) / "candidate-001"
+            candidate.mkdir()
+            (candidate / "candidate_kernel.json").write_text("{}", encoding="utf-8")
+            with self.assertRaises(CandidateLockError):
+                build_candidate_lock_manifest([candidate])
 
     def test_prepare_safe_pr_plan_uses_boolean_promotion_gate(self):
         plan = prepare_safe_pr_plan({"B6_advantage_delta_vs_B5": 0.2, "ECI_level": "E3_REPLAYED"})

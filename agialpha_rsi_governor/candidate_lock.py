@@ -8,14 +8,22 @@ from pathlib import Path
 from typing import Iterable
 
 
+class CandidateLockError(ValueError):
+    """Raised when required candidate lock artifacts are missing."""
+
+
 def build_candidate_lock_manifest(candidate_dirs: Iterable[Path]) -> dict:
     """Build deterministic lock manifest for candidate kernel directories."""
     entries = []
     for cdir in sorted((Path(p) for p in candidate_dirs), key=lambda p: p.name):
         policy = cdir / "candidate_kernel.json"
         patch = cdir / "candidate.patch"
-        policy_bytes = policy.read_bytes() if policy.exists() else b""
-        patch_bytes = patch.read_bytes() if patch.exists() else b""
+        missing = [str(p.name) for p in (policy, patch) if not p.exists()]
+        if missing:
+            raise CandidateLockError(f"{cdir}: missing required artifacts: {', '.join(missing)}")
+
+        policy_bytes = policy.read_bytes()
+        patch_bytes = patch.read_bytes()
         entries.append(
             {
                 "candidate_id": cdir.name,
@@ -27,4 +35,4 @@ def build_candidate_lock_manifest(candidate_dirs: Iterable[Path]) -> dict:
     return {"candidates": entries, "lock_hash": root}
 
 
-__all__ = ["build_candidate_lock_manifest"]
+__all__ = ["CandidateLockError", "build_candidate_lock_manifest"]
