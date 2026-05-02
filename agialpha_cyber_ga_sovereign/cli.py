@@ -18,15 +18,26 @@ def main():
     l.add_argument("--local-variants-per-niche", type=int, default=5)
     l.add_argument("--out", default="cyber-ga-sovereign-runs/test")
 
-    for cmd in ["autonomous", "safe-pr", "policy-pr", "delayed-outcome", "vnext"]:
+    a0 = sp.add_parser("autonomous")
+    a0.add_argument("--repo-root", default=".")
+    a0.add_argument("--cycles", type=int, default=3)
+    a0.add_argument("--candidate-niches", type=int, default=64)
+    a0.add_argument("--evaluate-niches", type=int, default=24)
+    a0.add_argument("--local-variants-per-niche", type=int, default=5)
+    a0.add_argument("--docket", default="cyber-ga-sovereign-runs/test/cyber-ga-sovereign-evidence-docket")
+
+    for cmd in ["safe-pr", "policy-pr", "delayed-outcome", "vnext"]:
         c = sp.add_parser(cmd)
         c.add_argument("--docket", default="cyber-ga-sovereign-runs/test/cyber-ga-sovereign-evidence-docket")
 
     r = sp.add_parser("replay"); r.add_argument("--docket", required=True)
     f = sp.add_parser("falsification-audit"); f.add_argument("--docket", required=True)
     a = p.parse_args()
-    if a.cmd in {"lifecycle", "autonomous"}:
-        run_lifecycle(Path(getattr(a, 'repo_root', '.')), getattr(a, 'cycles', 1), getattr(a, 'candidate_niches', 16), getattr(a, 'evaluate_niches', 6), getattr(a, 'local_variants_per_niche', 3), Path(getattr(a, 'out', 'cyber-ga-sovereign-runs/test')))
+    if a.cmd == "lifecycle":
+        run_lifecycle(Path(a.repo_root), a.cycles, a.candidate_niches, a.evaluate_niches, a.local_variants_per_niche, Path(a.out))
+    elif a.cmd == "autonomous":
+        out = Path(a.docket).parent
+        run_lifecycle(Path(a.repo_root), a.cycles, a.candidate_niches, a.evaluate_niches, a.local_variants_per_niche, out)
     elif a.cmd == "replay":
         result = run_replay(Path(a.docket))
         if result.get("status") != "pass":
