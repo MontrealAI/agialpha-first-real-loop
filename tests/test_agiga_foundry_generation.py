@@ -43,5 +43,21 @@ class T(unittest.TestCase):
             with self.assertRaises(ValueError):
                 run_lifecycle('.',1,1,0,-1,td)
 
+
+    def test_all_opportunities_have_dossiers(self):
+        with tempfile.TemporaryDirectory() as td:
+            run_lifecycle('.',2,4,2,1,td)
+            base=Path(td)/'agiga-foundry-evidence-docket'
+            opps=json.loads((base/'04_opportunity_intermediates/opportunities.json').read_text())
+            dossiers=json.loads((base/'20_sovereign_opportunity_dossiers/dossiers.json').read_text())
+            self.assertEqual(len(dossiers),len(opps))
+
+    def test_zero_variants_reports_zero_win_rate(self):
+        with tempfile.TemporaryDirectory() as td:
+            run_lifecycle('.',1,4,2,0,td)
+            score=self._score(td)
+            self.assertEqual(score['local_variants_generated'],0)
+            self.assertEqual(score['local_variant_win_rate'],0.0)
+
 if __name__=='__main__':
     unittest.main()
