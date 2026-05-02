@@ -60,6 +60,10 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
           git add accepted_capabilities/rsi-forge-001 docs/rsi-forge-001
+          if git diff --cached --quiet; then
+            echo "No safe proposal changes to commit."
+            exit 0
+          fi
           git commit -m "Add RSI-FORGE-001 accepted Evidence Kernel proposal"
           git push --set-upstream origin "$BRANCH"
           gh pr create \
