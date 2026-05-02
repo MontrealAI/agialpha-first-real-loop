@@ -18,25 +18,34 @@ from .render import render_page
 from .policy import CLAIM_BOUNDARY
 
 def run_lifecycle(repo_root, cycles, candidate_niches, evaluate_niches, local_variants_per_niche, out):
-    opps = generate_opportunities(candidate_niches)
-    niches = [codesign(make_niche(i + 1, FAMILIES[i % len(FAMILIES)], opps[i])) for i in range(candidate_niches)]
-    validated = [n for n in niches[:evaluate_niches] if validate_niche(n)]
-    rejected = [n for n in niches[:evaluate_niches] if n not in validated]
-    solved, variants = [], []
-    for n in validated:
-        ev = evolve(n, local_variants_per_niche)
-        variants.extend(ev["variants"])
-        res = run_validator(ev["winner"])
+    if cycles < 1:
+        raise ValueError("cycles must be >= 1")
+    all_opps, all_niches, validated, rejected, solved, variants = [], [], [], [], [], []
+    for cycle in range(cycles):
+        opps = generate_opportunities(candidate_niches)
+        niches = [codesign(make_niche((cycle * candidate_niches) + i + 1, FAMILIES[i % len(FAMILIES)], opps[i])) for i in range(candidate_niches)]
+        all_opps.extend(opps); all_niches.extend(niches)
+        cycle_validated = [n for n in niches[:evaluate_niches] if validate_niche(n)]
+        cycle_rejected = [n for n in niches[:evaluate_niches] if n not in cycle_validated]
+        validated.extend(cycle_validated); rejected.extend(cycle_rejected)
+        for n in cycle_validated:
+            ev = evolve(n, local_variants_per_niche)
+            variants.extend(ev["variants"])
+            if ev.get("winner") is None:
+                rejected.append(n)
+                continue
+            res = run_validator(ev["winner"])
         if res["pass"]:
             solved.append({"niche": n, "attempt": solve(n), "validator": res, "proof": make_proofbundle(n, res)})
         else:
             rejected.append(n)
-    qd = build_qd(niches)
-    lineage = lineage_edges(opps, niches)
+    qd = build_qd(all_niches)
+    lineage = lineage_edges(all_opps, all_niches)
     safety = safety_counters()
     score = {
-        "candidate_niches_generated": candidate_niches,
-        "candidate_niches_evaluated": evaluate_niches,
+        "cycle_index": cycles,
+        "candidate_niches_generated": candidate_niches * cycles,
+        "candidate_niches_evaluated": evaluate_niches * cycles,
         "valid_niches": len(validated),
         "solved_niches": len(solved),
         "rejected_niches": len(rejected),
@@ -49,8 +58,8 @@ def run_lifecycle(repo_root, cycles, candidate_niches, evaluate_niches, local_va
         "archive_coverage_before": 0,
         "archive_coverage_after": archive_coverage({"accepted_niches": validated, "rejected_niches": rejected}),
         "archive_coverage_delta": archive_coverage({"accepted_niches": validated, "rejected_niches": rejected}),
-        "novelty_score_mean": sum(novelty(n) for n in niches) / max(1, len(niches)),
-        "diversity_score_mean": diversity(niches),
+        "novelty_score_mean": sum(novelty(n) for n in all_niches) / max(1, len(all_niches)),
+        "diversity_score_mean": diversity(all_niches),
         "useful_capacity_score_mean": 0.7,
         "replay_passes": len(solved),
         "proofbundle_complete_count": len(solved),
@@ -70,8 +79,8 @@ def run_lifecycle(repo_root, cycles, candidate_niches, evaluate_niches, local_va
         "00_manifest.json": {"experiment": "AGI-GA-FOUNDRY-001", "claim_boundary": CLAIM_BOUNDARY},
         "01_claims_matrix.json": {"allowed": "bounded local open-ended evidence", "forbidden": "SOTA/AGI claims"},
         "03_policy/agiga_foundry_policy.json": json.loads((Path(repo_root)/"config/agiga_foundry_policy.json").read_text()),
-        "04_opportunity_intermediates/opportunities.json": opps,
-        "05_generated_niches/niches.json": niches,
+        "04_opportunity_intermediates/opportunities.json": all_opps,
+        "05_generated_niches/niches.json": all_niches,
         "06_validated_niches/validated.json": validated,
         "07_rejected_niches/rejected.json": rejected,
         "08_baselines/B5_global_codesign_only.json": {"score":0.5},
