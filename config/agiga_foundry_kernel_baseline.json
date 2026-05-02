@@ -1,0 +1,29 @@
+{
+  "schema_version": "agialpha.agiga.foundry_kernel.v1",
+  "kernel_version": "0.1.0",
+  "governs": [
+    "insight_detection",
+    "opportunity_intermediate_generation",
+    "nova_seed_generation",
+    "mark_allocation",
+    "sovereign_formation",
+    "niche_generation",
+    "co_design",
+    "local_evolution",
+    "proof_gated_screening",
+    "archive_update",
+    "descendant_generation",
+    "claim_boundary_policy",
+    "safety_policy",
+    "human_promotion_policy"
+  ],
+  "autonomous_persistence_allowed": false,
+  "human_review_required_for_kernel_persistence": true,
+  "candidate_lock_required_before_heldout": true,
+  "minimum_advantage_delta_for_pr": 0.15,
+  "minimum_heldout_win_rate_for_pr": 0.7,
+  "zero_hard_safety_incidents_required": true,
+  "claim_boundary_required": true,
+  "replay_required": true,
+  "falsification_required": true
+}
