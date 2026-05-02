@@ -58,6 +58,11 @@ RSI-GOVERNOR-001 tests whether AGI ALPHA can modify the mechanism that governs f
 AGI-GA Foundry is a proof-gated open-ended directed evolution engine for sovereign work capabilities. Public page: `agiga-foundry/index.html`.
 
 
+
+## AGI Alpha SecureRails
+
+AGI Alpha SecureRails is the AI-agent security governance platform for proof-bound defensive remediation. It secures autonomous software work by converting agent actions, workflow changes, findings, and remediation proposals into replayable ProofBundles, Evidence Dockets, redacted safety ledgers, safe PRs, and reusable defensive capability — with human-governed promotion and no autonomous claim escalation. See `/securerails/`.
+
 ## α-AGI Protocol Cybersecurity Sovereign
 
 Defensive, proof-gated cybersecurity sovereign for repo-owned work. See `/cybersecurity-sovereign/`.
