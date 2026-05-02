@@ -28,9 +28,13 @@ def main():
     if a.cmd in {"lifecycle", "autonomous"}:
         run_lifecycle(Path(getattr(a, 'repo_root', '.')), getattr(a, 'cycles', 1), getattr(a, 'candidate_niches', 16), getattr(a, 'evaluate_niches', 6), getattr(a, 'local_variants_per_niche', 3), Path(getattr(a, 'out', 'cyber-ga-sovereign-runs/test')))
     elif a.cmd == "replay":
-        run_replay(Path(a.docket))
+        result = run_replay(Path(a.docket))
+        if result.get("status") != "pass":
+            raise SystemExit(1)
     elif a.cmd == "falsification-audit":
-        run_falsification(Path(a.docket))
+        result = run_falsification(Path(a.docket))
+        if result.get("status") != "pass":
+            raise SystemExit(1)
     else:
         d = Path(a.docket)
         write_json(d / f"{a.cmd.replace('-', '_')}.json", {"status": "pending_human_review", "claim_boundary": disclaimer(), "automerge": False})
