@@ -33,5 +33,15 @@ class T(unittest.TestCase):
             ids=[o['opportunity_id'] for o in opps]
             self.assertEqual(len(ids),len(set(ids)))
 
+
+    def test_negative_inputs_fail_fast(self):
+        with tempfile.TemporaryDirectory() as td:
+            with self.assertRaises(ValueError):
+                run_lifecycle('.',1,-1,0,1,td)
+            with self.assertRaises(ValueError):
+                run_lifecycle('.',1,1,-1,1,td)
+            with self.assertRaises(ValueError):
+                run_lifecycle('.',1,1,0,-1,td)
+
 if __name__=='__main__':
     unittest.main()

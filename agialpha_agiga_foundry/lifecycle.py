@@ -20,6 +20,12 @@ from .policy import CLAIM_BOUNDARY
 def run_lifecycle(repo_root, cycles, candidate_niches, evaluate_niches, local_variants_per_niche, out):
     if cycles < 1:
         raise ValueError("cycles must be >= 1")
+    if candidate_niches < 1:
+        raise ValueError("candidate_niches must be >= 1")
+    if evaluate_niches < 0:
+        raise ValueError("evaluate_niches must be >= 0")
+    if local_variants_per_niche < 0:
+        raise ValueError("local_variants_per_niche must be >= 0")
     all_opps, all_niches, validated, rejected, solved, variants = [], [], [], [], [], []
     for cycle in range(cycles):
         opps = generate_opportunities(candidate_niches, start_index=cycle * candidate_niches)

@@ -2,10 +2,7 @@ name: AGI ALPHA AGI-GA Foundry 001 / Replay
 on:
   workflow_dispatch:
     inputs:
-      cycles: {default: '3', required: false}
-      candidate_niches: {default: '32', required: false}
-      evaluate_niches: {default: '12', required: false}
-      local_variants_per_niche: {default: '4', required: false}
+      docket_path: {default: 'agiga-foundry-runs/test/agiga-foundry-evidence-docket', required: false}
       publish_agiga_tab: {default: 'true', required: false}
 jobs:
   run:
@@ -14,6 +11,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: python -m agialpha_agiga_foundry lifecycle --repo-root . --cycles "${{ inputs.cycles }}" --candidate-niches "${{ inputs.candidate_niches }}" --evaluate-niches "${{ inputs.evaluate_niches }}" --local-variants-per-niche "${{ inputs.local_variants_per_niche }}" --out agiga-foundry-runs/ci
-      - run: python -m agialpha_agiga_foundry replay --docket agiga-foundry-runs/ci/agiga-foundry-evidence-docket
-      - run: python -m agialpha_agiga_foundry falsification-audit --docket agiga-foundry-runs/ci/agiga-foundry-evidence-docket
+      - run: test -d "${{ inputs.docket_path }}"
+      - run: python -m agialpha_agiga_foundry replay --docket "${{ inputs.docket_path }}"
+      - run: python -m agialpha_agiga_foundry falsification-audit --docket "${{ inputs.docket_path }}"
