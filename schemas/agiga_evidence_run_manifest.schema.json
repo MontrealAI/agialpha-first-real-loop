@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AGIGA Evidence Run Manifest",
+  "type": "object",
+  "required": [
+    "experiment_slug",
+    "experiment_family",
+    "public_page",
+    "experiment_page",
+    "metrics"
+  ],
+  "properties": {
+    "experiment_slug": {
+      "const": "agiga-foundry-001"
+    },
+    "experiment_family": {
+      "const": "agiga-foundry"
+    },
+    "experiment_name": {
+      "type": "string"
+    },
+    "workflow_name": {
+      "type": "string"
+    },
+    "workflow_file": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": [
+        "string",
+        "integer",
+        "null"
+      ]
+    },
+    "run_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "claim_level": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "claim_boundary": {
+      "type": "string"
+    },
+    "evidence_docket_path": {
+      "type": "string"
+    },
+    "scoreboard_path": {
+      "type": "string"
+    },
+    "artifact_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "root_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "metrics": {
+      "type": "object"
+    },
+    "safety_counters": {
+      "type": "object"
+    },
+    "external_review": {
+      "type": [
+        "object",
+        "string",
+        "null"
+      ]
+    },
+    "pr_review": {
+      "type": [
+        "object",
+        "string",
+        "null"
+      ]
+    },
+    "public_page": {
+      "const": "/agiga-foundry/"
+    },
+    "experiment_page": {
+      "const": "/experiments/agiga-foundry-001/"
+    }
+  }
+}

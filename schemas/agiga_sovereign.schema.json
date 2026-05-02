@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AGIGA Sovereign",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "sovereign_id",
+    "sovereign_name",
+    "formed_from_opportunity_id",
+    "formed_from_nova_seeds",
+    "domain",
+    "task_family",
+    "validators",
+    "proofbundle_policy",
+    "evidence_docket_policy",
+    "archive_policy",
+    "promotion_policy",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "agialpha.agiga.sovereign.v1"
+    },
+    "sovereign_id": {
+      "type": "string"
+    },
+    "sovereign_name": {
+      "type": "string"
+    },
+    "formed_from_opportunity_id": {
+      "type": "string"
+    },
+    "formed_from_nova_seeds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "domain": {
+      "type": "string"
+    },
+    "task_family": {
+      "type": "string"
+    },
+    "validators": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "proofbundle_policy": {
+      "type": "object"
+    },
+    "evidence_docket_policy": {
+      "type": "object"
+    },
+    "archive_policy": {
+      "type": "object"
+    },
+    "promotion_policy": {
+      "type": "object"
+    },
+    "claim_boundary": {
+      "type": "string"
+    }
+  }
+}
