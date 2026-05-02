@@ -87,8 +87,8 @@ jobs:
           python-version: '3.11'
       - name: Discover evidence
         run: |
-          python -m agialpha_evidence_hub workflow-catalog --repo-root . --registry evidence_registry
-          python -m agialpha_evidence_hub discover --repo-root . --registry evidence_registry
+          python -m agialpha_evidence_hub workflow-catalog --repo-root .
+          python -m agialpha_evidence_hub discover --repo-root . --out evidence_registry/discovered_runs.json
           python -m agialpha_evidence_hub github-discover --registry evidence_registry --limit 1000
       - name: Backfill
         run: python -m agialpha_evidence_hub backfill --repo-root . --registry evidence_registry
@@ -115,13 +115,7 @@ jobs:
         run: |
           SHOULD_DEPLOY=true
           if [ -f evidence_registry/needed_update.json ]; then
-            if python - <<'PY'
-import json
-from pathlib import Path
-p=Path('evidence_registry/needed_update.json')
-d=json.loads(p.read_text())
-raise SystemExit(0 if d.get('needed', True) else 1)
-PY
+            if python -c "import json, pathlib; d=json.loads(pathlib.Path('evidence_registry/needed_update.json').read_text()); raise SystemExit(0 if d.get('needed', True) else 1)"
             then
               SHOULD_DEPLOY=true
             else
