@@ -1,82 +1,48 @@
 #!/usr/bin/env python3
-"""Deterministic SecureRails Work Vault record generator."""
+"""Deterministic SecureRails Work Vault pipeline generator."""
+
+from __future__ import annotations
+
 import argparse
 import hashlib
 import json
-from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict
 
-CLAIM_BOUNDARY = "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
-
-ALLOWED_JOB_TYPES = {"defensive_remediation", "defensive_triage", "defensive_validation"}
-ALLOWED_JOB_STATUS = {"completed", "rejected", "escalated"}
-ALLOWED_DECISIONS = {"safe_remediation", "reject", "escalate"}
-
-
-def _stable_hash(payload: dict) -> str:
-    encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
-    return hashlib.sha256(encoded).hexdigest()
+CLAIM_BOUNDARY = (
+    "No Evidence Docket, no empirical SOTA claim. "
+    "Autonomous evidence production is allowed; autonomous claim promotion is not."
+)
+SCHEMA_VERSION = "agialpha.securerails.work_vault_record.v1"
 
 
-def _require_non_empty_string(payload: dict, field: str) -> None:
-    value = payload[field]
-    if not isinstance(value, str) or not value.strip():
-        raise ValueError(f"{field} must be a non-empty string")
+def canonical_json(data: Dict[str, Any]) -> str:
+    return json.dumps(data, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
 
 
-def _validate_created_at(value: str) -> None:
-    if not isinstance(value, str):
-        raise ValueError("created_at must be a string in RFC3339 date-time format")
-    normalized = value.replace("Z", "+00:00")
-    try:
-        parsed = datetime.fromisoformat(normalized)
-    except ValueError as exc:
-        raise ValueError(f"Invalid created_at date-time: {value}") from exc
-    if parsed.tzinfo is None:
-        raise ValueError("created_at must include timezone offset (RFC3339)")
+def _short(prefix: str, material: str, length: int = 16) -> str:
+    return f"{prefix}-{material[:length]}"
 
 
-def _validate_payload(payload: dict) -> None:
-    _require_non_empty_string(payload, "vault_id")
-    _require_non_empty_string(payload, "defensive_scope")
-    _require_non_empty_string(payload, "sovereign_id")
-    _require_non_empty_string(payload, "reviewed_by")
-    if payload["job_type"] not in ALLOWED_JOB_TYPES:
-        raise ValueError(f"Invalid job_type: {payload['job_type']}")
-    if payload["status"] not in ALLOWED_JOB_STATUS:
-        raise ValueError(f"Invalid status: {payload['status']}")
-    if payload["decision"] not in ALLOWED_DECISIONS:
-        raise ValueError(f"Invalid decision: {payload['decision']}")
-    mark_units = payload["mark_units"]
-    if isinstance(mark_units, bool) or not isinstance(mark_units, int):
-        raise ValueError("mark_units must be an integer (boolean is not allowed)")
-    if mark_units < 0:
-        raise ValueError(f"mark_units must be non-negative: {mark_units}")
-    _validate_created_at(payload.get("created_at", "1970-01-01T00:00:00+00:00"))
+def generate_record(payload: Dict[str, Any]) -> Dict[str, Any]:
+    canonical_input = canonical_json(payload)
+    digest = hashlib.sha256(canonical_input.encode("utf-8")).hexdigest()
 
-    reviewers = payload["reviewers"]
-    if not isinstance(reviewers, list) or len(reviewers) < 1:
-        raise ValueError("reviewers must be a non-empty list of strings")
-    if any(not isinstance(r, str) or not r for r in reviewers):
-        raise ValueError("reviewers entries must be non-empty strings")
+    mark_hash = hashlib.sha256(f"mark:{digest}".encode("utf-8")).hexdigest()
+    job_hash = hashlib.sha256(f"job:{digest}".encode("utf-8")).hexdigest()
+    bundle_hash = hashlib.sha256(f"proof:{digest}".encode("utf-8")).hexdigest()
+    docket_hash = hashlib.sha256(f"docket:{digest}".encode("utf-8")).hexdigest()
 
-
-def build_record(payload: dict) -> dict:
-    _validate_payload(payload)
-    digest = _stable_hash(payload)
-    run_id = f"svr-{digest[:16]}"
-    job_id = f"job-{digest[16:32]}"
-    proof_id = f"pb-{digest[32:48]}"
-    docket_id = f"dkt-{digest[48:64]}"
-    record = {
-        "schema_version": "agialpha.securerails.work_vault_record.v1",
+    return {
+        "schema_version": SCHEMA_VERSION,
         "work_vault": {
             "vault_id": payload["vault_id"],
-            "run_id": run_id,
-            "created_at": payload.get("created_at", "1970-01-01T00:00:00+00:00"),
+            "run_id": _short("svr", digest),
+            "created_at": payload["created_at"],
             "defensive_scope": payload["defensive_scope"],
         },
         "mark_allocation": {
-            "mark_id": f"mark-{digest[:12]}",
+            "mark_id": _short("mark", mark_hash, 12),
             "allocation_units": payload["mark_units"],
             "replay_required": True,
             "human_review_required": True,
@@ -86,28 +52,44 @@ def build_record(payload: dict) -> dict:
             "sovereign_policy": "defensive-remediation-only",
             "reviewers": payload["reviewers"],
         },
-        "agi_job": {"job_id": job_id, "job_type": payload["job_type"], "status": payload["status"]},
-        "proof_bundle": {"proof_bundle_id": proof_id, "sha256": digest},
-        "evidence_docket": {"docket_id": docket_id, "claim_boundary_statement": CLAIM_BOUNDARY},
-        "human_review": {"decision": payload["decision"], "reviewed_by": payload["reviewed_by"]},
-        "utility_settlement": {"receipt_id": f"util-{digest[:20]}", "mode": "$AGIALPHA_UTILITY_ONLY", "real_transfer": False},
+        "agi_job": {
+            "job_id": _short("job", job_hash),
+            "job_type": payload["job_type"],
+            "status": payload["status"],
+        },
+        "proof_bundle": {
+            "proof_bundle_id": _short("pb", bundle_hash, 17),
+            "sha256": hashlib.sha256(
+                f"{mark_hash}:{job_hash}:{bundle_hash}:{docket_hash}".encode("utf-8")
+            ).hexdigest(),
+        },
+        "evidence_docket": {
+            "docket_id": _short("dkt", docket_hash),
+            "claim_boundary_statement": CLAIM_BOUNDARY,
+        },
+        "human_review": {
+            "decision": payload["decision"],
+            "reviewed_by": payload["reviewed_by"],
+        },
+        "utility_settlement": {
+            "receipt_id": _short("util", digest, 20),
+            "mode": "$AGIALPHA_UTILITY_ONLY",
+            "real_transfer": False,
+        },
     }
-    return record
 
 
-def main() -> int:
-    p = argparse.ArgumentParser()
-    p.add_argument("--input", required=True)
-    p.add_argument("--output", required=True)
-    args = p.parse_args()
-    with open(args.input, "r", encoding="utf-8") as f:
-        payload = json.load(f)
-    record = build_record(payload)
-    with open(args.output, "w", encoding="utf-8") as f:
-        json.dump(record, f, indent=2, sort_keys=True)
-        f.write("\n")
-    return 0
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--input", required=True, type=Path)
+    parser.add_argument("--output", required=True, type=Path)
+    args = parser.parse_args()
+
+    payload = json.loads(args.input.read_text(encoding="utf-8"))
+    record = generate_record(payload)
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps(record, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    main()

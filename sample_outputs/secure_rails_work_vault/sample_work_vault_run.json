@@ -1,12 +1,12 @@
 {
   "agi_job": {
-    "job_id": "job-8df8138ccc58efcf",
+    "job_id": "job-4e67b3be073dea4d",
     "job_type": "defensive_remediation",
     "status": "completed"
   },
   "evidence_docket": {
     "claim_boundary_statement": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
-    "docket_id": "dkt-8d30ba5fcae5cf1c"
+    "docket_id": "dkt-c7e6e6ad43298a88"
   },
   "human_review": {
     "decision": "safe_remediation",
@@ -15,12 +15,12 @@
   "mark_allocation": {
     "allocation_units": 42,
     "human_review_required": true,
-    "mark_id": "mark-85862719307b",
+    "mark_id": "mark-ea9bc0b7abbb",
     "replay_required": true
   },
   "proof_bundle": {
-    "proof_bundle_id": "pb-23d2e518af4d22e5",
-    "sha256": "85862719307bbbd88df8138ccc58efcf23d2e518af4d22e58d30ba5fcae5cf1c"
+    "proof_bundle_id": "pb-ce8df56c986d6f1fc",
+    "sha256": "c337a132f2f8d9f5f9074f3d4929fa3b27aaf7d7755654be3bce154bc00dc2d6"
   },
   "schema_version": "agialpha.securerails.work_vault_record.v1",
   "sovereign_assignment": {
