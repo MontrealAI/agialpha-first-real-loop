@@ -1,0 +1,35 @@
+{
+  "schema_version": "securerails.token_utility_policy.v1",
+  "token": "$AGIALPHA",
+  "permitted_uses": [
+    "protocol access",
+    "staking for Sybil resistance",
+    "escrow",
+    "settlement",
+    "validator fees",
+    "slashing",
+    "alpha-work-unit accounting",
+    "ProofBundle registration",
+    "Evidence Docket anchoring",
+    "capacity allocation under stated assumptions"
+  ],
+  "forbidden_claims": [
+    "equity",
+    "debt",
+    "yield",
+    "dividends",
+    "profit rights",
+    "ownership rights",
+    "guaranteed appreciation",
+    "guaranteed returns",
+    "investment product"
+  ],
+  "review_required_before": [
+    "public sale",
+    "exchange listing",
+    "market-making arrangement",
+    "staking reward communication",
+    "validator reward communication",
+    "treasury discussion"
+  ]
+}

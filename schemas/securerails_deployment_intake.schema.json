@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SecureRails Customer Deployment Intake",
+  "type": "object",
+  "required": [
+    "customer",
+    "jurisdiction",
+    "intended_use",
+    "repo_owned_scope",
+    "human_review_required"
+  ],
+  "properties": {
+    "customer": {
+      "type": "string"
+    },
+    "jurisdiction": {
+      "type": "string"
+    },
+    "industry": {
+      "type": "string"
+    },
+    "intended_use": {
+      "type": "string"
+    },
+    "repo_owned_scope": {
+      "type": "boolean"
+    },
+    "human_review_required": {
+      "type": "boolean"
+    },
+    "processes_personal_data": {
+      "type": "boolean"
+    },
+    "high_risk_domain": {
+      "type": "boolean"
+    },
+    "token_settlement_requested": {
+      "type": "boolean"
+    }
+  }
+}
