@@ -66,6 +66,50 @@ class TestSecureRailsWorkVaultPipeline(unittest.TestCase):
             data = json.loads(out.read_text(encoding="utf-8"))
         self.assertEqual(data["work_vault"]["created_at"], "1970-01-01T00:00:00+00:00")
 
+    def test_rejects_invalid_enums(self):
+        payload = {
+            "vault_id": "vault-x",
+            "defensive_scope": "scope",
+            "job_type": "oops",
+            "mark_units": 1,
+            "sovereign_id": "sovereign-x",
+            "reviewers": ["r1"],
+            "status": "running",
+            "decision": "auto",
+            "reviewed_by": "r1",
+        }
+        with tempfile.TemporaryDirectory() as td:
+            inp = Path(td) / "in.json"
+            out = Path(td) / "out.json"
+            inp.write_text(json.dumps(payload), encoding="utf-8")
+            res = subprocess.run([
+                "python", "scripts/secure_rails_work_vault_pipeline.py",
+                "--input", str(inp), "--output", str(out),
+            ], capture_output=True, text=True)
+            self.assertNotEqual(res.returncode, 0)
+
+    def test_rejects_negative_mark_units(self):
+        payload = {
+            "vault_id": "vault-x",
+            "defensive_scope": "scope",
+            "job_type": "defensive_validation",
+            "mark_units": -3,
+            "sovereign_id": "sovereign-x",
+            "reviewers": ["r1"],
+            "status": "completed",
+            "decision": "safe_remediation",
+            "reviewed_by": "r1",
+        }
+        with tempfile.TemporaryDirectory() as td:
+            inp = Path(td) / "in.json"
+            out = Path(td) / "out.json"
+            inp.write_text(json.dumps(payload), encoding="utf-8")
+            res = subprocess.run([
+                "python", "scripts/secure_rails_work_vault_pipeline.py",
+                "--input", str(inp), "--output", str(out),
+            ], capture_output=True, text=True)
+            self.assertNotEqual(res.returncode, 0)
+
 
 if __name__ == "__main__":
     unittest.main()

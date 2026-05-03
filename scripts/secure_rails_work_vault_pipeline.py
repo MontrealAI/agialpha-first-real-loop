@@ -6,13 +6,32 @@ import json
 
 CLAIM_BOUNDARY = "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
 
+ALLOWED_JOB_TYPES = {"defensive_remediation", "defensive_triage", "defensive_validation"}
+ALLOWED_JOB_STATUS = {"completed", "rejected", "escalated"}
+ALLOWED_DECISIONS = {"safe_remediation", "reject", "escalate"}
+
 
 def _stable_hash(payload: dict) -> str:
     encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
 
 
+def _validate_payload(payload: dict) -> None:
+    if payload["job_type"] not in ALLOWED_JOB_TYPES:
+        raise ValueError(f"Invalid job_type: {payload['job_type']}")
+    if payload["status"] not in ALLOWED_JOB_STATUS:
+        raise ValueError(f"Invalid status: {payload['status']}")
+    if payload["decision"] not in ALLOWED_DECISIONS:
+        raise ValueError(f"Invalid decision: {payload['decision']}")
+    mark_units = payload["mark_units"]
+    if not isinstance(mark_units, int):
+        raise ValueError("mark_units must be an integer")
+    if mark_units < 0:
+        raise ValueError(f"mark_units must be non-negative: {mark_units}")
+
+
 def build_record(payload: dict) -> dict:
+    _validate_payload(payload)
     seed = {
         "vault_id": payload["vault_id"],
         "defensive_scope": payload["defensive_scope"],
