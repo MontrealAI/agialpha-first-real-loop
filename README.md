@@ -79,7 +79,7 @@ It makes AI-agent work safe to review, safe to replay, and safe to remediate by 
 - reusable defensive capability
 - human-reviewed promotion records
 
-SecureRails is designed as repo-owned defensive evidence infrastructure. It is not autonomous cybersecurity assurance or attestation, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
+SecureRails is designed as repo-owned defensive evidence infrastructure. It is not autonomous cybersecurity certification, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
 
 ### SecureRails quick links
 
@@ -99,6 +99,27 @@ The repository includes a SecureRails compliance guard workflow:
 ```text
 .github/workflows/secure-rails-compliance-guard.yml
 ```
+
+It enforces:
+
+* claim-boundary checks
+* no-auto-merge posture
+* AI Act use-case triage
+* safety ledger validation
+* foreseeable misuse controls
+
+Run local checks with:
+
+```bash
+python scripts/secure_rails_claim_boundary_check.py .
+python scripts/secure_rails_safety_ledger_check.py docs/secure-rails/templates/safety-ledger-example.json
+python scripts/secure_rails_no_automerge_check.py .
+python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json
+```
+
+SecureRails doctrine:
+
+> No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
 
 ## Quick links
 
