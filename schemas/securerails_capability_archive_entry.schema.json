@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "entry_id",
+    "vault_id"
+  ],
+  "properties": {
+    "entry_id": {
+      "type": "string"
+    },
+    "vault_id": {
+      "type": "string"
+    }
+  }
+}

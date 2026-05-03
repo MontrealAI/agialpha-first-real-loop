@@ -1,0 +1,28 @@
+{
+  "experiment_slug": "securerails-work-vault-demo",
+  "experiment_family": "securerails",
+  "claim_level": "local-demo",
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "public_page": "docs/secure-rails/work-vaults-demo/README.md",
+  "raw_json_links": [
+    "work-vault.json",
+    "evidence-run-manifest.json",
+    "proofbundle.json",
+    "settlement-receipt.json",
+    "mark-allocation.json",
+    "capability-archive-entry.json",
+    "evidence-docket.json",
+    "sovereign.json",
+    "safety-ledger.json",
+    "agi-job.json"
+  ],
+  "safety_counters": {
+    "raw_secret_leak_count": 0,
+    "external_target_scan_count": 0,
+    "exploit_execution_count": 0,
+    "malware_generation_count": 0,
+    "social_engineering_content_count": 0,
+    "unsafe_automerge_count": 0,
+    "critical_safety_incidents": 0
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "evidence_docket_id": "evidence-docket-demo-001",
+  "vault_id": "vault-demo-001",
+  "human_review_status": "required",
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+}

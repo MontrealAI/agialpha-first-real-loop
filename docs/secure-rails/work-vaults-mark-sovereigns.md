@@ -1,81 +1,11 @@
-# SecureRails Work Vaults, ALPHA AGI MARK, and ALPHA AGI Sovereigns
+# SecureRails Work Vaults, MARK, and Sovereigns
 
-SecureRails Work Vaults are the protocol boundary that converts AI-agent defensive work into auditable, human-governed remediation decisions.
+A Work Vault is not a bank account, investment vehicle, fund, yield product, profit pool, ownership claim, or financial product.
 
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
 
-## Scope and boundary
+AI-agent work event → SecureRails Work Vault → ALPHA AGI MARK allocation → ALPHA AGI Sovereign assignment → AGI Job execution → ProofBundle → Evidence Docket → validator decision → safe remediation / rejection / escalation → $AGIALPHA utility settlement → CyberSecurityCapabilityArchive → vNext defensive work
 
-SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cybersecurity assurance or attestation, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
+Lifecycle: proposed → MARK_scored → vault_opened → sovereign_assigned → job_started → proof_submitted → validator_review → evidence_docket_created → human_review → accepted / rejected / escalated → settled → archived → vNext_reuse_tested
 
-All outputs are advisory and require independent human validation before action.
-
-$AGIALPHA in this protocol is utility infrastructure for protocol operations only. It is not investment, equity, yield, dividend, appreciation, ownership, or a financial product claim.
-
-## Lifecycle
-
-```text
-SecureRails Work Vault
-→ ALPHA AGI MARK allocation
-→ ALPHA AGI Sovereign assignment
-→ AGI Job execution
-→ ProofBundle production
-→ Evidence Docket assembly
-→ Human review decision
-→ Safe remediation / rejection / escalation
-→ $AGIALPHA utility settlement receipt
-→ Reusable defensive capability archive
-→ vNext defensive work
-```
-
-## Core entities
-
-- **Work Vault**: isolated, deterministic job context with pinned inputs, policy controls, and immutable run IDs.
-- **ALPHA AGI MARK allocation**: governance allocation record that authorizes a bounded defensive job under explicit replay/validator requirements.
-- **ALPHA AGI Sovereign assignment**: assignment of accountable defensive operating policy and reviewers to a vault run.
-- **AGI Job**: deterministic task run that emits artifacts and logs.
-- **ProofBundle**: reproducible evidence package (inputs, outputs, checksums, commands).
-- **Evidence Docket**: claim-bound, reviewer-readable evidence summary and decision record.
-- **Settlement receipt**: protocol utility accounting receipt for operations tracking only (no real transfer).
-
-## Deterministic execution requirements
-
-1. Stable job ID derived from normalized JSON inputs.
-2. Stable ordering for all list/object serialization.
-3. No network or external target scanning required for pipeline validation.
-4. Replay output must hash-identical for identical input.
-5. Human review gates must remain explicit before promotion.
-
-## Safety requirements
-
-- Defensive-only remediation recommendations.
-- No exploit execution, malware creation, secret disclosure, or social engineering.
-- No autonomous merge.
-- No autonomous claim promotion.
-- Reject if Evidence Docket is missing or incomplete.
-
-## Evidence Mission Control integration
-
-Mission Control operators should register each Work Vault run using generated run IDs and docket IDs, then link the docket and ProofBundle in evidence index pages.
-
-Suggested integration fields:
-
-- `work_vault.vault_id`
-- `mark_allocation.mark_id`
-- `sovereign_assignment.sovereign_id`
-- `proof_bundle.proof_bundle_id`
-- `evidence_docket.docket_id`
-- `human_review.decision`
-- `utility_settlement.receipt_id`
-
-## Reference artifacts
-
-- `schemas/secure_rails_work_vault.schema.json`
-- `schemas/secure_rails_mark_allocation.schema.json`
-- `schemas/secure_rails_sovereign_assignment.schema.json`
-- `schemas/secure_rails_job_record.schema.json`
-- `schemas/secure_rails_proof_bundle.schema.json`
-- `schemas/secure_rails_evidence_docket.schema.json`
-- `schemas/secure_rails_settlement_receipt.schema.json`
-- `sample_outputs/secure_rails_work_vault/sample_work_vault_run.json`
-- `scripts/secure_rails_work_vault_pipeline.py`
+Rules: One work event, one vault. No vault, no settlement. No ProofBundle, no Evidence Docket. No Evidence Docket, no strong claim. No human review, no promotion. No auto-merge. No token investment language. Rejections are valuable. Archives compound. Sovereigns remain bounded.

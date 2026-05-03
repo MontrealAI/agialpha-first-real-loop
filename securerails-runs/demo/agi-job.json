@@ -1,0 +1,6 @@
+{
+  "job_id": "job-demo-001",
+  "vault_id": "vault-demo-001",
+  "status": "completed",
+  "task": "workflow permission review"
+}

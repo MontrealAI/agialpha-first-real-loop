@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "utility_asset",
+    "settlement_type"
+  ],
+  "properties": {
+    "utility_asset": {
+      "type": "string"
+    },
+    "settlement_type": {
+      "type": "string"
+    },
+    "notice": {
+      "type": "string"
+    }
+  }
+}

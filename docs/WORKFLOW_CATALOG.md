@@ -132,3 +132,5 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 | `agiga-foundry-001-policy-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `agiga-foundry-001-safe-policy-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `secure-rails-compliance-guard.yml` | SecureRails CI-level compliance guard: enforces claim-boundary, no-auto-merge, safety-ledger, and EU AI Act use-case triage. | no |
+
+| `securerails-work-vault-demo.yml` | SecureRails / Work Vaults / governance: deterministic demo of Work Vault → MARK → Sovereign → ProofBundle → Evidence Docket → settlement receipt → capability archive; trigger pull_request/workflow_dispatch; claim boundary utility accounting only; no security assurance certificate; no investment product. | no |

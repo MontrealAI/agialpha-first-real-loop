@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "settlement_id": "settlement-demo-001",
+  "vault_id": "vault-demo-001",
+  "utility_asset": "$AGIALPHA",
+  "settlement_type": "utility-accounting-only",
+  "status": "recorded",
+  "alpha_work_units": 100,
+  "validator_fee": 20,
+  "replay_fee": 10,
+  "safety_review_fee": 10,
+  "human_review_fee": 20,
+  "unused_refund": 40,
+  "slashing_event": false,
+  "evidence_docket_id": "evidence-docket-demo-001",
+  "proofbundle_id": "proofbundle-demo-001",
+  "human_review_status": "required",
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "notice": "This settlement receipt records utility accounting for validated protocol work. It is not equity, debt, yield, dividend, ownership, profit right, guaranteed appreciation, or investment return."
+}
