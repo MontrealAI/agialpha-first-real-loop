@@ -38,7 +38,8 @@ def _require_non_empty_string(payload: Dict[str, Any], key: str) -> str:
 
 def _validate_created_at(value: str) -> str:
     try:
-        parsed = datetime.fromisoformat(value)
+        normalized = value[:-1] + "+00:00" if value.endswith("Z") else value
+        parsed = datetime.fromisoformat(normalized)
     except ValueError as exc:
         raise ValueError("created_at must be an ISO 8601 date-time string") from exc
     if parsed.tzinfo is None:
