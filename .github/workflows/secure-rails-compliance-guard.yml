@@ -1,0 +1,37 @@
+name: SecureRails Compliance Guard
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'docs/secure-rails/**'
+      - 'schemas/**'
+      - 'config/securerails_*.json'
+      - 'scripts/secure_rails_*.py'
+      - '.github/workflows/secure-rails-compliance-guard.yml'
+  push:
+    paths:
+      - 'docs/secure-rails/**'
+      - 'schemas/**'
+      - 'config/securerails_*.json'
+      - 'scripts/secure_rails_*.py'
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Claim boundary check
+        run: python scripts/secure_rails_claim_boundary_check.py .
+      - name: Safety ledger check
+        run: python scripts/secure_rails_safety_ledger_check.py docs/secure-rails/templates/safety-ledger-example.json
+      - name: No auto-merge check
+        run: python scripts/secure_rails_no_automerge_check.py .
+      - name: Default use-case triage check
+        run: python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json
