@@ -3,7 +3,6 @@
 import argparse
 import hashlib
 import json
-from datetime import datetime, timezone
 
 CLAIM_BOUNDARY = "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
 
@@ -31,7 +30,7 @@ def build_record(payload: dict) -> dict:
         "work_vault": {
             "vault_id": payload["vault_id"],
             "run_id": run_id,
-            "created_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+            "created_at": payload.get("created_at", "1970-01-01T00:00:00+00:00"),
             "defensive_scope": payload["defensive_scope"],
         },
         "mark_allocation": {
