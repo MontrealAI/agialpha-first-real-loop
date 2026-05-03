@@ -1,0 +1,21 @@
+{
+  "schema_version": "securerails.regulatory_posture.v1",
+  "product_category": "AI-agent security governance and proof-bound defensive remediation",
+  "default_eu_ai_act_posture": "non-high-risk governance/audit support; not GPAI model provider by default",
+  "excluded_intended_purposes": [
+    "employment decisions",
+    "credit decisions",
+    "biometric identification",
+    "law enforcement decisions",
+    "medical decisions",
+    "education access decisions",
+    "essential services decisions",
+    "critical infrastructure safety control"
+  ],
+  "human_review_required": true,
+  "no_automerge": true,
+  "no_external_scanning": true,
+  "no_offensive_cyber": true,
+  "no_security_certification_claim": true,
+  "token_boundary": "utility infrastructure only; not investment product"
+}

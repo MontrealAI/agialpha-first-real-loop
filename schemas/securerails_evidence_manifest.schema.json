@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SecureRails Evidence Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "docket_id",
+    "claim_boundary",
+    "proofbundle_id",
+    "safety_ledger",
+    "human_review"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "securerails.evidence_manifest.v1"
+    },
+    "docket_id": {
+      "type": "string"
+    },
+    "repo": {
+      "type": "string"
+    },
+    "commit_sha": {
+      "type": "string"
+    },
+    "claim_boundary": {
+      "type": "string",
+      "minLength": 20
+    },
+    "proofbundle_id": {
+      "type": "string"
+    },
+    "safety_ledger": {
+      "type": "object"
+    },
+    "cost_ledger": {
+      "type": "object"
+    },
+    "replay": {
+      "type": "object"
+    },
+    "human_review": {
+      "type": "object"
+    },
+    "external_attestation": {
+      "type": "object"
+    }
+  }
+}

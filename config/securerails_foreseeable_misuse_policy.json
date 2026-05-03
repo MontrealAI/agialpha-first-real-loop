@@ -1,0 +1,29 @@
+{
+  "schema_version": "securerails.foreseeable_misuse_policy.v1",
+  "excluded_uses": [
+    "hr_worker_evaluation",
+    "profiling_natural_persons",
+    "critical_infrastructure_safety_component",
+    "autonomous_decisioning_about_people",
+    "offensive_cyber",
+    "external_target_scanning_without_authorization",
+    "exploit_execution",
+    "malware_generation",
+    "social_engineering",
+    "raw_secret_disclosure",
+    "automerge_remediation",
+    "cybersecurity_certification_claim",
+    "investment_product_claim"
+  ],
+  "required_controls": [
+    "customer_use_attestation",
+    "annex_iii_triage",
+    "foreseeable_misuse_register",
+    "material_modification_log",
+    "human_review_required",
+    "no_automerge_guard",
+    "claim_boundary_guard"
+  ],
+  "default_decision": "allowed_default_only_for_repo_owned_defensive_governance",
+  "escalation_decision": "blocked_or_escalate"
+}

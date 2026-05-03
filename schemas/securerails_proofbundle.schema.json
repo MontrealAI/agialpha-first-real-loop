@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SecureRails ProofBundle",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "proofbundle_id",
+    "root_hash",
+    "artifact_manifest",
+    "replay_instructions",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "securerails.proofbundle.v1"
+    },
+    "proofbundle_id": {
+      "type": "string"
+    },
+    "root_hash": {
+      "type": "string"
+    },
+    "artifact_manifest": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "validator_outputs": {
+      "type": "array"
+    },
+    "replay_instructions": {
+      "type": "string"
+    },
+    "claim_boundary": {
+      "type": "string"
+    }
+  }
+}

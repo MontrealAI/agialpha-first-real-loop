@@ -1,0 +1,34 @@
+{
+  "schema_version": "securerails.claim_boundary_policy.v1",
+  "required_footer": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "forbidden_positive_claims": [
+    "achieved AGI",
+    "achieved ASI",
+    "empirical SOTA",
+    "safe autonomy",
+    "certified secure",
+    "security certification",
+    "guaranteed security",
+    "guaranteed compliance",
+    "guaranteed economic return",
+    "guaranteed investment return",
+    "official benchmark victory",
+    "offensive cyber capability",
+    "autonomous production remediation",
+    "yield",
+    "dividend",
+    "profit rights",
+    "ownership rights",
+    "guaranteed appreciation"
+  ],
+  "allowed_negative_boundaries": [
+    "does not claim",
+    "not empirical SOTA",
+    "not achieved AGI",
+    "not achieved ASI",
+    "not safe autonomy",
+    "not security certification",
+    "not offensive cyber",
+    "not an investment product"
+  ]
+}

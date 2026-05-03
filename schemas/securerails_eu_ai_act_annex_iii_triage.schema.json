@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SecureRails EU AI Act Annex III Triage",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "deployment_id",
+    "intended_purpose",
+    "screening",
+    "decision"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "securerails.annex_iii_triage.v1"
+    },
+    "deployment_id": {
+      "type": "string"
+    },
+    "intended_purpose": {
+      "type": "string"
+    },
+    "screening": {
+      "type": "object",
+      "properties": {
+        "biometrics": {
+          "type": "boolean"
+        },
+        "critical_infrastructure_safety_component": {
+          "type": "boolean"
+        },
+        "education": {
+          "type": "boolean"
+        },
+        "employment_worker_management": {
+          "type": "boolean"
+        },
+        "essential_services": {
+          "type": "boolean"
+        },
+        "law_enforcement": {
+          "type": "boolean"
+        },
+        "migration_border": {
+          "type": "boolean"
+        },
+        "justice": {
+          "type": "boolean"
+        },
+        "profiling_natural_persons": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "human_review_required": {
+      "const": true
+    },
+    "automerge_enabled": {
+      "const": false
+    },
+    "decision": {
+      "enum": [
+        "allowed_default",
+        "allowed_with_controls",
+        "blocked_or_escalate",
+        "requires_counsel_review",
+        "requires_high_risk_assessment"
+      ]
+    }
+  },
+  "additionalProperties": true
+}
