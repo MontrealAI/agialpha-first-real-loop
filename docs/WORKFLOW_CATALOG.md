@@ -131,3 +131,5 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 | `agiga-foundry-001-foundry-kernel-safe-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `agiga-foundry-001-policy-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
 | `agiga-foundry-001-safe-policy-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+
+| `secure-rails-compliance-guard.yml` | SecureRails guard checks for claim boundary, safety ledger, no auto-merge, and default use-case triage. | no |
