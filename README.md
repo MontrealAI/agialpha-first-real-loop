@@ -1,70 +1,88 @@
-# AGI ALPHA First Real Loop
+# AGIAlpha First Real Loop
 
-**Evidence Factory, Replay Portal, and Mission Control for AGI ALPHA’s proof-bearing machine-labor experiments.**
+A research-oriented monorepo for deterministic, test-first AGIAlpha subsystems, including:
 
-This repository turns AGI ALPHA’s architecture into replayable Evidence Dockets: workflows that run real or proxy tasks, compare baselines, emit ProofBundles, record cost/safety ledgers, publish scoreboards, and preserve claim boundaries.
+- **AGIGA Foundry** lifecycle orchestration and evidence generation.
+- **Cyber GA Sovereign** safety/evaluation artifacts.
+- **RSI Governor** checks for overclaim boundaries, lifecycle controls, and run integrity.
+- **Evidence Hub/Registry** static artifacts and machine-readable run outputs.
 
-> [!WARNING]
-> This repository records bounded Evidence Docket experiments. It does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, official public benchmark victory, or civilization-scale capability.
+## Quickstart
 
-## Quick links
-| Area | Link |
-|---|---|
-| Evidence Mission Control | [README_EVIDENCE_HUB.md](README_EVIDENCE_HUB.md) |
-| Workflow Launchpad | [WORKFLOW_LAUNCHPAD.md](WORKFLOW_LAUNCHPAD.md) |
-| Experiments | [README_EXPERIMENTS.md](README_EXPERIMENTS.md) |
-| Run from GitHub UI | [docs/QUICKSTART_GITHUB_UI.md](docs/QUICKSTART_GITHUB_UI.md) |
-| External replay | [docs/EXTERNAL_REPLAY.md](docs/EXTERNAL_REPLAY.md) |
-| Claim levels | [docs/CLAIM_LEVELS.md](docs/CLAIM_LEVELS.md) |
-| Safety boundaries | [docs/SECURITY_BOUNDARIES.md](docs/SECURITY_BOUNDARIES.md) |
-| Developer guide | [README_DEVELOPERS.md](README_DEVELOPERS.md) |
+### 1) Create a virtual environment
 
-## What this repo does
-- Runs autonomous experiments and replay workflows.
-- Produces Evidence Dockets and ProofBundles.
-- Compares AGI ALPHA runs against baselines.
-- Publishes public Evidence Hub pages via a central publisher only.
-
-## How to run from GitHub UI
-1. Open **Actions**.
-2. Choose a workflow (see [WORKFLOW_LAUNCHPAD.md](WORKFLOW_LAUNCHPAD.md)).
-3. Click **Run workflow**.
-4. Keep defaults unless docs specify otherwise.
-5. Wait for a green check.
-6. Open artifacts.
-7. Run/poll Evidence Hub publisher.
-8. Read claim level and safety ledger.
-
-## Results pipeline
-`workflow -> Evidence Docket -> artifact -> manifest -> registry -> Evidence Mission Control -> experiment page`
-
-## Developer quickstart
 ```bash
-python -m unittest discover -s tests
-python -m agialpha_evidence_hub build --registry evidence_registry --out _site
-python -m agialpha_evidence_hub validate --registry evidence_registry --site _site
+python -m venv .venv
+source .venv/bin/activate
+pip install -U pip pytest
 ```
 
+### 2) Run the full test suite
+
+```bash
+pytest -q
+```
+
+### 3) Run selected entry points
+
+```bash
+python -m agialpha_benchmark_gauntlet --help
+python -m agialpha_seed_runner --help
+python -m omega_aegis_001 --help
+```
+
+
+## Quick links
+
+- [Contributing guide](CONTRIBUTING.md)
+- [Workflow launchpad](WORKFLOW_LAUNCHPAD.md)
+- [Evidence docket standard](EVIDENCE_DOCKET_STANDARD.md)
+- [AGIGA Foundry README](README_AGIGA_FOUNDRY.md)
+
+## How to run from GitHub UI
+
+If you prefer not to run commands locally:
+
+1. Open the **Actions** tab in GitHub.
+2. Select a workflow run relevant to your branch or pull request.
+3. Inspect artifacts and logs for validation outputs (tests, docs audits, and evidence checks).
+4. Use repository scripts documented in `scripts/README_UPLOAD_WITH_GITHUB_WEB_UI.md` when preparing web-only updates.
+
 ## Experiment families
-First RSI Loop / ColdChain-Energy-Loop-001, Evidence Factory, HELIOS, Cyber Sovereign, Benchmark Gauntlet, OMEGA/OMEGA-AEGIS, Phoenix Hub, replay, falsification, scaling.
 
-No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+- **Foundry lifecycle experiments**: orchestration, generation, and promotion in `agialpha_agiga_foundry/`.
+- **Safety and sovereign evaluations**: policy, held-out, and falsification validations.
+- **Benchmark and gauntlet tracks**: repeatable benchmark execution and scoring.
+- **Evidence registry workflows**: inventory and provenance updates in `evidence_registry/`.
 
-## RSI-GOVERNOR-001
+## Repository Guide
 
-RSI-GOVERNOR-001 tests whether AGI ALPHA can modify the mechanism that governs future evidence work, prove the modification improves held-out future-work performance, and persist the improvement only through Evidence Docket and human-reviewed PR promotion.
+- `agialpha_agiga_foundry/` – core foundry modules and CLI.
+- `agialpha_benchmark_gauntlet/` – benchmark harness.
+- `agialpha_seed_runner/`, `omega_aegis_001/`, `agialpha_helios/` – executable components.
+- `tests/` – regression and policy tests.
+- `evidence_registry/` – canonical JSON registries.
+- `scripts/` – helper and policy-check scripts.
 
-## AGI-GA Foundry
-AGI-GA Foundry is a proof-gated open-ended directed evolution engine for sovereign work capabilities. Public page: `agiga-foundry/index.html`.
+## Engineering Practices
 
+- Keep claims conservative and evidence-linked.
+- Add/adjust tests in `tests/` with every behavior change.
+- Prefer deterministic outputs and schema-validated artifacts.
+- Use relative documentation links and keep README files scoped to their subsystem.
 
+## Documentation Index
 
-## AGI Alpha SecureRails
+- `CONTRIBUTING.md`
+- `EVIDENCE_DOCKET_STANDARD.md`
+- `WORKFLOW_LAUNCHPAD.md`
+- `README_AGIGA_FOUNDRY.md`
+- `README_BENCHMARK_GAUNTLET_001.md`
+- `README_RSI_GOVERNOR.md`
+- `README_OMEGA_GAUNTLET_001.md`
+- `README_L4_L7_AUTOPILOT.md`
+- `README_ASCENSION_001.md`
 
-AGI Alpha SecureRails is the AI-agent security governance platform for proof-bound defensive remediation. It secures autonomous software work by converting agent actions, workflow changes, findings, and remediation proposals into replayable ProofBundles, Evidence Dockets, redacted safety ledgers, safe PRs, and reusable defensive capability — with human-governed promotion and no autonomous claim escalation. See `/securerails/`.
+## License
 
-## α-AGI Protocol Cybersecurity Sovereign
-
-Defensive, proof-gated cybersecurity sovereign for repo-owned work. See `/cybersecurity-sovereign/`.
-
-No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+Distributed under the terms in `LICENSE`.
