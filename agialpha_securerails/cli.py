@@ -25,7 +25,7 @@ def main():
   json.dump(v['hard_safety_counters'],open(os.path.join(out,'safety-ledger.json'),'w'),indent=2)
   make_settlement(out,v);make_archive(out,v)
   open(os.path.join(out,'README.md'),'w').write('SecureRails deterministic demo artifacts. Utility accounting only.\n')
-  manifest={"experiment_slug":"securerails-work-vault-demo","experiment_family":"securerails","claim_level":"local-demo","claim_boundary":v['claim_boundary'],"public_page":"docs/secure-rails/work-vaults-demo/README.md","raw_json_links":[f for f in os.listdir(out) if f.endswith('.json')],"safety_counters":v['hard_safety_counters']}
+  manifest={"experiment_slug":"securerails-work-vault-demo","experiment_family":"securerails","claim_level":"local-demo","claim_boundary":v['claim_boundary'],"public_page":"docs/secure-rails/work-vaults-demo/README.md","raw_json_links":sorted(f for f in os.listdir(out) if f.endswith('.json')),"safety_counters":v['hard_safety_counters']}
   json.dump(manifest,open(os.path.join(out,'evidence-run-manifest.json'),'w'),indent=2)
  if args.cmd=='score-mark': score_mark(os.path.dirname(args.vault),_load(args.vault))
  if args.cmd=='assign-sovereign': assign_sovereign(os.path.dirname(args.vault))
