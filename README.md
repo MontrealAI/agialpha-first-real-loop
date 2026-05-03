@@ -100,6 +100,27 @@ The repository includes a SecureRails compliance guard workflow:
 .github/workflows/secure-rails-compliance-guard.yml
 ```
 
+It enforces:
+
+* claim-boundary checks
+* no-auto-merge posture
+* AI Act use-case triage
+* safety ledger validation
+* foreseeable misuse controls
+
+Run local checks with:
+
+```bash
+python scripts/secure_rails_claim_boundary_check.py .
+python scripts/secure_rails_safety_ledger_check.py docs/secure-rails/templates/safety-ledger-example.json
+python scripts/secure_rails_no_automerge_check.py .
+python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json
+```
+
+SecureRails doctrine:
+
+> No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+
 ## Quick links
 
 - [Contributing guide](CONTRIBUTING.md)
