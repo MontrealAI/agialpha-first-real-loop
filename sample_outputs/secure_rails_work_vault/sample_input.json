@@ -1,0 +1,11 @@
+{
+  "vault_id": "vault-defensive-001",
+  "defensive_scope": "repo-owned defensive remediation planning",
+  "job_type": "defensive_remediation",
+  "mark_units": 42,
+  "sovereign_id": "sovereign-defensive-alpha",
+  "reviewers": ["human.security.reviewer"],
+  "status": "completed",
+  "decision": "safe_remediation",
+  "reviewed_by": "human.security.reviewer"
+}
