@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+from datetime import datetime
 
 CLAIM_BOUNDARY = "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
 
@@ -16,6 +17,16 @@ def _stable_hash(payload: dict) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
+def _validate_created_at(value: str) -> None:
+    if not isinstance(value, str):
+        raise ValueError("created_at must be a string in RFC3339 date-time format")
+    normalized = value.replace("Z", "+00:00")
+    try:
+        datetime.fromisoformat(normalized)
+    except ValueError as exc:
+        raise ValueError(f"Invalid created_at date-time: {value}") from exc
+
+
 def _validate_payload(payload: dict) -> None:
     if payload["job_type"] not in ALLOWED_JOB_TYPES:
         raise ValueError(f"Invalid job_type: {payload['job_type']}")
@@ -24,10 +35,11 @@ def _validate_payload(payload: dict) -> None:
     if payload["decision"] not in ALLOWED_DECISIONS:
         raise ValueError(f"Invalid decision: {payload['decision']}")
     mark_units = payload["mark_units"]
-    if not isinstance(mark_units, int):
-        raise ValueError("mark_units must be an integer")
+    if isinstance(mark_units, bool) or not isinstance(mark_units, int):
+        raise ValueError("mark_units must be an integer (boolean is not allowed)")
     if mark_units < 0:
         raise ValueError(f"mark_units must be non-negative: {mark_units}")
+    _validate_created_at(payload.get("created_at", "1970-01-01T00:00:00+00:00"))
 
 
 def build_record(payload: dict) -> dict:

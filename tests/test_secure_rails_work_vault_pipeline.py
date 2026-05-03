@@ -110,6 +110,51 @@ class TestSecureRailsWorkVaultPipeline(unittest.TestCase):
             ], capture_output=True, text=True)
             self.assertNotEqual(res.returncode, 0)
 
+    def test_rejects_boolean_mark_units(self):
+        payload = {
+            "vault_id": "vault-x",
+            "defensive_scope": "scope",
+            "job_type": "defensive_validation",
+            "mark_units": True,
+            "sovereign_id": "sovereign-x",
+            "reviewers": ["r1"],
+            "status": "completed",
+            "decision": "safe_remediation",
+            "reviewed_by": "r1",
+        }
+        with tempfile.TemporaryDirectory() as td:
+            inp = Path(td) / "in.json"
+            out = Path(td) / "out.json"
+            inp.write_text(json.dumps(payload), encoding="utf-8")
+            res = subprocess.run([
+                "python", "scripts/secure_rails_work_vault_pipeline.py",
+                "--input", str(inp), "--output", str(out),
+            ], capture_output=True, text=True)
+            self.assertNotEqual(res.returncode, 0)
+
+    def test_rejects_invalid_created_at(self):
+        payload = {
+            "vault_id": "vault-x",
+            "defensive_scope": "scope",
+            "job_type": "defensive_validation",
+            "mark_units": 1,
+            "sovereign_id": "sovereign-x",
+            "reviewers": ["r1"],
+            "status": "completed",
+            "decision": "safe_remediation",
+            "reviewed_by": "r1",
+            "created_at": "yesterday",
+        }
+        with tempfile.TemporaryDirectory() as td:
+            inp = Path(td) / "in.json"
+            out = Path(td) / "out.json"
+            inp.write_text(json.dumps(payload), encoding="utf-8")
+            res = subprocess.run([
+                "python", "scripts/secure_rails_work_vault_pipeline.py",
+                "--input", str(inp), "--output", str(out),
+            ], capture_output=True, text=True)
+            self.assertNotEqual(res.returncode, 0)
+
 
 if __name__ == "__main__":
     unittest.main()
