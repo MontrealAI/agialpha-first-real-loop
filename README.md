@@ -64,6 +64,42 @@ python -m omega_aegis_001 --help
   - Re-run once with `pytest -q`.
   - If it still fails, include the failing test name and full output in your issue.
 
+
+## SecureRails
+
+SecureRails is AGI ALPHA’s AI-agent security governance and proof-bound defensive remediation layer.
+
+It makes AI-agent work safe to review, safe to replay, and safe to remediate by converting agent actions, workflow changes, findings, and remediation proposals into:
+
+- ProofBundles
+- Evidence Dockets
+- redacted safety ledgers
+- safe PR proposals
+- validator reports
+- reusable defensive capability
+- human-reviewed promotion records
+
+SecureRails is designed as repo-owned defensive evidence infrastructure. It is not autonomous cybersecurity assurance or attestation, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
+
+### SecureRails quick links
+
+- [SecureRails user guide](docs/secure-rails/README.md)
+- [SecureRails public docs page](docs/secure-rails/index.md)
+- [Product boundary](docs/secure-rails/product-boundary.md)
+- [EU AI Act positioning](docs/secure-rails/eu-ai-act-positioning.md)
+- [Foreseeable misuse and excluded uses](docs/secure-rails/foreseeable-misuse-and-excluded-uses.md)
+- [Security and safety boundary](docs/secure-rails/security-safety-boundary.md)
+- [Claims and marketing guardrails](docs/secure-rails/claims-and-marketing-guardrails.md)
+- [Templates](docs/secure-rails/templates/README.md)
+
+### SecureRails compliance guard
+
+The repository includes a SecureRails compliance guard workflow:
+
+```text
+.github/workflows/secure-rails-compliance-guard.yml
+```
+
 ## Quick links
 
 - [Contributing guide](CONTRIBUTING.md)
@@ -80,6 +116,14 @@ If you prefer not to run commands locally:
 2. Select a workflow run relevant to your branch or pull request.
 3. Inspect artifacts and logs for validation outputs (tests, docs audits, and evidence checks).
 4. Use repository scripts documented in `scripts/README_UPLOAD_WITH_GITHUB_WEB_UI.md` when preparing web-only updates.
+
+
+## Experiment families
+
+- **Foundry lifecycle experiments**: orchestration, generation, and promotion in `agialpha_agiga_foundry/`.
+- **Safety and sovereign evaluations**: policy, held-out, and falsification validations.
+- **Benchmark and gauntlet tracks**: repeatable benchmark execution and scoring.
+- **Evidence registry workflows**: inventory and provenance updates in `evidence_registry/`.
 
 ## Repository guide
 
