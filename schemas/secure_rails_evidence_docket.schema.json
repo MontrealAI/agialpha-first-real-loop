@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SecureRails Evidence Docket",
+  "type": "object",
+  "required": [
+    "docket_id",
+    "claim_boundary_statement"
+  ],
+  "properties": {
+    "docket_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim_boundary_statement": {
+      "const": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+    }
+  },
+  "additionalProperties": false
+}

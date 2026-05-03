@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SecureRails Work Vault Request",
+  "type": "object",
+  "required": [
+    "vault_id",
+    "defensive_scope",
+    "job_type",
+    "mark_units",
+    "sovereign_id",
+    "reviewers",
+    "status",
+    "decision",
+    "reviewed_by"
+  ],
+  "properties": {
+    "vault_id": {"type": "string", "minLength": 1, "pattern": ".*\\S.*"},
+    "defensive_scope": {"type": "string", "minLength": 1, "pattern": ".*\\S.*"},
+    "job_type": {"type": "string", "enum": ["defensive_remediation", "defensive_triage", "defensive_validation"]},
+    "mark_units": {"type": "integer", "minimum": 0},
+    "sovereign_id": {"type": "string", "minLength": 1, "pattern": ".*\\S.*"},
+    "reviewers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1, "pattern": ".*\\S.*"}
+    },
+    "status": {"type": "string", "enum": ["completed", "rejected", "escalated"]},
+    "decision": {"type": "string", "enum": ["safe_remediation", "reject", "escalate"]},
+    "reviewed_by": {"type": "string", "minLength": 1, "pattern": ".*\\S.*"},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "additionalProperties": false
+}

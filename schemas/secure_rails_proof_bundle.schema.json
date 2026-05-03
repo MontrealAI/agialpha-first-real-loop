@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SecureRails ProofBundle",
+  "type": "object",
+  "required": [
+    "proof_bundle_id",
+    "sha256"
+  ],
+  "properties": {
+    "proof_bundle_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "additionalProperties": false
+}

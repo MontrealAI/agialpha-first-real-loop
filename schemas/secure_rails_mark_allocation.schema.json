@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SecureRails MARK Allocation",
+  "type": "object",
+  "required": [
+    "mark_id",
+    "allocation_units",
+    "replay_required",
+    "human_review_required"
+  ],
+  "properties": {
+    "mark_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "allocation_units": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "replay_required": {
+      "type": "boolean"
+    },
+    "human_review_required": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

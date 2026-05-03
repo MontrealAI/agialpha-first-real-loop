@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SecureRails AGI Job Record",
+  "type": "object",
+  "required": [
+    "job_id",
+    "job_type",
+    "status"
+  ],
+  "properties": {
+    "job_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "job_type": {
+      "type": "string",
+      "enum": [
+        "defensive_remediation",
+        "defensive_triage",
+        "defensive_validation"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "rejected",
+        "escalated"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

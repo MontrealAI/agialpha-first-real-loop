@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SecureRails Utility Settlement Receipt",
+  "type": "object",
+  "required": [
+    "receipt_id",
+    "mode",
+    "real_transfer"
+  ],
+  "properties": {
+    "receipt_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "const": "$AGIALPHA_UTILITY_ONLY"
+    },
+    "real_transfer": {
+      "const": false
+    }
+  },
+  "additionalProperties": false
+}
