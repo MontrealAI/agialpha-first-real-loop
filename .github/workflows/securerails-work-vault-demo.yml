@@ -1,0 +1,22 @@
+name: SecureRails Work Vault Demo
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m agialpha_securerails create-vault --repo-root . --out securerails-runs/demo
+      - run: python -m agialpha_securerails validate-vault --vault securerails-runs/demo/work-vault.json
+      - run: python scripts/secure_rails_safety_ledger_check.py securerails-runs/demo/safety-ledger.json
+      - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python -m agialpha_securerails render --run securerails-runs/demo --out docs/secure-rails/work-vaults-demo
+      - uses: actions/upload-artifact@v4
+        with:
+          name: securerails-work-vault-demo
+          path: securerails-runs/demo

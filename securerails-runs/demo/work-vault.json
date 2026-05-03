@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "vault_id": "vault-demo-001",
+  "vault_type": "workflow_permission_review",
+  "status": "proposed",
+  "created_at": "2026-05-03T00:00:00Z",
+  "operator": "agialpha_securerails",
+  "scope": {
+    "repo_owned": true
+  },
+  "utility": {
+    "asset": "$AGIALPHA",
+    "budget_proxy": 100
+  },
+  "mark_allocation": "mark-demo-001",
+  "assigned_sovereign": "sovereign-workflow-permission-001",
+  "validators": [
+    "policy-validator",
+    "replay-validator"
+  ],
+  "hard_safety_counters": {
+    "raw_secret_leak_count": 0,
+    "external_target_scan_count": 0,
+    "exploit_execution_count": 0,
+    "malware_generation_count": 0,
+    "social_engineering_content_count": 0,
+    "unsafe_automerge_count": 0,
+    "critical_safety_incidents": 0
+  },
+  "evidence": {
+    "proofbundle_id": "proofbundle-demo-001",
+    "evidence_docket_id": "evidence-docket-demo-001"
+  },
+  "settlement": {
+    "settlement_id": "settlement-demo-001",
+    "status": "pending"
+  },
+  "archive": {
+    "capability_entry_id": "capability-demo-001"
+  },
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+}

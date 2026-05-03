@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "entry_id": "capability-demo-001",
+  "vault_id": "vault-demo-001",
+  "capability": "workflow permission defensive review",
+  "vnext_reuse_status": "queued"
+}

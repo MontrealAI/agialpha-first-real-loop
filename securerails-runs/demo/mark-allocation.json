@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "allocation_id": "mark-demo-001",
+  "vault_id": "vault-demo-001",
+  "opportunity_id": "opportunity-workflow-permission-001",
+  "assigned_sovereign": "sovereign-workflow-permission-001",
+  "risk_tier": "low",
+  "review_priority": "high",
+  "allocated_budget_proxy": 100,
+  "utility_asset": "$AGIALPHA",
+  "proof_required": true,
+  "replay_required": true,
+  "falsification_required": true,
+  "human_review_required": true,
+  "auto_merge_allowed": false,
+  "promotion_without_evidence_allowed": false,
+  "validators_required": 2,
+  "rejection_reason_if_any": "",
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+}

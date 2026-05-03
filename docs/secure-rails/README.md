@@ -363,3 +363,5 @@ This is an enforcement layer, not a certification claim.
 ## Final boundary
 
 SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cybersecurity assurance or attestation, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
+
+* [Work Vaults operator guide](work-vaults-operator-guide.md)

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "promotion_policy"
+  ],
+  "properties": {
+    "promotion_policy": {
+      "type": "object",
+      "required": [
+        "autonomous_promotion_allowed",
+        "human_review_required",
+        "auto_merge_allowed"
+      ],
+      "properties": {
+        "autonomous_promotion_allowed": {
+          "const": false
+        },
+        "human_review_required": {
+          "const": true
+        },
+        "auto_merge_allowed": {
+          "const": false
+        }
+      }
+    }
+  }
+}

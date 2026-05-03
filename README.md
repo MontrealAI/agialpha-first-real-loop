@@ -177,3 +177,17 @@ If you prefer not to run commands locally:
 ## License
 
 Distributed under the terms in `LICENSE`.
+
+
+### SecureRails Work Vaults, MARK, and Sovereigns
+
+SecureRails routes agentic work through three governance primitives:
+
+```text
+Work Vaults → ALPHA AGI MARK → ALPHA AGI Sovereigns
+```
+
+Read more:
+
+* [SecureRails Work Vaults, MARK, and Sovereigns](docs/secure-rails/work-vaults-mark-sovereigns.md)
+* [SecureRails Work Vaults Operator Guide](docs/secure-rails/work-vaults-operator-guide.md)

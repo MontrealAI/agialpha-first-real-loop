@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "vault_id",
+    "status",
+    "hard_safety_counters",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "vault_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "hard_safety_counters": {
+      "type": "object",
+      "required": [
+        "raw_secret_leak_count",
+        "external_target_scan_count",
+        "exploit_execution_count",
+        "malware_generation_count",
+        "social_engineering_content_count",
+        "unsafe_automerge_count",
+        "critical_safety_incidents"
+      ],
+      "properties": {
+        "raw_secret_leak_count": {
+          "type": "number"
+        },
+        "external_target_scan_count": {
+          "type": "number"
+        },
+        "exploit_execution_count": {
+          "type": "number"
+        },
+        "malware_generation_count": {
+          "type": "number"
+        },
+        "social_engineering_content_count": {
+          "type": "number"
+        },
+        "unsafe_automerge_count": {
+          "type": "number"
+        },
+        "critical_safety_incidents": {
+          "type": "number"
+        }
+      }
+    },
+    "claim_boundary": {
+      "type": "string"
+    }
+  }
+}
