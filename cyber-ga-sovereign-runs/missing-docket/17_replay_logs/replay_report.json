@@ -1,0 +1,10 @@
+{
+  "status": "fail",
+  "reason": "missing_required_evidence",
+  "missing_paths": [
+    "cyber-ga-sovereign-runs/missing-docket/evidence-run-manifest.json",
+    "cyber-ga-sovereign-runs/missing-docket/28_summary_tables/scoreboard.json",
+    "cyber-ga-sovereign-runs/missing-docket/04_alpha_agi_insight/insight_report.json"
+  ],
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+}

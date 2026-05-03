@@ -1,0 +1,26 @@
+{
+  "chain": "\u03b1-AGI Insight \u2192 Nova-Seeds \u2192 MARK \u2192 Cybersecurity Sovereigns \u2192 AGI Jobs \u2192 ProofBundles \u2192 Evidence Dockets \u2192 CyberSecurityCapabilityArchive \u2192 Descendant Defensive Tasks \u2192 CyberSovereignPolicy-vNext",
+  "metrics": {
+    "cycles_executed": 1,
+    "candidate_defensive_niches_generated": 16,
+    "candidate_defensive_niches_evaluated": 6,
+    "local_variants_generated": 18,
+    "local_variants_evaluated": 18,
+    "B6_beats_B5": true,
+    "B6_advantage_delta_vs_B5": 0.11,
+    "B6_reuse_beats_B5_no_reuse": true,
+    "security_lineage_metaproductivity": 1.2,
+    "raw_secret_leak_count": 0,
+    "external_target_scan_count": 0,
+    "exploit_execution_count": 0,
+    "malware_generation_count": 0,
+    "social_engineering_content_count": 0,
+    "unsafe_automerge_count": 0,
+    "critical_safety_incidents": 0,
+    "CyberSovereignPolicy_candidates_generated": 1,
+    "CyberSovereignPolicy_vnext_beats_incumbent": true,
+    "claim_boundary_coverage_pct": 100
+  },
+  "footer": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "repo_root": "/home/runner/work/agialpha-first-real-loop/agialpha-first-real-loop"
+}

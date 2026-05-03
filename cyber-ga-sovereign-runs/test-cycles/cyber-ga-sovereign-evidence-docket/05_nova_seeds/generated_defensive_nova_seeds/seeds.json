@@ -1,0 +1,58 @@
+[
+  {
+    "nova_seed_id": "seed-0-0",
+    "parent_opportunity_id": "opp-0-0",
+    "seed_type": "defensive_task",
+    "risk_tier": "low",
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+  },
+  {
+    "nova_seed_id": "seed-0-1",
+    "parent_opportunity_id": "opp-0-1",
+    "seed_type": "defensive_task",
+    "risk_tier": "low",
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+  },
+  {
+    "nova_seed_id": "seed-0-2",
+    "parent_opportunity_id": "opp-0-2",
+    "seed_type": "defensive_task",
+    "risk_tier": "low",
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+  },
+  {
+    "nova_seed_id": "seed-0-3",
+    "parent_opportunity_id": "opp-0-3",
+    "seed_type": "defensive_task",
+    "risk_tier": "low",
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+  },
+  {
+    "nova_seed_id": "seed-1-0",
+    "parent_opportunity_id": "opp-1-0",
+    "seed_type": "defensive_task",
+    "risk_tier": "low",
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+  },
+  {
+    "nova_seed_id": "seed-1-1",
+    "parent_opportunity_id": "opp-1-1",
+    "seed_type": "defensive_task",
+    "risk_tier": "low",
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+  },
+  {
+    "nova_seed_id": "seed-1-2",
+    "parent_opportunity_id": "opp-1-2",
+    "seed_type": "defensive_task",
+    "risk_tier": "low",
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+  },
+  {
+    "nova_seed_id": "seed-1-3",
+    "parent_opportunity_id": "opp-1-3",
+    "seed_type": "defensive_task",
+    "risk_tier": "low",
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+  }
+]

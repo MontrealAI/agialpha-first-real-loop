@@ -1,0 +1,1298 @@
+[
+  {
+    "niche_id": "niche-0-0",
+    "cycle_index": 1,
+    "family": "Evidence Hub route / 404 repair",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-1",
+    "cycle_index": 1,
+    "family": "Workflow permission least-privilege review",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-2",
+    "cycle_index": 1,
+    "family": "GitHub Actions unsafe-pattern review",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-3",
+    "cycle_index": 1,
+    "family": "Secret hygiene with strict redaction",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-4",
+    "cycle_index": 1,
+    "family": "Artifact hash / ProofBundle integrity",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-5",
+    "cycle_index": 1,
+    "family": "Evidence Docket completeness",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-6",
+    "cycle_index": 1,
+    "family": "Claim-boundary enforcement",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-7",
+    "cycle_index": 1,
+    "family": "External reviewer kit generation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-8",
+    "cycle_index": 1,
+    "family": "Falsification audit hardening",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-9",
+    "cycle_index": 1,
+    "family": "Delayed-outcome sentinel hardening",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-10",
+    "cycle_index": 1,
+    "family": "Safe PR proposal generation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-11",
+    "cycle_index": 1,
+    "family": "CyberSecurityCapabilityArchive upgrade",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-12",
+    "cycle_index": 1,
+    "family": "GitHub Pages publication integrity",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-13",
+    "cycle_index": 1,
+    "family": "Workflow launchpad safety",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-14",
+    "cycle_index": 1,
+    "family": "SBOM / dependency inventory as metadata only",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-15",
+    "cycle_index": 1,
+    "family": "Branch protection / CODEOWNERS recommendation report",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-16",
+    "cycle_index": 1,
+    "family": "Incident runbook generation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-17",
+    "cycle_index": 1,
+    "family": "Security issue triage schema generation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-18",
+    "cycle_index": 1,
+    "family": "Replay reproducibility hardening",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-19",
+    "cycle_index": 1,
+    "family": "Registry conflict / artifact-expiration handling",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-20",
+    "cycle_index": 1,
+    "family": "Public scoreboard overclaim audit",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-21",
+    "cycle_index": 1,
+    "family": "Human-review readiness",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-22",
+    "cycle_index": 1,
+    "family": "External-attestation preparation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-0-23",
+    "cycle_index": 1,
+    "family": "vNext defensive transfer",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-0",
+    "cycle_index": 2,
+    "family": "Evidence Hub route / 404 repair",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-1",
+    "cycle_index": 2,
+    "family": "Workflow permission least-privilege review",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-2",
+    "cycle_index": 2,
+    "family": "GitHub Actions unsafe-pattern review",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-3",
+    "cycle_index": 2,
+    "family": "Secret hygiene with strict redaction",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-4",
+    "cycle_index": 2,
+    "family": "Artifact hash / ProofBundle integrity",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-5",
+    "cycle_index": 2,
+    "family": "Evidence Docket completeness",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-6",
+    "cycle_index": 2,
+    "family": "Claim-boundary enforcement",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-7",
+    "cycle_index": 2,
+    "family": "External reviewer kit generation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-8",
+    "cycle_index": 2,
+    "family": "Falsification audit hardening",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-9",
+    "cycle_index": 2,
+    "family": "Delayed-outcome sentinel hardening",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-10",
+    "cycle_index": 2,
+    "family": "Safe PR proposal generation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-11",
+    "cycle_index": 2,
+    "family": "CyberSecurityCapabilityArchive upgrade",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-12",
+    "cycle_index": 2,
+    "family": "GitHub Pages publication integrity",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-13",
+    "cycle_index": 2,
+    "family": "Workflow launchpad safety",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-14",
+    "cycle_index": 2,
+    "family": "SBOM / dependency inventory as metadata only",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-15",
+    "cycle_index": 2,
+    "family": "Branch protection / CODEOWNERS recommendation report",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-16",
+    "cycle_index": 2,
+    "family": "Incident runbook generation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-17",
+    "cycle_index": 2,
+    "family": "Security issue triage schema generation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-18",
+    "cycle_index": 2,
+    "family": "Replay reproducibility hardening",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-19",
+    "cycle_index": 2,
+    "family": "Registry conflict / artifact-expiration handling",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-20",
+    "cycle_index": 2,
+    "family": "Public scoreboard overclaim audit",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-21",
+    "cycle_index": 2,
+    "family": "Human-review readiness",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-22",
+    "cycle_index": 2,
+    "family": "External-attestation preparation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-1-23",
+    "cycle_index": 2,
+    "family": "vNext defensive transfer",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-0",
+    "cycle_index": 3,
+    "family": "Evidence Hub route / 404 repair",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-1",
+    "cycle_index": 3,
+    "family": "Workflow permission least-privilege review",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-2",
+    "cycle_index": 3,
+    "family": "GitHub Actions unsafe-pattern review",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-3",
+    "cycle_index": 3,
+    "family": "Secret hygiene with strict redaction",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-4",
+    "cycle_index": 3,
+    "family": "Artifact hash / ProofBundle integrity",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-5",
+    "cycle_index": 3,
+    "family": "Evidence Docket completeness",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-6",
+    "cycle_index": 3,
+    "family": "Claim-boundary enforcement",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-7",
+    "cycle_index": 3,
+    "family": "External reviewer kit generation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-8",
+    "cycle_index": 3,
+    "family": "Falsification audit hardening",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-9",
+    "cycle_index": 3,
+    "family": "Delayed-outcome sentinel hardening",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-10",
+    "cycle_index": 3,
+    "family": "Safe PR proposal generation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-11",
+    "cycle_index": 3,
+    "family": "CyberSecurityCapabilityArchive upgrade",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-12",
+    "cycle_index": 3,
+    "family": "GitHub Pages publication integrity",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-13",
+    "cycle_index": 3,
+    "family": "Workflow launchpad safety",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-14",
+    "cycle_index": 3,
+    "family": "SBOM / dependency inventory as metadata only",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-15",
+    "cycle_index": 3,
+    "family": "Branch protection / CODEOWNERS recommendation report",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-16",
+    "cycle_index": 3,
+    "family": "Incident runbook generation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-17",
+    "cycle_index": 3,
+    "family": "Security issue triage schema generation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-18",
+    "cycle_index": 3,
+    "family": "Replay reproducibility hardening",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-19",
+    "cycle_index": 3,
+    "family": "Registry conflict / artifact-expiration handling",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-20",
+    "cycle_index": 3,
+    "family": "Public scoreboard overclaim audit",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-21",
+    "cycle_index": 3,
+    "family": "Human-review readiness",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-22",
+    "cycle_index": 3,
+    "family": "External-attestation preparation",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  },
+  {
+    "niche_id": "niche-2-23",
+    "cycle_index": 3,
+    "family": "vNext defensive transfer",
+    "validator_spec": {
+      "ok": true
+    },
+    "safe_patch_policy": {
+      "human_review_required": true
+    },
+    "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+    "local_mutation_operators": [
+      "tighten_validator"
+    ],
+    "descendant_defensive_task_hints": [
+      "harder-check"
+    ]
+  }
+]

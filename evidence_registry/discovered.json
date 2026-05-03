@@ -99,6 +99,7 @@
     ".github/workflows/rsi-governor-001-replay.yml",
     ".github/workflows/rsi-governor-001-safe-pr.yml",
     ".github/workflows/rsi-governor-001-vnext-canary.yml",
+    ".github/workflows/secure-rails-compliance-guard.yml",
     ".github/workflows/seed-runner-autonomous.yml",
     "agiga-foundry-runs/test/agiga-foundry-evidence-docket/00_manifest.json",
     "agiga-foundry-runs/test/agiga-foundry-evidence-docket/22_summary_tables/scoreboard.json",

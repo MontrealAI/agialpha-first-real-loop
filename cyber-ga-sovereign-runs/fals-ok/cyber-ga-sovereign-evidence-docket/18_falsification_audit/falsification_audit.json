@@ -1,0 +1,10 @@
+{
+  "status": "pass",
+  "no_overclaim": true,
+  "checked_artifacts": [
+    "cyber-ga-sovereign-runs/fals-ok/cyber-ga-sovereign-evidence-docket/evidence-run-manifest.json",
+    "cyber-ga-sovereign-runs/fals-ok/cyber-ga-sovereign-evidence-docket/28_summary_tables/scoreboard.json",
+    "cyber-ga-sovereign-runs/fals-ok/cyber-ga-sovereign-evidence-docket/02_scope_and_claim_boundary.md"
+  ],
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+}

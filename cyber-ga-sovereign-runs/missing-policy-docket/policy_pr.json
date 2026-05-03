@@ -1,0 +1,11 @@
+{
+  "status": "blocked_missing_evidence",
+  "missing_paths": [
+    "cyber-ga-sovereign-runs/missing-policy-docket/evidence-run-manifest.json",
+    "cyber-ga-sovereign-runs/missing-policy-docket/28_summary_tables/scoreboard.json",
+    "cyber-ga-sovereign-runs/missing-policy-docket/17_replay_logs/replay_report.json",
+    "cyber-ga-sovereign-runs/missing-policy-docket/18_falsification_audit/falsification_audit.json"
+  ],
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "automerge": false
+}

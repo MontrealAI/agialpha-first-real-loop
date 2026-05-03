@@ -1,0 +1,16 @@
+{
+  "_description": "SecureRails deployment-intake example. This intake describes a low-risk, repo-owned defensive software governance use case that is explicitly outside all EU AI Act Annex III high-risk categories.",
+  "intake_version": "1.0",
+  "product": "SecureRails",
+  "use_case": "repo-owned defensive software governance — AI-agent security governance and proof-bound defensive remediation",
+  "risk_level": "low",
+  "hr_worker_evaluation": false,
+  "profiling_natural_persons": false,
+  "automated_decisions_natural_persons": false,
+  "critical_infrastructure_safety_component": false,
+  "gpai_model_provider_claim": false,
+  "offensive_cyber": false,
+  "human_validation_required": true,
+  "auto_merge_enabled": false,
+  "notes": "SecureRails outputs are advisory only. All remediation actions require independent human review and approval before execution."
+}
