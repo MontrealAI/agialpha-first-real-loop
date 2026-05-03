@@ -52,14 +52,7 @@ def _validate_payload(payload: dict) -> None:
 
 def build_record(payload: dict) -> dict:
     _validate_payload(payload)
-    seed = {
-        "vault_id": payload["vault_id"],
-        "defensive_scope": payload["defensive_scope"],
-        "job_type": payload["job_type"],
-        "mark_units": payload["mark_units"],
-        "sovereign_id": payload["sovereign_id"],
-    }
-    digest = _stable_hash(seed)
+    digest = _stable_hash(payload)
     run_id = f"svr-{digest[:16]}"
     job_id = f"job-{digest[16:32]}"
     proof_id = f"pb-{digest[32:48]}"

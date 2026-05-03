@@ -1,12 +1,12 @@
 {
   "agi_job": {
-    "job_id": "job-dad60e20d2faf013",
+    "job_id": "job-8df8138ccc58efcf",
     "job_type": "defensive_remediation",
     "status": "completed"
   },
   "evidence_docket": {
     "claim_boundary_statement": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
-    "docket_id": "dkt-d985db8e89feb1c3"
+    "docket_id": "dkt-8d30ba5fcae5cf1c"
   },
   "human_review": {
     "decision": "safe_remediation",
@@ -15,12 +15,12 @@
   "mark_allocation": {
     "allocation_units": 42,
     "human_review_required": true,
-    "mark_id": "mark-075ed342dc63",
+    "mark_id": "mark-85862719307b",
     "replay_required": true
   },
   "proof_bundle": {
-    "proof_bundle_id": "pb-8559167668e50b5d",
-    "sha256": "075ed342dc63422ddad60e20d2faf0138559167668e50b5dd985db8e89feb1c3"
+    "proof_bundle_id": "pb-23d2e518af4d22e5",
+    "sha256": "85862719307bbbd88df8138ccc58efcf23d2e518af4d22e58d30ba5fcae5cf1c"
   },
   "schema_version": "agialpha.securerails.work_vault_record.v1",
   "sovereign_assignment": {
@@ -33,12 +33,12 @@
   "utility_settlement": {
     "mode": "$AGIALPHA_UTILITY_ONLY",
     "real_transfer": false,
-    "receipt_id": "util-075ed342dc63422ddad6"
+    "receipt_id": "util-85862719307bbbd88df8"
   },
   "work_vault": {
     "created_at": "2026-05-03T00:00:00+00:00",
     "defensive_scope": "repo-owned defensive remediation planning",
-    "run_id": "svr-075ed342dc63422d",
+    "run_id": "svr-85862719307bbbd8",
     "vault_id": "vault-defensive-001"
   }
 }

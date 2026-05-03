@@ -201,6 +201,34 @@ class TestSecureRailsWorkVaultPipeline(unittest.TestCase):
                 ], capture_output=True, text=True)
                 self.assertNotEqual(res.returncode, 0)
 
+    def test_ids_change_when_payload_changes(self):
+        base = {
+            "vault_id": "vault-x",
+            "defensive_scope": "scope",
+            "job_type": "defensive_validation",
+            "mark_units": 1,
+            "sovereign_id": "sovereign-x",
+            "reviewers": ["r1"],
+            "status": "completed",
+            "decision": "safe_remediation",
+            "reviewed_by": "r1",
+        }
+        with tempfile.TemporaryDirectory() as td:
+            i1 = Path(td) / "i1.json"
+            i2 = Path(td) / "i2.json"
+            o1 = Path(td) / "o1.json"
+            o2 = Path(td) / "o2.json"
+            i1.write_text(json.dumps(base), encoding="utf-8")
+            changed = dict(base)
+            changed["decision"] = "reject"
+            i2.write_text(json.dumps(changed), encoding="utf-8")
+            subprocess.run(["python", "scripts/secure_rails_work_vault_pipeline.py", "--input", str(i1), "--output", str(o1)], check=True)
+            subprocess.run(["python", "scripts/secure_rails_work_vault_pipeline.py", "--input", str(i2), "--output", str(o2)], check=True)
+            d1 = json.loads(o1.read_text(encoding="utf-8"))
+            d2 = json.loads(o2.read_text(encoding="utf-8"))
+        self.assertNotEqual(d1["work_vault"]["run_id"], d2["work_vault"]["run_id"])
+        self.assertNotEqual(d1["proof_bundle"]["sha256"], d2["proof_bundle"]["sha256"])
+
 
 if __name__ == "__main__":
     unittest.main()
