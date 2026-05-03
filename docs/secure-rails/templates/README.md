@@ -113,7 +113,7 @@ SecureRails outputs are advisory and require independent human validation before
 
 A safe PR proposal is not a merge authorization.
 
-An Evidence Docket is not a security certification.
+An Evidence Docket is not a security assurance or attestation.
 
 A passed compliance guard is not legal approval.
 
@@ -122,7 +122,7 @@ A passed compliance guard is not legal approval.
 Use this boundary in deployment records:
 
 ```text
-SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cybersecurity certification, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
+SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cybersecurity assurance or attestation, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
 ```
 
 ## Local checks
