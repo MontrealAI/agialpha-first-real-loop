@@ -229,6 +229,30 @@ class TestSecureRailsWorkVaultPipeline(unittest.TestCase):
         self.assertNotEqual(d1["work_vault"]["run_id"], d2["work_vault"]["run_id"])
         self.assertNotEqual(d1["proof_bundle"]["sha256"], d2["proof_bundle"]["sha256"])
 
+    def test_rejects_empty_required_strings(self):
+        for field in ("vault_id", "defensive_scope", "sovereign_id", "reviewed_by"):
+            payload = {
+                "vault_id": "vault-x",
+                "defensive_scope": "scope",
+                "job_type": "defensive_validation",
+                "mark_units": 1,
+                "sovereign_id": "sovereign-x",
+                "reviewers": ["r1"],
+                "status": "completed",
+                "decision": "safe_remediation",
+                "reviewed_by": "r1",
+            }
+            payload[field] = ""
+            with tempfile.TemporaryDirectory() as td:
+                inp = Path(td) / "in.json"
+                out = Path(td) / "out.json"
+                inp.write_text(json.dumps(payload), encoding="utf-8")
+                res = subprocess.run([
+                    "python", "scripts/secure_rails_work_vault_pipeline.py",
+                    "--input", str(inp), "--output", str(out),
+                ], capture_output=True, text=True)
+                self.assertNotEqual(res.returncode, 0)
+
 
 if __name__ == "__main__":
     unittest.main()

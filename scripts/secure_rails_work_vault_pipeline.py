@@ -17,6 +17,12 @@ def _stable_hash(payload: dict) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
+def _require_non_empty_string(payload: dict, field: str) -> None:
+    value = payload[field]
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"{field} must be a non-empty string")
+
+
 def _validate_created_at(value: str) -> None:
     if not isinstance(value, str):
         raise ValueError("created_at must be a string in RFC3339 date-time format")
@@ -30,6 +36,10 @@ def _validate_created_at(value: str) -> None:
 
 
 def _validate_payload(payload: dict) -> None:
+    _require_non_empty_string(payload, "vault_id")
+    _require_non_empty_string(payload, "defensive_scope")
+    _require_non_empty_string(payload, "sovereign_id")
+    _require_non_empty_string(payload, "reviewed_by")
     if payload["job_type"] not in ALLOWED_JOB_TYPES:
         raise ValueError(f"Invalid job_type: {payload['job_type']}")
     if payload["status"] not in ALLOWED_JOB_STATUS:
