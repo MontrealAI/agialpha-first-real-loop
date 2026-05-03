@@ -1,0 +1,32 @@
+[
+  {
+    "allocation_id": "alloc-0-0",
+    "nova_seed_id": "seed-0-0",
+    "allocated_budget_proxy": 1,
+    "review_priority": "medium",
+    "risk_tier": "low",
+    "validator_required": true,
+    "replay_required": true,
+    "falsification_required": true,
+    "redaction_required": true,
+    "safe_pr_required_for_remediation": true,
+    "human_review_required_for_promotion": true,
+    "promotion_threshold": {},
+    "rejection_reason_if_any": ""
+  },
+  {
+    "allocation_id": "alloc-0-1",
+    "nova_seed_id": "seed-0-1",
+    "allocated_budget_proxy": 1,
+    "review_priority": "medium",
+    "risk_tier": "low",
+    "validator_required": true,
+    "replay_required": true,
+    "falsification_required": true,
+    "redaction_required": true,
+    "safe_pr_required_for_remediation": true,
+    "human_review_required_for_promotion": true,
+    "promotion_threshold": {},
+    "rejection_reason_if_any": ""
+  }
+]

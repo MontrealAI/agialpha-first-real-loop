@@ -1,0 +1,53 @@
+{
+  "schema_version": "agialpha.evidence_run.v1",
+  "experiment_slug": "cyber-ga-sovereign-001",
+  "experiment_family": "cyber-ga-sovereign",
+  "experiment_name": "CYBER-GA-SOVEREIGN-001",
+  "workflow_name": "AGI ALPHA Cyber-GA Sovereign 001 / Autonomous",
+  "workflow_file": ".github/workflows/cyber-ga-sovereign-001-autonomous.yml",
+  "run_id": "local",
+  "run_url": "local",
+  "claim_level": "local-defensive-evidence",
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "repo_root": "/home/runner/work/agialpha-first-real-loop/agialpha-first-real-loop",
+  "evidence_docket_path": "cyber-ga-sovereign-runs/custom-auto/cyber-ga-sovereign-evidence-docket",
+  "scoreboard_path": "cyber-ga-sovereign-runs/custom-auto/cyber-ga-sovereign-evidence-docket/28_summary_tables/scoreboard.json",
+  "artifact_names": [
+    "cyber-ga-sovereign-evidence-docket"
+  ],
+  "root_hash": "4949a7d00c8c949d1015e514e3846517dccf2794e8221fe0fe104fc44d68b85d",
+  "metrics": {
+    "cycles_executed": 1,
+    "candidate_defensive_niches_generated": 2,
+    "candidate_defensive_niches_evaluated": 1,
+    "local_variants_generated": 1,
+    "local_variants_evaluated": 1,
+    "B6_beats_B5": true,
+    "B6_advantage_delta_vs_B5": 0.11,
+    "B6_reuse_beats_B5_no_reuse": true,
+    "security_lineage_metaproductivity": 1.2,
+    "raw_secret_leak_count": 0,
+    "external_target_scan_count": 0,
+    "exploit_execution_count": 0,
+    "malware_generation_count": 0,
+    "social_engineering_content_count": 0,
+    "unsafe_automerge_count": 0,
+    "critical_safety_incidents": 0,
+    "CyberSovereignPolicy_candidates_generated": 1,
+    "CyberSovereignPolicy_vnext_beats_incumbent": true,
+    "claim_boundary_coverage_pct": 100
+  },
+  "hard_safety_counters": {
+    "raw_secret_leak_count": 0,
+    "external_target_scan_count": 0,
+    "exploit_execution_count": 0,
+    "malware_generation_count": 0,
+    "social_engineering_content_count": 0,
+    "unsafe_automerge_count": 0,
+    "critical_safety_incidents": 0
+  },
+  "external_review": "pending",
+  "pr_review": "required",
+  "public_page": "/cybersecurity-sovereign/",
+  "experiment_page": "/experiments/cyber-ga-sovereign-001/"
+}
