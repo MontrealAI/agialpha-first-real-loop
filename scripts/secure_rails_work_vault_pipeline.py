@@ -22,9 +22,11 @@ def _validate_created_at(value: str) -> None:
         raise ValueError("created_at must be a string in RFC3339 date-time format")
     normalized = value.replace("Z", "+00:00")
     try:
-        datetime.fromisoformat(normalized)
+        parsed = datetime.fromisoformat(normalized)
     except ValueError as exc:
         raise ValueError(f"Invalid created_at date-time: {value}") from exc
+    if parsed.tzinfo is None:
+        raise ValueError("created_at must include timezone offset (e.g. Z or +00:00)")
 
 
 def _validate_payload(payload: dict) -> None:
@@ -40,6 +42,12 @@ def _validate_payload(payload: dict) -> None:
     if mark_units < 0:
         raise ValueError(f"mark_units must be non-negative: {mark_units}")
     _validate_created_at(payload.get("created_at", "1970-01-01T00:00:00+00:00"))
+
+    reviewers = payload["reviewers"]
+    if not isinstance(reviewers, list) or len(reviewers) < 1:
+        raise ValueError("reviewers must be a non-empty array of strings")
+    if any(not isinstance(reviewer, str) or not reviewer for reviewer in reviewers):
+        raise ValueError("reviewers entries must be non-empty strings")
 
 
 def build_record(payload: dict) -> dict:

@@ -155,6 +155,56 @@ class TestSecureRailsWorkVaultPipeline(unittest.TestCase):
             ], capture_output=True, text=True)
             self.assertNotEqual(res.returncode, 0)
 
+    def test_rejects_created_at_without_timezone(self):
+        payload = {
+            "vault_id": "vault-x",
+            "defensive_scope": "scope",
+            "job_type": "defensive_validation",
+            "mark_units": 1,
+            "sovereign_id": "sovereign-x",
+            "reviewers": ["r1"],
+            "status": "completed",
+            "decision": "safe_remediation",
+            "reviewed_by": "r1",
+            "created_at": "2026-05-03T00:00:00",
+        }
+        with tempfile.TemporaryDirectory() as td:
+            inp = Path(td) / "in.json"
+            out = Path(td) / "out.json"
+            inp.write_text(json.dumps(payload), encoding="utf-8")
+            res = subprocess.run([
+                "python", "scripts/secure_rails_work_vault_pipeline.py",
+                "--input", str(inp), "--output", str(out),
+            ], capture_output=True, text=True)
+            self.assertNotEqual(res.returncode, 0)
+
+    def test_rejects_empty_or_non_string_reviewers(self):
+        base = {
+            "vault_id": "vault-x",
+            "defensive_scope": "scope",
+            "job_type": "defensive_validation",
+            "mark_units": 1,
+            "sovereign_id": "sovereign-x",
+            "status": "completed",
+            "decision": "safe_remediation",
+            "reviewed_by": "r1",
+        }
+        bad_payloads = [
+            {**base, "reviewers": []},
+            {**base, "reviewers": [123]},
+            {**base, "reviewers": [""]},
+        ]
+        with tempfile.TemporaryDirectory() as td:
+            for i, payload in enumerate(bad_payloads):
+                inp = Path(td) / f"in_{i}.json"
+                out = Path(td) / f"out_{i}.json"
+                inp.write_text(json.dumps(payload), encoding="utf-8")
+                res = subprocess.run([
+                    "python", "scripts/secure_rails_work_vault_pipeline.py",
+                    "--input", str(inp), "--output", str(out),
+                ], capture_output=True, text=True)
+                self.assertNotEqual(res.returncode, 0)
+
 
 if __name__ == "__main__":
     unittest.main()
