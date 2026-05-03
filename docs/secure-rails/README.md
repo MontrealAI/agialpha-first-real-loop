@@ -205,6 +205,7 @@ SecureRails is designed as AI-agent security governance and proof-bound defensiv
 * [Foreseeable misuse and excluded uses](foreseeable-misuse-and-excluded-uses.md)
 * [Security and safety boundary](security-safety-boundary.md)
 * [Claims and marketing guardrails](claims-and-marketing-guardrails.md)
+* [Work Vaults, MARK, and Sovereigns](work-vaults-mark-sovereigns.md)
 * [SecureRails index](index.md)
 
 ### Templates

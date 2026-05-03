@@ -11,3 +11,5 @@ Use this index to navigate core policy and safety documents for defensive, proof
 - [Security and safety boundary](security-safety-boundary.md)
 - [Claims and marketing guardrails](claims-and-marketing-guardrails.md)
 - [Templates](templates/README.md)
+
+- [Work Vaults, MARK, and Sovereigns](work-vaults-mark-sovereigns.md)
