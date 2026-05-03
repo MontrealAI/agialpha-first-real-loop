@@ -1,12 +1,75 @@
-name: cyber-ga-sovereign-001-lifecycle
+name: AGI ALPHA Cyber-GA Sovereign 001 / Lifecycle Orchestrator
+
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      cycles:
+        description: Number of lifecycle cycles
+        required: false
+        default: "3"
+      candidate_niches:
+        description: Candidate defensive niches
+        required: false
+        default: "64"
+      evaluate_niches:
+        description: Niches to evaluate
+        required: false
+        default: "24"
+      local_variants_per_niche:
+        description: Local evolution variants per niche
+        required: false
+        default: "5"
+      publish_cyber_sovereign_tab:
+        description: Register run for central Evidence Hub publisher
+        required: false
+        default: "true"
+      open_safe_pr_if_passed:
+        description: Open safe PR proposal if gates pass
+        required: false
+        default: "false"
+      open_policy_pr_if_passed:
+        description: Open policy PR proposal if gates pass
+        required: false
+        default: "false"
+
 jobs:
-  run:
+  lifecycle:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: python -m agialpha_cyber_ga_sovereign lifecycle --repo-root . --cycles 3 --candidate-niches 64 --evaluate-niches 24 --local-variants-per-niche 5 --out cyber-ga-sovereign-runs/lifecycle
+
+      - name: Run autonomous lifecycle
+        run: >-
+          python -m agialpha_cyber_ga_sovereign lifecycle
+          --repo-root .
+          --cycles "${{ github.event.inputs.cycles || '3' }}"
+          --candidate-niches "${{ github.event.inputs.candidate_niches || '64' }}"
+          --evaluate-niches "${{ github.event.inputs.evaluate_niches || '24' }}"
+          --local-variants-per-niche "${{ github.event.inputs.local_variants_per_niche || '5' }}"
+          --out cyber-ga-sovereign-runs/lifecycle
+
+      - name: Run replay gate
+        run: >-
+          python -m agialpha_cyber_ga_sovereign replay
+          --docket cyber-ga-sovereign-runs/lifecycle/cyber-ga-sovereign-evidence-docket
+
+      - name: Run falsification audit gate
+        run: >-
+          python -m agialpha_cyber_ga_sovereign falsification-audit
+          --docket cyber-ga-sovereign-runs/lifecycle/cyber-ga-sovereign-evidence-docket
+
+      - name: Verify lifecycle run manifest exists
+        run: >-
+          test -f cyber-ga-sovereign-runs/lifecycle/cyber-ga-sovereign-evidence-docket/evidence-run-manifest.json
+
+      - name: Evidence Hub registration stub
+        run: |
+          echo "SecureRails lifecycle completed."
+          echo "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
+          echo "Pages deployment is intentionally omitted: only central Evidence Hub publisher may deploy."
