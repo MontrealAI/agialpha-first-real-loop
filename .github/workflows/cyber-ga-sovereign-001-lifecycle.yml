@@ -64,11 +64,9 @@ jobs:
           python -m agialpha_cyber_ga_sovereign falsification-audit
           --docket cyber-ga-sovereign-runs/lifecycle/cyber-ga-sovereign-evidence-docket
 
-      - name: Emit lifecycle run manifest
+      - name: Verify lifecycle run manifest exists
         run: >-
-          python -m agialpha_cyber_ga_sovereign render
-          --repo-root .
-          --docket cyber-ga-sovereign-runs/lifecycle/cyber-ga-sovereign-evidence-docket
+          test -f cyber-ga-sovereign-runs/lifecycle/cyber-ga-sovereign-evidence-docket/evidence-run-manifest.json
 
       - name: Evidence Hub registration stub
         run: |
