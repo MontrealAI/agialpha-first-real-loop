@@ -37,7 +37,7 @@ SecureRails is:
 
 SecureRails is not:
 
-* autonomous cybersecurity assurance or attestation
+* autonomous cybersecurity certification
 * offensive cybersecurity tooling
 * external target scanning
 * exploit execution
@@ -141,7 +141,7 @@ SecureRails must not be used for:
 * social engineering
 * autonomous production remediation
 * autonomous merge
-* cybersecurity assurance or attestation claims
+* cybersecurity certification claims
 * guaranteed security claims
 * investment or token-return claims
 
@@ -185,7 +185,7 @@ Do not say:
 ```text
 SecureRails is EU AI Act exempt.
 SecureRails is legally approved worldwide.
-SecureRails provides formal security attestation.
+SecureRails certifies security.
 SecureRails guarantees security.
 SecureRails autonomously remediates production systems.
 ```
@@ -201,11 +201,21 @@ SecureRails is designed as AI-agent security governance and proof-bound defensiv
 ### Public docs
 
 * [Product boundary](product-boundary.md)
+* [AI-agent security governance](ai-agent-security-governance.md)
 * [EU AI Act positioning](eu-ai-act-positioning.md)
+* [Annex III triage](eu-ai-act-annex-iii-triage.md)
 * [Foreseeable misuse and excluded uses](foreseeable-misuse-and-excluded-uses.md)
+* [No HR / worker evaluation policy](no-hr-worker-evaluation-policy.md)
+* [Critical infrastructure safety-component boundary](critical-infrastructure-safety-component-boundary.md)
+* [Profiling and person-data boundary](profiling-and-person-data-boundary.md)
+* [GPAI dependency boundary](gpai-dependency-boundary.md)
 * [Security and safety boundary](security-safety-boundary.md)
 * [Claims and marketing guardrails](claims-and-marketing-guardrails.md)
-* [SecureRails index](index.md)
+* [Customer deployment playbook](customer-deployment-playbook.md)
+* [Regulator audit readiness](regulator-audit-readiness.md)
+* [Material modification and re-screening](material-modification-and-rescreening.md)
+* [Token utility policy](token-utility-policy.md)
+* [Compliance FAQ](compliance-faq.md)
 
 ### Templates
 
@@ -249,7 +259,7 @@ It enforces:
 
 * no AGI / ASI overclaims
 * no empirical SOTA claims without evidence
-* no cybersecurity assurance or attestation claims
+* no cybersecurity certification claims
 * no guaranteed security claims
 * no offensive cyber posture
 * no autonomous decision-making posture
@@ -361,4 +371,4 @@ This is an enforcement layer, not a certification claim.
 
 ## Final boundary
 
-SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cybersecurity assurance or attestation, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
+SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cybersecurity certification, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.

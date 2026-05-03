@@ -79,7 +79,7 @@ It makes AI-agent work safe to review, safe to replay, and safe to remediate by 
 - reusable defensive capability
 - human-reviewed promotion records
 
-SecureRails is designed as repo-owned defensive evidence infrastructure. It is not autonomous cybersecurity assurance or attestation, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
+SecureRails is designed as repo-owned defensive evidence infrastructure. It is not autonomous cybersecurity certification, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
 
 ### SecureRails quick links
 
