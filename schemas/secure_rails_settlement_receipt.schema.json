@@ -1,61 +1,23 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "SecureRails Work Vault Record",
+  "title": "SecureRails Utility Settlement Receipt",
   "type": "object",
   "required": [
-    "schema_version",
-    "work_vault",
-    "mark_allocation",
-    "sovereign_assignment",
-    "agi_job",
-    "proof_bundle",
-    "evidence_docket",
-    "human_review",
-    "utility_settlement"
+    "receipt_id",
+    "mode",
+    "real_transfer"
   ],
   "properties": {
-    "schema_version": {"const": "agialpha.securerails.work_vault_record.v1"},
-    "work_vault": {
-      "type": "object",
-      "required": ["vault_id", "run_id", "created_at", "defensive_scope"],
-      "properties": {
-        "vault_id": {"type": "string", "minLength": 1},
-        "run_id": {"type": "string", "minLength": 1},
-        "created_at": {"type": "string", "format": "date-time"},
-        "defensive_scope": {"type": "string", "minLength": 1}
-      }
+    "receipt_id": {
+      "type": "string",
+      "minLength": 1
     },
-    "mark_allocation": {
-      "type": "object",
-      "required": ["mark_id", "allocation_units", "replay_required", "human_review_required"],
-      "properties": {
-        "mark_id": {"type": "string", "minLength": 1},
-        "allocation_units": {"type": "integer", "minimum": 0},
-        "replay_required": {"type": "boolean"},
-        "human_review_required": {"type": "boolean"}
-      }
+    "mode": {
+      "const": "$AGIALPHA_UTILITY_ONLY"
     },
-    "sovereign_assignment": {
-      "type": "object",
-      "required": ["sovereign_id", "sovereign_policy", "reviewers"],
-      "properties": {
-        "sovereign_id": {"type": "string", "minLength": 1},
-        "sovereign_policy": {"type": "string", "minLength": 1},
-        "reviewers": {"type": "array", "items": {"type": "string"}, "minItems": 1}
-      }
-    },
-    "agi_job": {
-      "type": "object",
-      "required": ["job_id", "job_type", "status"],
-      "properties": {
-        "job_id": {"type": "string", "minLength": 1},
-        "job_type": {"type": "string", "enum": ["defensive_remediation", "defensive_triage", "defensive_validation"]},
-        "status": {"type": "string", "enum": ["completed", "rejected", "escalated"]}
-      }
-    },
-    "proof_bundle": {"type": "object", "required": ["proof_bundle_id", "sha256"], "properties": {"proof_bundle_id": {"type": "string"}, "sha256": {"type": "string", "minLength": 64}}},
-    "evidence_docket": {"type": "object", "required": ["docket_id", "claim_boundary_statement"], "properties": {"docket_id": {"type": "string"}, "claim_boundary_statement": {"const": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."}}},
-    "human_review": {"type": "object", "required": ["decision", "reviewed_by"], "properties": {"decision": {"type": "string", "enum": ["safe_remediation", "reject", "escalate"]}, "reviewed_by": {"type": "string"}}},
-    "utility_settlement": {"type": "object", "required": ["receipt_id", "mode", "real_transfer"], "properties": {"receipt_id": {"type": "string"}, "mode": {"const": "$AGIALPHA_UTILITY_ONLY"}, "real_transfer": {"const": false}}}
-  }
+    "real_transfer": {
+      "const": false
+    }
+  },
+  "additionalProperties": false
 }
