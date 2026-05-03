@@ -70,12 +70,9 @@ Suggested integration fields:
 
 ## Reference artifacts
 
-- `schemas/secure_rails_work_vault.schema.json`
-- `schemas/secure_rails_mark_allocation.schema.json`
-- `schemas/secure_rails_sovereign_assignment.schema.json`
-- `schemas/secure_rails_job_record.schema.json`
-- `schemas/secure_rails_proof_bundle.schema.json`
-- `schemas/secure_rails_evidence_docket.schema.json`
-- `schemas/secure_rails_settlement_receipt.schema.json`
+- `schemas/secure_rails_work_vault_record.schema.json`
+- `schemas/secure_rails_work_vault_request.schema.json`
+- `sample_outputs/secure_rails_work_vault/sample_input.json`
 - `sample_outputs/secure_rails_work_vault/sample_work_vault_run.json`
 - `scripts/secure_rails_work_vault_pipeline.py`
+- `tests/test_secure_rails_work_vault_pipeline.py`
