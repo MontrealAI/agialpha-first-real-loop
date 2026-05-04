@@ -1,193 +1,78 @@
-# AGIAlpha First Real Loop
+# AGI ALPHA First Real Loop
 
-A research-oriented monorepo for deterministic, test-first AGIAlpha subsystems.
+AGI ALPHA First Real Loop is an evidence-first operating repository for running governed AI-agent experiments and publishing auditable results through Evidence Mission Control and SecureRails.
 
-If you're non-technical, start with **"5-minute quick check"** below. It is safe and read-only.
+## 30-second orientation
+- **Run workflows** from GitHub Actions or locally.
+- **Review outputs** as ProofBundles, Evidence Dockets, safety ledgers, and replay artifacts.
+- **Apply boundaries**: autonomous evidence production is allowed; autonomous claim promotion is not.
+- **SecureRails outputs are advisory** and always require independent human validation before action.
 
-## What this repository does (plain English)
+## What this repository contains
+- Evidence Mission Control and Evidence Hub publication flows
+- SecureRails governance and compliance guardrails
+- AGI-GA Foundry, Cyber-GA Sovereign, RSI Governor, HELIOS, and benchmark workflows
+- Schemas, guard scripts, replay tooling, and audit checks
 
-This project is a toolkit for running repeatable AI research workflows with strict safety and evidence rules:
+## Quickstart
+- Start at `docs/quickstart/README.md`
+- Workflow launchpad: `docs/workflows/README.md`
+- Full docs hub: `docs/README.md`
 
-- It generates candidate ideas/workflows.
-- It evaluates those candidates against held-out tasks.
-- It records results in structured "Evidence Dockets."
-- It prevents unsupported capability claims.
+## Where should I start?
+| User | Start here | Goal |
+|---|---|---|
+| Non-technical operator | Quickstart + Workflow Launchpad | Run workflows safely |
+| Engineer | Developer guide | Extend code and tests |
+| Security reviewer | SecureRails + safety docs | Review defensive boundaries |
+| Compliance reviewer | EU AI Act + misuse docs | Review deployment posture |
+| External reviewer | Replay protocol | Reproduce evidence |
+| Codex/agent developer | Agent contribution guide | Add experiments safely |
 
-In short: **we separate what the system can *show* from what anyone is allowed to *claim*.**
+## Run from GitHub UI
+1. Open **Actions**. 2. Select workflow. 3. Click **Run workflow**. 4. Choose branch + inputs. 5. Inspect checks and artifacts.
 
-## 5-minute quick check (non-technical)
-
-> Goal: confirm your local copy is healthy.
-
-1. Open a terminal in this folder.
-2. Run the commands below exactly.
-3. If you see `passed` at the end, your copy is working.
-
+## Run locally
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -U pip pytest
-pytest -q
+python -m pip install --upgrade pip pytest
+python -m unittest discover -s tests
 ```
 
-## Quickstart (technical)
-
-### 1) Create a virtual environment
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -U pip pytest
-```
-
-### 2) Run the full test suite
-
-```bash
-pytest -q
-```
-
-### 3) Run selected entry points
-
-```bash
-python -m agialpha_benchmark_gauntlet --help
-python -m agialpha_seed_runner --help
-python -m omega_aegis_001 --help
-```
-
-## Common issues and fixes
-
-- **"command not found: python"**
-  - Try `python3` instead of `python`.
-- **Permission errors inside virtual environment**
-  - Delete `.venv` and recreate it.
-- **A test fails unexpectedly**
-  - Re-run once with `pytest -q`.
-  - If it still fails, include the failing test name and full output in your issue.
-
-
-## SecureRails
-
-SecureRails is AGI ALPHA’s AI-agent security governance and proof-bound defensive remediation layer.
-
-It makes AI-agent work safe to review, safe to replay, and safe to remediate by converting agent actions, workflow changes, findings, and remediation proposals into:
-
-- ProofBundles
+## Main systems
+- Evidence Mission Control
+- SecureRails
+- AGI-GA Foundry
+- Cyber-GA Sovereign
+- RSI Governor
 - Evidence Dockets
-- redacted safety ledgers
-- safe PR proposals
-- validator reports
-- reusable defensive capability
-- human-reviewed promotion records
+- ProofBundles
 
-SecureRails is designed as repo-owned defensive evidence infrastructure. It is not autonomous cybersecurity assurance or attestation, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
-
-### SecureRails quick links
-
-- [SecureRails user guide](docs/secure-rails/README.md)
-- [SecureRails public docs page](docs/secure-rails/index.md)
-- [Product boundary](docs/secure-rails/product-boundary.md)
-- [EU AI Act positioning](docs/secure-rails/eu-ai-act-positioning.md)
-- [Foreseeable misuse and excluded uses](docs/secure-rails/foreseeable-misuse-and-excluded-uses.md)
-- [Security and safety boundary](docs/secure-rails/security-safety-boundary.md)
-- [Claims and marketing guardrails](docs/secure-rails/claims-and-marketing-guardrails.md)
-- [Templates](docs/secure-rails/templates/README.md)
-
-### SecureRails compliance guard
-
-The repository includes a SecureRails compliance guard workflow:
-
-```text
-.github/workflows/secure-rails-compliance-guard.yml
-```
-
-It enforces:
-
-* claim-boundary checks
-* no-auto-merge posture
-* AI Act use-case triage
-* safety ledger validation
-* foreseeable misuse controls
-
-Run local checks with:
-
-```bash
-python scripts/secure_rails_claim_boundary_check.py .
-python scripts/secure_rails_safety_ledger_check.py docs/secure-rails/templates/safety-ledger-example.json
-python scripts/secure_rails_no_automerge_check.py .
-python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json
-```
-
-SecureRails doctrine:
-
-> No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
-
-## Quick links
-
-- [Contributing guide](CONTRIBUTING.md)
-- [Workflow launchpad](WORKFLOW_LAUNCHPAD.md)
-- [Evidence docket standard](EVIDENCE_DOCKET_STANDARD.md)
-- [AGIGA Foundry README](README_AGIGA_FOUNDRY.md)
-- [RSI Governor README](README_RSI_GOVERNOR.md)
-
-## How to run from GitHub UI
-
-If you prefer not to run commands locally:
-
-1. Open the **Actions** tab in GitHub.
-2. Select a workflow run relevant to your branch or pull request.
-3. Inspect artifacts and logs for validation outputs (tests, docs audits, and evidence checks).
-4. Use repository scripts documented in `scripts/README_UPLOAD_WITH_GITHUB_WEB_UI.md` when preparing web-only updates.
-
-
-## Experiment families
-
-- **Foundry lifecycle experiments**: orchestration, generation, and promotion in `agialpha_agiga_foundry/`.
-- **Safety and sovereign evaluations**: policy, held-out, and falsification validations.
-- **Benchmark and gauntlet tracks**: repeatable benchmark execution and scoring.
-- **Evidence registry workflows**: inventory and provenance updates in `evidence_registry/`.
-
-## Repository guide
-
-- `agialpha_agiga_foundry/` – core foundry modules and CLI.
-- `agialpha_benchmark_gauntlet/` – benchmark harness.
-- `agialpha_seed_runner/`, `omega_aegis_001/`, `agialpha_helios/` – executable components.
-- `tests/` – regression and policy tests.
-- `evidence_registry/` – canonical JSON registries.
-- `scripts/` – helper and policy-check scripts.
+## Claim boundary
+No Evidence Docket, no empirical SOTA claim. This repository does not claim achieved AGI/ASI, cybersecurity certification, guaranteed security, safe autonomy, autonomous production remediation, or investment returns.
 
 ## Engineering practices
-
-- Keep claims conservative and evidence-linked.
-- Add/adjust tests in `tests/` with every behavior change.
-- Prefer deterministic outputs and schema-validated artifacts.
-- Use relative documentation links and keep README files scoped to their subsystem.
+- Document every workflow
+- Keep schema-backed artifacts
+- Preserve replayability and safety ledgers
+- Keep no-automerge and human-review boundaries
 
 ## Documentation index
+See `docs/README.md`.
 
-- `CONTRIBUTING.md`
-- `EVIDENCE_DOCKET_STANDARD.md`
-- `WORKFLOW_LAUNCHPAD.md`
-- `README_AGIGA_FOUNDRY.md`
-- `README_BENCHMARK_GAUNTLET_001.md`
-- `README_RSI_GOVERNOR.md`
-- `README_OMEGA_GAUNTLET_001.md`
-- `README_L4_L7_AUTOPILOT.md`
-- `README_ASCENSION_001.md`
+## Troubleshooting
+See `docs/quickstart/troubleshooting.md`.
 
-## License
+## Quick links
+- Docs hub: `docs/README.md`
+- Workflow launchpad: `docs/workflows/README.md`
+- Evidence docs: `docs/evidence/README.md`
+- SecureRails docs: `docs/secure-rails/README.md`
+- Work Vaults/MARK/Sovereigns: `docs/secure-rails/work-vaults-mark-sovereigns.md`
 
-Distributed under the terms in `LICENSE`.
+## How to run from GitHub UI
+See `docs/quickstart/github-ui.md`.
 
-
-### SecureRails Work Vaults, MARK, and Sovereigns
-
-SecureRails routes agentic work through three governance primitives:
-
-```text
-Work Vaults → ALPHA AGI MARK → ALPHA AGI Sovereigns
-```
-
-Read more:
-
-* [SecureRails Work Vaults, MARK, and Sovereigns](docs/secure-rails/work-vaults-mark-sovereigns.md)
-* [SecureRails Work Vaults Operator Guide](docs/secure-rails/work-vaults-operator-guide.md)
+## Experiment families
+See `docs/experiments/README.md` for First Real Loop, HELIOS, Cyber Sovereign, Cyber-GA Sovereign, AGI-GA Foundry, RSI Governor, Benchmark Gauntlet, Omega, Phoenix, Ascension, replay, and falsification coverage.

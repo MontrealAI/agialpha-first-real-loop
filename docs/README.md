@@ -1,46 +1,42 @@
-# Documentation Index
+# Documentation Hub
 
-Generated index of top-level docs pages.
+## Start here
+- Quickstart: `docs/quickstart/README.md`
+- Workflow launchpad: `docs/workflows/README.md`
+- Root orientation: `README.md`
 
-| Document | Link |
-|---|---|
-| ARTIFACTS AND REGISTRY | [ARTIFACTS_AND_REGISTRY.md](ARTIFACTS_AND_REGISTRY.md) |
-| BENCHMARK GAUNTLET | [BENCHMARK_GAUNTLET.md](BENCHMARK_GAUNTLET.md) |
-| CLAIM BOUNDARIES | [CLAIM_BOUNDARIES.md](CLAIM_BOUNDARIES.md) |
-| CLAIM LEVELS | [CLAIM_LEVELS.md](CLAIM_LEVELS.md) |
-| CONTENT PRESERVATION LEDGER | [CONTENT_PRESERVATION_LEDGER.md](CONTENT_PRESERVATION_LEDGER.md) |
-| CYBER SOVEREIGN | [CYBER_SOVEREIGN.md](CYBER_SOVEREIGN.md) |
-| DEVELOPER GUIDE | [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) |
-| EVIDENCE DOCKETS | [EVIDENCE_DOCKETS.md](EVIDENCE_DOCKETS.md) |
-| EVIDENCE HUB ARCHITECTURE | [EVIDENCE_HUB_ARCHITECTURE.md](EVIDENCE_HUB_ARCHITECTURE.md) |
-| EVIDENCE MISSION CONTROL | [EVIDENCE_MISSION_CONTROL.md](EVIDENCE_MISSION_CONTROL.md) |
-| EXPERIMENT CATALOG | [EXPERIMENT_CATALOG.md](EXPERIMENT_CATALOG.md) |
-| EXTERNAL REPLAY | [EXTERNAL_REPLAY.md](EXTERNAL_REPLAY.md) |
-| EXTERNAL REVIEWER PROTOCOL | [EXTERNAL_REVIEWER_PROTOCOL.md](EXTERNAL_REVIEWER_PROTOCOL.md) |
-| FALSIFICATION AUDITS | [FALSIFICATION_AUDITS.md](FALSIFICATION_AUDITS.md) |
-| GLOSSARY | [GLOSSARY.md](GLOSSARY.md) |
-| HELIOS | [HELIOS.md](HELIOS.md) |
-| HOW TO ADD EXPERIMENT | [HOW_TO_ADD_EXPERIMENT.md](HOW_TO_ADD_EXPERIMENT.md) |
-| HOW TO READ RESULTS | [HOW_TO_READ_RESULTS.md](HOW_TO_READ_RESULTS.md) |
-| HOW TO RUN WORKFLOW | [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) |
-| MANIFEST SCHEMA | [MANIFEST_SCHEMA.md](MANIFEST_SCHEMA.md) |
-| OMEGA GAUNTLET | [OMEGA_GAUNTLET.md](OMEGA_GAUNTLET.md) |
-| OPERATOR GUIDE | [OPERATOR_GUIDE.md](OPERATOR_GUIDE.md) |
-| PAPER MAPPING | [PAPER_MAPPING.md](PAPER_MAPPING.md) |
-| PHOENIX HUB | [PHOENIX_HUB.md](PHOENIX_HUB.md) |
-| PUBLICATION ALIGNMENT | [PUBLICATION_ALIGNMENT.md](PUBLICATION_ALIGNMENT.md) |
-| QUICKSTART GITHUB UI | [QUICKSTART_GITHUB_UI.md](QUICKSTART_GITHUB_UI.md) |
-| SAFETY LEDGERS | [SAFETY_LEDGERS.md](SAFETY_LEDGERS.md) |
-| SECURITY BOUNDARIES | [SECURITY_BOUNDARIES.md](SECURITY_BOUNDARIES.md) |
-| START HERE | [START_HERE.md](START_HERE.md) |
-| TROUBLESHOOTING | [TROUBLESHOOTING.md](TROUBLESHOOTING.md) |
-| WORKFLOW CATALOG | [WORKFLOW_CATALOG.md](WORKFLOW_CATALOG.md) |
-| claim boundary | [claim_boundary.md](claim_boundary.md) |
-| evidence docket standard | [evidence_docket_standard.md](evidence_docket_standard.md) |
-| first real loop runbook | [first_real_loop_runbook.md](first_real_loop_runbook.md) |
-| github web interface | [github_web_interface.md](github_web_interface.md) |
-| one page summary | [one_page_summary.md](one_page_summary.md) |
-| references | [references.md](references.md) |
-| safety boundaries | [safety_boundaries.md](safety_boundaries.md) |
+## Public Evidence Mission Control
+- `docs/EVIDENCE_MISSION_CONTROL.md`
+- `docs/evidence-factory/index.html`
 
-No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+## SecureRails
+- `docs/secure-rails/README.md`
+- `docs/secure-rails/product-boundary.md`
+- `docs/secure-rails/eu-ai-act-positioning.md`
+
+## Work Vaults, MARK, and Sovereigns
+- `docs/secure-rails/work-vaults-mark-sovereigns.md`
+- templates: `docs/secure-rails/templates/README.md`
+
+## Evidence Dockets and ProofBundles
+- `docs/evidence/README.md`
+
+## Experiments
+- `docs/experiments/README.md`
+
+## Workflows
+- `docs/WORKFLOW_CATALOG.md`
+- `docs/workflows/README.md`
+
+## Schemas
+- `schemas/`
+## Scripts
+- `scripts/`
+## Tests
+- `tests/`
+## External review
+- `docs/reviewers/external-review-protocol.md`
+## Claim boundaries
+- `docs/CLAIM_BOUNDARIES.md`
+## Troubleshooting
+- `docs/quickstart/troubleshooting.md`
