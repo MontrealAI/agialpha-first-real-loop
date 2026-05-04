@@ -15,3 +15,13 @@ class T(unittest.TestCase):
         for key,val in [('auto_merge_allowed',True),('human_review_required',False),('external_target_scanning_allowed',True),('exploit_execution_allowed',True),('profiling_natural_persons_allowed',True),('automated_decisions_about_natural_persons_allowed',True),('critical_infrastructure_safety_component_reliance_allowed',True)]:
             obj=json.loads(json.dumps(base));obj['scope'][key]=val
             self.assertNotEqual(self.run_check(obj).returncode,0)
+
+    def test_nonzero_hard_safety_counter_fails(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['hard_safety_counters']['exploit_execution_count']=1
+        self.assertNotEqual(self.run_check(obj).returncode,0)
+
+    def test_mark_validators_required_must_be_array(self):
+        obj=json.loads(Path('docs/secure-rails/templates/mark-allocation-example.json').read_text())
+        obj['validators_required']='claim_boundary_validator'
+        self.assertNotEqual(self.run_check(obj).returncode,0)

@@ -42,6 +42,7 @@ def main():
         for k in COUNTERS:
             if k not in c: return fail(f'missing hard safety counter: {k}')
             if not isinstance(c[k],(int,float)): return fail(f'hard safety counter not numeric: {k}')
+            if c[k] != 0: return fail(f'hard safety counter must be zero for compliant vaults: {k}')
         if obj.get('claim_boundary') in (None,""): return fail('claim_boundary missing')
     elif sv=="agialpha.mark_allocation.v1":
         if obj.get('human_review_required') is not True: return fail('human_review_required must be true')
@@ -49,7 +50,9 @@ def main():
         if obj.get('promotion_without_evidence_allowed') is not False: return fail('promotion_without_evidence_allowed must be false')
         if obj.get('utility_asset')!="$AGIALPHA": return fail('utility_asset must be $AGIALPHA')
         if not obj.get('assigned_sovereign'): return fail('assigned_sovereign missing')
-        if not obj.get('validators_required'): return fail('validators_required empty')
+        vr=obj.get('validators_required')
+        if not isinstance(vr,list): return fail('validators_required must be an array')
+        if len(vr)==0: return fail('validators_required empty')
         if not obj.get('claim_boundary'): return fail('claim_boundary missing')
     elif sv=="agialpha.sovereign.v1":
         fw=[x.lower() for x in obj.get('forbidden_work',[])]
