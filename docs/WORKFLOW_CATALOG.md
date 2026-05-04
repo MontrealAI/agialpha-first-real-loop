@@ -1,136 +1,107 @@
----
-title: "Workflow Catalog"
-audience: "operator|developer|researcher"
-status: "current"
-source_of_truth: "docs/WORKFLOW_CATALOG.md"
-last_reviewed: "2026-05-01"
-claim_boundary_required: true
----
-
 # Workflow Catalog
 
-## Purpose
-Workflow Catalog for AGI ALPHA documentation system.
-
-## Audience
-Operators, developers, researchers, external reviewers, and security reviewers.
-
-## Current status
-Current as of 2026-05-01.
-
-## Quick links
-- [Root README](../README.md)
-- [Workflow Launchpad](../WORKFLOW_LAUNCHPAD.md)
-- [Claim boundary](../CLAIM_BOUNDARY.md)
-
-## Workflow inventory
 | Workflow file | How to run | Pages publisher? |
 |---|---|---|
-| `ascension-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `ascension-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `ascension-001-independent-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `ascension-001-vnext.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `benchmark-gauntlet-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `benchmark-gauntlet-001-challenge-pack.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `benchmark-gauntlet-001-external-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `benchmark-gauntlet-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `benchmark-gauntlet-001-safe-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `benchmark-gauntlet-001-scaling.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-sovereign-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-sovereign-001-delayed-outcome.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-sovereign-001-external-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-sovereign-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-sovereign-001-scaling.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-sovereign-002-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-sovereign-002-delayed-outcome.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-sovereign-002-external-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-sovereign-002-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-sovereign-002-safe-pr-proposal.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `docs-audit.yml` | Internal CI workflow; no manual dispatch required. | no |
-| `cyber-sovereign-002-scaling.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-ga-sovereign-001-lifecycle.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-ga-sovereign-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-ga-sovereign-001-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-ga-sovereign-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-ga-sovereign-001-safe-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-ga-sovereign-001-policy-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-ga-sovereign-001-delayed-outcome.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `cyber-ga-sovereign-001-vnext.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `evidence-factory-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `evidence-hub-canary.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `evidence-hub-publish.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | yes |
-| `evidence-hub-repair.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `falsification-audit-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `frontier-external-review.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `frontier-usefulness-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-001-independent-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-001-vnext-transfer.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-002-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-002-benchmark-adapters.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-002-external-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-002-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-002-scaling.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-003-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-003-benchmark-adapters.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-003-delayed-outcome.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-003-external-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-003-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-003-scaling.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `helios-004-completion.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `independent-replay-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `l4-external-reviewer-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `l4-l7-evidence-autopilot.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `omega-aegis-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `omega-aegis-001-external-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `omega-aegis-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `omega-aegis-001-vnext-transfer.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `omega-gauntlet-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `omega-gauntlet-001-challenge-pack.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `omega-gauntlet-001-external-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `omega-gauntlet-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `omega-gauntlet-001-safe-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `omega-gauntlet-001-scaling.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `phoenix-hub-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `phoenix-hub-001-challenge-pack.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `phoenix-hub-001-external-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `phoenix-hub-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `phoenix-hub-001-safe-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `rsi-forge-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `rsi-forge-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `rsi-forge-001-independent-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `rsi-forge-001-safe-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `rsi-forge-001-vnext-transfer.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `seed-runner-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-
-| `rsi-forge-002-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `rsi-forge-002-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `rsi-forge-002-independent-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `rsi-governor-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `rsi-governor-001-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `rsi-governor-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `rsi-governor-001-safe-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `rsi-governor-001-delayed-outcome.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
+| `agiga-foundry-001-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `agiga-foundry-001-delayed-outcome.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `agiga-foundry-001-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `agiga-foundry-001-foundry-kernel-safe-pr.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `agiga-foundry-001-lifecycle.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `agiga-foundry-001-policy-pr.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `agiga-foundry-001-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `agiga-foundry-001-safe-policy-pr.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `agiga-foundry-001-vnext.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `ascension-001-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `ascension-001-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `ascension-001-independent-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `ascension-001-vnext.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `benchmark-gauntlet-001-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `benchmark-gauntlet-001-challenge-pack.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `benchmark-gauntlet-001-external-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `benchmark-gauntlet-001-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `benchmark-gauntlet-001-safe-pr.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `benchmark-gauntlet-001-scaling.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-ga-sovereign-001-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-ga-sovereign-001-delayed-outcome.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-ga-sovereign-001-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-ga-sovereign-001-lifecycle.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-ga-sovereign-001-policy-pr.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-ga-sovereign-001-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-ga-sovereign-001-safe-pr.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-ga-sovereign-001-vnext.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-sovereign-001-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-sovereign-001-delayed-outcome.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-sovereign-001-external-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-sovereign-001-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-sovereign-001-scaling.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-sovereign-002-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-sovereign-002-delayed-outcome.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-sovereign-002-external-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-sovereign-002-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-sovereign-002-safe-pr-proposal.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `cyber-sovereign-002-scaling.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `docs-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `evidence-factory-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `evidence-hub-canary.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `evidence-hub-publish.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | yes |
+| `evidence-hub-repair.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `falsification-audit-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `frontier-external-review.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `frontier-usefulness-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-001-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-001-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-001-independent-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-001-vnext-transfer.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-002-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-002-benchmark-adapters.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-002-external-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-002-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-002-scaling.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-003-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-003-benchmark-adapters.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-003-delayed-outcome.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-003-external-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-003-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-003-scaling.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `helios-004-completion.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `independent-replay-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `l4-external-reviewer-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `l4-l7-evidence-autopilot.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `omega-aegis-001-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `omega-aegis-001-external-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `omega-aegis-001-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `omega-aegis-001-vnext-transfer.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `omega-gauntlet-001-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `omega-gauntlet-001-challenge-pack.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `omega-gauntlet-001-external-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `omega-gauntlet-001-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `omega-gauntlet-001-safe-pr.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `omega-gauntlet-001-scaling.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `phoenix-hub-001-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `phoenix-hub-001-challenge-pack.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `phoenix-hub-001-external-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `phoenix-hub-001-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `phoenix-hub-001-safe-pr.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-forge-001-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-forge-001-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-forge-001-independent-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-forge-001-safe-pr.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-forge-001-vnext-transfer.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-forge-002-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-forge-002-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-forge-002-independent-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-governor-001-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-governor-001-delayed-outcome.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-governor-001-falsification-audit.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-governor-001-lifecycle-orchestrator.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-governor-001-lifecycle.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-governor-001-post-merge.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-governor-001-replay.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-governor-001-safe-pr.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `rsi-governor-001-vnext-canary.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `secure-rails-compliance-guard.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `securerails-work-vault-demo.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
+| `seed-runner-autonomous.yml` | Run from Actions or `docs/HOW_TO_RUN_WORKFLOW.md`; verify artifacts/Evidence Docket + claim boundary before promotion. | no |
 
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
-
-| `rsi-governor-001-lifecycle.yml` | RSI-GOVERNOR-001 end-to-end autonomous lifecycle orchestrator. | No |
-| `rsi-governor-001-lifecycle-orchestrator.yml` | RSI-GOVERNOR-001 lifecycle orchestrator with schedule + PR-closed hooks. | No |
-| `rsi-governor-001-vnext-canary.yml` | RSI-GOVERNOR-001 vNext canary verification workflow. | No |
-| `rsi-governor-001-post-merge.yml` | RSI-GOVERNOR-001 automatic post-merge delayed outcome + canary gate. | No |
-
-| `agiga-foundry-001-lifecycle.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `agiga-foundry-001-autonomous.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `agiga-foundry-001-replay.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `agiga-foundry-001-falsification-audit.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `agiga-foundry-001-delayed-outcome.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `agiga-foundry-001-vnext.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `agiga-foundry-001-foundry-kernel-safe-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `agiga-foundry-001-foundry-kernel-safe-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `agiga-foundry-001-policy-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `agiga-foundry-001-safe-policy-pr.yml` | See [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) | no |
-| `secure-rails-compliance-guard.yml` | SecureRails CI-level compliance guard: enforces claim-boundary, no-auto-merge, safety-ledger, and EU AI Act use-case triage. | no |
-
-| `securerails-work-vault-demo.yml` | SecureRails / Work Vaults / governance: deterministic demo of Work Vault → MARK → Sovereign → ProofBundle → Evidence Docket → settlement receipt → capability archive; trigger pull_request/workflow_dispatch; claim boundary utility accounting only; no security assurance certificate; no investment product. | no |
