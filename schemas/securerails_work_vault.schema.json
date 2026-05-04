@@ -1,60 +1,26 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": [
-    "schema_version",
-    "vault_id",
-    "status",
-    "hard_safety_counters",
-    "claim_boundary"
-  ],
+  "required": ["schema_version","vault_id","vault_type","status","created_at","operator","scope","utility","mark_allocation","validators","hard_safety_counters","evidence","claim_boundary"],
   "properties": {
-    "schema_version": {
-      "type": "string"
-    },
-    "vault_id": {
-      "type": "string"
-    },
-    "status": {
-      "type": "string"
-    },
-    "hard_safety_counters": {
+    "schema_version": {"const": "securerails.work_vault.v1"},
+    "vault_id": {"type": "string", "minLength": 1},
+    "vault_type": {"const": "proof_bound_defensive_remediation"},
+    "status": {"type": "string"},
+    "created_at": {"type": "string", "minLength": 1},
+    "operator": {"type": "object", "required": ["operator_id","repo"]},
+    "scope": {
       "type": "object",
-      "required": [
-        "raw_secret_leak_count",
-        "external_target_scan_count",
-        "exploit_execution_count",
-        "malware_generation_count",
-        "social_engineering_content_count",
-        "unsafe_automerge_count",
-        "critical_safety_incidents"
-      ],
+      "required": ["repo_owned","defensive_only","external_target_scanning_allowed","exploit_execution_allowed","malware_generation_allowed","social_engineering_allowed","auto_merge_allowed","human_review_required","hr_worker_evaluation_allowed","profiling_natural_persons_allowed","automated_decisions_about_natural_persons_allowed","critical_infrastructure_safety_component_reliance_allowed"],
       "properties": {
-        "raw_secret_leak_count": {
-          "type": "number"
-        },
-        "external_target_scan_count": {
-          "type": "number"
-        },
-        "exploit_execution_count": {
-          "type": "number"
-        },
-        "malware_generation_count": {
-          "type": "number"
-        },
-        "social_engineering_content_count": {
-          "type": "number"
-        },
-        "unsafe_automerge_count": {
-          "type": "number"
-        },
-        "critical_safety_incidents": {
-          "type": "number"
-        }
+        "repo_owned": {"const": true},"defensive_only": {"const": true},"external_target_scanning_allowed": {"const": false},"exploit_execution_allowed": {"const": false},"malware_generation_allowed": {"const": false},"social_engineering_allowed": {"const": false},"auto_merge_allowed": {"const": false},"human_review_required": {"const": true},"hr_worker_evaluation_allowed": {"const": false},"profiling_natural_persons_allowed": {"const": false},"automated_decisions_about_natural_persons_allowed": {"const": false},"critical_infrastructure_safety_component_reliance_allowed": {"const": false}
       }
     },
-    "claim_boundary": {
-      "type": "string"
-    }
+    "utility": {"type": "object", "required": ["asset","unit","operator_work_budget","validator_review_budget","replay_budget","safety_review_budget","human_review_budget","dispute_reserve"], "properties": {"asset": {"const": "$AGIALPHA"}}},
+    "mark_allocation": {"type": "object", "required": ["allocation_id","risk_tier","review_priority","assigned_sovereign"]},
+    "validators": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "hard_safety_counters": {"type": "object", "required": ["raw_secret_leak_count","external_target_scan_count","exploit_execution_count","malware_generation_count","social_engineering_content_count","unsafe_automerge_count","critical_safety_incidents"]},
+    "evidence": {"type": "object", "required": ["proofbundle_id","evidence_docket_id","safe_pr_url","human_review_status"]},
+    "claim_boundary": {"type": "string", "minLength": 1}
   }
 }

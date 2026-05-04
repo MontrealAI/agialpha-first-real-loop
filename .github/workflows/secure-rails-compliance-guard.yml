@@ -35,3 +35,9 @@ jobs:
         run: python scripts/secure_rails_no_automerge_check.py .
       - name: Default use-case triage check
         run: python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json
+      - name: Work Vault checks
+        run: |
+          python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/work-vault-example.json
+          python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/mark-allocation-example.json
+          python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/sovereign-example.json
+          python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/vault-settlement-example.json
