@@ -1,27 +1,18 @@
----
-title: "Operator Guide"
-audience: "operator|developer|researcher"
-status: "current"
-source_of_truth: "docs/OPERATOR_GUIDE.md"
-last_reviewed: "2026-05-01"
-claim_boundary_required: true
----
-
 # Operator Guide
 
-## Purpose
-Operator Guide for AGI ALPHA documentation system.
+## 10-minute path
+1. Open Evidence Mission Control (`docs/EVIDENCE_MISSION_CONTROL.md`).
+2. Open GitHub **Actions**.
+3. Run one workflow.
+4. Inspect logs.
+5. Download artifacts.
+6. Check Evidence Docket.
+7. Confirm claim boundary.
+8. Confirm safety ledger.
+9. Review PR manually.
+10. Archive result.
 
-## Audience
-Operators, developers, researchers, external reviewers, and security reviewers.
-
-## Current status
-Current as of 2026-05-01.
-
-## Quick links
-- [Root README](../README.md)
-- [Workflow Launchpad](../WORKFLOW_LAUNCHPAD.md)
-- [Claim boundary](../CLAIM_BOUNDARY.md)
-
-
-No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+## Safe operations
+- Merge only after human review.
+- Do not merge if claim boundary checks fail.
+- “No Evidence Docket, no empirical SOTA claim” means no stronger claim without docket evidence.

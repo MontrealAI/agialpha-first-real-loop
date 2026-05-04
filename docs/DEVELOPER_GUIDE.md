@@ -1,27 +1,24 @@
----
-title: "Developer Guide"
-audience: "operator|developer|researcher"
-status: "current"
-source_of_truth: "docs/DEVELOPER_GUIDE.md"
-last_reviewed: "2026-05-01"
-claim_boundary_required: true
----
-
 # Developer Guide
 
-## Purpose
-Developer Guide for AGI ALPHA documentation system.
+## Scope
+Repository structure, packages, workflows, tests, schemas, Evidence Registry, and Evidence Mission Control publishing.
 
-## Audience
-Operators, developers, researchers, external reviewers, and security reviewers.
+## Required local checks
+```bash
+python -m unittest discover -s tests
+python -m agialpha_docs audit-workflows --repo-root .
+python -m agialpha_docs audit-claims --repo-root .
+python -m agialpha_docs audit-links --repo-root .
+python -m agialpha_docs audit-readmes --repo-root .
+python scripts/secure_rails_claim_boundary_check.py .
+python scripts/secure_rails_no_automerge_check.py .
+python scripts/secure_rails_safety_ledger_check.py docs/secure-rails/templates/safety-ledger-example.json
+python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json
+python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/work-vault-example.json
+```
 
-## Current status
-Current as of 2026-05-01.
-
-## Quick links
-- [Root README](../README.md)
-- [Workflow Launchpad](../WORKFLOW_LAUNCHPAD.md)
-- [Claim boundary](../CLAIM_BOUNDARY.md)
-
-
-No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+## Implementation notes
+- Add workflows under `.github/workflows/` and document each in `docs/WORKFLOW_CATALOG.md`.
+- Emit `evidence-run-manifest.json` in experiment outputs.
+- Do not let non-central workflows deploy GitHub Pages directly.
+- Keep claims bounded and avoid unsafe token language.
