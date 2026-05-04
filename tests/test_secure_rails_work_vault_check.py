@@ -42,3 +42,17 @@ class T(unittest.TestCase):
         obj=json.loads(Path('docs/secure-rails/templates/sovereign-example.json').read_text())
         obj['validators']='workflow_permission_validator'
         self.assertNotEqual(self.run_check(obj).returncode,0)
+
+    def test_scope_must_be_object(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['scope']=[]
+        r=self.run_check(obj)
+        self.assertNotEqual(r.returncode,0)
+        self.assertIn('INVALID:',r.stdout)
+
+    def test_mark_required_ids_enforced(self):
+        base=json.loads(Path('docs/secure-rails/templates/mark-allocation-example.json').read_text())
+        for field in ['allocation_id','vault_id','opportunity_id']:
+            obj=json.loads(json.dumps(base))
+            obj.pop(field,None)
+            self.assertNotEqual(self.run_check(obj).returncode,0)

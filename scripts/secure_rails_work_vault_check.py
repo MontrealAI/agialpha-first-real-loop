@@ -34,6 +34,7 @@ def main():
     if (w:=check_forbidden_text(obj)): return fail(f"forbidden token language: {w}")
     if sv=="securerails.work_vault.v1":
         scope=obj.get('scope',{})
+        if not isinstance(scope, dict): return fail('scope must be an object')
         if obj.get('vault_id') in (None,""): return fail('vault_id missing')
         checks=[('repo_owned',True),('defensive_only',True),('human_review_required',True),('auto_merge_allowed',False),('external_target_scanning_allowed',False),('exploit_execution_allowed',False),('malware_generation_allowed',False),('social_engineering_allowed',False),('hr_worker_evaluation_allowed',False),('profiling_natural_persons_allowed',False),('automated_decisions_about_natural_persons_allowed',False),('critical_infrastructure_safety_component_reliance_allowed',False)]
         for k,v in checks:
@@ -46,6 +47,8 @@ def main():
             if c[k] != 0: return fail(f'hard safety counter must be zero for compliant vaults: {k}')
         if obj.get('claim_boundary') in (None,""): return fail('claim_boundary missing')
     elif sv=="agialpha.mark_allocation.v1":
+        for field in ["allocation_id","vault_id","opportunity_id"]:
+            if obj.get(field) in (None,""): return fail(f"{field} missing")
         if obj.get('human_review_required') is not True: return fail('human_review_required must be true')
         if obj.get('auto_merge_allowed') is not False: return fail('auto_merge_allowed must be false')
         if obj.get('promotion_without_evidence_allowed') is not False: return fail('promotion_without_evidence_allowed must be false')
