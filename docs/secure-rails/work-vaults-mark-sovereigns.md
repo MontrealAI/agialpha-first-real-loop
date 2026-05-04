@@ -4,6 +4,8 @@ SecureRails is AI-agent security governance and proof-bound defensive remediatio
 
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
 
+SecureRails does not autonomously approve cybersecurity posture; outputs remain advisory and human-reviewed.
+
 ## Canonical chain
 
 AI-agent work event → SecureRails Work Vault → ALPHA AGI MARK allocation → ALPHA AGI Sovereign assignment → AGI Job execution → ProofBundle → Evidence Docket → validator decision → human review → safe remediation / rejection / escalation → $AGIALPHA utility settlement → CyberSecurityCapabilityArchive → vNext defensive work
