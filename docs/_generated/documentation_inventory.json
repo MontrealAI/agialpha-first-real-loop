@@ -1,4 +1,5 @@
 {
+  "documentation_generated_at": "2026-05-04",
   "readme_files": [
     "README.md",
     "README_AGIGA_FOUNDRY.md",
@@ -253,15 +254,12 @@
     ".github/workflows/seed-runner-autonomous.yml"
   ],
   "major_experiment_directories": [
-    "evidence-docket",
     "evidence_registry",
     "cyber-ga-sovereign-runs",
     "agiga-foundry-runs",
     "rsi_state",
     "cyber_ga_state",
-    "agiga_state",
-    "experiments",
-    "docs/evidence-factory/runs"
+    "agiga_state"
   ],
   "schemas": [
     "schemas/agiga_cycle_manifest.schema.json",
@@ -309,70 +307,27 @@
     "scripts/secure_rails_no_automerge_check.py",
     "scripts/secure_rails_safety_ledger_check.py",
     "scripts/secure_rails_use_case_triage_check.py",
-    "scripts/secure_rails_work_vault_check.py"
+    "scripts/secure_rails_work_vault_check.py",
+    "scripts/secure_rails_work_vault_pipeline.py"
   ],
   "public_docs_pages": [
-    "agiga-foundry/index.html",
-    "autonomous/evidence_runs/25189773749/docs/evidence-factory/index.html",
     "docs/cybersecurity-sovereign/index.html",
     "docs/evidence-factory/index.html",
     "docs/evidence-factory/scoreboard.html",
     "docs/omega-aegis-001/index.html",
-    "docs/securerails/index.html",
-    "experiments/agiga-foundry-001/index.html",
-    "experiments/cyber-ga-sovereign-001/index.html",
-    "experiments/rsi-governor-001/index.html",
-    "strong-rsi/index.html"
+    "docs/securerails/index.html"
   ],
-  "missing_docs": [],
-  "stale_links": [],
+  "missing_docs": {
+    "undocumented_workflows": []
+  },
+  "stale_links": {
+    "stale_workflow_catalog_entries": []
+  },
   "duplicate_or_near_duplicate_docs": [
-    "evidence_docket_standard.md",
-    "claim_boundary.md",
-    "readme.md",
-    "troubleshooting.md",
-    "content_preservation_ledger.md",
-    "10_decision_memo.md",
-    "replay_instructions.md",
-    "16_independent_review.md"
+    "docs/evidence_docket_standard.md vs docs/EVIDENCE_DOCKET_STANDARD.md"
   ],
-  "docs_with_unsafe_claim_language": [
-    {
-      "file": "docs/secure-rails/README.md",
-      "hits": [
-        "dividend",
-        "guaranteed security",
-        "investment return"
-      ]
-    },
-    {
-      "file": "docs/manuscript/AGI_ALPHA_Unified_Publication_Final.md",
-      "hits": [
-        "Empirical SOTA",
-        "achieved AGI",
-        "achieved ASI",
-        "dividend",
-        "empirical SOTA"
-      ]
-    },
-    {
-      "file": "docs/manuscript/supplement/Legal_Commercial_Claim_Boundary_Audit.md",
-      "hits": [
-        "achieved AGI",
-        "achieved ASI"
-      ]
-    },
-    {
-      "file": "README.md",
-      "hits": [
-        "guaranteed security"
-      ]
-    }
-  ],
+  "docs_with_unsafe_claim_language": [],
   "docs_needing_clearer_operator_instructions": [
-    "README.md",
-    "docs/quickstart/local-development.md",
-    "docs/quickstart/github-ui.md",
-    "docs/workflows/README.md"
+    "docs/README.md (long; operator should start at docs/quickstart/README.md)"
   ]
 }
