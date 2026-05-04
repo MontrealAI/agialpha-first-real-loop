@@ -37,3 +37,8 @@ class T(unittest.TestCase):
         r=subprocess.run(SCRIPT+[p],capture_output=True,text=True)
         self.assertNotEqual(r.returncode,0)
         self.assertIn('INVALID:',r.stdout)
+
+    def test_sovereign_validators_must_be_array(self):
+        obj=json.loads(Path('docs/secure-rails/templates/sovereign-example.json').read_text())
+        obj['validators']='workflow_permission_validator'
+        self.assertNotEqual(self.run_check(obj).returncode,0)

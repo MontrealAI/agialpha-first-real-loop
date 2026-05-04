@@ -63,7 +63,9 @@ def main():
         if pp.get('autonomous_promotion_allowed') is not False: return fail('autonomous_promotion_allowed must be false')
         if pp.get('human_review_required') is not True: return fail('human_review_required must be true')
         if pp.get('auto_merge_allowed') is not False: return fail('auto_merge_allowed must be false')
-        if not obj.get('validators'): return fail('validators empty')
+        validators=obj.get('validators')
+        if not isinstance(validators, list): return fail('validators must be an array')
+        if len(validators)==0: return fail('validators empty')
         if not obj.get('claim_boundary'): return fail('claim_boundary missing')
     elif sv=="securerails.vault_settlement.v1":
         if obj.get('utility_asset')!="$AGIALPHA": return fail('utility_asset must be $AGIALPHA')
