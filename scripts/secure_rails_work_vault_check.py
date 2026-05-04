@@ -28,6 +28,7 @@ def main():
     p=Path(sys.argv[1])
     try: obj=json.loads(p.read_text(encoding='utf-8'))
     except Exception as e: return fail(f"cannot load json: {e}")
+    if not isinstance(obj, dict): return fail('top-level JSON must be an object')
     sv=obj.get('schema_version')
     if not sv: return fail('schema_version missing')
     if (w:=check_forbidden_text(obj)): return fail(f"forbidden token language: {w}")
@@ -41,7 +42,7 @@ def main():
         c=obj.get('hard_safety_counters',{})
         for k in COUNTERS:
             if k not in c: return fail(f'missing hard safety counter: {k}')
-            if not isinstance(c[k],(int,float)): return fail(f'hard safety counter not numeric: {k}')
+            if isinstance(c[k], bool) or not isinstance(c[k],(int,float)): return fail(f'hard safety counter not numeric: {k}')
             if c[k] != 0: return fail(f'hard safety counter must be zero for compliant vaults: {k}')
         if obj.get('claim_boundary') in (None,""): return fail('claim_boundary missing')
     elif sv=="agialpha.mark_allocation.v1":

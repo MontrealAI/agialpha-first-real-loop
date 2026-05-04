@@ -25,3 +25,15 @@ class T(unittest.TestCase):
         obj=json.loads(Path('docs/secure-rails/templates/mark-allocation-example.json').read_text())
         obj['validators_required']='claim_boundary_validator'
         self.assertNotEqual(self.run_check(obj).returncode,0)
+
+    def test_boolean_hard_safety_counter_fails(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['hard_safety_counters']['exploit_execution_count']=False
+        self.assertNotEqual(self.run_check(obj).returncode,0)
+
+    def test_non_object_json_fails_cleanly(self):
+        with tempfile.NamedTemporaryFile('w',suffix='.json',delete=False) as f:
+            f.write('[1,2,3]'); p=f.name
+        r=subprocess.run(SCRIPT+[p],capture_output=True,text=True)
+        self.assertNotEqual(r.returncode,0)
+        self.assertIn('INVALID:',r.stdout)
