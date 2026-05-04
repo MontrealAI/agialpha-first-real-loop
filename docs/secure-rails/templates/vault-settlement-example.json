@@ -1,0 +1,1 @@
+{"schema_version":"securerails.vault_settlement.v1","settlement_id":"settlement-2026-0001","vault_id":"sr-vault-2026-0001","utility_asset":"$AGIALPHA","alpha_work_units_settled":860,"status":"settled","human_review_required":true,"auto_merge_allowed":false,"claim_boundary":"Utility settlement record only for bounded defensive protocol work; not a certification claim."}

@@ -213,6 +213,10 @@ SecureRails is designed as AI-agent security governance and proof-bound defensiv
 * [Templates README](templates/README.md)
 * [Deployment intake example](templates/deployment-intake-example.json)
 * [Safety ledger example](templates/safety-ledger-example.json)
+* [Work Vault example](templates/work-vault-example.json)
+* [MARK allocation example](templates/mark-allocation-example.json)
+* [Sovereign example](templates/sovereign-example.json)
+* [Vault settlement example](templates/vault-settlement-example.json)
 
 ### Guard scripts
 
@@ -223,6 +227,7 @@ scripts/secure_rails_claim_boundary_check.py
 scripts/secure_rails_safety_ledger_check.py
 scripts/secure_rails_no_automerge_check.py
 scripts/secure_rails_use_case_triage_check.py
+scripts/secure_rails_work_vault_check.py
 ```
 
 ### Workflow

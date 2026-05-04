@@ -4,19 +4,131 @@
   "required": [
     "schema_version",
     "vault_id",
+    "vault_type",
     "status",
+    "created_at",
+    "operator",
+    "scope",
+    "utility",
+    "mark_allocation",
+    "validators",
     "hard_safety_counters",
+    "evidence",
     "claim_boundary"
   ],
   "properties": {
     "schema_version": {
-      "type": "string"
+      "const": "securerails.work_vault.v1"
     },
     "vault_id": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
+    },
+    "vault_type": {
+      "const": "proof_bound_defensive_remediation"
     },
     "status": {
       "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operator": {
+      "type": "object",
+      "required": [
+        "operator_id",
+        "repo"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "repo_owned",
+        "defensive_only",
+        "external_target_scanning_allowed",
+        "exploit_execution_allowed",
+        "malware_generation_allowed",
+        "social_engineering_allowed",
+        "auto_merge_allowed",
+        "human_review_required",
+        "hr_worker_evaluation_allowed",
+        "profiling_natural_persons_allowed",
+        "automated_decisions_about_natural_persons_allowed",
+        "critical_infrastructure_safety_component_reliance_allowed"
+      ],
+      "properties": {
+        "repo_owned": {
+          "const": true
+        },
+        "defensive_only": {
+          "const": true
+        },
+        "external_target_scanning_allowed": {
+          "const": false
+        },
+        "exploit_execution_allowed": {
+          "const": false
+        },
+        "malware_generation_allowed": {
+          "const": false
+        },
+        "social_engineering_allowed": {
+          "const": false
+        },
+        "auto_merge_allowed": {
+          "const": false
+        },
+        "human_review_required": {
+          "const": true
+        },
+        "hr_worker_evaluation_allowed": {
+          "const": false
+        },
+        "profiling_natural_persons_allowed": {
+          "const": false
+        },
+        "automated_decisions_about_natural_persons_allowed": {
+          "const": false
+        },
+        "critical_infrastructure_safety_component_reliance_allowed": {
+          "const": false
+        }
+      }
+    },
+    "utility": {
+      "type": "object",
+      "required": [
+        "asset",
+        "unit",
+        "operator_work_budget",
+        "validator_review_budget",
+        "replay_budget",
+        "safety_review_budget",
+        "human_review_budget",
+        "dispute_reserve"
+      ],
+      "properties": {
+        "asset": {
+          "const": "$AGIALPHA"
+        }
+      }
+    },
+    "mark_allocation": {
+      "type": "object",
+      "required": [
+        "allocation_id",
+        "risk_tier",
+        "review_priority",
+        "assigned_sovereign"
+      ]
+    },
+    "validators": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
     },
     "hard_safety_counters": {
       "type": "object",
@@ -53,8 +165,18 @@
         }
       }
     },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "proofbundle_id",
+        "evidence_docket_id",
+        "safe_pr_url",
+        "human_review_status"
+      ]
+    },
     "claim_boundary": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     }
   }
 }

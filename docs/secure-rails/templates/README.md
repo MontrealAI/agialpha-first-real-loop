@@ -139,3 +139,17 @@ python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates
 ## SecureRails doctrine
 
 > No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+
+
+### `work-vault-example.json`, `mark-allocation-example.json`, `sovereign-example.json`, `vault-settlement-example.json`
+
+Canonical SecureRails Work Vault chain templates for Work Vaults, MARK allocation, Sovereign assignment, and utility settlement records.
+
+Validate each with:
+
+```bash
+python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/work-vault-example.json
+python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/mark-allocation-example.json
+python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/sovereign-example.json
+python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/vault-settlement-example.json
+```

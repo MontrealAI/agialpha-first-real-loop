@@ -1,6 +1,6 @@
 {
-  "human_review_required": true,
-  "auto_merge_allowed": false,
-  "utility_only": true,
-  "no_offensive_cyber": true
+  "policy_version": "securerails.work_vault_policy.v1",
+  "claim_boundary": "SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cybersecurity certification, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.",
+  "doctrine": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "hard_rules": ["no vault, no settlement","no ProofBundle, no Evidence Docket","no Evidence Docket, no strong claim","no human review, no promotion"]
 }
