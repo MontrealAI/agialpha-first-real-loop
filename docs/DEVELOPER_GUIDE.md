@@ -44,6 +44,9 @@ python scripts/secure_rails_no_automerge_check.py .
 python scripts/secure_rails_safety_ledger_check.py docs/secure-rails/templates/safety-ledger-example.json
 python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json
 python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/work-vault-example.json
+python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/mark-allocation-example.json
+python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/sovereign-example.json
+python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/vault-settlement-example.json
 ```
 
 ## Debugging docs-audit and SecureRails guard
