@@ -1,1 +1,8 @@
-# WORKFLOW_LAUNCHPAD\n\nSee docs index: docs/README.md and workflow catalog: docs/WORKFLOW_CATALOG.md.\n\nClaim boundary: No Evidence Docket, no empirical SOTA claim.
+# Workflow Launchpad
+
+Use this launchpad with:
+- `docs/WORKFLOW_CATALOG.md`
+- `docs/OPERATOR_GUIDE.md`
+- `docs/TROUBLESHOOTING.md`
+
+Claim boundary: No Evidence Docket, no empirical SOTA claim.

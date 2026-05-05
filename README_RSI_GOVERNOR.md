@@ -1,1 +1,10 @@
-# README_RSI_GOVERNOR\n\nSee docs index: docs/README.md and workflow catalog: docs/WORKFLOW_CATALOG.md.\n\nClaim boundary: No Evidence Docket, no empirical SOTA claim.
+# RSI Governor
+
+See docs index: `docs/README.md`.
+
+Primary references:
+- `docs/EXPERIMENT_GUIDE.md`
+- `docs/WORKFLOW_CATALOG.md`
+- `docs/EVIDENCE_GUIDE.md`
+
+Claim boundary: No Evidence Docket, no empirical SOTA claim.

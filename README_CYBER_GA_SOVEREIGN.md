@@ -1,1 +1,10 @@
-# README_CYBER_GA_SOVEREIGN\n\nSee docs index: docs/README.md and workflow catalog: docs/WORKFLOW_CATALOG.md.\n\nClaim boundary: No Evidence Docket, no empirical SOTA claim.
+# Cyber-GA Sovereign
+
+See docs index: `docs/README.md`.
+
+Primary references:
+- `docs/EXPERIMENT_GUIDE.md`
+- `docs/WORKFLOW_CATALOG.md`
+- `docs/secure-rails/README.md`
+
+Claim boundary: No Evidence Docket, no empirical SOTA claim.
