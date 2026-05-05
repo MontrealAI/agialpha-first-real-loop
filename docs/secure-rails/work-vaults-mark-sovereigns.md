@@ -1,26 +1,29 @@
-# Work Vaults, MARK Allocation, and Sovereigns
+# Work Vaults, MARK, and Sovereigns (Canonical)
 
-## What this is
-Operational utility layer for SecureRails governance records.
+Flow:
+AI-agent work event
+→ SecureRails Work Vault
+→ ALPHA AGI MARK allocation
+→ ALPHA AGI Sovereign assignment
+→ AGI Job execution
+→ ProofBundle
+→ Evidence Docket
+→ validator decision
+→ human review
+→ safe remediation / rejection / escalation
+→ $AGIALPHA utility settlement
+→ CyberSecurityCapabilityArchive
+→ vNext defensive work
 
-## Components
-- **Work Vaults**: scoped units of defensive work, evidence, and review state.
-- **MARK allocation**: utility accounting for governed effort and review pathways.
-- **Sovereigns**: policy-bound reviewer/owner assignments for accountable governance.
+Schema pointers:
+- `schemas/secure_rails_work_vault.schema.json`
+- `schemas/secure_rails_mark_allocation.schema.json`
+- `schemas/secure_rails_sovereign_assignment.schema.json`
+- `schemas/secure_rails_proof_bundle.schema.json`
+- `schemas/secure_rails_evidence_docket.schema.json`
+- `schemas/secure_rails_settlement_receipt.schema.json`
 
-## Lifecycle
-1. Work Vault request created.
-2. MARK allocation recorded.
-3. Sovereign assignment set.
-4. Evidence Docket assembled.
-5. ProofBundle assembled.
-6. Human review performed.
-7. Decision: safe remediation / rejection.
-8. Utility settlement recorded.
-9. Capability archive updated.
-10. vNext compounding inputs captured.
+Use capacity-allocation and utility-accounting language only.
 
-## Utility-only boundary for $AGIALPHA
-$AGIALPHA references in this repository are utility-accounting context only and must remain claim-bounded.
 
-No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+No Evidence Docket, no empirical SOTA claim.

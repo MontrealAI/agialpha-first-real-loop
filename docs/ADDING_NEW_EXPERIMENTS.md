@@ -1,37 +1,23 @@
-# Adding New Experiments
+# Adding New Experiments Safely
 
-## 1) Create workflow
+1. Choose experiment slug.
+2. Create workflow(s) in `.github/workflows/`.
+3. Create Evidence Docket structure and emit `evidence-run-manifest.json`.
+4. Upload artifacts.
+5. Update `docs/WORKFLOW_CATALOG.md`.
+6. Update Evidence Mission Control mappings/pages.
+7. Add docs + claim boundary + safety ledger + replay + falsification audit.
+8. Add tests and run docs audits.
 
-- Add a new workflow in `.github/workflows/`.
-- Keep least-privilege permissions.
-- Do **not** deploy GitHub Pages directly from experiment workflows.
-- Ensure `workflow_dispatch` is present for operator use.
-
-## 2) Emit manifest
-
-At workflow end, emit `evidence-run-manifest.json` via:
-
-`python -m agialpha_evidence_hub emit-manifest ...`
-
-Include claim boundary and safety counters where required.
-
-## 3) Upload artifacts
-
-Upload the manifest and experiment outputs as artifacts.
-
-## 4) Register and publish centrally
-
-Use central publisher workflow (`evidence-hub-publish.yml`) to ingest and rebuild site.
-
-## 5) Validate
-
-Run locally:
-
-- `python scripts/check_pages_architecture.py`
-- `python -m agialpha_evidence_hub build --registry evidence_registry --out _site`
-- `python -m agialpha_evidence_hub validate --registry evidence_registry --site _site`
-- `python -m agialpha_evidence_hub linkcheck --site _site`
-
-## Policy invariant
-
-**No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.**
+## Checklist
+- [ ] Slug defined
+- [ ] Workflow(s) added
+- [ ] Evidence manifest emitted
+- [ ] Artifacts uploaded
+- [ ] Evidence Docket included
+- [ ] Safety ledger included
+- [ ] Replay path included
+- [ ] Falsification audit included
+- [ ] Workflow catalog updated
+- [ ] Claim boundary documented
+- [ ] Tests + audits pass
