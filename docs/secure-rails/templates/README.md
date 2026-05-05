@@ -1,14 +1,37 @@
-# SecureRails Templates README
+# SecureRails Templates
 
-For each template: use only as example input, keep schema keys stable, validate before use, and keep claims bounded.
+These templates are governance evidence scaffolds. They support bounded defensive review and must not be used for overclaiming.
 
-- `deployment-intake-example.json`: customer/repo use-case intake. Validate with `python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json`.
-- `safety-ledger-example.json`: hard safety counters. Validate with `python scripts/secure_rails_safety_ledger_check.py docs/secure-rails/templates/safety-ledger-example.json`.
-- `work-vault-example.json`: Work Vault record. Validate with `python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/work-vault-example.json`.
-- `mark-allocation-example.json`: MARK allocation record. Validate with `python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/mark-allocation-example.json`.
-- `sovereign-example.json`: Sovereign assignment record. Validate with `python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/sovereign-example.json`.
-- `vault-settlement-example.json`: utility settlement record. Validate with `python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/vault-settlement-example.json`.
+## Template catalog
+- `deployment-intake-example.json`
+  - What: customer/repo deployment intake.
+  - When: before pilot/deployment review.
+  - Validate: `python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json`
+  - Must not change: top-level required keys and excluded-use declarations.
+  - Boundary: intake is not legal approval or certification.
 
-If present, include `customer-use-attestation.md`, `annex-iii-triage-record.md`, `material-modification-log.md` in your Evidence Docket package.
+- `safety-ledger-example.json`
+  - What: hard safety counters and review controls.
+  - When: every governed deployment/evidence package.
+  - Validate: `python scripts/secure_rails_safety_ledger_check.py docs/secure-rails/templates/safety-ledger-example.json`
+  - Must not change: required counter names/semantics.
+  - Boundary: safety ledger is governance evidence, not guaranteed security.
 
-Claim boundary: templates support governance evidence only; they are not certification, legal approval, investment framing, or autonomous claim promotion.
+- `work-vault-example.json`
+- `mark-allocation-example.json`
+- `sovereign-example.json`
+- `vault-settlement-example.json`
+  - What: Work Vault / MARK / Sovereign / settlement lifecycle examples.
+  - When: recording utility-accounting lifecycle events.
+  - Validate: `python scripts/secure_rails_work_vault_check.py <template-path>`
+  - Must not change: schema-critical IDs, lifecycle fields, and evidence linkage.
+  - Boundary: utility accounting only; not investment framing.
+
+- `customer-use-attestation.md` (if present)
+- `annex-iii-triage-record.md` (if present)
+- `material-modification-log.md` (if present)
+  - What: human attestations and change governance records.
+  - When: deployment readiness and post-change re-screening.
+  - Boundary: reviewer records support compliance posture, not legal guarantees.
+
+No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.

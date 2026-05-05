@@ -1,8 +1,8 @@
 # AGI ALPHA First Real Loop
 
-AGI ALPHA First Real Loop is an evidence-first repository for running bounded AI-agent experiments, publishing replayable artifacts, and enforcing governance through Evidence Mission Control and SecureRails.
+AGI ALPHA First Real Loop is an evidence-first repository for bounded AI-agent experiments, replayable artifacts, and governance checks across Evidence Mission Control and SecureRails.
 
-> This repository records bounded Evidence Docket experiments and governance infrastructure. It does not claim achieved AGI, achieved ASI, empirical SOTA, safe autonomy, cybersecurity certification, guaranteed security, guaranteed economic return, or civilization-scale capability. Stronger claims require Evidence Dockets, replay, baselines, safety ledgers, delayed outcomes, public benchmarks where applicable, and external review.
+This repository records bounded Evidence Docket experiments and governance infrastructure. It does not claim achieved AGI, achieved ASI, empirical SOTA, safe autonomy, cybersecurity certification, guaranteed security, guaranteed economic return, or civilization-scale capability. Stronger claims require Evidence Dockets, replay, baselines, safety ledgers, delayed outcomes, public benchmarks where applicable, and external review.
 
 ## Start here
 - `docs/START_HERE.md`
@@ -11,9 +11,9 @@ AGI ALPHA First Real Loop is an evidence-first repository for running bounded AI
 ## Quickstart
 ### Run from GitHub UI
 1. Open **Actions**.
-2. Select a workflow from `docs/WORKFLOW_LAUNCHPAD.md`.
-3. Click **Run workflow** with inputs.
-4. Review logs, artifacts, and claim boundaries before merge/promotion.
+2. Choose a workflow from `docs/WORKFLOW_LAUNCHPAD.md`.
+3. Click **Run workflow**.
+4. Verify logs, artifacts, Evidence Docket, and claim boundary.
 
 ### Run locally
 ```bash
@@ -38,7 +38,7 @@ python -m agialpha_docs audit-readmes --repo-root .
 - SecureRails docs: `docs/secure-rails/README.md`
 - Work Vaults / MARK / Sovereigns: `docs/secure-rails/work-vaults-mark-sovereigns.md`
 - AGI-GA Foundry docs: `docs/experiments/README.md`
-- RSI Governor docs: `docs/experiments/README.md`
+- RSI Governor docs: `README_RSI_GOVERNOR.md`
 - Evidence Docket standard: `EVIDENCE_DOCKET_STANDARD.md`
 - Workflow launchpad: `docs/WORKFLOW_LAUNCHPAD.md`
 - Claim boundaries: `docs/CLAIM_BOUNDARIES.md`
@@ -46,12 +46,12 @@ python -m agialpha_docs audit-readmes --repo-root .
 
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
 
+
 ## Quick links
 - Docs hub: `docs/DOCUMENTATION_INDEX.md`
 - Workflow launchpad: `docs/WORKFLOW_LAUNCHPAD.md`
 - Evidence docs: `docs/evidence/README.md`
 - SecureRails docs: `docs/secure-rails/README.md`
-- Work Vaults/MARK/Sovereigns: `docs/secure-rails/work-vaults-mark-sovereigns.md`
 
 ## How to run from GitHub UI
 See `docs/QUICKSTART_GITHUB_UI.md`.

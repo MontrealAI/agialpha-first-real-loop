@@ -1,8 +1,22 @@
 # Claim Boundary Style Guide
 
-Allowed: bounded local evidence, proof-bound defensive remediation, human-reviewed promotion, utility infrastructure, replayable Evidence Dockets, safe PR proposals, defensive repo-owned review, local/proxy CI evidence.
+## Doctrine
+No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
 
-Forbidden: achieved AGI/ASI, empirical SOTA without benchmark+docket+external replay, cybercybersecurity-certification, guaranteed security, safe autonomy, autonomous production remediation, benchmark-victory claims without evidence, EU AI Act exempt, legally approved worldwide, guaranteed-return economics, investment product, token appreciation, yield, dividend, ownership rights, profit rights.
+## Preferred language
+- bounded local evidence
+- proof-bound defensive remediation
+- human-reviewed promotion
+- utility infrastructure
+- replayable Evidence Dockets
+- safe PR proposals
+- defensive repo-owned review
+- local/proxy CI evidence
 
-Good: “Bounded local/proxy evidence supports this result under replay constraints.”
-Bad: “This repository proves AGI and certified security.”
+## Avoid language that implies unsupported capability, legal sign-off, or financial entitlement.
+
+## Good vs bad examples
+- Good: “This run provides bounded CI evidence and replay artifacts.”
+- Bad: “This proves frontier-level general intelligence.”
+- Good: “SecureRails proposes defensive remediation subject to human review.”
+- Bad: “SecureRails automatically authorizes production-grade claims.”

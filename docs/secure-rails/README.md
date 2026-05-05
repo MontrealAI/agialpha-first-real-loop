@@ -1,8 +1,15 @@
 # SecureRails Documentation
 
-SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cybercybersecurity-certification, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
+SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cyber assurance, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
 
-## Core docs
+## Read in this order
+1. `docs/secure-rails/product-boundary.md`
+2. `docs/secure-rails/security-safety-boundary.md`
+3. `docs/secure-rails/eu-ai-act-positioning.md`
+4. `docs/secure-rails/foreseeable-misuse-and-excluded-uses.md`
+5. `docs/secure-rails/work-vaults-mark-sovereigns.md`
+
+## Full policy set
 - `docs/secure-rails/work-vaults-mark-sovereigns.md`
 - `docs/secure-rails/product-boundary.md`
 - `docs/secure-rails/eu-ai-act-positioning.md`
