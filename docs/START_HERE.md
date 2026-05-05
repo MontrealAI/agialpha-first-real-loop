@@ -1,26 +1,28 @@
 # Start Here
 
-## What is this?
-A bounded experiment-and-governance repository for Evidence Dockets, ProofBundles, and SecureRails compliance-as-code.
+## What this is
+AGI ALPHA First Real Loop is an evidence-first repository for bounded experiments, replayable artifacts, and governance checks. It is built to produce reviewable evidence, not autonomous claim escalation.
 
-## First steps
-1. Read `README.md`.
-2. Open `docs/DOCUMENTATION_INDEX.md`.
-3. Pick your role guide.
-4. Run one workflow via `docs/WORKFLOW_LAUNCHPAD.md`.
-5. Verify artifacts and claim boundaries.
+## First 10 minutes
+1. Open `docs/DOCUMENTATION_INDEX.md`.
+2. Open `docs/WORKFLOW_LAUNCHPAD.md`.
+3. Run one workflow from GitHub Actions.
+4. Verify logs + artifacts.
+5. Check Evidence Docket and claim boundaries.
 
-## User paths
-- Run experiments: `docs/WORKFLOW_LAUNCHPAD.md`
-- Evidence Dockets: `docs/EVIDENCE_DOCKETS.md`
+## Role-based paths
+- Operator: `docs/OPERATOR_GUIDE.md`
+- Developer/Codex: `docs/DEVELOPER_GUIDE.md`
+- Research review: `docs/RESEARCH_REVIEWER_GUIDE.md`
+- Security/compliance: `docs/SECURITY_COMPLIANCE_REVIEWER_GUIDE.md`
+- Deployment review: `docs/DEPLOYMENT_REVIEW_GUIDE.md`
+
+## Core systems
 - Evidence Mission Control: `docs/EVIDENCE_MISSION_CONTROL.md`
+- Evidence Dockets: `docs/EVIDENCE_DOCKETS.md`
+- Workflow catalog: `docs/WORKFLOW_CATALOG.md`
 - SecureRails: `docs/secure-rails/README.md`
 - Work Vaults / MARK / Sovereigns: `docs/secure-rails/work-vaults-mark-sovereigns.md`
-- Add experiment: `docs/ADDING_NEW_EXPERIMENTS.md`
-- Add workflow: `docs/developer/adding-new-workflows.md`
-- Run + verify workflows: `docs/WORKFLOW_CATALOG.md`
-- Claim/safety boundaries: `docs/CLAIM_BOUNDARIES.md`, `docs/CLAIM_BOUNDARY_STYLE_GUIDE.md`
-- Debug failures: `docs/DEBUGGING_GUIDE.md`
-- Deployment/customer review: `docs/DEPLOYMENT_REVIEW_GUIDE.md`
 
+## Doctrine
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.

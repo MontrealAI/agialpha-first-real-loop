@@ -1,18 +1,34 @@
-# Security / Compliance Reviewer Guide
+# Security & Compliance Reviewer Guide
 
-SecureRails is AI-agent security governance and proof-bound defensive remediation.
+## SecureRails boundary
+SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cyber assurance, not offensive cyber, not high-risk decision automation by intended purpose, not default GPAI model provision, and not an investment product.
 
-## Required boundaries
-No HR/worker evaluation, no profiling natural persons, no automated decisions about natural persons, no critical-infrastructure safety-component reliance, no offensive cyber, no external scanning, no exploit execution, no malware generation, no social engineering, no auto-merge, no cybercybersecurity-certification claim, no token investment framing.
+## Required exclusions
+- No HR/worker evaluation
+- No profiling of natural persons
+- No automated decisions about natural persons
+- No critical-infrastructure safety-component reliance
+- No external target scanning/exploit execution/malware/social engineering
+- No auto-merge for safety-critical PR promotion
+- No cyber-assurance certification claims
+- No token-investment framing
+
+## Review artifacts
+- Deployment intake
+- Safety ledger hard counters
+- AI Act triage record
+- Customer attestation
+- Material modification log + re-screening
+- Incident log + regulator audit readiness
 
 ## Compliance checklist
-- Deployment intake completed
-- Excluded uses confirmed
-- Human reviewer named
-- Safety ledger present
-- AI Act triage completed
-- Claim boundary present
-- No-auto-merge check passed
-- SecureRails Compliance Guard passed
-- Evidence Docket attached
-- Safe PR reviewed manually
+- [ ] Deployment intake completed
+- [ ] Excluded uses confirmed
+- [ ] Human reviewer named
+- [ ] Safety ledger present
+- [ ] AI Act triage completed
+- [ ] Claim boundary present
+- [ ] No-auto-merge check passed
+- [ ] SecureRails Compliance Guard passed
+- [ ] Evidence Docket attached
+- [ ] Safe PR reviewed manually

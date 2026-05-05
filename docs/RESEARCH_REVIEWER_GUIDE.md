@@ -1,13 +1,24 @@
 # Research Reviewer Guide
 
-AGI ALPHA tests bounded local/proxy CI evidence pipelines with replay, falsification, delayed outcomes, and governance controls.
+## Scope
+How to evaluate AGI ALPHA evidence quality without overclaiming.
 
-It does not claim achieved AGI, achieved ASI, empirical SOTA, safe autonomy, or certification without full external evidence.
+## What is being tested
+Bounded experiment families (HELIOS, Cyber Sovereign, AGI-GA Foundry, RSI Governor, SecureRails governance flows) with replay/falsification/delayed-outcome scaffolds.
 
-## Review path
-- Evidence Dockets: `docs/EVIDENCE_DOCKETS.md`
-- ProofBundles: `docs/evidence/proofbundles.md`
-- Baselines + replay: `docs/EXTERNAL_REPLAY.md`
-- Falsification audits: `docs/FALSIFICATION_AUDITS.md`
+## What is not being claimed
+No frontier-capability attainment claim without the required evidence chain, and no autonomy/certification claim.
 
-> Current empirical status: this repository contains bounded local/proxy CI evidence, replay scaffolds, Evidence Dockets, safety ledgers, and governance infrastructure. It does not establish achieved AGI, achieved ASI, empirical SOTA, safe autonomy, cybersecurity certification, real-world security certification, or external benchmark victory unless explicitly supported by an Evidence Docket, public benchmark execution, independent replay, and reviewer attestation.
+## Evidence method
+- Evidence Dockets: structured claim/evidence packages.
+- ProofBundles: linked evidence artifacts and traceability.
+- Baselines: comparator runs required for directional conclusions.
+- Replay: independent reruns where supported.
+- Falsification audits: explicit challenge attempts.
+- Delayed outcomes: post-hoc checks to avoid premature claims.
+
+## Local/proxy vs external validation
+CI/local evidence is useful but not equivalent to public benchmark victory or external independent certification.
+
+## Reviewer honesty box
+Current empirical status: this repository contains bounded local/proxy CI evidence, replay scaffolds, Evidence Dockets, safety ledgers, and governance infrastructure. It does not establish achieved AGI, achieved ASI, empirical SOTA, safe autonomy, cybersecurity certification, real-world security certification, or external benchmark victory unless explicitly supported by an Evidence Docket, public benchmark execution, independent replay, and reviewer attestation.
