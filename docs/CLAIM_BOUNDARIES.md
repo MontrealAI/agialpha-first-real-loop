@@ -1,29 +1,27 @@
----
-title: "Claim Boundaries"
-audience: "operator|developer|researcher"
-status: "current"
-source_of_truth: "docs/CLAIM_BOUNDARIES.md"
-last_reviewed: "2026-05-01"
-claim_boundary_required: true
----
-
 # Claim Boundaries
 
-## Purpose
-Claim Boundaries for AGI ALPHA documentation system.
+## Allowed claims
+- local evidence produced
+- proxy evidence collected
+- replayed in CI
+- Evidence Docket produced
+- safe PR proposed
+- human review pending
+- external review pending
+- designed as governance infrastructure
 
-## Audience
-Operators, developers, researchers, external reviewers, and security reviewers.
+## Forbidden positive claims
+- unsupported capability milestone / unsupported capability milestone
+- top-tier empirical claim / benchmark-win claim
+- guaranteed security / cybercertification claim / safe autonomy
+- EU AI Act exempt / legally approved worldwide
+- investment return, yield, dividends, ownership, profit rights
 
-## Current status
-Current as of 2026-05-01.
+## Doctrine
+No Evidence Docket, no top-tier empirical claim claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
 
-## Quick links
-- [Root README](../README.md)
-- [Workflow Launchpad](../WORKFLOW_LAUNCHPAD.md)
-- [Claim boundary](../CLAIM_BOUNDARY.md)
-
-## Claim levels
-L3 local scaffold, L4-ready replay kit, L4-external attested, L5-local local baseline evidence, L5-external public baseline evidence, L6-CI-proxy CI scaling proxy, L6-real real scaling, L7-local real-task local, L7-external external real-task, L8-sentinel delayed outcomes, L9-human-reviewed governed remediation, L10-official-benchmark official benchmark with independent audit.
-
-No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+## Examples
+- ✅ “This run produced local evidence with replay pending external review.”
+- ✅ “SecureRails is not autonomous cybercertification claim.”
+- ❌ “This proves unsupported capability milestone.”
+- ❌ “$AGIALPHA offers passive investment return.”

@@ -1,19 +1,33 @@
 # AGI ALPHA First Real Loop
 
-AGI ALPHA First Real Loop is an evidence-first repository for bounded AI-agent experiments, replayable artifacts, and governance checks across Evidence Mission Control and SecureRails.
-
-This repository records bounded Evidence Docket experiments and governance infrastructure. It does not claim achieved AGI, achieved ASI, empirical SOTA, safe autonomy, cybersecurity certification, guaranteed security, guaranteed economic return, or civilization-scale capability. Stronger claims require Evidence Dockets, replay, baselines, safety ledgers, delayed outcomes, public benchmarks where applicable, and external review.
+AGIAlpha First Real Loop is a research-oriented monorepo for deterministic, test-first AGI ALPHA subsystems: Evidence Mission Control, SecureRails, AGI-GA Foundry, Cyber-GA Sovereign, RSI Governor, HELIOS, ProofBundles, Evidence Dockets, and workflow-driven evidence production.
 
 ## Start here
-- `docs/START_HERE.md`
-- `docs/DOCUMENTATION_INDEX.md`
+- New operator: `docs/START_HERE.md`
+- Run workflows: `docs/OPERATOR_GUIDE.md`
+- Add experiment: `docs/ADDING_NEW_EXPERIMENTS.md`
+- Evidence standard: `docs/EVIDENCE_GUIDE.md`
+- SecureRails: `docs/secure-rails/README.md`
+- Work Vaults / MARK / Sovereigns: `docs/secure-rails/work-vaults-mark-sovereigns.md`
+- Workflow catalog: `docs/WORKFLOW_CATALOG.md`
+- Troubleshooting: `docs/TROUBLESHOOTING.md`
+
+## What this repo is
+- Evidence-first governance infrastructure for bounded AI-agent experimentation.
+- A workflow + artifact system for replay, falsification, and human-reviewed promotion.
+- A documentation-backed operating model for Security/Governance/Research teams.
+
+## What this repo is not
+- Not a claim of unsupported capability milestone, unsupported capability milestone, top-tier empirical claim, or benchmark-win claim.
+- Not autonomous cybercertification claim, not offensive cyber, and not guaranteed security.
+- Not an investment product; `$AGIALPHA` is utility accounting infrastructure only.
 
 ## Quickstart
 ### Run from GitHub UI
 1. Open **Actions**.
-2. Choose a workflow from `docs/WORKFLOW_LAUNCHPAD.md`.
+2. Pick a workflow from `docs/WORKFLOW_LAUNCHPAD.md` and `docs/WORKFLOW_CATALOG.md`.
 3. Click **Run workflow**.
-4. Verify logs, artifacts, Evidence Docket, and claim boundary.
+4. Review logs, artifacts, Evidence Docket, replay status, and safety ledger.
 
 ### Run locally
 ```bash
@@ -24,42 +38,21 @@ python -m agialpha_docs audit-links --repo-root .
 python -m agialpha_docs audit-readmes --repo-root .
 ```
 
-## Who should read what?
-| User | Start here |
-|---|---|
-| Non-technical operator | docs/OPERATOR_GUIDE.md |
-| Developer / Codex | docs/DEVELOPER_GUIDE.md |
-| Research reviewer | docs/RESEARCH_REVIEWER_GUIDE.md |
-| Security/compliance reviewer | docs/SECURITY_COMPLIANCE_REVIEWER_GUIDE.md |
-| Deployment reviewer | docs/DEPLOYMENT_REVIEW_GUIDE.md |
-
-## Core links
+## Core systems
 - Evidence Mission Control: `docs/EVIDENCE_MISSION_CONTROL.md`
-- SecureRails docs: `docs/secure-rails/README.md`
-- Work Vaults / MARK / Sovereigns: `docs/secure-rails/work-vaults-mark-sovereigns.md`
-- AGI-GA Foundry docs: `docs/experiments/README.md`
-- RSI Governor docs: `README_RSI_GOVERNOR.md`
-- Evidence Docket standard: `EVIDENCE_DOCKET_STANDARD.md`
+- SecureRails overview: `docs/SECURERAILS_OVERVIEW.md`
+- Work Vaults / MARK / Sovereigns: `docs/SECURERAILS_WORK_VAULTS.md`
+- Experiment families: `docs/EXPERIMENT_GUIDE.md`
+- Documentation index: `docs/README.md`
 - Workflow launchpad: `docs/WORKFLOW_LAUNCHPAD.md`
-- Claim boundaries: `docs/CLAIM_BOUNDARIES.md`
-- Deployment/compliance docs: `docs/DEPLOYMENT_REVIEW_GUIDE.md`, `docs/SECURITY_COMPLIANCE_REVIEWER_GUIDE.md`
 
-No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+## Claim boundary
+No Evidence Docket, no top-tier empirical claim claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
 
-## Documentation launchpad
-- Documentation index: `docs/DOCUMENTATION_INDEX.md`
-- Workflow launchpad: `docs/WORKFLOW_LAUNCHPAD.md`
-- Operator path: `docs/OPERATOR_GUIDE.md`
-- Developer path: `docs/DEVELOPER_GUIDE.md`
+## Engineering practices
+- Test-first workflows and schema validation.
+- Documentation and workflow-catalog audits.
+- Human-governed claim promotion only.
 
-## Quick links
-- Docs hub: `docs/DOCUMENTATION_INDEX.md`
-- Workflow launchpad: `docs/WORKFLOW_LAUNCHPAD.md`
-- Evidence docs: `docs/evidence/README.md`
-- SecureRails docs: `docs/secure-rails/README.md`
-
-## How to run from GitHub UI
-Use the guided steps in `docs/OPERATOR_GUIDE.md` and `docs/WORKFLOW_LAUNCHPAD.md`.
-
-## Experiment families
-See `docs/experiments/README.md`.
+## License
+See `LICENSE`.

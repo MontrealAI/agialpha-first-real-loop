@@ -1,5 +1,1 @@
-# RSI-GOVERNOR-001 Operator Guide
-
-No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
-
-This document defines strong RSI as governance-kernel mutation + held-out proof + human-reviewed persistence.
+# README_RSI_GOVERNOR\n\nSee docs index: docs/README.md and workflow catalog: docs/WORKFLOW_CATALOG.md.\n\nClaim boundary: No Evidence Docket, no empirical SOTA claim.

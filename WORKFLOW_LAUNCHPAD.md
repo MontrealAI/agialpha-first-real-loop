@@ -1,5 +1,1 @@
-# WORKFLOW LAUNCHPAD
-
-Safe workflow launch matrix for operators.
-
-No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+# WORKFLOW_LAUNCHPAD\n\nSee docs index: docs/README.md and workflow catalog: docs/WORKFLOW_CATALOG.md.\n\nClaim boundary: No Evidence Docket, no empirical SOTA claim.
