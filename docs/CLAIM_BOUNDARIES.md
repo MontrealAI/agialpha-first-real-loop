@@ -18,7 +18,7 @@
 - investment return, yield, dividends, ownership, profit rights
 
 ## Doctrine
-No Evidence Docket, no top-tier empirical claim claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
 
 ## Examples
 - ✅ “This run produced local evidence with replay pending external review.”
