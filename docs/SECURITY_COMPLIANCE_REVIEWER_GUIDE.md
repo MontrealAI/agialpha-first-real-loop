@@ -1,25 +1,37 @@
 # Security & Compliance Reviewer Guide
 
-## SecureRails boundary
-SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cyber assurance, not offensive cyber, not high-risk decision automation by intended purpose, not default GPAI model provision, and not an investment product.
+## What is this?
+A practical review guide for SecureRails-aligned governance and compliance evidence.
 
-## Required exclusions
-- No HR/worker evaluation
-- No profiling of natural persons
-- No automated decisions about natural persons
-- No critical-infrastructure safety-component reliance
-- No external target scanning/exploit execution/malware/social engineering
-- No auto-merge for safety-critical PR promotion
-- No cyber-assurance certification claims
-- No token-investment framing
+## SecureRails product boundary
+SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous external security-assurance certification, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
 
-## Review artifacts
-- Deployment intake
-- Safety ledger hard counters
-- AI Act triage record
-- Customer attestation
-- Material modification log + re-screening
-- Incident log + regulator audit readiness
+## AI Act posture
+- Designed to remain outside high-risk use by intended purpose when deployed within documented boundaries.
+- Requires use-case triage and human accountability before deployment.
+
+## Foreseeable misuse and excluded uses
+- No HR / worker evaluation.
+- No profiling of natural persons.
+- No automated decisions about natural persons.
+- No critical-infrastructure safety-component reliance.
+- No offensive cyber.
+- No external target scanning.
+- No exploit execution.
+- No malware generation.
+- No social engineering.
+- No auto-merge for governed promotion.
+- No external security-assurance certification claim.
+- No token investment framing.
+
+## Required evidence pack
+- Deployment intake.
+- Safety ledger hard counters.
+- Customer use attestation.
+- Annex III triage record.
+- Material modification log + re-screening evidence.
+- Incident log.
+- Evidence Docket and ProofBundle linkage.
 
 ## Compliance checklist
 - [ ] Deployment intake completed
@@ -32,3 +44,8 @@ SecureRails is AI-agent security governance and proof-bound defensive remediatio
 - [ ] SecureRails Compliance Guard passed
 - [ ] Evidence Docket attached
 - [ ] Safe PR reviewed manually
+
+## Regulator audit readiness
+- Keep dated records for intake, triage, review decisions, incidents, and remediations.
+- Preserve replay instructions and artifact integrity evidence.
+- Track material modifications and re-screen before promoting changes.
