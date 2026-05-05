@@ -46,7 +46,6 @@ python -m agialpha_docs audit-readmes --repo-root .
 
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
 
-
 ## Quick links
 - Docs hub: `docs/DOCUMENTATION_INDEX.md`
 - Workflow launchpad: `docs/WORKFLOW_LAUNCHPAD.md`
