@@ -1,0 +1,9 @@
+{
+  "claim_boundary_present": true,
+  "missing_baselines": "none",
+  "missing_ledgers": "none",
+  "overclaim_check": "pass",
+  "safety_invariant_failure": false,
+  "state_drift_detected": false,
+  "unreplayable_outputs": 0
+}
