@@ -3,36 +3,33 @@
 Date: 2026-05-05
 
 ## Docs discovered
-- Root launchpad and role guides exist: `README.md`, `docs/START_HERE.md`, `docs/OPERATOR_GUIDE.md`, `docs/DEVELOPER_GUIDE.md`, `docs/RESEARCH_REVIEWER_GUIDE.md`, `docs/SECURITY_COMPLIANCE_REVIEWER_GUIDE.md`, `docs/DEPLOYMENT_REVIEW_GUIDE.md`, `docs/DEBUGGING_GUIDE.md`, `docs/DOCUMENTATION_INDEX.md`.
-- SecureRails policy set exists under `docs/secure-rails/` including product boundary, AI Act posture, misuse boundaries, templates, and Work Vault assets.
-- Workflow docs exist: `docs/WORKFLOW_LAUNCHPAD.md`, `docs/WORKFLOW_CATALOG.md`.
-- Evidence docs exist: `docs/EVIDENCE_DOCKETS.md`, `docs/evidence/` and Evidence Mission Control docs.
+- Root launchpad and role guides are present: `README.md`, `docs/START_HERE.md`, `docs/OPERATOR_GUIDE.md`, `docs/DEVELOPER_GUIDE.md`, `docs/RESEARCH_REVIEWER_GUIDE.md`, `docs/SECURITY_COMPLIANCE_REVIEWER_GUIDE.md`, `docs/DEPLOYMENT_REVIEW_GUIDE.md`, `docs/DEBUGGING_GUIDE.md`, `docs/DOCUMENTATION_INDEX.md`.
+- Core evidence docs are present: `docs/EVIDENCE_DOCKETS.md`, `docs/EVIDENCE_MISSION_CONTROL.md`, `docs/CLAIM_BOUNDARIES.md`, `docs/CLAIM_BOUNDARY_STYLE_GUIDE.md`, `docs/ARTIFACTS_AND_REGISTRY.md`.
+- Workflow docs are present: `docs/WORKFLOW_LAUNCHPAD.md`, `docs/WORKFLOW_CATALOG.md`, and workflow audit tests in `tests/test_docs_workflow_catalog.py` and `tests/test_docs_no_stale_workflows.py`.
+- SecureRails policy docs and templates are present under `docs/secure-rails/` and `docs/secure-rails/templates/`.
 
-## Missing user paths (before this update)
-- Role-specific guides were present but too concise in some cases (operator/developer/security/research/deployment) and did not consistently answer “what to do first / verify / avoid claiming.”
-- Debug flows needed a single do-not-disable-tests rule and copy/paste remediation steps.
+## Missing user paths
+- No missing role path files were found for the required five audiences.
+- Existing paths were retained and cross-linked through the root README + documentation index.
 
-## Stale links risk
-- Multiple near-duplicate doc filenames (`EVIDENCE_DOCKET_STANDARD.md` vs `evidence_docket_standard.md`) increase accidental stale-link risk.
-- Quickstart content was split across legacy and new paths; clearer index links were needed.
+## Stale links
+- `README.md` previously referenced `docs/QUICKSTART_GITHUB_UI.md` (non-canonical in this repo).
+- Launchpad links were consolidated to canonical docs files to reduce stale-link risk.
 
-## Undocumented workflows risk
-- `docs/WORKFLOW_CATALOG.md` already enumerates all workflow files; risk was not missing files but low per-entry detail for non-technical readers.
+## Undocumented workflows
+- Current audit result: no undocumented workflow files and no stale workflow references.
 
 ## Duplicate documentation risks
-- Overlap exists between `docs/README.md`, `docs/quickstart/*`, older operator docs, and new role guides.
-- Mitigation: keep root README as launchpad and centralize role routing through `docs/DOCUMENTATION_INDEX.md`.
+- Multiple quickstart-style docs exist (`docs/HOW_TO_RUN_WORKFLOW.md`, `docs/quickstart/*`, role guides).
+- Risk mitigation: route users from `README.md` -> `docs/START_HERE.md` -> role guides, with `docs/DOCUMENTATION_INDEX.md` as the canonical directory.
 
 ## Unclear entry points
-- Users could enter via many files with no single canonical role map.
-- Recommended canonical entry sequence:
-  1. `README.md`
-  2. `docs/START_HERE.md`
-  3. Role-specific guide from `docs/DOCUMENTATION_INDEX.md`
+- Entry points are now explicit: root README (launchpad), Start Here (first-run path), role guides (audience-specific execution and review).
 
-## Recommended updates applied
-- Strengthen launchpad and role-based navigation.
-- Expand operator/developer/research/security/deployment/debugging guides with verification and claim-boundary language.
-- Keep doctrine explicit in public-facing docs:
-  - No Evidence Docket, no empirical SOTA claim.
-  - Autonomous evidence production is allowed; autonomous claim promotion is not.
+## Recommended updates
+1. Keep role guides concise and operational, not policy-only.
+2. Keep workflow launchpad + catalog synchronized with `.github/workflows/`.
+3. Keep claim-boundary doctrine in all public-facing landing docs.
+4. Preserve central GitHub Pages publishing through `evidence-hub-publish.yml` only.
+
+Final doctrine: **No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.**

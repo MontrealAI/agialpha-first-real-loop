@@ -46,6 +46,12 @@ python -m agialpha_docs audit-readmes --repo-root .
 
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
 
+## Documentation launchpad
+- Documentation index: `docs/DOCUMENTATION_INDEX.md`
+- Workflow launchpad: `docs/WORKFLOW_LAUNCHPAD.md`
+- Operator path: `docs/OPERATOR_GUIDE.md`
+- Developer path: `docs/DEVELOPER_GUIDE.md`
+
 ## Quick links
 - Docs hub: `docs/DOCUMENTATION_INDEX.md`
 - Workflow launchpad: `docs/WORKFLOW_LAUNCHPAD.md`
@@ -53,7 +59,7 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 - SecureRails docs: `docs/secure-rails/README.md`
 
 ## How to run from GitHub UI
-See `docs/QUICKSTART_GITHUB_UI.md`.
+Use the guided steps in `docs/OPERATOR_GUIDE.md` and `docs/WORKFLOW_LAUNCHPAD.md`.
 
 ## Experiment families
 See `docs/experiments/README.md`.
