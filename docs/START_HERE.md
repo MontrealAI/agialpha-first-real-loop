@@ -1,28 +1,40 @@
-# Start Here
+# START HERE
 
-## What this is
-AGI ALPHA First Real Loop is an evidence-first repository for bounded experiments, replayable artifacts, and governance checks. It is built to produce reviewable evidence, not autonomous claim escalation.
+## What is this repository?
+AGI ALPHA First Real Loop is an evidence-first operating repo for bounded AI-agent experiments, governance checks, and replayable artifacts.
 
-## First 10 minutes
-1. Open `docs/DOCUMENTATION_INDEX.md`.
-2. Open `docs/WORKFLOW_LAUNCHPAD.md`.
-3. Run one workflow from GitHub Actions.
-4. Verify logs + artifacts.
-5. Check Evidence Docket and claim boundaries.
+## Key concepts in plain English
+- **Evidence Mission Control**: central hub that collects and publishes experiment outputs.
+- **SecureRails**: AI-agent security governance + proof-bound defensive remediation process.
+- **Evidence Docket**: structured evidence package used for conservative claims.
+- **ProofBundle**: bundle of artifacts, logs, and integrity metadata.
+- **Work Vault**: governed container for scoped defensive work requests and outcomes.
+- **ALPHA AGI MARK**: utility budget allocation signal for bounded work.
+- **ALPHA AGI Sovereign**: assigned governed execution identity for a work stream.
 
-## Role-based paths
-- Operator: `docs/OPERATOR_GUIDE.md`
-- Developer/Codex: `docs/DEVELOPER_GUIDE.md`
-- Research review: `docs/RESEARCH_REVIEWER_GUIDE.md`
-- Security/compliance: `docs/SECURITY_COMPLIANCE_REVIEWER_GUIDE.md`
-- Deployment review: `docs/DEPLOYMENT_REVIEW_GUIDE.md`
+## What can I safely run?
+Run documented workflows from GitHub Actions and only treat results as local/proxy evidence until review is complete.
 
-## Core systems
-- Evidence Mission Control: `docs/EVIDENCE_MISSION_CONTROL.md`
-- Evidence Dockets: `docs/EVIDENCE_DOCKETS.md`
-- Workflow catalog: `docs/WORKFLOW_CATALOG.md`
-- SecureRails: `docs/secure-rails/README.md`
-- Work Vaults / MARK / Sovereigns: `docs/secure-rails/work-vaults-mark-sovereigns.md`
+## What should I avoid?
+- Do not treat a green workflow as AGI/ASI/SOTA proof.
+- Do not auto-merge unsafe remediation.
+- Do not promote claims without an Evidence Docket.
 
-## Doctrine
-No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+## Green check vs red check
+- **Green**: workflow checks passed for that run scope.
+- **Red**: workflow or guardrail failed; investigate before any follow-on action.
+
+## Where to find artifacts and results
+- Artifacts: GitHub Actions run page.
+- Public pages / mission control: `docs/EVIDENCE_MISSION_CONTROL.md`.
+
+## Recommended first path
+1. Open Evidence Mission Control docs.
+2. Open **Actions**.
+3. Run a safe workflow.
+4. Inspect logs.
+5. Download artifact.
+6. Read Evidence Docket.
+7. Check safety ledger.
+8. Confirm claim boundary.
+9. Never merge unsafe remediation automatically.
