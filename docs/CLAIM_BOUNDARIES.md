@@ -1,66 +1,48 @@
 # Claim Boundaries
 
-This document defines allowed and forbidden language for repository outputs, docs, and workflow summaries.
+This document defines what can and cannot be claimed from this repository.
 
 ## Core doctrine
-**No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.**
+**No Evidence Docket, no unsupported top-tier benchmark claim. Autonomous evidence production is allowed; autonomous claim promotion is not.**
 
-## Allowed claim classes
-- Local evidence produced.
-- Proxy evidence produced in CI.
-- Replay completed in CI or locally.
-- Evidence Docket produced for a run.
-- Safe PR proposed (human merge decision pending).
-- Human review pending.
-- External review pending.
-- System designed as governance infrastructure.
+## Allowed claim categories
+- Local evidence generated in this repository.
+- Proxy evidence with explicit limits.
+- Replayed in CI with run IDs and artifacts.
+- Evidence Docket produced for a specific run.
+- Safe PR proposed (human review pending).
+- External review pending / unresolved.
+- Governance infrastructure design claims.
 
-## Forbidden positive claims
-- achieved AGI
-- achieved ASI
-- empirical SOTA without required evidence tier
-- guaranteed security
-- cybercertification claim
-- safe autonomy
-- top benchmark win claim without required independent evidence
-- EU AI Act exempt
-- legally approved worldwide
-- investment return, yield, dividends, ownership rights, profit rights
+## Forbidden claim categories
+- Achieved AGI / achieved ASI.
+- Unqualified top-tier benchmark ranking claims.
+- Guaranteed security / safe autonomy.
+- Cyberformal security attestation claims.
+- Unqualified benchmark-win language without qualifying evidence and review context.
+- EU AI Act exemption claim.
+- Legally approved worldwide claim.
+- Investment return, yield, dividends, ownership/profit rights.
+
+## Positive/negative examples
+- ✅ Allowed: “Run `X` produced an Evidence Docket and replay log in CI.”
+- ✅ Allowed: “SecureRails is not offensive cyber and is not certification.”
+- ✅ Allowed: “External review is pending; promotion is blocked.”
+- ❌ Forbidden: “This proves AGI has been achieved.”
+- ❌ Forbidden: “Certified secure autonomous remediation.”
+- ❌ Forbidden: “$AGIALPHA holders receive yield.”
 
 ## SecureRails boundary
 SecureRails is AI-agent security governance and proof-bound defensive remediation.
+It is not autonomous cyberformal security attestation, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
 
-It is not:
-- autonomous cybercertification claim
-- offensive cyber capability
-- a high-risk decision system by intended purpose
-- a GPAI model provider by default
-- an investment product
-
-## `$AGIALPHA` boundary
-`$AGIALPHA` is utility infrastructure for protocol operations only:
+## $AGIALPHA boundary
+`$AGIALPHA` is protocol utility infrastructure only:
 - access credits
 - Work Vault utility budgets
-- validator fees
-- replay fees
-- ProofBundle fees
-- Evidence Docket fees
-- slashing for defined rule violations
-- α-Work Unit accounting
-- archive-access accounting
+- validator/replay/ProofBundle/Evidence Docket fees
+- slashing for defined violations
+- α-Work Unit and archive-access accounting
 - utility settlement records
 
-Use terms like **capacity allocation**, **utility budget**, **validated work**, and **utility accounting**.
-Avoid investment framing.
-
-## Positive and negative examples
-Allowed:
-- “This workflow produced local evidence and replay artifacts.”
-- “Human review is pending before any promotion decision.”
-- “SecureRails is not autonomous cybercertification claim.”
-
-Forbidden:
-- “This proves AGI.”
-- “This run guarantees security outcomes.”
-- “This token provides passive investment return.”
-- “This system is EU AI Act exempt.”
+Use terms like **capacity allocation**, **utility budget**, **validator budget**, **protocol settlement**, and **utility accounting**.
