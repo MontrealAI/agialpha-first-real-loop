@@ -27,7 +27,7 @@ AGIAlpha First Real Loop is a research-oriented monorepo for deterministic, test
 - SecureRails overview: `docs/SECURERAILS_OVERVIEW.md`
 - Work Vaults / MARK / Sovereigns: `docs/SECURERAILS_WORK_VAULTS.md`
 - Experiment families: `docs/EXPERIMENT_GUIDE.md`
-- Documentation index: `docs/README.md`
+- Documentation index: `docs/README.md` (portal: `docs/index.md`)
 - Workflow launchpad: `docs/WORKFLOW_LAUNCHPAD.md`
 
 ## How to run from GitHub UI
