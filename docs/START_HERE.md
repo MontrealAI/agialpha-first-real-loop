@@ -16,7 +16,7 @@ AGI ALPHA First Real Loop is a workflow-driven research/governance repo that pro
 
 ## What this system is not
 - Not a claim that AGI or ASI has been achieved.
-- Not unsupported top-tier benchmark claim by default.
+- Not a default claim of top-tier benchmark leadership.
 - Not cyberformal security attestation.
 - Not offensive cyber capability.
 - Not autonomous claim promotion.
@@ -57,4 +57,4 @@ Prefer evidence/replay/falsification and SecureRails compliance workflows first.
 9. Never auto-merge unsafe remediation.
 
 ## Doctrine (non-negotiable)
-**No Evidence Docket, no unsupported top-tier benchmark claim claim. Autonomous evidence production is allowed; autonomous claim promotion is not.**
+**No Evidence Docket, no top-tier benchmark leadership claim by default. Autonomous evidence production is allowed; autonomous claim promotion is not.**
