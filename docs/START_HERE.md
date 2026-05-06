@@ -1,73 +1,60 @@
 # START HERE
 
-This page is for first-time operators who want to run the repository safely from GitHub in under 5 minutes.
+Welcome. This guide is for first-time operators who want to safely run AGI ALPHA First Real Loop from GitHub in under 5 minutes.
 
-## What is AGI ALPHA First Real Loop?
-AGI ALPHA First Real Loop is a research and governance repository for **workflow-driven evidence production**. It packages experiments, safety checks, replay paths, and documentation into a single operational system.
+## In one sentence
+AGI ALPHA First Real Loop is a workflow-driven research/governance repo that produces auditable evidence (ProofBundles + Evidence Dockets) with safety boundaries and human review gates.
 
-## What is Evidence Mission Control?
-Evidence Mission Control is the repository’s publishing and discovery surface for experiment outputs, Evidence Dockets, and workflow artifacts. Start at `docs/EVIDENCE_MISSION_CONTROL.md`.
+## What each core term means
+- **Evidence Mission Control**: the publication and navigation layer for generated evidence and workflow outcomes (`docs/EVIDENCE_MISSION_CONTROL.md`).
+- **SecureRails**: AI-agent security governance and proof-bound defensive remediation, with explicit limits (`docs/secure-rails/README.md`).
+- **Evidence Docket**: structured record of what ran, what was produced, what boundaries apply, and what claims are allowed.
+- **ProofBundle**: run artifact package (manifests, logs, hashes, replay/falsification outputs).
+- **Work Vault**: bounded work container for a defensive task + safety/accountability trail.
+- **ALPHA AGI MARK**: utility budget/capacity allocation metadata for bounded protocol work.
+- **ALPHA AGI Sovereign**: governed execution identity assigned to a bounded AGI Job.
 
-## What is SecureRails?
-SecureRails is **AI-agent security governance and proof-bound defensive remediation**. It is designed to gate risky actions through Evidence Dockets, safety ledgers, validators, and human review.
+## What this system is not
+- Not a claim that AGI or ASI has been achieved.
+- Not a default top-tier benchmark claim.
+- Not cyberformal security attestation.
+- Not offensive cyber capability.
+- Not autonomous claim promotion.
+- Not an investment product.
 
-SecureRails is **not**:
-- autonomous cybercertification claim
-- offensive cyber capability
-- guaranteed security
-- autonomous claim promotion
-
-## What is an Evidence Docket?
-An Evidence Docket is the structured evidence record for a run: what executed, what artifacts were produced, what limits apply, and what claim level is permitted.
-
-## What is a ProofBundle?
-A ProofBundle is the artifact package (logs, hashes, manifests, replay instructions, and checks) that supports an Evidence Docket.
-
-## What is a Work Vault?
-A Work Vault is the governed container for a scoped defensive work request and its bounded execution trail.
-
-## What is MARK?
-ALPHA AGI MARK is a utility-budget allocation signal for bounded protocol work. It is governance/accounting metadata, not investment framing.
-
-## What is a Sovereign?
-An ALPHA AGI Sovereign is the assigned governed execution identity responsible for an AGI Job scope and related accountability records.
-
-## What can I safely run?
-- Workflows listed in `docs/WORKFLOW_LAUNCHPAD.md` and `docs/WORKFLOW_CATALOG.md`.
-- Evidence and replay workflows that produce bounded artifacts.
-- SecureRails demo and compliance workflows.
-
-## What should I avoid?
-- Treating green checks as AGI/ASI/SOTA proof.
-- Merging remediation PRs automatically.
-- Publishing claims without an Evidence Docket.
-- Using investment language for `$AGIALPHA`.
-
-## What does a green check mean?
-A green check means that workflow checks passed for that run configuration. It does **not** authorize unrestricted claims.
-
-## What does a red check mean?
-A red check means at least one guardrail, test, or execution path failed and needs investigation before follow-up action.
-
-## Where do I find artifacts?
-Open the specific GitHub Actions run and use the **Artifacts** section.
-
-## Where do I see public results?
-Use:
-- `docs/EVIDENCE_MISSION_CONTROL.md`
+## What you can safely run first
+Use workflows listed in:
 - `docs/WORKFLOW_LAUNCHPAD.md`
-- `docs/EXPERIMENT_GUIDE.md`
+- `docs/WORKFLOW_CATALOG.md`
 
-## Recommended first path
-1. Open Evidence Mission Control (`docs/EVIDENCE_MISSION_CONTROL.md`).
-2. Open the GitHub **Actions** tab.
-3. Run a safe workflow from `docs/WORKFLOW_LAUNCHPAD.md`.
-4. Inspect logs for checks and boundaries.
-5. Download the artifact package.
+Prefer evidence/replay/falsification and SecureRails compliance workflows first.
+
+## What to avoid
+- Treating a green check as a capability promotion.
+- Merging remediation automatically without human review.
+- Publishing claims without an Evidence Docket.
+- Describing `$AGIALPHA` as investment/returns/yield.
+
+## Green check vs red check
+- **Green check**: workflow checks passed for that run scope.
+- **Red check**: one or more checks failed, or guardrails blocked execution.
+- In both cases, claims remain bounded by docket/ledger evidence and review status.
+
+## Where artifacts and results live
+- **Run artifacts**: GitHub Actions run page → **Artifacts**.
+- **Public evidence pages / discovery**: `docs/EVIDENCE_MISSION_CONTROL.md` and workflow-linked pages.
+- **Safety and claim posture**: `docs/CLAIM_BOUNDARIES.md` and SecureRails docs.
+
+## Recommended first path (do this in order)
+1. Open `docs/EVIDENCE_MISSION_CONTROL.md`.
+2. Open repository **Actions** tab.
+3. Launch one safe workflow from `docs/WORKFLOW_LAUNCHPAD.md`.
+4. Inspect logs for safety + claim checks.
+5. Download artifacts.
 6. Read the Evidence Docket.
-7. Check safety ledger counters.
-8. Confirm claim boundary statements.
-9. Never merge unsafe remediation automatically.
+7. Check safety ledger counters and replay/falsification status.
+8. Confirm claim boundary language before any sharing.
+9. Never auto-merge unsafe remediation.
 
-## One-line doctrine
-**No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.**
+## Doctrine (non-negotiable)
+**No Evidence Docket, no unsupported top-tier benchmark claim. Autonomous evidence production is allowed; autonomous claim promotion is not.**
