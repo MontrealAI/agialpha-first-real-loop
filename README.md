@@ -30,7 +30,7 @@ AGI ALPHA First Real Loop is a research-oriented monorepo for deterministic, tes
 ## SecureRails summary
 SecureRails is AGI ALPHA’s AI-agent security governance and proof-bound defensive remediation layer. It makes AI-agent work safe to review, safe to replay, and safe to remediate by converting agent actions, workflow changes, findings, and remediation proposals into ProofBundles, Evidence Dockets, redacted safety ledgers, safe PR proposals, validator reports, and reusable defensive capability.
 
-**Boundary:** SecureRails is not autonomous cyber certification, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
+**Boundary:** SecureRails is not autonomous cybersecurity-certification, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
 
 ## Doctrine and claim boundary
 **Doctrine:** “No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.”
@@ -64,3 +64,9 @@ python -m agialpha_docs audit-links --repo-root .
 python -m agialpha_docs audit-readmes --repo-root .
 python -m unittest discover -s tests
 ```
+
+## Repository map
+See [docs/REPOSITORY_MAP.md](docs/REPOSITORY_MAP.md) for directory-by-directory status labels (implemented, scaffolded, planned, evidence-backed, pending).
+
+## Documentation index
+See [docs/README.md](docs/README.md) for the full navigation index by role (operator, reviewer, contributor).
