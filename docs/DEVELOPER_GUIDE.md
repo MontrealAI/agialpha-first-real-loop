@@ -10,10 +10,10 @@
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python -m pip install --upgrade pip
 ```
 
-If `requirements.txt` is not complete for your workflow, install missing packages from failing command output and document the change.
+This repository currently does not ship a root `requirements.txt` or `pyproject.toml`. Start with the standard-library test/audit commands below; if a command reports a missing package, install only that package in your active virtual environment and record it in your PR notes.
 
 ## Core test and docs checks
 Run these before pushing:
