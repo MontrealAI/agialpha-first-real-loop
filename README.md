@@ -1,57 +1,66 @@
 # AGI ALPHA First Real Loop
 
-AGIAlpha First Real Loop is a research-oriented monorepo for deterministic, test-first AGI ALPHA subsystems: Evidence Mission Control, SecureRails, AGI-GA Foundry, Cyber-GA Sovereign, RSI Governor, HELIOS, ProofBundles, Evidence Dockets, and workflow-driven evidence production.
+AGI ALPHA First Real Loop is a research-oriented monorepo for deterministic, test-first AGI ALPHA subsystems, including Evidence Mission Control, SecureRails, AGI-GA Foundry, Cyber-GA Sovereign, RSI Governor, Evidence Dockets, ProofBundles, and workflow-based experiments.
 
-## Start here
-- New operator: `docs/START_HERE.md`
-- Run workflows: `docs/OPERATOR_GUIDE.md`
-- Add experiment: `docs/ADDING_NEW_EXPERIMENTS.md`
-- Evidence standard: `docs/EVIDENCE_GUIDE.md`
-- SecureRails: `docs/secure-rails/README.md`
-- Work Vaults / MARK / Sovereigns: `docs/secure-rails/work-vaults-mark-sovereigns.md`
-- Workflow catalog: `docs/WORKFLOW_CATALOG.md`
-- Troubleshooting: `docs/TROUBLESHOOTING.md`
+## What this repository contains
+- Workflow-driven experiment families with replay, falsification, and evidence generation.
+- Evidence Mission Control pages, registry assets, and artifact ingestion helpers.
+- SecureRails governance and defensive-remediation documentation, templates, and guardrail checks.
 
-## What this repo is
-- Evidence-first governance infrastructure for bounded AI-agent experimentation.
-- A workflow + artifact system for replay, falsification, and human-reviewed promotion.
-- A documentation-backed operating model for Security, governance, and research teams.
-
-## What this repo is not
-- Not a claim of unsupported capability milestones.
-- Not autonomous cyber-governance certification or offensive cyber capability.
-- Not an investment product; `$AGIALPHA` is utility accounting infrastructure only.
-
-## Quick links
-- Evidence Mission Control: `docs/EVIDENCE_MISSION_CONTROL.md`
-- SecureRails overview: `docs/SECURERAILS_OVERVIEW.md`
-- Work Vaults / MARK / Sovereigns: `docs/SECURERAILS_WORK_VAULTS.md`
-- Experiment families: `docs/EXPERIMENT_GUIDE.md`
-- Documentation index: `docs/README.md` (portal: `docs/index.md`)
-- Workflow launchpad: `docs/WORKFLOW_LAUNCHPAD.md`
+## Quickstart (zero to first run)
+1. Read [docs/START_HERE.md](docs/START_HERE.md).
+2. Open [docs/WORKFLOW_LAUNCHPAD.md](docs/WORKFLOW_LAUNCHPAD.md) and select one workflow.
+3. Run it from GitHub Actions (**Run workflow**) or CLI (`gh workflow run <workflow-file>.yml`).
+4. Download artifacts and review the Evidence Docket + claim boundary.
 
 ## How to run from GitHub UI
-1. Open **Actions**.
-2. Pick a workflow from `docs/WORKFLOW_LAUNCHPAD.md` and `docs/WORKFLOW_CATALOG.md`.
-3. Click **Run workflow**.
-4. Review logs, artifacts, Evidence Docket, replay status, and safety ledger.
+1. Go to **Actions**.
+2. Choose a workflow listed in [docs/WORKFLOW_CATALOG.md](docs/WORKFLOW_CATALOG.md).
+3. Click **Run workflow** (when `workflow_dispatch` exists).
+4. Inspect logs, artifacts, safety ledger, and Evidence Docket.
 
-## Run locally
+## Experiment families
+- AGI-GA Foundry
+- Cyber-GA Sovereign
+- RSI Governor / RSI Forge
+- HELIOS
+- Gauntlets (Benchmark/Omega/Phoenix)
+- Evidence Mission Control maintenance flows
+
+## SecureRails summary
+SecureRails is AGI ALPHA’s AI-agent security governance and proof-bound defensive remediation layer. It makes AI-agent work safe to review, safe to replay, and safe to remediate by converting agent actions, workflow changes, findings, and remediation proposals into ProofBundles, Evidence Dockets, redacted safety ledgers, safe PR proposals, validator reports, and reusable defensive capability.
+
+**Boundary:** SecureRails is not autonomous cyber certification, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
+
+## Doctrine and claim boundary
+**Doctrine:** “No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.”
+
+See [docs/CLAIM_BOUNDARIES.md](docs/CLAIM_BOUNDARIES.md).
+
+## Quick links
+- Start here: [docs/START_HERE.md](docs/START_HERE.md)
+- Evidence Mission Control: [docs/EVIDENCE_MISSION_CONTROL.md](docs/EVIDENCE_MISSION_CONTROL.md)
+- Workflow launchpad: [docs/WORKFLOW_LAUNCHPAD.md](docs/WORKFLOW_LAUNCHPAD.md)
+- Workflow catalog: [docs/WORKFLOW_CATALOG.md](docs/WORKFLOW_CATALOG.md)
+- Repository map: [docs/REPOSITORY_MAP.md](docs/REPOSITORY_MAP.md)
+- Operator quickstart: [docs/OPERATOR_QUICKSTART.md](docs/OPERATOR_QUICKSTART.md)
+- Contributor guide: [docs/CONTRIBUTOR_GUIDE.md](docs/CONTRIBUTOR_GUIDE.md)
+- SecureRails docs: [docs/secure-rails/README.md](docs/secure-rails/README.md)
+- Work Vaults / MARK / Sovereigns: [docs/secure-rails/work-vaults-mark-sovereigns.md](docs/secure-rails/work-vaults-mark-sovereigns.md)
+- Documentation index: [docs/README.md](docs/README.md)
+
+## How to contribute
+See [docs/CONTRIBUTOR_GUIDE.md](docs/CONTRIBUTOR_GUIDE.md), [docs/ADDING_NEW_EXPERIMENTS.md](docs/ADDING_NEW_EXPERIMENTS.md), and open a PR with updated workflow/docs audits.
+
+## How to run tests and audits
 ```bash
-python -m unittest discover -s tests
+python scripts/secure_rails_claim_boundary_check.py .
+python scripts/secure_rails_safety_ledger_check.py docs/secure-rails/templates/safety-ledger-example.json
+python scripts/secure_rails_no_automerge_check.py .
+python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json
 python -m agialpha_docs audit-workflows --repo-root .
 python -m agialpha_docs audit-claims --repo-root .
 python -m agialpha_docs audit-links --repo-root .
 python -m agialpha_docs audit-readmes --repo-root .
+python -m unittest discover -s tests
 ```
-
-## Claim boundary
-No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
-
-## Engineering practices
-- Test-first workflows and schema validation.
-- Documentation and workflow-catalog audits.
-- Human-governed claim promotion only.
-
-## License
-See `LICENSE`.
