@@ -2,6 +2,17 @@
 
 This catalog maps every workflow in `.github/workflows/` to an operator-safe purpose and boundary.
 
+## Catalog schema (how to read each row)
+Each row represents one workflow file and should be read with these fields:
+- **Workflow name / file:** canonical GitHub Actions workflow source.
+- **Family:** subsystem grouping (Foundry, SecureRails, HELIOS, RSI, Cyber, Gauntlets, Core).
+- **Trigger:** `workflow_dispatch` and any scheduled/push triggers from the YAML file.
+- **Inputs:** workflow dispatch parameters (use `gh workflow run <file> -f key=value`).
+- **Outputs/artifacts:** logs, manifests, ProofBundles, Evidence Dockets, replay bundles, and reports.
+- **Claim boundary:** workflow success is evidence generation, not autonomous claim promotion.
+- **Safety notes:** requires human review; no auto-merge posture remains required.
+
+
 | Workflow file | Family | Triggers | Outputs/artifacts | Safety + claim boundary | Pages publisher? |
 |---|---|---|---|---|---|
 | `agiga-foundry-001-autonomous.yml` | AGI-GA Foundry | Actions (`workflow_dispatch` where provided), push/schedule as defined in file. | Evidence artifacts, logs, and where applicable Evidence Docket / ProofBundle outputs. | Never treat workflow pass as a claim promotion; verify Evidence Docket + safety ledger + claim boundary. | no |
@@ -108,7 +119,7 @@ This catalog maps every workflow in `.github/workflows/` to an operator-safe pur
 
 ## Operator guidance
 - Open GitHub **Actions**, pick a workflow, then **Run workflow** when available.
-- Use `docs/OPERATOR_GUIDE.md` for step-by-step UI instructions and artifact review.
+- Use `docs/OPERATOR_QUICKSTART.md` for step-by-step UI instructions and artifact review.
 - No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
 
 

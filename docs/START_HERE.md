@@ -15,6 +15,8 @@ This guide serves three audiences: non-technical operators, technical contributo
 10. Record outcome (safe remediation / reject / escalate).
 
 ## For non-technical operators
+> **For non-technical operators:** If this is your first run, start with a replay workflow to learn artifacts before running autonomous flows.
+
 - Read first: `docs/OPERATOR_QUICKSTART.md`.
 - Click: Actions → workflow → Run workflow.
 - Run: bounded autonomous + replay workflows.
@@ -22,6 +24,8 @@ This guide serves three audiences: non-technical operators, technical contributo
 - Do not claim: AGI/ASI/SOTA/certification/investment outcomes.
 
 ## For technical contributors
+> **For contributors:** Treat docs + workflow metadata as part of the executable surface; update both together.
+
 - Read first: `docs/CONTRIBUTOR_GUIDE.md`, `docs/ADDING_NEW_EXPERIMENTS.md`.
 - Click: workflow YAMLs in `.github/workflows/` + catalog updates.
 - Run: docs audits, SecureRails checks, unit tests.
@@ -29,6 +33,8 @@ This guide serves three audiences: non-technical operators, technical contributo
 - Do not claim: autonomous promotion or legal/certification approval.
 
 ## For external reviewers
+> **For reviewers:** Validate boundaries first, then validate outputs. A green workflow is not a capability claim.
+
 - Read first: `docs/REVIEWER_REPLAY_GUIDE.md`, `docs/CLAIM_BOUNDARIES.md`.
 - Click: run artifacts and replay instructions.
 - Run: replay workflows and claim/safety verification.
