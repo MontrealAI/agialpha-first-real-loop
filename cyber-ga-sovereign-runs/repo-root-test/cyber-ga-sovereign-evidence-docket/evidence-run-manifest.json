@@ -9,13 +9,13 @@
   "run_url": "local",
   "claim_level": "local-defensive-evidence",
   "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
-  "repo_root": "/home/runner/work/agialpha-first-real-loop/agialpha-first-real-loop",
+  "repo_root": "/workspace/agialpha-first-real-loop",
   "evidence_docket_path": "cyber-ga-sovereign-runs/repo-root-test/cyber-ga-sovereign-evidence-docket",
   "scoreboard_path": "cyber-ga-sovereign-runs/repo-root-test/cyber-ga-sovereign-evidence-docket/28_summary_tables/scoreboard.json",
   "artifact_names": [
     "cyber-ga-sovereign-evidence-docket"
   ],
-  "root_hash": "4949a7d00c8c949d1015e514e3846517dccf2794e8221fe0fe104fc44d68b85d",
+  "root_hash": "cce5a6bb7339ced202c016e675f514bbccda54d622a8482fe5b111626006b3f0",
   "metrics": {
     "cycles_executed": 1,
     "candidate_defensive_niches_generated": 2,
