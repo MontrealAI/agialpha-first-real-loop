@@ -24,3 +24,5 @@
 - **human-governed promotion**: claims/actions approved by humans.
 - **autonomous claim promotion**: forbidden automatic claim escalation.
 - **local/external/official benchmark evidence**: evidence provenance tiers.
+
+- **RSI Governor**: governance subsystem for bounded recursive self-improvement experiments with replay and falsification gates.

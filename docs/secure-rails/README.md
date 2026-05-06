@@ -1,23 +1,11 @@
-# SecureRails
+# SecureRails Documentation
 
-## What SecureRails is
-AI-agent security governance and proof-bound defensive remediation with Evidence Dockets, ProofBundles, safety ledgers, and human-governed promotion.
+SecureRails is AI-agent security governance and proof-bound defensive remediation, with human-reviewed promotion, excluded high-risk uses, and executable guardrails.
 
-## What SecureRails is not
-- Not autonomous cybercertification claim.
-- Not offensive cyber capability.
-- Not guaranteed security or safe autonomy.
-- Not an investment product.
+- Operator runbook: [operator-runbook.md](operator-runbook.md)
+- Work Vaults/MARK/Sovereigns: [work-vaults-mark-sovereigns.md](work-vaults-mark-sovereigns.md)
+- Product boundary: [product-boundary.md](product-boundary.md)
+- EU AI Act positioning: [eu-ai-act-positioning.md](eu-ai-act-positioning.md)
+- Token utility policy: [token-utility-policy.md](token-utility-policy.md)
 
-## Core loop
-Work intake → Work Vault → MARK allocation → Sovereign assignment → AGI Job → ProofBundle → Evidence Docket → validator decision → human review → safe remediation/rejection/escalation → utility settlement.
-
-## Key docs
-- Work Vaults / MARK / Sovereigns: `work-vaults-mark-sovereigns.md`
-- Operator runbook: `operator-runbook.md`
-- Product boundary: `product-boundary.md`
-- Claims & marketing guardrails: `claims-and-marketing-guardrails.md`
-- Templates: `templates/README.md`
-
-## $AGIALPHA boundary
-`$AGIALPHA` is utility infrastructure for protocol operations and settlement records only.
+Boundary: not autonomous certification, not offensive cyber, not high-risk decisioning, not an investment product.

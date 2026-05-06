@@ -1,8 +1,7 @@
 # Content Preservation Ledger
 
-- Files changed: README/docs hub/quickstart/workflow/evidence/pilot/developer/reviewer/diagram/style/inventory docs.
-- Files added: new docs subdirectories and pages for quickstart, evidence, pilots, developer, reviewers, diagrams.
-- Files removed: none.
-- Rationale: improve navigation, auditability, operator readiness.
-- Claim boundaries preserved: yes.
-- Content relocated: links now centralized via docs hub.
+
+| original file | changed file | change type | rationale | content preserved? | claim boundary preserved? | tests run? |
+|---|---|---|---|---|---|---|
+| `README.md` | `README.md` | restructure + expansion | 30-second orientation, quickstart, boundary clarity | yes | yes | yes |
+| multiple existing docs | new index/guide files in `docs/` | additive wrappers | provide operator/reviewer/contributor entrypoints without removing legacy material | yes | yes | yes |

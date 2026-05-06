@@ -110,3 +110,9 @@ This catalog maps every workflow in `.github/workflows/` to an operator-safe pur
 - Open GitHub **Actions**, pick a workflow, then **Run workflow** when available.
 - Use `docs/OPERATOR_GUIDE.md` for step-by-step UI instructions and artifact review.
 - No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+
+
+## SecureRails Compliance Guard details
+- **Workflow file:** .github/workflows/secure-rails-compliance-guard.yml
+- **Purpose:** CI enforcement for SecureRails claim boundaries, no-auto-merge posture, safety ledger validation, Work Vault validation, and AI Act use-case triage.
+- **Claim boundary:** This workflow enforces governance checks. It does not certify security or provide legal approval.

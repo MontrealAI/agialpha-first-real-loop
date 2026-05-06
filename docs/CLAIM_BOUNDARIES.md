@@ -64,3 +64,11 @@ Forbidden:
 - “This run guarantees security outcomes.”
 - “This token provides passive investment return.”
 - “This system is EU AI Act exempt.”
+
+
+## Negated boundary language (allowed)
+- does not claim achieved AGI
+- not empirical SOTA
+- not cybersecurity certification
+- not offensive cyber
+- not an investment product
