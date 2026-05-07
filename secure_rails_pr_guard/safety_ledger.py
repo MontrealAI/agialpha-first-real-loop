@@ -1,0 +1,2 @@
+def build_safety_ledger(secrets,no_auto):
+    return {'raw_secret_leak_count':len(secrets),'external_target_scan_count':0,'exploit_execution_count':0,'malware_generation_count':0,'social_engineering_content_count':0,'unsafe_automerge_count':len(no_auto['findings']),'critical_safety_incidents':int(bool(secrets or no_auto['findings'])),'claim_boundary':'SecureRails is AI-agent security governance and proof-bound defensive remediation.'}

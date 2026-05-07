@@ -91,3 +91,6 @@ Use this format for every incident: **Symptom → Likely cause → Fix → What 
 - **Likely cause:** outdated action versions.
 - **Fix:** bump actions to maintained releases and retest.
 - **What not to do:** do not ignore repeated deprecation warnings.
+
+## SecureRails Agentic PR Guard 001
+- Ensure `python -m secure_rails_pr_guard analyze` and `validate` pass locally.
