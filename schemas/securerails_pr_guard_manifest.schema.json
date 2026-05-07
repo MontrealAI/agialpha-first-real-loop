@@ -1,0 +1,8 @@
+{
+  "type": "object",
+  "required": [
+    "schema_version",
+    "experiment_slug",
+    "claim_boundary"
+  ]
+}

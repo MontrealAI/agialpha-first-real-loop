@@ -1,0 +1,38 @@
+name: SecureRails Agentic PR Guard 001
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+  actions: read
+
+jobs:
+  pr-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Analyze PR
+        run: python -m secure_rails_pr_guard analyze --repo-root . --event-path "${GITHUB_EVENT_PATH}" --out securerails-pr-guard-output
+      - name: Validate output
+        run: python -m secure_rails_pr_guard validate --input securerails-pr-guard-output
+      - name: Render summary
+        run: python -m secure_rails_pr_guard render-summary --input securerails-pr-guard-output --out securerails-pr-guard-output/summary.md
+      - name: Build Evidence Docket
+        run: python -m secure_rails_pr_guard build-evidence --input securerails-pr-guard-output --out securerails-pr-guard-output/11_evidence_docket
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: securerails-agentic-pr-guard-001
+          path: securerails-pr-guard-output
+      - name: Publish step summary
+        run: cat securerails-pr-guard-output/summary.md >> "$GITHUB_STEP_SUMMARY"

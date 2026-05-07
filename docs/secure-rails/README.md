@@ -16,3 +16,6 @@ Boundary: not autonomous certification, not offensive cyber, not high-risk decis
 - Generated dashboard page: `docs/secure-rails/generated/index.html`
 - Generated UI data: `docs/_generated/secure-rails/`
 - Example records are non-production templates (`source: example_template`, `status: example_not_production`).
+
+- Agentic PR Guard: [agentic-pr-guard.md](agentic-pr-guard.md)
+- Operator guide: [pr-guard-operator-guide.md](pr-guard-operator-guide.md)
