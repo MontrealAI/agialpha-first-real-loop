@@ -12,11 +12,11 @@ def collect_all_files(repo_root):
 
 def _git_changed_files(repo_root, base_sha, head_sha):
     if not base_sha or not head_sha:
-        return None
+        return []
     cmd = ['git', '-C', str(repo_root), 'diff', '--name-only', '--merge-base', base_sha, head_sha]
     proc = subprocess.run(cmd, capture_output=True, text=True, check=False)
     if proc.returncode != 0:
-        return None
+        return []
     return [line.strip() for line in proc.stdout.splitlines() if line.strip()]
 
 
@@ -25,10 +25,7 @@ def resolve_changed_files(repo_root, event):
     base_sha = ((pr.get('base') or {}).get('sha'))
     head_sha = ((pr.get('head') or {}).get('sha'))
     changed = _git_changed_files(repo_root, base_sha, head_sha)
-    if changed is not None:
-        return sorted(set(changed))
-    # local/manual fallback only when SHAs are unavailable or git diff cannot run
-    return collect_all_files(repo_root)
+    return sorted(set(changed))
 
 
 def pr_diff_summary(repo_root, event=None):
