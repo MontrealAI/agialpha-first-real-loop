@@ -114,3 +114,18 @@ On SecureRails pages, display the canonical protocol chain and link to this docu
 ## Final boundary
 
 SecureRails outputs are advisory and promotion-gated by validators plus human review. SecureRails is not intended, designed, validated, or authorized for Annex III high-risk AI use cases.
+
+
+## Registry
+SecureRails live registry is maintained in `secure_rails_registry/` with deterministic indexes and preserved historical records.
+
+## Evidence Mission Control display
+Evidence Mission Control publishes SecureRails Work Vault dashboard content at `/secure-rails/` via central publisher integration.
+
+## CLI registry commands
+```bash
+python -m secure_rails discover --repo-root . --registry secure_rails_registry
+python -m secure_rails validate-registry --registry secure_rails_registry
+python -m secure_rails build-data --registry secure_rails_registry --out docs/_generated/secure-rails
+python -m secure_rails render --registry secure_rails_registry --out docs/secure-rails/generated
+```
