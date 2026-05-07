@@ -9,3 +9,10 @@ SecureRails is AI-agent security governance and proof-bound defensive remediatio
 - Token utility policy: [token-utility-policy.md](token-utility-policy.md)
 
 Boundary: not autonomous certification, not offensive cyber, not high-risk decisioning, not an investment product.
+
+
+## Live Work Vault Registry
+- Registry root: `secure_rails_registry/`
+- Generated dashboard page: `docs/secure-rails/generated/index.html`
+- Generated UI data: `docs/_generated/secure-rails/`
+- Example records are non-production templates (`source: example_template`, `status: example_not_production`).
