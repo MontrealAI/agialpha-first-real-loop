@@ -127,3 +127,5 @@ Each row represents one workflow file and should be read with these fields:
 - **Workflow file:** .github/workflows/secure-rails-compliance-guard.yml
 - **Purpose:** CI enforcement for SecureRails claim boundaries, no-auto-merge posture, safety ledger validation, Work Vault validation, and AI Act use-case triage.
 - **Claim boundary:** This workflow enforces governance checks. It does not certify security or provide legal approval.
+
+| `securerails-agentic-pr-guard-001.yml` | SecureRails | `pull_request`, `workflow_dispatch` | PR Guard artifact with Work Vault/MARK/Sovereign/ProofBundle/Evidence Docket | Advisory only; human review required; no auto-merge; no secrets; least privilege read-only. | no |

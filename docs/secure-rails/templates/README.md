@@ -42,3 +42,6 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 - MARK allocation example: `mark-allocation-example.json`
 - Sovereign example: `sovereign-example.json`
 - Settlement example: `vault-settlement-example.json`
+
+- PR Guard manifest template: [pr-guard-example-manifest.json](pr-guard-example-manifest.json)
+- PR Guard report template: [pr-guard-example-report.json](pr-guard-example-report.json)

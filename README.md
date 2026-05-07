@@ -71,3 +71,5 @@ See [docs/REPOSITORY_MAP.md](docs/REPOSITORY_MAP.md) for directory-by-directory 
 
 ## Documentation index
 See [docs/README.md](docs/README.md) for the full navigation index by role (operator, reviewer, contributor).
+
+- SecureRails Agentic PR Guard 001: [docs/secure-rails/agentic-pr-guard.md](docs/secure-rails/agentic-pr-guard.md)
