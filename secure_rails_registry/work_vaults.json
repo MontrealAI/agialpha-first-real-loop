@@ -27,6 +27,7 @@
       "operator_id": "repo-owner",
       "repo": "MontrealAI/agialpha-first-real-loop"
     },
+    "record_status": "example_not_production",
     "schema_version": "securerails.work_vault.v1",
     "scope": {
       "auto_merge_allowed": false,
@@ -43,7 +44,7 @@
       "social_engineering_allowed": false
     },
     "source": "example_template",
-    "status": "example_not_production",
+    "status": "vault_opened",
     "utility": {
       "asset": "$AGIALPHA",
       "dispute_reserve": 100,

@@ -33,11 +33,11 @@
     "replay_instructions_required": true,
     "safety_ledger_required": true
   },
+  "record_status": "example_not_production",
   "schema_version": "agialpha.sovereign.v1",
   "source": "example_template",
   "sovereign_id": "workflow-permission-sovereign",
   "sovereign_name": "Workflow Permission Sovereign",
-  "status": "example_not_production",
   "task_family": "GitHub Actions permission review",
   "validators": [
     "workflow_permission_validator",

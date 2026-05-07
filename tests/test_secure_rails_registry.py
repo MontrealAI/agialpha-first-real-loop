@@ -26,6 +26,12 @@ class T(unittest.TestCase):
         self.assertIn('workflow-permission-sovereign', by_sovereign)
         self.assertGreater(len(by_sovereign['workflow-permission-sovereign']), 0)
 
+    def test_by_status_uses_real_status_values(self):
+        subprocess.run(['python','-m','secure_rails','discover','--repo-root','.','--registry','secure_rails_registry'], check=True)
+        by_status = json.loads(Path('secure_rails_registry/indexes/by_status.json').read_text())
+        self.assertIn('vault_opened', by_status)
+        self.assertGreater(len(by_status['vault_opened']), 0)
+
     def test_validate_registry_works_outside_repo_cwd(self):
         with tempfile.TemporaryDirectory() as td:
             reg = Path(td) / 'registry'

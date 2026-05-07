@@ -14,7 +14,16 @@ def build_indexes(registry: Path) -> None:
     (registry/'latest.json').write_text(json.dumps({'counts':{'work_vaults':len(w),'mark_allocations':len(m),'sovereigns':len(s),'settlements':len(st)}},indent=2,sort_keys=True)+"\n")
     for name,val in [('work_vaults.json',w),('mark_allocations.json',m),('sovereigns.json',s),('settlements.json',st)]:
         (registry/name).write_text(json.dumps(val,indent=2,sort_keys=True)+"\n")
-    (registry/'indexes'/'by_status.json').write_text(json.dumps({'example_not_production':[x.get('vault_id') for x in w]},indent=2,sort_keys=True)+"\n")
+    by_status: dict[str, list[str]] = {}
+    for vault in w:
+        status = vault.get('status', 'unavailable')
+        vault_id = vault.get('vault_id')
+        if not vault_id:
+            continue
+        by_status.setdefault(status, []).append(vault_id)
+    for status in by_status:
+        by_status[status] = sorted(by_status[status])
+    (registry/'indexes'/'by_status.json').write_text(json.dumps(by_status,indent=2,sort_keys=True)+"\n")
     by_sovereign = {
         sovereign.get('sovereign_id', 'unknown'): [
             vault.get('vault_id')

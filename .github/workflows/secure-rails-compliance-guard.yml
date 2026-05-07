@@ -8,6 +8,8 @@ on:
       - 'schemas/**'
       - 'config/securerails_*.json'
       - 'scripts/secure_rails_*.py'
+      - 'secure_rails/**'
+      - 'secure_rails_registry/**'
       - '.github/workflows/secure-rails-compliance-guard.yml'
   push:
     paths:
@@ -15,6 +17,8 @@ on:
       - 'schemas/**'
       - 'config/securerails_*.json'
       - 'scripts/secure_rails_*.py'
+      - 'secure_rails/**'
+      - 'secure_rails_registry/**'
 
 permissions:
   contents: read
