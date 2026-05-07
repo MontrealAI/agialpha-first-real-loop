@@ -8,6 +8,8 @@ on:
       - 'schemas/**'
       - 'config/securerails_*.json'
       - 'scripts/secure_rails_*.py'
+      - 'secure_rails/**'
+      - 'secure_rails_registry/**'
       - '.github/workflows/secure-rails-compliance-guard.yml'
   push:
     paths:
@@ -15,6 +17,8 @@ on:
       - 'schemas/**'
       - 'config/securerails_*.json'
       - 'scripts/secure_rails_*.py'
+      - 'secure_rails/**'
+      - 'secure_rails_registry/**'
 
 permissions:
   contents: read
@@ -35,6 +39,16 @@ jobs:
         run: python scripts/secure_rails_no_automerge_check.py .
       - name: Default use-case triage check
         run: python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json
+      - name: SecureRails registry discover
+        run: python -m secure_rails discover --repo-root . --registry secure_rails_registry
+      - name: SecureRails registry validate
+        run: python -m secure_rails validate-registry --registry secure_rails_registry
+      - name: SecureRails UI data build
+        run: python -m secure_rails build-data --registry secure_rails_registry --out docs/_generated/secure-rails
+      - name: SecureRails token boundary check
+        run: python -m secure_rails check-token-boundary --repo-root .
+      - name: SecureRails work vault registry check
+        run: python -m secure_rails check-work-vaults --registry secure_rails_registry
       - name: Work Vault checks
         run: |
           python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/work-vault-example.json

@@ -1,0 +1,67 @@
+[
+  {
+    "claim_boundary": "SecureRails is AI-agent security governance and proof-bound defensive remediation. This vault does not certify security, does not perform offensive cyber activity, and does not make autonomous decisions about natural persons.",
+    "created_at": "2026-05-03T00:00:00Z",
+    "evidence": {
+      "evidence_docket_id": null,
+      "human_review_status": "pending",
+      "proofbundle_id": null,
+      "safe_pr_url": null
+    },
+    "hard_safety_counters": {
+      "critical_safety_incidents": 0,
+      "exploit_execution_count": 0,
+      "external_target_scan_count": 0,
+      "malware_generation_count": 0,
+      "raw_secret_leak_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0
+    },
+    "mark_allocation": {
+      "allocation_id": "mark-alloc-2026-0001",
+      "assigned_sovereign": "workflow-permission-sovereign",
+      "review_priority": "high",
+      "risk_tier": "medium"
+    },
+    "operator": {
+      "operator_id": "repo-owner",
+      "repo": "MontrealAI/agialpha-first-real-loop"
+    },
+    "record_status": "example_not_production",
+    "schema_version": "securerails.work_vault.v1",
+    "scope": {
+      "auto_merge_allowed": false,
+      "automated_decisions_about_natural_persons_allowed": false,
+      "critical_infrastructure_safety_component_reliance_allowed": false,
+      "defensive_only": true,
+      "exploit_execution_allowed": false,
+      "external_target_scanning_allowed": false,
+      "hr_worker_evaluation_allowed": false,
+      "human_review_required": true,
+      "malware_generation_allowed": false,
+      "profiling_natural_persons_allowed": false,
+      "repo_owned": true,
+      "social_engineering_allowed": false
+    },
+    "source": "example_template",
+    "status": "vault_opened",
+    "utility": {
+      "asset": "$AGIALPHA",
+      "dispute_reserve": 100,
+      "human_review_budget": 200,
+      "operator_work_budget": 1000,
+      "replay_budget": 150,
+      "safety_review_budget": 150,
+      "unit": "alpha_work_unit",
+      "validator_review_budget": 250
+    },
+    "validators": [
+      "claim_boundary_validator",
+      "safety_ledger_validator",
+      "workflow_permission_validator",
+      "replay_validator"
+    ],
+    "vault_id": "sr-vault-2026-0001",
+    "vault_type": "proof_bound_defensive_remediation"
+  }
+]
