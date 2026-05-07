@@ -101,6 +101,7 @@
     ".github/workflows/rsi-governor-001-vnext-canary.yml",
     ".github/workflows/secure-rails-compliance-guard.yml",
     ".github/workflows/securerails-agentic-pr-guard-001.yml",
+    ".github/workflows/securerails-supply-chain-provenance-001.yml",
     ".github/workflows/securerails-work-vault-demo.yml",
     ".github/workflows/seed-runner-autonomous.yml",
     "agiga-foundry-runs/test/agiga-foundry-evidence-docket/00_manifest.json",
