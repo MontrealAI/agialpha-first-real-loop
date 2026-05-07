@@ -39,7 +39,6 @@ def analyze(args):
     elif wf['risks'] or claims['violations']: rec='escalate'
     manifest={'schema_version':'securerails.pr_guard_run.v1','experiment_slug':'securerails-agentic-pr-guard-001','run_id':ctx['run_id'],'run_url':ctx['run_url'],'repository':ctx['repository'],'pull_request':ctx['pull_request'],'status':'success','claim_level':'local-pr-guard','work_vault_id':vault['work_vault_id'],'mark_allocation_id':'mark-'+ctx['run_id'],'assigned_sovereign':sov['primary'],'proofbundle_id':'proofbundle-'+ctx['run_id'],'evidence_docket_id':'docket-'+ctx['run_id'],'human_review_required':True,'auto_merge_allowed':False,'safety':ledger,'decision':{'recommendation':rec,'reason':'Automated advisory recommendation only; human review required.'},'claim_boundary':BOUNDARY}
     _write(out/'00_manifest.json',manifest);_write(out/'01_work_vault.json',vault);_write(out/'02_mark_allocation.json',mark);_write(out/'03_sovereign_assignment.json',sov);_write(out/'04_pr_diff_summary.json',diff);_write(out/'05_workflow_permission_review.json',wf);_write(out/'06_redacted_secret_hygiene_report.json',{'findings':secrets,'claim_boundary':BOUNDARY});_write(out/'07_claim_boundary_review.json',claims);_write(out/'08_no_automerge_review.json',no_auto);_write(out/'09_safety_ledger.json',ledger)
-    build_proofbundle(out)
     checklist='''- [ ] Review manifest
 - [ ] Review safety ledger
 - [ ] Confirm claim boundary
@@ -49,6 +48,7 @@ def analyze(args):
     _write(out/'12_validator_report.json',build_validator_report(rec));_write(out/'14_settlement_record.json',build_settlement(vault['work_vault_id']));_write(out/'15_capability_archive_candidate.json',build_candidate(rec))
     build_evidence(out,out/'11_evidence_docket')
     (out/'evidence-run-manifest.json').write_text(json.dumps({'experiment_slug':'securerails-agentic-pr-guard-001','output_root':str(out),'claim_boundary':BOUNDARY},indent=2))
+    build_proofbundle(out)
 
 def validate(args):
     required=['00_manifest.json','01_work_vault.json','02_mark_allocation.json','03_sovereign_assignment.json','09_safety_ledger.json','12_validator_report.json']

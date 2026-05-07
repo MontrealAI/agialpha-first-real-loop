@@ -13,7 +13,7 @@ def collect_all_files(repo_root):
 def _git_changed_files(repo_root, base_sha, head_sha):
     if not base_sha or not head_sha:
         return []
-    cmd = ['git', '-C', str(repo_root), 'diff', '--name-only', base_sha, head_sha]
+    cmd = ['git', '-C', str(repo_root), 'diff', '--name-only', '--merge-base', base_sha, head_sha]
     proc = subprocess.run(cmd, capture_output=True, text=True, check=False)
     if proc.returncode != 0:
         return []
