@@ -1,0 +1,29 @@
+[
+  {
+    "allocated_budget_proxy": 1000,
+    "allocation_id": "mark-alloc-2026-0001",
+    "assigned_sovereign": "workflow-permission-sovereign",
+    "auto_merge_allowed": false,
+    "claim_boundary": "This MARK allocation does not certify security and does not authorize autonomous remediation.",
+    "falsification_required": true,
+    "human_review_required": true,
+    "opportunity_id": "security-opportunity-0001",
+    "promotion_without_evidence_allowed": false,
+    "proof_required": true,
+    "rejection_reason_if_any": null,
+    "replay_required": true,
+    "review_priority": "high",
+    "risk_tier": "medium",
+    "schema_version": "agialpha.mark_allocation.v1",
+    "source": "example_template",
+    "status": "example_not_production",
+    "utility_asset": "$AGIALPHA",
+    "validators_required": [
+      "claim_boundary_validator",
+      "safety_ledger_validator",
+      "workflow_permission_validator",
+      "replay_validator"
+    ],
+    "vault_id": "sr-vault-2026-0001"
+  }
+]
