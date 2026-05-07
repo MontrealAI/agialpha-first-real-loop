@@ -55,3 +55,19 @@ class T(unittest.TestCase):
             self.assertEqual(by_status['accepted'], ['a'])
             self.assertEqual(by_status['rejected'], ['b'])
             self.assertEqual(by_status['unavailable'], ['c'])
+
+    def test_by_safety_status_treats_partial_counter_maps_as_missing(self):
+        with tempfile.TemporaryDirectory() as td:
+            reg = Path(td) / 'registry'
+            for part in ('work_vaults', 'mark_allocations', 'sovereigns', 'settlements'):
+                (reg / part).mkdir(parents=True, exist_ok=True)
+            (reg / 'work_vaults' / 'a.json').write_text(
+                '{"vault_id":"a","hard_safety_counters":{"raw_secret_leak_count":0}}'
+            )
+            (reg / 'work_vaults' / 'b.json').write_text(
+                '{"vault_id":"b","hard_safety_counters":{"raw_secret_leak_count":0,"external_target_scan_count":0,"exploit_execution_count":0,"malware_generation_count":0,"social_engineering_content_count":0,"unsafe_automerge_count":0,"critical_safety_incidents":0}}'
+            )
+            build_indexes(reg)
+            by_safety = json.loads((reg / 'indexes' / 'by_safety_status.json').read_text())
+            self.assertIn('a', by_safety['missing'])
+            self.assertIn('b', by_safety['all_zero'])
