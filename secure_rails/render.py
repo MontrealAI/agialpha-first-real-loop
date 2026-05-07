@@ -14,8 +14,8 @@ def build_data(registry: Path, out: Path) -> None:
     (out/'summary.json').write_text(json.dumps(summary,indent=2,sort_keys=True)+"\n")
 
 def render_html(registry: Path, out: Path) -> None:
-    d=Path('docs/_generated/secure-rails')
-    if not (d/'summary.json').exists(): build_data(registry,d)
+    d = out / '_data'
+    build_data(registry, d)
     w=_j(d/'work_vaults.json'); m=_j(d/'mark_allocations.json'); s=_j(d/'sovereigns.json'); st=_j(d/'settlements.json'); sm=_j(d/'summary.json')
     out.mkdir(parents=True, exist_ok=True)
     chain='AI-agent work event → Work Vault → MARK → Sovereign → AGI Job → ProofBundle → Evidence Docket → Human Review → $AGIALPHA Utility Settlement → Capability Archive → vNext Defensive Work'
