@@ -68,3 +68,16 @@ class T(unittest.TestCase):
             by_safety = json.loads((reg / 'indexes' / 'by_safety_status.json').read_text())
             self.assertEqual(by_safety['missing'], ['a'])
             self.assertEqual(by_safety['all_zero'], [])
+
+    def test_by_safety_nonzero_exploit_counter_flags_non_zero(self):
+        with tempfile.TemporaryDirectory() as td:
+            reg = Path(td) / 'registry'
+            for part in ('work_vaults', 'mark_allocations', 'sovereigns', 'settlements'):
+                (reg / part).mkdir(parents=True, exist_ok=True)
+            (reg / 'work_vaults' / 'a.json').write_text(
+                '{"vault_id":"a","hard_safety_counters":{"raw_secret_leak_count":0,"external_target_scan_count":0,"exploit_execution_count":1,"malware_generation_count":0,"social_engineering_content_count":0,"unsafe_automerge_count":0,"critical_safety_incidents":0}}'
+            )
+            build_indexes(reg)
+            by_safety = json.loads((reg / 'indexes' / 'by_safety_status.json').read_text())
+            self.assertEqual(by_safety['non_zero'], ['a'])
+
