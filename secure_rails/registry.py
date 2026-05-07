@@ -35,6 +35,8 @@ def build_indexes(registry: Path) -> None:
         hs=vault.get('hard_safety_counters')
         if not isinstance(hs, dict):
             by_safety['missing'].append(vid)
+        elif any(k not in hs for k in counters):
+            by_safety['missing'].append(vid)
         elif all(hs.get(k,0)==0 for k in counters):
             by_safety['all_zero'].append(vid)
         else:
