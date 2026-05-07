@@ -22,12 +22,14 @@ def _write(p,o): Path(p).write_text(json.dumps(o,indent=2))
 def analyze(args):
     out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
     ev=load_event(args.event_path); ctx=build_context(args.repo_root,ev)
+    diff=pr_diff_summary(args.repo_root, ev)
     texts={}
-    for p in Path(args.repo_root).rglob('*'):
-        if p.is_file() and '.git' not in p.parts:
-            try:texts[str(p.relative_to(args.repo_root))]=p.read_text(errors='ignore')
+    for rel in diff['changed_files']:
+        p=Path(args.repo_root)/rel
+        if p.exists() and p.is_file():
+            try:texts[rel]=p.read_text(errors='ignore')
             except:pass
-    diff=pr_diff_summary(args.repo_root); wf=review_workflows(args.repo_root)
+    wf=review_workflows(args.repo_root, diff['workflow_files'])
     secrets=[f for k,v in texts.items() for f in scan_text(k,v)]
     claims=review_claims(texts); no_auto=review_no_automerge(texts)
     vault=build_work_vault(ctx); mark=allocate_mark(diff,wf,claims,no_auto); sov=assign_sovereign(diff,wf,secrets,claims,no_auto)
