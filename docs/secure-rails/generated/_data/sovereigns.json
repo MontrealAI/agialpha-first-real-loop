@@ -1,0 +1,50 @@
+[
+  {
+    "allowed_work": [
+      "workflow inventory",
+      "least privilege recommendation",
+      "safe patch proposal",
+      "replay instruction generation",
+      "Evidence Docket generation"
+    ],
+    "claim_boundary": "This Sovereign is an operational proof-producing work organ, not a certification authority or legal sovereign.",
+    "domain": "repo-owned defensive workflow governance",
+    "evidence_docket_policy": {
+      "claim_boundary_required": true,
+      "cost_ledger_required": true,
+      "human_review_record_required": true,
+      "validator_report_required": true
+    },
+    "forbidden_work": [
+      "external target scanning",
+      "exploit execution",
+      "credential collection",
+      "malware generation",
+      "social engineering",
+      "auto-merge",
+      "security certification"
+    ],
+    "promotion_policy": {
+      "auto_merge_allowed": false,
+      "autonomous_promotion_allowed": false,
+      "human_review_required": true
+    },
+    "proofbundle_policy": {
+      "hashes_required": true,
+      "replay_instructions_required": true,
+      "safety_ledger_required": true
+    },
+    "schema_version": "agialpha.sovereign.v1",
+    "source": "example_template",
+    "sovereign_id": "workflow-permission-sovereign",
+    "sovereign_name": "Workflow Permission Sovereign",
+    "status": "example_not_production",
+    "task_family": "GitHub Actions permission review",
+    "validators": [
+      "workflow_permission_validator",
+      "claim_boundary_validator",
+      "safety_ledger_validator",
+      "replay_validator"
+    ]
+  }
+]
