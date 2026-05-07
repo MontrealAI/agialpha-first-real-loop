@@ -1,0 +1,8 @@
+{
+  "type": "object",
+  "required": [
+    "schema_version",
+    "validators",
+    "claim_boundary"
+  ]
+}
