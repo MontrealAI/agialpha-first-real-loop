@@ -3,7 +3,7 @@
     {
       "opportunity_id": "opp-0-0",
       "cycle_index": 1,
-      "repo_root": "/home/runner/work/agialpha-first-real-loop/agialpha-first-real-loop",
+      "repo_root": "/workspace/agialpha-first-real-loop",
       "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
       "repo_owned_scope": true,
       "defensive_domain": "repo"
@@ -11,7 +11,7 @@
     {
       "opportunity_id": "opp-0-1",
       "cycle_index": 1,
-      "repo_root": "/home/runner/work/agialpha-first-real-loop/agialpha-first-real-loop",
+      "repo_root": "/workspace/agialpha-first-real-loop",
       "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
       "repo_owned_scope": true,
       "defensive_domain": "repo"
@@ -19,7 +19,7 @@
     {
       "opportunity_id": "opp-0-2",
       "cycle_index": 1,
-      "repo_root": "/home/runner/work/agialpha-first-real-loop/agialpha-first-real-loop",
+      "repo_root": "/workspace/agialpha-first-real-loop",
       "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
       "repo_owned_scope": true,
       "defensive_domain": "repo"
@@ -27,7 +27,7 @@
     {
       "opportunity_id": "opp-0-3",
       "cycle_index": 1,
-      "repo_root": "/home/runner/work/agialpha-first-real-loop/agialpha-first-real-loop",
+      "repo_root": "/workspace/agialpha-first-real-loop",
       "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
       "repo_owned_scope": true,
       "defensive_domain": "repo"
@@ -35,7 +35,7 @@
     {
       "opportunity_id": "opp-1-0",
       "cycle_index": 2,
-      "repo_root": "/home/runner/work/agialpha-first-real-loop/agialpha-first-real-loop",
+      "repo_root": "/workspace/agialpha-first-real-loop",
       "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
       "repo_owned_scope": true,
       "defensive_domain": "repo"
@@ -43,7 +43,7 @@
     {
       "opportunity_id": "opp-1-1",
       "cycle_index": 2,
-      "repo_root": "/home/runner/work/agialpha-first-real-loop/agialpha-first-real-loop",
+      "repo_root": "/workspace/agialpha-first-real-loop",
       "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
       "repo_owned_scope": true,
       "defensive_domain": "repo"
@@ -51,7 +51,7 @@
     {
       "opportunity_id": "opp-1-2",
       "cycle_index": 2,
-      "repo_root": "/home/runner/work/agialpha-first-real-loop/agialpha-first-real-loop",
+      "repo_root": "/workspace/agialpha-first-real-loop",
       "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
       "repo_owned_scope": true,
       "defensive_domain": "repo"
@@ -59,7 +59,7 @@
     {
       "opportunity_id": "opp-1-3",
       "cycle_index": 2,
-      "repo_root": "/home/runner/work/agialpha-first-real-loop/agialpha-first-real-loop",
+      "repo_root": "/workspace/agialpha-first-real-loop",
       "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
       "repo_owned_scope": true,
       "defensive_domain": "repo"

@@ -100,6 +100,7 @@
     ".github/workflows/rsi-governor-001-safe-pr.yml",
     ".github/workflows/rsi-governor-001-vnext-canary.yml",
     ".github/workflows/secure-rails-compliance-guard.yml",
+    ".github/workflows/securerails-work-vault-demo.yml",
     ".github/workflows/seed-runner-autonomous.yml",
     "agiga-foundry-runs/test/agiga-foundry-evidence-docket/00_manifest.json",
     "agiga-foundry-runs/test/agiga-foundry-evidence-docket/22_summary_tables/scoreboard.json",
@@ -162,6 +163,7 @@
     "rsi-governor-runs/test/rsi-governor-evidence-docket/19_summary_tables/scoreboard.json",
     "sample_outputs/coldchain-energy-loop-001/00_manifest.json",
     "sample_outputs/rsi-forge-002/00_manifest.json",
-    "sample_outputs/rsi-forge-002/evidence-run-manifest.json"
+    "sample_outputs/rsi-forge-002/evidence-run-manifest.json",
+    "securerails-runs/demo/evidence-run-manifest.json"
   ]
 }
