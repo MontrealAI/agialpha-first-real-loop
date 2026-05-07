@@ -9,8 +9,8 @@ MAP=[('work_vaults','work-vault-example.json','sr-vault-example-001.json'),('mar
 def _stamp(data: dict, source: str, source_file: str) -> dict:
     raw=json.dumps(data, sort_keys=True, separators=(",",":"))
     out=dict(data)
-    out.setdefault('source', source)
-    out.setdefault('status', 'example_not_production')
+    out['source'] = source
+    out['status'] = 'example_not_production'
     out.setdefault('generated_at', '1970-01-01T00:00:00Z')
     out.setdefault('source_file', source_file)
     out.setdefault('source_hash', hashlib.sha256(raw.encode('utf-8')).hexdigest())
