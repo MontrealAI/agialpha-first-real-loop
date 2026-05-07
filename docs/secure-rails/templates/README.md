@@ -35,3 +35,10 @@ These templates are governance evidence scaffolds. They support bounded defensiv
   - Boundary: reviewer records support compliance posture, not legal guarantees.
 
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
+
+
+## Registry examples
+- Work Vault example: `work-vault-example.json`
+- MARK allocation example: `mark-allocation-example.json`
+- Sovereign example: `sovereign-example.json`
+- Settlement example: `vault-settlement-example.json`

@@ -22,7 +22,7 @@ def build_site(registry='evidence_registry', out='_site'):
     runs,exps,wfs=_load(registry)
     repo_root = Path(__file__).resolve().parent.parent
     o=Path(out); o.mkdir(parents=True,exist_ok=True)
-    for d in ['data','experiments','workflows','runs','artifacts','legacy','external-review','safety','launchpad','falsification','assets','strong-rsi']:
+    for d in ['data','experiments','workflows','runs','artifacts','legacy','external-review','safety','launchpad','falsification','assets','strong-rsi','secure-rails']:
         (o/d).mkdir(exist_ok=True)
 
     o.joinpath('.nojekyll').write_text('')
@@ -38,6 +38,11 @@ def build_site(registry='evidence_registry', out='_site'):
     o.joinpath('experiments/index.html').write_text(page('Experiments',''.join([f"<li><a href='/agialpha-first-real-loop/experiments/{e['slug']}/'>{e['slug']}</a></li>" for e in exps])))
     o.joinpath('workflows/index.html').write_text(page('Workflows',''.join([f"<li><a href='/agialpha-first-real-loop/workflows/{(w.get('slug') or Path(w.get('workflow_file','')).stem)}/'>{w.get('name') or w.get('workflow_name') or Path(w.get('workflow_file','')).name}</a></li>" for w in wfs])))
     o.joinpath('runs/index.html').write_text(page('Runs',''.join([f"<li><a href='/agialpha-first-real-loop/runs/{r['run_id']}/'>{r['run_id']}</a></li>" for r in runs])))
+    sr = repo_root / 'docs' / 'secure-rails' / 'generated' / 'index.html'
+    if sr.exists():
+        o.joinpath('secure-rails/index.html').write_text(sr.read_text(encoding='utf-8'), encoding='utf-8')
+    else:
+        o.joinpath('secure-rails/index.html').write_text(page('SecureRails Work Vaults','<p>Unavailable</p>'))
     for s in ['artifacts','external-review','safety','legacy','falsification']:
         o.joinpath(s,'index.html').write_text(page(s.title(),'<a href="/agialpha-first-real-loop/">Back</a>'))
 
