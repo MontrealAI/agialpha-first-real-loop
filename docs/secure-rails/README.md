@@ -19,3 +19,7 @@ Boundary: not autonomous certification, not offensive cyber, not high-risk decis
 
 - Agentic PR Guard: [agentic-pr-guard.md](agentic-pr-guard.md)
 - Operator guide: [pr-guard-operator-guide.md](pr-guard-operator-guide.md)
+
+- Supply-chain provenance: [supply-chain-provenance.md](supply-chain-provenance.md)
+- Artifact attestations: [artifact-attestations.md](artifact-attestations.md)
+- Repository health: [repository-security-health.md](repository-security-health.md)
