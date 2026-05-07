@@ -23,6 +23,7 @@
     "auto-merge",
     "security certification"
   ],
+  "generated_at": "1970-01-01T00:00:00Z",
   "promotion_policy": {
     "auto_merge_allowed": false,
     "autonomous_promotion_allowed": false,
@@ -35,6 +36,8 @@
   },
   "schema_version": "agialpha.sovereign.v1",
   "source": "example_template",
+  "source_file": "docs/secure-rails/templates/sovereign-example.json",
+  "source_hash": "8b13fd69eafaae1ecf8ed8ced39cd5601692e98867b7cc7e0b67e34d7c044f4e",
   "sovereign_id": "workflow-permission-sovereign",
   "sovereign_name": "Workflow Permission Sovereign",
   "status": "example_not_production",

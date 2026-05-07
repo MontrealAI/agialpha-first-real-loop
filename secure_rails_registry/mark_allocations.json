@@ -6,6 +6,7 @@
     "auto_merge_allowed": false,
     "claim_boundary": "This MARK allocation does not certify security and does not authorize autonomous remediation.",
     "falsification_required": true,
+    "generated_at": "1970-01-01T00:00:00Z",
     "human_review_required": true,
     "opportunity_id": "security-opportunity-0001",
     "promotion_without_evidence_allowed": false,
@@ -16,6 +17,8 @@
     "risk_tier": "medium",
     "schema_version": "agialpha.mark_allocation.v1",
     "source": "example_template",
+    "source_file": "docs/secure-rails/templates/mark-allocation-example.json",
+    "source_hash": "753334217336a60a90c1d891e9d2f5d7651cadc41220f7acc63c9a587793e759",
     "status": "example_not_production",
     "utility_asset": "$AGIALPHA",
     "validators_required": [

@@ -8,6 +8,7 @@
       "auto_merge_allowed": false,
       "claim_boundary": "This MARK allocation does not certify security and does not authorize autonomous remediation.",
       "falsification_required": true,
+      "generated_at": "1970-01-01T00:00:00Z",
       "human_review_required": true,
       "opportunity_id": "security-opportunity-0001",
       "promotion_without_evidence_allowed": false,
@@ -18,6 +19,8 @@
       "risk_tier": "medium",
       "schema_version": "agialpha.mark_allocation.v1",
       "source": "example_template",
+      "source_file": "docs/secure-rails/templates/mark-allocation-example.json",
+      "source_hash": "753334217336a60a90c1d891e9d2f5d7651cadc41220f7acc63c9a587793e759",
       "status": "example_not_production",
       "utility_asset": "$AGIALPHA",
       "validators_required": [
@@ -34,10 +37,13 @@
       "alpha_work_units_settled": 860,
       "auto_merge_allowed": false,
       "claim_boundary": "Utility settlement record only for bounded defensive protocol work; not a certification claim.",
+      "generated_at": "1970-01-01T00:00:00Z",
       "human_review_required": true,
       "schema_version": "securerails.vault_settlement.v1",
       "settlement_id": "settlement-2026-0001",
       "source": "example_template",
+      "source_file": "docs/secure-rails/templates/vault-settlement-example.json",
+      "source_hash": "de85a6e3dba65ab3ac76aebcb341182118a901bc28ee365797826e88a42e89f1",
       "status": "example_not_production",
       "utility_asset": "$AGIALPHA",
       "vault_id": "sr-vault-2026-0001"
@@ -69,6 +75,7 @@
         "auto-merge",
         "security certification"
       ],
+      "generated_at": "1970-01-01T00:00:00Z",
       "promotion_policy": {
         "auto_merge_allowed": false,
         "autonomous_promotion_allowed": false,
@@ -81,6 +88,8 @@
       },
       "schema_version": "agialpha.sovereign.v1",
       "source": "example_template",
+      "source_file": "docs/secure-rails/templates/sovereign-example.json",
+      "source_hash": "8b13fd69eafaae1ecf8ed8ced39cd5601692e98867b7cc7e0b67e34d7c044f4e",
       "sovereign_id": "workflow-permission-sovereign",
       "sovereign_name": "Workflow Permission Sovereign",
       "status": "example_not_production",
@@ -95,6 +104,10 @@
   ],
   "work_vaults": [
     {
+      "archive": {
+        "capability_archive_entry_id": null,
+        "vnext_reuse_status": "pending"
+      },
       "claim_boundary": "SecureRails is AI-agent security governance and proof-bound defensive remediation. This vault does not certify security, does not perform offensive cyber activity, and does not make autonomous decisions about natural persons.",
       "created_at": "2026-05-03T00:00:00Z",
       "evidence": {
@@ -103,6 +116,7 @@
         "proofbundle_id": null,
         "safe_pr_url": null
       },
+      "generated_at": "1970-01-01T00:00:00Z",
       "hard_safety_counters": {
         "critical_safety_incidents": 0,
         "exploit_execution_count": 0,
@@ -137,7 +151,17 @@
         "repo_owned": true,
         "social_engineering_allowed": false
       },
+      "settlement": {
+        "accepted_work_units": "not_reported",
+        "replay_fee_status": "pending",
+        "settlement_status": "pending",
+        "unused_budget_status": "pending",
+        "utility_settlement_record_id": null,
+        "validator_fee_status": "pending"
+      },
       "source": "example_template",
+      "source_file": "docs/secure-rails/templates/work-vault-example.json",
+      "source_hash": "999554d0e6390a63ff48c622173170b207145c0b5915c79a65b4978b2958dd42",
       "status": "example_not_production",
       "utility": {
         "asset": "$AGIALPHA",

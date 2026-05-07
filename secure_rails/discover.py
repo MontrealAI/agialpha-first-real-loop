@@ -17,14 +17,24 @@ def _stamp(data: dict, source: str, source_file: str) -> dict:
     return out
 
 
+def _merge_missing(existing: dict, incoming: dict) -> dict:
+    out = dict(existing)
+    for key, value in incoming.items():
+        if key not in out:
+            out[key] = value
+        elif isinstance(out[key], dict) and isinstance(value, dict):
+            out[key] = _merge_missing(out[key], value)
+    return out
+
+
 def discover(repo_root: Path, registry: Path) -> None:
     tdir=repo_root/'docs'/'secure-rails'/'templates'
     for folder,src,dst in MAP:
         target=registry/folder/dst
-        if target.exists():
-            continue
         source_path=tdir/src
-        data=json.loads(source_path.read_text(encoding='utf-8'))
-        data=_stamp(data, 'example_template', str(source_path))
+        data=_stamp(json.loads(source_path.read_text(encoding='utf-8')), 'example_template', str(source_path))
+        if target.exists():
+            current=json.loads(target.read_text(encoding='utf-8'))
+            data=_merge_missing(current, data)
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(json.dumps(data, indent=2, sort_keys=True)+"\n", encoding='utf-8')
