@@ -129,3 +129,5 @@ Each row represents one workflow file and should be read with these fields:
 - **Claim boundary:** This workflow enforces governance checks. It does not certify security or provide legal approval.
 
 | `securerails-agentic-pr-guard-001.yml` | SecureRails | `pull_request`, `workflow_dispatch` | PR Guard artifact with Work Vault/MARK/Sovereign/ProofBundle/Evidence Docket | Advisory only; human review required; no auto-merge; no secrets; least privilege read-only. | no |
+
+| `securerails-supply-chain-provenance-001.yml` | SecureRails | `workflow_dispatch`, `schedule`, `push` (SecureRails paths) | Artifact manifest, provenance record, attestation record/status, repository health report, supply-chain report, summary, evidence-run-manifest. | Advisory supply-chain evidence only; no certification claim; no direct Pages deploy. | no |
