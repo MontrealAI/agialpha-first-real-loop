@@ -39,7 +39,7 @@ def main():
             collect(a.repo_root, a.out)
         elif a.sub == 'hash-artifacts':
             out_parent = str(Path(a.out).parent)
-            manifest = build_manifest(a.repo_root, out_parent)
+            manifest = build_manifest(a.input, out_parent)
             Path(a.out).write_text(__import__('json').dumps(manifest, indent=2), encoding='utf-8')
         elif a.sub == 'provenance':
             build_provenance(a.repo_root, a.artifact_manifest, a.out)
