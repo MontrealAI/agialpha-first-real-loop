@@ -49,3 +49,7 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 - artifact-manifest-example.json
 - provenance-record-example.json
 - repository-health-example.json
+
+- customer-securerails-pr-guard.yml
+  - Copy-paste external repository workflow caller for SecureRails PR Guard reusable workflow.
+  - For production, pin workflow reference to release tag or commit SHA, not main.

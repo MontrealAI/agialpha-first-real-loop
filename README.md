@@ -76,3 +76,7 @@ See [docs/README.md](docs/README.md) for the full navigation index by role (oper
 
 
 - SecureRails supply-chain provenance: [docs/secure-rails/supply-chain-provenance.md](docs/secure-rails/supply-chain-provenance.md)
+
+- Installable SecureRails action: [docs/secure-rails/installable-action.md](docs/secure-rails/installable-action.md)
+- Reusable SecureRails workflow: [docs/secure-rails/reusable-workflow.md](docs/secure-rails/reusable-workflow.md)
+- Customer pilot installation: [docs/secure-rails/customer-pilot-installation.md](docs/secure-rails/customer-pilot-installation.md)

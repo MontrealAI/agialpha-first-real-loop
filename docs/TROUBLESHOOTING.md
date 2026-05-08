@@ -94,3 +94,8 @@ Use this format for every incident: **Symptom → Likely cause → Fix → What 
 
 ## SecureRails Agentic PR Guard 001
 - Ensure `python -m secure_rails_pr_guard analyze` and `validate` pass locally.
+
+## SecureRails installable action / reusable workflow
+- Confirm caller workflow uses read-only permissions and does not use `pull_request_target`.
+- Confirm production callers pin to release tag or commit SHA (not `main`).
+- Review `securerails-pr-guard-output/summary.md` and Evidence Docket before any remediation decision.
