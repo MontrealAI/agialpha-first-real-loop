@@ -1,4 +1,5 @@
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -13,13 +14,13 @@ def _repo_url(provider: str, owner: str, name: str) -> str:
     return ''
 
 
-def _record_from_repo(repo: Dict[str, Any]) -> Dict[str, Any]:
+def _record_from_repo(repo: Dict[str, Any], run_component: str) -> Dict[str, Any]:
     owner = repo.get('owner', 'unknown-owner')
     name = repo.get('name', 'unknown-repo')
     provider = repo.get('provider', 'github')
     return {
         'schema_version': 'securerails.customer_pilot_intake.v1',
-        'pilot_id': f'sr-pilot-sync-{provider}-{owner}-{name}',
+        'pilot_id': f'sr-pilot-sync-{provider}-{owner}-{name}-{run_component}',
         'customer_label': repo.get('customer_label', 'design-partner-redacted'),
         'customer_public_name': None,
         'repo': {
@@ -30,7 +31,7 @@ def _record_from_repo(repo: Dict[str, Any]) -> Dict[str, Any]:
             'repo_url': _repo_url(provider, owner, name),
         },
         'source': {
-            'ingestion_method': 'artifact_api',
+            'ingestion_method': 'artifact_api' if repo.get('allow_artifact_api', False) else 'manual',
             'workflow_run_id': None,
             'artifact_id': None,
             'artifact_name': repo.get('artifact_name', 'not_reported'),
@@ -82,4 +83,10 @@ def _record_from_repo(repo: Dict[str, Any]) -> Dict[str, Any]:
 def sync_external_repos(config_path: Path, limit: int) -> List[Dict[str, Any]]:
     cfg = load_external_repo_config(config_path)
     repos = cfg.get('repos', [])
-    return [_record_from_repo(repo) for repo in repos[: max(0, limit)]]
+    run_component = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+    records = []
+    for repo in repos[: max(0, limit)]:
+        if not repo.get('allow_artifact_api', False):
+            continue
+        records.append(_record_from_repo(repo, run_component))
+    return records
