@@ -61,6 +61,9 @@ jobs:
       attestations: write
       artifact-metadata: write
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
       - uses: actions/download-artifact@v4
         with: {name: securerails-supply-chain-output, path: secure-rails-supply-chain-output}
       - name: Attempt artifact attestation
