@@ -5,6 +5,8 @@ from .pilot_models import REQUIRED_CLAIM_BOUNDARY, FORBIDDEN_UTILITY_TERMS, Vali
 def _req(obj, path):
     cur = obj
     for p in path.split('.'):
+        if not isinstance(cur, dict):
+            return None
         if p not in cur:
             return None
         cur = cur[p]
@@ -12,6 +14,14 @@ def _req(obj, path):
 
 def validate_intake_record(rec: dict) -> ValidationResult:
     e = []
+
+    required_identity = [
+        "pilot_id", "customer_label", "repo.provider", "repo.owner", "repo.name", "repo.repo_url", "source.ingestion_method"
+    ]
+    for f in required_identity:
+        v = _req(rec, f)
+        if v in (None, ""):
+            e.append(f"{f} missing")
     checks_false = [
         "scope.external_target_scanning_allowed","scope.exploit_execution_allowed","scope.malware_generation_allowed",
         "scope.social_engineering_allowed","scope.auto_merge_allowed","scope.hr_worker_evaluation_allowed",
