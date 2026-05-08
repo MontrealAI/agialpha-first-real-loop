@@ -131,3 +131,6 @@ Each row represents one workflow file and should be read with these fields:
 | `securerails-agentic-pr-guard-001.yml` | SecureRails | `pull_request`, `workflow_dispatch` | PR Guard artifact with Work Vault/MARK/Sovereign/ProofBundle/Evidence Docket | Advisory only; human review required; no auto-merge; no secrets; least privilege read-only. | no |
 
 | `securerails-supply-chain-provenance-001.yml` | SecureRails | `workflow_dispatch`, `schedule`, `push` (SecureRails paths) | Artifact manifest, provenance record, attestation record/status, repository health report, supply-chain report, summary, evidence-run-manifest. | Advisory supply-chain evidence only; no certification claim; no direct Pages deploy. | no |
+
+| `securerails-pr-guard-reusable.yml` | SecureRails | `workflow_call` | SecureRails PR Guard advisory outputs (`securerails-pr-guard-output`). | Read-only permissions, no secrets, no auto-merge, human review required. | no |
+| `securerails-pr-guard-demo.yml` | SecureRails | `workflow_dispatch` | Demo artifact output for installable/reusable SecureRails PR Guard. | Demo only; preserves claim boundary and read-only posture. | no |

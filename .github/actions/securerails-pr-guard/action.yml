@@ -1,0 +1,108 @@
+name: SecureRails PR Guard Action
+description: Defensive, data-only SecureRails checks for PR guard evidence and advisory outputs.
+inputs:
+  mode:
+    description: "Mode: pr_guard|compliance_guard|work_vault|supply_chain"
+    required: false
+    default: "pr_guard"
+  repo-root:
+    description: "Repository root path"
+    required: false
+    default: "."
+  output-dir:
+    description: "Output directory for SecureRails artifacts"
+    required: false
+    default: "securerails-output"
+  event-path:
+    description: "Optional event payload path"
+    required: false
+    default: ""
+  strict:
+    description: "Strict validation mode"
+    required: false
+    default: "true"
+  generate-evidence-docket:
+    required: false
+    default: "true"
+  generate-work-vault:
+    required: false
+    default: "true"
+  generate-settlement-record:
+    required: false
+    default: "true"
+  token-utility-mode:
+    description: "mock|disabled"
+    required: false
+    default: "mock"
+  allow-pr-comment:
+    required: false
+    default: "false"
+outputs:
+  summary-path:
+    value: ${{ steps.run.outputs.summary_path }}
+  evidence-docket-path:
+    value: ${{ steps.run.outputs.evidence_docket_path }}
+  work-vault-path:
+    value: ${{ steps.run.outputs.work_vault_path }}
+  safety-ledger-path:
+    value: ${{ steps.run.outputs.safety_ledger_path }}
+  evidence-run-manifest-path:
+    value: ${{ steps.run.outputs.evidence_run_manifest_path }}
+  recommendation:
+    value: ${{ steps.run.outputs.recommendation }}
+runs:
+  using: composite
+  steps:
+    - id: run
+      shell: bash
+      run: |
+        set -euo pipefail
+        ROOT="${{ inputs.repo-root }}"
+        OUT="${{ inputs.output-dir }}"
+        MODE="${{ inputs.mode }}"
+        mkdir -p "$OUT"
+        case "$MODE" in
+          pr_guard|compliance_guard|work_vault|supply_chain) ;;
+          *) echo "Invalid mode: $MODE"; exit 1;;
+        esac
+        case "${{ inputs.token-utility-mode }}" in
+          mock|disabled) ;;
+          *) echo "Invalid token-utility-mode"; exit 1;;
+        esac
+
+        python scripts/secure_rails_claim_boundary_check.py "$ROOT"
+        python scripts/secure_rails_safety_ledger_check.py docs/secure-rails/templates/safety-ledger-example.json
+        python scripts/secure_rails_no_automerge_check.py "$ROOT"
+        python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json
+
+        if [ -f scripts/secure_rails_work_vault_check.py ]; then
+          python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/work-vault-example.json
+        fi
+
+        EVENT_PATH="${{ inputs.event-path }}"
+        EXTRA_EVENT=()
+        if [ -n "$EVENT_PATH" ]; then EXTRA_EVENT=(--event-path "$EVENT_PATH"); fi
+        python -m secure_rails_pr_guard analyze --repo-root "$ROOT" "${EXTRA_EVENT[@]}" --out "$OUT"
+        python -m secure_rails_pr_guard validate --input "$OUT"
+        python -m secure_rails_pr_guard render-summary --input "$OUT" --out "$OUT/summary.md"
+        if [ "${{ inputs.generate-evidence-docket }}" = "true" ]; then
+          python -m secure_rails_pr_guard build-evidence --input "$OUT" --out "$OUT/11_evidence_docket"
+        fi
+        if [ "$MODE" = "supply_chain" ]; then
+          python -m secure_rails supply-chain --repo-root "$ROOT" --out "$OUT/supply-chain" || true
+        fi
+
+        echo "summary_path=$OUT/summary.md" >> "$GITHUB_OUTPUT"
+        echo "evidence_docket_path=$OUT/11_evidence_docket" >> "$GITHUB_OUTPUT"
+        echo "work_vault_path=$OUT/work-vault.json" >> "$GITHUB_OUTPUT"
+        echo "safety_ledger_path=$OUT/safety-ledger.json" >> "$GITHUB_OUTPUT"
+        echo "evidence_run_manifest_path=$OUT/00_manifest.json" >> "$GITHUB_OUTPUT"
+        python - <<'PY' >> "$GITHUB_OUTPUT"
+import json, pathlib
+r="review_required"
+p=pathlib.Path("${{ inputs.output-dir }}")/"validator-report.json"
+if p.exists():
+  data=json.loads(p.read_text())
+  r=data.get("recommendation",r)
+print(f"recommendation={r}")
+PY

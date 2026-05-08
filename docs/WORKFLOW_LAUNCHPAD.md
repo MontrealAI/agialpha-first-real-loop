@@ -24,3 +24,7 @@ The Evidence Hub Launchpad is the operator entry point for running repository wo
 - No tokens are embedded in site pages.
 - Launchpad usage is bounded by the claim policy:  
   **No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.**
+
+
+- SecureRails PR Guard Reusable Workflow: `.github/workflows/securerails-pr-guard-reusable.yml` (called from customer repos).
+- SecureRails PR Guard Demo: `.github/workflows/securerails-pr-guard-demo.yml` (local demo).
