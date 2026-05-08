@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","required":["schema_version","repo_id","provider","owner","name","allowed_ingestion_methods","claim_boundary"]}

@@ -1,0 +1,23 @@
+name: SecureRails Customer Pilot Manual Ingest 001
+on:
+  workflow_dispatch:
+    inputs:
+      intake_path:
+        description: Path to local intake JSON or artifact directory
+        required: true
+        default: docs/secure-rails/templates/customer-pilot-intake-example.json
+permissions:
+  contents: read
+  actions: read
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m secure_rails customer-pilots validate-intake --input "${{ inputs.intake_path }}"
+      - run: python -m secure_rails customer-pilots ingest --input "${{ inputs.intake_path }}" --registry secure_rails_customer_pilots
+      - run: python -m secure_rails customer-pilots render --registry secure_rails_customer_pilots --out docs/secure-rails/generated/customer-pilots
+      - uses: actions/upload-artifact@v4
+        with: {name: securerails-customer-pilot-manual-ingest, path: docs/secure-rails/generated/customer-pilots}

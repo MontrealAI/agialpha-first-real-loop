@@ -53,3 +53,7 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 - customer-securerails-pr-guard.yml
   - Copy-paste external repository workflow caller for SecureRails PR Guard reusable workflow.
   - For production, pin workflow reference to release tag or commit SHA, not main.
+
+- customer-pilot-intake-example.json
+- external-repo-record-example.json
+- repository-dispatch-payload-example.json

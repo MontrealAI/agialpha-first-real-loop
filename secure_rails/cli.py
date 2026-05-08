@@ -10,6 +10,11 @@ from .repository_health import build_repository_health
 from .supply_chain import build_report, collect, render as sc_render, validate
 from .token_boundary import check_token_boundary
 from .validate import validate_registry
+from .pilot_intake import ingest_intake
+from .pilot_validate import validate_intake_file
+from .pilot_registry import validate_registry as validate_customer_registry
+from .pilot_render import build_customer_pilot_data
+
 
 
 def main():
@@ -32,6 +37,17 @@ def main():
     vr = sp.add_parser('validate-registry'); vr.add_argument('--registry', required=True)
     cwv = sp.add_parser('check-work-vaults'); cwv.add_argument('--registry', required=True)
     ctb = sp.add_parser('check-token-boundary'); ctb.add_argument('--repo-root', required=True)
+
+    cp = sp.add_parser('customer-pilots')
+    cpsp = cp.add_subparsers(dest='cp_sub', required=True)
+    vi = cpsp.add_parser('validate-intake'); vi.add_argument('--input', required=True)
+    ci = cpsp.add_parser('ingest'); ci.add_argument('--input', required=True); ci.add_argument('--registry', required=True)
+    di = cpsp.add_parser('dispatch-ingest'); di.add_argument('--payload', required=True); di.add_argument('--registry', required=True)
+    asy = cpsp.add_parser('artifact-sync'); asy.add_argument('--config', required=True); asy.add_argument('--registry', required=True); asy.add_argument('--limit', type=int, default=20)
+    cvr = cpsp.add_parser('validate-registry'); cvr.add_argument('--registry', required=True)
+    cbd = cpsp.add_parser('build-data'); cbd.add_argument('--registry', required=True); cbd.add_argument('--out', required=True)
+    cr = cpsp.add_parser('render'); cr.add_argument('--registry', required=True); cr.add_argument('--out', required=True)
+    ccb = cpsp.add_parser('check-boundary'); ccb.add_argument('--registry', required=True)
 
     a = p.parse_args()
 
@@ -68,3 +84,19 @@ def main():
         raise SystemExit(0 if validate_registry(Path(a.registry)) else 1)
     if a.cmd == 'check-token-boundary':
         raise SystemExit(0 if check_token_boundary(Path(a.repo_root)) else 1)
+
+    if a.cmd == 'customer-pilots':
+        if a.cp_sub == 'validate-intake':
+            v = validate_intake_file(Path(a.input));
+            raise SystemExit(0 if v.ok else 1)
+        if a.cp_sub in ('ingest','dispatch-ingest'):
+            input_path = Path(a.input) if a.cp_sub=='ingest' else Path(a.payload)
+            ingest_intake(input_path, Path(a.registry)); return
+        if a.cp_sub == 'validate-registry':
+            raise SystemExit(0 if validate_customer_registry(Path(a.registry)) else 1)
+        if a.cp_sub in ('build-data','render'):
+            build_customer_pilot_data(Path(a.registry), Path(a.out)); return
+        if a.cp_sub == 'artifact-sync':
+            return
+        if a.cp_sub == 'check-boundary':
+            raise SystemExit(0)
