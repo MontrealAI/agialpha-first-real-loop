@@ -1,57 +1,62 @@
-from __future__ import annotations
 import json
 from pathlib import Path
 
-
-def _load_dir(d: Path):
-    if not d.exists():
-        return []
-    return [json.loads(p.read_text(encoding='utf-8')) for p in sorted(d.glob('*.json'))]
+REQ = ['raw_secret_leak_count','external_target_scan_count','exploit_execution_count','malware_generation_count','social_engineering_content_count','unsafe_automerge_count','critical_safety_incidents']
 
 
-def build_indexes(registry: Path) -> None:
-    registry.mkdir(parents=True, exist_ok=True)
-    (registry / 'indexes').mkdir(parents=True, exist_ok=True)
-    w=_load_dir(registry/'work_vaults')
-    m=_load_dir(registry/'mark_allocations')
-    s=_load_dir(registry/'sovereigns')
-    st=_load_dir(registry/'settlements')
-    data={'generated_at':'1970-01-01T00:00:00Z','work_vaults':w,'mark_allocations':m,'sovereigns':s,'settlements':st}
-    (registry/'registry.json').write_text(json.dumps(data,indent=2,sort_keys=True)+"\n")
-    (registry/'latest.json').write_text(json.dumps({'counts':{'work_vaults':len(w),'mark_allocations':len(m),'sovereigns':len(s),'settlements':len(st)}},indent=2,sort_keys=True)+"\n")
-    for name,val in [('work_vaults.json',w),('mark_allocations.json',m),('sovereigns.json',s),('settlements.json',st)]:
-        (registry/name).write_text(json.dumps(val,indent=2,sort_keys=True)+"\n")
+def _load(path: Path):
+    # Fail fast on malformed registry records so indexing does not hide corruption.
+    return json.loads(path.read_text(encoding='utf-8'))
+
+
+def build_indexes(registry):
+    r = Path(registry)
+    (r / 'indexes').mkdir(parents=True, exist_ok=True)
+    w = list((r / 'work_vaults').glob('*.json')) if (r / 'work_vaults').exists() else []
 
     by_status = {}
-    by_risk = {}
-    by_human = {}
-    by_safety = {"all_zero": [], "nonzero": [], "missing": []}
-    counters=['raw_secret_leak_count','external_target_scan_count','exploit_execution_count','malware_generation_count','social_engineering_content_count','unsafe_automerge_count','critical_safety_incidents']
-    for vault in w:
-        vid=vault.get('vault_id','unavailable')
-        by_status.setdefault(vault.get('status', 'unavailable'), []).append(vid)
-        by_risk.setdefault(vault.get('mark_allocation',{}).get('risk_tier','unavailable'), []).append(vid)
-        by_human.setdefault(vault.get('evidence',{}).get('human_review_status','not_reported'), []).append(vid)
-        hs=vault.get('hard_safety_counters')
-        if not isinstance(hs, dict):
-            by_safety['missing'].append(vid)
-        elif not all(k in hs for k in counters):
-            by_safety['missing'].append(vid)
-        elif all(hs.get(k,0)==0 for k in counters):
-            by_safety['all_zero'].append(vid)
-        else:
-            by_safety['nonzero'].append(vid)
+    by_sovereign = {}
+    by_safety = {'all_zero': [], 'missing': [], 'non_zero': []}
+    by_risk_tier = {}
+    by_human_review_status = {}
 
-    by_sovereign = {
-        sovereign.get('sovereign_id', 'unknown'): [
-            vault.get('vault_id')
-            for vault in w
-            if vault.get('mark_allocation', {}).get('assigned_sovereign') == sovereign.get('sovereign_id')
-        ]
-        for sovereign in s
-    }
-    (registry/'indexes'/'by_status.json').write_text(json.dumps(by_status,indent=2,sort_keys=True)+"\n")
-    (registry/'indexes'/'by_sovereign.json').write_text(json.dumps(by_sovereign,indent=2,sort_keys=True)+"\n")
-    (registry/'indexes'/'by_risk_tier.json').write_text(json.dumps(by_risk,indent=2,sort_keys=True)+"\n")
-    (registry/'indexes'/'by_human_review_status.json').write_text(json.dumps(by_human,indent=2,sort_keys=True)+"\n")
-    (registry/'indexes'/'by_safety_status.json').write_text(json.dumps(by_safety,indent=2,sort_keys=True)+"\n")
+    for p in w:
+        d = _load(p)
+        vid = d.get('vault_id', p.stem)
+
+        st = d.get('status', 'unavailable')
+        by_status.setdefault(st, []).append(vid)
+
+        sid = d.get('sovereign_id') or d.get('sovereign', {}).get('sovereign_id') or d.get('mark_allocation', {}).get('assigned_sovereign')
+        if sid:
+            by_sovereign.setdefault(sid, []).append(vid)
+
+        risk_tier = d.get('mark_allocation', {}).get('risk_tier', 'unavailable')
+        by_risk_tier.setdefault(risk_tier, []).append(vid)
+
+        review_status = d.get('evidence', {}).get('human_review_status', 'unavailable')
+        by_human_review_status.setdefault(review_status, []).append(vid)
+
+        hs = d.get('hard_safety_counters', {})
+        if any(k not in hs for k in REQ):
+            by_safety['missing'].append(vid)
+        elif any(hs.get(k, 0) != 0 for k in REQ):
+            by_safety['non_zero'].append(vid)
+        else:
+            by_safety['all_zero'].append(vid)
+
+    sdir = r / 'sovereigns'
+    if sdir.exists():
+        for sp in sdir.glob('*.json'):
+            sd = _load(sp)
+            sid = sd.get('sovereign_id', sp.stem)
+            by_sovereign.setdefault(sid, by_sovereign.get(sid, []))
+
+    for n, d in [
+        ('by_status.json', by_status),
+        ('by_sovereign.json', by_sovereign),
+        ('by_safety_status.json', by_safety),
+        ('by_risk_tier.json', by_risk_tier),
+        ('by_human_review_status.json', by_human_review_status),
+    ]:
+        (r / 'indexes' / n).write_text(json.dumps(d, indent=2), encoding='utf-8')
