@@ -23,3 +23,9 @@ Boundary: not autonomous certification, not offensive cyber, not high-risk decis
 - Supply-chain provenance: [supply-chain-provenance.md](supply-chain-provenance.md)
 - Artifact attestations: [artifact-attestations.md](artifact-attestations.md)
 - Repository health: [repository-security-health.md](repository-security-health.md)
+
+- Installable action: [installable-action.md](installable-action.md)
+- Reusable workflow: [reusable-workflow.md](reusable-workflow.md)
+- Customer pilot install: [customer-pilot-installation.md](customer-pilot-installation.md)
+- Release/versioning: [release-and-versioning.md](release-and-versioning.md)
+- External repo security model: [external-repo-security-model.md](external-repo-security-model.md)

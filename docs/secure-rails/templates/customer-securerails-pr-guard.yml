@@ -1,0 +1,23 @@
+name: SecureRails Agentic PR Guard
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+  actions: read
+
+jobs:
+  securerails:
+    uses: MontrealAI/agialpha-first-real-loop/.github/workflows/securerails-pr-guard-reusable.yml@main
+    with:
+      mode: pr_guard
+      strict: true
+      generate_evidence_docket: true
+      generate_work_vault: true
+      generate_settlement_record: true
+      token_utility_mode: mock
+      upload_artifact: true

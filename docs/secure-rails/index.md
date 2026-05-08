@@ -13,3 +13,11 @@ Use this index to navigate core policy and safety documents for defensive, proof
 - [Templates](templates/README.md)
 
 - [Work Vaults, MARK, and Sovereigns](work-vaults-mark-sovereigns.md)
+
+
+## Install SecureRails in another repository
+- Copy-paste template: [templates/customer-securerails-pr-guard.yml](templates/customer-securerails-pr-guard.yml)
+- Required permissions: read-only `contents`, `pull-requests`, `actions`
+- Production pinning: use release tag or commit SHA (not `main`)
+- Artifacts: summary, Work Vault, Evidence Docket, safety ledger
+- Claim boundary: No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
