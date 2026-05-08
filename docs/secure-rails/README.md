@@ -29,3 +29,6 @@ Boundary: not autonomous certification, not offensive cyber, not high-risk decis
 - Customer pilot install: [customer-pilot-installation.md](customer-pilot-installation.md)
 - External repo security model: [external-repo-security-model.md](external-repo-security-model.md)
 - Release/versioning: [release-and-versioning.md](release-and-versioning.md)
+
+## Customer Pilot Intake
+See customer-pilot-intake.md and multi-repo-evidence-ingestion.md.

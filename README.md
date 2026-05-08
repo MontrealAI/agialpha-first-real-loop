@@ -80,3 +80,5 @@ See [docs/README.md](docs/README.md) for the full navigation index by role (oper
 - Installable SecureRails action: [docs/secure-rails/installable-action.md](docs/secure-rails/installable-action.md)
 - Reusable SecureRails workflow: [docs/secure-rails/reusable-workflow.md](docs/secure-rails/reusable-workflow.md)
 - Customer pilot installation: [docs/secure-rails/customer-pilot-installation.md](docs/secure-rails/customer-pilot-installation.md)
+
+- SecureRails Customer Pilot Intake 001: see docs/secure-rails/customer-pilot-intake.md.

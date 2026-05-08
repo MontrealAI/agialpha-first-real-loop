@@ -1,0 +1,24 @@
+name: SecureRails Customer Pilot Intake 001
+on:
+  repository_dispatch:
+    types: [securerails_customer_pilot_completed]
+  workflow_dispatch:
+    inputs:
+      intake_file:
+        description: Path to local intake file
+        required: false
+        default: docs/secure-rails/templates/customer-pilot-intake-example.json
+permissions:
+  contents: read
+  actions: read
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: if [ "${{ github.event_name }}" = "repository_dispatch" ]; then python -m secure_rails customer-pilots dispatch-ingest --payload "$GITHUB_EVENT_PATH" --registry secure_rails_customer_pilots; else python -m secure_rails customer-pilots validate-intake --input "${{ github.event.inputs.intake_file || 'docs/secure-rails/templates/customer-pilot-intake-example.json' }}" && python -m secure_rails customer-pilots ingest --input "${{ github.event.inputs.intake_file || 'docs/secure-rails/templates/customer-pilot-intake-example.json' }}" --registry secure_rails_customer_pilots; fi
+      - run: python -m secure_rails customer-pilots build-data --registry secure_rails_customer_pilots --out docs/_generated/secure-rails/customer-pilots
+      - uses: actions/upload-artifact@v4
+        with: {name: securerails-customer-pilot-intake, path: docs/_generated/secure-rails/customer-pilots}
