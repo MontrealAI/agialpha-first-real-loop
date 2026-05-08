@@ -62,8 +62,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Checkout SecureRails provider repo
+        uses: actions/checkout@v4
+        with:
+          repository: MontrealAI/agialpha-first-real-loop
+          path: securerails-provider
+          fetch-depth: 1
+          persist-credentials: false
       - id: guard
-        uses: ./.github/actions/securerails-pr-guard
+        uses: ./securerails-provider/.github/actions/securerails-pr-guard
         with:
           mode: ${{ inputs.mode }}
           repo-root: .

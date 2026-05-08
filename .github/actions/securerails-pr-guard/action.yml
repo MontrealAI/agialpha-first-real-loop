@@ -90,7 +90,7 @@ runs:
 
         REC="human_review_required"
         if [ -f "$OUT/pr_guard_report.json" ]; then
-          REC=$(python -c "import json;print(json.load(open('$OUT'/pr_guard_report.json')).get('recommendation','human_review_required'))")
+          REC=$(python -c "import json, pathlib; p=pathlib.Path(r'''$OUT''')/'pr_guard_report.json'; print(json.loads(p.read_text()).get('recommendation','human_review_required'))")
         fi
 
         echo "summary_path=$OUT/summary.md" >> "$GITHUB_OUTPUT"
