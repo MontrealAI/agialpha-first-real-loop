@@ -35,6 +35,17 @@ jobs:
       - run: python -m secure_rails supply-chain hash-artifacts --input secure-rails-supply-chain-output --out secure-rails-supply-chain-output/artifact_manifest.json
       - run: python -m secure_rails supply-chain provenance --repo-root . --artifact-manifest secure-rails-supply-chain-output/artifact_manifest.json --out secure-rails-supply-chain-output/provenance_record.json
       - run: python -m secure_rails supply-chain repository-health --repo-root . --out secure-rails-supply-chain-output/repository_health.json
+      - name: Optional OpenSSF Scorecard note
+        if: ${{ inputs.run_scorecard == 'true' }}
+        run: |
+          python - <<'PY2'
+          import json
+          p='secure-rails-supply-chain-output/repository_health.json'
+          data=json.load(open(p))
+          data['checks']['scorecard_status']='unavailable'
+          data['scorecard']={'enabled':True,'raw_output_path':None,'summary':{'note':'OpenSSF Scorecard is an advisory repository security-health signal and does not certify SecureRails.'}}
+          json.dump(data,open(p,'w'),indent=2)
+          PY2
       - run: python -m secure_rails supply-chain build-report --input secure-rails-supply-chain-output --out secure-rails-supply-chain-output/supply_chain_report.json
       - run: python -m secure_rails supply-chain render --input secure-rails-supply-chain-output --out secure-rails-supply-chain-output/summary.md
       - run: python -m secure_rails supply-chain validate --input secure-rails-supply-chain-output
@@ -56,10 +67,16 @@ jobs:
         with: {python-version: '3.11'}
       - uses: actions/download-artifact@v4
         with: {name: securerails-supply-chain-output, path: secure-rails-supply-chain-output}
+      - name: Attempt GitHub Artifact Attestation
+        continue-on-error: true
+        id: attest
+        uses: actions/attest@v1
+        with:
+          subject-path: secure-rails-supply-chain-output/**
       - run: |
           python - <<'PY2'
           import json
-          rec={"schema_version":"securerails.attestation_record.v1","attestation":{"status":"unavailable","method":"github_artifact_attestation","attestation_paths":[],"verification_instructions":"Artifact attestation attempted, but no attestation bundle was produced in this workflow run."}}
+          rec={"schema_version":"securerails.attestation_record.v1","attestation":{"status":"unavailable","method":"github_artifact_attestation","attestation_paths":[],"verification_instructions":"Artifact attestation unavailable; local provenance record generated."}}
           open('secure-rails-supply-chain-output/attestation_record.json','w').write(json.dumps(rec,indent=2))
           PY2
       - run: python -m secure_rails supply-chain build-report --input secure-rails-supply-chain-output --out secure-rails-supply-chain-output/supply_chain_report.json
