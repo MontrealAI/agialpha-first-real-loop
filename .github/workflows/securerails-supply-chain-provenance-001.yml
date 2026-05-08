@@ -31,15 +31,25 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python scripts/secure_rails_safety_ledger_check.py docs/secure-rails/templates/safety-ledger-example.json
+      - run: python scripts/secure_rails_no_automerge_check.py .
+      - run: python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json
       - run: python -m secure_rails supply-chain collect --repo-root . --out secure-rails-supply-chain-output
       - run: python -m secure_rails supply-chain hash-artifacts --input secure-rails-supply-chain-output --out secure-rails-supply-chain-output/artifact_manifest.json
       - run: python -m secure_rails supply-chain provenance --repo-root . --artifact-manifest secure-rails-supply-chain-output/artifact_manifest.json --out secure-rails-supply-chain-output/provenance_record.json
       - run: python -m secure_rails supply-chain repository-health --repo-root . --out secure-rails-supply-chain-output/repository_health.json
+      - name: Optional OpenSSF Scorecard
+        if: ${{ inputs.run_scorecard == 'true' }}
+        continue-on-error: true
+        uses: ossf/scorecard-action@v2.4.0
+        with:
+          results_file: secure-rails-supply-chain-output/scorecard-results.sarif
       - run: python -m secure_rails supply-chain build-report --input secure-rails-supply-chain-output --out secure-rails-supply-chain-output/supply_chain_report.json
       - run: python -m secure_rails supply-chain render --input secure-rails-supply-chain-output --out secure-rails-supply-chain-output/summary.md
       - run: python -m secure_rails supply-chain validate --input secure-rails-supply-chain-output
       - uses: actions/upload-artifact@v4
         with: {name: securerails-supply-chain-output, path: secure-rails-supply-chain-output}
+
   attest:
     if: ${{ inputs.attempt_github_attestation == 'true' }}
     needs: [supply-chain]
@@ -51,16 +61,26 @@ jobs:
       attestations: write
       artifact-metadata: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: {python-version: '3.11'}
       - uses: actions/download-artifact@v4
         with: {name: securerails-supply-chain-output, path: secure-rails-supply-chain-output}
+      - name: Attempt artifact attestation
+        id: attest_step
+        continue-on-error: true
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: secure-rails-supply-chain-output/**
       - run: |
           python - <<'PY2'
           import json
-          rec={"schema_version":"securerails.attestation_record.v1","attestation":{"status":"unavailable","method":"github_artifact_attestation","attestation_paths":[],"verification_instructions":"Artifact attestation attempted, but no attestation bundle was produced in this workflow run."}}
-          open('secure-rails-supply-chain-output/attestation_record.json','w').write(json.dumps(rec,indent=2))
+          from secure_rails.attestations import build_attestation_record
+          outcome = "generated" if "${{ steps.attest_step.outcome }}" == "success" else "unavailable"
+          rec = build_attestation_record(
+              'secure-rails-supply-chain-output/attestation_record.json',
+              attempt=True,
+              supported=(outcome == 'generated'),
+              reason='generated' if outcome == 'generated' else 'action unsupported, permissions unavailable, or local fallback',
+          )
+          print(json.dumps(rec, indent=2))
           PY2
       - run: python -m secure_rails supply-chain build-report --input secure-rails-supply-chain-output --out secure-rails-supply-chain-output/supply_chain_report.json
       - run: python -m secure_rails supply-chain render --input secure-rails-supply-chain-output --out secure-rails-supply-chain-output/summary.md
