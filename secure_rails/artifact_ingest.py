@@ -17,6 +17,9 @@ def ingest_artifact(path: Path):
                 if p.is_absolute() or '..' in p.parts: result["quarantine_reasons"].append("zip_slip"); continue
                 if info.file_size>MAX_FILE_SIZE: result["quarantine_reasons"].append("oversized_file"); continue
                 if info.is_dir(): continue
+                if Path(info.filename).suffix.lower() not in {'.json','.md','.txt'}:
+                    result['quarantine_reasons'].append('unsupported_binary')
+                    continue
                 data=zf.read(info.filename)
                 text=data.decode('utf-8',errors='ignore')
                 secrets=find_secret_like(text)

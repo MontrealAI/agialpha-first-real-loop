@@ -89,9 +89,38 @@ def main():
         if a.cp_sub == 'validate-intake':
             v = validate_intake_file(Path(a.input));
             raise SystemExit(0 if v.ok else 1)
-        if a.cp_sub in ('ingest','dispatch-ingest'):
-            input_path = Path(a.input) if a.cp_sub=='ingest' else Path(a.payload)
-            ingest_intake(input_path, Path(a.registry)); return
+        if a.cp_sub == 'ingest':
+            ingest_intake(Path(a.input), Path(a.registry)); return
+        if a.cp_sub == 'dispatch-ingest':
+            import json
+            payload = json.loads(Path(a.payload).read_text(encoding='utf-8'))
+            cp = payload.get('client_payload', payload)
+            if 'repo' in cp and isinstance(cp['repo'], str) and '/' in cp['repo']:
+                owner, name = cp['repo'].split('/', 1)
+                cp['repo'] = {
+                    'provider': 'github', 'owner': owner, 'name': name,
+                    'visibility': 'unknown', 'repo_url': f'https://github.com/{owner}/{name}'
+                }
+            cp.setdefault('schema_version','securerails.customer_pilot_intake.v1')
+            cp.setdefault('customer_label','design-partner-redacted')
+            cp.setdefault('customer_public_name',None)
+            cp.setdefault('source',{})
+            cp['source'].setdefault('ingestion_method','repository_dispatch')
+            cp['source'].setdefault('artifact_status','not_reported')
+            cp.setdefault('scope', {'repo_owned': True, 'defensive_only': True, 'human_review_required': True,
+                'external_target_scanning_allowed': False, 'exploit_execution_allowed': False, 'malware_generation_allowed': False,
+                'social_engineering_allowed': False, 'auto_merge_allowed': False, 'hr_worker_evaluation_allowed': False,
+                'profiling_natural_persons_allowed': False, 'automated_decisions_about_natural_persons_allowed': False,
+                'critical_infrastructure_safety_component_reliance_allowed': False})
+            cp.setdefault('evidence', {'human_review_status':'pending','recommendation':'human_review_required'})
+            cp.setdefault('hard_safety_counters', {'raw_secret_leak_count':0,'external_target_scan_count':0,'exploit_execution_count':0,'malware_generation_count':0,'social_engineering_content_count':0,'unsafe_automerge_count':0,'critical_safety_incidents':0})
+            cp.setdefault('privacy', {'raw_customer_secrets_ingested':False,'personal_data_intended':False,'redaction_required':True,'public_display_allowed':False})
+            cp.setdefault('utility_accounting', {'asset':'$AGIALPHA','mode':'mock','alpha_work_units':'not_reported','settlement_status':'recorded_not_financial_settlement'})
+            cp.setdefault('status','pending_validation')
+            cp.setdefault('claim_boundary','SecureRails customer pilot intake records are evidence-governance artifacts. They do not certify security, do not authorize autonomous remediation, and do not make decisions about natural persons.')
+            tmp = Path('.tmp_dispatch_intake.json')
+            tmp.write_text(json.dumps(cp), encoding='utf-8')
+            ingest_intake(tmp, Path(a.registry)); return
         if a.cp_sub == 'validate-registry':
             raise SystemExit(0 if validate_customer_registry(Path(a.registry)) else 1)
         if a.cp_sub in ('build-data','render'):
