@@ -27,5 +27,7 @@ def build_manifest(repo_root, out_dir, workflow_name='local', workflow_run_id='l
                 artifacts.append({"path":rel,"sha256":_sha256(p),"size_bytes":os.path.getsize(p),"artifact_type":"evidence","claim_boundary_present":True})
     m={"schema_version":"securerails.artifact_manifest.v1","generated_at":datetime.now(timezone.utc).isoformat(),"repository":os.getenv('GITHUB_REPOSITORY','MontrealAI/agialpha-first-real-loop'),"commit_sha":os.getenv('GITHUB_SHA','local'),"workflow_run_id":str(workflow_run_id),"workflow_name":workflow_name,"artifact_scope":"secure_rails_supply_chain_provenance_001","artifacts":sorted(artifacts,key=lambda x:x['path']),"not_found":missing,"claim_boundary":"This artifact manifest records hashes and provenance metadata. It does not certify security or claim empirical SOTA."}
     os.makedirs(out_dir,exist_ok=True)
-    p=os.path.join(out_dir,'artifact_manifest.json');json.dump(m,open(p,'w'),indent=2)
+    p=os.path.join(out_dir,'artifact_manifest.json')
+    with open(p,'w',encoding='utf-8') as f:
+        json.dump(m,f,indent=2)
     return m
