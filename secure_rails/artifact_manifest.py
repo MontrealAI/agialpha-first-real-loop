@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 OPTIONAL_GLOBS = [
     'docs/secure-rails/*.md','docs/secure-rails/templates/*.json','secure_rails_registry/*.json',
     'docs/_generated/secure-rails/*.json','docs/_generated/secure-rails/supply-chain/*.json',
-    '*/evidence-run-manifest.json','**/safety-ledger*.json','**/*work-vault*.json','**/*proofbundle*.json','**/*evidence-docket*.json'
+    '**/evidence-run-manifest.json','**/safety-ledger*.json','**/*work-vault*.json','**/*proofbundle*.json','**/*evidence-docket*.json'
 ]
 
 def _sha256(path):
