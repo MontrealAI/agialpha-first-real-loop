@@ -73,3 +73,6 @@ See [docs/REPOSITORY_MAP.md](docs/REPOSITORY_MAP.md) for directory-by-directory 
 See [docs/README.md](docs/README.md) for the full navigation index by role (operator, reviewer, contributor).
 
 - SecureRails Agentic PR Guard 001: [docs/secure-rails/agentic-pr-guard.md](docs/secure-rails/agentic-pr-guard.md)
+
+
+- SecureRails supply-chain provenance: [docs/secure-rails/supply-chain-provenance.md](docs/secure-rails/supply-chain-provenance.md)
