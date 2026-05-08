@@ -3,11 +3,16 @@ import json, html
 from pathlib import Path
 CLAIM="SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cybersecurity certification, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product."
 
-def _j(path: Path): return json.loads(path.read_text(encoding='utf-8')) if path.exists() else []
+def _j(path: Path):
+    if path.is_file():
+        return json.loads(path.read_text(encoding='utf-8'))
+    if path.is_dir():
+        return [json.loads(p.read_text(encoding='utf-8')) for p in sorted(path.glob('*.json'))]
+    return []
 
 def build_data(registry: Path, out: Path) -> None:
     out.mkdir(parents=True, exist_ok=True)
-    w,m,s,st=[_j(registry/f) for f in ('work_vaults.json','mark_allocations.json','sovereigns.json','settlements.json')]
+    w,m,s,st=[_j(registry/f) or _j(registry/f.replace('.json','')) for f in ('work_vaults.json','mark_allocations.json','sovereigns.json','settlements.json')]
     for n,v in [('work_vaults.json',w),('mark_allocations.json',m),('sovereigns.json',s),('settlements.json',st)]:
         (out/n).write_text(json.dumps(v,indent=2,sort_keys=True)+"\n")
     counters=['raw_secret_leak_count','external_target_scan_count','exploit_execution_count','malware_generation_count','social_engineering_content_count','unsafe_automerge_count','critical_safety_incidents']
