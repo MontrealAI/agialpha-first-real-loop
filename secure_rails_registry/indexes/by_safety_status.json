@@ -1,7 +1,7 @@
 {
-  "all_zero": [],
-  "missing": [
+  "all_zero": [
     "sr-vault-2026-0001"
   ],
+  "missing": [],
   "non_zero": []
 }

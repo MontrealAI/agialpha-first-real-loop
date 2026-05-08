@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-REQ = ['raw_secret_leak_count', 'unsafe_tool_call_count', 'policy_violation_count']
+REQ = ['raw_secret_leak_count','external_target_scan_count','exploit_execution_count','malware_generation_count','social_engineering_content_count','unsafe_automerge_count','critical_safety_incidents']
 
 
 def _load(path: Path):
@@ -27,7 +27,7 @@ def build_indexes(registry):
         st = d.get('status', 'unavailable')
         by_status.setdefault(st, []).append(vid)
 
-        sid = d.get('sovereign_id') or d.get('sovereign', {}).get('sovereign_id')
+        sid = d.get('sovereign_id') or d.get('sovereign', {}).get('sovereign_id') or d.get('mark_allocation', {}).get('assigned_sovereign')
         if sid:
             by_sovereign.setdefault(sid, []).append(vid)
 
@@ -50,7 +50,7 @@ def build_indexes(registry):
         for sp in sdir.glob('*.json'):
             sd = _load(sp)
             sid = sd.get('sovereign_id', sp.stem)
-            by_sovereign.setdefault(sid, []).append(sd.get('vault_id', sid))
+            by_sovereign.setdefault(sid, by_sovereign.get(sid, []))
 
     for n, d in [
         ('by_status.json', by_status),
