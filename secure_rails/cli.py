@@ -30,6 +30,7 @@ def main():
     bd = sp.add_parser('build-data'); bd.add_argument('--registry', required=True); bd.add_argument('--out', required=True)
     rr = sp.add_parser('render'); rr.add_argument('--registry', required=True); rr.add_argument('--out', required=True)
     vr = sp.add_parser('validate-registry'); vr.add_argument('--registry', required=True)
+    cwv = sp.add_parser('check-work-vaults'); cwv.add_argument('--registry', required=True)
     ctb = sp.add_parser('check-token-boundary'); ctb.add_argument('--repo-root', required=True)
 
     a = p.parse_args()
@@ -63,7 +64,7 @@ def main():
     if a.cmd == 'render':
         render_html(Path(a.registry), Path(a.out))
         return
-    if a.cmd == 'validate-registry':
+    if a.cmd in ('validate-registry', 'check-work-vaults'):
         raise SystemExit(0 if validate_registry(Path(a.registry)) else 1)
     if a.cmd == 'check-token-boundary':
         raise SystemExit(0 if check_token_boundary(Path(a.repo_root)) else 1)
