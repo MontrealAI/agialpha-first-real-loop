@@ -1,0 +1,101 @@
+name: SecureRails PR Guard Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      mode:
+        required: false
+        type: string
+        default: pr_guard
+      strict:
+        required: false
+        type: boolean
+        default: true
+      generate_evidence_docket:
+        required: false
+        type: boolean
+        default: true
+      generate_work_vault:
+        required: false
+        type: boolean
+        default: true
+      generate_settlement_record:
+        required: false
+        type: boolean
+        default: true
+      token_utility_mode:
+        required: false
+        type: string
+        default: mock
+      upload_artifact:
+        required: false
+        type: boolean
+        default: true
+    outputs:
+      recommendation:
+        value: ${{ jobs.securerails.outputs.recommendation }}
+      summary_path:
+        value: ${{ jobs.securerails.outputs.summary_path }}
+      evidence_docket_path:
+        value: ${{ jobs.securerails.outputs.evidence_docket_path }}
+      work_vault_path:
+        value: ${{ jobs.securerails.outputs.work_vault_path }}
+
+permissions:
+  contents: read
+  pull-requests: read
+  actions: read
+
+jobs:
+  securerails:
+    runs-on: ubuntu-latest
+    outputs:
+      recommendation: ${{ steps.guard.outputs.recommendation }}
+      summary_path: ${{ steps.guard.outputs.summary-path }}
+      evidence_docket_path: ${{ steps.guard.outputs.evidence-docket-path }}
+      work_vault_path: ${{ steps.guard.outputs.work-vault-path }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - id: provider-ref
+        name: Resolve provider ref from caller pin
+        run: |
+          REF="${GITHUB_WORKFLOW_REF##*@}"
+          echo "ref=$REF" >> "$GITHUB_OUTPUT"
+      - name: Checkout SecureRails provider repo
+        uses: actions/checkout@v4
+        with:
+          repository: MontrealAI/agialpha-first-real-loop
+          ref: ${{ steps.provider-ref.outputs.ref }}
+          path: securerails-provider
+          fetch-depth: 1
+          persist-credentials: false
+      - id: guard
+        uses: ./securerails-provider/.github/actions/securerails-pr-guard
+        with:
+          mode: ${{ inputs.mode }}
+          repo-root: .
+          output-dir: securerails-pr-guard-output
+          event-path: ${{ github.event_path }}
+          strict: ${{ inputs.strict }}
+          generate-evidence-docket: ${{ inputs.generate_evidence_docket }}
+          generate-work-vault: ${{ inputs.generate_work_vault }}
+          generate-settlement-record: ${{ inputs.generate_settlement_record }}
+          token-utility-mode: ${{ inputs.token_utility_mode }}
+      - if: ${{ inputs.upload_artifact }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: securerails-pr-guard-output
+          path: securerails-pr-guard-output
+      - name: Publish step summary
+        run: |
+          if [ -f securerails-pr-guard-output/summary.md ]; then
+            cat securerails-pr-guard-output/summary.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "SecureRails summary not generated. Human review required." >> "$GITHUB_STEP_SUMMARY"
+          fi

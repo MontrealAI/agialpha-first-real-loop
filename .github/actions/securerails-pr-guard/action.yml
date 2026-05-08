@@ -1,0 +1,104 @@
+name: SecureRails PR Guard Composite Action
+description: Run SecureRails defensive PR guard checks and generate advisory evidence artifacts.
+inputs:
+  mode:
+    description: "Execution mode: pr_guard|compliance_guard|work_vault|supply_chain"
+    required: false
+    default: "pr_guard"
+  repo-root:
+    description: "Repository root to analyze"
+    required: false
+    default: "."
+  output-dir:
+    description: "Output directory for SecureRails artifacts"
+    required: false
+    default: "securerails-output"
+  event-path:
+    description: "Optional GitHub event payload path"
+    required: false
+    default: ""
+  strict:
+    description: "Fail on governance/safety findings"
+    required: false
+    default: "true"
+  generate-evidence-docket:
+    required: false
+    default: "true"
+  generate-work-vault:
+    required: false
+    default: "true"
+  generate-settlement-record:
+    required: false
+    default: "true"
+  token-utility-mode:
+    description: "Token utility accounting mode: mock|disabled"
+    required: false
+    default: "mock"
+  allow-pr-comment:
+    description: "Reserved for future safe reporter; currently ignored"
+    required: false
+    default: "false"
+outputs:
+  summary-path:
+    value: ${{ steps.run.outputs.summary_path }}
+  evidence-docket-path:
+    value: ${{ steps.run.outputs.evidence_docket_path }}
+  work-vault-path:
+    value: ${{ steps.run.outputs.work_vault_path }}
+  safety-ledger-path:
+    value: ${{ steps.run.outputs.safety_ledger_path }}
+  evidence-run-manifest-path:
+    value: ${{ steps.run.outputs.evidence_run_manifest_path }}
+  recommendation:
+    value: ${{ steps.run.outputs.recommendation }}
+runs:
+  using: composite
+  steps:
+    - id: run
+      shell: bash
+      run: |
+        set -euo pipefail
+        MODE='${{ inputs.mode }}'
+        OUT='${{ inputs.output-dir }}'
+        ROOT='${{ inputs.repo-root }}'
+        EVENT_PATH='${{ inputs.event-path }}'
+        ACTION_DIR="$GITHUB_ACTION_PATH"
+        PROVIDER_ROOT=$(cd "$ACTION_DIR/../../.." && pwd)
+        export PYTHONPATH="$PROVIDER_ROOT${PYTHONPATH:+:$PYTHONPATH}"
+        mkdir -p "$OUT/11_evidence_docket"
+
+        python "$PROVIDER_ROOT/scripts/secure_rails_claim_boundary_check.py" "$ROOT"
+        python "$PROVIDER_ROOT/scripts/secure_rails_no_automerge_check.py" "$ROOT"
+        python "$PROVIDER_ROOT/scripts/secure_rails_safety_ledger_check.py" "$PROVIDER_ROOT/docs/secure-rails/templates/safety-ledger-example.json"
+        python "$PROVIDER_ROOT/scripts/secure_rails_use_case_triage_check.py" "$PROVIDER_ROOT/docs/secure-rails/templates/deployment-intake-example.json"
+
+        if [ -f "$PROVIDER_ROOT/scripts/secure_rails_work_vault_check.py" ]; then
+          python "$PROVIDER_ROOT/scripts/secure_rails_work_vault_check.py" "$PROVIDER_ROOT/docs/secure-rails/templates/work-vault-example.json"
+        fi
+
+        if [ "$MODE" = "pr_guard" ] || [ "$MODE" = "compliance_guard" ] || [ "$MODE" = "work_vault" ] || [ "$MODE" = "supply_chain" ]; then
+          CMD=(python -m secure_rails_pr_guard analyze --repo-root "$ROOT" --out "$OUT")
+          if [ -n "$EVENT_PATH" ]; then CMD+=(--event-path "$EVENT_PATH"); fi
+          "${CMD[@]}"
+          python -m secure_rails_pr_guard validate --input "$OUT"
+          python -m secure_rails_pr_guard render-summary --input "$OUT" --out "$OUT/summary.md"
+          if [ '${{ inputs.generate-evidence-docket }}' = 'true' ]; then
+            python -m secure_rails_pr_guard build-evidence --input "$OUT" --out "$OUT/11_evidence_docket"
+          fi
+        fi
+
+        if [ "$MODE" = "supply_chain" ]; then
+          python -m secure_rails supply-chain validate --input "$OUT" || true
+        fi
+
+        REC="human_review_required"
+        if [ -f "$OUT/pr_guard_report.json" ]; then
+          REC=$(python -c "import json, pathlib; p=pathlib.Path(r'''$OUT''')/'pr_guard_report.json'; print(json.loads(p.read_text()).get('recommendation','human_review_required'))")
+        fi
+
+        echo "summary_path=$OUT/summary.md" >> "$GITHUB_OUTPUT"
+        echo "evidence_docket_path=$OUT/11_evidence_docket" >> "$GITHUB_OUTPUT"
+        echo "work_vault_path=$OUT/01_work_vault.json" >> "$GITHUB_OUTPUT"
+        echo "safety_ledger_path=$OUT/09_safety_ledger.json" >> "$GITHUB_OUTPUT"
+        echo "evidence_run_manifest_path=$OUT/evidence-run-manifest.json" >> "$GITHUB_OUTPUT"
+        echo "recommendation=$REC" >> "$GITHUB_OUTPUT"
