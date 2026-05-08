@@ -14,6 +14,7 @@ from .pilot_intake import ingest_intake
 from .pilot_validate import validate_intake_file
 from .pilot_registry import validate_registry as validate_customer_registry
 from .pilot_render import build_customer_pilot_data
+from .external_repo import sync_external_repos
 
 
 
@@ -126,6 +127,12 @@ def main():
         if a.cp_sub in ('build-data','render'):
             build_customer_pilot_data(Path(a.registry), Path(a.out)); return
         if a.cp_sub == 'artifact-sync':
+            for rec in sync_external_repos(Path(a.config), a.limit):
+                ingest_intake_from_record = rec
+                import json
+                tmp = Path('.tmp_artifact_sync_intake.json')
+                tmp.write_text(json.dumps(ingest_intake_from_record), encoding='utf-8')
+                ingest_intake(tmp, Path(a.registry))
             return
         if a.cp_sub == 'check-boundary':
             raise SystemExit(0)
