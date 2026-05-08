@@ -56,8 +56,10 @@ jobs:
       - run: |
           python - <<'PY2'
           import json
-          rec={"schema_version":"securerails.attestation_record.v1","attestation":{"status":"generated","method":"github_artifact_attestation","attestation_paths":[],"verification_instructions":"Artifact attestation attempted in GitHub Actions attestation job."}}
+          rec={"schema_version":"securerails.attestation_record.v1","attestation":{"status":"unavailable","method":"github_artifact_attestation","attestation_paths":[],"verification_instructions":"Artifact attestation attempted, but no attestation artifact was generated in this workflow run."}}
           open('secure-rails-supply-chain-output/attestation_record.json','w').write(json.dumps(rec,indent=2))
           PY2
+      - run: python -m secure_rails supply-chain build-report --input secure-rails-supply-chain-output --out secure-rails-supply-chain-output/supply_chain_report.json
+      - run: python -m secure_rails supply-chain render --input secure-rails-supply-chain-output --out secure-rails-supply-chain-output/summary.md
       - uses: actions/upload-artifact@v4
         with: {name: securerails-supply-chain-output-with-attestation, path: secure-rails-supply-chain-output}
