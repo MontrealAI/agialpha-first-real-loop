@@ -62,12 +62,20 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - id: provider_ref
+        name: Resolve provider ref from workflow_call pin
+        shell: bash
+        env:
+          WORKFLOW_REF: ${{ github.workflow_ref }}
+        run: |
+          echo "ref=${WORKFLOW_REF##*@}" >> "$GITHUB_OUTPUT"
       - name: Checkout SecureRails provider repo
         uses: actions/checkout@v4
         with:
           repository: MontrealAI/agialpha-first-real-loop
           path: securerails-provider
           fetch-depth: 1
+          ref: ${{ steps.provider_ref.outputs.ref }}
           persist-credentials: false
       - id: guard
         uses: ./securerails-provider/.github/actions/securerails-pr-guard

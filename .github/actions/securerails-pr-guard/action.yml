@@ -63,14 +63,16 @@ runs:
         ROOT='${{ inputs.repo-root }}'
         EVENT_PATH='${{ inputs.event-path }}'
         mkdir -p "$OUT/11_evidence_docket"
+        PROVIDER_ROOT="$(cd "$GITHUB_ACTION_PATH/../../.." && pwd)"
+        export PYTHONPATH="$PROVIDER_ROOT:${PYTHONPATH:-}"
 
-        python scripts/secure_rails_claim_boundary_check.py "$ROOT"
-        python scripts/secure_rails_no_automerge_check.py "$ROOT"
-        python scripts/secure_rails_safety_ledger_check.py docs/secure-rails/templates/safety-ledger-example.json
-        python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json
+        python "$PROVIDER_ROOT/scripts/secure_rails_claim_boundary_check.py" "$ROOT"
+        python "$PROVIDER_ROOT/scripts/secure_rails_no_automerge_check.py" "$ROOT"
+        python "$PROVIDER_ROOT/scripts/secure_rails_safety_ledger_check.py" "$PROVIDER_ROOT/docs/secure-rails/templates/safety-ledger-example.json"
+        python "$PROVIDER_ROOT/scripts/secure_rails_use_case_triage_check.py" "$PROVIDER_ROOT/docs/secure-rails/templates/deployment-intake-example.json"
 
-        if [ -f scripts/secure_rails_work_vault_check.py ]; then
-          python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/work-vault-example.json
+        if [ -f "$PROVIDER_ROOT/scripts/secure_rails_work_vault_check.py" ]; then
+          python "$PROVIDER_ROOT/scripts/secure_rails_work_vault_check.py" "$PROVIDER_ROOT/docs/secure-rails/templates/work-vault-example.json"
         fi
 
         if [ "$MODE" = "pr_guard" ] || [ "$MODE" = "compliance_guard" ] || [ "$MODE" = "work_vault" ] || [ "$MODE" = "supply_chain" ]; then
@@ -95,7 +97,7 @@ runs:
 
         echo "summary_path=$OUT/summary.md" >> "$GITHUB_OUTPUT"
         echo "evidence_docket_path=$OUT/11_evidence_docket" >> "$GITHUB_OUTPUT"
-        echo "work_vault_path=$OUT/work_vault.json" >> "$GITHUB_OUTPUT"
-        echo "safety_ledger_path=$OUT/safety_ledger.json" >> "$GITHUB_OUTPUT"
-        echo "evidence_run_manifest_path=$OUT/evidence_run_manifest.json" >> "$GITHUB_OUTPUT"
+        echo "work_vault_path=$OUT/01_work_vault.json" >> "$GITHUB_OUTPUT"
+        echo "safety_ledger_path=$OUT/09_safety_ledger.json" >> "$GITHUB_OUTPUT"
+        echo "evidence_run_manifest_path=$OUT/evidence-run-manifest.json" >> "$GITHUB_OUTPUT"
         echo "recommendation=$REC" >> "$GITHUB_OUTPUT"
