@@ -113,7 +113,9 @@ def main():
         if a.gh_sub == 'validate-events':
             data=json.loads(Path(a.input).read_text()); forbidden=set(data.get('forbidden_events',[])); default=set(data.get('default_allowed_events',[])); bad=sorted(forbidden & default); [print(f'forbidden event enabled by default: {b}') for b in bad]; raise SystemExit(0 if not bad else 1)
         if a.gh_sub == 'verify-webhook':
-            payload=Path(a.payload_file).read_bytes(); secret=os.environ.get(a.secret_env,'').encode(); ok=verify_github_webhook_signature(secret,payload,a.signature); raise SystemExit(0 if ok else 1)
+            payload=Path(a.payload_file).read_bytes(); secret_val=os.environ.get(a.secret_env);
+            if not secret_val: print('webhook secret env var is unset or empty'); raise SystemExit(1)
+            secret=secret_val.encode(); ok=verify_github_webhook_signature(secret,payload,a.signature); raise SystemExit(0 if ok else 1)
         if a.gh_sub == 'normalize-webhook':
             payload=json.loads(Path(a.payload_file).read_text()); verified=(a.signature_verified=='true'); out=normalize_webhook_payload(payload,a.event_type,a.delivery_id,verified); Path(a.out).write_text(json.dumps(out,indent=2)); return
         if a.gh_sub == 'build-dispatch':

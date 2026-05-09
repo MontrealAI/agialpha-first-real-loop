@@ -8,6 +8,8 @@ DEFAULT_READ_ONLY = {
   "administration": "none", "deployments": "none", "statuses": "read"
 }
 OPTIONAL_MODES = {"pr_comment_mode", "issue_creation_mode", "check_run_mode"}
+ALLOWED_PERMISSION_LEVELS={"none","read","write"}
+ALLOWED_PERMISSION_KEYS={"contents","metadata","pull_requests","actions","checks","issues","secrets","workflows","administration","deployments","statuses"}
 
 
 def validate_permission_matrix(data: dict) -> tuple[bool, list[str]]:
@@ -16,6 +18,10 @@ def validate_permission_matrix(data: dict) -> tuple[bool, list[str]]:
     modes = set(data.get('optional_modes_enabled', []))
     if not modes.issubset(OPTIONAL_MODES):
         errs.append('unknown optional mode')
+    unknown_keys=sorted(set(perms.keys())-ALLOWED_PERMISSION_KEYS)
+    for k in unknown_keys: errs.append(f'unknown permission scope: {k}')
+    for k,v in perms.items():
+        if v not in ALLOWED_PERMISSION_LEVELS: errs.append(f'invalid permission level: {k}={v}')
     forbidden = {
         'contents': {'write'}, 'workflows': {'write'}, 'administration': {'read', 'write'},
         'secrets': {'read', 'write'}, 'deployments': {'write'}

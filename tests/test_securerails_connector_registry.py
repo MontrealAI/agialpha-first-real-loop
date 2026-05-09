@@ -5,7 +5,8 @@ class T(unittest.TestCase):
   def test_registry(self):
     with tempfile.TemporaryDirectory() as td:
       r=Path(td)/'r';
-      for i in range(2):
-        p=Path(td)/f'i{i}.json';p.write_text(json.dumps({'schema_version':'unknown'}));update_registry(p,r)
-      files=list((r/'installations').glob('*.json'));self.assertEqual(len(files),2)
+      p=Path(td)/'i.json';p.write_text(json.dumps({'schema_version':'unknown','installation_id':'../../escape'}));update_registry(p,r)
+      files=list((r/'installations').glob('*.json'));self.assertEqual(len(files),1);self.assertNotIn('..',files[0].name)
+      p2=Path(td)/'i2.json';p2.write_text(json.dumps({'schema_version':'unknown'}));update_registry(p2,r)
+      self.assertEqual(len(list((r/'installations').glob('*.json'))),2)
       o=Path(td)/'o';build_connector_data(r,o);self.assertTrue((o/'summary.json').exists())

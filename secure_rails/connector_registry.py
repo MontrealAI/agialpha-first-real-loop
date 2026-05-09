@@ -1,5 +1,6 @@
 
 import json
+import re
 from pathlib import Path
 from uuid import uuid4
 
@@ -8,12 +9,22 @@ def _ensure(reg: Path):
         (reg/d).mkdir(parents=True, exist_ok=True)
     (reg/'registry.json').write_text(json.dumps({'schema_version':'securerails.connector_registry.v1'},indent=2),encoding='utf-8') if not (reg/'registry.json').exists() else None
 
+
+def _safe_record_id(value: str) -> str:
+    cleaned = re.sub(r'[^A-Za-z0-9._-]+', '_', value).strip('._-')
+    return cleaned[:120] if cleaned else f'record-{uuid4()}'
+
 def update_registry(input_path: Path, reg: Path):
     _ensure(reg)
     rec=json.loads(input_path.read_text(encoding='utf-8'))
     kind='events' if rec.get('schema_version')=='securerails.webhook_event.v1' else 'dispatches' if rec.get('schema_version')=='securerails.repository_dispatch_bridge.v1' else 'installations'
-    rid=rec.get('event_id') or rec.get('installation_id') or rec.get('client_payload',{}).get('pilot_id') or f'record-{uuid4()}'
-    (reg/kind/f'{rid}.json').write_text(json.dumps(rec,indent=2),encoding='utf-8')
+    raw_id=str(rec.get('event_id') or rec.get('installation_id') or rec.get('client_payload',{}).get('pilot_id') or f'record-{uuid4()}')
+    rid=_safe_record_id(raw_id)
+    out_file=(reg/kind/f'{rid}.json').resolve()
+    base=(reg/kind).resolve()
+    if base not in out_file.parents:
+        raise ValueError('unsafe record id path')
+    out_file.write_text(json.dumps(rec,indent=2),encoding='utf-8')
 
 def build_connector_data(reg: Path, out: Path):
     _ensure(reg); out.mkdir(parents=True, exist_ok=True)
