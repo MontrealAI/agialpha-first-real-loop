@@ -149,7 +149,8 @@ def main():
             out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
             tb_report(repo_root, Path(a.config), out / 'setup_report.md'); return
         if a.tb_sub == 'health-check':
-            tb_health_check(repo_root, Path(a.config), Path(a.out)); return
+            health = tb_health_check(repo_root, Path(a.config), Path(a.out))
+            raise SystemExit(0 if health.get('status') in ('pass', 'warning') else 1)
         if a.tb_sub == 'report':
             tb_report(repo_root, Path(a.config), Path(a.out)); return
         if a.tb_sub == 'validate':
