@@ -1,0 +1,41 @@
+[
+  {
+    "difficulty": 0.78,
+    "family": "held-out RSI transfer",
+    "id": "novel-workflow-emergence",
+    "needs": [
+      "reuse",
+      "state_memory",
+      "decomposition",
+      "replay"
+    ],
+    "reuse": 0.85,
+    "risk": 0.18
+  },
+  {
+    "difficulty": 0.82,
+    "family": "held-out policy promotion",
+    "id": "self-amendment-reviewability",
+    "needs": [
+      "evidence",
+      "strictness",
+      "safety",
+      "validator_redundancy"
+    ],
+    "reuse": 0.88,
+    "risk": 0.24
+  },
+  {
+    "difficulty": 0.69,
+    "family": "held-out archive economics",
+    "id": "dossier-debt-compression",
+    "needs": [
+      "cost",
+      "reuse",
+      "evidence",
+      "state_memory"
+    ],
+    "reuse": 0.72,
+    "risk": 0.13
+  }
+]
