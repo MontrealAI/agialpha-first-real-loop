@@ -1,23 +1,23 @@
 {
   "schema_version": "securerails.customer_pilot_intake.v1",
-  "pilot_id": "sr-pilot-2026-0001",
+  "pilot_id": "sr-pilot-sync-github-example-org-example-repo-ts-20260509T002920Z",
   "customer_label": "design-partner-redacted",
   "customer_public_name": null,
   "repo": {
     "provider": "github",
     "owner": "example-org",
     "name": "example-repo",
-    "visibility": "public",
+    "visibility": "unknown",
     "repo_url": "https://github.com/example-org/example-repo"
   },
   "source": {
-    "ingestion_method": "manual",
+    "ingestion_method": "artifact_api",
     "workflow_run_id": null,
     "artifact_id": null,
-    "artifact_name": "securerails-pr-guard-output",
-    "artifact_digest": null,
+    "artifact_name": "not_reported",
+    "artifact_digest": "not_reported",
     "artifact_url": null,
-    "artifact_status": "available"
+    "artifact_status": "pending"
   },
   "scope": {
     "repo_owned": true,
@@ -34,12 +34,6 @@
     "critical_infrastructure_safety_component_reliance_allowed": false
   },
   "evidence": {
-    "work_vault_id": null,
-    "mark_allocation_id": null,
-    "assigned_sovereign": null,
-    "proofbundle_id": null,
-    "evidence_docket_id": null,
-    "safety_ledger_path": null,
     "human_review_status": "pending",
     "recommendation": "human_review_required"
   },
@@ -67,5 +61,5 @@
   "status": "validated",
   "claim_boundary": "SecureRails customer pilot intake records are evidence-governance artifacts. They do not certify security, do not authorize autonomous remediation, and do not make decisions about natural persons.",
   "validation_errors": [],
-  "ingested_at": "2026-05-08T17:01:05.325307+00:00"
+  "ingested_at": "2026-05-09T00:29:20.767301+00:00"
 }

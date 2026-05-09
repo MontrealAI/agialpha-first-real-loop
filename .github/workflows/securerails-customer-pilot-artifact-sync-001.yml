@@ -1,0 +1,27 @@
+name: SecureRails Customer Pilot Artifact Sync 001
+on:
+  workflow_dispatch:
+    inputs:
+      config_path:
+        description: Path to allowed external repos config
+        required: true
+      limit:
+        description: Max artifact pointers to evaluate
+        required: false
+        default: "20"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m secure_rails customer-pilots artifact-sync --config "${{ inputs.config_path }}" --registry secure_rails_customer_pilots --limit "${{ inputs.limit }}"
+      - run: python -m secure_rails customer-pilots build-data --registry secure_rails_customer_pilots --out docs/_generated/secure-rails/customer-pilots
+      - uses: actions/upload-artifact@v4
+        with:
+          name: securerails-customer-pilot-artifact-sync
+          path: docs/_generated/secure-rails/customer-pilots
