@@ -1,0 +1,46 @@
+name: SecureRails Template Bootstrap 001
+
+on:
+  workflow_dispatch:
+    inputs:
+      owner:
+        description: Repository owner or organization
+        required: true
+      repository:
+        description: Repository name
+        required: true
+      instance_name:
+        description: Human-readable instance name
+        required: true
+      instance_type:
+        description: pilot, customer, internal, canonical, or demo
+        required: true
+        default: pilot
+      pages_url:
+        description: GitHub Pages URL
+        required: false
+      create_pr:
+        description: Create a PR with generated setup files if supported
+        required: false
+        default: 'false'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m secure_rails template-bootstrap detect --repo-root . --out /tmp/securerails-detected-context.json
+      - run: python -m secure_rails template-bootstrap init --repo-root . --owner "${{ inputs.owner }}" --repository "${{ inputs.repository }}" --instance-name "${{ inputs.instance_name }}" --instance-type "${{ inputs.instance_type }}" --pages-url "${{ inputs.pages_url }}" --out docs/_generated/template-bootstrap/securerails_instance_config.json
+      - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python scripts/secure_rails_no_automerge_check.py .
+      - run: python -m secure_rails template-bootstrap health-check --repo-root . --config docs/_generated/template-bootstrap/securerails_instance_config.json --out docs/_generated/template-bootstrap/template_health.json
+      - run: python -m secure_rails template-bootstrap report --repo-root . --config docs/_generated/template-bootstrap/securerails_instance_config.json --out docs/_generated/template-bootstrap/setup_report.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: securerails-template-bootstrap
+          path: docs/_generated/template-bootstrap

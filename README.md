@@ -84,3 +84,17 @@ See [docs/README.md](docs/README.md) for the full navigation index by role (oper
 - SecureRails Customer Pilot Intake 001: see docs/secure-rails/customer-pilot-intake.md.
 
 - SecureRails GitHub App Connector 001: docs/secure-rails/github-app-connector.md
+
+## Using this repository as a template
+
+If this is the canonical repo, enable **Template repository** in GitHub settings.
+Create a new repo from the template, then run **SecureRails Template Bootstrap 001** or local CLI:
+`python -m secure_rails template-bootstrap init ...`.
+See:
+- docs/secure-rails/quebecai-template-setup.md
+- docs/secure-rails/customer-template-setup.md
+- docs/secure-rails/github-pages-setup.md
+- docs/secure-rails/actions-and-checks-setup.md
+
+## Template Instance Status
+Generated artifacts: `docs/_generated/template-bootstrap/`.

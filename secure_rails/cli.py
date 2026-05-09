@@ -21,6 +21,7 @@ from .github_webhooks import normalize_webhook_payload
 from .repository_dispatch_bridge import build_dispatch_from_webhook_event, validate_dispatch_payload
 from .connector_intake import validate_installation_record
 from .connector_registry import update_registry, build_connector_data
+from .template_bootstrap import detect as tb_detect, init as tb_init, validate as tb_validate, health_check as tb_health_check, report as tb_report
 
 
 
@@ -68,6 +69,15 @@ def main():
     cbd = cpsp.add_parser('build-data'); cbd.add_argument('--registry', required=True); cbd.add_argument('--out', required=True)
     cr = cpsp.add_parser('render'); cr.add_argument('--registry', required=True); cr.add_argument('--out', required=True)
     ccb = cpsp.add_parser('check-boundary'); ccb.add_argument('--registry', required=True)
+
+    tb = sp.add_parser('template-bootstrap')
+    tbsp = tb.add_subparsers(dest='tb_sub', required=True)
+    tbd = tbsp.add_parser('detect'); tbd.add_argument('--repo-root', required=True); tbd.add_argument('--out', required=True)
+    tbi = tbsp.add_parser('init'); tbi.add_argument('--repo-root', required=True); tbi.add_argument('--owner', required=True); tbi.add_argument('--repository', required=True); tbi.add_argument('--instance-name', required=True); tbi.add_argument('--instance-type', required=True); tbi.add_argument('--pages-url', default=''); tbi.add_argument('--out', required=True)
+    tbr = tbsp.add_parser('render'); tbr.add_argument('--repo-root', required=True); tbr.add_argument('--config', required=True); tbr.add_argument('--out', required=True)
+    tbh = tbsp.add_parser('health-check'); tbh.add_argument('--repo-root', required=True); tbh.add_argument('--config', required=True); tbh.add_argument('--out', required=True)
+    tbp = tbsp.add_parser('report'); tbp.add_argument('--repo-root', required=True); tbp.add_argument('--config', required=True); tbp.add_argument('--out', required=True)
+    tbv = tbsp.add_parser('validate'); tbv.add_argument('--repo-root', required=True); tbv.add_argument('--config', required=True)
 
     a = p.parse_args()
 
@@ -128,6 +138,22 @@ def main():
             update_registry(Path(a.input), Path(a.registry)); return
         if a.gh_sub == 'build-data':
             build_connector_data(Path(a.registry), Path(a.out)); return
+
+    if a.cmd == 'template-bootstrap':
+        repo_root = Path(a.repo_root)
+        if a.tb_sub == 'detect':
+            tb_detect(repo_root, Path(a.out)); return
+        if a.tb_sub == 'init':
+            tb_init(repo_root, a.owner, a.repository, a.instance_name, a.instance_type, a.pages_url, Path(a.out)); return
+        if a.tb_sub == 'render':
+            out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
+            tb_report(repo_root, Path(a.config), out / 'setup_report.md'); return
+        if a.tb_sub == 'health-check':
+            tb_health_check(repo_root, Path(a.config), Path(a.out)); return
+        if a.tb_sub == 'report':
+            tb_report(repo_root, Path(a.config), Path(a.out)); return
+        if a.tb_sub == 'validate':
+            errs = tb_validate(Path(a.config)); [print(e) for e in errs]; raise SystemExit(0 if not errs else 1)
 
     if a.cmd == 'customer-pilots':
         if a.cp_sub == 'validate-intake':

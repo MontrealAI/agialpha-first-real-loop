@@ -34,3 +34,12 @@ Boundary: not autonomous certification, not offensive cyber, not high-risk decis
 See customer-pilot-intake.md and multi-repo-evidence-ingestion.md.
 
 - GitHub App Connector docs added.
+
+## Template bootstrap guides
+- template-bootstrap.md
+- first-run-setup.md
+- quebecai-template-setup.md
+- customer-template-setup.md
+- github-pages-setup.md
+- actions-and-checks-setup.md
+- rulesets-and-branch-protection.md
