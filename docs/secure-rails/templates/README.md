@@ -57,3 +57,5 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 - customer-pilot-intake-example.json
 - external-repo-record-example.json
 - repository-dispatch-payload-example.json
+
+- Added connector templates: customer-installation and dispatch bridge.

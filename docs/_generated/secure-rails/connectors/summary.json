@@ -1,0 +1,10 @@
+{
+  "active_installations": 0,
+  "paused_installations": 0,
+  "revoked_installations": 0,
+  "events_received": 0,
+  "dispatch_payloads_built": 0,
+  "dispatch_dry_runs": 0,
+  "public_display_enabled_count": 0,
+  "private_only_count": 0
+}

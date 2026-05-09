@@ -1,0 +1,43 @@
+{
+  "schema_version": "securerails.customer_installation.v1",
+  "installation_id": "sr-install-2026-0001",
+  "customer_label": "design-partner-redacted",
+  "github_app_installation_id": "not_reported",
+  "repo": {
+    "owner": "MontrealAI",
+    "name": "example",
+    "full_name": "MontrealAI/example",
+    "visibility": "private"
+  },
+  "permissions": {
+    "contents": "read",
+    "metadata": "read",
+    "pull_requests": "read",
+    "actions": "read",
+    "checks": "read",
+    "issues": "none",
+    "secrets": "none",
+    "workflows": "none",
+    "administration": "none",
+    "deployments": "none",
+    "statuses": "read"
+  },
+  "events": [
+    "pull_request",
+    "workflow_run",
+    "check_suite",
+    "check_run",
+    "repository",
+    "ping"
+  ],
+  "public_display_allowed": false,
+  "human_review_required": true,
+  "data_handling": {
+    "raw_secret_ingestion_allowed": false,
+    "personal_data_intended": false,
+    "redaction_required": true,
+    "store_full_webhook_payload": false
+  },
+  "status": "prospect",
+  "claim_boundary": "This installation record documents SecureRails connector scope. It does not certify the customer repository as secure."
+}

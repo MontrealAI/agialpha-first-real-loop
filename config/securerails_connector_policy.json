@@ -1,0 +1,5 @@
+{
+  "public_display_allowed_default": false,
+  "human_review_required": true,
+  "store_full_webhook_payload_default": false
+}
