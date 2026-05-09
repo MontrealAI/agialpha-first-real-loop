@@ -127,12 +127,16 @@ def main():
         if a.cp_sub in ('build-data','render'):
             build_customer_pilot_data(Path(a.registry), Path(a.out)); return
         if a.cp_sub == 'artifact-sync':
+            import json
+            import tempfile
             for rec in sync_external_repos(Path(a.config), a.limit):
-                ingest_intake_from_record = rec
-                import json
-                tmp = Path('.tmp_artifact_sync_intake.json')
-                tmp.write_text(json.dumps(ingest_intake_from_record), encoding='utf-8')
-                ingest_intake(tmp, Path(a.registry))
+                with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False, encoding='utf-8') as fp:
+                    fp.write(json.dumps(rec))
+                    tmp = Path(fp.name)
+                try:
+                    ingest_intake(tmp, Path(a.registry))
+                finally:
+                    tmp.unlink(missing_ok=True)
             return
         if a.cp_sub == 'check-boundary':
             raise SystemExit(0)
