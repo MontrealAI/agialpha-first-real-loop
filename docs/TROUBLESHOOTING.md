@@ -99,3 +99,5 @@ Use this format for every incident: **Symptom → Likely cause → Fix → What 
 - Confirm caller workflow uses read-only permissions and does not use `pull_request_target`.
 - Confirm production callers pin to release tag or commit SHA (not `main`).
 - Review `securerails-pr-guard-output/summary.md` and Evidence Docket before any remediation decision.
+
+- Check webhook signature using `python -m secure_rails github-app verify-webhook ...`

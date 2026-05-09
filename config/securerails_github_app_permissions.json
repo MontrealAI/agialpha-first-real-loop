@@ -1,0 +1,27 @@
+{
+  "default_permissions": {
+    "contents": "read",
+    "metadata": "read",
+    "pull_requests": "read",
+    "actions": "read",
+    "checks": "read",
+    "issues": "none",
+    "secrets": "none",
+    "workflows": "none",
+    "administration": "none",
+    "deployments": "none",
+    "statuses": "read"
+  },
+  "optional_modes_enabled": [],
+  "optional_modes": {
+    "pr_comment_mode": {
+      "pull_requests": "write"
+    },
+    "issue_creation_mode": {
+      "issues": "write"
+    },
+    "check_run_mode": {
+      "checks": "write"
+    }
+  }
+}
