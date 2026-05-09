@@ -1,0 +1,39 @@
+{
+  "schema_version": "securerails.instance_config.v1",
+  "instance_id": "quebecai-securerails-pilot-hub",
+  "instance_name": "QuebecAI SecureRails Pilot Hub",
+  "owner": "QuebecAI",
+  "repository": "securerails-pilot-hub",
+  "full_repository": "QuebecAI/securerails-pilot-hub",
+  "source_template": "MontrealAI/agialpha-first-real-loop",
+  "instance_type": "pilot",
+  "visibility": "unknown",
+  "public_pages_url": "https://quebecai.github.io/securerails-pilot-hub/",
+  "evidence_mission_control_url": "https://quebecai.github.io/securerails-pilot-hub/",
+  "secure_rails": {
+    "enabled": true,
+    "compliance_guard_required": true,
+    "work_vaults_enabled": true,
+    "agentic_pr_guard_enabled": false,
+    "customer_pilot_intake_enabled": false,
+    "github_app_connector_enabled": false
+  },
+  "claim_boundary": "SecureRails is AI-agent security governance and proof-bound defensive remediation. This instance does not certify security, does not perform offensive cyber activity, and does not make autonomous decisions about natural persons.",
+  "forbidden_use_acknowledgement": {
+    "no_hr_worker_evaluation": true,
+    "no_profiling_natural_persons": true,
+    "no_automated_decisions_about_natural_persons": true,
+    "no_critical_infrastructure_safety_component_reliance": true,
+    "no_offensive_cyber": true,
+    "no_auto_merge": true,
+    "no_investment_product_framing": true
+  },
+  "token_boundary": {
+    "agialpha_utility_only": true,
+    "no_yield": true,
+    "no_dividends": true,
+    "no_ownership": true,
+    "no_profit_rights": true,
+    "no_guaranteed_appreciation": true
+  }
+}
