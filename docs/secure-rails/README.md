@@ -32,3 +32,5 @@ Boundary: not autonomous certification, not offensive cyber, not high-risk decis
 
 ## Customer Pilot Intake
 See customer-pilot-intake.md and multi-repo-evidence-ingestion.md.
+
+- GitHub App Connector docs added.

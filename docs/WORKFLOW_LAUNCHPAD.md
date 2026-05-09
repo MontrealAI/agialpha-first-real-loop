@@ -30,3 +30,5 @@ The Evidence Hub Launchpad is the operator entry point for running repository wo
 - SecureRails PR Guard Demo: `.github/workflows/securerails-pr-guard-demo.yml`
 - Install docs: `docs/secure-rails/installable-action.md`
 - Customer template: `docs/secure-rails/templates/customer-securerails-pr-guard.yml`
+
+- Connector flow includes GitHub App webhook and repository_dispatch bridge.
