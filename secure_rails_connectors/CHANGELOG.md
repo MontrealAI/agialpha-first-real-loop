@@ -1,0 +1,1 @@
+# SecureRails Connector Registry

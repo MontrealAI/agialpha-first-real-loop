@@ -15,6 +15,12 @@ from .pilot_validate import validate_intake_file
 from .pilot_registry import validate_registry as validate_customer_registry
 from .pilot_render import build_customer_pilot_data
 from .external_repo import sync_external_repos
+from .github_app_permissions import validate_permissions_file
+from .github_webhook_verify import verify_github_webhook_signature
+from .github_webhooks import normalize_webhook_payload
+from .repository_dispatch_bridge import build_dispatch_from_webhook_event, validate_dispatch_payload
+from .connector_intake import validate_installation_record
+from .connector_registry import update_registry, build_connector_data
 
 
 
@@ -38,6 +44,19 @@ def main():
     vr = sp.add_parser('validate-registry'); vr.add_argument('--registry', required=True)
     cwv = sp.add_parser('check-work-vaults'); cwv.add_argument('--registry', required=True)
     ctb = sp.add_parser('check-token-boundary'); ctb.add_argument('--repo-root', required=True)
+
+
+    gha = sp.add_parser('github-app')
+    ghsp = gha.add_subparsers(dest='gh_sub', required=True)
+    vp = ghsp.add_parser('validate-permissions'); vp.add_argument('--input', required=True)
+    ve = ghsp.add_parser('validate-events'); ve.add_argument('--input', required=True)
+    vw = ghsp.add_parser('verify-webhook'); vw.add_argument('--secret-env', required=True); vw.add_argument('--payload-file', required=True); vw.add_argument('--signature', required=True)
+    nw = ghsp.add_parser('normalize-webhook'); nw.add_argument('--payload-file', required=True); nw.add_argument('--event-type', required=True); nw.add_argument('--delivery-id', required=True); nw.add_argument('--out', required=True); nw.add_argument('--signature-verified', choices=['true','false'], default='false')
+    bd2 = ghsp.add_parser('build-dispatch'); bd2.add_argument('--webhook-event', required=True); bd2.add_argument('--out', required=True)
+    vd = ghsp.add_parser('validate-dispatch'); vd.add_argument('--input', required=True)
+    vi2 = ghsp.add_parser('validate-installation'); vi2.add_argument('--input', required=True)
+    ur = ghsp.add_parser('update-registry'); ur.add_argument('--input', required=True); ur.add_argument('--registry', required=True)
+    bcd = ghsp.add_parser('build-data'); bcd.add_argument('--registry', required=True); bcd.add_argument('--out', required=True)
 
     cp = sp.add_parser('customer-pilots')
     cpsp = cp.add_subparsers(dest='cp_sub', required=True)
@@ -85,6 +104,30 @@ def main():
         raise SystemExit(0 if validate_registry(Path(a.registry)) else 1)
     if a.cmd == 'check-token-boundary':
         raise SystemExit(0 if check_token_boundary(Path(a.repo_root)) else 1)
+
+
+    if a.cmd == 'github-app':
+        import json, os
+        if a.gh_sub == 'validate-permissions':
+            ok, errs = validate_permissions_file(Path(a.input)); [print(e) for e in errs]; raise SystemExit(0 if ok else 1)
+        if a.gh_sub == 'validate-events':
+            data=json.loads(Path(a.input).read_text()); forbidden=set(data.get('forbidden_events',[])); default=set(data.get('default_allowed_events',[])); bad=sorted(forbidden & default); [print(f'forbidden event enabled by default: {b}') for b in bad]; raise SystemExit(0 if not bad else 1)
+        if a.gh_sub == 'verify-webhook':
+            payload=Path(a.payload_file).read_bytes(); secret_val=os.environ.get(a.secret_env);
+            if not secret_val: print('webhook secret env var is unset or empty'); raise SystemExit(1)
+            secret=secret_val.encode(); ok=verify_github_webhook_signature(secret,payload,a.signature); raise SystemExit(0 if ok else 1)
+        if a.gh_sub == 'normalize-webhook':
+            payload=json.loads(Path(a.payload_file).read_text()); verified=(a.signature_verified=='true'); out=normalize_webhook_payload(payload,a.event_type,a.delivery_id,verified); Path(a.out).write_text(json.dumps(out,indent=2)); return
+        if a.gh_sub == 'build-dispatch':
+            ev=json.loads(Path(a.webhook_event).read_text()); out=build_dispatch_from_webhook_event(ev); Path(a.out).write_text(json.dumps(out,indent=2)); return
+        if a.gh_sub == 'validate-dispatch':
+            d=json.loads(Path(a.input).read_text()); ok,errs=validate_dispatch_payload(d); [print(e) for e in errs]; raise SystemExit(0 if ok else 1)
+        if a.gh_sub == 'validate-installation':
+            d=json.loads(Path(a.input).read_text()); ok,errs=validate_installation_record(d); [print(e) for e in errs]; raise SystemExit(0 if ok else 1)
+        if a.gh_sub == 'update-registry':
+            update_registry(Path(a.input), Path(a.registry)); return
+        if a.gh_sub == 'build-data':
+            build_connector_data(Path(a.registry), Path(a.out)); return
 
     if a.cmd == 'customer-pilots':
         if a.cp_sub == 'validate-intake':

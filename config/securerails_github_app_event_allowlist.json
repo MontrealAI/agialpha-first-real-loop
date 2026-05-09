@@ -1,0 +1,30 @@
+{
+  "default_allowed_events": [
+    "pull_request",
+    "workflow_run",
+    "check_suite",
+    "check_run",
+    "repository",
+    "ping"
+  ],
+  "optional_events": [
+    "issues",
+    "issue_comment",
+    "pull_request_review",
+    "pull_request_review_comment"
+  ],
+  "forbidden_events": [
+    "secret_scanning_alert",
+    "code_scanning_alert",
+    "dependabot_alert",
+    "deployment",
+    "deployment_status",
+    "push",
+    "release",
+    "marketplace_purchase",
+    "member",
+    "organization",
+    "team",
+    "workflow_job"
+  ]
+}

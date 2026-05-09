@@ -1,0 +1,4 @@
+{
+  "mode": "github_app_webhook_bridge",
+  "dispatch_dry_run_default": true
+}

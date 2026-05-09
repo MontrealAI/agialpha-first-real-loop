@@ -82,3 +82,5 @@ See [docs/README.md](docs/README.md) for the full navigation index by role (oper
 - Customer pilot installation: [docs/secure-rails/customer-pilot-installation.md](docs/secure-rails/customer-pilot-installation.md)
 
 - SecureRails Customer Pilot Intake 001: see docs/secure-rails/customer-pilot-intake.md.
+
+- SecureRails GitHub App Connector 001: docs/secure-rails/github-app-connector.md
