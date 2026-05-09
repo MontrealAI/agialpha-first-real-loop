@@ -46,12 +46,13 @@ def main() -> int:
     args = parser.parse_args()
 
     payload = build_payload(args.repo, args.sender, args.event_type)
-    payload_bytes = json.dumps(payload, sort_keys=True).encode("utf-8")
+    payload_text = json.dumps(payload, indent=2) + "\n"
+    payload_bytes = payload_text.encode("utf-8")
     signature = "sha256=" + hmac.new(args.secret.encode("utf-8"), payload_bytes, hashlib.sha256).hexdigest()
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    out.write_text(payload_text, encoding="utf-8")
 
     print(json.dumps({
         "payload_file": str(out),
