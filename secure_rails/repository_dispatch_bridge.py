@@ -9,8 +9,15 @@ def build_dispatch_from_webhook_event(event: dict) -> dict:
     security = event.get('security', {})
     if security.get('signature_verified') is not True:
         raise ValueError('webhook event signature must be verified before dispatch build')
+    if event.get('event_type') != 'workflow_run':
+        raise ValueError('dispatch build requires workflow_run event type')
+    workflow_run = event.get('workflow_run', {})
+    if workflow_run.get('conclusion') != 'success':
+        raise ValueError('dispatch build requires successful workflow_run conclusion')
+    if workflow_run.get('run_id') in (None, '', 'not_reported'):
+        raise ValueError('dispatch build requires workflow_run.run_id')
     repo = event.get('repository', {}).get('full_name', '')
-    wrid = event.get('workflow_run', {}).get('run_id', 'not_reported')
+    wrid = workflow_run.get('run_id')
     return {
         'schema_version': 'securerails.repository_dispatch_bridge.v1',
         'event_type': 'securerails_customer_pilot_completed',

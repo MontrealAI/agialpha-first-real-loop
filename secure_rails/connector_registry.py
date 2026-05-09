@@ -28,10 +28,15 @@ def update_registry(input_path: Path, reg: Path):
         raise ValueError(f'unknown connector schema_version: {schema}')
     raw_id=str(rec.get('event_id') or rec.get('installation_id') or rec.get('client_payload',{}).get('pilot_id') or f'record-{uuid4()}')
     rid=_safe_record_id(raw_id)
-    out_file=(reg/kind/f'{rid}.json').resolve()
     base=(reg/kind).resolve()
+    out_file=(base/f'{rid}.json').resolve()
     if base not in out_file.parents:
         raise ValueError('unsafe record id path')
+    idx=1
+    while out_file.exists():
+        out_file=(base/f'{rid}-{idx}.json').resolve(); idx+=1
+        if base not in out_file.parents:
+            raise ValueError('unsafe record id path')
     out_file.write_text(json.dumps(rec,indent=2),encoding='utf-8')
 
 def build_connector_data(reg: Path, out: Path):
