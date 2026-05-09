@@ -141,3 +141,6 @@ Each row represents one workflow file and should be read with these fields:
 
 - `securerails-template-bootstrap-001.yml`: Guided first-run setup workflow for template instances.
 - `securerails-template-health-check-001.yml`: Recurring template health and boundary checks.
+
+| `securerails-release-candidate-001.yml` | SecureRails | `workflow_dispatch` | Release candidate bundle artifact | Manual-only release candidate path; no auto publish; no Marketplace publication. | no |
+| `securerails-release-validate-001.yml` | SecureRails | `pull_request`, `workflow_dispatch` | Release validation test results | No overclaim checks and test gates; no Pages deploy. | no |

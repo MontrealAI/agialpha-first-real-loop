@@ -1,0 +1,28 @@
+name: SecureRails Release Candidate 001
+on:
+  workflow_dispatch:
+    inputs:
+      release_version: {description: "Release version, e.g. 0.1.0-rc1", required: true}
+      release_channel: {description: "rc, internal, pilot, or stable", required: true, default: "rc"}
+      create_draft_release: {description: "Create GitHub draft release", required: false, default: "false"}
+permissions: {contents: read, actions: read}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python -m agialpha_docs audit-workflows --repo-root .
+      - run: python -m secure_rails release-train build --repo-root . --release-version "${{ inputs.release_version }}" --release-channel "${{ inputs.release_channel }}" --out /tmp/securerails-release
+      - run: python -m secure_rails release-train validate --input /tmp/securerails-release
+      - uses: actions/upload-artifact@v4
+        with: {name: securerails-release-bundle, path: /tmp/securerails-release}
+  draft_release:
+    if: ${{ inputs.create_draft_release == 'true' }}
+    needs: [build]
+    permissions: {contents: write}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Draft release creation is guarded and manual-only."
