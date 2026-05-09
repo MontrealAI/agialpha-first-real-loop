@@ -4,8 +4,7 @@ on:
     inputs:
       config_path:
         description: Path to allowed external repos config
-        required: false
-        default: config/securerails_allowed_external_repos.example.json
+        required: true
       limit:
         description: Max artifact pointers to evaluate
         required: false

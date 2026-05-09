@@ -12,7 +12,11 @@ def load_external_repo_config(path: Path):
 def _repo_url(provider: str, owner: str, name: str) -> str:
     if provider == 'github':
         return f'https://github.com/{owner}/{name}'
-    return ''
+    if provider == 'gitlab':
+        return f'https://gitlab.com/{owner}/{name}'
+    if provider == 'bitbucket':
+        return f'https://bitbucket.org/{owner}/{name}'
+    return f'https://{provider}.com/{owner}/{name}'
 
 
 def _sync_nonce() -> str:
