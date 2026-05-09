@@ -12,9 +12,10 @@ class T(unittest.TestCase):
     self.assertNotIn('email', str(n))
 
   def test_fixture_payload_minimized(self):
-    fixture = pathlib.Path('tests/fixtures/securerails_github_app/webhook_payload.json')
+    fixture = pathlib.Path(__file__).resolve().parent / 'fixtures' / 'securerails_github_app' / 'webhook_payload.json'
     payload = json.loads(fixture.read_text(encoding='utf-8'))
     n = normalize_webhook_payload(payload, 'pull_request', 'delivery-001')
     self.assertEqual(n['repository']['full_name'], 'MontrealAI/agialpha-first-real-loop')
     self.assertNotIn('not-retained@example.test', json.dumps(n))
+    self.assertEqual(n['pull_request']['is_fork'], False)
     self.assertNotIn('full_payload', n)

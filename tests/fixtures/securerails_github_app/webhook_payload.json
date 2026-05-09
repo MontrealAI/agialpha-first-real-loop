@@ -2,10 +2,9 @@
   "action": "opened",
   "pull_request": {
     "number": 42,
-    "head": {"sha": "abc123"},
+    "head": {"sha": "abc123", "repo": {"fork": false}},
     "base": {"sha": "def456"},
-    "title": "[redacted-test] Example change",
-    "head_repo": {"fork": false}
+    "title": "[redacted-test] Example change"
   },
   "repository": {
     "name": "agialpha-first-real-loop",
