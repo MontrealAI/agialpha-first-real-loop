@@ -98,5 +98,5 @@ def sync_external_repos(config_path: Path, limit: int) -> List[Dict[str, Any]]:
     cfg = load_external_repo_config(config_path)
     repos = cfg.get('repos', [])
     nonce = _sync_nonce()
-    allowed = [repo for repo in repos if repo.get('allow_artifact_api', False)]
+    allowed = [repo for repo in repos if repo.get('allow_artifact_api') is True]
     return [_record_from_repo(repo, nonce) for repo in allowed[: max(0, limit)]]

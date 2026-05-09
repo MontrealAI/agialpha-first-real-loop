@@ -15,7 +15,8 @@ class T(unittest.TestCase):
             cfg.write_text(json.dumps({
                 'repos': [
                     {'provider': 'github', 'owner': 'example-org', 'name': 'example-repo', 'allow_artifact_api': True},
-                    {'provider': 'github', 'owner': 'blocked-org', 'name': 'blocked-repo', 'allow_artifact_api': False}
+                    {'provider': 'github', 'owner': 'blocked-org', 'name': 'blocked-repo', 'allow_artifact_api': False},
+                    {'provider': 'github', 'owner': 'string-org', 'name': 'string-repo', 'allow_artifact_api': 'false'}
                 ]
             }), encoding='utf-8')
             registry = tdp / 'registry'
