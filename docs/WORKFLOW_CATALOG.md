@@ -138,3 +138,6 @@ Each row represents one workflow file and should be read with these fields:
 | `securerails-customer-pilot-intake-001.yml` | SecureRails | `repository_dispatch`, `workflow_dispatch` | Customer pilot intake artifacts + generated summaries | Data-only ingestion, no pages deploy, human review required. | no |
 | `securerails-customer-pilot-manual-ingest-001.yml` | SecureRails | `workflow_dispatch` | Manual intake report artifacts | Data-only ingestion, no pages deploy, human review required. | no |
 | `securerails-customer-pilot-artifact-sync-001.yml` | SecureRails | `workflow_dispatch` | Optional configured external artifact pointer sync | Read-only Actions/contents permissions, no pages deploy, no broad secrets required. | no |
+
+- `securerails-template-bootstrap-001.yml`: Guided first-run setup workflow for template instances.
+- `securerails-template-health-check-001.yml`: Recurring template health and boundary checks.
