@@ -43,3 +43,7 @@ See customer-pilot-intake.md and multi-repo-evidence-ingestion.md.
 - github-pages-setup.md
 - actions-and-checks-setup.md
 - rulesets-and-branch-protection.md
+
+- Release train: [release-train.md](release-train.md)
+- Marketplace-ready export plan: [marketplace-readiness.md](marketplace-readiness.md)
+- Customer install bundle: [customer-install-bundle.md](customer-install-bundle.md)

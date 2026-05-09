@@ -22,6 +22,7 @@ from .repository_dispatch_bridge import build_dispatch_from_webhook_event, valid
 from .connector_intake import validate_installation_record
 from .connector_registry import update_registry, build_connector_data
 from .template_bootstrap import detect as tb_detect, init as tb_init, validate as tb_validate, health_check as tb_health_check, report as tb_report
+from .release_train import build as rt_build, validate as rt_validate, marketplace as rt_marketplace, render_notes as rt_render_notes
 
 
 
@@ -78,6 +79,13 @@ def main():
     tbh = tbsp.add_parser('health-check'); tbh.add_argument('--repo-root', required=True); tbh.add_argument('--config', required=True); tbh.add_argument('--out', required=True)
     tbp = tbsp.add_parser('report'); tbp.add_argument('--repo-root', required=True); tbp.add_argument('--config', required=True); tbp.add_argument('--out', required=True)
     tbv = tbsp.add_parser('validate'); tbv.add_argument('--repo-root', required=True); tbv.add_argument('--config', required=True)
+
+    rt = sp.add_parser('release-train')
+    rtsp = rt.add_subparsers(dest='rt_sub', required=True)
+    rtb=rtsp.add_parser('build'); rtb.add_argument('--repo-root', required=True); rtb.add_argument('--release-version', required=True); rtb.add_argument('--release-channel', required=True); rtb.add_argument('--out', required=True)
+    rtv=rtsp.add_parser('validate'); rtv.add_argument('--input', required=True)
+    rtm=rtsp.add_parser('marketplace-readiness'); rtm.add_argument('--repo-root', required=True); rtm.add_argument('--out', required=True)
+    rtr=rtsp.add_parser('render-notes'); rtr.add_argument('--input', required=True); rtr.add_argument('--out', required=True)
 
     a = p.parse_args()
 
@@ -210,3 +218,9 @@ def main():
             return
         if a.cp_sub == 'check-boundary':
             raise SystemExit(0)
+
+    if a.cmd == 'release-train':
+        if a.rt_sub == 'build': rt_build(Path(a.repo_root), a.release_version, a.release_channel, Path(a.out)); return
+        if a.rt_sub == 'validate': rt_validate(Path(a.input)); return
+        if a.rt_sub == 'marketplace-readiness': rt_marketplace(Path(a.repo_root), Path(a.out)); return
+        if a.rt_sub == 'render-notes': rt_render_notes(Path(a.input), Path(a.out)); return
