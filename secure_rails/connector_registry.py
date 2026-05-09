@@ -17,7 +17,15 @@ def _safe_record_id(value: str) -> str:
 def update_registry(input_path: Path, reg: Path):
     _ensure(reg)
     rec=json.loads(input_path.read_text(encoding='utf-8'))
-    kind='events' if rec.get('schema_version')=='securerails.webhook_event.v1' else 'dispatches' if rec.get('schema_version')=='securerails.repository_dispatch_bridge.v1' else 'installations'
+    schema=rec.get('schema_version')
+    if schema=='securerails.webhook_event.v1':
+        kind='events'
+    elif schema=='securerails.repository_dispatch_bridge.v1':
+        kind='dispatches'
+    elif schema=='securerails.customer_installation.v1':
+        kind='installations'
+    else:
+        raise ValueError(f'unknown connector schema_version: {schema}')
     raw_id=str(rec.get('event_id') or rec.get('installation_id') or rec.get('client_payload',{}).get('pilot_id') or f'record-{uuid4()}')
     rid=_safe_record_id(raw_id)
     out_file=(reg/kind/f'{rid}.json').resolve()

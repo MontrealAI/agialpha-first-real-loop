@@ -6,6 +6,9 @@ ALLOWED_EVENT_TYPES = {'securerails_customer_pilot_completed'}
 CLAIM = 'This dispatch is a pointer to SecureRails evidence artifacts, not a security certification.'
 
 def build_dispatch_from_webhook_event(event: dict) -> dict:
+    security = event.get('security', {})
+    if security.get('signature_verified') is not True:
+        raise ValueError('webhook event signature must be verified before dispatch build')
     repo = event.get('repository', {}).get('full_name', '')
     wrid = event.get('workflow_run', {}).get('run_id', 'not_reported')
     return {
@@ -25,7 +28,8 @@ def validate_dispatch_payload(data: dict) -> tuple[bool, list[str]]:
     if cp.get('public_display_allowed', False) is not False: e.append('public_display_allowed must default false')
     if cp.get('human_review_required') is not True: e.append('human_review_required must be true')
     if 'claim_boundary' not in cp: e.append('claim_boundary missing')
-    s=json.dumps(data).lower()
-    for bad in ['token','password','secret']:
-        if bad in s: e.append('secret-like field detected'); break
+    cp=data.get('client_payload',{})
+    sensitive_keys={'token','password','secret','api_key','authorization'}
+    bad_keys=[k for k in cp.keys() if str(k).lower() in sensitive_keys]
+    if bad_keys: e.append('secret-like field detected')
     return (len(e)==0,e)
