@@ -1,6 +1,7 @@
 
 import json
 from pathlib import Path
+from uuid import uuid4
 
 def _ensure(reg: Path):
     for d in ['installations','events','dispatches','indexes']:
@@ -11,7 +12,7 @@ def update_registry(input_path: Path, reg: Path):
     _ensure(reg)
     rec=json.loads(input_path.read_text(encoding='utf-8'))
     kind='events' if rec.get('schema_version')=='securerails.webhook_event.v1' else 'dispatches' if rec.get('schema_version')=='securerails.repository_dispatch_bridge.v1' else 'installations'
-    rid=rec.get('event_id') or rec.get('installation_id') or rec.get('client_payload',{}).get('pilot_id') or 'record'
+    rid=rec.get('event_id') or rec.get('installation_id') or rec.get('client_payload',{}).get('pilot_id') or f'record-{uuid4().hex}'
     (reg/kind/f'{rid}.json').write_text(json.dumps(rec,indent=2),encoding='utf-8')
 
 def build_connector_data(reg: Path, out: Path):

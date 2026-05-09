@@ -2,7 +2,7 @@
 import hashlib, hmac
 
 def verify_github_webhook_signature(secret: bytes, payload: bytes, signature_header: str) -> bool:
-    if not secret or not payload or not isinstance(signature_header, str):
+    if not secret or payload is None or not isinstance(signature_header, str):
         return False
     if not signature_header.startswith('sha256='):
         return False

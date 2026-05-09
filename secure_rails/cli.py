@@ -52,6 +52,7 @@ def main():
     ve = ghsp.add_parser('validate-events'); ve.add_argument('--input', required=True)
     vw = ghsp.add_parser('verify-webhook'); vw.add_argument('--secret-env', required=True); vw.add_argument('--payload-file', required=True); vw.add_argument('--signature', required=True)
     nw = ghsp.add_parser('normalize-webhook'); nw.add_argument('--payload-file', required=True); nw.add_argument('--event-type', required=True); nw.add_argument('--delivery-id', required=True); nw.add_argument('--out', required=True)
+    nw.add_argument('--signature-verified', choices=['true','false'], default='false')
     bd2 = ghsp.add_parser('build-dispatch'); bd2.add_argument('--webhook-event', required=True); bd2.add_argument('--out', required=True)
     vd = ghsp.add_parser('validate-dispatch'); vd.add_argument('--input', required=True)
     vi2 = ghsp.add_parser('validate-installation'); vi2.add_argument('--input', required=True)
@@ -115,7 +116,7 @@ def main():
         if a.gh_sub == 'verify-webhook':
             payload=Path(a.payload_file).read_bytes(); secret=os.environ.get(a.secret_env,'').encode(); ok=verify_github_webhook_signature(secret,payload,a.signature); raise SystemExit(0 if ok else 1)
         if a.gh_sub == 'normalize-webhook':
-            payload=json.loads(Path(a.payload_file).read_text()); out=normalize_webhook_payload(payload,a.event_type,a.delivery_id,True); Path(a.out).write_text(json.dumps(out,indent=2)); return
+            payload=json.loads(Path(a.payload_file).read_text()); verified=(a.signature_verified == 'true'); out=normalize_webhook_payload(payload,a.event_type,a.delivery_id,verified); Path(a.out).write_text(json.dumps(out,indent=2)); return
         if a.gh_sub == 'build-dispatch':
             ev=json.loads(Path(a.webhook_event).read_text()); out=build_dispatch_from_webhook_event(ev); Path(a.out).write_text(json.dumps(out,indent=2)); return
         if a.gh_sub == 'validate-dispatch':
