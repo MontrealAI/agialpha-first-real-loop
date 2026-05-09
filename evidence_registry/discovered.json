@@ -101,6 +101,7 @@
     ".github/workflows/rsi-governor-001-vnext-canary.yml",
     ".github/workflows/secure-rails-compliance-guard.yml",
     ".github/workflows/securerails-agentic-pr-guard-001.yml",
+    ".github/workflows/securerails-customer-pilot-artifact-sync-001.yml",
     ".github/workflows/securerails-customer-pilot-intake-001.yml",
     ".github/workflows/securerails-customer-pilot-manual-ingest-001.yml",
     ".github/workflows/securerails-pr-guard-demo.yml",
