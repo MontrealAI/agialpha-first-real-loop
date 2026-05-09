@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "owner",
+    "repository",
+    "full_repository",
+    "claim_boundary",
+    "instance_type",
+    "forbidden_use_acknowledgement",
+    "token_boundary"
+  ]
+}

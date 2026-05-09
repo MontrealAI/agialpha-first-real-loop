@@ -1,0 +1,30 @@
+name: SecureRails Template Health Check 001
+on:
+  workflow_dispatch:
+  pull_request:
+  schedule:
+    - cron: "0 10 * * 1"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python scripts/secure_rails_no_automerge_check.py .
+      - run: test ! -f config/securerails_instance_config.json || python -m secure_rails template-bootstrap validate --repo-root . --config config/securerails_instance_config.json
+      - run: |
+          CONFIG_PATH="config/securerails_instance_config.example.json"
+          if [ -f "config/securerails_instance_config.json" ]; then
+            CONFIG_PATH="config/securerails_instance_config.json"
+          fi
+          python -m secure_rails template-bootstrap health-check --repo-root . --config "$CONFIG_PATH" --out docs/_generated/template-bootstrap/template_health.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: securerails-template-health
+          path: docs/_generated/template-bootstrap/template_health.json

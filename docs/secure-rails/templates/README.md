@@ -59,3 +59,5 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 - repository-dispatch-payload-example.json
 
 - Added connector templates: customer-installation and dispatch bridge.
+
+- `instance-config-example.json`: SecureRails Template Bootstrap example instance configuration.
