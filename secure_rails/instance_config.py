@@ -3,6 +3,15 @@ from __future__ import annotations
 import json
 from pathlib import Path
 ALLOWED_INSTANCE_TYPES = {'pilot','customer','internal','canonical','demo'}
+REQUIRED_FORBIDDEN_USE_FLAGS = (
+    'no_hr_worker_evaluation',
+    'no_profiling_natural_persons',
+    'no_automated_decisions_about_natural_persons',
+    'no_critical_infrastructure_safety_component_reliance',
+    'no_offensive_cyber',
+    'no_auto_merge',
+    'no_investment_product_framing',
+)
 
 def build_instance_config(owner:str, repository:str, instance_name:str, instance_type:str, pages_url:str='') -> dict:
     if instance_type not in ALLOWED_INSTANCE_TYPES:
@@ -24,9 +33,11 @@ def validate_instance_config(cfg:dict)->list[str]:
         if not cfg.get(k): errs.append(f'missing {k}')
     if cfg.get('instance_type') not in ALLOWED_INSTANCE_TYPES: errs.append('invalid instance_type')
     fua = cfg.get('forbidden_use_acknowledgement',{})
-    for k,v in fua.items():
-        if v is not True: errs.append(f'{k} must be true')
-    if fua.get('no_auto_merge') is not True: errs.append('no_auto_merge must be true')
+    for k in REQUIRED_FORBIDDEN_USE_FLAGS:
+        if k not in fua:
+            errs.append(f'missing forbidden_use_acknowledgement.{k}')
+        elif fua[k] is not True:
+            errs.append(f'{k} must be true')
     tb=cfg.get('token_boundary',{})
     for k in ('agialpha_utility_only','no_yield','no_dividends','no_ownership','no_profit_rights','no_guaranteed_appreciation'):
         if tb.get(k) is not True: errs.append(f'{k} must be true')

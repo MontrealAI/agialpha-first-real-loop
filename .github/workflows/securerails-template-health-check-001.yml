@@ -6,6 +6,7 @@ on:
       - "README.md"
       - "docs/**"
       - "config/securerails_instance_config.json"
+      - "config/securerails_instance_config.example.json"
       - ".github/workflows/**"
       - "scripts/**"
       - "secure_rails/**"
