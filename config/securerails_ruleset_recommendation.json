@@ -1,0 +1,5 @@
+{
+  "require_pull_request": true,
+  "require_status_checks": true,
+  "allow_auto_merge": false
+}
