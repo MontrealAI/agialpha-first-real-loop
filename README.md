@@ -98,3 +98,5 @@ See:
 
 ## Template Instance Status
 Generated artifacts: `docs/_generated/template-bootstrap/`.
+
+- SecureRails release train docs: [docs/secure-rails/release-train.md](docs/secure-rails/release-train.md)
