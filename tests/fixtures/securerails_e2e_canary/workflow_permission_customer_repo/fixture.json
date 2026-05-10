@@ -1,0 +1,8 @@
+{
+  "fixture": "workflow_permission_customer_repo",
+  "customer_name": "DesignPartnerDemo",
+  "expected": {
+    "recommendation": "escalate",
+    "sovereign": "Workflow Permission Sovereign"
+  }
+}

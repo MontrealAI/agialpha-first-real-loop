@@ -1,0 +1,39 @@
+name: SecureRails E2E Pilot Canary 001
+on:
+  workflow_dispatch:
+    inputs:
+      fixture_set:
+        required: false
+        default: tests/fixtures/securerails_e2e_canary
+      update_registry:
+        required: false
+        default: "true"
+      publish_to_evidence_mission_control:
+        required: false
+        default: "true"
+  schedule:
+    - cron: "0 11 * * 1"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  run-canary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python scripts/secure_rails_no_automerge_check.py .
+      - run: python -m secure_rails e2e-canary run --repo-root . --fixtures "${{ inputs.fixture_set || 'tests/fixtures/securerails_e2e_canary' }}" --out secure-rails-e2e-canary-output
+      - run: python -m secure_rails e2e-canary replay --input secure-rails-e2e-canary-output --out secure-rails-e2e-canary-output/04_replay_report.json
+      - run: python -m secure_rails e2e-canary validate --input secure-rails-e2e-canary-output
+      - run: python -m secure_rails e2e-canary build-report --input secure-rails-e2e-canary-output --out secure-rails-e2e-canary-output/05_canary_report.json
+      - run: python -m secure_rails e2e-canary render --input secure-rails-e2e-canary-output --out secure-rails-e2e-canary-output/summary.md
+      - run: python -m secure_rails e2e-canary update-registry --input secure-rails-e2e-canary-output --registry secure_rails_canaries
+      - run: python -m secure_rails e2e-canary build-data --registry secure_rails_canaries --out docs/_generated/secure-rails/e2e-canary
+      - uses: actions/upload-artifact@v4
+        with:
+          name: securerails-e2e-pilot-canary-001
+          path: secure-rails-e2e-canary-output

@@ -101,3 +101,6 @@ Use this format for every incident: **Symptom → Likely cause → Fix → What 
 - Review `securerails-pr-guard-output/summary.md` and Evidence Docket before any remediation decision.
 
 - Check webhook signature using `python -m secure_rails github-app verify-webhook ...`
+
+
+- SecureRails E2E Pilot Canary 001: synthetic internal canary workflow.
