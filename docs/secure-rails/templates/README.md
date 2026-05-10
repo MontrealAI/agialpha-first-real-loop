@@ -61,3 +61,7 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 - Added connector templates: customer-installation and dispatch bridge.
 
 - `instance-config-example.json`: SecureRails Template Bootstrap example instance configuration.
+
+
+## SecureRails E2E Pilot Canary 001
+See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/securerails-e2e-pilot-canary-001.yml`.

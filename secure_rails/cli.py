@@ -23,6 +23,12 @@ from .connector_intake import validate_installation_record
 from .connector_registry import update_registry, build_connector_data
 from .template_bootstrap import detect as tb_detect, init as tb_init, validate as tb_validate, health_check as tb_health_check, report as tb_report
 from .release_train import build as rt_build, validate as rt_validate, marketplace as rt_marketplace, render_notes as rt_render_notes
+from .e2e_canary import list_fixtures_cmd, validate as canary_validate
+from .canary_runner import run_canary
+from .canary_replay import replay as canary_replay
+from .canary_report import build_report as canary_build_report
+from .canary_registry import update_registry as canary_update_registry, build_data as canary_build_data
+from .canary_render import render as canary_render
 
 
 
@@ -79,6 +85,18 @@ def main():
     tbh = tbsp.add_parser('health-check'); tbh.add_argument('--repo-root', required=True); tbh.add_argument('--config', required=True); tbh.add_argument('--out', required=True)
     tbp = tbsp.add_parser('report'); tbp.add_argument('--repo-root', required=True); tbp.add_argument('--config', required=True); tbp.add_argument('--out', required=True)
     tbv = tbsp.add_parser('validate'); tbv.add_argument('--repo-root', required=True); tbv.add_argument('--config', required=True)
+
+    
+    ec = sp.add_parser('e2e-canary')
+    ecsp = ec.add_subparsers(dest='ec_sub', required=True)
+    elf = ecsp.add_parser('list-fixtures'); elf.add_argument('--fixtures', required=True)
+    ern = ecsp.add_parser('run'); ern.add_argument('--repo-root', required=True); ern.add_argument('--fixtures', required=True); ern.add_argument('--out', required=True)
+    erp = ecsp.add_parser('replay'); erp.add_argument('--input', required=True); erp.add_argument('--out', required=True)
+    evd = ecsp.add_parser('validate'); evd.add_argument('--input', required=True)
+    ebr = ecsp.add_parser('build-report'); ebr.add_argument('--input', required=True); ebr.add_argument('--out', required=True)
+    erd = ecsp.add_parser('render'); erd.add_argument('--input', required=True); erd.add_argument('--out', required=True)
+    eur = ecsp.add_parser('update-registry'); eur.add_argument('--input', required=True); eur.add_argument('--registry', required=True)
+    ebd = ecsp.add_parser('build-data'); ebd.add_argument('--registry', required=True); ebd.add_argument('--out', required=True)
 
     rt = sp.add_parser('release-train')
     rtsp = rt.add_subparsers(dest='rt_sub', required=True)
@@ -224,3 +242,14 @@ def main():
         if a.rt_sub == 'validate': rt_validate(Path(a.input)); return
         if a.rt_sub == 'marketplace-readiness': rt_marketplace(Path(a.repo_root), Path(a.out)); return
         if a.rt_sub == 'render-notes': rt_render_notes(Path(a.input), Path(a.out)); return
+
+
+    if a.cmd == 'e2e-canary':
+        if a.ec_sub == 'list-fixtures': list_fixtures_cmd(Path(a.fixtures)); return
+        if a.ec_sub == 'run': run_canary(Path(a.repo_root), Path(a.fixtures), Path(a.out)); return
+        if a.ec_sub == 'replay': canary_replay(Path(a.input), Path(a.out)); return
+        if a.ec_sub == 'validate': canary_validate(Path(a.input)); return
+        if a.ec_sub == 'build-report': canary_build_report(Path(a.input), Path(a.out)); return
+        if a.ec_sub == 'render': canary_render(Path(a.input), Path(a.out)); return
+        if a.ec_sub == 'update-registry': canary_update_registry(Path(a.input), Path(a.registry)); return
+        if a.ec_sub == 'build-data': canary_build_data(Path(a.registry), Path(a.out)); return

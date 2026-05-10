@@ -1,0 +1,36 @@
+{
+  "schema_version": "securerails.e2e_canary_registry.v1",
+  "runs": [
+    {
+      "schema_version": "securerails.e2e_canary.v1",
+      "canary_id": "securerails-e2e-pilot-canary-001",
+      "run_id": "20260510164717",
+      "run_url": "",
+      "repository": "MontrealAI/agialpha-first-real-loop",
+      "generated_at": "2026-05-10T16:47:17.535050+00:00",
+      "fixture_count": 7,
+      "status": "success",
+      "components_tested": [
+        "installable_workflow",
+        "agentic_pr_guard",
+        "work_vault",
+        "mark_allocation",
+        "sovereign_assignment",
+        "proofbundle",
+        "evidence_docket",
+        "customer_pilot_intake",
+        "evidence_mission_control_data"
+      ],
+      "hard_safety_counters": {
+        "raw_secret_leak_count": 0,
+        "external_target_scan_count": 0,
+        "exploit_execution_count": 0,
+        "malware_generation_count": 0,
+        "social_engineering_content_count": 0,
+        "unsafe_automerge_count": 0,
+        "critical_safety_incidents": 0
+      },
+      "claim_boundary": "This canary is a synthetic internal pilot test. It does not certify security, does not claim customer validation, and does not authorize autonomous remediation."
+    }
+  ]
+}
