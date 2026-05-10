@@ -7,6 +7,8 @@ def _sha(p: Path) -> str:
     h = hashlib.sha256(); h.update(p.read_bytes()); return h.hexdigest()
 
 def build_bundle(repo_root: Path, out: Path, manifest: dict):
+    if out.exists():
+        shutil.rmtree(out)
     out.mkdir(parents=True, exist_ok=True)
     (out / 'release_manifest.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
     (out / 'CLAIM_BOUNDARY.md').write_text(manifest['claim_boundary'] + '\n', encoding='utf-8')

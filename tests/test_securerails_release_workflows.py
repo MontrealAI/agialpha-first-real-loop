@@ -8,4 +8,5 @@ class T(unittest.TestCase):
   def test_validate_workflow_tracks_marketplace_files(self):
     t=Path('.github/workflows/securerails-release-validate-001.yml').read_text()
     self.assertIn('schemas/securerails_marketplace_readiness.schema.json', t)
+    self.assertIn('schemas/securerails_export_plan.schema.json', t)
     self.assertIn('config/securerails_marketplace_readiness_policy.json', t)

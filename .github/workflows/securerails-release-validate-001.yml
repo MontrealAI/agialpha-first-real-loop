@@ -7,6 +7,7 @@ on:
       - "secure_rails/**"
       - "schemas/securerails_release*.json"
       - "schemas/securerails_marketplace_readiness.schema.json"
+      - "schemas/securerails_export_plan.schema.json"
       - "config/securerails_release*.json"
       - "config/securerails_marketplace_readiness_policy.json"
       - ".github/workflows/securerails-release*.yml"
