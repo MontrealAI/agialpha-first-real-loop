@@ -1,0 +1,1 @@
+{"type":"object","required":["release_version","release_channel","claim_boundary"]}
