@@ -20,3 +20,7 @@ class T(unittest.TestCase):
     update_registry(out2,reg)
     runs=__import__('json').loads((reg/'registry.json').read_text())['runs']
     self.assertGreaterEqual(len(runs),2)
+    by_status=__import__('json').loads((reg/'indexes/by_status.json').read_text())
+    self.assertGreaterEqual(len(by_status.get('success',[])),2)
+    by_safety=__import__('json').loads((reg/'indexes/by_safety_status.json').read_text())
+    self.assertGreaterEqual(len(by_safety.get('safe',[])),2)

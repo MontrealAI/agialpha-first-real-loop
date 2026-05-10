@@ -31,8 +31,10 @@ jobs:
       - run: python -m secure_rails e2e-canary validate --input secure-rails-e2e-canary-output
       - run: python -m secure_rails e2e-canary build-report --input secure-rails-e2e-canary-output --out secure-rails-e2e-canary-output/05_canary_report.json
       - run: python -m secure_rails e2e-canary render --input secure-rails-e2e-canary-output --out secure-rails-e2e-canary-output/summary.md
-      - run: python -m secure_rails e2e-canary update-registry --input secure-rails-e2e-canary-output --registry secure_rails_canaries
-      - run: python -m secure_rails e2e-canary build-data --registry secure_rails_canaries --out docs/_generated/secure-rails/e2e-canary
+      - if: ${{ (inputs.update_registry || 'true') == 'true' }}
+        run: python -m secure_rails e2e-canary update-registry --input secure-rails-e2e-canary-output --registry secure_rails_canaries
+      - if: ${{ (inputs.publish_to_evidence_mission_control || 'true') == 'true' && (inputs.update_registry || 'true') == 'true' }}
+        run: python -m secure_rails e2e-canary build-data --registry secure_rails_canaries --out docs/_generated/secure-rails/e2e-canary
       - uses: actions/upload-artifact@v4
         with:
           name: securerails-e2e-pilot-canary-001
