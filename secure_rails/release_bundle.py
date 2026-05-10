@@ -2,6 +2,7 @@ from pathlib import Path
 import json, hashlib, shutil
 from .release_notes import render_notes
 from .marketplace_readiness import write_reports
+from .release_export import build_export_plan
 
 def _sha(p: Path) -> str:
     h = hashlib.sha256(); h.update(p.read_bytes()); return h.hexdigest()
@@ -16,6 +17,7 @@ def build_bundle(repo_root: Path, out: Path, manifest: dict):
     (out / 'CUSTOMER_INSTALL.md').write_text((repo_root / 'docs/secure-rails/customer-install-bundle.md').read_text(encoding='utf-8'), encoding='utf-8')
     write_reports(repo_root, out / 'MARKETPLACE_READINESS.md', out / 'marketplace_readiness.json')
     (out / 'EXPORT_PLAN.md').write_text('Future dedicated repository: MontrealAI/securerails-pr-guard-action with root action.yml and no workflow files.\n', encoding='utf-8')
+    build_export_plan(manifest.get('release_id', 'unknown-release'), out / 'export_plan.json')
     cust = out / 'customer'; cust.mkdir(exist_ok=True)
     for f in ['customer-securerails-pr-guard.yml', 'customer-pilot-intake-example.json', 'deployment-intake-example.json', 'safety-ledger-example.json']:
         shutil.copy2(repo_root / f'docs/secure-rails/templates/{f}', cust / f)
