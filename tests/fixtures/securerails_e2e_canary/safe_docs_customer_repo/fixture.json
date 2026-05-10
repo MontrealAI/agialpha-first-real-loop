@@ -1,0 +1,8 @@
+{
+  "fixture": "safe_docs_customer_repo",
+  "customer_name": "ExampleAI",
+  "expected": {
+    "recommendation": "safe_to_review",
+    "sovereign": "Claim Boundary Sovereign"
+  }
+}

@@ -47,3 +47,7 @@ See customer-pilot-intake.md and multi-repo-evidence-ingestion.md.
 - Release train: [release-train.md](release-train.md)
 - Marketplace-ready export plan: [marketplace-readiness.md](marketplace-readiness.md)
 - Customer install bundle: [customer-install-bundle.md](customer-install-bundle.md)
+
+
+## SecureRails E2E Pilot Canary 001
+See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/securerails-e2e-pilot-canary-001.yml`.
