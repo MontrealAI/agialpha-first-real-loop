@@ -51,3 +51,5 @@ See customer-pilot-intake.md and multi-repo-evidence-ingestion.md.
 
 ## SecureRails E2E Pilot Canary 001
 See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/securerails-e2e-pilot-canary-001.yml`.
+
+- Validation workflow: `.github/workflows/securerails-e2e-pilot-canary-validate-001.yml`

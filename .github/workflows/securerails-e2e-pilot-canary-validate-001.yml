@@ -1,0 +1,35 @@
+name: SecureRails E2E Pilot Canary Validate 001
+on:
+  workflow_dispatch:
+    inputs:
+      canary_output_path:
+        description: "Path to canary output directory"
+        required: false
+        default: "secure-rails-e2e-canary-output"
+  schedule:
+    - cron: "0 12 * * 1"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  validate-canary-output:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Generate canary output if missing
+        run: |
+          if [ ! -f "${{ inputs.canary_output_path || 'secure-rails-e2e-canary-output' }}/00_manifest.json" ]; then
+            python -m secure_rails e2e-canary run --repo-root . --fixtures tests/fixtures/securerails_e2e_canary --out secure-rails-e2e-canary-output
+            python -m secure_rails e2e-canary replay --input secure-rails-e2e-canary-output --out secure-rails-e2e-canary-output/04_replay_report.json
+            python -m secure_rails e2e-canary build-report --input secure-rails-e2e-canary-output --out secure-rails-e2e-canary-output/05_canary_report.json
+          fi
+      - name: Validate
+        run: python -m secure_rails e2e-canary validate --input "${{ inputs.canary_output_path || 'secure-rails-e2e-canary-output' }}"
+      - name: Upload validation input snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: securerails-e2e-pilot-canary-validate-001
+          path: "${{ inputs.canary_output_path || 'secure-rails-e2e-canary-output' }}"
