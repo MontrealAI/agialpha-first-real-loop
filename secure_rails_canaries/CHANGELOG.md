@@ -1,0 +1,1 @@
+# SecureRails Canary Registry

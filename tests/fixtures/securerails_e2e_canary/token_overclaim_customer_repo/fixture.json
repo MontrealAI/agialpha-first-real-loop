@@ -1,0 +1,8 @@
+{
+  "fixture": "token_overclaim_customer_repo",
+  "customer_name": "SyntheticCustomer",
+  "expected": {
+    "recommendation": "reject",
+    "sovereign": "Token Utility Boundary Sovereign"
+  }
+}

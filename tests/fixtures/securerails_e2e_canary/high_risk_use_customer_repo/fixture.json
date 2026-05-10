@@ -1,0 +1,8 @@
+{
+  "fixture": "high_risk_use_customer_repo",
+  "customer_name": "SyntheticCustomer",
+  "expected": {
+    "recommendation": "reject",
+    "sovereign": "Regulatory Boundary Sovereign"
+  }
+}
