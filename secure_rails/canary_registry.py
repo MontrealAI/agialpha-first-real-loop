@@ -18,7 +18,8 @@ def update_registry(input_dir: Path, registry_dir: Path):
 
     reg={"schema_version":"securerails.e2e_canary_registry.v1","runs":runs}
     registry_file.write_text(json.dumps(reg,indent=2))
-    (registry_dir/'latest.json').write_text(json.dumps(run,indent=2))
+    latest_run = runs[-1] if runs else run
+    (registry_dir/'latest.json').write_text(json.dumps(latest_run,indent=2))
     by_status = {}
     by_safety = {}
     by_fixture = {}

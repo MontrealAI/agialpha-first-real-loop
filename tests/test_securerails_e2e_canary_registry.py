@@ -24,3 +24,19 @@ class T(unittest.TestCase):
     self.assertGreaterEqual(len(by_status.get('success',[])),2)
     by_safety=__import__('json').loads((reg/'indexes/by_safety_status.json').read_text())
     self.assertGreaterEqual(len(by_safety.get('safe',[])),2)
+
+  def test_latest_json_tracks_newest_generated_at(self):
+    reg=Path(tempfile.mkdtemp())/'r'
+    older=Path(tempfile.mkdtemp())/'old'; newer=Path(tempfile.mkdtemp())/'new'
+    run_canary(Path('.'),Path('tests/fixtures/securerails_e2e_canary'),older)
+    run_canary(Path('.'),Path('tests/fixtures/securerails_e2e_canary'),newer)
+    old_manifest=__import__('json').loads((older/'00_manifest.json').read_text())
+    new_manifest=__import__('json').loads((newer/'00_manifest.json').read_text())
+    if old_manifest['generated_at'] > new_manifest['generated_at']:
+      old_manifest, new_manifest = new_manifest, old_manifest
+      (older/'00_manifest.json').write_text(__import__('json').dumps(old_manifest))
+      (newer/'00_manifest.json').write_text(__import__('json').dumps(new_manifest))
+    update_registry(newer,reg)
+    update_registry(older,reg)
+    latest=__import__('json').loads((reg/'latest.json').read_text())
+    self.assertEqual(latest['generated_at'], new_manifest['generated_at'])
