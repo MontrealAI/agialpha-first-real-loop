@@ -26,3 +26,13 @@ class T(unittest.TestCase):
             self.assertFalse((out / 'leftover.txt').exists())
             manifest = json.loads((out / 'artifact_manifest.json').read_text(encoding='utf-8'))
             self.assertNotIn('leftover.txt', manifest['artifacts'])
+
+    def test_export_plan_contains_required_schema_fields(self):
+        with tempfile.TemporaryDirectory() as d:
+            out = Path(d) / 'x'
+            build(Path('.'), '0.1.0-rc1', 'rc', out)
+            export_plan = json.loads((out / 'export_plan.json').read_text(encoding='utf-8'))
+            self.assertEqual('0.1.0-rc1', export_plan['release_version'])
+            self.assertEqual('rc', export_plan['release_channel'])
+            self.assertTrue(export_plan['claim_boundary'])
+

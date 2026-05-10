@@ -4,11 +4,14 @@ import json
 from pathlib import Path
 
 
-def build_export_plan(release_id: str, out: Path) -> dict:
+def build_export_plan(release_manifest: dict, out: Path) -> dict:
     """Build a Marketplace-ready export plan for a future dedicated action repository."""
     plan = {
         "schema_version": "securerails.export_plan.v1",
-        "release_id": release_id,
+        "release_id": release_manifest.get("release_id", "unknown-release"),
+        "release_version": release_manifest.get("release_version", "unknown-version"),
+        "release_channel": release_manifest.get("release_channel", "unknown-channel"),
+        "claim_boundary": release_manifest.get("claim_boundary", ""),
         "marketplace_publication_allowed_now": False,
         "recommended_target_repository": "MontrealAI/securerails-pr-guard-action",
         "required_repository_shape": {
