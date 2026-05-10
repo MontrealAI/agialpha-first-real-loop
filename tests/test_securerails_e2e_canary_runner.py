@@ -7,4 +7,5 @@ class T(unittest.TestCase):
         out=Path(tempfile.mkdtemp())/'out'
         m=run_canary(Path('.'),Path('tests/fixtures/securerails_e2e_canary'),out)
         self.assertEqual(m['fixture_count'],7)
+        self.assertEqual(m['status'],'success')
         self.assertTrue((out/'02_runs/safe_docs_customer_repo/work_vault.json').exists())

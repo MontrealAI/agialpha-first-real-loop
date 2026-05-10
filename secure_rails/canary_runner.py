@@ -68,8 +68,10 @@ def run_canary(repo_root: Path, fixtures_dir: Path, out_dir: Path):
         matches_expected = actual['recommendation'] == meta['expected']['recommendation'] and actual['sovereign'] == meta['expected']['sovereign']
         status='pass' if matches_expected else 'fail'
         summary.append({"fixture":f,"status":status,"expected":meta['expected'],"actual":{"recommendation":actual['recommendation'],"sovereign":actual['sovereign']}})
+    statuses = [row.get("status", "pending") for row in summary]
+    manifest_status = "failure" if any(s == "fail" for s in statuses) else ("partial" if any(s == "partial" for s in statuses) else "success")
     now = datetime.now(timezone.utc)
-    manifest={"schema_version":"securerails.e2e_canary.v1","canary_id":"securerails-e2e-pilot-canary-001","run_id":now.strftime('%Y%m%d%H%M%S%f'),"run_url":"","repository":"MontrealAI/agialpha-first-real-loop","generated_at":now.isoformat(),"fixture_count":len(fixtures),"fixtures":fixtures,"status":"success","components_tested":["installable_workflow","agentic_pr_guard","work_vault","mark_allocation","sovereign_assignment","proofbundle","evidence_docket","customer_pilot_intake","evidence_mission_control_data"],"hard_safety_counters":counters,"claim_boundary":BOUNDARY}
+    manifest={"schema_version":"securerails.e2e_canary.v1","canary_id":"securerails-e2e-pilot-canary-001","run_id":now.strftime('%Y%m%d%H%M%S%f'),"run_url":"","repository":"MontrealAI/agialpha-first-real-loop","generated_at":now.isoformat(),"fixture_count":len(fixtures),"fixtures":fixtures,"status":manifest_status,"components_tested":["installable_workflow","agentic_pr_guard","work_vault","mark_allocation","sovereign_assignment","proofbundle","evidence_docket","customer_pilot_intake","evidence_mission_control_data"],"hard_safety_counters":counters,"claim_boundary":BOUNDARY}
     (out_dir/'00_manifest.json').write_text(json.dumps(manifest,indent=2))
     (out_dir/'01_fixture_summary.json').write_text(json.dumps(summary,indent=2))
     return manifest

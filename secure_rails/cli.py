@@ -247,7 +247,9 @@ def main():
     if a.cmd == 'e2e-canary':
         if a.ec_sub == 'list-fixtures': list_fixtures_cmd(Path(a.fixtures)); return
         if a.ec_sub == 'run': run_canary(Path(a.repo_root), Path(a.fixtures), Path(a.out)); return
-        if a.ec_sub == 'replay': canary_replay(Path(a.input), Path(a.out)); return
+        if a.ec_sub == 'replay':
+            rep = canary_replay(Path(a.input), Path(a.out))
+            raise SystemExit(0 if rep.get('replay_pass') else 1)
         if a.ec_sub == 'validate': canary_validate(Path(a.input)); return
         if a.ec_sub == 'build-report': canary_build_report(Path(a.input), Path(a.out)); return
         if a.ec_sub == 'render': canary_render(Path(a.input), Path(a.out)); return
