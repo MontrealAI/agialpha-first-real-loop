@@ -14,3 +14,5 @@ class T(unittest.TestCase):
             manifest = json.loads((out / 'release_manifest.json').read_text(encoding='utf-8'))
             self.assertNotEqual(manifest.get('commit_sha'), 'unknown')
             self.assertNotEqual(manifest.get('branch'), 'unknown')
+            self.assertNotEqual(manifest.get('repository'), 'MontrealAI/agialpha-first-real-loop')
+            self.assertIn('/', manifest.get('repository', ''))

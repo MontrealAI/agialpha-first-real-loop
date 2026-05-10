@@ -1,1 +1,25 @@
-{"type":"object","required":["release_version","release_channel","claim_boundary"]}
+{
+  "type": "object",
+  "required": [
+    "schema_version",
+    "monorepo_action_ready",
+    "reusable_workflow_ready",
+    "marketplace_dedicated_repo_needed",
+    "root_action_yml_present",
+    "workflow_files_present",
+    "public_repo_required",
+    "marketplace_publication_allowed_now",
+    "recommended_next_step"
+  ],
+  "properties": {
+    "schema_version": {"const": "securerails.marketplace_readiness.v1"},
+    "monorepo_action_ready": {"enum": ["pass", "fail", "partial"]},
+    "reusable_workflow_ready": {"enum": ["pass", "fail", "partial"]},
+    "marketplace_dedicated_repo_needed": {"type": "boolean"},
+    "root_action_yml_present": {"type": "boolean"},
+    "workflow_files_present": {"type": "boolean"},
+    "public_repo_required": {"type": "boolean"},
+    "marketplace_publication_allowed_now": {"type": "boolean"},
+    "recommended_next_step": {"type": "string"}
+  }
+}
