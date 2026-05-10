@@ -20,3 +20,14 @@ class T(unittest.TestCase):
         rep=build_report(out,out/'05_canary_report.json')
         self.assertEqual(rep['fixtures_failed'],1)
         self.assertEqual(rep['fixtures_partial'],1)
+
+    def test_expected_recommendations_matched_is_computed(self):
+        out=Path(tempfile.mkdtemp())/'o'
+        run_canary(Path('.'),Path('tests/fixtures/securerails_e2e_canary'),out)
+        summary_path = out / '01_fixture_summary.json'
+        summary = __import__('json').loads(summary_path.read_text())
+        summary[0]['actual_recommendation'] = 'mismatch'
+        summary_path.write_text(__import__('json').dumps(summary))
+        replay(out,out/'04_replay_report.json')
+        rep=build_report(out,out/'05_canary_report.json')
+        self.assertEqual(rep['expected_recommendations_matched'],6)
