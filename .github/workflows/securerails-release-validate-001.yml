@@ -1,4 +1,5 @@
 name: SecureRails Release Validate 001
+
 on:
   pull_request:
     paths:
@@ -12,12 +13,32 @@ on:
       - "config/securerails_marketplace_readiness_policy.json"
       - ".github/workflows/securerails-release*.yml"
   workflow_dispatch:
-permissions: {contents: read, actions: read}
+
+permissions:
+  contents: read
+  actions: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '3.11'}
-      - run: python -m unittest discover -s tests
+        with:
+          python-version: '3.11'
+      - name: Validate release manifest examples
+        run: python -m unittest tests.test_securerails_release_manifest
+      - name: Build and validate ephemeral release bundle
+        run: |
+          python -m secure_rails release-train build --repo-root . --release-version 0.1.0-rc1 --release-channel rc --out /tmp/securerails-release-validate
+          python -m secure_rails release-train validate --input /tmp/securerails-release-validate
+      - name: No overclaim checks
+        run: |
+          python scripts/secure_rails_claim_boundary_check.py .
+          python scripts/secure_rails_no_automerge_check.py .
+      - name: Token utility boundary checks
+        run: python -m agialpha_docs audit-claims --repo-root .
+      - name: Marketplace readiness language check
+        run: python -m unittest tests.test_securerails_marketplace_readiness
+      - name: Run release tests
+        run: python -m unittest discover -s tests
