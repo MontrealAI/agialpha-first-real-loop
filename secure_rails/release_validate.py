@@ -29,6 +29,9 @@ def validate_bundle(inp:Path):
   checksum_map[parts[1]] = parts[0]
  if 'artifact_manifest.json' not in checksum_map:
   raise ValueError('artifact_manifest.json missing from checksums')
+ for rel in artifacts:
+  if rel not in checksum_map:
+    raise ValueError(f'artifact missing checksum: {rel}')
  for rel, expected in checksum_map.items():
   p = inp / rel
   if not p.exists():

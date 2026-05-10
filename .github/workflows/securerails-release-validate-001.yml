@@ -6,7 +6,9 @@ on:
       - "docs/secure-rails/**"
       - "secure_rails/**"
       - "schemas/securerails_release*.json"
+      - "schemas/securerails_marketplace*.json"
       - "config/securerails_release*.json"
+      - "config/securerails_marketplace*.json"
       - ".github/workflows/securerails-release*.yml"
   workflow_dispatch:
 permissions: {contents: read, actions: read}
