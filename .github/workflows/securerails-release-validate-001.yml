@@ -6,6 +6,7 @@ on:
       - "releases/securerails/**"
       - "docs/secure-rails/**"
       - "secure_rails/**"
+      - "scripts/secure_rails_*.py"
       - "schemas/securerails_release*.json"
       - "schemas/securerails_marketplace_readiness.schema.json"
       - "schemas/securerails_export_plan.schema.json"
