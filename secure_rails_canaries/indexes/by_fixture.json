@@ -1,1 +1,23 @@
-{}
+{
+  "automerge_customer_repo": [
+    "20260510204059000058"
+  ],
+  "high_risk_use_customer_repo": [
+    "20260510204059000058"
+  ],
+  "safe_docs_customer_repo": [
+    "20260510204059000058"
+  ],
+  "secret_like_customer_repo": [
+    "20260510204059000058"
+  ],
+  "token_overclaim_customer_repo": [
+    "20260510204059000058"
+  ],
+  "unsafe_claim_customer_repo": [
+    "20260510204059000058"
+  ],
+  "workflow_permission_customer_repo": [
+    "20260510204059000058"
+  ]
+}
