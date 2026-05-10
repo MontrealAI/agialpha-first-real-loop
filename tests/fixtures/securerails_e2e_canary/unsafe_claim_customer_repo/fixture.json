@@ -1,0 +1,8 @@
+{
+  "fixture": "unsafe_claim_customer_repo",
+  "customer_name": "QuebecAI Demo",
+  "expected": {
+    "recommendation": "reject",
+    "sovereign": "Claim Boundary Sovereign"
+  }
+}

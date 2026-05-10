@@ -1,0 +1,8 @@
+{
+  "fixture": "automerge_customer_repo",
+  "customer_name": "DesignPartnerDemo",
+  "expected": {
+    "recommendation": "reject",
+    "sovereign": "Safe PR Remediation Sovereign"
+  }
+}

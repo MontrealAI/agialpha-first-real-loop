@@ -100,3 +100,7 @@ See:
 Generated artifacts: `docs/_generated/template-bootstrap/`.
 
 - SecureRails release train docs: [docs/secure-rails/release-train.md](docs/secure-rails/release-train.md)
+
+
+## SecureRails E2E Pilot Canary 001
+See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/securerails-e2e-pilot-canary-001.yml`.
