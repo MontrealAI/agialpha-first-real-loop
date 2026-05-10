@@ -32,3 +32,12 @@ class T(unittest.TestCase):
             (out / 'CHECKSUMS.sha256').write_text('\n'.join(checks) + '\n', encoding='utf-8')
             with self.assertRaises(ValueError):
                 validate_bundle(out)
+
+
+    def test_validate_bundle_fails_missing_marketplace_json(self):
+        with tempfile.TemporaryDirectory() as d:
+            out = Path(d) / 'bundle'
+            build(Path('.').resolve(), '0.1.0-rc1', 'rc', out)
+            (out / 'marketplace_readiness.json').unlink()
+            with self.assertRaises(ValueError):
+                validate_bundle(out)

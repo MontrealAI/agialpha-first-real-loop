@@ -4,9 +4,15 @@ import json
 def assess(repo_root: Path) -> dict:
     root_action = (repo_root / 'action.yml').exists()
     workflows = any((repo_root / '.github/workflows').glob('*.yml'))
+    if root_action and not workflows:
+        monorepo_ready = 'pass'
+    elif root_action and workflows:
+        monorepo_ready = 'partial'
+    else:
+        monorepo_ready = 'fail'
     return {
         'schema_version': 'securerails.marketplace_readiness.v1',
-        'monorepo_action_ready': 'partial' if workflows else 'pass',
+        'monorepo_action_ready': monorepo_ready,
         'reusable_workflow_ready': 'pass' if (repo_root / '.github/workflows/securerails-pr-guard-reusable.yml').exists() else 'partial',
         'marketplace_dedicated_repo_needed': True,
         'root_action_yml_present': root_action,

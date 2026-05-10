@@ -9,7 +9,7 @@ def validate_bundle(inp:Path):
   raise ValueError('release_manifest.json missing')
  m=json.loads(manifest_path.read_text());ok,errs=validate_manifest(m)
  if not ok: raise ValueError('; '.join(errs))
- required = ['CHECKSUMS.sha256', 'artifact_manifest.json', 'RELEASE_NOTES.md', 'CUSTOMER_INSTALL.md', 'MARKETPLACE_READINESS.md']
+ required = ['CHECKSUMS.sha256', 'artifact_manifest.json', 'RELEASE_NOTES.md', 'CUSTOMER_INSTALL.md', 'MARKETPLACE_READINESS.md', 'marketplace_readiness.json']
  missing = [name for name in required if not (inp / name).exists()]
  if missing:
   raise ValueError('missing bundle files: ' + ', '.join(missing))
