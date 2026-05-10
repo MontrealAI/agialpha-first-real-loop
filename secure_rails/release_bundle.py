@@ -28,6 +28,8 @@ def build_bundle(repo_root: Path, out: Path, manifest: dict):
     act = out / 'action'; act.mkdir(exist_ok=True)
     for n, s in [('action.yml', repo_root / '.github/actions/securerails-pr-guard/action.yml'), ('README.md', repo_root / '.github/actions/securerails-pr-guard/README.md')]:
         (act / n).write_text(s.read_text(encoding='utf-8') if s.exists() else 'not_available\n', encoding='utf-8')
-    files = [p for p in out.rglob('*') if p.is_file() and p.name != 'CHECKSUMS.sha256']
-    (out / 'CHECKSUMS.sha256').write_text('\n'.join(f"{_sha(p)}  {p.relative_to(out)}" for p in sorted(files)), encoding='utf-8')
-    (out / 'artifact_manifest.json').write_text(json.dumps({'artifacts': [str(p.relative_to(out)) for p in sorted(files)]}, indent=2), encoding='utf-8')
+    manifest_path = out / 'artifact_manifest.json'
+    files_for_manifest = [p for p in out.rglob('*') if p.is_file() and p.name not in ('CHECKSUMS.sha256', 'artifact_manifest.json')]
+    manifest_path.write_text(json.dumps({'artifacts': [str(p.relative_to(out)) for p in sorted(files_for_manifest)]}, indent=2), encoding='utf-8')
+    files_for_checksums = [p for p in out.rglob('*') if p.is_file() and p.name != 'CHECKSUMS.sha256']
+    (out / 'CHECKSUMS.sha256').write_text('\n'.join(f"{_sha(p)}  {p.relative_to(out)}" for p in sorted(files_for_checksums)), encoding='utf-8')
