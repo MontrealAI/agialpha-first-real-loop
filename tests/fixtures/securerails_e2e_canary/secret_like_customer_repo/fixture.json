@@ -1,0 +1,9 @@
+{
+  "fixture": "secret_like_customer_repo",
+  "customer_name": "ExampleAI",
+  "expected": {
+    "recommendation": "human_review_required",
+    "sovereign": "Secret Hygiene Sovereign"
+  },
+  "fake_secret": "FAKE_TEST_API_KEY_1234567890"
+}

@@ -144,3 +144,8 @@ Each row represents one workflow file and should be read with these fields:
 
 | `securerails-release-candidate-001.yml` | SecureRails | `workflow_dispatch` | Release candidate bundle artifact | Manual-only release candidate path; no auto publish; no Marketplace publication. | no |
 | `securerails-release-validate-001.yml` | SecureRails | `pull_request`, `workflow_dispatch` | Release validation test results | No overclaim checks and test gates; no Pages deploy. | no |
+| `securerails-e2e-pilot-canary-001.yml` | SecureRails | `workflow_dispatch`, `schedule` | Synthetic internal canary artifact (`secure-rails-e2e-canary-output`) with Work Vault, MARK, Sovereign, ProofBundle, Evidence Docket, replay, report. | Synthetic internal canary only; no direct Pages deploy; human review required; utility-only $AGIALPHA accounting mock. | no |
+
+
+## SecureRails E2E Pilot Canary 001
+See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-canary-001.yml`.

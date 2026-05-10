@@ -32,3 +32,6 @@ The Evidence Hub Launchpad is the operator entry point for running repository wo
 - Customer template: `docs/secure-rails/templates/customer-securerails-pr-guard.yml`
 
 - Connector flow includes GitHub App webhook and repository_dispatch bridge.
+
+
+- SecureRails E2E Pilot Canary 001: synthetic internal canary workflow.
