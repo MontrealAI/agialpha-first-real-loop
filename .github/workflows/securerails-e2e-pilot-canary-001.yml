@@ -3,12 +3,15 @@ on:
   workflow_dispatch:
     inputs:
       fixture_set:
+        description: "Fixture set to run"
         required: false
         default: tests/fixtures/securerails_e2e_canary
       update_registry:
+        description: "Update canary registry in working directory"
         required: false
         default: "true"
       publish_to_evidence_mission_control:
+        description: "Trigger central publisher if available"
         required: false
         default: "true"
   schedule:
@@ -25,7 +28,10 @@ jobs:
         with:
           python-version: '3.11'
       - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python scripts/secure_rails_safety_ledger_check.py docs/secure-rails/templates/safety-ledger-example.json
       - run: python scripts/secure_rails_no_automerge_check.py .
+      - run: python scripts/secure_rails_use_case_triage_check.py docs/secure-rails/templates/deployment-intake-example.json
+      - run: python scripts/secure_rails_work_vault_check.py docs/secure-rails/templates/work-vault-example.json
       - run: python -m secure_rails e2e-canary run --repo-root . --fixtures "${{ inputs.fixture_set || 'tests/fixtures/securerails_e2e_canary' }}" --out secure-rails-e2e-canary-output
       - run: python -m secure_rails e2e-canary replay --input secure-rails-e2e-canary-output --out secure-rails-e2e-canary-output/04_replay_report.json
       - run: python -m secure_rails e2e-canary validate --input secure-rails-e2e-canary-output
@@ -35,6 +41,10 @@ jobs:
         run: python -m secure_rails e2e-canary update-registry --input secure-rails-e2e-canary-output --registry secure_rails_canaries
       - if: ${{ (inputs.publish_to_evidence_mission_control || 'true') == 'true' && (inputs.update_registry || 'true') == 'true' }}
         run: python -m secure_rails e2e-canary build-data --registry secure_rails_canaries --out docs/_generated/secure-rails/e2e-canary
+      - name: Emit evidence run manifest
+        run: test -f secure-rails-e2e-canary-output/evidence-run-manifest.json
+      - name: Print canary summary
+        run: cat secure-rails-e2e-canary-output/summary.md
       - uses: actions/upload-artifact@v4
         with:
           name: securerails-e2e-pilot-canary-001
