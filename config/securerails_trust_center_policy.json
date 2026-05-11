@@ -1,0 +1,5 @@
+{
+  "schema_version": "securerails.trust_center_policy.v1",
+  "security_contact_config": "config/securerails_security_contact.example.json",
+  "allow_publish_security_txt": false
+}
