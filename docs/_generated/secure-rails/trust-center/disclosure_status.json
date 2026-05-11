@@ -1,4 +1,5 @@
 {
   "schema_version": "securerails.trust_center_disclosure.v1",
-  "private_reporting": "enabled_or_pending_admin_enablement"
+  "private_reporting": "enabled_or_pending_admin_enablement",
+  "policy_present": true
 }

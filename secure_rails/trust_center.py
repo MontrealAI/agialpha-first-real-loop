@@ -17,3 +17,25 @@ def build_data(repo_root: Path, out: Path):
             return "not_run" if tristate else "fail"
     status={"schema_version":"securerails.trust_center_status.v1","generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"security_policy_present":(repo_root/'SECURITY.md').exists(),"vulnerability_disclosure_present":(repo_root/'docs/secure-rails/vulnerability-disclosure-policy.md').exists(),"security_txt_status":"pending_contact","incident_response_runbook_present":(repo_root/'docs/secure-rails/incident-response-runbook.md').exists(),"security_advisory_process_present":(repo_root/'docs/secure-rails/security-advisory-process.md').exists(),"customer_security_faq_present":(repo_root/'docs/secure-rails/customer-security-faq.md').exists(),"control_matrix_present":(repo_root/'docs/secure-rails/trust-center-control-matrix.md').exists(),"claim_boundary_check":run_check(["python","scripts/secure_rails_claim_boundary_check.py","."], tristate=True),"safety_ledger_check":run_check(["python","scripts/secure_rails_safety_ledger_check.py","docs/secure-rails/templates/safety-ledger-example.json"], tristate=True),"no_automerge_check":run_check(["python","scripts/secure_rails_no_automerge_check.py","."], tristate=True),"utility_token_boundary_check":run_check(["python","-m","secure_rails","check-token-boundary","--repo-root","."], tristate=True),"certification_claims":"none","claim_boundary":"SecureRails Trust Center is readiness and evidence documentation, not a certification."}
     (out/'status.json').write_text(json.dumps(status,indent=2),encoding='utf-8')
+    control_matrix = {
+        "schema_version": "securerails.trust_center_control_matrix.v1",
+        "controls": [
+            {"control_id": "SEC-001", "name": "Claim-boundary enforcement", "status": "implemented"}
+        ],
+    }
+    (out/'control_matrix.json').write_text(json.dumps(control_matrix, indent=2), encoding='utf-8')
+    disclosure_status = {
+        "schema_version": "securerails.trust_center_disclosure.v1",
+        "private_reporting": "enabled_or_pending_admin_enablement",
+        "policy_present": (repo_root/'docs/secure-rails/vulnerability-disclosure-policy.md').exists(),
+    }
+    (out/'disclosure_status.json').write_text(json.dumps(disclosure_status, indent=2), encoding='utf-8')
+    incident_example = repo_root / 'docs/secure-rails/templates/security-incident-record-example.json'
+    incidents = []
+    if incident_example.exists():
+        try:
+            incidents = [json.loads(incident_example.read_text(encoding='utf-8'))]
+        except Exception:
+            incidents = []
+    latest_incidents = {"schema_version": "securerails.trust_center_incidents.v1", "incidents": incidents}
+    (out/'latest_incidents.json').write_text(json.dumps(latest_incidents, indent=2), encoding='utf-8')

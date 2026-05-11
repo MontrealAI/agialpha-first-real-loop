@@ -3,6 +3,7 @@
   "controls": [
     {
       "control_id": "SEC-001",
+      "name": "Claim-boundary enforcement",
       "status": "implemented"
     }
   ]
