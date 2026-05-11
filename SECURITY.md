@@ -47,4 +47,7 @@ No bounty is promised unless separately approved in writing.
 ## Claim boundary
 SecureRails reports and Evidence Dockets are advisory governance artifacts. They do not certify security.
 
-SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cybercertification claim, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
+SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cyber assurance authority, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
+
+
+Doctrine boundary: "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not."
