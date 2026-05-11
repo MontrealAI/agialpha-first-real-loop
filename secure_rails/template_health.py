@@ -13,7 +13,7 @@ def build_template_health(repo_root:Path, repository:str)->dict:
     warns=[]
     if not (repo_root/'docs/START_HERE.md').exists() and not (repo_root/'README.md').exists(): warns.append('missing START_HERE or equivalent')
     status='pass' if not missing else 'fail'
-    return {'schema_version':'securerails.template_health.v1','generated_at':datetime.datetime.utcnow().isoformat()+'Z','repository':repository,
+    return {'schema_version':'securerails.template_health.v1','generated_at':datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z'),'repository':repository,
             'status':status,'checks':['required_files'],'missing_required_files':missing,'warnings':warns,'next_steps':['Run SecureRails Compliance Guard'],'claim_boundary':'SecureRails is AI-agent security governance and proof-bound defensive remediation.'}
 
 def write_template_health(repo_root:Path, repository:str, out:Path)->dict:

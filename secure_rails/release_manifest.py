@@ -15,7 +15,7 @@ def build_manifest(release_version:str, release_channel:str, repo:str, commit_sh
       "release_id":rid,
       "release_version":release_version,
       "release_channel":release_channel,
-      "generated_at":__import__('datetime').datetime.utcnow().isoformat()+"Z",
+      "generated_at":__import__('datetime').datetime.now(__import__('datetime').timezone.utc).isoformat().replace('+00:00','Z'),
       "repository":repo,
       "commit_sha":commit_sha,
       "branch":branch,
