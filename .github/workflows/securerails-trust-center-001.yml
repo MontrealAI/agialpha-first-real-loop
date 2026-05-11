@@ -13,6 +13,7 @@ on:
       - "scripts/secure_rails_incident_record_check.py"
       - "scripts/secure_rails_claim_boundary_check.py"
       - "scripts/secure_rails_no_automerge_check.py"
+      - "scripts/secure_rails_safety_ledger_check.py"
       - "secure_rails/**"
       - ".github/workflows/securerails-trust-center-001.yml"
   workflow_dispatch:
