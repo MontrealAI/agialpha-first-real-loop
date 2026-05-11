@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "required": ["schema_version", "controls"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "controls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["control_id", "name", "status"],
+        "properties": {
+          "control_id": {"type": "string"},
+          "name": {"type": "string"},
+          "status": {
+            "type": "string",
+            "enum": ["implemented", "partially implemented", "planned", "not applicable", "evidence pending"]
+          }
+        }
+      }
+    }
+  }
+}

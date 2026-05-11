@@ -1,0 +1,54 @@
+name: SecureRails Trust Center 001
+on:
+  pull_request:
+    paths:
+      - "SECURITY.md"
+      - "docs/secure-rails/**"
+      - "docs/.well-known/security.txt"
+      - ".well-known/security.txt"
+      - "schemas/securerails_security_incident.schema.json"
+      - "schemas/securerails_vulnerability_report.schema.json"
+      - "schemas/securerails_trust_center*.json"
+      - "config/securerails_trust_center*.json"
+      - "config/securerails_vulnerability_disclosure_policy.json"
+      - "config/securerails_security_contact.example.json"
+      - "scripts/secure_rails_trust_center_check.py"
+      - "scripts/secure_rails_security_txt_check.py"
+      - "scripts/secure_rails_incident_record_check.py"
+      - "scripts/secure_rails_claim_boundary_check.py"
+      - "scripts/secure_rails_no_automerge_check.py"
+      - "scripts/secure_rails_safety_ledger_check.py"
+      - "secure_rails/**"
+      - ".github/workflows/securerails-trust-center-001.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * 1"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python scripts/secure_rails_no_automerge_check.py .
+      - run: python scripts/secure_rails_trust_center_check.py .
+      - run: python scripts/secure_rails_security_txt_check.py docs/secure-rails/templates/security.txt.template
+      - run: |
+          if [ -f .well-known/security.txt ]; then
+            python scripts/secure_rails_security_txt_check.py .well-known/security.txt
+          elif [ -f docs/.well-known/security.txt ]; then
+            python scripts/secure_rails_security_txt_check.py docs/.well-known/security.txt
+          else
+            echo "No production security.txt present; skipping production contact validation."
+          fi
+      - run: python scripts/secure_rails_incident_record_check.py docs/secure-rails/templates/security-incident-record-example.json
+      - run: python -m secure_rails trust-center build-data --repo-root . --out docs/_generated/secure-rails/trust-center
+      - uses: actions/upload-artifact@v4
+        with:
+          name: securerails-trust-center-report
+          path: docs/_generated/secure-rails/trust-center
+      - run: echo "Trust Center validation complete"

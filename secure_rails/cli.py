@@ -29,6 +29,10 @@ from .canary_replay import replay as canary_replay
 from .canary_report import build_report as canary_build_report
 from .canary_registry import update_registry as canary_update_registry, build_data as canary_build_data
 from .canary_render import render as canary_render
+from .trust_center import validate as trust_validate, build_data as trust_build_data
+from .security_txt import validate_security_txt_template
+from .incident_response import validate_incident
+from .trust_render import render as trust_render
 
 
 
@@ -105,6 +109,13 @@ def main():
     rtm=rtsp.add_parser('marketplace-readiness'); rtm.add_argument('--repo-root', required=True); rtm.add_argument('--out', required=True)
     rtr=rtsp.add_parser('render-notes'); rtr.add_argument('--input', required=True); rtr.add_argument('--out', required=True)
 
+    tc = sp.add_parser('trust-center')
+    tcsp = tc.add_subparsers(dest='tc_sub', required=True)
+    tcv = tcsp.add_parser('validate'); tcv.add_argument('--repo-root', required=True)
+    tcb = tcsp.add_parser('build-data'); tcb.add_argument('--repo-root', required=True); tcb.add_argument('--out', required=True)
+    tcr = tcsp.add_parser('render'); tcr.add_argument('--repo-root', required=True); tcr.add_argument('--out', required=True)
+    tcs = tcsp.add_parser('validate-security-txt'); tcs.add_argument('--input', required=True)
+    tci = tcsp.add_parser('validate-incident'); tci.add_argument('--input', required=True)
     a = p.parse_args()
 
     if a.cmd == 'supply-chain':
@@ -242,6 +253,28 @@ def main():
         if a.rt_sub == 'validate': rt_validate(Path(a.input)); return
         if a.rt_sub == 'marketplace-readiness': rt_marketplace(Path(a.repo_root), Path(a.out)); return
         if a.rt_sub == 'render-notes': rt_render_notes(Path(a.input), Path(a.out)); return
+
+    if a.cmd == 'trust-center':
+        if a.tc_sub == 'validate':
+            ok, errs = trust_validate(Path(a.repo_root)); [print(e) for e in errs]; raise SystemExit(0 if ok else 1)
+        if a.tc_sub == 'build-data':
+            status = trust_build_data(Path(a.repo_root), Path(a.out))
+            required = ("claim_boundary_check","safety_ledger_check","no_automerge_check","utility_token_boundary_check")
+            failing = [k for k in required if status.get(k) == "fail"]
+            not_run = [k for k in required if status.get(k) == "not_run"]
+            if failing or not_run:
+                if failing:
+                    print("trust-center build-data failed checks:", ", ".join(failing))
+                if not_run:
+                    print("trust-center build-data checks not run:", ", ".join(not_run))
+                raise SystemExit(1)
+            return
+        if a.tc_sub == 'render':
+            trust_render(Path(a.repo_root), Path(a.out)); return
+        if a.tc_sub == 'validate-security-txt':
+            ok, errs = validate_security_txt_template(Path(a.input)); [print(e) for e in errs]; raise SystemExit(0 if ok else 1)
+        if a.tc_sub == 'validate-incident':
+            ok, errs = validate_incident(Path(a.input)); [print(e) for e in errs]; raise SystemExit(0 if ok else 1)
 
 
     if a.cmd == 'e2e-canary':
