@@ -229,5 +229,45 @@
       "critical_safety_incidents": 0
     },
     "claim_boundary": "This canary is a synthetic internal pilot test. It does not certify security, does not claim customer validation, and does not authorize autonomous remediation."
+  },
+  {
+    "schema_version": "securerails.e2e_canary.v1",
+    "canary_id": "securerails-e2e-pilot-canary-001",
+    "run_id": "20260511010017951266",
+    "run_url": "",
+    "repository": "MontrealAI/agialpha-first-real-loop",
+    "generated_at": "2026-05-11T01:00:17.951266+00:00",
+    "fixture_count": 7,
+    "fixtures": [
+      "automerge_customer_repo",
+      "high_risk_use_customer_repo",
+      "safe_docs_customer_repo",
+      "secret_like_customer_repo",
+      "token_overclaim_customer_repo",
+      "unsafe_claim_customer_repo",
+      "workflow_permission_customer_repo"
+    ],
+    "status": "success",
+    "components_tested": [
+      "installable_workflow",
+      "agentic_pr_guard",
+      "work_vault",
+      "mark_allocation",
+      "sovereign_assignment",
+      "proofbundle",
+      "evidence_docket",
+      "customer_pilot_intake",
+      "evidence_mission_control_data"
+    ],
+    "hard_safety_counters": {
+      "raw_secret_leak_count": 0,
+      "external_target_scan_count": 0,
+      "exploit_execution_count": 0,
+      "malware_generation_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0,
+      "critical_safety_incidents": 0
+    },
+    "claim_boundary": "This canary is a synthetic internal pilot test. It does not certify security, does not claim customer validation, and does not authorize autonomous remediation."
   }
 ]
