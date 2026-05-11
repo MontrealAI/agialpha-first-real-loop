@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "required": [
+    "incident_id",
+    "detected_at",
+    "severity",
+    "affected_scope",
+    "safety_counters",
+    "evidence",
+    "containment",
+    "human_reviewer",
+    "status",
+    "claim_boundary",
+    "lessons_learned",
+    "archive_update"
+  ]
+}

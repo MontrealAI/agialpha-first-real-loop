@@ -1,0 +1,17 @@
+{
+  "schema_version": "securerails.trust_center_status.v1",
+  "generated_at": "2026-05-11T13:46:33.416321+00:00",
+  "security_policy_present": true,
+  "vulnerability_disclosure_present": true,
+  "security_txt_status": "pending_contact",
+  "incident_response_runbook_present": true,
+  "security_advisory_process_present": true,
+  "customer_security_faq_present": true,
+  "control_matrix_present": true,
+  "claim_boundary_check": "pass",
+  "safety_ledger_check": "pass",
+  "no_automerge_check": "pass",
+  "utility_token_boundary_check": "pass",
+  "certification_claims": "none",
+  "claim_boundary": "SecureRails Trust Center is readiness and evidence documentation, not a certification."
+}
