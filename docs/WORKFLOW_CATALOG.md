@@ -155,3 +155,5 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 - `securerails-trust-center-001.yml` — SecureRails Trust Center 001 validation workflow.
 | `securerails-repo-security-baseline-001.yml` | SecureRails | workflow_dispatch, pull_request, schedule | Repository security baseline evidence bundle + Evidence Docket + ProofBundle artifacts. | Advisory security-governance evidence only; human review required; no Pages deploy. | no |
 | `securerails-dependency-review-001.yml` | SecureRails | pull_request, workflow_dispatch | Dependency review advisory artifact and local dependency inventory evidence. | Advisory only; no certification claim. | no |
+
+- SecureRails Policy Kernel 001 (`python -m secure_rails policy ...`)

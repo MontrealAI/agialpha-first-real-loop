@@ -73,3 +73,5 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/secu
 - trust-center-control-matrix-example.json
 
 - repo-security-baseline-example.json
+
+- SecureRails Policy Kernel 001 (`python -m secure_rails policy ...`)
