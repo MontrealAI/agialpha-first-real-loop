@@ -14,6 +14,8 @@ def validate_security_txt_template(path: Path) -> tuple[bool,list[str]]:
     contact_lines = fields.get('contact', [])
     if not contact_lines:
         errs.append('missing Contact value')
+    elif any(not c.strip() for c in contact_lines):
+        errs.append('Contact value must not be empty')
     is_template = path.name.endswith('.template')
     for contact in contact_lines:
         if 'example.invalid' in contact.lower() and not is_template:
