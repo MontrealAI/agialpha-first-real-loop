@@ -113,6 +113,7 @@
     ".github/workflows/securerails-supply-chain-provenance-001.yml",
     ".github/workflows/securerails-template-bootstrap-001.yml",
     ".github/workflows/securerails-template-health-check-001.yml",
+    ".github/workflows/securerails-trust-center-001.yml",
     ".github/workflows/securerails-work-vault-demo.yml",
     ".github/workflows/seed-runner-autonomous.yml",
     "agiga-foundry-runs/test/agiga-foundry-evidence-docket/00_manifest.json",
