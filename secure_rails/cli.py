@@ -259,9 +259,14 @@ def main():
             ok, errs = trust_validate(Path(a.repo_root)); [print(e) for e in errs]; raise SystemExit(0 if ok else 1)
         if a.tc_sub == 'build-data':
             status = trust_build_data(Path(a.repo_root), Path(a.out))
-            failing = [k for k in ("claim_boundary_check","safety_ledger_check","no_automerge_check","utility_token_boundary_check") if status.get(k) == "fail"]
-            if failing:
-                print("trust-center build-data failed checks:", ", ".join(failing))
+            required = ("claim_boundary_check","safety_ledger_check","no_automerge_check","utility_token_boundary_check")
+            failing = [k for k in required if status.get(k) == "fail"]
+            not_run = [k for k in required if status.get(k) == "not_run"]
+            if failing or not_run:
+                if failing:
+                    print("trust-center build-data failed checks:", ", ".join(failing))
+                if not_run:
+                    print("trust-center build-data checks not run:", ", ".join(not_run))
                 raise SystemExit(1)
             return
         if a.tc_sub == 'render':

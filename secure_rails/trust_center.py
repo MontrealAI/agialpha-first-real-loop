@@ -22,7 +22,9 @@ def build_data(repo_root: Path, out: Path):
         except Exception:
             return "not_run" if tristate else "fail"
     security_txt_status = "template_only"
-    security_txt_path = repo_root / 'docs/.well-known/security.txt'
+    root_security_txt_path = repo_root / '.well-known/security.txt'
+    docs_security_txt_path = repo_root / 'docs/.well-known/security.txt'
+    security_txt_path = root_security_txt_path if root_security_txt_path.exists() else docs_security_txt_path
     if security_txt_path.exists():
         content = security_txt_path.read_text(encoding='utf-8').lower()
         security_txt_status = "pending_contact" if "example.invalid" in content else "generated"
