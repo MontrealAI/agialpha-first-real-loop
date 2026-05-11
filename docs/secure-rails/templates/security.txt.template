@@ -1,0 +1,7 @@
+Contact: mailto:security-contact-pending@example.invalid
+Policy: https://github.com/MontrealAI/agialpha-first-real-loop/security/policy
+Preferred-Languages: en
+Canonical: https://montrealai.github.io/agialpha-first-real-loop/.well-known/security.txt
+Expires: 2099-12-31T00:00:00Z
+Encryption: https://example.invalid/pgp-key.txt
+Hiring: https://example.invalid/security-jobs
