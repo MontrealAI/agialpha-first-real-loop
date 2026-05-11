@@ -9,6 +9,8 @@ on:
       - "schemas/securerails_vulnerability_report.schema.json"
       - "schemas/securerails_trust_center*.json"
       - "config/securerails_trust_center*.json"
+      - "config/securerails_vulnerability_disclosure_policy.json"
+      - "config/securerails_security_contact.example.json"
       - "scripts/secure_rails_trust_center_check.py"
       - "scripts/secure_rails_security_txt_check.py"
       - "scripts/secure_rails_incident_record_check.py"
