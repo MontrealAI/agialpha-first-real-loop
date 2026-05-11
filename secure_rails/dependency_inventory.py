@@ -55,13 +55,18 @@ def collect_dependency_inventory(repo_root: str | Path, repository: str = '') ->
                 name, version = (image.split(':',1)+['latest'])[:2]
                 deps.append(_dep(name,version,'docker',str(docker.relative_to(root)),'dockerfile','medium'))
 
-    lock_present=[]
+    lock_present_paths = set()
     for pat in ['poetry.lock','package-lock.json','yarn.lock','pnpm-lock.yaml','go.sum','Cargo.lock','Gemfile.lock','gradle.lockfile']:
-        if list(root.rglob(pat)): lock_present.append(pat)
+        for p in root.rglob(pat):
+            lock_present_paths.add(str(p.relative_to(root)))
+    lock_present = sorted({Path(p).name for p in lock_present_paths})
     lock_missing=[]
     for manifest, locks in LOCK_EXPECTATIONS.items():
-        if list(root.rglob(manifest)) and locks and not any(lock in lock_present for lock in locks):
-            lock_missing.extend(locks)
+        for manifest_path in root.rglob(manifest):
+            parent = manifest_path.parent
+            if locks and not any((parent / lock).exists() for lock in locks):
+                for lock in locks:
+                    lock_missing.append(str((parent / lock).relative_to(root)))
     return {
         'schema_version':'securerails.dependency_inventory.v1',
         'generated_at': datetime.now(timezone.utc).isoformat(),

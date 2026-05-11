@@ -8,7 +8,13 @@ def code_scanning_readiness(repo_root):
     root=Path(repo_root)
     langs=[]
     if list(root.rglob('*.py')): langs.append('python')
-    workflow_present = any('codeql' in p.name.lower() for p in (root/'.github'/'workflows').glob('*.yml')) if (root/'.github'/'workflows').exists() else False
+    workflow_present = False
+    wf_dir = root / '.github' / 'workflows'
+    if wf_dir.exists():
+        for ext in ('*.yml', '*.yaml'):
+            if any('codeql' in p.name.lower() for p in wf_dir.glob(ext)):
+                workflow_present = True
+                break
     status='ready' if langs else 'not_applicable'
     return {
       'schema_version':'securerails.code_scanning_readiness.v1','generated_at':datetime.now(timezone.utc).isoformat(),'repository':'',
