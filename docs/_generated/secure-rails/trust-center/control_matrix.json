@@ -1,0 +1,105 @@
+{
+  "schema_version": "securerails.trust_center_control_matrix.v1",
+  "controls": [
+    {
+      "control_id": "SEC-001",
+      "name": "Claim-boundary enforcement",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-002",
+      "name": "No-auto-merge enforcement",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-003",
+      "name": "Safety ledger hard counters",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-004",
+      "name": "Redaction policy",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-005",
+      "name": "Work Vault validation",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-006",
+      "name": "MARK allocation record",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-007",
+      "name": "Sovereign assignment record",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-008",
+      "name": "ProofBundle generation",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-009",
+      "name": "Evidence Docket generation",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-010",
+      "name": "Vulnerability disclosure policy",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-011",
+      "name": "Incident response runbook",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-012",
+      "name": "Security advisory process",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-013",
+      "name": "Supply-chain provenance",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-014",
+      "name": "Customer pilot intake controls",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-015",
+      "name": "GitHub App least-privilege connector",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-016",
+      "name": "Template bootstrap health check",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-017",
+      "name": "$AGIALPHA utility-only boundary",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-018",
+      "name": "EU AI Act excluded-use posture",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-019",
+      "name": "Human review gate",
+      "status": "implemented"
+    },
+    {
+      "control_id": "SEC-020",
+      "name": "Evidence Mission Control publication guard",
+      "status": "implemented"
+    }
+  ]
+}

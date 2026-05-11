@@ -65,3 +65,9 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 
 ## SecureRails E2E Pilot Canary 001
 See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/securerails-e2e-pilot-canary-001.yml`.
+
+## Trust Center templates
+- security.txt.template
+- vulnerability-report-template.md
+- security-incident-record-example.json
+- trust-center-control-matrix-example.json
