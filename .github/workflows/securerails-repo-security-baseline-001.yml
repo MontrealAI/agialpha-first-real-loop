@@ -1,0 +1,34 @@
+name: SecureRails Repository Security Baseline 001
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "docs/secure-rails/**"
+      - "schemas/securerails_*.json"
+      - "config/securerails_*.json"
+      - "scripts/secure_rails_*.py"
+      - "secure_rails/**"
+      - ".github/workflows/**"
+      - "requirements.txt"
+      - "pyproject.toml"
+      - "package.json"
+      - "package-lock.json"
+  schedule:
+    - cron: "0 13 * * 1"
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: python -m secure_rails repo-security baseline --repo-root . --out securerails-repo-security-baseline-output
+      - run: python -m secure_rails repo-security validate --input securerails-repo-security-baseline-output
+      - uses: actions/upload-artifact@v4
+        with:
+          name: securerails-repo-security-baseline-001
+          path: securerails-repo-security-baseline-output/

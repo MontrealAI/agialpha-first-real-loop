@@ -113,3 +113,5 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/secu
 - [Incident response runbook](docs/secure-rails/incident-response-runbook.md)
 - [Customer security FAQ](docs/secure-rails/customer-security-faq.md)
 - [Trust Center control matrix](docs/secure-rails/trust-center-control-matrix.md)
+
+- Repository security baseline: [docs/secure-rails/repository-security-baseline.md](docs/secure-rails/repository-security-baseline.md)
