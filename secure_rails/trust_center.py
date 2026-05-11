@@ -18,8 +18,6 @@ def build_data(repo_root: Path, out: Path):
             ok = subprocess.run(cmd, cwd=repo_root, check=False).returncode == 0
             if ok:
                 return "pass"
-            if tristate and len(cmd) >= 2 and cmd[0] == "python" and cmd[1] == "-m":
-                return "not_run"
             return "fail"
         except Exception:
             return "not_run" if tristate else "fail"
