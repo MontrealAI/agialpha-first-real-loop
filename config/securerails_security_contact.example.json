@@ -1,0 +1,11 @@
+{
+  "schema_version": "securerails.security_contact.v1",
+  "contact": "mailto:security-contact-pending@example.invalid",
+  "policy_url": "https://github.com/MontrealAI/agialpha-first-real-loop/security/policy",
+  "canonical_url": "https://montrealai.github.io/agialpha-first-real-loop/.well-known/security.txt",
+  "preferred_languages": [
+    "en"
+  ],
+  "expires": "2099-12-31T00:00:00Z",
+  "production_contact_configured": false
+}
