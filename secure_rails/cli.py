@@ -34,6 +34,14 @@ from .security_txt import validate_security_txt_template
 from .incident_response import validate_incident
 from .trust_render import render as trust_render
 
+from .dependency_inventory import write_inventory
+from .code_scanning import write_code_scanning_readiness
+from .secret_scanning_posture import write_secret_scanning_posture
+from .sarif import write_sarif_readiness
+from .repo_security_baseline import generate_baseline
+from .repo_security_evidence import build_evidence
+from .repo_security_render import write_generated_docs
+
 
 
 def main():
@@ -108,6 +116,15 @@ def main():
     rtv=rtsp.add_parser('validate'); rtv.add_argument('--input', required=True)
     rtm=rtsp.add_parser('marketplace-readiness'); rtm.add_argument('--repo-root', required=True); rtm.add_argument('--out', required=True)
     rtr=rtsp.add_parser('render-notes'); rtr.add_argument('--input', required=True); rtr.add_argument('--out', required=True)
+
+    rs = sp.add_parser('repo-security')
+    rssp = rs.add_subparsers(dest='rs_sub', required=True)
+    rsi = rssp.add_parser('inventory'); rsi.add_argument('--repo-root', required=True); rsi.add_argument('--out', required=True)
+    rsc = rssp.add_parser('code-scanning-readiness'); rsc.add_argument('--repo-root', required=True); rsc.add_argument('--out', required=True)
+    rss = rssp.add_parser('secret-scanning-posture'); rss.add_argument('--repo-root', required=True); rss.add_argument('--out', required=True)
+    rsr = rssp.add_parser('sarif-readiness'); rsr.add_argument('--repo-root', required=True); rsr.add_argument('--out', required=True)
+    rsb = rssp.add_parser('baseline'); rsb.add_argument('--repo-root', required=True); rsb.add_argument('--out', required=True)
+    rsv = rssp.add_parser('validate'); rsv.add_argument('--input', required=True)
 
     tc = sp.add_parser('trust-center')
     tcsp = tc.add_subparsers(dest='tc_sub', required=True)
@@ -253,6 +270,18 @@ def main():
         if a.rt_sub == 'validate': rt_validate(Path(a.input)); return
         if a.rt_sub == 'marketplace-readiness': rt_marketplace(Path(a.repo_root), Path(a.out)); return
         if a.rt_sub == 'render-notes': rt_render_notes(Path(a.input), Path(a.out)); return
+
+    if a.cmd == 'repo-security':
+        if a.rs_sub == 'inventory': write_inventory(a.repo_root, a.out); return
+        if a.rs_sub == 'code-scanning-readiness': write_code_scanning_readiness(a.repo_root, a.out); return
+        if a.rs_sub == 'secret-scanning-posture': write_secret_scanning_posture(a.repo_root, a.out); return
+        if a.rs_sub == 'sarif-readiness': write_sarif_readiness(a.repo_root, a.out); return
+        if a.rs_sub == 'baseline':
+            generate_baseline(a.repo_root, a.out); build_evidence(a.out); write_generated_docs(a.out, a.repo_root); return
+        if a.rs_sub == 'validate':
+            p=Path(a.input); req=['dependency_inventory.json','code_scanning_readiness.json','secret_scanning_posture.json','sarif_ingestion_record.json','repo_security_baseline.json']
+            miss=[x for x in req if not (p/x).exists()]
+            raise SystemExit(0 if not miss else 1)
 
     if a.cmd == 'trust-center':
         if a.tc_sub == 'validate':

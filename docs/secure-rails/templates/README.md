@@ -71,3 +71,5 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/secu
 - vulnerability-report-template.md
 - security-incident-record-example.json
 - trust-center-control-matrix-example.json
+
+- repo-security-baseline-example.json

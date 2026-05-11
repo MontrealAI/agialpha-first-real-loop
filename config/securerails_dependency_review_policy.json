@@ -1,0 +1,6 @@
+{
+  "fail_on_severity": "critical",
+  "deny_licenses": [],
+  "allow_licenses": [],
+  "advisory_only": true
+}
