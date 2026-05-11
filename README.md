@@ -104,3 +104,12 @@ Generated artifacts: `docs/_generated/template-bootstrap/`.
 
 ## SecureRails E2E Pilot Canary 001
 See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/securerails-e2e-pilot-canary-001.yml`.
+
+
+## SecureRails Trust Center
+- [SECURITY.md](SECURITY.md)
+- [Trust Center](docs/secure-rails/trust-center.md)
+- [Vulnerability disclosure policy](docs/secure-rails/vulnerability-disclosure-policy.md)
+- [Incident response runbook](docs/secure-rails/incident-response-runbook.md)
+- [Customer security FAQ](docs/secure-rails/customer-security-faq.md)
+- [Trust Center control matrix](docs/secure-rails/trust-center-control-matrix.md)

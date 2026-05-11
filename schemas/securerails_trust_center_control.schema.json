@@ -1,0 +1,8 @@
+{
+  "type": "object",
+  "required": [
+    "control_id",
+    "name",
+    "status"
+  ]
+}
