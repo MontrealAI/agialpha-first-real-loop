@@ -4,6 +4,7 @@ on:
     paths:
       - "SECURITY.md"
       - "docs/secure-rails/**"
+      - "docs/.well-known/security.txt"
       - "schemas/securerails_security_incident.schema.json"
       - "schemas/securerails_vulnerability_report.schema.json"
       - "schemas/securerails_trust_center*.json"

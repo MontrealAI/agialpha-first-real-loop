@@ -16,6 +16,6 @@ def validate_security_txt_template(path: Path) -> tuple[bool,list[str]]:
         errs.append('missing Contact value')
     is_template = path.name.endswith('.template')
     for contact in contact_lines:
-        if 'example.invalid' in contact and not is_template:
+        if 'example.invalid' in contact.lower() and not is_template:
             errs.append('placeholder security contact is not valid for production routing')
     return (not errs, errs)
