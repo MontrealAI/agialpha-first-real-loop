@@ -151,3 +151,5 @@ Each row represents one workflow file and should be read with these fields:
 ## SecureRails E2E Pilot Canary 001
 See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-canary-001.yml`.
 
+
+- `securerails-trust-center-001.yml` — SecureRails Trust Center 001 validation workflow.

@@ -1,0 +1,26 @@
+{
+  "incident_id": "sr-inc-001",
+  "detected_at": "2026-05-11T00:00:00Z",
+  "severity": "medium",
+  "affected_scope": [
+    "docs/secure-rails"
+  ],
+  "safety_counters": {
+    "raw_secret_leak_count": 0,
+    "external_target_scan_count": 0,
+    "exploit_execution_count": 0,
+    "malware_generation_count": 0,
+    "social_engineering_content_count": 0,
+    "unsafe_automerge_count": 0,
+    "critical_safety_incidents": 0
+  },
+  "evidence": [
+    "docs/secure-rails/templates/security-incident-record-example.json"
+  ],
+  "containment": "documented",
+  "human_reviewer": "required",
+  "status": "open",
+  "claim_boundary": "advisory governance artifact; not certification",
+  "lessons_learned": "pending",
+  "archive_update": "pending"
+}
