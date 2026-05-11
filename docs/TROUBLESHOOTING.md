@@ -104,3 +104,9 @@ Use this format for every incident: **Symptom → Likely cause → Fix → What 
 
 
 - SecureRails E2E Pilot Canary 001: synthetic internal canary workflow.
+
+## SecureRails Trust Center troubleshooting
+- security.txt missing contact: keep template-only/pending_contact until real security contact is configured.
+- trust-center check failure: run `python scripts/secure_rails_trust_center_check.py .`.
+- incident schema failure: validate `docs/secure-rails/templates/security-incident-record-example.json`.
+- certification overclaim failure: remove prohibited certification/guarantee/exemption claims.

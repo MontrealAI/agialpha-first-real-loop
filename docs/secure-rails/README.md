@@ -53,3 +53,12 @@ See customer-pilot-intake.md and multi-repo-evidence-ingestion.md.
 See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/securerails-e2e-pilot-canary-001.yml`.
 
 - Validation workflow: `.github/workflows/securerails-e2e-pilot-canary-validate-001.yml`
+
+## Trust Center
+- trust-center.md
+- vulnerability-disclosure-policy.md
+- coordinated-vulnerability-disclosure.md
+- security-advisory-process.md
+- incident-response-runbook.md
+- customer-security-faq.md
+- trust-center-control-matrix.md
