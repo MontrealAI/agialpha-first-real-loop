@@ -41,6 +41,8 @@ from .sarif import write_sarif_readiness
 from .repo_security_baseline import generate_baseline
 from .repo_security_evidence import build_evidence
 from .repo_security_render import write_generated_docs
+from .policy_context import build_context
+from .policy_kernel import load_kernel, validate_kernel, evaluate_context
 
 
 
@@ -125,6 +127,17 @@ def main():
     rsr = rssp.add_parser('sarif-readiness'); rsr.add_argument('--repo-root', required=True); rsr.add_argument('--out', required=True)
     rsb = rssp.add_parser('baseline'); rsb.add_argument('--repo-root', required=True); rsb.add_argument('--out', required=True)
     rsv = rssp.add_parser('validate'); rsv.add_argument('--input', required=True)
+
+
+    pol = sp.add_parser('policy')
+    polsp = pol.add_subparsers(dest='pol_sub', required=True)
+    pvk = polsp.add_parser('validate-kernel'); pvk.add_argument('--kernel', required=True)
+    pe = polsp.add_parser('evaluate'); pe.add_argument('--input', required=True); pe.add_argument('--context-type', default='auto'); pe.add_argument('--out', required=True)
+    per = polsp.add_parser('evaluate-repo'); per.add_argument('--repo-root', required=True); per.add_argument('--out', required=True)
+    pdl = polsp.add_parser('decision-log'); pdl.add_argument('--decisions', required=True); pdl.add_argument('--registry', required=True)
+    pbd = polsp.add_parser('build-data'); pbd.add_argument('--registry', required=True); pbd.add_argument('--out', required=True)
+    prr = polsp.add_parser('render'); prr.add_argument('--registry', required=True); prr.add_argument('--out', required=True)
+    popa = polsp.add_parser('export-opa'); popa.add_argument('--kernel', required=True); popa.add_argument('--out', required=True)
 
     tc = sp.add_parser('trust-center')
     tcsp = tc.add_subparsers(dest='tc_sub', required=True)
@@ -282,6 +295,56 @@ def main():
             p=Path(a.input); req=['dependency_inventory.json','code_scanning_readiness.json','secret_scanning_posture.json','sarif_ingestion_record.json','repo_security_baseline.json']
             miss=[x for x in req if not (p/x).exists()]
             raise SystemExit(0 if not miss else 1)
+
+
+    if a.cmd == 'policy':
+        import json
+        from pathlib import Path
+        if a.pol_sub == 'validate-kernel':
+            errs = validate_kernel(load_kernel(Path(a.kernel)))
+            [print(e) for e in errs]
+            raise SystemExit(0 if not errs else 1)
+        if a.pol_sub == 'evaluate':
+            ctx = build_context(Path(a.input), a.context_type)
+            dec = evaluate_context(ctx, {})
+            Path(a.out).write_text(json.dumps(dec, indent=2), encoding='utf-8'); return
+        if a.pol_sub == 'evaluate-repo':
+            out=Path(a.out); out.mkdir(parents=True, exist_ok=True)
+            for f in Path(a.repo_root).rglob('*'):
+                if f.is_file() and f.suffix.lower() in {'.md','.json','.yml','.yaml','.txt'} and '.git/' not in str(f):
+                    dec=evaluate_context(build_context(f,'auto'), {})
+                    (out/(f.name+'.decision.json')).write_text(json.dumps(dec, indent=2), encoding='utf-8')
+            return
+        if a.pol_sub == 'decision-log':
+            reg=Path(a.registry); reg.mkdir(parents=True, exist_ok=True)
+            decs=[]
+            for f in Path(a.decisions).glob('*.json'):
+                decs.append(json.loads(f.read_text(encoding='utf-8')))
+            (reg/'decisions').mkdir(exist_ok=True)
+            for d in decs:
+                (reg/'decisions'/f"{d['decision_id']}.json").write_text(json.dumps(d,indent=2), encoding='utf-8')
+            (reg/'latest.json').write_text(json.dumps(decs[-1] if decs else {}, indent=2), encoding='utf-8')
+            (reg/'registry.json').write_text(json.dumps({'count':len(decs)}, indent=2), encoding='utf-8')
+            return
+        if a.pol_sub == 'build-data':
+            reg=Path(a.registry)
+            out=Path(a.out); out.mkdir(parents=True, exist_ok=True)
+            import collections
+            decs=[json.loads(p.read_text()) for p in (reg/'decisions').glob('*.json')]
+            summary={'total':len(decs)}
+            by_domain=collections.Counter(v.split(':')[0] for d in decs for v in d.get('violations',[]))
+            by_decision=collections.Counter(d['decision'] for d in decs)
+            summary.update(by_decision)
+            (out/'decisions.json').write_text(json.dumps(decs, indent=2), encoding='utf-8')
+            (out/'summary.json').write_text(json.dumps(summary, indent=2), encoding='utf-8')
+            (out/'by_domain.json').write_text(json.dumps(by_domain, indent=2), encoding='utf-8')
+            (out/'latest.json').write_text(json.dumps(decs[-1] if decs else {}, indent=2), encoding='utf-8')
+            return
+        if a.pol_sub == 'render':
+            Path(a.out).mkdir(parents=True, exist_ok=True); return
+        if a.pol_sub == 'export-opa':
+            out=Path(a.out); out.mkdir(parents=True, exist_ok=True)
+            (out/'README.md').write_text('Optional OPA export only; not required runtime dependency.\n', encoding='utf-8'); return
 
     if a.cmd == 'trust-center':
         if a.tc_sub == 'validate':

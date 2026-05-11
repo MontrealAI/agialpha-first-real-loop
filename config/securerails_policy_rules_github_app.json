@@ -1,0 +1,5 @@
+{
+  "schema_version": "securerails.policy_rule.v1",
+  "domain": "github_app",
+  "rules": []
+}

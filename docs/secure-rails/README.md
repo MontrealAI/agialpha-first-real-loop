@@ -65,3 +65,5 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/secu
 
 - repository-security-baseline.md
 - dependency-review.md
+
+- SecureRails Policy Kernel 001 (`python -m secure_rails policy ...`)
