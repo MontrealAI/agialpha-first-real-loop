@@ -258,7 +258,12 @@ def main():
         if a.tc_sub == 'validate':
             ok, errs = trust_validate(Path(a.repo_root)); [print(e) for e in errs]; raise SystemExit(0 if ok else 1)
         if a.tc_sub == 'build-data':
-            trust_build_data(Path(a.repo_root), Path(a.out)); return
+            status = trust_build_data(Path(a.repo_root), Path(a.out))
+            failing = [k for k in ("claim_boundary_check","safety_ledger_check","no_automerge_check","utility_token_boundary_check") if status.get(k) == "fail"]
+            if failing:
+                print("trust-center build-data failed checks:", ", ".join(failing))
+                raise SystemExit(1)
+            return
         if a.tc_sub == 'render':
             trust_render(Path(a.repo_root), Path(a.out)); return
         if a.tc_sub == 'validate-security-txt':

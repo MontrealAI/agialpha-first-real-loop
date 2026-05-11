@@ -72,3 +72,4 @@ def build_data(repo_root: Path, out: Path):
             incidents = []
     latest_incidents = {"schema_version": "securerails.trust_center_incidents.v1", "incidents": incidents}
     (out/'latest_incidents.json').write_text(json.dumps(latest_incidents, indent=2), encoding='utf-8')
+    return status

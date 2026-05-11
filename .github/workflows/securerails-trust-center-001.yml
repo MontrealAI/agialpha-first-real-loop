@@ -5,6 +5,7 @@ on:
       - "SECURITY.md"
       - "docs/secure-rails/**"
       - "docs/.well-known/security.txt"
+      - ".well-known/security.txt"
       - "schemas/securerails_security_incident.schema.json"
       - "schemas/securerails_vulnerability_report.schema.json"
       - "schemas/securerails_trust_center*.json"
@@ -37,7 +38,9 @@ jobs:
       - run: python scripts/secure_rails_trust_center_check.py .
       - run: python scripts/secure_rails_security_txt_check.py docs/secure-rails/templates/security.txt.template
       - run: |
-          if [ -f docs/.well-known/security.txt ]; then
+          if [ -f .well-known/security.txt ]; then
+            python scripts/secure_rails_security_txt_check.py .well-known/security.txt
+          elif [ -f docs/.well-known/security.txt ]; then
             python scripts/secure_rails_security_txt_check.py docs/.well-known/security.txt
           else
             echo "No production security.txt present; skipping production contact validation."
