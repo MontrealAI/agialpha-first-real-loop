@@ -19,7 +19,7 @@
     {
       "control_id": "SEC-004",
       "name": "Redaction policy",
-      "status": "implemented"
+      "status": "partially implemented"
     },
     {
       "control_id": "SEC-005",

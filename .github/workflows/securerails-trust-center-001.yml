@@ -33,6 +33,12 @@ jobs:
       - run: python scripts/secure_rails_no_automerge_check.py .
       - run: python scripts/secure_rails_trust_center_check.py .
       - run: python scripts/secure_rails_security_txt_check.py docs/secure-rails/templates/security.txt.template
+      - run: |
+          if [ -f docs/.well-known/security.txt ]; then
+            python scripts/secure_rails_security_txt_check.py docs/.well-known/security.txt
+          else
+            echo "No production security.txt present; skipping production contact validation."
+          fi
       - run: python scripts/secure_rails_incident_record_check.py docs/secure-rails/templates/security-incident-record-example.json
       - run: python -m secure_rails trust-center build-data --repo-root . --out docs/_generated/secure-rails/trust-center
       - uses: actions/upload-artifact@v4
