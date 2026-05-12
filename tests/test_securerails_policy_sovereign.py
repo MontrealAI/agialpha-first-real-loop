@@ -10,6 +10,16 @@ class TestSecureRailsPolicySovereign(unittest.TestCase):
         d = evaluate_file('tests/fixtures/securerails_policy/valid_sovereign.json', context_type='sovereign')
         self.assertEqual(d['decision'], 'escalate')
 
+
+    def test_sovereign_autonomous_promotion_rejected(self):
+        base = json.loads(Path('tests/fixtures/securerails_policy/valid_sovereign.json').read_text())
+        base['promotion_policy'] = 'autonomous'
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / 'bad_promotion.json'
+            p.write_text(json.dumps(base), encoding='utf-8')
+            d = evaluate_file(str(p), context_type='sovereign')
+        self.assertEqual(d['decision'], 'reject')
+
     def test_sovereign_with_automerge_rejected(self):
         base = json.loads(Path('tests/fixtures/securerails_policy/valid_sovereign.json').read_text())
         base['auto_merge_allowed'] = True
