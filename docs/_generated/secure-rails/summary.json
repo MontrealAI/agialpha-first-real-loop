@@ -1,9 +1,13 @@
 {
-  "total": 0,
-  "allow": 0,
-  "warn": 0,
-  "escalate": 0,
-  "reject": 0,
-  "quarantine": 0,
-  "human_review_required": 0
+  "accepted_vault_count": 0,
+  "all_hard_safety_counters_zero": true,
+  "claim_boundary": "SecureRails is AI-agent security governance and proof-bound defensive remediation. It is not autonomous cybersecurity certification, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.",
+  "generated_at": "1970-01-01T00:00:00Z",
+  "mark_allocation_count": 1,
+  "open_vault_count": 1,
+  "pending_human_review_count": 1,
+  "rejected_vault_count": 0,
+  "settlement_record_count": 1,
+  "sovereign_count": 1,
+  "work_vault_count": 1
 }

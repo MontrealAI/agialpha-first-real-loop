@@ -35,6 +35,29 @@ def _validate_registry(registry: Path) -> int:
     return 0
 
 
+
+
+def _normalize_dispatch_payload(client_payload: dict) -> dict:
+    if 'intake_record' in client_payload and isinstance(client_payload['intake_record'], dict):
+        return client_payload['intake_record']
+    repo = client_payload.get('repo', '')
+    owner, name = ('unknown-owner', 'unknown-repo')
+    if isinstance(repo, str) and '/' in repo:
+        owner, name = repo.split('/', 1)
+    return {
+      'schema_version':'securerails.customer_pilot_intake.v1',
+      'pilot_id': client_payload.get('pilot_id', 'sr-pilot-dispatch-unknown'),
+      'customer_label': client_payload.get('customer_label', 'dispatch-customer-redacted'),
+      'repo': {'provider':'github','owner':owner,'name':name,'repo_url':f'https://github.com/{owner}/{name}','visibility':'unknown'},
+      'source': {'ingestion_method':'repository_dispatch','workflow_run_id':str(client_payload.get('workflow_run_id','')),'artifact_name':client_payload.get('artifact_name','not_reported'),'artifact_digest':client_payload.get('artifact_digest','not_reported'),'artifact_status':'pending'},
+      'scope': {'repo_owned':True,'defensive_only':True,'human_review_required':True,'external_target_scanning_allowed':False,'exploit_execution_allowed':False,'malware_generation_allowed':False,'social_engineering_allowed':False,'auto_merge_allowed':False,'hr_worker_evaluation_allowed':False,'profiling_natural_persons_allowed':False,'automated_decisions_about_natural_persons_allowed':False,'critical_infrastructure_safety_component_reliance_allowed':False},
+      'evidence': {'human_review_status':'pending','recommendation':'human_review_required'},
+      'hard_safety_counters': {'raw_secret_leak_count':0,'external_target_scan_count':0,'exploit_execution_count':0,'malware_generation_count':0,'social_engineering_content_count':0,'unsafe_automerge_count':0,'critical_safety_incidents':0},
+      'privacy': {'raw_customer_secrets_ingested':False,'personal_data_intended':False,'redaction_required':True,'public_display_allowed':bool(client_payload.get('public_display_allowed', False))},
+      'utility_accounting': {'asset':'$AGIALPHA','mode':'mock','alpha_work_units':'not_reported','settlement_status':'recorded_not_financial_settlement'},
+      'claim_boundary': client_payload.get('claim_boundary','SecureRails customer pilot intake records are evidence-governance artifacts. They do not certify security, do not authorize autonomous remediation, and do not make decisions about natural persons.')
+    }
+
 def main() -> None:
     p = argparse.ArgumentParser()
     sp = p.add_subparsers(dest='cmd', required=True)
@@ -168,18 +191,18 @@ def main() -> None:
             if infile:
                 ingest_intake(Path(infile), Path(args.registry))
             else:
-                record = cp.get('intake_record') or cp
+                record = _normalize_dispatch_payload(cp)
                 tmp = Path('/tmp/securerails-dispatch-intake.json')
                 tmp.write_text(json.dumps(record, indent=2), encoding='utf-8')
                 ingest_intake(tmp, Path(args.registry))
         elif args.cpcmd in {'build-data','render'}: build_customer_pilot_data(Path(args.registry), Path(args.out))
         elif args.cpcmd == 'artifact-sync':
             from .external_repo import sync_external_repos
-            from .pilot_registry import add_record, ensure_registry
-            ensure_registry(Path(args.registry))
             records = sync_external_repos(Path(args.config), int(args.limit))
-            for rec in records:
-                add_record(Path(args.registry), rec)
+            for idx, rec in enumerate(records):
+                tmp = Path(f'/tmp/securerails-artifact-sync-{idx}.json')
+                tmp.write_text(json.dumps(rec, indent=2), encoding='utf-8')
+                ingest_intake(tmp, Path(args.registry))
             print(f'synced_records={len(records)}')
     elif args.cmd == 'e2e-canary':
         if args.ecmd == 'run': run_canary(Path(args.repo_root), Path(args.fixtures), Path(args.out))
