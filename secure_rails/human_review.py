@@ -3,15 +3,19 @@ from pathlib import Path
 from .review_request import validate_review_request
 from .review_decision import validate_review_decision
 
+PROMOTION_TARGETS = {"safe_pr", "capability_archive", "release", "policy_update", "customer_pilot_status"}
+
 def validate_promotion_gate(record: dict) -> list[str]:
     errs=[]
     if record.get("schema_version")!="securerails.promotion_gate.v1": errs.append("invalid schema_version")
     cond=record.get("required_conditions",{})
+    if record.get("promotion_target") not in PROMOTION_TARGETS:
+        errs.append("invalid promotion_target")
     if cond.get("human_review_decision_present") is not True: errs.append("human_review_decision_present must be true")
     if cond.get("hard_safety_counters_zero") is not True: errs.append("hard_safety_counters_zero must be true")
     if cond.get("auto_merge_allowed") is not False: errs.append("auto_merge_allowed must be false")
     if not str(record.get("claim_boundary"," ")).strip(): errs.append("claim_boundary required")
-    if record.get("promotion_target") in {"safe_pr","capability_archive","release","policy_update","customer_pilot_status"} and cond.get("evidence_docket_present") is not True:
+    if record.get("promotion_target") in PROMOTION_TARGETS and cond.get("evidence_docket_present") is not True:
         errs.append("evidence_docket_present must be true")
     return errs
 

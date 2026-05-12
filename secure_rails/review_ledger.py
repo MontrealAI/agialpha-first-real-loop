@@ -14,6 +14,9 @@ def ensure_registry(registry: Path):
     (registry/'indexes').mkdir(parents=True, exist_ok=True)
     if not (registry/'registry.json').exists(): (registry/'registry.json').write_text(json.dumps({"entries":[]},indent=2),encoding='utf-8')
 
+def _decision_exists(registry: Path, decision_id: str) -> bool:
+    return (registry / 'decisions' / f'{decision_id}.json').exists()
+
 def update_ledger(input_path: Path, registry: Path):
     ensure_registry(registry)
     rec=json.loads(input_path.read_text(encoding='utf-8'))
@@ -23,6 +26,11 @@ def update_ledger(input_path: Path, registry: Path):
         errs=validate_review_decision(rec); kind='decision'; rid=rec.get('decision_id','unknown'); out=registry/'decisions'/f'{rid}.json'
     elif rec.get('schema_version')=='securerails.promotion_gate.v1':
         errs=validate_promotion_gate(rec); kind='promotion_gate'; rid=rec.get('promotion_gate_id','unknown'); out=registry/'promotion_gates'/f'{rid}.json'
+        source_decision_id = rec.get('source_decision_id', '')
+        if not source_decision_id:
+            errs.append('source_decision_id required')
+        elif not _decision_exists(registry, source_decision_id):
+            errs.append('source_decision_id not found in registry decisions')
     else: raise ValueError('unsupported schema_version')
     if errs: raise ValueError('; '.join(errs))
     out.write_text(json.dumps(rec,indent=2),encoding='utf-8')
