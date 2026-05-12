@@ -23,3 +23,16 @@ class TPath(unittest.TestCase):
             self.assertIn('decision', decision)
         finally:
             os.chdir(cwd)
+
+
+class TRulesPath(unittest.TestCase):
+    def test_forbidden_claim_rejects_outside_repo_cwd(self):
+        import os
+        from pathlib import Path
+        cwd = os.getcwd()
+        try:
+            os.chdir('/tmp')
+            decision = evaluate_file(str(Path(cwd) / 'tests/fixtures/securerails_policy/forbidden_positive_overclaim.md'))
+            self.assertEqual(decision['decision'], 'reject')
+        finally:
+            os.chdir(cwd)

@@ -13,8 +13,11 @@ RULE_FILES = [
     "securerails_policy_rules_repo_security.json",
 ]
 
-def load_rules(config_dir: str = "config"):
-    base = Path(config_dir)
+def load_rules(config_dir: str | None = None):
+    if config_dir is None:
+        base = Path(__file__).resolve().parent.parent / "config"
+    else:
+        base = Path(config_dir)
     rules = []
     for name in RULE_FILES:
         p = base / name
