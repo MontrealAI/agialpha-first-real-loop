@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 from pathlib import Path
 
 from .discover import discover
@@ -22,6 +23,7 @@ from .pilot_validate import validate_intake_record
 from .pilot_intake import ingest_intake
 from .pilot_render import build_customer_pilot_data
 from .github_app_permissions import validate_permissions_file
+from .github_webhook_verify import verify_github_webhook_signature
 
 
 def _validate_registry(registry: Path) -> int:
@@ -46,7 +48,7 @@ def main() -> None:
     cwv = sp.add_parser('check-work-vaults'); cwv.add_argument('--registry', required=True)
 
     t = sp.add_parser('check-token-boundary'); t.add_argument('--repo-root', default='.')
-    gh = sp.add_parser('github-app'); ghsp = gh.add_subparsers(dest='gcmd', required=True); ghv=ghsp.add_parser('validate'); ghv.add_argument('--input', default='config/securerails_github_app_permissions.json')
+    gh = sp.add_parser('github-app'); ghsp = gh.add_subparsers(dest='gcmd', required=True); ghv=ghsp.add_parser('validate'); ghv.add_argument('--input', default='config/securerails_github_app_permissions.json'); ghw=ghsp.add_parser('verify-webhook'); ghw.add_argument('--secret-env', default='SECURERAILS_WEBHOOK_SECRET'); ghw.add_argument('--payload-file', required=True); ghw.add_argument('--signature', required=True)
 
     tb = sp.add_parser('template-bootstrap'); tbsp = tb.add_subparsers(dest='tcmd', required=True)
     tbd=tbsp.add_parser('detect'); tbd.add_argument('--repo-root', required=True); tbd.add_argument('--out', required=True)
@@ -118,9 +120,20 @@ def main() -> None:
     elif args.cmd == 'check-token-boundary':
         raise SystemExit(0 if check_token_boundary(Path(args.repo_root)) else 1)
     elif args.cmd == 'github-app':
-        ok, errs = validate_permissions_file(Path(args.input))
-        if not ok:
-            print('\n'.join(errs)); raise SystemExit(1)
+        if args.gcmd == 'validate':
+            ok, errs = validate_permissions_file(Path(args.input))
+            if not ok:
+                print('\n'.join(errs)); raise SystemExit(1)
+        elif args.gcmd == 'verify-webhook':
+            secret = os.environ.get(args.secret_env)
+            if not secret:
+                print(f'missing secret in env var: {args.secret_env}')
+                raise SystemExit(1)
+            payload = Path(args.payload_file).read_bytes()
+            if not verify_github_webhook_signature(secret.encode('utf-8'), payload, args.signature):
+                print('invalid webhook signature')
+                raise SystemExit(1)
+            print('ok')
 
     elif args.cmd == 'template-bootstrap':
         if args.tcmd == 'detect': tb_detect(Path(args.repo_root), Path(args.out))

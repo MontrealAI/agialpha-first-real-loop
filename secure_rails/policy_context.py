@@ -4,7 +4,7 @@ from pathlib import Path
 def _guess_context_type(path: Path):
     n = path.name.lower()
     full = str(path).lower()
-    if "work-vault" in n or "/work_vaults/" in full or "work_vaults" in full: return "work_vault"
+    if "work-vault" in n or "work_vault" in n or "/work_vaults/" in full or "work_vaults" in full: return "work_vault"
     if "mark" in n: return "mark_allocation"
     if "sovereign" in n: return "sovereign"
     if "pilot" in n: return "customer_pilot"
