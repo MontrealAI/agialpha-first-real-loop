@@ -1,0 +1,25 @@
+{
+  "schema_version": "securerails.policy_rule_set.v1",
+  "rules": [
+    {
+      "rule_id": "claim-overclaim",
+      "decision": "reject",
+      "domain": "claim_boundary",
+      "forbidden_terms": [
+        "achieved agi",
+        "achieved asi",
+        "empirical sota",
+        "certified secure",
+        "guaranteed security",
+        "eu ai act exempt",
+        "investment return",
+        "token appreciation",
+        "yield",
+        "dividends",
+        "profit rights",
+        "ownership rights"
+      ],
+      "message": "Forbidden overclaim detected."
+    }
+  ]
+}

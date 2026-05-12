@@ -1,0 +1,24 @@
+{
+  "schema_version": "securerails.policy_rule_set.v1",
+  "rules": [
+    {
+      "rule_id": "eu-high-risk",
+      "decision": "reject",
+      "domain": "eu_ai_act_boundary",
+      "forbidden_terms": [
+        "hr / worker evaluation",
+        "profiling natural persons",
+        "automated decisions about natural persons",
+        "biometric identification",
+        "emotion recognition",
+        "law-enforcement decisioning",
+        "education access decisions",
+        "credit / insurance decisions",
+        "medical diagnosis or triage",
+        "migration or asylum decisions",
+        "critical-infrastructure safety-component reliance"
+      ],
+      "message": "Excluded high-risk use detected."
+    }
+  ]
+}

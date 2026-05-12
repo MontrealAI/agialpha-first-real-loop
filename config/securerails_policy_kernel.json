@@ -1,0 +1,31 @@
+{
+  "schema_version": "securerails.policy_kernel.v1",
+  "kernel_id": "securerails-policy-kernel-001",
+  "kernel_version": "0.1.0",
+  "mode": "advisory_enforced",
+  "default_decision": "escalate",
+  "human_review_required": true,
+  "autonomous_promotion_allowed": false,
+  "auto_merge_allowed": false,
+  "domains": [
+    "claim_boundary",
+    "safety_boundary",
+    "eu_ai_act_boundary",
+    "token_utility_boundary",
+    "work_vault",
+    "mark_allocation",
+    "sovereign",
+    "github_app_connector",
+    "release_train",
+    "trust_center",
+    "repo_security_baseline"
+  ],
+  "decision_levels": [
+    "allow",
+    "warn",
+    "escalate",
+    "reject",
+    "quarantine"
+  ],
+  "claim_boundary": "SecureRails Policy Kernel evaluates governance boundaries. It does not certify security or authorize autonomous remediation."
+}
