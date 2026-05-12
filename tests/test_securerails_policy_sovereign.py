@@ -22,6 +22,25 @@ class TestSecureRailsPolicySovereign(unittest.TestCase):
 
 
 
+
+    def test_sovereign_empty_promotion_policy_rejected(self):
+        base = json.loads(Path('tests/fixtures/securerails_policy/valid_sovereign.json').read_text())
+        base['promotion_policy'] = {}
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / 'empty_promotion.json'
+            p.write_text(json.dumps(base), encoding='utf-8')
+            d = evaluate_file(str(p), context_type='sovereign')
+        self.assertEqual(d['decision'], 'reject')
+
+    def test_sovereign_string_flag_promotion_policy_rejected(self):
+        base = json.loads(Path('tests/fixtures/securerails_policy/valid_sovereign.json').read_text())
+        base['promotion_policy']['auto_merge_allowed'] = 'true'
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / 'string_promotion.json'
+            p.write_text(json.dumps(base), encoding='utf-8')
+            d = evaluate_file(str(p), context_type='sovereign')
+        self.assertEqual(d['decision'], 'reject')
+
     def test_sovereign_required_terms_text_only_bypass_rejected(self):
         obj = {
             'note': 'allowed_work forbidden_work validators proofbundle_policy evidence_docket_policy promotion_policy claim_boundary'
