@@ -100,7 +100,7 @@ def main() -> None:
     pol = sp.add_parser('policy'); psp = pol.add_subparsers(dest='pcmd', required=True)
     a = psp.add_parser('validate-kernel'); a.add_argument('--kernel', required=True)
     b2 = psp.add_parser('evaluate'); b2.add_argument('--input', required=True); b2.add_argument('--context-type', default='auto'); b2.add_argument('--out', required=True)
-    c = psp.add_parser('evaluate-repo'); c.add_argument('--repo-root', required=True); c.add_argument('--out', required=True)
+    c = psp.add_parser('evaluate-repo'); c.add_argument('--repo-root', required=True); c.add_argument('--out', required=True); c.add_argument('--fail-on-violations', action='store_true', default=True); c.add_argument('--no-fail-on-violations', dest='fail_on_violations', action='store_false')
     d2 = psp.add_parser('decision-log'); d2.add_argument('--decisions', required=True); d2.add_argument('--registry', required=True)
     e2 = psp.add_parser('build-data'); e2.add_argument('--registry', required=True); e2.add_argument('--out', required=True)
     f = psp.add_parser('render'); f.add_argument('--registry', required=True); f.add_argument('--out', required=True)
@@ -248,6 +248,8 @@ def main() -> None:
             Path(args.out).write_text(json.dumps(evaluate_file(args.input, args.context_type), indent=2), encoding='utf-8')
         elif args.pcmd == 'evaluate-repo':
             out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
+            for stale in out.glob('decision_*.json'):
+                stale.unlink()
             files = sorted([x for x in Path(args.repo_root).rglob('*') if x.is_file() and x.suffix.lower() in {'.md', '.json', '.yml', '.yaml'}])
             fail_decisions = 0
             for i, fp in enumerate(files):
@@ -257,7 +259,8 @@ def main() -> None:
                 (out / f'decision_{i:04d}.json').write_text(json.dumps(decision, indent=2), encoding='utf-8')
             if fail_decisions:
                 print(f'policy violations found: {fail_decisions}')
-                raise SystemExit(1)
+                if args.fail_on_violations:
+                    raise SystemExit(1)
         elif args.pcmd == 'decision-log': write_decision_log(args.decisions, args.registry)
         elif args.pcmd in {'build-data', 'render'}: build_policy_data(args.registry, args.out)
         elif args.pcmd == 'export-opa': export_opa(args.kernel, args.out)
