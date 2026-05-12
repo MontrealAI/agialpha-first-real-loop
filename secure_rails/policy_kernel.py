@@ -77,6 +77,8 @@ def evaluate_context(context, kernel, rules):
         'release_train': {'release'},
         'trust_center': {'trust_center'},
         'repo_security_baseline': {'repo_security'},
+        'mark_allocation': {'mark_allocation'},
+        'sovereign': {'sovereign'},
     }
     for r in rules:
         allowed_contexts = domain_context.get(r.get('domain'), {context.get('context_type')})
@@ -97,6 +99,10 @@ def evaluate_context(context, kernel, rules):
         if has_required_terms is False and required_terms:
             matched.append(r["rule_id"]);viol.append("missing required terms: " + ",".join(required_terms))
             if r.get("missing_decision"): decision = r["missing_decision"]
+
+    if context.get('context_type') in {'mark_allocation', 'sovereign'} and not viol and decision == kernel.get('default_decision', 'escalate'):
+        decision = 'allow'
+
     # allow negated boundary phrases
     if "does not claim achieved agi" in hay or "not empirical sota" in hay:
         if decision == "escalate": decision = "allow"
