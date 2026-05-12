@@ -1,0 +1,9 @@
+{
+  "total": 0,
+  "allow": 0,
+  "warn": 0,
+  "escalate": 0,
+  "reject": 0,
+  "quarantine": 0,
+  "human_review_required": 0
+}
