@@ -8,7 +8,7 @@ def _guess_context_type(path: Path):
     if "mark-allocation" in n or "mark_allocation" in n: return "mark_allocation"
     if "sovereign" in n: return "sovereign"
     if "pilot" in n: return "customer_pilot"
-    if "github-app" in n or "permission" in n: return "github_app"
+    if "github-app" in n or "github_app" in n: return "github_app"
     if "release" in n: return "release"
     if "trust" in n: return "trust_center"
     if "repo-security" in n or "baseline" in n: return "repo_security"

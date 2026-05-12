@@ -24,6 +24,35 @@ def _work_vault_flags_true(content, required_terms):
         return True
     return all(content.get(flag) is True for flag in required)
 
+
+
+def _claim_forbidden_hit(hay: str, forbidden_terms):
+    safe_phrases = [
+        'does not claim achieved agi',
+        'does not claim achieved asi',
+        'not empirical sota',
+        'is not empirical sota',
+        'not cybersecurity certification',
+        'does not certify security',
+        'not guaranteed security',
+        'not eu ai act exempt',
+        'no investment return',
+        'no token appreciation',
+        'no yield',
+        'no dividends',
+        'no profit rights',
+        'no ownership rights',
+    ]
+    for term in forbidden_terms:
+        t = term.lower()
+        if t not in hay:
+            continue
+        total_hits = hay.count(t)
+        safe_hits = sum(hay.count(phrase) for phrase in safe_phrases if t in phrase)
+        if total_hits > safe_hits:
+            return True
+    return False
+
 def validate_kernel(kernel):
     errs=[]
     if kernel.get("human_review_required") is not True: errs.append("human_review_required must be true")
@@ -49,14 +78,14 @@ def evaluate_context(context, kernel, rules):
         'trust_center': {'trust_center'},
         'repo_security_baseline': {'repo_security'},
     }
-    negations=['does not claim achieved agi','not empirical sota','is not empirical sota','not cybersecurity certification','does not certify security']
     for r in rules:
         allowed_contexts = domain_context.get(r.get('domain'), {context.get('context_type')})
         if context.get('context_type') not in allowed_contexts:
             continue
-        forbidden_hit=any(t.lower() in hay for t in r.get('forbidden_terms', []))
-        if r.get('domain') == 'claim_boundary' and forbidden_hit and any(n in hay for n in negations):
-            forbidden_hit=False
+        if r.get('domain') == 'claim_boundary':
+            forbidden_hit = _claim_forbidden_hit(hay, r.get('forbidden_terms', []))
+        else:
+            forbidden_hit=any(t.lower() in hay for t in r.get('forbidden_terms', []))
         if forbidden_hit:
             matched.append(r["rule_id"]);viol.append(r["message"])
             if r.get("decision") in ["reject","quarantine"]: decision = r["decision"]
