@@ -1,0 +1,17 @@
+{
+  "schema_version": "securerails.policy_rule_set.v1",
+  "rules": [
+    {
+      "rule_id": "trust-cert-claims",
+      "domain": "trust_center",
+      "forbidden_terms": [
+        "soc 2 certified",
+        "iso 27001 certified",
+        "nist certified",
+        "guaranteed security"
+      ],
+      "decision": "reject",
+      "message": "Trust center certification overclaim."
+    }
+  ]
+}
