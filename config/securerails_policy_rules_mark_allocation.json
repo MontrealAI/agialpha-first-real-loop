@@ -1,0 +1,29 @@
+{
+  "schema_version": "securerails.policy_rules.v1",
+  "domain": "mark_allocation",
+  "rules": [
+    {
+      "rule_id": "mark-allocation-required-fields",
+      "domain": "mark_allocation",
+      "decision": "reject",
+      "missing_decision": "reject",
+      "required_terms": [
+        "assigned_sovereign",
+        "validators_required",
+        "human_review_required",
+        "proof_required",
+        "promotion_without_evidence_allowed",
+        "auto_merge_allowed",
+        "claim_boundary"
+      ],
+      "message": "MARK allocation must include required governance and claim-boundary fields."
+    },
+    {
+      "rule_id": "mark-allocation-no-automerge",
+      "domain": "mark_allocation",
+      "decision": "reject",
+      "forbidden_terms": ["\"auto_merge_allowed\": true", "approved_to_merge", "\"human_review_required\": false", "\"promotion_without_evidence_allowed\": true"],
+      "message": "MARK allocation must not allow auto-merge or autonomous promotion."
+    }
+  ]
+}
