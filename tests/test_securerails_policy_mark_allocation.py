@@ -20,6 +20,31 @@ class TestSecureRailsPolicyMarkAllocation(unittest.TestCase):
         self.assertEqual(d['decision'], 'reject')
 
 
+
+    def test_mark_string_flag_values_rejected(self):
+        base = json.loads(Path('tests/fixtures/securerails_policy/valid_mark_allocation.json').read_text())
+        base['human_review_required'] = 'true'
+        base['proof_required'] = 'true'
+        base['promotion_without_evidence_allowed'] = 'false'
+        base['auto_merge_allowed'] = 'false'
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / 'bad_string_flags.json'
+            p.write_text(json.dumps(base), encoding='utf-8')
+            d = evaluate_file(str(p), context_type='mark_allocation')
+        self.assertEqual(d['decision'], 'reject')
+
+    def test_mark_numeric_flag_values_rejected(self):
+        base = json.loads(Path('tests/fixtures/securerails_policy/valid_mark_allocation.json').read_text())
+        base['human_review_required'] = 1
+        base['proof_required'] = 1
+        base['promotion_without_evidence_allowed'] = 0
+        base['auto_merge_allowed'] = 0
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / 'bad_numeric_flags.json'
+            p.write_text(json.dumps(base), encoding='utf-8')
+            d = evaluate_file(str(p), context_type='mark_allocation')
+        self.assertEqual(d['decision'], 'reject')
+
     def test_mark_required_terms_text_only_bypass_rejected(self):
         obj = {
             'note': 'assigned_sovereign validators_required human_review_required proof_required promotion_without_evidence_allowed auto_merge_allowed claim_boundary'

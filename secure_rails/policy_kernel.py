@@ -22,6 +22,23 @@ def _required_keys_present(content, required_terms):
     return all(k in content for k in required_terms)
 
 
+def _mark_allocation_policy_safe(content):
+    if not isinstance(content, dict):
+        return False
+    required = {
+        'human_review_required': True,
+        'proof_required': True,
+        'promotion_without_evidence_allowed': False,
+        'auto_merge_allowed': False,
+    }
+    for key, expected in required.items():
+        if key not in content or not isinstance(content.get(key), bool):
+            return False
+        if content.get(key) is not expected:
+            return False
+    return True
+
+
 def _sovereign_promotion_policy_safe(content):
     if not isinstance(content, dict):
         return False
@@ -119,6 +136,8 @@ def evaluate_context(context, kernel, rules):
             has_required_terms = has_required_terms and _work_vault_flags_true(context.get("content", {}), required_terms)
         if r.get("domain") in {"mark_allocation", "sovereign"} and required_terms:
             has_required_terms = has_required_terms and _required_keys_present(context.get("content", {}), required_terms)
+        if r.get("domain") == "mark_allocation" and required_terms:
+            has_required_terms = has_required_terms and _mark_allocation_policy_safe(context.get("content", {}))
         if r.get("domain") == "sovereign" and required_terms:
             has_required_terms = has_required_terms and _sovereign_promotion_policy_safe(context.get("content", {}))
         if has_required_terms is False and required_terms:
