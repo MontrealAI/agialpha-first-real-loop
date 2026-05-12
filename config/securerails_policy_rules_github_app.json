@@ -1,0 +1,16 @@
+{
+  "schema_version": "securerails.policy_rule_set.v1",
+  "rules": [
+    {
+      "rule_id": "github-app-perms",
+      "domain": "github_app_connector",
+      "forbidden_terms": [
+        "\"administration\": \"write\"",
+        "\"workflows\": \"write\"",
+        "\"secrets\": \"write\""
+      ],
+      "decision": "reject",
+      "message": "GitHub App permissions too broad."
+    }
+  ]
+}

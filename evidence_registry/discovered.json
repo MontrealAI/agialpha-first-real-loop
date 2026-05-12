@@ -107,6 +107,7 @@
     ".github/workflows/securerails-dependency-review-001.yml",
     ".github/workflows/securerails-e2e-pilot-canary-001.yml",
     ".github/workflows/securerails-e2e-pilot-canary-validate-001.yml",
+    ".github/workflows/securerails-policy-kernel-001.yml",
     ".github/workflows/securerails-pr-guard-demo.yml",
     ".github/workflows/securerails-pr-guard-reusable.yml",
     ".github/workflows/securerails-release-candidate-001.yml",
