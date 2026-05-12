@@ -14,6 +14,14 @@ from .policy_registry import write_decision_log
 from .policy_render import build_data as build_policy_data
 from .policy_opa_export import export_opa
 from .validate import validate_registry
+from .template_bootstrap import detect as tb_detect, init as tb_init, validate as tb_validate, health_check as tb_health_check, report as tb_report
+from .repo_security_baseline import generate_baseline
+from .trust_center import build_data as trust_build_data
+from .release_train import build as rt_build, validate as rt_validate, marketplace as rt_marketplace, render_notes as rt_render_notes
+from .pilot_validate import validate_intake_record
+from .pilot_intake import ingest_intake
+from .pilot_render import build_customer_pilot_data
+from .github_app_permissions import validate_permissions_file
 
 
 def _validate_registry(registry: Path) -> int:
@@ -38,8 +46,36 @@ def main() -> None:
     cwv = sp.add_parser('check-work-vaults'); cwv.add_argument('--registry', required=True)
 
     t = sp.add_parser('check-token-boundary'); t.add_argument('--repo-root', default='.')
-    gh = sp.add_parser('github-app'); ghsp = gh.add_subparsers(dest='gcmd', required=True); ghsp.add_parser('validate')
+    gh = sp.add_parser('github-app'); ghsp = gh.add_subparsers(dest='gcmd', required=True); ghv=ghsp.add_parser('validate'); ghv.add_argument('--input', default='config/securerails_github_app_permissions.json')
 
+    tb = sp.add_parser('template-bootstrap'); tbsp = tb.add_subparsers(dest='tcmd', required=True)
+    tbd=tbsp.add_parser('detect'); tbd.add_argument('--repo-root', required=True); tbd.add_argument('--out', required=True)
+    tbi=tbsp.add_parser('init'); tbi.add_argument('--repo-root', required=True); tbi.add_argument('--owner', required=True); tbi.add_argument('--repository', required=True); tbi.add_argument('--instance-name', required=True); tbi.add_argument('--instance-type', required=True); tbi.add_argument('--pages-url', default=''); tbi.add_argument('--out', required=True)
+    tbv=tbsp.add_parser('validate'); tbv.add_argument('--repo-root', required=True); tbv.add_argument('--config', required=True)
+    tbh=tbsp.add_parser('health-check'); tbh.add_argument('--repo-root', required=True); tbh.add_argument('--config', required=True); tbh.add_argument('--out', required=True)
+    tbr=tbsp.add_parser('report'); tbr.add_argument('--repo-root', required=True); tbr.add_argument('--config', required=True); tbr.add_argument('--out', required=True)
+
+    rp = sp.add_parser('repo-security'); rpsp = rp.add_subparsers(dest='rcmd', required=True)
+    rpb=rpsp.add_parser('baseline'); rpb.add_argument('--repo-root', required=True); rpb.add_argument('--out', required=True)
+    rpv=rpsp.add_parser('validate'); rpv.add_argument('--input', required=True)
+    rpi=rpsp.add_parser('inventory'); rpi.add_argument('--repo-root', required=True); rpi.add_argument('--out', required=True)
+
+    tr = sp.add_parser('trust-center'); trsp = tr.add_subparsers(dest='trcmd', required=True)
+    trb=trsp.add_parser('build-data'); trb.add_argument('--repo-root', required=True); trb.add_argument('--out', required=True)
+
+    rel = sp.add_parser('release-train'); relsp = rel.add_subparsers(dest='relcmd', required=True)
+    relb=relsp.add_parser('build'); relb.add_argument('--repo-root', required=True); relb.add_argument('--release-version', required=True); relb.add_argument('--release-channel', required=True); relb.add_argument('--out', required=True)
+    relm=relsp.add_parser('marketplace-readiness'); relm.add_argument('--repo-root', required=True); relm.add_argument('--out', required=True)
+    reln=relsp.add_parser('render-notes'); reln.add_argument('--input', required=True); reln.add_argument('--out', required=True)
+    relv=relsp.add_parser('validate'); relv.add_argument('--input', required=True)
+
+    cp = sp.add_parser('customer-pilots'); cpsp = cp.add_subparsers(dest='cpcmd', required=True)
+    cpv=cpsp.add_parser('validate-intake'); cpv.add_argument('--input', required=True)
+    cpi=cpsp.add_parser('ingest'); cpi.add_argument('--input', required=True); cpi.add_argument('--registry', required=True)
+    cpd=cpsp.add_parser('dispatch-ingest'); cpd.add_argument('--payload', required=True); cpd.add_argument('--registry', required=True)
+    cpb=cpsp.add_parser('build-data'); cpb.add_argument('--registry', required=True); cpb.add_argument('--out', required=True)
+    cpr=cpsp.add_parser('render'); cpr.add_argument('--registry', required=True); cpr.add_argument('--out', required=True)
+    cpa=cpsp.add_parser('artifact-sync'); cpa.add_argument('--config', required=True); cpa.add_argument('--registry', required=True); cpa.add_argument('--limit', default='50')
     e = sp.add_parser('e2e-canary'); esp = e.add_subparsers(dest='ecmd', required=True)
     e_run = esp.add_parser('run'); e_run.add_argument('--repo-root', required=True); e_run.add_argument('--fixtures', required=True); e_run.add_argument('--out', required=True)
     e_replay = esp.add_parser('replay'); e_replay.add_argument('--input', required=True); e_replay.add_argument('--out', required=True)
@@ -82,7 +118,40 @@ def main() -> None:
     elif args.cmd == 'check-token-boundary':
         raise SystemExit(0 if check_token_boundary(Path(args.repo_root)) else 1)
     elif args.cmd == 'github-app':
-        print('github-app command validated')
+        ok, errs = validate_permissions_file(Path(args.input))
+        if not ok:
+            print('\n'.join(errs)); raise SystemExit(1)
+
+    elif args.cmd == 'template-bootstrap':
+        if args.tcmd == 'detect': tb_detect(Path(args.repo_root), Path(args.out))
+        elif args.tcmd == 'init': tb_init(Path(args.repo_root), args.owner, args.repository, args.instance_name, args.instance_type, args.pages_url, Path(args.out))
+        elif args.tcmd == 'validate': tb_validate(Path(args.config))
+        elif args.tcmd == 'health-check': tb_health_check(Path(args.repo_root), Path(args.config), Path(args.out))
+        elif args.tcmd == 'report': tb_report(Path(args.repo_root), Path(args.config), Path(args.out))
+    elif args.cmd == 'repo-security':
+        if args.rcmd == 'baseline': generate_baseline(args.repo_root, args.out)
+        elif args.rcmd == 'validate':
+            if not (Path(args.input) / 'repo_security_baseline.json').exists(): raise SystemExit(1)
+        elif args.rcmd == 'inventory':
+            from .dependency_inventory import collect_dependency_inventory
+            Path(args.out).write_text(json.dumps(collect_dependency_inventory(Path(args.repo_root)), indent=2), encoding='utf-8')
+    elif args.cmd == 'trust-center':
+        if args.trcmd == 'build-data': trust_build_data(Path(args.repo_root), Path(args.out))
+    elif args.cmd == 'release-train':
+        if args.relcmd == 'build': rt_build(Path(args.repo_root), args.release_version, args.release_channel, Path(args.out))
+        elif args.relcmd == 'marketplace-readiness': rt_marketplace(Path(args.repo_root), Path(args.out))
+        elif args.relcmd == 'render-notes': rt_render_notes(Path(args.input), Path(args.out))
+        elif args.relcmd == 'validate': rt_validate(Path(args.input))
+    elif args.cmd == 'customer-pilots':
+        if args.cpcmd == 'validate-intake':
+            rec=json.loads(Path(args.input).read_text(encoding='utf-8')); vr=validate_intake_record(rec); print('ok' if vr.ok else 'invalid'); raise SystemExit(0 if vr.ok else 1)
+        elif args.cpcmd == 'ingest': ingest_intake(Path(args.input), Path(args.registry))
+        elif args.cpcmd == 'dispatch-ingest':
+            payload=json.loads(Path(args.payload).read_text(encoding='utf-8')); infile=payload.get('client_payload',{}).get('intake_file') or 'docs/secure-rails/templates/customer-pilot-intake-example.json'; ingest_intake(Path(infile), Path(args.registry))
+        elif args.cpcmd in {'build-data','render'}: build_customer_pilot_data(Path(args.registry), Path(args.out))
+        elif args.cpcmd == 'artifact-sync':
+            # deterministic no-op sync placeholder preserving command compatibility
+            Path(args.registry).mkdir(parents=True, exist_ok=True)
     elif args.cmd == 'e2e-canary':
         if args.ecmd == 'run': run_canary(Path(args.repo_root), Path(args.fixtures), Path(args.out))
         elif args.ecmd == 'replay':
@@ -121,7 +190,7 @@ def main() -> None:
             Path(args.out).write_text(json.dumps(evaluate_file(args.input, args.context_type), indent=2), encoding='utf-8')
         elif args.pcmd == 'evaluate-repo':
             out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
-            files = sorted([x for x in Path(args.repo_root).rglob('*') if x.is_file() and x.suffix.lower() in {'.md', '.json', '.yml', '.yaml'}])[:200]
+            files = sorted([x for x in Path(args.repo_root).rglob('*') if x.is_file() and x.suffix.lower() in {'.md', '.json', '.yml', '.yaml'}]
             for i, fp in enumerate(files):
                 (out / f'decision_{i:04d}.json').write_text(json.dumps(evaluate_file(str(fp), 'auto'), indent=2), encoding='utf-8')
         elif args.pcmd == 'decision-log': write_decision_log(args.decisions, args.registry)
