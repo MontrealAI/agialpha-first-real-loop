@@ -65,3 +65,6 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/secu
 
 - repository-security-baseline.md
 - dependency-review.md
+
+## Policy Kernel 001
+See `policy-kernel.md`, `policy-as-code.md`, and generated data in `docs/_generated/secure-rails/policy/`.
