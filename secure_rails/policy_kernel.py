@@ -16,6 +16,28 @@ def _all_required_terms_present(context, required_terms):
     return all(t.lower() in hay for t in required_terms)
 
 
+def _required_keys_present(content, required_terms):
+    if not isinstance(content, dict):
+        return False
+    return all(k in content for k in required_terms)
+
+
+def _sovereign_promotion_policy_safe(content):
+    if not isinstance(content, dict):
+        return False
+    policy = content.get('promotion_policy')
+    if not isinstance(policy, dict):
+        return False
+    required = {'autonomous_promotion_allowed': False, 'human_review_required': True, 'auto_merge_allowed': False}
+    for k, expected in required.items():
+        v = policy.get(k)
+        if not isinstance(v, bool):
+            return False
+        if v is not expected:
+            return False
+    return True
+
+
 def _work_vault_flags_true(content, required_terms):
     if not isinstance(content, dict):
         return False
@@ -77,6 +99,8 @@ def evaluate_context(context, kernel, rules):
         'release_train': {'release'},
         'trust_center': {'trust_center'},
         'repo_security_baseline': {'repo_security'},
+        'mark_allocation': {'mark_allocation'},
+        'sovereign': {'sovereign'},
     }
     for r in rules:
         allowed_contexts = domain_context.get(r.get('domain'), {context.get('context_type')})
@@ -94,9 +118,15 @@ def evaluate_context(context, kernel, rules):
         has_required_terms = _all_required_terms_present(context, required_terms)
         if r.get("domain") == "work_vault" and required_terms:
             has_required_terms = has_required_terms and _work_vault_flags_true(context.get("content", {}), required_terms)
+        if r.get("domain") in {"mark_allocation", "sovereign"} and required_terms:
+            has_required_terms = has_required_terms and _required_keys_present(context.get("content", {}), required_terms)
+        if r.get("domain") == "sovereign" and required_terms:
+            has_required_terms = has_required_terms and _sovereign_promotion_policy_safe(context.get("content", {}))
         if has_required_terms is False and required_terms:
             matched.append(r["rule_id"]);viol.append("missing required terms: " + ",".join(required_terms))
             if r.get("missing_decision"): decision = r["missing_decision"]
+
+
     # allow negated boundary phrases
     if "does not claim achieved agi" in hay or "not empirical sota" in hay:
         if decision == "escalate": decision = "allow"

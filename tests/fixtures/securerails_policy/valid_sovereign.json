@@ -1,1 +1,19 @@
-{"allowed_work":["defensive"],"forbidden_work":["offensive"],"validators":["v1"],"human_review_required":true,"auto_merge_allowed":false,"claim_boundary":"present"}
+{
+  "allowed_work": [
+    "defensive"
+  ],
+  "forbidden_work": [
+    "offensive"
+  ],
+  "validators": [
+    "v1"
+  ],
+  "proofbundle_policy": "required",
+  "evidence_docket_policy": "required",
+  "promotion_policy": {
+    "autonomous_promotion_allowed": false,
+    "human_review_required": true,
+    "auto_merge_allowed": false
+  },
+  "claim_boundary": "Sovereign governance only; no certification claim"
+}
