@@ -1,12 +1,28 @@
 import json
+from pathlib import Path
 from .policy_rules import load_rules
 from .policy_decision import make_decision
 
 HARD_TERMS = {"reject": "critical", "quarantine": "critical", "escalate": "high", "warn":"low", "allow":"info"}
 
 def load_kernel(path):
-    from pathlib import Path
     return json.loads(Path(path).read_text(encoding='utf-8'))
+
+
+def _all_required_terms_present(context, required_terms):
+    if not required_terms:
+        return True
+    hay = "\n".join(context.get("text_fields", [])).lower() + "\n" + json.dumps(context.get("content", {})).lower()
+    return all(t.lower() in hay for t in required_terms)
+
+
+def _work_vault_flags_true(content, required_terms):
+    if not isinstance(content, dict):
+        return False
+    required = {t for t in required_terms if t in {"human_review_required", "defensive_only", "repo_owned"}}
+    if not required:
+        return True
+    return all(content.get(flag) is True for flag in required)
 
 def validate_kernel(kernel):
     errs=[]
@@ -45,8 +61,12 @@ def evaluate_context(context, kernel, rules):
             matched.append(r["rule_id"]);viol.append(r["message"])
             if r.get("decision") in ["reject","quarantine"]: decision = r["decision"]
             elif decision not in ["reject","quarantine"]: decision = r.get("decision", decision)
-        if all(t.lower() in hay for t in r.get("required_terms", [])) is False and r.get("required_terms"):
-            matched.append(r["rule_id"]);viol.append("missing required terms: " + ",".join(r["required_terms"]))
+        required_terms = r.get("required_terms", [])
+        has_required_terms = _all_required_terms_present(context, required_terms)
+        if r.get("domain") == "work_vault" and required_terms:
+            has_required_terms = has_required_terms and _work_vault_flags_true(context.get("content", {}), required_terms)
+        if has_required_terms is False and required_terms:
+            matched.append(r["rule_id"]);viol.append("missing required terms: " + ",".join(required_terms))
             if r.get("missing_decision"): decision = r["missing_decision"]
     # allow negated boundary phrases
     if "does not claim achieved agi" in hay or "not empirical sota" in hay:
@@ -55,8 +75,10 @@ def evaluate_context(context, kernel, rules):
     return make_decision(context, kernel, decision, sev, matched, viol, warn)
 
 
-def evaluate_file(input_path, context_type="auto", kernel_path="config/securerails_policy_kernel.json"):
+def evaluate_file(input_path, context_type="auto", kernel_path=None):
     from .policy_context import build_context
+    if kernel_path is None:
+        kernel_path = Path(__file__).resolve().parent.parent / "config" / "securerails_policy_kernel.json"
     kernel=load_kernel(kernel_path)
     rules=load_rules()
     return evaluate_context(build_context(input_path, context_type), kernel, rules)
