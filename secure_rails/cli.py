@@ -125,7 +125,10 @@ def main() -> None:
     elif args.cmd == 'template-bootstrap':
         if args.tcmd == 'detect': tb_detect(Path(args.repo_root), Path(args.out))
         elif args.tcmd == 'init': tb_init(Path(args.repo_root), args.owner, args.repository, args.instance_name, args.instance_type, args.pages_url, Path(args.out))
-        elif args.tcmd == 'validate': tb_validate(Path(args.config))
+        elif args.tcmd == 'validate':
+            errs = tb_validate(Path(args.config))
+            if errs:
+                print('\n'.join(errs)); raise SystemExit(1)
         elif args.tcmd == 'health-check': tb_health_check(Path(args.repo_root), Path(args.config), Path(args.out))
         elif args.tcmd == 'report': tb_report(Path(args.repo_root), Path(args.config), Path(args.out))
     elif args.cmd == 'repo-security':
@@ -136,7 +139,12 @@ def main() -> None:
             from .dependency_inventory import collect_dependency_inventory
             Path(args.out).write_text(json.dumps(collect_dependency_inventory(Path(args.repo_root)), indent=2), encoding='utf-8')
     elif args.cmd == 'trust-center':
-        if args.trcmd == 'build-data': trust_build_data(Path(args.repo_root), Path(args.out))
+        if args.trcmd == 'build-data':
+            status = trust_build_data(Path(args.repo_root), Path(args.out))
+            checks = [status.get('claim_boundary_check'), status.get('safety_ledger_check'), status.get('no_automerge_check'), status.get('utility_token_boundary_check')]
+            required_flags = [status.get('security_policy_present'), status.get('vulnerability_disclosure_present'), status.get('incident_response_runbook_present')]
+            if any(c != 'pass' for c in checks) or any(v is not True for v in required_flags):
+                raise SystemExit(1)
     elif args.cmd == 'release-train':
         if args.relcmd == 'build': rt_build(Path(args.repo_root), args.release_version, args.release_channel, Path(args.out))
         elif args.relcmd == 'marketplace-readiness': rt_marketplace(Path(args.repo_root), Path(args.out))
@@ -147,7 +155,16 @@ def main() -> None:
             rec=json.loads(Path(args.input).read_text(encoding='utf-8')); vr=validate_intake_record(rec); print('ok' if vr.ok else 'invalid'); raise SystemExit(0 if vr.ok else 1)
         elif args.cpcmd == 'ingest': ingest_intake(Path(args.input), Path(args.registry))
         elif args.cpcmd == 'dispatch-ingest':
-            payload=json.loads(Path(args.payload).read_text(encoding='utf-8')); infile=payload.get('client_payload',{}).get('intake_file') or 'docs/secure-rails/templates/customer-pilot-intake-example.json'; ingest_intake(Path(infile), Path(args.registry))
+            payload = json.loads(Path(args.payload).read_text(encoding='utf-8'))
+            cp = payload.get('client_payload', {})
+            infile = cp.get('intake_file')
+            if infile:
+                ingest_intake(Path(infile), Path(args.registry))
+            else:
+                record = cp.get('intake_record') or cp
+                tmp = Path('/tmp/securerails-dispatch-intake.json')
+                tmp.write_text(json.dumps(record, indent=2), encoding='utf-8')
+                ingest_intake(tmp, Path(args.registry))
         elif args.cpcmd in {'build-data','render'}: build_customer_pilot_data(Path(args.registry), Path(args.out))
         elif args.cpcmd == 'artifact-sync':
             # deterministic no-op sync placeholder preserving command compatibility
