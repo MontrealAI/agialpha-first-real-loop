@@ -1,6 +1,6 @@
 # SecureRails Documentation
 
-SecureRails is AI-agent security governance and proof-bound defensive remediation, with human-reviewed promotion, excluded high-risk uses, and executable guardrails.
+SecureRails is AI-agent security governance and proof-bound defensive remediation, with human-reviewed promotion, excluded high-risk uses, and executable guardrails. SecureRails is not autonomous cybersecurity certification, not offensive cyber, not a high-risk decision system by intended purpose, not a GPAI model provider by default, and not an investment product.
 
 - Operator runbook: [operator-runbook.md](operator-runbook.md)
 - Work Vaults/MARK/Sovereigns: [work-vaults-mark-sovereigns.md](work-vaults-mark-sovereigns.md)
