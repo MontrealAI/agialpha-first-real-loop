@@ -1,0 +1,1 @@
+Token offers yield and dividends and ownership rights.

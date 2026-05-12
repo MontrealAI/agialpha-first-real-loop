@@ -1,0 +1,21 @@
+{
+  "schema_version": "securerails.policy_rule_set.v1",
+  "rules": [
+    {
+      "rule_id": "safety-hard",
+      "decision": "reject",
+      "domain": "safety_boundary",
+      "forbidden_terms": [
+        "external target scanning",
+        "exploit execution",
+        "malware generation",
+        "social engineering",
+        "credential collection",
+        "raw secret printing",
+        "unsafe auto-merge",
+        "autonomous production remediation"
+      ],
+      "message": "Hard safety boundary violation."
+    }
+  ]
+}
