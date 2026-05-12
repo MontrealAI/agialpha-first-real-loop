@@ -129,12 +129,19 @@ def main() -> None:
             errs = tb_validate(Path(args.config))
             if errs:
                 print('\n'.join(errs)); raise SystemExit(1)
-        elif args.tcmd == 'health-check': tb_health_check(Path(args.repo_root), Path(args.config), Path(args.out))
+        elif args.tcmd == 'health-check':
+            health = tb_health_check(Path(args.repo_root), Path(args.config), Path(args.out))
+            if health.get('status') != 'pass':
+                raise SystemExit(1)
         elif args.tcmd == 'report': tb_report(Path(args.repo_root), Path(args.config), Path(args.out))
     elif args.cmd == 'repo-security':
         if args.rcmd == 'baseline': generate_baseline(args.repo_root, args.out)
         elif args.rcmd == 'validate':
-            if not (Path(args.input) / 'repo_security_baseline.json').exists(): raise SystemExit(1)
+            required = ['repo_security_baseline.json','dependency_inventory.json','code_scanning_readiness.json','secret_scanning_posture.json','sarif_ingestion_record.json','workflow_permission_review.json']
+            missing = [n for n in required if not (Path(args.input) / n).exists()]
+            if missing:
+                print('missing: ' + ', '.join(missing))
+                raise SystemExit(1)
         elif args.rcmd == 'inventory':
             from .dependency_inventory import collect_dependency_inventory
             Path(args.out).write_text(json.dumps(collect_dependency_inventory(Path(args.repo_root)), indent=2), encoding='utf-8')
@@ -167,8 +174,13 @@ def main() -> None:
                 ingest_intake(tmp, Path(args.registry))
         elif args.cpcmd in {'build-data','render'}: build_customer_pilot_data(Path(args.registry), Path(args.out))
         elif args.cpcmd == 'artifact-sync':
-            # deterministic no-op sync placeholder preserving command compatibility
-            Path(args.registry).mkdir(parents=True, exist_ok=True)
+            from .external_repo import sync_external_repos
+            from .pilot_registry import add_record, ensure_registry
+            ensure_registry(Path(args.registry))
+            records = sync_external_repos(Path(args.config), int(args.limit))
+            for rec in records:
+                add_record(Path(args.registry), rec)
+            print(f'synced_records={len(records)}')
     elif args.cmd == 'e2e-canary':
         if args.ecmd == 'run': run_canary(Path(args.repo_root), Path(args.fixtures), Path(args.out))
         elif args.ecmd == 'replay':
