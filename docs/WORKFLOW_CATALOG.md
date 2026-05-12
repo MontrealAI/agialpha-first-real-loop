@@ -157,3 +157,8 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 | `securerails-dependency-review-001.yml` | SecureRails | pull_request, workflow_dispatch | Dependency review advisory artifact and local dependency inventory evidence. | Advisory only; no certification claim. | no |
 
 | `securerails-policy-kernel-001.yml` | SecureRails | pull_request, workflow_dispatch, schedule | Policy decision artifacts and generated policy summary JSON. | Advisory policy evidence; human review required; no direct Pages deploy. | no |
+
+
+- SecureRails Human Review Console 001: human-governed promotion, decision ledger, manual merge required, no auto-merge.
+
+| `securerails-human-review-console-001.yml` | SecureRails | `pull_request`, `workflow_dispatch`, `schedule` | Human review request/decision/gate validation artifacts and generated summary JSON | Human-governed promotion only; manual merge required; read-only workflow permissions; no direct Pages deploy. | no |
