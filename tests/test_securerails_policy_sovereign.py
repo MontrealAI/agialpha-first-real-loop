@@ -13,7 +13,7 @@ class TestSecureRailsPolicySovereign(unittest.TestCase):
 
     def test_sovereign_autonomous_promotion_rejected(self):
         base = json.loads(Path('tests/fixtures/securerails_policy/valid_sovereign.json').read_text())
-        base['promotion_policy'] = 'autonomous'
+        base['promotion_policy'] = {'autonomous_promotion_allowed': True, 'human_review_required': True, 'auto_merge_allowed': False}
         with tempfile.TemporaryDirectory() as td:
             p = Path(td) / 'bad_promotion.json'
             p.write_text(json.dumps(base), encoding='utf-8')
@@ -24,7 +24,7 @@ class TestSecureRailsPolicySovereign(unittest.TestCase):
 
     def test_sovereign_required_terms_text_only_bypass_rejected(self):
         obj = {
-            'note': 'allowed_work forbidden_work validators proofbundle_policy evidence_docket_policy promotion_policy human_review_required auto_merge_allowed claim_boundary'
+            'note': 'allowed_work forbidden_work validators proofbundle_policy evidence_docket_policy promotion_policy claim_boundary'
         }
         with tempfile.TemporaryDirectory() as td:
             p = Path(td) / 'text_bypass.json'
@@ -43,7 +43,7 @@ class TestSecureRailsPolicySovereign(unittest.TestCase):
 
     def test_sovereign_human_review_false_rejected(self):
         base = json.loads(Path('tests/fixtures/securerails_policy/valid_sovereign.json').read_text())
-        base['human_review_required'] = False
+        base['promotion_policy']['human_review_required'] = False
         with tempfile.TemporaryDirectory() as td:
             p = Path(td) / 'bad_human_review.json'
             p.write_text(json.dumps(base), encoding='utf-8')
@@ -61,7 +61,7 @@ class TestSecureRailsPolicySovereign(unittest.TestCase):
 
     def test_sovereign_with_automerge_rejected(self):
         base = json.loads(Path('tests/fixtures/securerails_policy/valid_sovereign.json').read_text())
-        base['auto_merge_allowed'] = True
+        base['promotion_policy']['auto_merge_allowed'] = True
         with tempfile.TemporaryDirectory() as td:
             p = Path(td) / 'bad.json'
             p.write_text(json.dumps(base), encoding='utf-8')

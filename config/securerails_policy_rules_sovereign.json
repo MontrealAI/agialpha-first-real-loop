@@ -14,8 +14,6 @@
         "proofbundle_policy",
         "evidence_docket_policy",
         "promotion_policy",
-        "human_review_required",
-        "auto_merge_allowed",
         "claim_boundary"
       ],
       "message": "Sovereign records must include required governance, proof, and claim-boundary fields."
@@ -24,7 +22,13 @@
       "rule_id": "sovereign-no-automerge",
       "domain": "sovereign",
       "decision": "reject",
-      "forbidden_terms": ["\"auto_merge_allowed\": true", "approved_to_merge", "\"human_review_required\": false", "\"promotion_policy\": \"autonomous\"", "\"autonomous_promotion_allowed\": true"],
+      "forbidden_terms": [
+        "\"auto_merge_allowed\": true",
+        "approved_to_merge",
+        "\"human_review_required\": false",
+        "\"promotion_policy\": \"autonomous\"",
+        "\"autonomous_promotion_allowed\": true"
+      ],
       "message": "Sovereign records must keep auto-merge disabled and preserve human review gates."
     }
   ]
