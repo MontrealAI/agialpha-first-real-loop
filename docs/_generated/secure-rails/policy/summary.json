@@ -1,9 +1,9 @@
 {
-  "total": 200,
-  "allow": 0,
+  "total": 1760,
+  "allow": 3,
   "warn": 0,
-  "escalate": 0,
-  "reject": 200,
+  "escalate": 962,
+  "reject": 795,
   "quarantine": 0,
-  "human_review_required": 200
+  "human_review_required": 1760
 }

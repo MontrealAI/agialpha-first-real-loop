@@ -1,20 +1,16 @@
 {
   "schema_version": "securerails.policy_decision.v1",
-  "decision_id": "82353ba7-1b2b-47bb-ab1c-e43d3c21efdf",
-  "generated_at": "2026-05-11T23:28:38.749950+00:00",
+  "decision_id": "9c13219c-3f8b-5343-90b3-ddcd4a2752df",
+  "generated_at": "1970-01-01T00:00:00+00:00",
   "kernel_id": "securerails-policy-kernel-001",
   "kernel_version": "0.1.0",
-  "context_id": "93cc81dc-f2cf-5d91-b74b-2560e9bfa533",
+  "context_id": "4f1735fc-8384-5c84-b03f-0c581d57382e",
   "context_type": "generic_text",
-  "source_path": "COPY_WORKFLOWS/omega-gauntlet-001-challenge-pack.yml",
-  "decision": "reject",
-  "severity": "critical",
-  "matched_rules": [
-    "work-vault-required"
-  ],
-  "violations": [
-    "missing required terms: human_review_required,defensive_only,repo_owned"
-  ],
+  "source_path": "tests/fixtures/securerails_pr_guard/workflow_permission_pr/README.md",
+  "decision": "escalate",
+  "severity": "high",
+  "matched_rules": [],
+  "violations": [],
   "warnings": [],
   "required_human_review": true,
   "auto_merge_allowed": false,
