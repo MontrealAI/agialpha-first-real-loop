@@ -24,8 +24,16 @@
       "rule_id": "sovereign-no-automerge",
       "domain": "sovereign",
       "decision": "reject",
-      "forbidden_terms": ["\"auto_merge_allowed\": true", "approved_to_merge", "\"promotion_policy\": \"autonomous\"", "autonomous promotion", "promotion without evidence"],
-      "message": "Sovereign records must keep auto-merge disabled and preserve human review gates."
+      "forbidden_terms": [
+        "\"auto_merge_allowed\": true",
+        "approved_to_merge",
+        "\"promotion_policy\": \"autonomous\"",
+        "autonomous promotion",
+        "promotion without evidence",
+        "\"human_review_required\": false",
+        "human review required false"
+      ],
+      "message": "Sovereign records must keep auto-merge disabled, prevent autonomous promotion, and preserve human review gates."
     }
   ]
 }

@@ -22,8 +22,16 @@
       "rule_id": "mark-allocation-no-automerge",
       "domain": "mark_allocation",
       "decision": "reject",
-      "forbidden_terms": ["\"auto_merge_allowed\": true", "auto merge allowed", "approved_to_merge", "\"promotion_without_evidence_allowed\": true", "promotion without evidence allowed"],
-      "message": "MARK allocation must not allow auto-merge or autonomous promotion."
+      "forbidden_terms": [
+        "\"auto_merge_allowed\": true",
+        "auto merge allowed",
+        "approved_to_merge",
+        "\"promotion_without_evidence_allowed\": true",
+        "promotion without evidence allowed",
+        "\"human_review_required\": false",
+        "human review required false"
+      ],
+      "message": "MARK allocation must not allow auto-merge, autonomous promotion, or disabled human review."
     }
   ]
 }
