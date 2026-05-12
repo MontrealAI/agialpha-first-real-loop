@@ -19,6 +19,17 @@ class TestSecureRailsPolicyMarkAllocation(unittest.TestCase):
             d = evaluate_file(str(p), context_type='mark_allocation')
         self.assertEqual(d['decision'], 'reject')
 
+
+    def test_mark_required_terms_text_only_bypass_rejected(self):
+        obj = {
+            'note': 'assigned_sovereign validators_required human_review_required proof_required promotion_without_evidence_allowed auto_merge_allowed claim_boundary'
+        }
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / 'text_bypass.json'
+            p.write_text(json.dumps(obj), encoding='utf-8')
+            d = evaluate_file(str(p), context_type='mark_allocation')
+        self.assertEqual(d['decision'], 'reject')
+
     def test_mark_negated_automerge_text_not_rejected(self):
         base = json.loads(Path('tests/fixtures/securerails_policy/valid_mark_allocation.json').read_text())
         base['claim_boundary'] = 'Auto merge allowed is not allowed; human review required remains true.'

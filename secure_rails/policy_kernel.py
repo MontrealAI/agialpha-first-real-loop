@@ -16,6 +16,12 @@ def _all_required_terms_present(context, required_terms):
     return all(t.lower() in hay for t in required_terms)
 
 
+def _required_keys_present(content, required_terms):
+    if not isinstance(content, dict):
+        return False
+    return all(k in content for k in required_terms)
+
+
 def _work_vault_flags_true(content, required_terms):
     if not isinstance(content, dict):
         return False
@@ -96,6 +102,8 @@ def evaluate_context(context, kernel, rules):
         has_required_terms = _all_required_terms_present(context, required_terms)
         if r.get("domain") == "work_vault" and required_terms:
             has_required_terms = has_required_terms and _work_vault_flags_true(context.get("content", {}), required_terms)
+        if r.get("domain") in {"mark_allocation", "sovereign"} and required_terms:
+            has_required_terms = has_required_terms and _required_keys_present(context.get("content", {}), required_terms)
         if has_required_terms is False and required_terms:
             matched.append(r["rule_id"]);viol.append("missing required terms: " + ",".join(required_terms))
             if r.get("missing_decision"): decision = r["missing_decision"]
