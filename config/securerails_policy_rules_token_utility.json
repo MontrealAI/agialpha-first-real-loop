@@ -1,0 +1,26 @@
+{
+  "schema_version": "securerails.policy_rule_set.v1",
+  "rules": [
+    {
+      "rule_id": "token-boundary",
+      "decision": "reject",
+      "domain": "token_utility_boundary",
+      "forbidden_terms": [
+        "equity",
+        "debt",
+        "yield",
+        "dividend",
+        "ownership",
+        "profit right",
+        "passive income",
+        "guaranteed return",
+        "investment return",
+        "token appreciation",
+        "financial product",
+        "claim on revenue",
+        "claim on assets"
+      ],
+      "message": "Forbidden token-financial claim detected."
+    }
+  ]
+}

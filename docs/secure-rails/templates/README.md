@@ -73,3 +73,7 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/secu
 - trust-center-control-matrix-example.json
 
 - repo-security-baseline-example.json
+
+- `policy-context-example.json`
+- `policy-decision-example.json`
+- `policy-exception-request-example.json`
