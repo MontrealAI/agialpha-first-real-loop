@@ -8,7 +8,7 @@ from secure_rails.policy_kernel import evaluate_file
 class TestSecureRailsPolicySovereign(unittest.TestCase):
     def test_valid_sovereign_allow_or_warn(self):
         d = evaluate_file('tests/fixtures/securerails_policy/valid_sovereign.json', context_type='sovereign')
-        self.assertIn(d['decision'], {'allow', 'warn'})
+        self.assertEqual(d['decision'], 'escalate')
 
     def test_sovereign_with_automerge_rejected(self):
         base = json.loads(Path('tests/fixtures/securerails_policy/valid_sovereign.json').read_text())

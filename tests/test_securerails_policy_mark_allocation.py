@@ -9,7 +9,7 @@ class TestSecureRailsPolicyMarkAllocation(unittest.TestCase):
 
     def test_valid_mark_allocation_allow_or_warn(self):
         d = evaluate_file('tests/fixtures/securerails_policy/valid_mark_allocation.json', context_type='mark_allocation')
-        self.assertIn(d['decision'], {'allow', 'warn'})
+        self.assertEqual(d['decision'], 'escalate')
 
 
 if __name__ == '__main__':

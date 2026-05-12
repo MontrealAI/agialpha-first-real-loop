@@ -100,8 +100,6 @@ def evaluate_context(context, kernel, rules):
             matched.append(r["rule_id"]);viol.append("missing required terms: " + ",".join(required_terms))
             if r.get("missing_decision"): decision = r["missing_decision"]
 
-    if context.get('context_type') in {'mark_allocation', 'sovereign'} and not viol and decision == kernel.get('default_decision', 'escalate'):
-        decision = 'allow'
 
     # allow negated boundary phrases
     if "does not claim achieved agi" in hay or "not empirical sota" in hay:
