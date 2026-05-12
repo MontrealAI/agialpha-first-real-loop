@@ -21,10 +21,23 @@ def evaluate_context(context, kernel, rules):
     hay = "\n".join(context.get("text_fields", [])).lower() + "\n" + json.dumps(context.get("content", {})).lower()
     decision = kernel.get("default_decision", "escalate")
     matched=[];viol=[];warn=[]
+
+    domain_context_map = {
+        'work_vault':'work_vault',
+        'mark_allocation':'mark_allocation',
+        'sovereign':'sovereign',
+        'github_app_connector':'github_app',
+        'release_train':'release',
+        'trust_center':'trust_center',
+        'repo_security_baseline':'repo_security',
+    }
     negations=['does not claim achieved agi','not empirical sota','not cybersecurity certification','does not certify security']
     for r in rules:
+        target = domain_context_map.get(r.get('domain'))
+        if target and context.get('context_type') != target:
+            continue
         forbidden_hit=any(t.lower() in hay for t in r.get('forbidden_terms', []))
-        if forbidden_hit and any(n in hay for n in negations):
+        if r.get('domain') == 'claim_boundary' and forbidden_hit and any(n in hay for n in negations):
             forbidden_hit=False
         if forbidden_hit:
             matched.append(r["rule_id"]);viol.append(r["message"])
