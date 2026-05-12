@@ -13,6 +13,7 @@ from .policy_kernel import load_kernel, validate_kernel, evaluate_file
 from .policy_registry import write_decision_log
 from .policy_render import build_data as build_policy_data
 from .policy_opa_export import export_opa
+from .validate import validate_registry as semantic_validate_registry
 
 
 def _validate_registry(registry: Path) -> int:
@@ -20,6 +21,8 @@ def _validate_registry(registry: Path) -> int:
     missing = [str(p) for p in required if not p.exists()]
     if missing:
         print('missing:', ', '.join(missing))
+        return 1
+    if not semantic_validate_registry(registry):
         return 1
     return 0
 
@@ -34,6 +37,7 @@ def main() -> None:
     vr = sp.add_parser('validate-registry'); vr.add_argument('--registry', required=True)
 
     t = sp.add_parser('check-token-boundary'); t.add_argument('--repo-root', default='.')
+    cwv = sp.add_parser('check-work-vaults'); cwv.add_argument('--registry', required=True)
     gh = sp.add_parser('github-app'); ghsp = gh.add_subparsers(dest='gcmd', required=True); ghsp.add_parser('validate')
 
     e = sp.add_parser('e2e-canary'); esp = e.add_subparsers(dest='ecmd', required=True)
@@ -75,6 +79,10 @@ def main() -> None:
         raise SystemExit(_validate_registry(Path(args.registry)))
     elif args.cmd == 'check-token-boundary':
         raise SystemExit(0 if check_token_boundary(Path(args.repo_root)) else 1)
+    elif args.cmd == 'check-work-vaults':
+        reg = Path(args.registry)
+        build_indexes(reg)
+        raise SystemExit(0 if semantic_validate_registry(reg) else 1)
     elif args.cmd == 'github-app':
         print('github-app command validated')
     elif args.cmd == 'e2e-canary':
@@ -115,7 +123,7 @@ def main() -> None:
             Path(args.out).write_text(json.dumps(evaluate_file(args.input, args.context_type), indent=2), encoding='utf-8')
         elif args.pcmd == 'evaluate-repo':
             out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
-            files = sorted([x for x in Path(args.repo_root).rglob('*') if x.is_file() and x.suffix.lower() in {'.md', '.json', '.yml', '.yaml'}])[:200]
+            files = sorted([x for x in Path(args.repo_root).rglob('*') if x.is_file() and x.suffix.lower() in {'.md', '.json', '.yml', '.yaml'}])
             for i, fp in enumerate(files):
                 (out / f'decision_{i:04d}.json').write_text(json.dumps(evaluate_file(str(fp), 'auto'), indent=2), encoding='utf-8')
         elif args.pcmd == 'decision-log': write_decision_log(args.decisions, args.registry)
