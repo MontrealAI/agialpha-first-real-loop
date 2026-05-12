@@ -1,0 +1,17 @@
+{
+  "schema_version": "securerails.policy_rule_set.v1",
+  "rules": [
+    {
+      "rule_id": "release-claims",
+      "domain": "release_train",
+      "forbidden_terms": [
+        "marketplace publication claim",
+        "certified secure",
+        "slsa certified",
+        "openssf certified"
+      ],
+      "decision": "reject",
+      "message": "Release overclaim detected."
+    }
+  ]
+}
