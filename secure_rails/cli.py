@@ -190,7 +190,7 @@ def main() -> None:
             Path(args.out).write_text(json.dumps(evaluate_file(args.input, args.context_type), indent=2), encoding='utf-8')
         elif args.pcmd == 'evaluate-repo':
             out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
-            files = sorted([x for x in Path(args.repo_root).rglob('*') if x.is_file() and x.suffix.lower() in {'.md', '.json', '.yml', '.yaml'}]
+            files = sorted([x for x in Path(args.repo_root).rglob('*') if x.is_file() and x.suffix.lower() in {'.md', '.json', '.yml', '.yaml'}])
             for i, fp in enumerate(files):
                 (out / f'decision_{i:04d}.json').write_text(json.dumps(evaluate_file(str(fp), 'auto'), indent=2), encoding='utf-8')
         elif args.pcmd == 'decision-log': write_decision_log(args.decisions, args.registry)
