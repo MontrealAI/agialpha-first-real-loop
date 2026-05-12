@@ -249,8 +249,15 @@ def main() -> None:
         elif args.pcmd == 'evaluate-repo':
             out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
             files = sorted([x for x in Path(args.repo_root).rglob('*') if x.is_file() and x.suffix.lower() in {'.md', '.json', '.yml', '.yaml'}])
+            blocking = 0
             for i, fp in enumerate(files):
-                (out / f'decision_{i:04d}.json').write_text(json.dumps(evaluate_file(str(fp), 'auto'), indent=2), encoding='utf-8')
+                decision = evaluate_file(str(fp), 'auto')
+                if decision.get('decision') in {'reject', 'quarantine'}:
+                    blocking += 1
+                (out / f'decision_{i:04d}.json').write_text(json.dumps(decision, indent=2), encoding='utf-8')
+            if blocking:
+                print(f'blocking_policy_decisions={blocking}')
+                raise SystemExit(1)
         elif args.pcmd == 'decision-log': write_decision_log(args.decisions, args.registry)
         elif args.pcmd in {'build-data', 'render'}: build_policy_data(args.registry, args.out)
         elif args.pcmd == 'export-opa': export_opa(args.kernel, args.out)

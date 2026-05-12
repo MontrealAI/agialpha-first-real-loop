@@ -79,9 +79,10 @@ def evaluate_context(context, kernel, rules):
         'repo_security_baseline': {'repo_security'},
     }
     for r in rules:
-        allowed_contexts = domain_context.get(r.get('domain'), {context.get('context_type')})
-        if context.get('context_type') not in allowed_contexts:
-            continue
+        if r.get('domain') != 'claim_boundary':
+            allowed_contexts = domain_context.get(r.get('domain'), {context.get('context_type')})
+            if context.get('context_type') not in allowed_contexts:
+                continue
         if r.get('domain') == 'claim_boundary':
             forbidden_hit = _claim_forbidden_hit(hay, r.get('forbidden_terms', []))
         else:
