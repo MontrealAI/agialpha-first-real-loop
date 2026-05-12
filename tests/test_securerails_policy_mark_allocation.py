@@ -19,6 +19,15 @@ class TestSecureRailsPolicyMarkAllocation(unittest.TestCase):
             d = evaluate_file(str(p), context_type='mark_allocation')
         self.assertEqual(d['decision'], 'reject')
 
+    def test_mark_negated_automerge_text_not_rejected(self):
+        base = json.loads(Path('tests/fixtures/securerails_policy/valid_mark_allocation.json').read_text())
+        base['claim_boundary'] = 'Auto merge allowed is not allowed; human review required remains true.'
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / 'negated_text.json'
+            p.write_text(json.dumps(base), encoding='utf-8')
+            d = evaluate_file(str(p), context_type='mark_allocation')
+        self.assertNotEqual(d['decision'], 'reject')
+
     def test_valid_mark_allocation_allow_or_warn(self):
         d = evaluate_file('tests/fixtures/securerails_policy/valid_mark_allocation.json', context_type='mark_allocation')
         self.assertEqual(d['decision'], 'escalate')
