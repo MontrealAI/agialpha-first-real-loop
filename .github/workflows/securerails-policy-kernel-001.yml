@@ -1,0 +1,33 @@
+name: SecureRails Policy Kernel 001
+on:
+  pull_request:
+    paths:
+      - "docs/**"
+      - "config/securerails_policy*.json"
+      - "schemas/securerails_policy*.json"
+      - "scripts/secure_rails_policy*.py"
+      - "secure_rails/**"
+      - ".github/workflows/**"
+  workflow_dispatch:
+  schedule:
+    - cron: "0 14 * * 1"
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+jobs:
+  policy-kernel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m secure_rails policy validate-kernel --kernel config/securerails_policy_kernel.json
+      - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python scripts/secure_rails_no_automerge_check.py .
+      - run: python -m secure_rails policy evaluate-repo --repo-root . --out /tmp/securerails-policy-decisions || true
+      - run: python -m secure_rails policy decision-log --decisions /tmp/securerails-policy-decisions --registry secure_rails_policy
+      - run: python -m secure_rails policy build-data --registry secure_rails_policy --out docs/_generated/secure-rails/policy
+      - uses: actions/upload-artifact@v4
+        with: {name: securerails-policy-kernel-001, path: docs/_generated/secure-rails/policy}
+      - run: echo "Policy kernel complete. Human review required."
