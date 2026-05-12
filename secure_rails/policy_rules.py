@@ -7,6 +7,8 @@ RULE_FILES = [
     "securerails_policy_rules_eu_ai_act.json",
     "securerails_policy_rules_token_utility.json",
     "securerails_policy_rules_work_vault.json",
+    "securerails_policy_rules_mark_allocation.json",
+    "securerails_policy_rules_sovereign.json",
     "securerails_policy_rules_github_app.json",
     "securerails_policy_rules_release.json",
     "securerails_policy_rules_trust_center.json",
