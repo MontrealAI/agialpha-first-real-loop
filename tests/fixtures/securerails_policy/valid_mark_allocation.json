@@ -1,1 +1,9 @@
-{"assigned_sovereign":"s1","validators_required":["v1"],"human_review_required":true,"proof_required":true,"auto_merge_allowed":false,"claim_boundary":"present"}
+{
+  "assigned_sovereign": "s1",
+  "validators_required": ["v1"],
+  "human_review_required": true,
+  "proof_required": true,
+  "promotion_without_evidence_allowed": false,
+  "auto_merge_allowed": false,
+  "claim_boundary": "MARK allocation governance only; no certification claim"
+}
