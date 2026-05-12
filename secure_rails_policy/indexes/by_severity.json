@@ -1,3 +1,5 @@
 {
-  "critical": 200
+  "critical": 795,
+  "high": 962,
+  "info": 3
 }
