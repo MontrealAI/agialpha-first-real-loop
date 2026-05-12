@@ -1,0 +1,1 @@
+{"schema_version":"securerails.policy_context.v1","context_id":"example","context_type":"generic_text","source_path":"README.md","source_hash":"sha256","repository":"MontrealAI/agialpha-first-real-loop","content":{},"text_fields":["not empirical SOTA"],"metadata":{},"claim_boundary":"boundary"}

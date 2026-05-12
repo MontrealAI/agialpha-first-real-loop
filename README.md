@@ -115,3 +115,5 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/secu
 - [Trust Center control matrix](docs/secure-rails/trust-center-control-matrix.md)
 
 - Repository security baseline: [docs/secure-rails/repository-security-baseline.md](docs/secure-rails/repository-security-baseline.md)
+
+- SecureRails Policy Kernel 001: [docs/secure-rails/policy-kernel.md](docs/secure-rails/policy-kernel.md)

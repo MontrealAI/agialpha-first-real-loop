@@ -1,0 +1,4524 @@
+[
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "f58f1a00-d1ca-4d7f-abaf-ca178b290765",
+    "generated_at": "2026-05-11T23:28:38.547152+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "83fea859-93f4-5a66-8c5e-eb12e6a20726",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/ascension-001-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "f21751c6-7ec3-476a-bf11-a0225e4f3440",
+    "generated_at": "2026-05-11T23:28:38.548469+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "039e73dd-4e8a-570e-b937-a6b869f220fa",
+    "context_type": "mark_allocation",
+    "source_path": ".github/ISSUE_TEMPLATE/benchmark-gauntlet-001-challenge-pack.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "safety-hard",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Hard safety boundary violation.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "a1e6f17e-abfd-4703-b02c-20fffbf977be",
+    "generated_at": "2026-05-11T23:28:38.549518+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "cae7a70e-ffbf-50fc-8eee-ab7712bc1a39",
+    "context_type": "mark_allocation",
+    "source_path": ".github/ISSUE_TEMPLATE/benchmark-gauntlet-001-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "6a5dcc3b-f156-4e78-ad6a-07ead94dce2a",
+    "generated_at": "2026-05-11T23:28:38.550437+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "7c642d13-c330-5085-9a95-9cccaa0809e8",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/claim-boundary-concern.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "af0aa7f6-6cb7-4a26-8a6a-157957ee5189",
+    "generated_at": "2026-05-11T23:28:38.551520+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "e2a3d5e9-0060-5d18-a93d-73552880c405",
+    "context_type": "sovereign",
+    "source_path": ".github/ISSUE_TEMPLATE/cyber-sovereign-002-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "safety-hard",
+      "work-vault-required",
+      "trust-cert-claims",
+      "repo-security-guarantee"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "Hard safety boundary violation.",
+      "missing required terms: human_review_required,defensive_only,repo_owned",
+      "Trust center certification overclaim.",
+      "Repository security baseline overclaim."
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "eaf1d17f-2ffd-4d09-9d9b-0c3c0808a0a4",
+    "generated_at": "2026-05-11T23:28:38.552511+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "7543859d-b05c-5422-82fb-f9797ee3f224",
+    "context_type": "sovereign",
+    "source_path": ".github/ISSUE_TEMPLATE/cyber-sovereign-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "safety-hard",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "Hard safety boundary violation.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "128d7726-494e-42fd-8072-213262d2f623",
+    "generated_at": "2026-05-11T23:28:38.553406+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "298682f1-cd16-5ffd-a539-82f6b6e3e161",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/evidence-docket-bug.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "e877e8ed-8d03-4774-844a-13342690e6a6",
+    "generated_at": "2026-05-11T23:28:38.554433+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "d8c33677-8018-51e1-8cc5-3bee13de36e9",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/evidence-factory-followup.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "ea74ba62-26ba-4e13-97c7-b7e8aa9921c1",
+    "generated_at": "2026-05-11T23:28:38.555423+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "e133dbe2-b38d-5123-81d8-52f746f6fa68",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/external-review-attestation.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "05c93c11-af6f-4db5-9445-30784c02b0a0",
+    "generated_at": "2026-05-11T23:28:38.556470+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "b21159a5-3ba0-5530-b6fb-d38bec981646",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/frontier-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "5311d4a6-c38f-4144-bcfd-5dccb01b88d0",
+    "generated_at": "2026-05-11T23:28:38.557465+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "967e1648-ae3d-5117-9346-d3028f85257c",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/helios-002-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "533dccc4-d0fb-41de-8114-78353d2986bc",
+    "generated_at": "2026-05-11T23:28:38.558448+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "efa398b3-96ff-5229-b779-e21c2f47aa85",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/helios-003-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "fe938316-b174-4843-b04e-65d6e3993882",
+    "generated_at": "2026-05-11T23:28:38.560985+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "ab9f8670-62ab-5b88-8d25-1ffc35103b3a",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/helios-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "bc7076db-c4a8-400a-9668-c9e0ea1fec27",
+    "generated_at": "2026-05-11T23:28:38.561915+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "19b4d3ae-2526-59b2-bc8e-fcda5039cc52",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/l4-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "0482d4cf-3da6-4cc7-aaf7-40cf8252e885",
+    "generated_at": "2026-05-11T23:28:38.562870+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "c4e9c17b-b61a-5170-b8b2-608aba486a82",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/omega-aegis-001-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "fb2a93a2-105b-4aac-bdec-a25d6973f094",
+    "generated_at": "2026-05-11T23:28:38.563853+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "f1f22425-ce44-519d-9ff5-1bdc1b794710",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/omega-gauntlet-001-challenge-pack.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "safety-hard",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Hard safety boundary violation.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "af69662f-acc5-40b8-bacf-848c72f5ba8c",
+    "generated_at": "2026-05-11T23:28:38.564770+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "7d54b123-c282-5ff0-aede-e2cb6045baa4",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/omega-gauntlet-001-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "e9200d39-1e45-418a-a634-895e26874993",
+    "generated_at": "2026-05-11T23:28:38.565842+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "d2ed953a-130a-50c4-a1d4-dd917f4fcfec",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/phoenix-hub-001-challenge-pack.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "safety-hard",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Hard safety boundary violation.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "15fc5761-dab5-4c9a-a793-70da74c81718",
+    "generated_at": "2026-05-11T23:28:38.566812+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "2ba70ce9-12f5-5fdf-b3f5-e7ace1551ecd",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/phoenix-hub-001-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "88a3ca9c-d20d-424b-a52e-67fb00107e22",
+    "generated_at": "2026-05-11T23:28:38.567785+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "41b9b96a-6dd2-5177-a98a-0d3c90d060f5",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/replay-failure.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "314071d7-1a73-426e-ba3a-a10e2824334f",
+    "generated_at": "2026-05-11T23:28:38.568762+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "fc7628f1-72d2-592c-9ed6-4faba2ed3196",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/rsi-forge-001-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "16b9e20b-b216-4235-a357-2f4429c8fae5",
+    "generated_at": "2026-05-11T23:28:38.569800+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "2fe53a73-a912-535c-aa14-083a114b20b6",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/rsi-forge-002-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "43ce1dff-864c-41f4-8cdd-dc3b6bf4a532",
+    "generated_at": "2026-05-11T23:28:38.570737+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "967489e6-0dd1-5262-a7cb-82524bb755e5",
+    "context_type": "generic_text",
+    "source_path": ".github/ISSUE_TEMPLATE/safety-ledger-concern.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "9eff3495-8bd3-4c16-bd12-9111736c6017",
+    "generated_at": "2026-05-11T23:28:38.571645+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "f959e698-9111-5e63-8480-4f460b4e0cae",
+    "context_type": "generic_text",
+    "source_path": ".github/actions/securerails-pr-guard/README.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "b4f4f6be-4f31-4d3a-8394-d203f234fd7c",
+    "generated_at": "2026-05-11T23:28:38.572766+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "c7df22db-073c-5a96-80d2-521953329c2a",
+    "context_type": "generic_text",
+    "source_path": ".github/actions/securerails-pr-guard/action.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "3282ce50-0209-44d2-97cd-c4a846477f04",
+    "generated_at": "2026-05-11T23:28:38.573758+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "1b17e842-3450-5601-b75b-8c059281a5f1",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/agiga-foundry-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "061a6cbc-2bf4-43fc-ab19-9ebeaff6a6b1",
+    "generated_at": "2026-05-11T23:28:38.574740+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "f1e3b249-f10f-51be-bf9b-43124d577695",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/agiga-foundry-001-delayed-outcome.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "b2b3840f-576d-472c-9ba1-cc8a32084fdb",
+    "generated_at": "2026-05-11T23:28:38.575638+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "2a276be1-5f6e-55f9-a013-2b5fc14ec705",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/agiga-foundry-001-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "b73c4d0a-4f43-4458-914b-a861bbbd4cec",
+    "generated_at": "2026-05-11T23:28:38.576691+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "4dfe095b-331e-543f-af9f-ee964d70081b",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/agiga-foundry-001-foundry-kernel-safe-pr.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "899648db-6dd2-483c-89d8-2fd09258e526",
+    "generated_at": "2026-05-11T23:28:38.577618+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "5501debf-0c74-5329-8452-c205276b0cde",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/agiga-foundry-001-lifecycle.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "56b3a94b-038b-45b8-96a1-39ba707ce8d3",
+    "generated_at": "2026-05-11T23:28:38.578798+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "aad4d802-5da4-5447-8462-4864664000a1",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/agiga-foundry-001-policy-pr.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "eff65da5-0332-467a-8144-caa912af00f8",
+    "generated_at": "2026-05-11T23:28:38.579763+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "a17cc1f4-352b-526f-8004-1a77f7d26043",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/agiga-foundry-001-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "cdaf6bea-6f6b-43a2-938a-eb038954c503",
+    "generated_at": "2026-05-11T23:28:38.580662+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "ba89a02c-ad23-59d7-9e8d-3d900de10ed2",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/agiga-foundry-001-safe-policy-pr.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "c93bd026-0a70-48b4-8613-66d3de464cbd",
+    "generated_at": "2026-05-11T23:28:38.581550+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "3012865f-7799-5df4-b978-bab2101dc675",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/agiga-foundry-001-vnext.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "d019797d-fb42-4b73-b4c6-7d7c344b5176",
+    "generated_at": "2026-05-11T23:28:38.582595+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "00ad458b-c44c-5f2b-8f80-2870bf1899b4",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/ascension-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "cfd8e30d-53e8-49dd-adc6-7a49a67fe2a0",
+    "generated_at": "2026-05-11T23:28:38.583584+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "6bf412f5-ea3c-51a7-bb34-cb668b07e184",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/ascension-001-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "959f2bf2-967a-443c-b8b7-35c02575674b",
+    "generated_at": "2026-05-11T23:28:38.584762+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "e27aec47-ee6a-51e2-9323-820cdbedcda7",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/ascension-001-independent-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "7c04617a-b8da-472f-9943-fae643b316e3",
+    "generated_at": "2026-05-11T23:28:38.585716+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "0524f3f9-5cd4-57a2-b111-acbe9c122bab",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/ascension-001-vnext.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "9b8ac085-8dc3-402c-b59a-20a3b6f7f4ce",
+    "generated_at": "2026-05-11T23:28:38.586918+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "e7e4b50d-c0b3-5536-8f15-e17a3f59d080",
+    "context_type": "mark_allocation",
+    "source_path": ".github/workflows/benchmark-gauntlet-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "2755fd44-2080-49c5-b6fb-822021ba0fe2",
+    "generated_at": "2026-05-11T23:28:38.588073+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "ff8841ad-9819-51ce-9bd8-c2511377fa0f",
+    "context_type": "mark_allocation",
+    "source_path": ".github/workflows/benchmark-gauntlet-001-challenge-pack.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "a228d88a-0ed2-484d-b010-040af87c335b",
+    "generated_at": "2026-05-11T23:28:38.589158+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "8fbd425b-501f-551b-9175-c3db30970a2e",
+    "context_type": "mark_allocation",
+    "source_path": ".github/workflows/benchmark-gauntlet-001-external-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "04536c61-e85b-4cb9-981a-81be049833c0",
+    "generated_at": "2026-05-11T23:28:38.590060+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "e69724db-9f54-5ffe-83ba-7bce98e94655",
+    "context_type": "mark_allocation",
+    "source_path": ".github/workflows/benchmark-gauntlet-001-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "d39b08a0-0715-4945-a3e0-fc93f7127cd8",
+    "generated_at": "2026-05-11T23:28:38.591936+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "2266eb25-7e22-500c-b963-849fee4cd20c",
+    "context_type": "mark_allocation",
+    "source_path": ".github/workflows/benchmark-gauntlet-001-safe-pr.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "safety-hard",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "Hard safety boundary violation.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "3f98a2b4-6bc8-41db-ad36-e83006598daa",
+    "generated_at": "2026-05-11T23:28:38.592832+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "477e7a32-6cb6-55cc-a8dc-f399b2a78ba0",
+    "context_type": "mark_allocation",
+    "source_path": ".github/workflows/benchmark-gauntlet-001-scaling.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "fbfa1630-d252-49f7-88c5-0c90b98cc8c3",
+    "generated_at": "2026-05-11T23:28:38.593664+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "6e56c123-1f61-5c81-a502-aff17b4e9d9b",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-ga-sovereign-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "3c95b7a8-2b8c-426c-94d9-95dd4f64d5f3",
+    "generated_at": "2026-05-11T23:28:38.594560+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "7bd45b4f-0ca3-5210-af78-7e5e64484d97",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-ga-sovereign-001-delayed-outcome.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "f69ea4a7-c183-4be6-bdc6-f122615154e8",
+    "generated_at": "2026-05-11T23:28:38.595411+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "204bfd3f-66d7-5f14-a4a1-6d0faa6e1c16",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-ga-sovereign-001-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "eccd5931-f6a7-468d-b21a-abe91fa34f37",
+    "generated_at": "2026-05-11T23:28:38.596372+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "9005780a-7436-51c2-8d8b-5122bbf03653",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-ga-sovereign-001-lifecycle.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "8e40a3e9-d582-4a63-a2e2-9e4e84ab2a4d",
+    "generated_at": "2026-05-11T23:28:38.597220+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "afe623a3-d3c6-5f9c-b0ce-e13686b84e00",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-ga-sovereign-001-policy-pr.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "cd6402df-096a-4f07-9b79-fe24260bd305",
+    "generated_at": "2026-05-11T23:28:38.598053+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "93947452-19ec-58c3-9cab-7fc5fa9e60e4",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-ga-sovereign-001-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "d8a374c2-82db-4eb4-a928-8296b98e6e12",
+    "generated_at": "2026-05-11T23:28:38.598925+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "53986f79-ae4e-53ec-96c2-f608ac56ce8d",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-ga-sovereign-001-safe-pr.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "f21ead10-00da-4e3a-b46a-71419410a15e",
+    "generated_at": "2026-05-11T23:28:38.599815+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "ef117c39-2445-5fe1-b4ed-2142074842ac",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-ga-sovereign-001-vnext.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "5929dbe5-275b-4ba9-8dd8-e877bc885a7d",
+    "generated_at": "2026-05-11T23:28:38.600812+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "62b67573-018e-5d38-98e3-c3d9d68bf3ea",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-sovereign-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "246401b7-3284-4cb8-b6b4-fcb3158394d8",
+    "generated_at": "2026-05-11T23:28:38.601726+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "f852dd5c-cb41-5242-8383-e27a57bd0e3a",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-sovereign-001-delayed-outcome.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "2271fc5a-2a5c-4b3f-9aea-078fef588c58",
+    "generated_at": "2026-05-11T23:28:38.602705+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "6251cb26-2646-5b83-b7b6-2df7ec4f342f",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-sovereign-001-external-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "2ca02c2c-d243-4452-8535-73bea336374d",
+    "generated_at": "2026-05-11T23:28:38.603617+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "4ef2b9ec-e8ea-5c38-a8ee-f43f9440adae",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-sovereign-001-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "951550cd-f546-4054-9e4d-72ecf9ddbeb5",
+    "generated_at": "2026-05-11T23:28:38.604607+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "13541310-3e4f-5efd-9e22-da7ff67e9793",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-sovereign-001-scaling.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "eb95d776-f28a-4525-8896-077082ec3cce",
+    "generated_at": "2026-05-11T23:28:38.605637+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "802191fb-1faa-5a32-8f3c-ee9652bf1551",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-sovereign-002-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "9b4c7f77-8c3c-4773-a1df-db61ad7ece1f",
+    "generated_at": "2026-05-11T23:28:38.606651+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "ad7aeffb-cc6b-5672-9497-5f0e07c0a877",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-sovereign-002-delayed-outcome.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "bb0296b6-0b74-442c-b530-7e6eb2a121b2",
+    "generated_at": "2026-05-11T23:28:38.607778+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "a5628fac-1278-504a-a750-90af92df308d",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-sovereign-002-external-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "7563cf1f-f1da-4bfc-a9cd-389498600224",
+    "generated_at": "2026-05-11T23:28:38.608763+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "11420661-8e1b-5577-86eb-db160422e894",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-sovereign-002-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "7cb6b38f-5bf4-4505-8728-6101c4bd3f06",
+    "generated_at": "2026-05-11T23:28:38.609765+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "41d8a013-36b8-5772-b449-4b00b9fbe3c4",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-sovereign-002-safe-pr-proposal.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "5fcbc70a-8896-4f9c-a40e-87d124de74ae",
+    "generated_at": "2026-05-11T23:28:38.610770+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "cfd140b0-37b3-5942-9e33-62894f1a6a83",
+    "context_type": "sovereign",
+    "source_path": ".github/workflows/cyber-sovereign-002-scaling.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "912b87d9-9ab2-4e28-a1c1-91845a6e7f09",
+    "generated_at": "2026-05-11T23:28:38.611746+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "021fba83-2f13-5a09-848e-44bca7464c0f",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/docs-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "de1a8710-9767-478e-9d0a-df562dbe68c8",
+    "generated_at": "2026-05-11T23:28:38.613125+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "b5b237d7-611d-5e28-9d03-80ea902b978f",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/evidence-factory-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "92fe5333-e05b-444f-8d15-6bfe96187c8e",
+    "generated_at": "2026-05-11T23:28:38.614066+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "9d6d2d69-e1c4-5717-baac-6bdd17a37ca0",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/evidence-hub-canary.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "ca23dbe5-5eaa-4a99-a65c-316995f55c06",
+    "generated_at": "2026-05-11T23:28:38.615189+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "dc3d07f4-ebc1-5718-ad96-7944404aca24",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/evidence-hub-publish.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "12a8fd92-e6b6-4153-a044-0e0fae879f54",
+    "generated_at": "2026-05-11T23:28:38.616198+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "785e8da2-4193-5ea2-a1d7-4f2782035fe1",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/evidence-hub-repair.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "e91ea6fc-6a97-4c2f-88c4-c3d93c5b3f5d",
+    "generated_at": "2026-05-11T23:28:38.617199+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "fef965a8-17ad-5eda-857a-ee42a9c3178a",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/falsification-audit-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "f2d9ceda-ca40-466f-a2d9-0493571dbd27",
+    "generated_at": "2026-05-11T23:28:38.618138+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "d70c8d96-ad34-5b42-b4f5-f3fbdf15c7bd",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/frontier-external-review.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "ae08c23a-fa85-4ba8-8f3b-e28187b33ce2",
+    "generated_at": "2026-05-11T23:28:38.619322+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "66d3f209-9ed2-53e9-9983-b7ddb2b6c950",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/frontier-usefulness-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "d48a6dd1-1c79-4d20-bfff-10e32bf18cc4",
+    "generated_at": "2026-05-11T23:28:38.620423+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "66df107d-ece9-54c9-8df1-0320e97b008b",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/helios-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "4ce82717-8f7a-4987-af9f-cae2719cf758",
+    "generated_at": "2026-05-11T23:28:38.621395+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "1fada221-4537-5f46-b945-4c23f221be48",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/helios-001-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "822e5f07-ea76-4d32-b064-078e11ef59c0",
+    "generated_at": "2026-05-11T23:28:38.622386+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "ce7ee639-f9ba-5a2c-b510-69ec38d4b1f1",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/helios-001-independent-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "8c63a60f-dfb5-4596-838c-77ad07340a28",
+    "generated_at": "2026-05-11T23:28:38.623395+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "443a4fe3-8479-5f11-a930-7024d8d13a6e",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/helios-001-vnext-transfer.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "1d35f43a-0317-4ab5-847e-ef3d7fb85544",
+    "generated_at": "2026-05-11T23:28:38.624491+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "ed3ebceb-82ca-5264-a438-d34d0a93c376",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/helios-002-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "16f3632c-7401-48c5-9b02-b1f6ad776c24",
+    "generated_at": "2026-05-11T23:28:38.625412+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "dd132ccf-2d9a-57e2-82db-a63e5dbc93c7",
+    "context_type": "mark_allocation",
+    "source_path": ".github/workflows/helios-002-benchmark-adapters.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "c1975eaa-d8f5-483f-83ed-d7e087f52250",
+    "generated_at": "2026-05-11T23:28:38.626334+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "685de53a-547e-50a7-bcc2-d7520847f21e",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/helios-002-external-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "ba3526da-ae81-4b00-bcd4-ed1288bc6af7",
+    "generated_at": "2026-05-11T23:28:38.627237+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "f6c988af-f7e0-59bf-b61d-b4d258c9563f",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/helios-002-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "dd69845b-437d-4d1f-a5a1-06a8668b94bc",
+    "generated_at": "2026-05-11T23:28:38.628237+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "9f193fec-b014-5430-b899-3243375a9e06",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/helios-002-scaling.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "77f797ca-ad6d-4107-b9cb-249165c7ca5e",
+    "generated_at": "2026-05-11T23:28:38.629262+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "78679631-70c8-539d-84e1-4e0bb73a71e4",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/helios-003-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "c653ebe4-1d5e-46c1-b63d-b122c9e31564",
+    "generated_at": "2026-05-11T23:28:38.630168+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "8287187c-73a4-5afa-b0a8-2f0d0625b7c7",
+    "context_type": "mark_allocation",
+    "source_path": ".github/workflows/helios-003-benchmark-adapters.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "32185f2d-ceb9-4ac8-927f-4c9b44409a5b",
+    "generated_at": "2026-05-11T23:28:38.631101+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "61725895-aa31-5b0a-bad6-7ff980f71b96",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/helios-003-delayed-outcome.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "af452894-bc55-4b93-9bca-2c5d0acbe594",
+    "generated_at": "2026-05-11T23:28:38.632102+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "ef86358a-aee6-5b1b-8d0a-0d85e54449be",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/helios-003-external-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "bfd826d1-2204-46e8-a9d3-04824750d7a7",
+    "generated_at": "2026-05-11T23:28:38.633030+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "92219e35-87aa-53af-b388-e50c25110013",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/helios-003-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "14976dab-dc1b-4515-9e35-1e0513fc48b5",
+    "generated_at": "2026-05-11T23:28:38.633939+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "ee9ddf2f-85f1-566c-9800-10f6a97221a8",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/helios-003-scaling.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "8736d652-3a86-4244-afa5-9701aeab9ade",
+    "generated_at": "2026-05-11T23:28:38.634953+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "d6ebccec-7b65-5372-9a40-4eab6d8b63e6",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/helios-004-completion.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "1725dbdc-ec74-4fdc-ad10-d15ad8a9c520",
+    "generated_at": "2026-05-11T23:28:38.636040+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "87ff733d-ca98-5783-954b-bdaaa5341dfe",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/independent-replay-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "7578c27b-cb79-4a9e-8c2c-831d9658ecda",
+    "generated_at": "2026-05-11T23:28:38.637241+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "a244c007-3985-5f95-9e81-0d994a3bfb1c",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/l4-external-reviewer-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "aa9e8091-09b5-49d9-bd93-b854962295c0",
+    "generated_at": "2026-05-11T23:28:38.638305+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "5f82c707-3cc6-52e9-87c7-7ab86ee2c20b",
+    "context_type": "customer_pilot",
+    "source_path": ".github/workflows/l4-l7-evidence-autopilot.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "4aadba63-fd50-4fa4-8cb2-3e17cb4b69ed",
+    "generated_at": "2026-05-11T23:28:38.639373+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "968f0200-0d29-5fdb-801c-17781bbcd53a",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/omega-aegis-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "f92faf46-660c-4ec4-9d6c-2efcdb2f1f5c",
+    "generated_at": "2026-05-11T23:28:38.640399+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "f8e990ae-7ce3-5232-b717-8e2e154c58bb",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/omega-aegis-001-external-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "42e25681-6c03-4c68-86dc-630a2244d450",
+    "generated_at": "2026-05-11T23:28:38.641340+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "c75478b4-a5e1-5108-91d6-c991918eced9",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/omega-aegis-001-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "648e9264-6c50-47c3-90ad-97767af0fceb",
+    "generated_at": "2026-05-11T23:28:38.642238+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "b86efd47-07ac-5ecc-ab91-145bc991b540",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/omega-aegis-001-vnext-transfer.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "f5d7b1be-fdb0-4b57-9e70-89c965e8b799",
+    "generated_at": "2026-05-11T23:28:38.643368+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "5c0367d0-e26d-5db5-a460-70d49f2b185b",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/omega-gauntlet-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "17ddabf8-b7a4-44c1-aece-366a58d6f71e",
+    "generated_at": "2026-05-11T23:28:38.644324+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "6609020b-26a3-5c8c-9d90-2a670012cd00",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/omega-gauntlet-001-challenge-pack.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "ef0a4e56-531d-45f1-b9c6-684769be67d2",
+    "generated_at": "2026-05-11T23:28:38.645246+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "52fb36f8-72de-50b3-8d46-10576bd0fee9",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/omega-gauntlet-001-external-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "691a2aa1-2150-4135-90f2-cb74e79f1791",
+    "generated_at": "2026-05-11T23:28:38.646162+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "bd002d00-844d-54fe-ae0c-2580bec8cda6",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/omega-gauntlet-001-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "3ddf1a10-40c4-4285-bad3-f72155acb9e8",
+    "generated_at": "2026-05-11T23:28:38.647231+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "622eb762-3160-572e-9c18-58c60e2c3e7a",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/omega-gauntlet-001-safe-pr.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "56f1830c-b34d-411d-b684-fa3af3c25d69",
+    "generated_at": "2026-05-11T23:28:38.648300+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "696b1495-e88a-5461-bed0-d6987080c0a9",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/omega-gauntlet-001-scaling.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "d8247e25-a7ff-4caa-817b-7f2dda6f439a",
+    "generated_at": "2026-05-11T23:28:38.649391+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "6cc8e1f8-ded1-5ebc-9f08-8e9a007298fb",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/phoenix-hub-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "547d394a-e974-429e-b138-013d76639a45",
+    "generated_at": "2026-05-11T23:28:38.650317+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "5e0aa797-070f-5fd9-9a3d-691884a6a70a",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/phoenix-hub-001-challenge-pack.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "4fc62bae-a72c-4482-8b67-3b1da1180363",
+    "generated_at": "2026-05-11T23:28:38.651255+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "c9eab48d-a854-5c77-871b-1ff571966be3",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/phoenix-hub-001-external-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "6f702c01-2066-4cb2-942b-79b94e4d33b1",
+    "generated_at": "2026-05-11T23:28:38.652215+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "ae78290f-1bc9-502b-bee4-97bd5bbee200",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/phoenix-hub-001-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "f638ac80-1be2-46fe-8095-467f801195fa",
+    "generated_at": "2026-05-11T23:28:38.653121+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "8c91cbad-471b-51a8-951d-72fdb1054b23",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/phoenix-hub-001-safe-pr.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "3799a13d-3964-4c9a-907d-23cf6dfbb027",
+    "generated_at": "2026-05-11T23:28:38.653966+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "d3dacd1c-fdd5-5280-ad06-e546fd324838",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "c08017ce-55ae-4efe-88f8-1bde46bef6d9",
+    "generated_at": "2026-05-11T23:28:38.654976+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "d5051260-feb5-5f5c-8d4c-fee7251d7f26",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-forge-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "5db3884a-667b-4300-aced-45f5ce0cce12",
+    "generated_at": "2026-05-11T23:28:38.655917+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "816b59f6-bc22-5bee-ace7-6f4b563f07f4",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-forge-001-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "24190684-61c0-4edf-aadc-e4d9fa36a156",
+    "generated_at": "2026-05-11T23:28:38.656782+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "4a891731-5bf8-5006-ac99-2872f61ec5b2",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-forge-001-independent-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "63025e6f-eb24-49e8-a855-0527ee94ae97",
+    "generated_at": "2026-05-11T23:28:38.657693+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "2f2c50ec-3043-5f32-a420-35ea5d44a81d",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-forge-001-safe-pr.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "d18f801c-9032-4d5f-8de7-5dd95ebe889a",
+    "generated_at": "2026-05-11T23:28:38.658598+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "5f164e85-cdc1-5893-9c53-acc06d0e5766",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-forge-001-vnext-transfer.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "211c2dd6-09c1-467e-a1ef-6319a07d9114",
+    "generated_at": "2026-05-11T23:28:38.659717+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "5522efff-2efc-5e31-92aa-49f6fb323c34",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-forge-002-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "02fe05ce-0ddf-4c90-92a5-e4b097f4f6cf",
+    "generated_at": "2026-05-11T23:28:38.660775+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "8a1af383-c755-5fa2-96b0-31aea42d7abd",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-forge-002-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "c1f31b50-dfd9-4b98-9883-d3a537cc6171",
+    "generated_at": "2026-05-11T23:28:38.661660+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "220c0170-ea5f-5663-b50b-c5e0603e1d81",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-forge-002-independent-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "49623e22-d267-4dcc-b46e-ea031b836812",
+    "generated_at": "2026-05-11T23:28:38.662642+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "0e45d99a-25a3-5807-8aad-9842a0071892",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-governor-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "d6ecbaf1-e23d-4959-ad0b-fd1610b25c8d",
+    "generated_at": "2026-05-11T23:28:38.663549+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "0d66462f-8c76-5640-9bce-42e963a44b72",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-governor-001-delayed-outcome.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "9e0a73e4-96a7-49a0-ad06-072e2810a7cf",
+    "generated_at": "2026-05-11T23:28:38.664551+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "0a32963e-5546-5802-b55c-bbf571c6f504",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-governor-001-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "1f14cd93-9720-4e18-b6f0-66b934d82bf2",
+    "generated_at": "2026-05-11T23:28:38.666482+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "5224db68-0538-529d-9898-47545a3e5bb0",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-governor-001-lifecycle-orchestrator.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "0f646490-7eb2-498a-9023-ad35406015d3",
+    "generated_at": "2026-05-11T23:28:38.667532+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "c09ef241-7709-504f-a2a4-5f2e252d22f2",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-governor-001-lifecycle.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "1f72e17b-7a68-4771-9192-bddd53cc766a",
+    "generated_at": "2026-05-11T23:28:38.668524+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "f7f143a3-583c-593c-8a9f-d3d04ba617f8",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-governor-001-post-merge.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "85d25430-9258-4046-aef6-c60773d3e4f5",
+    "generated_at": "2026-05-11T23:28:38.669571+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "0d51d864-1e8b-5efa-b855-706c73821a46",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-governor-001-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "b7467071-09b0-4a0d-ab09-868c7d111432",
+    "generated_at": "2026-05-11T23:28:38.670564+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "13f8d1dc-f442-5292-bcfe-4fb3ddd5cbdc",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-governor-001-safe-pr.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "7914f9cf-e8d7-4b4d-a7fc-2abeef3699b0",
+    "generated_at": "2026-05-11T23:28:38.671486+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "b1dc7634-cff9-5c8b-8729-7cf57e189d13",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/rsi-governor-001-vnext-canary.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "97bf2caa-e95e-42b6-8ecf-8daebdc3e758",
+    "generated_at": "2026-05-11T23:28:38.672548+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "2dbfe1d6-8e3e-5d9e-ac31-ef89571fb7ae",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/secure-rails-compliance-guard.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "29097645-fed8-43f3-91cb-d92ef80c260c",
+    "generated_at": "2026-05-11T23:28:38.673530+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "fbd0315e-4e4d-5854-a909-e51511c76e58",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/securerails-agentic-pr-guard-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "26461945-5551-4890-a9ed-3c89ae35ead5",
+    "generated_at": "2026-05-11T23:28:38.674525+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "5aead068-1d77-54dd-8557-86b143bc38c1",
+    "context_type": "customer_pilot",
+    "source_path": ".github/workflows/securerails-customer-pilot-artifact-sync-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "ed0a80e8-0aba-4385-81ec-84d979111f3f",
+    "generated_at": "2026-05-11T23:28:38.675503+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "6084f9b5-5ea4-54cc-9e58-a34c56e81ae6",
+    "context_type": "customer_pilot",
+    "source_path": ".github/workflows/securerails-customer-pilot-intake-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "f202d1ae-327b-47fc-a51d-924d1f05ff2e",
+    "generated_at": "2026-05-11T23:28:38.676517+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "e8aa46f2-1e25-535a-bc3e-44c131885086",
+    "context_type": "customer_pilot",
+    "source_path": ".github/workflows/securerails-customer-pilot-manual-ingest-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "891983a1-a0fe-4461-ba8a-eeaf596f345a",
+    "generated_at": "2026-05-11T23:28:38.677476+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "ccbcd8ea-cb89-571b-bb97-2eeb5db64bfa",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/securerails-dependency-review-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "74eaffa5-3782-4f2b-b9c4-05857efea700",
+    "generated_at": "2026-05-11T23:28:38.678504+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "ac300331-fe59-5b5d-808a-444b27a8852e",
+    "context_type": "customer_pilot",
+    "source_path": ".github/workflows/securerails-e2e-pilot-canary-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "7ada3cf7-9182-4cb2-8575-7215ba45a80e",
+    "generated_at": "2026-05-11T23:28:38.679460+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "58343501-583c-55de-9899-3cb2339877d3",
+    "context_type": "customer_pilot",
+    "source_path": ".github/workflows/securerails-e2e-pilot-canary-validate-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "16fcd302-dd0e-44fb-ac0e-4f135378076c",
+    "generated_at": "2026-05-11T23:28:38.680423+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "bbfdcef9-f36f-5782-8dee-71e8e851e2b2",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/securerails-policy-kernel-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "ed22c12e-d202-4231-b27a-225e3e2ffdd4",
+    "generated_at": "2026-05-11T23:28:38.681308+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "0d022afa-754c-5eda-b478-7b2329e6c397",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/securerails-pr-guard-demo.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "bd4356d2-a049-4cf1-9774-76496724e810",
+    "generated_at": "2026-05-11T23:28:38.682360+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "242151ed-27c0-5095-b8ac-b1153fe35a53",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/securerails-pr-guard-reusable.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "79dacdd1-3501-43b5-a4b0-89456d7f2146",
+    "generated_at": "2026-05-11T23:28:38.683372+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "0112b840-b968-597f-9724-f58b051ec871",
+    "context_type": "release",
+    "source_path": ".github/workflows/securerails-release-candidate-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "09e92481-849b-4651-8fe2-a12cd52b4397",
+    "generated_at": "2026-05-11T23:28:38.684392+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "c675ad1d-ca35-5907-ad96-2de9c47831f4",
+    "context_type": "release",
+    "source_path": ".github/workflows/securerails-release-validate-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "5c2514e1-facf-4090-b740-6dd7d40a9273",
+    "generated_at": "2026-05-11T23:28:38.685442+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "e6a9ea7a-98ac-590b-be91-956d133e4dcd",
+    "context_type": "repo_security",
+    "source_path": ".github/workflows/securerails-repo-security-baseline-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "c741f198-5e61-46e7-a5ab-dcb8b28ce188",
+    "generated_at": "2026-05-11T23:28:38.686531+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "68289f47-85fa-5f92-a399-dd78a1158975",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/securerails-supply-chain-provenance-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "6a3207f2-2cc3-4c51-a4fd-bc85e2c00efb",
+    "generated_at": "2026-05-11T23:28:38.687624+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "5bd409f6-1405-5bb3-84d8-4726db4977df",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/securerails-template-bootstrap-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "ca5c5e54-55a7-4819-9ff2-4246650e2c7a",
+    "generated_at": "2026-05-11T23:28:38.688616+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "86f307c5-d06b-5195-814f-58aed21f7957",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/securerails-template-health-check-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "d56df905-5531-4e3f-9101-80f48d688aff",
+    "generated_at": "2026-05-11T23:28:38.689561+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "dff286b4-610c-5646-9c24-cf7e609cabc9",
+    "context_type": "trust_center",
+    "source_path": ".github/workflows/securerails-trust-center-001.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "fad6a870-fbfc-40bc-9313-d77c142e0091",
+    "generated_at": "2026-05-11T23:28:38.690474+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "b4e48489-2d7c-5882-a765-061e454d5974",
+    "context_type": "work_vault",
+    "source_path": ".github/workflows/securerails-work-vault-demo.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "a7bc5a28-fec5-44ca-b861-609df6924728",
+    "generated_at": "2026-05-11T23:28:38.691602+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "8bb91ddd-bf67-5aea-b3a6-29a0880c8861",
+    "context_type": "generic_text",
+    "source_path": ".github/workflows/seed-runner-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "1ec550dc-3ccf-4923-93e7-df52d1002097",
+    "generated_at": "2026-05-11T23:28:38.692575+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "e87c4fc8-707c-5e10-b6ff-0af3943003f5",
+    "context_type": "generic_text",
+    "source_path": "CHANGELOG.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "28a4c280-c1ac-4eb9-b955-4fe2ee1b0524",
+    "generated_at": "2026-05-11T23:28:38.693418+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "c229be48-a002-553c-a66e-04328fb29a41",
+    "context_type": "generic_text",
+    "source_path": "CLAIM_BOUNDARY.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "e6b1fae8-1199-4af2-beb7-1783d4b8b766",
+    "generated_at": "2026-05-11T23:28:38.694263+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "30370d74-8af2-535e-bb6d-1b3121d23b62",
+    "context_type": "generic_text",
+    "source_path": "CODE_OF_CONDUCT.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "e8cea19e-8e10-4fe3-8ac0-f4e749ea2b38",
+    "generated_at": "2026-05-11T23:28:38.695448+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "71ac9663-5633-5754-ad15-0ee74770c969",
+    "context_type": "generic_text",
+    "source_path": "CONTENT_PRESERVATION_MIGRATION_NOTES.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "ef8ca49f-3b21-4068-a708-537233d63c0a",
+    "generated_at": "2026-05-11T23:28:38.696407+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "c554431f-ed4a-591e-bf41-30f44dcfbddb",
+    "context_type": "generic_text",
+    "source_path": "CONTRIBUTING.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "93668a41-f8b1-4cba-8766-de03ab66c860",
+    "generated_at": "2026-05-11T23:28:38.697363+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "1dda7a57-75ea-5856-8ac0-dc1cbe051d9d",
+    "context_type": "mark_allocation",
+    "source_path": "COPY_ISSUE_TEMPLATES/benchmark-gauntlet-001-challenge-pack.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "safety-hard",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Hard safety boundary violation.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "8c6103ca-54ef-4f69-9eac-7afb587ceae0",
+    "generated_at": "2026-05-11T23:28:38.698379+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "a172cd6e-de43-50f6-8a3b-638ecffb0944",
+    "context_type": "mark_allocation",
+    "source_path": "COPY_ISSUE_TEMPLATES/benchmark-gauntlet-001-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "8d6f5199-144e-4dff-a25f-3e4ee70f0aaa",
+    "generated_at": "2026-05-11T23:28:38.699341+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "cab090db-c237-585d-b361-8ec6eb41e677",
+    "context_type": "sovereign",
+    "source_path": "COPY_ISSUE_TEMPLATES/cyber-sovereign-002-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "safety-hard",
+      "work-vault-required",
+      "trust-cert-claims",
+      "repo-security-guarantee"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "Hard safety boundary violation.",
+      "missing required terms: human_review_required,defensive_only,repo_owned",
+      "Trust center certification overclaim.",
+      "Repository security baseline overclaim."
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "9f953635-dde0-4256-bbf5-8d9064a238b1",
+    "generated_at": "2026-05-11T23:28:38.700385+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "45721a1f-7ef7-5cee-8fc1-c989c325a701",
+    "context_type": "sovereign",
+    "source_path": "COPY_ISSUE_TEMPLATES/cyber-sovereign-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "safety-hard",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "Hard safety boundary violation.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "67de61b4-aa5b-4711-a58b-6b7e6d79320d",
+    "generated_at": "2026-05-11T23:28:38.701316+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "818882c6-73b0-5c69-80d0-96c4bd70461b",
+    "context_type": "generic_text",
+    "source_path": "COPY_ISSUE_TEMPLATES/helios-002-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "cab3488e-61e3-4655-a954-3ff8402f9ccc",
+    "generated_at": "2026-05-11T23:28:38.702409+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "1d957b64-0816-5e76-9498-44b9484e269a",
+    "context_type": "generic_text",
+    "source_path": "COPY_ISSUE_TEMPLATES/helios-003-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "84529488-0b87-4f30-88e7-76f216b24e43",
+    "generated_at": "2026-05-11T23:28:38.703375+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "aed2c4a4-dad3-5fa5-a442-63929e6d9265",
+    "context_type": "generic_text",
+    "source_path": "COPY_ISSUE_TEMPLATES/helios-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "cea9eb73-6e67-417f-a36d-2dac9cf10133",
+    "generated_at": "2026-05-11T23:28:38.704357+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "1059e39f-bdbe-5d97-bed0-6c13ef2abd87",
+    "context_type": "generic_text",
+    "source_path": "COPY_ISSUE_TEMPLATES/omega-gauntlet-001-challenge-pack.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "safety-hard",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Hard safety boundary violation.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "89ceb785-dd7c-473c-96eb-810e03b3ff74",
+    "generated_at": "2026-05-11T23:28:38.705235+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "f7f3ac69-7da2-5a4c-81b9-68b5da26f86b",
+    "context_type": "generic_text",
+    "source_path": "COPY_ISSUE_TEMPLATES/omega-gauntlet-001-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "3fce86cd-0fde-4cb8-a948-cfab930abd42",
+    "generated_at": "2026-05-11T23:28:38.706143+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "a42446fd-78b3-51be-81e4-caf5aa4f7069",
+    "context_type": "generic_text",
+    "source_path": "COPY_ISSUE_TEMPLATES/phoenix-hub-001-challenge-pack.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "safety-hard",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Hard safety boundary violation.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "35019eb9-d49e-4a56-b5a8-3c652b7e9f9e",
+    "generated_at": "2026-05-11T23:28:38.707118+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "180a1366-f2e8-5e1e-9494-6ceca76bfc76",
+    "context_type": "generic_text",
+    "source_path": "COPY_ISSUE_TEMPLATES/phoenix-hub-001-external-review.md",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "516d93df-444c-4d70-949b-b6b6a5181cfb",
+    "generated_at": "2026-05-11T23:28:38.708295+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "1373e463-1f32-505e-8082-94d489c2dd14",
+    "context_type": "mark_allocation",
+    "source_path": "COPY_WORKFLOWS/benchmark-gauntlet-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "037979a9-91ff-44d6-b12f-486d6b60b4d8",
+    "generated_at": "2026-05-11T23:28:38.709426+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "29238976-79d6-54f1-84c7-f7d5ef259623",
+    "context_type": "mark_allocation",
+    "source_path": "COPY_WORKFLOWS/benchmark-gauntlet-001-challenge-pack.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "76fe00f5-8979-43d6-9ac1-6d2b22535abf",
+    "generated_at": "2026-05-11T23:28:38.711232+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "a621a008-d391-574f-9a8e-fb3912e27a56",
+    "context_type": "mark_allocation",
+    "source_path": "COPY_WORKFLOWS/benchmark-gauntlet-001-external-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "a783a62c-d99b-48a2-b152-84df42fee205",
+    "generated_at": "2026-05-11T23:28:38.712371+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "e4efc483-0977-5888-beff-8302ec9f6aa3",
+    "context_type": "mark_allocation",
+    "source_path": "COPY_WORKFLOWS/benchmark-gauntlet-001-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "66dc9651-8c2f-431c-a62c-c33aa4f41f42",
+    "generated_at": "2026-05-11T23:28:38.713313+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "75ee2a81-364d-5b61-abf7-1337d3f059b9",
+    "context_type": "mark_allocation",
+    "source_path": "COPY_WORKFLOWS/benchmark-gauntlet-001-safe-pr.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "safety-hard",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "Hard safety boundary violation.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "fd6af5fb-8b8b-422c-972c-05f69315696a",
+    "generated_at": "2026-05-11T23:28:38.714225+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "e80e333b-de5b-5bb4-ac09-294a0ee4931e",
+    "context_type": "mark_allocation",
+    "source_path": "COPY_WORKFLOWS/benchmark-gauntlet-001-scaling.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "c6198b16-5e29-4026-9d8f-4d7d96b000a3",
+    "generated_at": "2026-05-11T23:28:38.715224+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "5f6febb9-55a7-53fa-8923-a02d8a3c3919",
+    "context_type": "sovereign",
+    "source_path": "COPY_WORKFLOWS/cyber-sovereign-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "222e30f9-9fea-43d5-9d07-ea9257df11ed",
+    "generated_at": "2026-05-11T23:28:38.716179+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "e67e6d51-28b1-5182-83ee-954fb0049c02",
+    "context_type": "sovereign",
+    "source_path": "COPY_WORKFLOWS/cyber-sovereign-001-delayed-outcome.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "db3e655d-7256-43b6-aa56-8828a94bd363",
+    "generated_at": "2026-05-11T23:28:38.717095+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "791d0ec5-2972-5e45-9c41-fcaa50c7b865",
+    "context_type": "sovereign",
+    "source_path": "COPY_WORKFLOWS/cyber-sovereign-001-external-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "f1bb9494-2658-4a5f-b25c-3fc63728b68c",
+    "generated_at": "2026-05-11T23:28:38.717987+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "47d047b4-11a8-5973-9535-e3d8f25bc396",
+    "context_type": "sovereign",
+    "source_path": "COPY_WORKFLOWS/cyber-sovereign-001-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "a260f3ff-4b9e-4c19-a35b-372dc7bd5839",
+    "generated_at": "2026-05-11T23:28:38.719073+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "c85f8b3c-4ec6-5281-8715-d894a2b9525a",
+    "context_type": "sovereign",
+    "source_path": "COPY_WORKFLOWS/cyber-sovereign-001-scaling.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "4adc6ee4-dd02-46e0-bd20-9f9725cc508e",
+    "generated_at": "2026-05-11T23:28:38.720185+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "78f134ce-6287-509c-b9ce-0fdfa06dd9ac",
+    "context_type": "sovereign",
+    "source_path": "COPY_WORKFLOWS/cyber-sovereign-002-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "5d8a90a8-88e1-4ef8-89fa-1380a279a28a",
+    "generated_at": "2026-05-11T23:28:38.721100+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "06ef6eeb-ce11-5008-ade3-4fdd50ec6a3b",
+    "context_type": "sovereign",
+    "source_path": "COPY_WORKFLOWS/cyber-sovereign-002-delayed-outcome.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "52b0fd22-158e-4ec0-874a-8a6d314ddbc5",
+    "generated_at": "2026-05-11T23:28:38.722021+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "8893854e-76d9-5311-a242-6bf8836d349c",
+    "context_type": "sovereign",
+    "source_path": "COPY_WORKFLOWS/cyber-sovereign-002-external-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "f7b0e831-9ed6-45e2-bea6-24d7a5b398e4",
+    "generated_at": "2026-05-11T23:28:38.722992+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "766350d1-1796-527b-b30b-644d01d47a11",
+    "context_type": "sovereign",
+    "source_path": "COPY_WORKFLOWS/cyber-sovereign-002-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "95affc63-f1cc-4d51-b991-48d0060228b9",
+    "generated_at": "2026-05-11T23:28:38.724062+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "010b2213-4848-5771-813c-56a0b6fad99c",
+    "context_type": "sovereign",
+    "source_path": "COPY_WORKFLOWS/cyber-sovereign-002-safe-pr-proposal.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "5719c537-c8d2-4297-afcf-38a1aa70e131",
+    "generated_at": "2026-05-11T23:28:38.725079+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "5202ce07-4d21-50e1-b869-c42fe1229ecf",
+    "context_type": "sovereign",
+    "source_path": "COPY_WORKFLOWS/cyber-sovereign-002-scaling.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "3dfd5f43-8452-492d-bc41-bb831029caab",
+    "generated_at": "2026-05-11T23:28:38.726086+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "99bedc23-4c30-5209-b2d3-0310f4479100",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/falsification-audit-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "acd93eb1-976a-44b2-a794-2418931cc1a9",
+    "generated_at": "2026-05-11T23:28:38.727210+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "de0475be-6b1b-518e-82f7-8e0ea7c794e4",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/frontier-external-review.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "60383cb5-ce1f-457e-a90c-26d75d43763e",
+    "generated_at": "2026-05-11T23:28:38.728347+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "3d1eb80c-14f3-589f-a994-5ac670f9af12",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/frontier-usefulness-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "e31ebe04-59ee-46cf-b365-6233df641688",
+    "generated_at": "2026-05-11T23:28:38.729375+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "81cd07aa-eb9d-5801-af75-b6cde5511e1c",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/helios-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "d7aa4dcc-db0b-44ee-97c0-6a04e1138a35",
+    "generated_at": "2026-05-11T23:28:38.730397+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "2ee75410-dc53-5f74-9647-be70f95a2661",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/helios-001-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "983c03ae-c67a-479a-b536-373eab6e62be",
+    "generated_at": "2026-05-11T23:28:38.731402+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "dba8477d-e804-5108-99da-fdf7138e1cd0",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/helios-001-independent-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "8dc58f44-1e14-4b99-87e9-12e94c25cd27",
+    "generated_at": "2026-05-11T23:28:38.732439+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "8af19357-59c6-54d9-951d-7e113dae5bec",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/helios-001-vnext-transfer.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "6c985cb5-4d0f-4ea8-929d-b6ec30c38d91",
+    "generated_at": "2026-05-11T23:28:38.733459+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "191c6ac8-6069-5f99-ba96-c98504d9d5c8",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/helios-002-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "3813829b-795a-4a87-b6ce-c21c93d232e3",
+    "generated_at": "2026-05-11T23:28:38.734615+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "892e5ac0-a84c-5676-ac09-63f68aef4ba7",
+    "context_type": "mark_allocation",
+    "source_path": "COPY_WORKFLOWS/helios-002-benchmark-adapters.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "b187f677-7c76-4863-a3e2-1a0b861f2f11",
+    "generated_at": "2026-05-11T23:28:38.735579+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "5bc7e11d-8ed3-5216-ba9f-7ac81c03b609",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/helios-002-external-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "29d21127-85aa-41f9-889f-2ab4c012623e",
+    "generated_at": "2026-05-11T23:28:38.736615+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "408ab18c-76c2-5431-a8a4-33d4a904c080",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/helios-002-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "98bbbd9a-128f-464f-8b9d-a0b9cc67c09e",
+    "generated_at": "2026-05-11T23:28:38.737575+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "933acf90-ff96-52fb-b390-afc71a28e03a",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/helios-002-scaling.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "47c81762-967a-4ca2-8051-aa68f65c5993",
+    "generated_at": "2026-05-11T23:28:38.738662+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "ac94043c-0d72-594c-a827-86d82d604807",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/helios-003-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "508a0b4a-cabc-4d1a-9988-3e6078ebee57",
+    "generated_at": "2026-05-11T23:28:38.739570+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "c7bb3b80-c272-59cd-a955-afc0ffeccc76",
+    "context_type": "mark_allocation",
+    "source_path": "COPY_WORKFLOWS/helios-003-benchmark-adapters.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "687437b1-373c-48a9-8e97-80f6cac35f5c",
+    "generated_at": "2026-05-11T23:28:38.740581+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "9ce5acef-9919-560b-aca5-65881255016e",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/helios-003-delayed-outcome.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "3928a982-c36f-4166-9c2f-a88223691575",
+    "generated_at": "2026-05-11T23:28:38.741542+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "461ccbba-8126-5a0b-94e3-1e78b1e3ac9a",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/helios-003-external-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "51636a42-9e6c-43b3-bd70-a4fc4b679495",
+    "generated_at": "2026-05-11T23:28:38.742524+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "365f364e-95d2-548d-a030-6dc1ce8d708f",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/helios-003-falsification-audit.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "068c0e66-94f8-4315-9780-57e5902adf3f",
+    "generated_at": "2026-05-11T23:28:38.743494+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "07aa73ac-5da2-58f9-8d97-f3fc477f3487",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/helios-003-scaling.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "dab08965-69a8-4ab2-a611-8b44860b45f0",
+    "generated_at": "2026-05-11T23:28:38.744521+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "b02a2d46-a1f7-5f2a-a923-1bd299ec6495",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/helios-004-completion.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "2f2d068b-5da3-4dca-9e75-97694203c8cf",
+    "generated_at": "2026-05-11T23:28:38.745592+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "197046f8-0769-5ae5-965e-fdc93e956a8a",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/independent-replay-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "e7c2bdef-b0b2-404b-9872-05b08598d9fb",
+    "generated_at": "2026-05-11T23:28:38.746704+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "6699b5ac-70e8-53c2-8d6c-8c8648076bf3",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/l4-external-reviewer-replay.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "claim-overclaim",
+      "work-vault-required"
+    ],
+    "violations": [
+      "Forbidden overclaim detected.",
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "47d35a1f-b5fc-44a4-87ff-b92af4132b04",
+    "generated_at": "2026-05-11T23:28:38.747923+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "91afc2d9-290d-5d63-ab9f-0605256bf668",
+    "context_type": "customer_pilot",
+    "source_path": "COPY_WORKFLOWS/l4-l7-evidence-autopilot.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "89a7cd40-88df-44be-af4f-d9b0171ab077",
+    "generated_at": "2026-05-11T23:28:38.748975+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "7c5ecf26-121d-5063-8e38-13a42bfafc10",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/omega-gauntlet-001-autonomous.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  },
+  {
+    "schema_version": "securerails.policy_decision.v1",
+    "decision_id": "82353ba7-1b2b-47bb-ab1c-e43d3c21efdf",
+    "generated_at": "2026-05-11T23:28:38.749950+00:00",
+    "kernel_id": "securerails-policy-kernel-001",
+    "kernel_version": "0.1.0",
+    "context_id": "93cc81dc-f2cf-5d91-b74b-2560e9bfa533",
+    "context_type": "generic_text",
+    "source_path": "COPY_WORKFLOWS/omega-gauntlet-001-challenge-pack.yml",
+    "decision": "reject",
+    "severity": "critical",
+    "matched_rules": [
+      "work-vault-required"
+    ],
+    "violations": [
+      "missing required terms: human_review_required,defensive_only,repo_owned"
+    ],
+    "warnings": [],
+    "required_human_review": true,
+    "auto_merge_allowed": false,
+    "claim_boundary": "This policy decision is advisory governance evidence and does not certify security."
+  }
+]
