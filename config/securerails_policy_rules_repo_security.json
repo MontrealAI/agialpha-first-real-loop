@@ -1,0 +1,15 @@
+{
+  "schema_version": "securerails.policy_rule_set.v1",
+  "rules": [
+    {
+      "rule_id": "repo-security-guarantee",
+      "domain": "repo_security_baseline",
+      "forbidden_terms": [
+        "guaranteed security",
+        "certified secure"
+      ],
+      "decision": "reject",
+      "message": "Repository security baseline overclaim."
+    }
+  ]
+}
