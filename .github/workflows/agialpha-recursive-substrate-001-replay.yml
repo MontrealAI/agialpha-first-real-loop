@@ -1,0 +1,28 @@
+name: AGI ALPHA Recursive Substrate 001 / Lifecycle
+on:
+  workflow_dispatch:
+    inputs:
+      run_path:
+        default: "recursive-substrate-runs/test"
+  schedule:
+    - cron: "0 17 * * 1"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  recursive-substrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python -m agialpha_recursive_substrate replay --input ${{ github.event.inputs.run_path || 'recursive-substrate-runs/test' }} --out ${{ github.event.inputs.run_path || 'recursive-substrate-runs/test' }}/replay_report.json
+      - run: python -m agialpha_recursive_substrate falsification-audit --input ${{ github.event.inputs.run_path || 'recursive-substrate-runs/test' }} --out ${{ github.event.inputs.run_path || 'recursive-substrate-runs/test' }}/falsification_audit.json
+      - run: python -m agialpha_recursive_substrate validate --input ${{ github.event.inputs.run_path || 'recursive-substrate-runs/test' }}
+      - run: python -m agialpha_recursive_substrate build-data --registry recursive_substrate_registry --out docs/_generated/recursive-substrate
+      - uses: actions/upload-artifact@v4
+        with:
+          name: recursive-substrate
+          path: ${{ github.event.inputs.run_path || 'recursive-substrate-runs/test' }}
