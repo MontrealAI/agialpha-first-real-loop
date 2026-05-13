@@ -49,7 +49,7 @@ def run_cycle(repo_root, registry, out, candidate_seeds, evaluate_seeds):
     _jwrite(outp/'06_agi_jobs/jobs.json',jobs); _jwrite(outp/'07_validators/validator_results.json',validators)
     _jwrite(outp/'09_evidence_dockets/03_validator_report.json',validators); _jwrite(outp/'10_archive/capability_archive.json',caps); _jwrite(outp/'11_vnext/vnext_candidates.json',vnext)
     _jwrite(outp/'13_baselines/B6_recursive_substrate.json',{"level":"B6","status":"implemented","claim_boundary":CLAIM_SHORT}); _jwrite(outp/'14_reports/recursive_substrate_report.json',cycle)
-    _jwrite(outp/'00_manifest.json',{"claim_boundary":CLAIM_SHORT}); _jwrite(outp/'summary.md',f"# Summary\n\n{CLAIM_SHORT}\n")
+    _jwrite(outp/'00_manifest.json',{"claim_boundary":CLAIM_SHORT}); (outp/'summary.md').write_text(f"# Summary\n\n{CLAIM_SHORT}\n")
     _jwrite(outp/'evidence-run-manifest.json',{"claim_boundary":CLAIM_SHORT})
     reg=pathlib.Path(registry); reg.mkdir(parents=True, exist_ok=True)
     _append_registry(reg, 'cycles.json', [cycle]); _append_registry(reg, 'insights.json', insights); _append_registry(reg, 'nova_seeds.json', seeds)
