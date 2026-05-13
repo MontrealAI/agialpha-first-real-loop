@@ -1,0 +1,18 @@
+{
+  "schema_version": "securerails.promotion_gate.v1",
+  "promotion_gate_id": "sr-promotion-gate-2026-0001",
+  "source_decision_id": "sr-review-decision-2026-0001",
+  "promotion_target": "safe_pr",
+  "required_conditions": {
+    "human_review_decision_present": false,
+    "evidence_docket_present": true,
+    "proofbundle_present": true,
+    "safety_ledger_present": true,
+    "claim_boundary_present": true,
+    "hard_safety_counters_zero": true,
+    "auto_merge_allowed": false
+  },
+  "gate_status": "pass",
+  "failure_reasons": [],
+  "claim_boundary": "Promotion gates enforce human-governed SecureRails promotion. Passing a gate is not a security certification."
+}

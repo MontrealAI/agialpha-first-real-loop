@@ -117,3 +117,6 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/secu
 - Repository security baseline: [docs/secure-rails/repository-security-baseline.md](docs/secure-rails/repository-security-baseline.md)
 
 - SecureRails Policy Kernel 001: [docs/secure-rails/policy-kernel.md](docs/secure-rails/policy-kernel.md)
+
+
+- SecureRails Human Review Console 001: human-governed promotion, decision ledger, manual merge required, no auto-merge.
