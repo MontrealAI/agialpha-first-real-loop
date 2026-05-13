@@ -1,0 +1,28 @@
+name: AGI ALPHA Recursive Substrate 002 / AI Improves AI
+on:
+  workflow_dispatch:
+    inputs:
+      candidate_mechanisms:
+        default: "6"
+      heldout_fixtures:
+        default: "8"
+  schedule:
+    - cron: "0 17 * * 1"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  recursive-substrate-ai-improves-ai:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python -m agialpha_recursive_substrate discover --repo-root . --registry recursive_substrate_registry
+      - run: python -m agialpha_recursive_substrate ai-improves-ai --repo-root . --registry recursive_substrate_registry --out recursive-substrate-runs/test/ai_improves_ai --candidate-mechanisms ${{ github.event.inputs.candidate_mechanisms || '6' }} --heldout-fixtures ${{ github.event.inputs.heldout_fixtures || '8' }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: recursive-substrate-ai-improves-ai
+          path: recursive-substrate-runs/test/ai_improves_ai
