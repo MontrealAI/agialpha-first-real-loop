@@ -10,4 +10,7 @@ class T(unittest.TestCase):
   def test_missing_request_id(self):
     d=json.loads(Path("tests/fixtures/securerails_human_review/valid_request.json").read_text()); d.pop("review_request_id", None)
     self.assertTrue(any("review_request_id required" in e for e in validate_review_request(d)))
+  def test_source_must_be_object(self):
+    d=json.loads(Path("tests/fixtures/securerails_human_review/valid_request.json").read_text()); d["source"]=[]
+    self.assertTrue(any("source must be an object" in e for e in validate_review_request(d)))
 if __name__=='__main__':unittest.main()

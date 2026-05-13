@@ -102,3 +102,14 @@ class T(unittest.TestCase):
     p=Path('tests/tmp_gate_from_reject.json'); p.write_text(json.dumps(gate), encoding='utf-8')
     with self.assertRaises(ValueError):
       update_ledger(p, reg)
+  def test_non_numeric_safety_counter_is_validation_error(self):
+    reg=Path('tests/tmp_review_registry_non_numeric_counter');
+    if reg.exists(): shutil.rmtree(reg)
+    update_ledger(Path('tests/fixtures/securerails_human_review/valid_request.json'), reg)
+    dec=json.loads(Path('tests/fixtures/securerails_human_review/valid_decision_accept.json').read_text())
+    dec['hard_safety_counters']['critical_safety_incidents']='abc'
+    pdec=Path('tests/tmp_non_numeric_counter_dec.json'); pdec.write_text(json.dumps(dec), encoding='utf-8')
+    update_ledger(pdec, reg)
+    with self.assertRaises(ValueError) as ctx:
+      update_ledger(Path('tests/fixtures/securerails_human_review/valid_promotion_gate_pass.json'), reg)
+    self.assertIn('non-numeric counter', str(ctx.exception))

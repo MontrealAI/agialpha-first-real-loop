@@ -16,6 +16,9 @@ def validate_review_request(record: dict) -> list[str]:
     if record.get("auto_merge_allowed") is not False: errs.append("auto_merge_allowed must be false")
     if not str(record.get("claim_boundary"," ")).strip(): errs.append("claim_boundary required")
     src=record.get("source",{})
+    if not isinstance(src, dict):
+        errs.append("source must be an object")
+        return errs
     refs=[src.get(k) for k in ["work_vault_id","mark_allocation_id","sovereign_id","proofbundle_id","evidence_docket_id","policy_decision_id","pull_request_url","artifact_url"]]
     if not any(v not in (None,"") for v in refs): errs.append("source must include at least one reference")
     return errs

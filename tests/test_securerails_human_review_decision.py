@@ -8,3 +8,6 @@ class T(unittest.TestCase):
   def test_missing_decision_id(self):
     d=json.loads(Path("tests/fixtures/securerails_human_review/valid_decision_accept.json").read_text()); d.pop("decision_id", None)
     self.assertTrue(any("decision_id required" in e for e in validate_review_decision(d)))
+  def test_evidence_reviewed_must_be_object(self):
+    d=json.loads(Path("tests/fixtures/securerails_human_review/valid_decision_accept.json").read_text()); d["evidence_reviewed"]=[]
+    self.assertTrue(any("evidence_reviewed must be an object" in e for e in validate_review_decision(d)))

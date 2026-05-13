@@ -49,8 +49,14 @@ def _validate_gate_against_decision(gate: dict, decision: dict) -> list[str]:
     if cond.get('hard_safety_counters_zero') is True:
         if not isinstance(counters, dict) or not counters:
             errs.append('gate/decision mismatch: hard_safety_counters_zero (missing counters)')
-        elif any(int(v) != 0 for v in counters.values()):
-            errs.append('gate/decision mismatch: hard_safety_counters_zero')
+        else:
+            try:
+                non_zero = any(int(v) != 0 for v in counters.values())
+            except (TypeError, ValueError):
+                errs.append('gate/decision mismatch: hard_safety_counters_zero (non-numeric counter)')
+            else:
+                if non_zero:
+                    errs.append('gate/decision mismatch: hard_safety_counters_zero')
     return errs
 
 def ensure_registry(registry: Path):

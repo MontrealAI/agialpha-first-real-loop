@@ -16,6 +16,9 @@ def validate_review_decision(record: dict) -> list[str]:
     if promo.get("auto_merge_allowed") is not False: errs.append("auto_merge_allowed must be false")
     if promo.get("promotion_target")=="safe_pr" and promo.get("manual_merge_required") is not True: errs.append("manual_merge_required must be true for safe_pr")
     evidence=record.get("evidence_reviewed",{})
+    if not isinstance(evidence, dict):
+        errs.append("evidence_reviewed must be an object")
+        evidence = {}
     if promo.get("promotion_allowed") is True:
         for k in ["evidence_docket_reviewed","safety_ledger_reviewed","claim_boundary_reviewed"]:
             if evidence.get(k) is not True: errs.append(f"{k} must be true when promotion_allowed")
