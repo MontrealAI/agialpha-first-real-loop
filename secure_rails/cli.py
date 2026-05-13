@@ -24,6 +24,11 @@ from .pilot_intake import ingest_intake
 from .pilot_render import build_customer_pilot_data
 from .github_app_permissions import validate_permissions_file
 from .github_webhook_verify import verify_github_webhook_signature
+from .review_request import load_and_validate_request
+from .review_decision import load_and_validate_decision
+from .human_review import validate_promotion_gate, load_json
+from .review_ledger import update_ledger, validate_ledger
+from .review_render import build_data as build_human_review_data
 
 
 def _validate_registry(registry: Path) -> int:
@@ -96,6 +101,16 @@ def main() -> None:
     s_brep = ssp.add_parser('build-report'); s_brep.add_argument('--input', required=True); s_brep.add_argument('--out', required=True)
     s_rend = ssp.add_parser('render'); s_rend.add_argument('--input', required=True); s_rend.add_argument('--out', required=True)
     s_val = ssp.add_parser('validate'); s_val.add_argument('--input', required=True)
+
+
+    hr = sp.add_parser('human-review'); hrsp = hr.add_subparsers(dest='hrcmd', required=True)
+    hrvq=hrsp.add_parser('validate-request'); hrvq.add_argument('--input', required=True)
+    hrvd=hrsp.add_parser('validate-decision'); hrvd.add_argument('--input', required=True)
+    hrvg=hrsp.add_parser('validate-gate'); hrvg.add_argument('--input', required=True)
+    hru=hrsp.add_parser('update-ledger'); hru.add_argument('--input', required=True); hru.add_argument('--registry', required=True)
+    hrl=hrsp.add_parser('validate-ledger'); hrl.add_argument('--registry', required=True)
+    hrb=hrsp.add_parser('build-data'); hrb.add_argument('--registry', required=True); hrb.add_argument('--out', required=True)
+    hrr=hrsp.add_parser('render'); hrr.add_argument('--registry', required=True); hrr.add_argument('--out', required=True)
 
     pol = sp.add_parser('policy'); psp = pol.add_subparsers(dest='pcmd', required=True)
     a = psp.add_parser('validate-kernel'); a.add_argument('--kernel', required=True)
@@ -238,6 +253,33 @@ def main() -> None:
         elif args.scmd == 'build-report': sc_build_report(args.input, args.out)
         elif args.scmd == 'render': sc_render(args.input, args.out)
         elif args.scmd == 'validate': sc_validate(args.input)
+
+    elif args.cmd == 'human-review':
+        if args.hrcmd == 'validate-request':
+            errs = load_and_validate_request(Path(args.input))
+            if errs:
+                print('\n'.join(errs))
+                raise SystemExit(1)
+        elif args.hrcmd == 'validate-decision':
+            errs = load_and_validate_decision(Path(args.input))
+            if errs:
+                print('\n'.join(errs))
+                raise SystemExit(1)
+        elif args.hrcmd == 'validate-gate':
+            errs = validate_promotion_gate(load_json(Path(args.input)))
+            if errs:
+                print('\n'.join(errs))
+                raise SystemExit(1)
+        elif args.hrcmd == 'update-ledger':
+            update_ledger(Path(args.input), Path(args.registry))
+        elif args.hrcmd == 'validate-ledger':
+            errs = validate_ledger(Path(args.registry))
+            if errs:
+                print('\n'.join(errs))
+                raise SystemExit(1)
+        elif args.hrcmd in {'build-data', 'render'}:
+            build_human_review_data(Path(args.registry), Path(args.out))
+
     elif args.cmd == 'policy':
         if args.pcmd == 'validate-kernel':
             errs = validate_kernel(load_kernel(args.kernel))

@@ -1,0 +1,38 @@
+{
+  "schema_version": "securerails.human_review_decision.v1",
+  "decision_id": "sr-review-decision-2026-0001",
+  "review_request_id": "sr-review-request-2026-0001",
+  "decided_at": "2026-05-12T00:30:00Z",
+  "reviewer": {
+    "reviewer_id": "maintainer-redacted",
+    "reviewer_role": "maintainer"
+  },
+  "decision": "accept",
+  "decision_summary": "Human review decision to accept evidence outcome under conditions.",
+  "conditions": [
+    "manual merge required"
+  ],
+  "evidence_reviewed": {
+    "proofbundle_reviewed": true,
+    "evidence_docket_reviewed": false,
+    "safety_ledger_reviewed": true,
+    "claim_boundary_reviewed": true,
+    "policy_decision_reviewed": true
+  },
+  "promotion": {
+    "promotion_allowed": false,
+    "promotion_target": "safe_pr",
+    "auto_merge_allowed": false,
+    "manual_merge_required": true
+  },
+  "hard_safety_counters": {
+    "raw_secret_leak_count": 0,
+    "external_target_scan_count": 0,
+    "exploit_execution_count": 0,
+    "malware_generation_count": 0,
+    "social_engineering_content_count": 0,
+    "unsafe_automerge_count": 0,
+    "critical_safety_incidents": 0
+  },
+  "claim_boundary": "This human review decision records reviewer judgment. It is not security certification, legal approval, or autonomous remediation authorization."
+}
