@@ -5,6 +5,12 @@ CLAIM_SHORT = "local bounded recursive substrate evidence"
 def _jwrite(path,obj):
     path=pathlib.Path(path); path.parent.mkdir(parents=True, exist_ok=True); path.write_text(json.dumps(obj,indent=2)+"\n")
 
+def _jread(path, default):
+    p = pathlib.Path(path)
+    if not p.exists():
+        return default
+    return json.loads(p.read_text())
+
 def discover(repo_root, registry):
     ctx={"generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"repo_root":str(pathlib.Path(repo_root).resolve()),"claim_boundary":CLAIM_SHORT}
     _jwrite(pathlib.Path(registry)/'latest.json',ctx)
@@ -54,8 +60,17 @@ def main(argv=None):
     elif a.cmd=='build-data':
         reg=pathlib.Path(a.registry); out=pathlib.Path(a.out); out.mkdir(parents=True,exist_ok=True)
         for n in ['latest','cycles','insights','nova_seeds','jobs','capabilities','vnext']:
-            p=reg/f'{n}.json'; _jwrite(out/f'{n}.json', json.loads(p.read_text()) if p.exists() else [])
-        _jwrite(out/'summary.json',{"schema_version":"agialpha.recursive_substrate_summary.v1","generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"cycles_run":1 if (reg/'cycles.json').exists() else 0,"insights_generated":1,"nova_seeds_generated":16,"jobs_generated":6,"validators_generated":6,"proofbundles_created":1,"evidence_dockets_created":1,"capabilities_archived":6,"vnext_candidates_generated":6,"recursive_substrate_readiness_score":"pending","claim_boundary":CLAIM_FULL})
+            p=reg/f'{n}.json'; _jwrite(out/f'{n}.json', _jread(p, []))
+        cycles = _jread(reg/'cycles.json', [])
+        insights = _jread(reg/'insights.json', [])
+        seeds = _jread(reg/'nova_seeds.json', [])
+        jobs = _jread(reg/'jobs.json', [])
+        validators = _jread(reg/'validators.json', [])
+        proofbundles = _jread(reg/'proofbundles.json', [])
+        dockets = _jread(reg/'evidence_dockets.json', [])
+        capabilities = _jread(reg/'capabilities.json', [])
+        vnext = _jread(reg/'vnext.json', [])
+        _jwrite(out/'summary.json',{"schema_version":"agialpha.recursive_substrate_summary.v1","generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"cycles_run":len(cycles),"insights_generated":len(insights),"nova_seeds_generated":len(seeds),"jobs_generated":len(jobs),"validators_generated":len(validators),"proofbundles_created":len(proofbundles),"evidence_dockets_created":len(dockets),"capabilities_archived":len(capabilities),"vnext_candidates_generated":len(vnext),"recursive_substrate_readiness_score":"pending","claim_boundary":CLAIM_FULL})
     elif a.cmd=='render':
         out=pathlib.Path(a.out); out.mkdir(parents=True,exist_ok=True); _jwrite(out/'index.json',{"status":"generated","claim_boundary":CLAIM_SHORT})
     elif a.cmd=='emit-manifest': _jwrite(a.out,{"input":a.input,"claim_boundary":CLAIM_SHORT})
