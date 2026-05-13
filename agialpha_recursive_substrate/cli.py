@@ -25,6 +25,52 @@ def _resolve_commit_sha(repo_root):
     except Exception:
         return "unavailable"
 
+
+
+def _fail(msg):
+    raise SystemExit(msg)
+
+def _load_cycle_report(run_input):
+    run_path = pathlib.Path(run_input)
+    report_path = run_path / '14_reports/recursive_substrate_report.json'
+    if not report_path.exists():
+        _fail(f"missing cycle report: {report_path}")
+    return run_path, json.loads(report_path.read_text())
+
+def _run_replay(run_input):
+    run_path, report = _load_cycle_report(run_input)
+    required = [run_path/'08_proofbundles/proofbundle.json', run_path/'09_evidence_dockets/00_manifest.json', run_path/'09_evidence_dockets/03_validator_report.json']
+    missing = [str(p) for p in required if not p.exists()]
+    status = 'pass' if not missing and report.get('claim_boundary') else 'failure'
+    return {"status":status, "claim_boundary":CLAIM_SHORT, "missing_artifacts":missing, "reproduced_cycle_id": report.get('cycle_id','unavailable')}
+
+def _run_falsification(run_input):
+    run_path, report = _load_cycle_report(run_input)
+    redacted = dict(report)
+    redacted.pop('claim_boundary', None)
+    text = json.dumps(redacted).lower()
+    banned = ['achieved agi','achieved asi','superintelligence achieved','empirical sota','safe autonomy','cybersecurity certification']
+    hits = [b for b in banned if b in text]
+    unsafe_automerge = int(report.get('hard_safety_counters',{}).get('unsafe_automerge_count',0))
+    status = 'pass' if not hits and unsafe_automerge == 0 and bool(report.get('claim_boundary')) else 'failure'
+    return {"status":status, "claim_boundary":CLAIM_SHORT, "overclaim_found":bool(hits), "overclaim_hits":hits, "unsafe_automerge_count":unsafe_automerge, "input":str(run_path)}
+
+def _validate_run(run_input):
+    _, data = _load_cycle_report(run_input)
+    errors = []
+    if not data.get('claim_boundary'):
+        errors.append('claim_boundary_missing')
+    if not data.get('substrate_layers',{}).get('human_governed_promotion'):
+        errors.append('human_governed_promotion_false')
+    counters = data.get('hard_safety_counters',{})
+    if counters.get('unsafe_automerge_count') != 0:
+        errors.append('unsafe_automerge_not_zero')
+    for key in ['raw_secret_leak_count','external_target_scan_count','exploit_execution_count','malware_generation_count','social_engineering_content_count','critical_safety_incidents']:
+        if key not in counters:
+            errors.append(f'missing_{key}')
+    if errors:
+        _fail('validation_failed: ' + ','.join(errors))
+
 def discover(repo_root, registry):
     ctx={"generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"repo_root":str(pathlib.Path(repo_root).resolve()),"claim_boundary":CLAIM_SHORT}
     _jwrite(pathlib.Path(registry)/'latest.json',ctx)
@@ -71,11 +117,10 @@ def main(argv=None):
     a=ap.parse_args(argv)
     if a.cmd=='discover': discover(a.repo_root,a.registry)
     elif a.cmd=='run-cycle': run_cycle(a.repo_root,a.registry,a.out,a.candidate_seeds,a.evaluate_seeds)
-    elif a.cmd=='replay': _jwrite(a.out,{"status":"pass","claim_boundary":CLAIM_SHORT})
-    elif a.cmd=='falsification-audit': _jwrite(a.out,{"status":"pass","claim_boundary":CLAIM_SHORT,"overclaim_found":False})
+    elif a.cmd=='replay': _jwrite(a.out,_run_replay(a.input))
+    elif a.cmd=='falsification-audit': _jwrite(a.out,_run_falsification(a.input))
     elif a.cmd=='validate':
-        data=json.loads((pathlib.Path(a.input)/'14_reports/recursive_substrate_report.json').read_text());
-        assert data['claim_boundary'] and data['substrate_layers']['human_governed_promotion'] and data['hard_safety_counters']['unsafe_automerge_count']==0
+        _validate_run(a.input)
     elif a.cmd=='build-data':
         reg=pathlib.Path(a.registry); out=pathlib.Path(a.out); out.mkdir(parents=True,exist_ok=True)
         for n in ['latest','cycles','insights','nova_seeds','jobs','capabilities','vnext']:
