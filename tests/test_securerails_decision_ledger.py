@@ -52,3 +52,15 @@ class T(unittest.TestCase):
     p=Path('tests/tmp_missing_id_request.json'); p.write_text(json.dumps(req), encoding='utf-8')
     with self.assertRaises(ValueError):
       update_ledger(p, reg)
+  def test_validate_ledger_rechecks_gate_vs_changed_decision(self):
+    reg=Path('tests/tmp_review_registry_recheck');
+    if reg.exists(): shutil.rmtree(reg)
+    update_ledger(Path('tests/fixtures/securerails_human_review/valid_request.json'), reg)
+    update_ledger(Path('tests/fixtures/securerails_human_review/valid_decision_accept.json'), reg)
+    update_ledger(Path('tests/fixtures/securerails_human_review/valid_promotion_gate_pass.json'), reg)
+    decision_file = reg / 'decisions' / 'sr-review-decision-2026-0001.json'
+    dec = json.loads(decision_file.read_text())
+    dec['hard_safety_counters'] = {}
+    decision_file.write_text(json.dumps(dec), encoding='utf-8')
+    errs = validate_ledger(reg)
+    self.assertTrue(any('hard_safety_counters_zero' in e for e in errs))

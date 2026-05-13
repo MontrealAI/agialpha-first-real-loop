@@ -24,6 +24,27 @@ def _required_id(rec: dict, key: str) -> str:
         raise ValueError(f"missing required id: {key}")
     return rid
 
+def _validate_gate_against_decision(gate: dict, decision: dict) -> list[str]:
+    errs: list[str] = []
+    cond = gate.get('required_conditions', {})
+    evidence = decision.get('evidence_reviewed', {})
+    counters = decision.get('hard_safety_counters', {})
+    promotion = decision.get('promotion', {})
+    if cond.get('evidence_docket_present') is True and evidence.get('evidence_docket_reviewed') is not True:
+        errs.append('gate/decision mismatch: evidence_docket_present')
+    if cond.get('safety_ledger_present') is True and evidence.get('safety_ledger_reviewed') is not True:
+        errs.append('gate/decision mismatch: safety_ledger_present')
+    if cond.get('claim_boundary_present') is True and evidence.get('claim_boundary_reviewed') is not True:
+        errs.append('gate/decision mismatch: claim_boundary_present')
+    if cond.get('auto_merge_allowed') is False and promotion.get('auto_merge_allowed') is not False:
+        errs.append('gate/decision mismatch: auto_merge_allowed')
+    if cond.get('hard_safety_counters_zero') is True:
+        if not isinstance(counters, dict) or not counters:
+            errs.append('gate/decision mismatch: hard_safety_counters_zero (missing counters)')
+        elif any(int(v) != 0 for v in counters.values()):
+            errs.append('gate/decision mismatch: hard_safety_counters_zero')
+    return errs
+
 def ensure_registry(registry: Path):
     (registry/'requests').mkdir(parents=True, exist_ok=True)
     (registry/'decisions').mkdir(parents=True, exist_ok=True)
@@ -46,20 +67,7 @@ def update_ledger(input_path: Path, registry: Path):
             errs.append('source_decision_id must reference an existing decision record')
         else:
             decision = json.loads(decision_file.read_text(encoding='utf-8'))
-            cond = rec.get('required_conditions', {})
-            evidence = decision.get('evidence_reviewed', {})
-            counters = decision.get('hard_safety_counters', {})
-            promotion = decision.get('promotion', {})
-            if cond.get('evidence_docket_present') is True and evidence.get('evidence_docket_reviewed') is not True:
-                errs.append('gate/decision mismatch: evidence_docket_present')
-            if cond.get('safety_ledger_present') is True and evidence.get('safety_ledger_reviewed') is not True:
-                errs.append('gate/decision mismatch: safety_ledger_present')
-            if cond.get('claim_boundary_present') is True and evidence.get('claim_boundary_reviewed') is not True:
-                errs.append('gate/decision mismatch: claim_boundary_present')
-            if cond.get('auto_merge_allowed') is False and promotion.get('auto_merge_allowed') is not False:
-                errs.append('gate/decision mismatch: auto_merge_allowed')
-            if cond.get('hard_safety_counters_zero') is True and any(int(v) != 0 for v in counters.values()):
-                errs.append('gate/decision mismatch: hard_safety_counters_zero')
+            errs.extend(_validate_gate_against_decision(rec, decision))
     else: raise ValueError('unsupported schema_version')
     if errs: raise ValueError('; '.join(errs))
     out.write_text(json.dumps(rec,indent=2),encoding='utf-8')
@@ -104,6 +112,17 @@ def validate_ledger(registry: Path)->list[str]:
             errs.extend([f'entry[{i}] {m}' for m in validate_review_decision(rec)])
         elif sv == 'securerails.promotion_gate.v1':
             errs.extend([f'entry[{i}] {m}' for m in validate_promotion_gate(rec)])
+            source_decision_id = rec.get('source_decision_id')
+            if isinstance(source_decision_id, str) and source_decision_id.strip():
+                decision_path = registry / 'decisions' / f'{source_decision_id}.json'
+                if not decision_path.exists():
+                    errs.append(f'entry[{i}] source decision missing: {source_decision_id}')
+                else:
+                    try:
+                        decision = json.loads(decision_path.read_text(encoding='utf-8'))
+                        errs.extend([f'entry[{i}] {m}' for m in _validate_gate_against_decision(rec, decision)])
+                    except Exception as exc:
+                        errs.append(f'entry[{i}] invalid source decision json: {exc}')
         else:
             errs.append(f'entry[{i}] unsupported schema_version')
     return errs
