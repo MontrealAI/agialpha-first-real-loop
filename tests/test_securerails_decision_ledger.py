@@ -44,3 +44,11 @@ class T(unittest.TestCase):
     (reg/'registry.json').write_text(json.dumps(data), encoding='utf-8')
     errs=validate_ledger(reg)
     self.assertTrue(any('missing file' in e for e in errs))
+  def test_missing_id_is_rejected(self):
+    reg=Path('tests/tmp_review_registry_missing_id');
+    if reg.exists(): shutil.rmtree(reg)
+    bad=json.loads(Path('tests/fixtures/securerails_human_review/valid_request.json').read_text())
+    bad.pop('review_request_id', None)
+    p=Path('tests/tmp_missing_id_request.json'); p.write_text(json.dumps(bad), encoding='utf-8')
+    with self.assertRaises(ValueError):
+      update_ledger(p, reg)

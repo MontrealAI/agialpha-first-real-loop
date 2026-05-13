@@ -18,6 +18,12 @@ def _safe_out_path(registry: Path, folder: str, rid: str) -> Path:
         raise ValueError("output path escapes registry")
     return out
 
+def _required_id(rec: dict, key: str) -> str:
+    rid = rec.get(key)
+    if not isinstance(rid, str) or not rid.strip():
+        raise ValueError(f"missing required id: {key}")
+    return rid
+
 def ensure_registry(registry: Path):
     (registry/'requests').mkdir(parents=True, exist_ok=True)
     (registry/'decisions').mkdir(parents=True, exist_ok=True)
@@ -29,11 +35,11 @@ def update_ledger(input_path: Path, registry: Path):
     ensure_registry(registry)
     rec=json.loads(input_path.read_text(encoding='utf-8'))
     if rec.get('schema_version')=='securerails.human_review_request.v1':
-        errs=validate_review_request(rec); kind='request'; rid=rec.get('review_request_id','unknown'); out=_safe_out_path(registry, 'requests', rid)
+        errs=validate_review_request(rec); kind='request'; rid=_required_id(rec, 'review_request_id'); out=_safe_out_path(registry, 'requests', rid)
     elif rec.get('schema_version')=='securerails.human_review_decision.v1':
-        errs=validate_review_decision(rec); kind='decision'; rid=rec.get('decision_id','unknown'); out=_safe_out_path(registry, 'decisions', rid)
+        errs=validate_review_decision(rec); kind='decision'; rid=_required_id(rec, 'decision_id'); out=_safe_out_path(registry, 'decisions', rid)
     elif rec.get('schema_version')=='securerails.promotion_gate.v1':
-        errs=validate_promotion_gate(rec); kind='promotion_gate'; rid=rec.get('promotion_gate_id','unknown'); out=_safe_out_path(registry, 'promotion_gates', rid)
+        errs=validate_promotion_gate(rec); kind='promotion_gate'; rid=_required_id(rec, 'promotion_gate_id'); out=_safe_out_path(registry, 'promotion_gates', rid)
         source_decision_id = rec.get('source_decision_id')
         decision_file = _safe_out_path(registry, 'decisions', source_decision_id) if source_decision_id else None
         if not source_decision_id or not decision_file.exists():
