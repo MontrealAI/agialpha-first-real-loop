@@ -1,0 +1,10 @@
+{
+  "pending_reviews": 0,
+  "accepted_decisions": 0,
+  "rejected_decisions": 0,
+  "escalated_decisions": 0,
+  "requests_for_changes": 0,
+  "archive_only_decisions": 0,
+  "promotion_gates_passed": 0,
+  "promotion_gates_failed": 0
+}

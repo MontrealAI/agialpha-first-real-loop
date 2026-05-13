@@ -1,0 +1,39 @@
+name: SecureRails Human Review Console 001
+on:
+  pull_request:
+    paths:
+      - "secure_rails_reviews/**"
+      - "docs/secure-rails/templates/human-review*.json"
+      - "docs/secure-rails/templates/promotion-gate*.json"
+      - "schemas/securerails_human_review*.json"
+      - "schemas/securerails_promotion_gate.schema.json"
+      - "scripts/secure_rails_human_review_check.py"
+      - "scripts/secure_rails_promotion_gate_check.py"
+      - "secure_rails/**"
+      - ".github/ISSUE_TEMPLATE/securerails-human-review.yml"
+      - ".github/PULL_REQUEST_TEMPLATE/securerails-safe-remediation.md"
+      - ".github/workflows/securerails-human-review-console-001.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "0 15 * * 1"
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+  issues: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python -m secure_rails human-review validate-request --input docs/secure-rails/templates/human-review-request-example.json
+      - run: python -m secure_rails human-review validate-decision --input docs/secure-rails/templates/human-review-decision-example.json
+      - run: python -m secure_rails human-review validate-gate --input docs/secure-rails/templates/promotion-gate-example.json
+      - run: python -m secure_rails human-review validate-ledger --registry secure_rails_reviews
+      - run: python -m secure_rails human-review build-data --registry secure_rails_reviews --out docs/_generated/secure-rails/human-review
+      - uses: actions/upload-artifact@v4
+        with: {name: securerails-human-review-report, path: docs/_generated/secure-rails/human-review}
+      - run: echo "No human decision record, no promotion. No auto-merge."
