@@ -2903,7 +2903,7 @@
     "cycle_index": 46,
     "generated_at": "2026-05-13T22:03:42.605857+00:00",
     "repository": "MontrealAI/agialpha-first-real-loop",
-    "commit_sha": "aa0809bbd2bf0dd663891b9de10f5c05b0ad5ec1",
+    "commit_sha": "b0482804af7b31259ecf08f7703abdfdef70894d",
     "status": "success",
     "substrate_layers": {
       "agents": true,
@@ -2966,7 +2966,7 @@
     "cycle_index": 47,
     "generated_at": "2026-05-13T22:03:48.813565+00:00",
     "repository": "MontrealAI/agialpha-first-real-loop",
-    "commit_sha": "aa0809bbd2bf0dd663891b9de10f5c05b0ad5ec1",
+    "commit_sha": "b0482804af7b31259ecf08f7703abdfdef70894d",
     "status": "success",
     "substrate_layers": {
       "agents": true,
@@ -3029,7 +3029,7 @@
     "cycle_index": 48,
     "generated_at": "2026-05-13T22:03:49.042563+00:00",
     "repository": "MontrealAI/agialpha-first-real-loop",
-    "commit_sha": "aa0809bbd2bf0dd663891b9de10f5c05b0ad5ec1",
+    "commit_sha": "b0482804af7b31259ecf08f7703abdfdef70894d",
     "status": "success",
     "substrate_layers": {
       "agents": true,
@@ -3092,7 +3092,7 @@
     "cycle_index": 49,
     "generated_at": "2026-05-13T22:03:49.278339+00:00",
     "repository": "MontrealAI/agialpha-first-real-loop",
-    "commit_sha": "aa0809bbd2bf0dd663891b9de10f5c05b0ad5ec1",
+    "commit_sha": "b0482804af7b31259ecf08f7703abdfdef70894d",
     "status": "success",
     "substrate_layers": {
       "agents": true,
@@ -3155,7 +3155,7 @@
     "cycle_index": 50,
     "generated_at": "2026-05-13T22:03:49.525852+00:00",
     "repository": "MontrealAI/agialpha-first-real-loop",
-    "commit_sha": "aa0809bbd2bf0dd663891b9de10f5c05b0ad5ec1",
+    "commit_sha": "b0482804af7b31259ecf08f7703abdfdef70894d",
     "status": "success",
     "substrate_layers": {
       "agents": true,
@@ -3218,7 +3218,7 @@
     "cycle_index": 51,
     "generated_at": "2026-05-13T22:03:49.770593+00:00",
     "repository": "MontrealAI/agialpha-first-real-loop",
-    "commit_sha": "aa0809bbd2bf0dd663891b9de10f5c05b0ad5ec1",
+    "commit_sha": "b0482804af7b31259ecf08f7703abdfdef70894d",
     "status": "success",
     "substrate_layers": {
       "agents": true,
@@ -3281,7 +3281,7 @@
     "cycle_index": 52,
     "generated_at": "2026-05-13T22:03:50.022510+00:00",
     "repository": "MontrealAI/agialpha-first-real-loop",
-    "commit_sha": "aa0809bbd2bf0dd663891b9de10f5c05b0ad5ec1",
+    "commit_sha": "b0482804af7b31259ecf08f7703abdfdef70894d",
     "status": "success",
     "substrate_layers": {
       "agents": true,
@@ -3344,7 +3344,7 @@
     "cycle_index": 53,
     "generated_at": "2026-05-13T22:03:50.283491+00:00",
     "repository": "MontrealAI/agialpha-first-real-loop",
-    "commit_sha": "aa0809bbd2bf0dd663891b9de10f5c05b0ad5ec1",
+    "commit_sha": "b0482804af7b31259ecf08f7703abdfdef70894d",
     "status": "success",
     "substrate_layers": {
       "agents": true,
@@ -3407,7 +3407,7 @@
     "cycle_index": 54,
     "generated_at": "2026-05-13T22:03:50.553728+00:00",
     "repository": "MontrealAI/agialpha-first-real-loop",
-    "commit_sha": "aa0809bbd2bf0dd663891b9de10f5c05b0ad5ec1",
+    "commit_sha": "b0482804af7b31259ecf08f7703abdfdef70894d",
     "status": "success",
     "substrate_layers": {
       "agents": true,
@@ -3470,7 +3470,7 @@
     "cycle_index": 55,
     "generated_at": "2026-05-13T22:03:50.810486+00:00",
     "repository": "MontrealAI/agialpha-first-real-loop",
-    "commit_sha": "aa0809bbd2bf0dd663891b9de10f5c05b0ad5ec1",
+    "commit_sha": "b0482804af7b31259ecf08f7703abdfdef70894d",
     "status": "success",
     "substrate_layers": {
       "agents": true,
@@ -3533,7 +3533,7 @@
     "cycle_index": 56,
     "generated_at": "2026-05-13T22:03:51.058376+00:00",
     "repository": "MontrealAI/agialpha-first-real-loop",
-    "commit_sha": "aa0809bbd2bf0dd663891b9de10f5c05b0ad5ec1",
+    "commit_sha": "b0482804af7b31259ecf08f7703abdfdef70894d",
     "status": "success",
     "substrate_layers": {
       "agents": true,
@@ -3596,7 +3596,70 @@
     "cycle_index": 57,
     "generated_at": "2026-05-13T22:03:51.320752+00:00",
     "repository": "MontrealAI/agialpha-first-real-loop",
-    "commit_sha": "aa0809bbd2bf0dd663891b9de10f5c05b0ad5ec1",
+    "commit_sha": "b0482804af7b31259ecf08f7703abdfdef70894d",
+    "status": "success",
+    "substrate_layers": {
+      "agents": true,
+      "jobs": true,
+      "validators": true,
+      "memory": true,
+      "governance": true,
+      "settlement": true,
+      "recursive_improvement": true,
+      "human_governed_promotion": true
+    },
+    "open_ended_loop": {
+      "insights_generated": 1,
+      "nova_seeds_generated": 16,
+      "jobs_generated": 6,
+      "validators_generated": 6,
+      "capabilities_archived": 6,
+      "vnext_candidates_generated": 6
+    },
+    "proof_loop": {
+      "proofbundles_created": 1,
+      "evidence_dockets_created": 1,
+      "replay_reports_created": "pending",
+      "falsification_reports_created": "pending"
+    },
+    "governance_loop": {
+      "policy_decisions_created": "pending",
+      "human_review_records_created": "pending",
+      "promotion_gates_passed": 0,
+      "promotion_gates_failed": 1
+    },
+    "settlement_loop": {
+      "work_vaults_created": "pending",
+      "mark_allocations_created": 16,
+      "sovereign_assignments_created": 16,
+      "utility_settlement_records_created": 6
+    },
+    "metrics": {
+      "recursive_substrate_readiness_score": "pending",
+      "open_ended_discovery_score": "pending",
+      "proof_density_score": "pending",
+      "memory_reuse_score": "pending",
+      "vnext_compounding_score": "pending",
+      "human_governance_integrity": "pending"
+    },
+    "hard_safety_counters": {
+      "raw_secret_leak_count": 0,
+      "external_target_scan_count": 0,
+      "exploit_execution_count": 0,
+      "malware_generation_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0,
+      "critical_safety_incidents": 0
+    },
+    "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
+  },
+  {
+    "schema_version": "agialpha.recursive_cycle.v1",
+    "cycle_id": "recursive-cycle-059",
+    "cycle_index": 58,
+    "generated_at": "2026-05-13T22:27:28.407220+00:00",
+    "repository": "MontrealAI/agialpha-first-real-loop",
+    "commit_sha": "b0482804af7b31259ecf08f7703abdfdef70894d",
     "status": "success",
     "substrate_layers": {
       "agents": true,
