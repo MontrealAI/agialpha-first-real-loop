@@ -33,16 +33,16 @@ def discover(repo_root, registry):
 def run_cycle(repo_root, registry, out, candidate_seeds, evaluate_seeds):
     repo_root = pathlib.Path(repo_root)
     outp=pathlib.Path(out); outp.mkdir(parents=True, exist_ok=True)
+    cycle_index=len(_jread(pathlib.Path(registry)/'cycles.json',[]))
+    cycle_id=f"recursive-cycle-{cycle_index+1:03d}"
     insights=[{"insight_id":"insight-001","summary":"Gap detection for recursive substrate","claim_boundary":CLAIM_SHORT}]
     seeds=[{"seed_id":f"seed-{i+1:03d}","kind":["task","validator","doc","workflow","policy","evidence","replay","vnext"][i%8],"status":"accepted" if i<evaluate_seeds else "rejected","claim_boundary":CLAIM_SHORT} for i in range(candidate_seeds)]
     jobs=[{"job_id":f"job-{i+1:03d}","seed_id":s["seed_id"],"human_review_required":True,"status":"completed"} for i,s in enumerate(seeds[:evaluate_seeds])]
     validators=[{"job_id":j["job_id"],"validator_id":"claim-boundary-validator","status":"pass"} for j in jobs]
-    caps=[{"capability_id":f"cap-{i+1:03d}","job_id":j["job_id"],"status":"archived"} for i,j in enumerate(jobs)]
-    vnext=[{"candidate_id":f"vnext-{i+1:03d}","from_capability":c["capability_id"],"status":"pending_human_review"} for i,c in enumerate(caps)]
+    caps=[{"capability_id":f"{cycle_id}-cap-{i+1:03d}","job_id":j["job_id"],"status":"archived"} for i,j in enumerate(jobs)]
+    vnext=[{"candidate_id":f"{cycle_id}-vnext-{i+1:03d}","from_capability":c["capability_id"],"status":"pending_human_review"} for i,c in enumerate(caps)]
     proofbundle={"proofbundle_id":"proofbundle-001","status":"created","claim_boundary":CLAIM_SHORT}
     evidence_docket={"docket_id":"docket-001","status":"created","claim_boundary":CLAIM_SHORT,"human_review_required":True}
-    cycle_index=len(_jread(pathlib.Path(registry)/'cycles.json',[]))
-    cycle_id=f"recursive-cycle-{cycle_index+1:03d}"
     cycle={"schema_version":"agialpha.recursive_cycle.v1","cycle_id":cycle_id,"cycle_index":cycle_index,"generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"repository":"MontrealAI/agialpha-first-real-loop","commit_sha":_resolve_commit_sha(repo_root),'status':'success','substrate_layers':{"agents":True,"jobs":True,"validators":True,"memory":True,"governance":True,"settlement":True,"recursive_improvement":True,"human_governed_promotion":True},"open_ended_loop":{"insights_generated":len(insights),"nova_seeds_generated":len(seeds),"jobs_generated":len(jobs),"validators_generated":len(validators),"capabilities_archived":len(caps),"vnext_candidates_generated":len(vnext)},"proof_loop":{"proofbundles_created":1,"evidence_dockets_created":1,"replay_reports_created":"pending","falsification_reports_created":"pending"},"governance_loop":{"policy_decisions_created":"pending","human_review_records_created":"pending","promotion_gates_passed":0,"promotion_gates_failed":1},"settlement_loop":{"work_vaults_created":"pending","mark_allocations_created":len(seeds),"sovereign_assignments_created":len(seeds),"utility_settlement_records_created":len(jobs)},"metrics":{"recursive_substrate_readiness_score":"pending","open_ended_discovery_score":"pending","proof_density_score":"pending","memory_reuse_score":"pending","vnext_compounding_score":"pending","human_governance_integrity":"pending"},"hard_safety_counters":{"raw_secret_leak_count":0,"external_target_scan_count":0,"exploit_execution_count":0,"malware_generation_count":0,"social_engineering_content_count":0,"unsafe_automerge_count":0,"critical_safety_incidents":0},"claim_boundary":CLAIM_FULL}
     _jwrite(outp/'08_proofbundles/proofbundle.json',proofbundle)
     _jwrite(outp/'09_evidence_dockets/00_manifest.json',evidence_docket)
@@ -162,7 +162,8 @@ def main(argv=None):
         cycles = _jread(reg/'cycles.json', []); insights = _jread(reg/'insights.json', []); seeds = _jread(reg/'nova_seeds.json', [])
         jobs = _jread(reg/'jobs.json', []); validators = _jread(reg/'validators.json', []); proofbundles = _jread(reg/'proofbundles.json', [])
         dockets = _jread(reg/'evidence_dockets.json', []); capabilities = _jread(reg/'capabilities.json', []); vnext = _jread(reg/'vnext.json', [])
-        _jwrite(out/'summary.json',{"schema_version":"agialpha.recursive_substrate_summary.v1","generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"cycles_run":len(cycles),"insights_generated":len(insights),"nova_seeds_generated":len(seeds),"jobs_generated":len(jobs),"validators_generated":len(validators),"proofbundles_created":len(proofbundles),"evidence_dockets_created":len(dockets),"capabilities_archived":len(capabilities),"vnext_candidates_generated":len(vnext),"recursive_substrate_readiness_score":"pending","claim_boundary":CLAIM_FULL})
+        cycle_count = len(cycles)
+        _jwrite(out/'summary.json',{"schema_version":"agialpha.recursive_substrate_summary.v1","generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"cycles_run":cycle_count,"insights_generated":len(insights),"nova_seeds_generated":len(seeds),"jobs_generated":len(jobs),"validators_generated":len(validators),"proofbundles_created":len(proofbundles),"evidence_dockets_created":len(dockets),"capabilities_archived":len(capabilities),"vnext_candidates_generated":len(vnext),"recursive_substrate_readiness_score":"pending","claim_boundary":CLAIM_FULL})
     elif a.cmd=='render':
         out=pathlib.Path(a.out); out.mkdir(parents=True,exist_ok=True); _jwrite(out/'index.json',{"status":"generated","claim_boundary":CLAIM_SHORT})
     elif a.cmd=='emit-manifest': _jwrite(a.out,{"input":a.input,"claim_boundary":CLAIM_SHORT})
