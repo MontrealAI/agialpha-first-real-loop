@@ -23,7 +23,7 @@ jobs:
           python-version: '3.11'
       - run: python scripts/secure_rails_claim_boundary_check.py .
       - run: python -m agialpha_recursive_substrate discover --repo-root . --registry recursive_substrate_registry
-      - run: python -m agialpha_recursive_substrate run-cycle --repo-root . --registry recursive_substrate_registry --out recursive-substrate-runs/test --candidate-seeds 16 --evaluate-seeds 6
+      - run: python -m agialpha_recursive_substrate run-cycle --repo-root . --registry recursive_substrate_registry --out recursive-substrate-runs/test --candidate-seeds ${{ github.event.inputs.candidate_seeds || '16' }} --evaluate-seeds ${{ github.event.inputs.evaluate_seeds || '6' }}
       - run: python -m agialpha_recursive_substrate replay --input recursive-substrate-runs/test --out recursive-substrate-runs/test/replay_report.json
       - run: python -m agialpha_recursive_substrate falsification-audit --input recursive-substrate-runs/test --out recursive-substrate-runs/test/falsification_audit.json
       - run: python -m agialpha_recursive_substrate validate --input recursive-substrate-runs/test
