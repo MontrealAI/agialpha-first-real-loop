@@ -1,0 +1,7 @@
+{
+  "schema_version": "agialpha.recursive_index.v1",
+  "index": "by_reference_family",
+  "description": "Category-context reference families. Reference map only, not implementation claims.",
+  "entries": {},
+  "claim_boundary": "This index is local bounded recursive substrate evidence metadata and does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, or external validation."
+}
