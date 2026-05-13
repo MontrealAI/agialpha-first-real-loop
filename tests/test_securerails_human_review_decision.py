@@ -11,3 +11,6 @@ class T(unittest.TestCase):
   def test_evidence_reviewed_must_be_object(self):
     d=json.loads(Path("tests/fixtures/securerails_human_review/valid_decision_accept.json").read_text()); d["evidence_reviewed"]=[]
     self.assertTrue(any("evidence_reviewed must be an object" in e for e in validate_review_decision(d)))
+  def test_promotion_must_be_object(self):
+    d=json.loads(Path("tests/fixtures/securerails_human_review/valid_decision_accept.json").read_text()); d["promotion"]=[]
+    self.assertTrue(any("promotion must be an object" in e for e in validate_review_decision(d)))

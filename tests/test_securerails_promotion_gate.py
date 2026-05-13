@@ -20,3 +20,13 @@ class T(unittest.TestCase):
     gate["source_decision_id"]=["bad"]
     errs=validate_promotion_gate(gate)
     self.assertTrue(any("source_decision_id required" in e for e in errs))
+  def test_missing_promotion_gate_id(self):
+    gate=json.loads(Path("tests/fixtures/securerails_human_review/valid_promotion_gate_pass.json").read_text())
+    gate.pop("promotion_gate_id", None)
+    errs=validate_promotion_gate(gate)
+    self.assertTrue(any("promotion_gate_id required" in e for e in errs))
+  def test_required_conditions_must_be_object(self):
+    gate=json.loads(Path("tests/fixtures/securerails_human_review/valid_promotion_gate_pass.json").read_text())
+    gate["required_conditions"]=[]
+    errs=validate_promotion_gate(gate)
+    self.assertTrue(any("required_conditions must be an object" in e for e in errs))

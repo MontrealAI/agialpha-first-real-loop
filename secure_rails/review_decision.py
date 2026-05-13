@@ -12,6 +12,9 @@ def validate_review_decision(record: dict) -> list[str]:
     if not str(record.get("decision_summary"," ")).strip(): errs.append("decision_summary required")
     if not str(record.get("claim_boundary"," ")).strip(): errs.append("claim_boundary required")
     promo=record.get("promotion",{})
+    if not isinstance(promo, dict):
+        errs.append("promotion must be an object")
+        promo = {}
     if promo.get("promotion_target") not in TARGETS: errs.append("invalid promotion_target")
     if promo.get("auto_merge_allowed") is not False: errs.append("auto_merge_allowed must be false")
     if promo.get("promotion_target")=="safe_pr" and promo.get("manual_merge_required") is not True: errs.append("manual_merge_required must be true for safe_pr")
