@@ -7,25 +7,56 @@
   "required": [
     "schema_version",
     "references",
-    "usage_boundary",
     "claim_boundary"
   ],
   "properties": {
-    "schema_version": {"const": "agialpha.recursive_reference_map.v1"},
+    "schema_version": {
+      "const": "agialpha.recursive_reference_map.v1"
+    },
     "references": {
       "type": "array",
       "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["family", "label", "status"],
-        "properties": {
-          "family": {"type": "string", "minLength": 1},
-          "label": {"type": "string", "minLength": 1},
-          "status": {"type": "string", "enum": ["context_only", "implemented_with_evidence"]}
-        }
+        "oneOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "family",
+              "label",
+              "status"
+            ],
+            "properties": {
+              "family": {
+                "type": "string",
+                "minLength": 1
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "context_only",
+                  "implemented_with_evidence"
+                ]
+              }
+            }
+          }
+        ]
       }
     },
-    "usage_boundary": {"type": "string", "minLength": 1},
-    "claim_boundary": {"type": "string", "minLength": 1}
+    "usage_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim_boundary": {
+      "type": "string",
+      "minLength": 1
+    }
   }
 }
