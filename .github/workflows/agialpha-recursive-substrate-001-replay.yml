@@ -19,8 +19,8 @@ jobs:
           python-version: '3.11'
       - run: python scripts/secure_rails_claim_boundary_check.py .
       - run: python -m agialpha_recursive_substrate replay --input ${{ github.event.inputs.run_path || 'recursive-substrate-runs/test' }} --out ${{ github.event.inputs.run_path || 'recursive-substrate-runs/test' }}/replay_report.json
-      - run: python -m agialpha_recursive_substrate falsification-audit --input recursive-substrate-runs/test --out recursive-substrate-runs/test/falsification_audit.json
-      - run: python -m agialpha_recursive_substrate validate --input recursive-substrate-runs/test
+      - run: python -m agialpha_recursive_substrate falsification-audit --input ${{ github.event.inputs.run_path || 'recursive-substrate-runs/test' }} --out ${{ github.event.inputs.run_path || 'recursive-substrate-runs/test' }}/falsification_audit.json
+      - run: python -m agialpha_recursive_substrate validate --input ${{ github.event.inputs.run_path || 'recursive-substrate-runs/test' }}
       - run: python -m agialpha_recursive_substrate build-data --registry recursive_substrate_registry --out docs/_generated/recursive-substrate
       - uses: actions/upload-artifact@v4
         with:
