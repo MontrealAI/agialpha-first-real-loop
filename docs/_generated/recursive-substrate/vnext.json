@@ -390,7 +390,7 @@
     "status": "pending_human_review"
   },
   {
-    "candidate_id": "ai-improves-ai",
+    "candidate_id": "recursive-cycle-014-vnext-001",
     "status": "pending_human_review",
     "claim_boundary": "local bounded recursive substrate evidence",
     "from_capability": "recursive-cycle-014-cap-001"
