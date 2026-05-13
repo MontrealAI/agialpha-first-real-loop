@@ -1,6 +1,6 @@
 {
   "schema_version": "agialpha.recursive_substrate_summary.v1",
-  "generated_at": "2026-05-13T17:31:17.019334+00:00",
+  "generated_at": "2026-05-13T18:15:06.548819+00:00",
   "cycles_run": 24,
   "insights_generated": 24,
   "nova_seeds_generated": 384,
@@ -9,7 +9,7 @@
   "proofbundles_created": 23,
   "evidence_dockets_created": 23,
   "capabilities_archived": 144,
-  "vnext_candidates_generated": 145,
+  "vnext_candidates_generated": 144,
   "recursive_substrate_readiness_score": "pending",
   "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
 }
