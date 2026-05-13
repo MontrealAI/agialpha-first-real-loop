@@ -1,0 +1,20 @@
+{
+  "schema_version": "agialpha.recursive_reference_map.v1",
+  "references": [
+    "AI-generating algorithms",
+    "open-ended discovery",
+    "quality-diversity algorithms",
+    "Darwin G\u00f6del Machine",
+    "ADAS",
+    "AI Scientist",
+    "PromptBreeder",
+    "Rainbow Teaming",
+    "Automated Capability Discovery",
+    "self-improving coding agents",
+    "automated red teaming",
+    "meta-agentic orchestration",
+    "recursive AI labor"
+  ],
+  "label": "Reference map only. Not a claim that all systems are implemented here.",
+  "claim_boundary": "This category context is positioning and research context. It does not claim AGI ALPHA has achieved AGI, ASI, superintelligence, empirical SOTA, or external validation."
+}
