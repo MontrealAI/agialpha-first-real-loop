@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/agialpha-first-real-loop/schemas/agialpha_ai_improves_ai_experiment.schema.json",
+  "title": "AGI ALPHA AI Improves AI Experiment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "candidate_lock",
+    "heldout_fixtures_generated_after_lock",
+    "persistence_status",
+    "human_review_required",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "agialpha.ai_improves_ai_experiment.v1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "candidate_lock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["locked"],
+      "properties": {
+        "locked": {"type": "boolean"},
+        "lock_hash": {"type": "string", "minLength": 1},
+        "locked_at": {"type": "string", "minLength": 1},
+        "candidate_hashes": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "claim_boundary": {"type": "string", "minLength": 1}
+      }
+    },
+    "heldout_fixtures_generated_after_lock": {"type": "boolean"},
+    "persistence_status": {
+      "type": "string",
+      "enum": ["not_persisted", "pending_human_review", "persisted_by_human_decision"]
+    },
+    "human_review_required": {"const": true},
+    "claim_boundary": {"type": "string", "minLength": 1}
+  }
+}

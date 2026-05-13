@@ -119,7 +119,9 @@ def ai_improves_ai(repo_root, registry, out, candidate_mechanisms, heldout_fixtu
     (outp/'promotion_dossier.md').write_text('# Promotion Dossier\n\nPending human review.\n')
     _jwrite(outp/'safe_pr_plan.json', {"autopersist":False,"auto_merge":False,"claim_boundary":CLAIM_SHORT})
     reg=pathlib.Path(registry); reg.mkdir(parents=True, exist_ok=True)
-    _append_registry(reg,'vnext.json',[{"candidate_id":"ai-improves-ai","status":"pending_human_review","claim_boundary":CLAIM_SHORT}])
+    existing_vnext=_jread(reg/'vnext.json',[])
+    if not any(v.get('candidate_id')=='ai-improves-ai' for v in existing_vnext):
+        _append_registry(reg,'vnext.json',[{"candidate_id":"ai-improves-ai","status":"pending_human_review","claim_boundary":CLAIM_SHORT}])
     return {"candidates":candidate_mechanisms,"fixtures":heldout_fixtures}
 
 def main(argv=None):
