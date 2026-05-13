@@ -30,6 +30,8 @@ def _validate_gate_against_decision(gate: dict, decision: dict) -> list[str]:
     evidence = decision.get('evidence_reviewed', {})
     counters = decision.get('hard_safety_counters', {})
     promotion = decision.get('promotion', {})
+    if cond.get('proofbundle_present') is True and evidence.get('proofbundle_reviewed') is not True:
+        errs.append('gate/decision mismatch: proofbundle_present')
     if cond.get('evidence_docket_present') is True and evidence.get('evidence_docket_reviewed') is not True:
         errs.append('gate/decision mismatch: evidence_docket_present')
     if cond.get('safety_ledger_present') is True and evidence.get('safety_ledger_reviewed') is not True:
@@ -114,7 +116,11 @@ def validate_ledger(registry: Path)->list[str]:
             errs.extend([f'entry[{i}] {m}' for m in validate_promotion_gate(rec)])
             source_decision_id = rec.get('source_decision_id')
             if isinstance(source_decision_id, str) and source_decision_id.strip():
-                decision_path = registry / 'decisions' / f'{source_decision_id}.json'
+                try:
+                    decision_path = _safe_out_path(registry, 'decisions', source_decision_id)
+                except ValueError as exc:
+                    errs.append(f'entry[{i}] invalid source decision id: {exc}')
+                    continue
                 if not decision_path.exists():
                     errs.append(f'entry[{i}] source decision missing: {source_decision_id}')
                 else:
