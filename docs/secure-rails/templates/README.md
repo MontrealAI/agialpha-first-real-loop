@@ -77,3 +77,6 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/secu
 - `policy-context-example.json`
 - `policy-decision-example.json`
 - `policy-exception-request-example.json`
+
+
+- SecureRails Human Review Console 001: human-governed promotion, decision ledger, manual merge required, no auto-merge.
