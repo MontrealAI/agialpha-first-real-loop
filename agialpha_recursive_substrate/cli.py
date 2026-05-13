@@ -37,7 +37,7 @@ def run_cycle(repo_root, registry, out, candidate_seeds, evaluate_seeds):
     cycle_id=f"recursive-cycle-{cycle_index+1:03d}"
     insights=[{"insight_id":"insight-001","summary":"Gap detection for recursive substrate","claim_boundary":CLAIM_SHORT}]
     seeds=[{"seed_id":f"seed-{i+1:03d}","kind":["task","validator","doc","workflow","policy","evidence","replay","vnext"][i%8],"status":"accepted" if i<evaluate_seeds else "rejected","claim_boundary":CLAIM_SHORT} for i in range(candidate_seeds)]
-    jobs=[{"job_id":f"job-{i+1:03d}","seed_id":s["seed_id"],"human_review_required":True,"status":"completed"} for i,s in enumerate(seeds[:evaluate_seeds])]
+    jobs=[{"job_id":f"{cycle_id}-job-{i+1:03d}","seed_id":s["seed_id"],"human_review_required":True,"status":"completed"} for i,s in enumerate(seeds[:evaluate_seeds])]
     validators=[{"job_id":j["job_id"],"validator_id":"claim-boundary-validator","status":"pass"} for j in jobs]
     caps=[{"capability_id":f"{cycle_id}-cap-{i+1:03d}","job_id":j["job_id"],"status":"archived"} for i,j in enumerate(jobs)]
     vnext=[{"candidate_id":f"{cycle_id}-vnext-{i+1:03d}","from_capability":c["capability_id"],"status":"pending_human_review"} for i,c in enumerate(caps)]
