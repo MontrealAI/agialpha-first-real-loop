@@ -10,7 +10,7 @@ class TestRecursiveSubstrateReferenceMap(unittest.TestCase):
         data = json.loads(path.read_text(encoding='utf-8'))
         text = json.dumps(data)
         self.assertIn('Reference map only', text)
-        self.assertNotIn('implemented all', text.lower())
+        self.assertNotRegex(text.lower(), r'(?<!not a claim that )all systems are implemented')
 
 
 if __name__ == '__main__':

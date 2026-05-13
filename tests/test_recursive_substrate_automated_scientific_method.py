@@ -1,12 +1,15 @@
-import json
 import pathlib
+import shutil
 import subprocess
+import tempfile
 import unittest
 
 
 class TestRecursiveSubstrateAutomatedScientificMethod(unittest.TestCase):
     def test_scientific_method_artifacts_exist(self):
-        out_dir = pathlib.Path('/tmp/recursive-substrate-test/ai_improves_ai')
+        temp_root = pathlib.Path(tempfile.mkdtemp(prefix='recursive-substrate-scimethod-'))
+        self.addCleanup(lambda: shutil.rmtree(temp_root, ignore_errors=True))
+        out_dir = temp_root / 'ai_improves_ai'
         subprocess.check_call([
             'python', '-m', 'agialpha_recursive_substrate', 'ai-improves-ai',
             '--repo-root', '.', '--registry', 'recursive_substrate_registry',
