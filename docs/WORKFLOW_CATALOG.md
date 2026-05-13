@@ -167,3 +167,8 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 | `agialpha-recursive-substrate-001-replay.yml` | Core | `workflow_dispatch`, `schedule` | Replay report artifacts. | Evidence replay only; no claim promotion. | no |
 | `agialpha-recursive-substrate-001-falsification-audit.yml` | Core | `workflow_dispatch`, `schedule` | Falsification audit artifacts. | Overclaim/no-automerge checks only; no direct Pages deploy. | no |
 | `agialpha-recursive-substrate-001-vnext.yml` | Core | `workflow_dispatch`, `schedule` | vNext candidate artifacts. | Human-governed promotion required; no persistence without review. | no |
+| `agialpha-recursive-substrate-002-lifecycle.yml` | Core | `workflow_dispatch`, `schedule` | Recursive Substrate 002 lifecycle artifact bundle. | Local bounded recursive substrate evidence only; no direct Pages deploy; no auto-merge. | no |
+| `agialpha-recursive-substrate-002-ai-improves-ai.yml` | Core | `workflow_dispatch`, `schedule` | AI-improves-AI workbench artifacts. | Human review required; no autonomous persistence. | no |
+| `agialpha-recursive-substrate-002-replay.yml` | Core | `workflow_dispatch`, `schedule` | Replay-only verification of existing run path. | Replay evidence only; no claim promotion. | no |
+| `agialpha-recursive-substrate-002-falsification-audit.yml` | Core | `workflow_dispatch`, `schedule` | Falsification audit artifact. | No overclaim/no-automerge checks only. | no |
+| `agialpha-recursive-substrate-002-vnext.yml` | Core | `workflow_dispatch`, `schedule` | vNext candidate artifacts. | Human-governed promotion required. | no |

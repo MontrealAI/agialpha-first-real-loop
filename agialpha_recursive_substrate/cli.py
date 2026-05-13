@@ -41,7 +41,9 @@ def run_cycle(repo_root, registry, out, candidate_seeds, evaluate_seeds):
     vnext=[{"candidate_id":f"vnext-{i+1:03d}","from_capability":c["capability_id"],"status":"pending_human_review"} for i,c in enumerate(caps)]
     proofbundle={"proofbundle_id":"proofbundle-001","status":"created","claim_boundary":CLAIM_SHORT}
     evidence_docket={"docket_id":"docket-001","status":"created","claim_boundary":CLAIM_SHORT,"human_review_required":True}
-    cycle={"schema_version":"agialpha.recursive_cycle.v1","cycle_id":"recursive-cycle-001","cycle_index":len(_jread(pathlib.Path(registry)/'cycles.json',[])),"generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"repository":"MontrealAI/agialpha-first-real-loop","commit_sha":_resolve_commit_sha(repo_root),'status':'success','substrate_layers':{"agents":True,"jobs":True,"validators":True,"memory":True,"governance":True,"settlement":True,"recursive_improvement":True,"human_governed_promotion":True},"open_ended_loop":{"insights_generated":len(insights),"nova_seeds_generated":len(seeds),"jobs_generated":len(jobs),"validators_generated":len(validators),"capabilities_archived":len(caps),"vnext_candidates_generated":len(vnext)},"proof_loop":{"proofbundles_created":1,"evidence_dockets_created":1,"replay_reports_created":"pending","falsification_reports_created":"pending"},"governance_loop":{"policy_decisions_created":"pending","human_review_records_created":"pending","promotion_gates_passed":0,"promotion_gates_failed":1},"settlement_loop":{"work_vaults_created":"pending","mark_allocations_created":len(seeds),"sovereign_assignments_created":len(seeds),"utility_settlement_records_created":len(jobs)},"metrics":{"recursive_substrate_readiness_score":"pending","open_ended_discovery_score":"pending","proof_density_score":"pending","memory_reuse_score":"pending","vnext_compounding_score":"pending","human_governance_integrity":"pending"},"hard_safety_counters":{"raw_secret_leak_count":0,"external_target_scan_count":0,"exploit_execution_count":0,"malware_generation_count":0,"social_engineering_content_count":0,"unsafe_automerge_count":0,"critical_safety_incidents":0},"claim_boundary":CLAIM_FULL}
+    cycle_index=len(_jread(pathlib.Path(registry)/'cycles.json',[]))
+    cycle_id=f"recursive-cycle-{cycle_index+1:03d}"
+    cycle={"schema_version":"agialpha.recursive_cycle.v1","cycle_id":cycle_id,"cycle_index":cycle_index,"generated_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"repository":"MontrealAI/agialpha-first-real-loop","commit_sha":_resolve_commit_sha(repo_root),'status':'success','substrate_layers':{"agents":True,"jobs":True,"validators":True,"memory":True,"governance":True,"settlement":True,"recursive_improvement":True,"human_governed_promotion":True},"open_ended_loop":{"insights_generated":len(insights),"nova_seeds_generated":len(seeds),"jobs_generated":len(jobs),"validators_generated":len(validators),"capabilities_archived":len(caps),"vnext_candidates_generated":len(vnext)},"proof_loop":{"proofbundles_created":1,"evidence_dockets_created":1,"replay_reports_created":"pending","falsification_reports_created":"pending"},"governance_loop":{"policy_decisions_created":"pending","human_review_records_created":"pending","promotion_gates_passed":0,"promotion_gates_failed":1},"settlement_loop":{"work_vaults_created":"pending","mark_allocations_created":len(seeds),"sovereign_assignments_created":len(seeds),"utility_settlement_records_created":len(jobs)},"metrics":{"recursive_substrate_readiness_score":"pending","open_ended_discovery_score":"pending","proof_density_score":"pending","memory_reuse_score":"pending","vnext_compounding_score":"pending","human_governance_integrity":"pending"},"hard_safety_counters":{"raw_secret_leak_count":0,"external_target_scan_count":0,"exploit_execution_count":0,"malware_generation_count":0,"social_engineering_content_count":0,"unsafe_automerge_count":0,"critical_safety_incidents":0},"claim_boundary":CLAIM_FULL}
     _jwrite(outp/'08_proofbundles/proofbundle.json',proofbundle)
     _jwrite(outp/'09_evidence_dockets/00_manifest.json',evidence_docket)
     _jwrite(outp/'02_insights/insights.json',insights); _jwrite(outp/'03_nova_seeds/nova_seeds.json',seeds)
@@ -98,6 +100,28 @@ def _falsification_scan(run_dir):
         "claim_boundary": CLAIM_SHORT,
     }
 
+
+
+def ai_improves_ai(repo_root, registry, out, candidate_mechanisms, heldout_fixtures):
+    outp = pathlib.Path(out); outp.mkdir(parents=True, exist_ok=True)
+    mechanisms=[{"candidate_id":f"candidate-{i+1:03d}","status":"proposed","human_review_required":True} for i in range(candidate_mechanisms)]
+    lock={"locked":True,"locked_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"candidate_hashes":[f"hash-{i+1:03d}" for i in range(candidate_mechanisms)],"claim_boundary":CLAIM_SHORT}
+    fixtures=[{"fixture_id":f"heldout-{i+1:03d}","generated_after_lock":True} for i in range(heldout_fixtures)]
+    _jwrite(outp/'incumbent_manifest.json', {"status":"captured","claim_boundary":CLAIM_SHORT})
+    _jwrite(outp/'candidate_mechanisms/mechanisms.json', mechanisms)
+    _jwrite(outp/'candidate_lock.json', lock)
+    _jwrite(outp/'heldout_fixtures.json', fixtures)
+    _jwrite(outp/'evaluation_results.json', {"candidate_beats_incumbent":"pending","claim_boundary":CLAIM_SHORT})
+    _jwrite(outp/'candidate_vs_incumbent.json', {"candidate_advantage_delta":"pending","claim_boundary":CLAIM_SHORT})
+    _jwrite(outp/'scientific_method_report.json', {"protocol":"lock_then_heldout","claim_boundary":CLAIM_SHORT})
+    _jwrite(outp/'replay_report.json', {"status":"pending","claim_boundary":CLAIM_SHORT})
+    _jwrite(outp/'falsification_audit.json', {"status":"pending","claim_boundary":CLAIM_SHORT})
+    (outp/'promotion_dossier.md').write_text('# Promotion Dossier\n\nPending human review.\n')
+    _jwrite(outp/'safe_pr_plan.json', {"autopersist":False,"auto_merge":False,"claim_boundary":CLAIM_SHORT})
+    reg=pathlib.Path(registry); reg.mkdir(parents=True, exist_ok=True)
+    _append_registry(reg,'vnext.json',[{"candidate_id":"ai-improves-ai","status":"pending_human_review","claim_boundary":CLAIM_SHORT}])
+    return {"candidates":candidate_mechanisms,"fixtures":heldout_fixtures}
+
 def main(argv=None):
     ap=argparse.ArgumentParser(); sp=ap.add_subparsers(dest='cmd',required=True)
     d=sp.add_parser('discover'); d.add_argument('--repo-root',required=True); d.add_argument('--registry',required=True)
@@ -108,6 +132,7 @@ def main(argv=None):
     bd=sp.add_parser('build-data'); bd.add_argument('--registry',required=True); bd.add_argument('--out',required=True)
     rr=sp.add_parser('render'); rr.add_argument('--registry',required=True); rr.add_argument('--out',required=True)
     em=sp.add_parser('emit-manifest'); em.add_argument('--input',required=True); em.add_argument('--out',required=True)
+    ai=sp.add_parser('ai-improves-ai'); ai.add_argument('--repo-root',required=True); ai.add_argument('--registry',required=True); ai.add_argument('--out',required=True); ai.add_argument('--candidate-mechanisms',type=int,default=6); ai.add_argument('--heldout-fixtures',type=int,default=8)
     a=ap.parse_args(argv)
     if a.cmd=='discover': discover(a.repo_root,a.registry)
     elif a.cmd=='run-cycle': run_cycle(a.repo_root,a.registry,a.out,a.candidate_seeds,a.evaluate_seeds)
@@ -141,4 +166,5 @@ def main(argv=None):
     elif a.cmd=='render':
         out=pathlib.Path(a.out); out.mkdir(parents=True,exist_ok=True); _jwrite(out/'index.json',{"status":"generated","claim_boundary":CLAIM_SHORT})
     elif a.cmd=='emit-manifest': _jwrite(a.out,{"input":a.input,"claim_boundary":CLAIM_SHORT})
+    elif a.cmd=='ai-improves-ai': ai_improves_ai(a.repo_root,a.registry,a.out,a.candidate_mechanisms,a.heldout_fixtures)
     return 0
