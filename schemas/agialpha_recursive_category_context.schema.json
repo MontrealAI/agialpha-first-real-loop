@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montrealai.github.io/agialpha-first-real-loop/schemas/agialpha_recursive_category_context.schema.json",
+  "title": "AGI ALPHA Recursive Category Context",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "category",
+    "external_context_summary",
+    "reference_families",
+    "agialpha_original_position",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "agialpha.recursive_category_context.v1"},
+    "category": {"type": "string", "minLength": 1},
+    "external_context_summary": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 1
+    },
+    "reference_families": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 1
+    },
+    "agialpha_original_position": {"type": "string", "minLength": 1},
+    "claim_boundary": {"type": "string", "minLength": 1}
+  }
+}
