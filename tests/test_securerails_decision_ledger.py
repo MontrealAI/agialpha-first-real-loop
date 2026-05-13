@@ -92,3 +92,13 @@ class T(unittest.TestCase):
     (reg/'registry.json').write_text(json.dumps(reg_data), encoding='utf-8')
     errs=validate_ledger(reg)
     self.assertTrue(any('invalid source decision id' in e for e in errs))
+  def test_gate_rejects_non_promotable_decision(self):
+    reg=Path('tests/tmp_review_registry_non_promotable');
+    if reg.exists(): shutil.rmtree(reg)
+    update_ledger(Path('tests/fixtures/securerails_human_review/valid_request.json'), reg)
+    update_ledger(Path('tests/fixtures/securerails_human_review/valid_decision_reject.json'), reg)
+    gate=json.loads(Path('tests/fixtures/securerails_human_review/valid_promotion_gate_pass.json').read_text())
+    gate['source_decision_id'] = 'sr-review-decision-2026-0001'
+    p_gate=Path('tests/tmp_gate_non_promotable.json'); p_gate.write_text(json.dumps(gate), encoding='utf-8')
+    with self.assertRaises(ValueError):
+      update_ledger(p_gate, reg)

@@ -30,6 +30,12 @@ def _validate_gate_against_decision(gate: dict, decision: dict) -> list[str]:
     evidence = decision.get('evidence_reviewed', {})
     counters = decision.get('hard_safety_counters', {})
     promotion = decision.get('promotion', {})
+    if promotion.get('promotion_allowed') is not True:
+        errs.append('gate/decision mismatch: promotion_allowed')
+    gate_target = gate.get('promotion_target')
+    decision_target = promotion.get('promotion_target')
+    if isinstance(gate_target, str) and gate_target and decision_target not in {gate_target, 'none'}:
+        errs.append('gate/decision mismatch: promotion_target')
     if cond.get('proofbundle_present') is True and evidence.get('proofbundle_reviewed') is not True:
         errs.append('gate/decision mismatch: proofbundle_present')
     if cond.get('evidence_docket_present') is True and evidence.get('evidence_docket_reviewed') is not True:

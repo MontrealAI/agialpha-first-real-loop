@@ -8,7 +8,9 @@ PROMOTION_TARGETS = {"safe_pr", "capability_archive", "release", "policy_update"
 def validate_promotion_gate(record: dict) -> list[str]:
     errs=[]
     if record.get("schema_version")!="securerails.promotion_gate.v1": errs.append("invalid schema_version")
-    if not str(record.get("source_decision_id", "")).strip(): errs.append("source_decision_id required")
+    source_decision_id = record.get("source_decision_id")
+    if not isinstance(source_decision_id, str) or not source_decision_id.strip():
+        errs.append("source_decision_id required")
     if record.get("promotion_target") not in PROMOTION_TARGETS: errs.append("invalid promotion_target")
     cond=record.get("required_conditions",{})
     if cond.get("human_review_decision_present") is not True: errs.append("human_review_decision_present must be true")
