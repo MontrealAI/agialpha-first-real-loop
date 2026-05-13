@@ -7,6 +7,7 @@ TARGETS={"none","safe_pr","capability_archive","release","policy_update","custom
 def validate_review_decision(record: dict) -> list[str]:
     errs=[]
     if record.get("schema_version")!="securerails.human_review_decision.v1": errs.append("invalid schema_version")
+    if not isinstance(record.get("decision_id"), str) or not record.get("decision_id", "").strip(): errs.append("decision_id required")
     if record.get("decision") not in DECISIONS: errs.append("invalid decision")
     if not str(record.get("decision_summary"," ")).strip(): errs.append("decision_summary required")
     if not str(record.get("claim_boundary"," ")).strip(): errs.append("claim_boundary required")

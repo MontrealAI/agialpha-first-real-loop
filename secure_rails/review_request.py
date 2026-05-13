@@ -8,6 +8,7 @@ RISK_TIERS={"low","medium","high","critical"}
 def validate_review_request(record: dict) -> list[str]:
     errs=[]
     if record.get("schema_version")!="securerails.human_review_request.v1": errs.append("invalid schema_version")
+    if not isinstance(record.get("review_request_id"), str) or not record.get("review_request_id", "").strip(): errs.append("review_request_id required")
     if record.get("request_type") not in REQUEST_TYPES: errs.append("invalid request_type")
     if record.get("requested_decision") not in REQUESTED_DECISIONS: errs.append("invalid requested_decision")
     if record.get("risk_tier") not in RISK_TIERS: errs.append("invalid risk_tier")
