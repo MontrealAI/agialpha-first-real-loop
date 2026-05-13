@@ -393,5 +393,665 @@
     "candidate_id": "ai-improves-ai",
     "status": "pending_human_review",
     "claim_boundary": "local bounded recursive substrate evidence"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-001",
+    "from_capability": "cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-002",
+    "from_capability": "cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-003",
+    "from_capability": "cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-004",
+    "from_capability": "cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-005",
+    "from_capability": "cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "vnext-006",
+    "from_capability": "cap-006",
+    "status": "pending_human_review"
   }
 ]
