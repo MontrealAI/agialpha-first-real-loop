@@ -1,0 +1,58 @@
+name: SecureRails Human Review Request
+labels: [securerails, human-review, needs-decision]
+description: Request a structured human review decision for SecureRails promotion.
+body:
+  - type: markdown
+    attributes:
+      value: "**Warning:** Do not include secrets, personal data, exploit steps, or confidential customer information in this issue."
+  - type: dropdown
+    id: review_type
+    attributes: {label: Review type, options: [work_vault, safe_pr, policy_decision, customer_pilot, release_candidate, repo_security_baseline, trust_center, generic]}
+  - type: input
+    id: work_vault_id
+    attributes: {label: Work Vault ID}
+  - type: input
+    id: evidence_docket_id
+    attributes: {label: Evidence Docket ID}
+  - type: input
+    id: proofbundle_id
+    attributes: {label: ProofBundle ID}
+  - type: input
+    id: policy_decision_id
+    attributes: {label: Policy Decision ID}
+  - type: input
+    id: pr_url
+    attributes: {label: PR URL}
+  - type: input
+    id: artifact_url
+    attributes: {label: Artifact URL}
+  - type: dropdown
+    id: requested_decision
+    attributes: {label: Requested decision, options: [accept, reject, escalate, request_changes, archive_only]}
+  - type: dropdown
+    id: risk_tier
+    attributes: {label: Risk tier, options: [low, medium, high, critical]}
+  - type: input
+    id: human_reviewer
+    attributes: {label: Human reviewer}
+  - type: checkboxes
+    id: evidence_reviewed
+    attributes:
+      label: Evidence reviewed checklist
+      options:
+        - label: ProofBundle reviewed
+        - label: Evidence Docket reviewed
+        - label: Safety ledger reviewed
+        - label: Claim boundary reviewed
+  - type: dropdown
+    id: safety_zero
+    attributes: {label: Safety counters zero?, options: [yes, no]}
+  - type: dropdown
+    id: claim_boundary
+    attributes: {label: Claim boundary preserved?, options: [yes, no]}
+  - type: dropdown
+    id: promotion_target
+    attributes: {label: Promotion target, options: [safe_pr, capability_archive, release, policy_update, customer_pilot_status, none]}
+  - type: textarea
+    id: notes
+    attributes: {label: Notes}
