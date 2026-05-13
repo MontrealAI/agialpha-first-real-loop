@@ -7,6 +7,7 @@
   "required": [
     "schema_version",
     "references",
+    "label",
     "claim_boundary"
   ],
   "properties": {
@@ -51,6 +52,10 @@
       }
     },
     "usage_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "label": {
       "type": "string",
       "minLength": 1
     },

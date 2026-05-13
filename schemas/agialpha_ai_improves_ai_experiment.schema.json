@@ -19,10 +19,16 @@
     "candidate_lock": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["locked", "lock_hash"],
+      "required": ["locked"],
       "properties": {
         "locked": {"type": "boolean"},
-        "lock_hash": {"type": "string", "minLength": 1}
+        "lock_hash": {"type": "string", "minLength": 1},
+        "locked_at": {"type": "string", "minLength": 1},
+        "candidate_hashes": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "claim_boundary": {"type": "string", "minLength": 1}
       }
     },
     "heldout_fixtures_generated_after_lock": {"type": "boolean"},
