@@ -162,3 +162,8 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 - SecureRails Human Review Console 001: human-governed promotion, decision ledger, manual merge required, no auto-merge.
 
 | `securerails-human-review-console-001.yml` | SecureRails | `pull_request`, `workflow_dispatch`, `schedule` | Human review request/decision/gate validation artifacts and generated summary JSON | Human-governed promotion only; manual merge required; read-only workflow permissions; no direct Pages deploy. | no |
+
+| `agialpha-recursive-substrate-001-lifecycle.yml` | Core | `workflow_dispatch`, `schedule` | Recursive substrate run artifacts, replay, falsification, build-data outputs. | Local bounded recursive substrate evidence only; no auto-merge; no direct Pages deploy. | no |
+| `agialpha-recursive-substrate-001-replay.yml` | Core | `workflow_dispatch`, `schedule` | Replay report artifacts. | Evidence replay only; no claim promotion. | no |
+| `agialpha-recursive-substrate-001-falsification-audit.yml` | Core | `workflow_dispatch`, `schedule` | Falsification audit artifacts. | Overclaim/no-automerge checks only; no direct Pages deploy. | no |
+| `agialpha-recursive-substrate-001-vnext.yml` | Core | `workflow_dispatch`, `schedule` | vNext candidate artifacts. | Human-governed promotion required; no persistence without review. | no |
