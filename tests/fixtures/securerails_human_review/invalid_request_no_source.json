@@ -1,0 +1,23 @@
+{
+  "schema_version": "securerails.human_review_request.v1",
+  "review_request_id": "sr-review-request-2026-0001",
+  "requested_at": "2026-05-12T00:00:00Z",
+  "request_type": "safe_pr",
+  "repository": "MontrealAI/agialpha-first-real-loop",
+  "source": {
+    "work_vault_id": null,
+    "mark_allocation_id": null,
+    "sovereign_id": null,
+    "proofbundle_id": null,
+    "evidence_docket_id": null,
+    "policy_decision_id": null,
+    "pull_request_url": null,
+    "artifact_url": null
+  },
+  "requested_decision": "accept",
+  "review_reason": "Safe remediation proposal review",
+  "risk_tier": "medium",
+  "human_review_required": true,
+  "auto_merge_allowed": false,
+  "claim_boundary": "This review request is for human-governed SecureRails promotion. It does not authorize autonomous remediation or certify security."
+}
