@@ -22,7 +22,10 @@ def run_cycle(args):
     write_json(r/'22_reports/ascension_scorecard.json',{"axes":[{"axis_id":"1","axis_name":"Public working artifact","score":"local","max_score":100,"evidence_level":"local",**bfields()}],**bfields()})
 
 def passthrough(args):
-    p=Path(args.run if hasattr(args,'run') else args.out)
+    out = getattr(args, "out", None)
+    run = getattr(args, "run", None)
+    target = out or run or "/tmp/ascension-os-test"
+    p=Path(target)
     write_json(p/f'{args.cmd.replace("-","_")}.json',{"status":"ok",**bfields()})
 
 def build_data(args):
@@ -35,6 +38,6 @@ def main():
     d=sp.add_parser('discover'); d.add_argument('--repo-root', required=True); d.add_argument('--registry', required=True); d.set_defaults(func=discover)
     rc=sp.add_parser('run-cycle'); rc.add_argument('--repo-root', required=True); rc.add_argument('--registry', required=True); rc.add_argument('--out', required=True); rc.add_argument('--candidate-seeds',type=int,default=16); rc.add_argument('--evaluate-seeds',type=int,default=6); rc.set_defaults(func=run_cycle)
     for c in ['run-open-rsi-eval','run-gauntlet','evaluate-archive-reuse','build-scorecard','verified-enterprise-alpha','value-to-capacity','capacity-reinvestment','replay','falsification-audit','validate','emit-manifest']:
-      p=sp.add_parser(c); p.add_argument('--repo-root',default='.'); p.add_argument('--out',default='/tmp/ascension-os-test'); p.add_argument('--run',default='/tmp/ascension-os-test'); p.add_argument('--task-count',type=int,default=0); p.set_defaults(func=passthrough,cmd=c)
+      p=sp.add_parser(c); p.add_argument('--repo-root',default='.'); p.add_argument('--out',default=None); p.add_argument('--run',default=None); p.add_argument('--task-count',type=int,default=0); p.set_defaults(func=passthrough,cmd=c)
     bd=sp.add_parser('build-data'); bd.add_argument('--registry', required=True); bd.add_argument('--out', required=True); bd.set_defaults(func=build_data)
     args=ap.parse_args(); args.func(args)
