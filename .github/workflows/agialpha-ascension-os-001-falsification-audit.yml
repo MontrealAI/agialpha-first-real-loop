@@ -14,4 +14,4 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: python -m agialpha_ascension_os discover --repo-root . --registry ascension_os_registry
+      - run: python -m agialpha_ascension_os falsification-audit --run ascension-os-runs/test
