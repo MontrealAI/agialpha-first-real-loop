@@ -47,6 +47,8 @@ def main():
             m = read_json(manifest)
             m['replay_pass'] = report.get('replay_pass', 'not_reported')
             write_json(manifest, m)
+        if report.get('replay_pass') is False:
+            raise SystemExit(1)
     elif args.cmd == 'falsification-audit':
         run = Path(args.run)
         report = generate_falsification(run, Path(args.out))
@@ -58,7 +60,21 @@ def main():
     elif args.cmd == 'validate':
         run = Path(args.run); assert (run / '03_candidate_lock/candidate_lock.json').exists(); assert (run / '04_heldout_tasks/heldout_tasks.json').exists(); print('valid')
     elif args.cmd == 'build-data':
-        reg = Path(args.registry); init_registry(reg); out = Path(args.out); out.mkdir(parents=True, exist_ok=True); [write_json(out / f, {"claim_boundary": CLAIM_BOUNDARY, "items": []}) for f in ['latest.json', 'runs.json', 'candidates.json', 'heldout_tasks.json', 'evaluations.json', 'summary.json']]
+        reg = Path(args.registry)
+        if not reg.exists():
+            init_registry(reg)
+        out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
+        mapping = {
+            'latest.json': reg / 'latest.json',
+            'runs.json': reg / 'runs.json',
+            'candidates.json': reg / 'candidates.json',
+            'heldout_tasks.json': reg / 'heldout_tasks.json',
+            'evaluations.json': reg / 'evaluations.json',
+        }
+        for name, src in mapping.items():
+            payload = read_json(src) if src.exists() else {"claim_boundary": CLAIM_BOUNDARY, "items": []}
+            write_json(out / name, payload)
+        write_json(out / 'summary.json', {"claim_boundary": CLAIM_BOUNDARY, "source_registry": str(reg), "status": "generated"})
     elif args.cmd == 'emit-manifest':
         run = Path(args.run); write_json(Path(args.out), read_json(run / '00_manifest.json'))
 

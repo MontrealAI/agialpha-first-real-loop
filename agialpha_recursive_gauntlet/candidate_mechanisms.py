@@ -47,6 +47,7 @@ def generate_candidates(run: Path, count: int = 6):
             "claim_boundary_impact": "preserved",
             "safety_impact": "none",
             "utility_token_impact": "utility-only accounting preserved",
+            "claim_boundary": CLAIM_BOUNDARY,
             "candidate_hash": "",
         }
         cand["candidate_hash"] = canonical_candidate_hash(cand, patch)
