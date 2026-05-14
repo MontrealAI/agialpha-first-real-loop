@@ -1,0 +1,34 @@
+name: AGI ALPHA Ascension OS 001
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  ascension_os:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: SecureRails checks
+        run: |
+          python scripts/secure_rails_claim_boundary_check.py .
+          python scripts/secure_rails_no_automerge_check.py .
+      - name: Run cycle
+        run: python -m agialpha_ascension_os run-cycle --repo-root . --registry ascension_os_registry --out ascension-os-runs/test
+      - name: Replay
+        run: python -m agialpha_ascension_os replay --run ascension-os-runs/test
+      - name: Falsification audit
+        run: python -m agialpha_ascension_os falsification-audit --run ascension-os-runs/test
+      - name: Validate
+        run: python -m agialpha_ascension_os validate --run ascension-os-runs/test
+      - name: Build generated data
+        run: python -m agialpha_ascension_os build-data --registry ascension_os_registry --out docs/_generated/ascension-os
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agialpha-ascension-os-001
+          path: |
+            ascension-os-runs/test
+            docs/_generated/ascension-os
