@@ -1,0 +1,12 @@
+name: agialpha-valuation-support-001
+on: {workflow_dispatch: {}, schedule: [{cron: '0 6 * * 1'}]}
+permissions: {contents: read}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m agialpha_ascension_os valuation-support --repo-root . --run /tmp/ascension-os-test --out /tmp/valuation-support-test
+      - run: echo '{"manifest":"evidence-run-manifest"}' > evidence-run-manifest.json
+      - uses: actions/upload-artifact@v4
+        with: {name: agialpha-valuation-support-001, path: evidence-run-manifest.json}

@@ -4,7 +4,6 @@
   "human_review_required": true,
   "no_auto_merge": true,
   "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-  "source": "summary.json",
   "status": "unavailable",
   "token_boundary": "utility-only $AGIALPHA settlement record"
 }

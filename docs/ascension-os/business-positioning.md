@@ -1,1 +1,2 @@
 AGI ALPHA’s business position is not “we claim superintelligence.”
+AGI ALPHA’s business position is governed recursive machine labor, proof-bound AI-agent work, enterprise workflow evidence, replayable artifacts, validator-gated utility settlement records, reusable capability archives, Verified Enterprise Alpha as a directional operational proxy, valuation-support evidence as a diligence artifact, human-reviewed improvement, public evidence infrastructure, and utility-only $AGIALPHA rails.

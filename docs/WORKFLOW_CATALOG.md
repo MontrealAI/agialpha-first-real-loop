@@ -194,3 +194,5 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 | `agialpha-ascension-os-001-vnext.yml` | Core | workflow_dispatch,schedule | Ascension OS vNext candidate artifacts. | Human-governed promotion required; no auto-merge. | no |
 
 | `agialpha-self-improvement-gauntlet-001.yml` | Core | workflow_dispatch,schedule | Self-improvement gauntlet run artifacts. | Human review required; no autonomous persistence. | no |
+
+| `agialpha-valuation-support-001.yml` | Core | workflow_dispatch,schedule | Valuation support dossier artifacts + evidence-run-manifest.json. | Non-promissory evidence only; human review required; no direct Pages deploy. | no |
