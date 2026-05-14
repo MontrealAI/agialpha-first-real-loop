@@ -40,9 +40,21 @@ def main():
         status = generate_promotion(run, beats is True)
         m = read_json(run / '00_manifest.json'); m['status'] = 'success'; m['candidate_beats_incumbent'] = beats; m['candidate_advantage_delta'] = delta; m['promotion_status'] = status; write_json(run / '00_manifest.json', m); render_scoreboard(run, m)
     elif args.cmd == 'replay':
-        generate_replay(Path(args.run), Path(args.out))
+        run = Path(args.run)
+        report = generate_replay(run, Path(args.out))
+        manifest = run / '00_manifest.json'
+        if manifest.exists():
+            m = read_json(manifest)
+            m['replay_pass'] = report.get('replay_pass', 'not_reported')
+            write_json(manifest, m)
     elif args.cmd == 'falsification-audit':
-        generate_falsification(Path(args.run), Path(args.out))
+        run = Path(args.run)
+        report = generate_falsification(run, Path(args.out))
+        manifest = run / '00_manifest.json'
+        if manifest.exists():
+            m = read_json(manifest)
+            m['falsification_pass'] = report.get('falsification_pass', 'not_reported')
+            write_json(manifest, m)
     elif args.cmd == 'validate':
         run = Path(args.run); assert (run / '03_candidate_lock/candidate_lock.json').exists(); assert (run / '04_heldout_tasks/heldout_tasks.json').exists(); print('valid')
     elif args.cmd == 'build-data':
