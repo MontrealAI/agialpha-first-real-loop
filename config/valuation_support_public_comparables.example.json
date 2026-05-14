@@ -1,1 +1,10 @@
-{"comparables":"manual_only","external_market_data":"not_reported"}
+{
+  "comparables": [
+    {
+      "name": "Example Comparable A",
+      "reported_category_valuation_comparable": "not_reported",
+      "source": "not_reported",
+      "revenue_proxy": 1
+    }
+  ]
+}

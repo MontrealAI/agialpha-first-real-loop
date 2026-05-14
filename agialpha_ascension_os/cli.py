@@ -10,6 +10,8 @@ def main() -> None:
     rc.add_argument("--repo-root", required=True)
     rc.add_argument("--out", required=True)
     rc.add_argument("--registry", default="ascension_os_registry")
+    rc.add_argument("--candidate-seeds", type=int, default=16)
+    rc.add_argument("--evaluate-seeds", type=int, default=6)
     rc.set_defaults(func=lambda a: core.run_cycle(Path(a.repo_root), Path(a.out), Path(a.registry)))
 
     oe = sp.add_parser("run-open-rsi-eval")
@@ -29,6 +31,23 @@ def main() -> None:
     vs = sp.add_parser("valuation-support")
     vs.add_argument("--repo-root", required=True); vs.add_argument("--run", required=True); vs.add_argument("--out", required=True)
     vs.set_defaults(func=lambda a: core.valuation_support(Path(a.repo_root), Path(a.run), Path(a.out)))
+
+
+    ds = sp.add_parser("discover")
+    ds.add_argument("--repo-root", required=True); ds.add_argument("--registry", required=True)
+    ds.set_defaults(func=lambda a: core.discover(Path(a.repo_root), Path(a.registry)))
+
+    ar = sp.add_parser("evaluate-archive-reuse")
+    ar.add_argument("--repo-root", required=True); ar.add_argument("--run", required=True)
+    ar.set_defaults(func=lambda a: core.evaluate_archive_reuse(Path(a.repo_root), Path(a.run)))
+
+    bs = sp.add_parser("build-scorecard")
+    bs.add_argument("--repo-root", required=True); bs.add_argument("--out", required=True)
+    bs.set_defaults(func=lambda a: core.build_scorecard(Path(a.repo_root), Path(a.out)))
+
+    cr = sp.add_parser("capacity-reinvestment")
+    cr.add_argument("--run", required=True)
+    cr.set_defaults(func=lambda a: core.capacity_reinvestment(Path(a.run)))
 
     rp = sp.add_parser("replay"); rp.add_argument("--run", required=True); rp.set_defaults(func=lambda a: core.replay(Path(a.run)))
     fa = sp.add_parser("falsification-audit"); fa.add_argument("--run", required=True); fa.set_defaults(func=lambda a: core.falsification(Path(a.run)))
