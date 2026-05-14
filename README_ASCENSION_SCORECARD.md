@@ -1,3 +1,3 @@
-# AGI ALPHA Ascension Scorecard and Open RSI Eval
+# README_ASCENSION_SCORECARD.md
 
-local bounded public evidence.
+Local bounded public evidence.

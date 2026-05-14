@@ -1,0 +1,21 @@
+name: AGI ALPHA Ascension OS 001 / Lifecycle
+on:
+  workflow_dispatch:
+    inputs:
+      candidate_seeds: {default: "16", required: false}
+      evaluate_seeds: {default: "6", required: false}
+      task_count: {default: "16", required: false}
+      publish_ascension_tabs: {default: "true", required: false}
+  schedule:
+    - cron: "0 0 * * 0"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m agialpha_ascension_os discover --repo-root . --registry ascension_os_registry
