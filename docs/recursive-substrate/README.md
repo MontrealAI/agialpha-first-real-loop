@@ -23,3 +23,6 @@ SecureRails remains AI-agent security governance and proof-bound defensive remed
 - [Claim boundary](./claim-boundary.md)
 - [Replay guide](./replay-guide.md)
 - [Falsification audit](./falsification-audit.md)
+
+
+See also `docs/recursive-gauntlet/README.md` for proof gauntlet evidence layer.

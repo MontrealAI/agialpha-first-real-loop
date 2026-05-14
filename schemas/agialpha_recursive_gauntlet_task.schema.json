@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "task",
+  "type": "object",
+  "properties": {
+    "claim_boundary": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "claim_boundary"
+  ]
+}
