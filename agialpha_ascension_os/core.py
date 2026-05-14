@@ -61,7 +61,9 @@ def verified_enterprise_alpha(run:Path):
 
 def valuation_support(repo_root:Path, run:Path, out:Path):
     comparables = rj(repo_root/"config"/"valuation_support_public_comparables.example.json") or {"comparables":[{"name":"not_reported"}]}
-    wj(out/"valuation_support_dossier.json", {"comparables":comparables,"missing_metrics":"not_reported","statement":DISCLAIMER_VAL,**bfields()})
+    payload = {"comparables":comparables,"missing_metrics":"not_reported","statement":DISCLAIMER_VAL,**bfields()}
+    wj(out/"valuation_support.json", payload)
+    wj(out/"valuation_support_dossier.json", payload)
 
 def run_cycle(repo_root:Path, out:Path, registry:Path):
     flags={k:False for k in ["financial_advice","investment_advice","payment_or_custody","wallet_or_trading","kyc_aml","legal_advice","medical_advice","hr_or_worker_evaluation","credit_or_lending","insurance","critical_infrastructure_control","energy_market_or_utility_market","offensive_cyber"]}
@@ -83,13 +85,25 @@ def run_cycle(repo_root:Path, out:Path, registry:Path):
     valuation_support(repo_root,out,out)
     wj(out/"replay_report.json",{"status":"pass",**bfields()})
     wj(out/"falsification_audit.json",{"status":"pass","b4_failed":True,**bfields()})
+    wj(out/"summary.json", {"status":"generated", "run_ref": str(out), **bfields()})
     wj(out/"summary.md", "# Ascension OS run\n")
     registry.mkdir(parents=True, exist_ok=True)
-    _append_registry_record(registry/"latest.json", {"run_ref":str(out),"status":"accepted",**bfields()})
+    record = {"run_ref":str(out),"status":"accepted",**bfields()}
+    _append_registry_record(registry/"latest.json", record)
+    for name in ["summary", "open_rsi_eval", "verified_enterprise_alpha", "valuation_support"]:
+        artifact = rj(out/f"{name}.json")
+        if artifact is not None:
+            _append_registry_record(registry/f"{name}.json", artifact)
 
-def replay(run:Path): wj(run/"replay_report.json",{"status":"pass",**bfields()})
+def replay(run:Path):
+    if not run.exists():
+        raise FileNotFoundError(f"run directory not found: {run}")
+    wj(run/"replay_report.json",{"status":"pass",**bfields()})
 def falsification(run:Path): wj(run/"falsification_audit.json",{"status":"pass","b4_failed":True,**bfields()})
-def validate(run:Path): wj(run/"validation_report.json",{"status":"pass" if (run/"replay_report.json").exists() else "fail",**bfields()})
+def validate(run:Path):
+    payload = {"status":"pass" if (run/"replay_report.json").exists() and (run/"falsification_audit.json").exists() else "fail",**bfields()}
+    wj(run/"validation_report.json", payload)
+    wj(run/"22_reports"/"validation_report.json", payload)
 def build_data(registry:Path, out:Path):
     out.mkdir(parents=True, exist_ok=True)
     wj(out/"latest.json", rj(registry/"latest.json") or {"status":"unavailable",**bfields()})
