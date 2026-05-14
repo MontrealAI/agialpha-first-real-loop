@@ -3,7 +3,7 @@
 Boundary: non-promissory implementation-side evidence packaging only.
 """
 
-from .core import bfields, DISCLAIMER
+from .boundaries import bfields, DISCLAIMER
 
 
 def build_investor_diligence_pack() -> dict:

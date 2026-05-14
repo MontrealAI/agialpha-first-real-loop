@@ -1,6 +1,6 @@
 """Risk and boundary summary artifact helper."""
 
-from .core import bfields
+from .boundaries import bfields
 
 
 def build_risk_boundary() -> dict:

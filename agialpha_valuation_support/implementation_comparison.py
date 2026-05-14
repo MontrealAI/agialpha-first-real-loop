@@ -1,6 +1,6 @@
 """Implementation-side comparison record builder."""
 
-from .core import bfields
+from .boundaries import bfields
 
 
 def build_implementation_comparison(ascension_registry: str) -> dict:

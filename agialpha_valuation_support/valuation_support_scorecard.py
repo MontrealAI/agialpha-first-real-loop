@@ -1,6 +1,6 @@
 """Valuation-support readiness scorecard helpers."""
 
-from .core import bfields
+from .boundaries import bfields
 
 
 def build_scorecard() -> dict:

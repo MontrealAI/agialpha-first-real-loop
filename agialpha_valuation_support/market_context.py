@@ -3,7 +3,7 @@
 Boundary: documentation-only scenario analysis; no valuation or investment claims.
 """
 
-from .core import bfields
+from .boundaries import bfields
 
 
 def build_market_context(comparables_count: int) -> dict:
