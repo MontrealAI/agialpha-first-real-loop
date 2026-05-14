@@ -2458,5 +2458,365 @@
     "capability_id": "recursive-cycle-084-cap-006",
     "job_id": "recursive-cycle-084-job-006",
     "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-085-cap-001",
+    "job_id": "recursive-cycle-085-job-001",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-085-cap-002",
+    "job_id": "recursive-cycle-085-job-002",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-085-cap-003",
+    "job_id": "recursive-cycle-085-job-003",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-085-cap-004",
+    "job_id": "recursive-cycle-085-job-004",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-085-cap-005",
+    "job_id": "recursive-cycle-085-job-005",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-085-cap-006",
+    "job_id": "recursive-cycle-085-job-006",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-086-cap-001",
+    "job_id": "recursive-cycle-086-job-001",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-086-cap-002",
+    "job_id": "recursive-cycle-086-job-002",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-086-cap-003",
+    "job_id": "recursive-cycle-086-job-003",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-086-cap-004",
+    "job_id": "recursive-cycle-086-job-004",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-086-cap-005",
+    "job_id": "recursive-cycle-086-job-005",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-086-cap-006",
+    "job_id": "recursive-cycle-086-job-006",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-087-cap-001",
+    "job_id": "recursive-cycle-087-job-001",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-087-cap-002",
+    "job_id": "recursive-cycle-087-job-002",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-087-cap-003",
+    "job_id": "recursive-cycle-087-job-003",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-087-cap-004",
+    "job_id": "recursive-cycle-087-job-004",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-087-cap-005",
+    "job_id": "recursive-cycle-087-job-005",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-087-cap-006",
+    "job_id": "recursive-cycle-087-job-006",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-088-cap-001",
+    "job_id": "recursive-cycle-088-job-001",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-088-cap-002",
+    "job_id": "recursive-cycle-088-job-002",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-088-cap-003",
+    "job_id": "recursive-cycle-088-job-003",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-088-cap-004",
+    "job_id": "recursive-cycle-088-job-004",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-088-cap-005",
+    "job_id": "recursive-cycle-088-job-005",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-088-cap-006",
+    "job_id": "recursive-cycle-088-job-006",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-089-cap-001",
+    "job_id": "recursive-cycle-089-job-001",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-089-cap-002",
+    "job_id": "recursive-cycle-089-job-002",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-089-cap-003",
+    "job_id": "recursive-cycle-089-job-003",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-089-cap-004",
+    "job_id": "recursive-cycle-089-job-004",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-089-cap-005",
+    "job_id": "recursive-cycle-089-job-005",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-089-cap-006",
+    "job_id": "recursive-cycle-089-job-006",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-090-cap-001",
+    "job_id": "recursive-cycle-090-job-001",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-090-cap-002",
+    "job_id": "recursive-cycle-090-job-002",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-090-cap-003",
+    "job_id": "recursive-cycle-090-job-003",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-090-cap-004",
+    "job_id": "recursive-cycle-090-job-004",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-090-cap-005",
+    "job_id": "recursive-cycle-090-job-005",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-090-cap-006",
+    "job_id": "recursive-cycle-090-job-006",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-091-cap-001",
+    "job_id": "recursive-cycle-091-job-001",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-091-cap-002",
+    "job_id": "recursive-cycle-091-job-002",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-091-cap-003",
+    "job_id": "recursive-cycle-091-job-003",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-091-cap-004",
+    "job_id": "recursive-cycle-091-job-004",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-091-cap-005",
+    "job_id": "recursive-cycle-091-job-005",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-091-cap-006",
+    "job_id": "recursive-cycle-091-job-006",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-092-cap-001",
+    "job_id": "recursive-cycle-092-job-001",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-092-cap-002",
+    "job_id": "recursive-cycle-092-job-002",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-092-cap-003",
+    "job_id": "recursive-cycle-092-job-003",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-092-cap-004",
+    "job_id": "recursive-cycle-092-job-004",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-092-cap-005",
+    "job_id": "recursive-cycle-092-job-005",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-092-cap-006",
+    "job_id": "recursive-cycle-092-job-006",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-093-cap-001",
+    "job_id": "recursive-cycle-093-job-001",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-093-cap-002",
+    "job_id": "recursive-cycle-093-job-002",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-093-cap-003",
+    "job_id": "recursive-cycle-093-job-003",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-093-cap-004",
+    "job_id": "recursive-cycle-093-job-004",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-093-cap-005",
+    "job_id": "recursive-cycle-093-job-005",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-093-cap-006",
+    "job_id": "recursive-cycle-093-job-006",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-094-cap-001",
+    "job_id": "recursive-cycle-094-job-001",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-094-cap-002",
+    "job_id": "recursive-cycle-094-job-002",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-094-cap-003",
+    "job_id": "recursive-cycle-094-job-003",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-094-cap-004",
+    "job_id": "recursive-cycle-094-job-004",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-094-cap-005",
+    "job_id": "recursive-cycle-094-job-005",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-094-cap-006",
+    "job_id": "recursive-cycle-094-job-006",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-095-cap-001",
+    "job_id": "recursive-cycle-095-job-001",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-095-cap-002",
+    "job_id": "recursive-cycle-095-job-002",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-095-cap-003",
+    "job_id": "recursive-cycle-095-job-003",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-095-cap-004",
+    "job_id": "recursive-cycle-095-job-004",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-095-cap-005",
+    "job_id": "recursive-cycle-095-job-005",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-095-cap-006",
+    "job_id": "recursive-cycle-095-job-006",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-096-cap-001",
+    "job_id": "recursive-cycle-096-job-001",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-096-cap-002",
+    "job_id": "recursive-cycle-096-job-002",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-096-cap-003",
+    "job_id": "recursive-cycle-096-job-003",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-096-cap-004",
+    "job_id": "recursive-cycle-096-job-004",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-096-cap-005",
+    "job_id": "recursive-cycle-096-job-005",
+    "status": "archived"
+  },
+  {
+    "capability_id": "recursive-cycle-096-cap-006",
+    "job_id": "recursive-cycle-096-job-006",
+    "status": "archived"
   }
 ]
