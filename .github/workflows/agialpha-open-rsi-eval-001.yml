@@ -1,0 +1,11 @@
+name: AGI ALPHA Open RSI Eval 001
+on: {workflow_dispatch: {}, schedule: [{cron: '0 11 * * 1'}]}
+permissions: {contents: read, actions: read}
+jobs:
+  open-rsi-eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m agialpha_ascension_scorecard run-open-rsi-eval --repo-root . --out ascension-scorecard-runs/latest --task-count 16

@@ -124,3 +124,5 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/secu
 
 ## AGI ALPHA Recursive Proof Gauntlet
 See `README_RECURSIVE_GAUNTLET.md` and `docs/recursive-gauntlet/README.md`.
+
+- Ascension Scorecard docs: [docs/ascension-scorecard/README.md](docs/ascension-scorecard/README.md)

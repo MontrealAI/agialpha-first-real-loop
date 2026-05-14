@@ -1,0 +1,32 @@
+name: AGI ALPHA Ascension Scorecard 001 / Lifecycle
+on:
+  workflow_dispatch:
+    inputs:
+      task_count:
+        default: "16"
+      publish_ascension_tab:
+        default: "true"
+  schedule:
+    - cron: '0 8 * * 1'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  lifecycle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python -m agialpha_ascension_scorecard build-scorecard --repo-root . --out ascension-scorecard-runs/latest
+      - run: python -m agialpha_ascension_scorecard run-open-rsi-eval --repo-root . --out ascension-scorecard-runs/latest --task-count ${{ inputs.task_count || '16' }}
+      - run: python -m agialpha_ascension_scorecard evaluate-archive-reuse --repo-root . --run ascension-scorecard-runs/latest
+      - run: python -m agialpha_ascension_scorecard value-to-capacity --run ascension-scorecard-runs/latest
+      - run: python -m agialpha_ascension_scorecard replay --run ascension-scorecard-runs/latest
+      - run: python -m agialpha_ascension_scorecard falsification-audit --run ascension-scorecard-runs/latest
+      - run: python -m agialpha_ascension_scorecard validate --run ascension-scorecard-runs/latest
+      - run: python -m agialpha_ascension_scorecard emit-manifest --run ascension-scorecard-runs/latest --out ascension-scorecard-runs/latest/evidence-run-manifest.json
+      - run: python -m agialpha_ascension_scorecard build-data --registry ascension_scorecard_registry --out docs/_generated/ascension-scorecard
+      - uses: actions/upload-artifact@v4
+        with: {name: agialpha-ascension-scorecard-001, path: ascension-scorecard-runs/latest}

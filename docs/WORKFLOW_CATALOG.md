@@ -179,3 +179,8 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 `agialpha-recursive-proof-gauntlet-001-replay.yml`
 `agialpha-recursive-proof-gauntlet-001-falsification-audit.yml`
 `agialpha-recursive-proof-gauntlet-001-safe-pr.yml`
+
+| `agialpha-ascension-scorecard-001-lifecycle.yml` | Core | `workflow_dispatch`, `schedule` | Ascension scorecard lifecycle artifact bundle. | Local bounded public evidence only; no direct Pages deploy; no auto-merge. | no |
+| `agialpha-ascension-scorecard-001-replay.yml` | Core | `workflow_dispatch`, `schedule` | Replay report artifacts for ascension runs. | Replay-only evidence. | no |
+| `agialpha-ascension-scorecard-001-falsification-audit.yml` | Core | `workflow_dispatch`, `schedule` | Falsification audit artifacts for ascension runs. | Claim-boundary enforcement only. | no |
+| `agialpha-open-rsi-eval-001.yml` | Core | `workflow_dispatch`, `schedule` | Open RSI Eval artifacts (B0-B7 ladder, B6/B5 status). | Human review required before persistence. | no |

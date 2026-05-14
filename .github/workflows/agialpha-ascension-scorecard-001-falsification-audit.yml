@@ -1,0 +1,11 @@
+name: AGI ALPHA Ascension Scorecard 001 / Falsification Audit
+on: {workflow_dispatch: {}, schedule: [{cron: '0 10 * * 1'}]}
+permissions: {contents: read, actions: read}
+jobs:
+  falsification:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m agialpha_ascension_scorecard falsification-audit --run ascension-scorecard-runs/latest
