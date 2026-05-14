@@ -22,7 +22,7 @@ def build(repo_root:Path, ascension_registry:Path, comparables:Path, out:Path, r
         else:
             row["scenario_multiples"]={str(m):m*float(c.get("revenue_proxy",1)) for m in [10,20,30,50]}
         market.append(row)
-    manifest={"run_id":hashlib.sha256(str(out).encode()).hexdigest()[:12],"statement":DISCLAIMER,**bfields()}
+    manifest={"run_id":hashlib.sha256(str(out).encode()).hexdigest()[:12],"run_ref":str(out),"statement":DISCLAIMER,**bfields()}
     wj(out/"00_manifest.json",manifest)
     wj(out/"01_market_context.json", build_market_context(len(entries)))
     wj(out/"02_implementation_side_comparison.json", build_implementation_comparison(str(ascension_registry)))
@@ -38,6 +38,7 @@ def build(repo_root:Path, ascension_registry:Path, comparables:Path, out:Path, r
     registry.mkdir(parents=True, exist_ok=True)
     wj(registry/"latest.json", manifest)
     wj(registry/"registry.json", {"records":[manifest]})
+    wj(registry/"runs"/manifest["run_id"]/"00_manifest.json", manifest)
 
 def validate(run:Path):
     req=["00_manifest.json","03_market_equivalence_sensitivity.json","09_not_an_investment_claim.md"]
@@ -49,7 +50,7 @@ def build_data(registry:Path, out:Path):
     latest=rj(registry/"latest.json")
     wj(out/"latest.json", latest or {"status":"unavailable",**bfields()})
     wj(out/"summary.json", {"statement":DISCLAIMER,**bfields()})
-    mapping={"implementation_comparison":"02_implementation_side_comparison.json","market_equivalence_sensitivity":"03_market_equivalence_sensitivity.json","commercial_readiness":"04_commercial_readiness.json","moat_assessment":"05_moat_assessment.json","risk_boundary":"06_risk_boundary.json"}
-    run=Path("valuation_support_registry/runs/test")
+    mapping={"implementation_comparison":"02_implementation_side_comparison.json","valuation_support_scorecard":"10_valuation_support_scorecard.json","market_equivalence_sensitivity":"03_market_equivalence_sensitivity.json","commercial_readiness":"04_commercial_readiness.json","moat_assessment":"05_moat_assessment.json","risk_boundary":"06_risk_boundary.json"}
+    run=Path((latest or {}).get("run_ref","valuation_support_registry/runs/test"))
     for n,src in mapping.items():
         wj(out/f"{n}.json", rj(run/src) if (run/src).exists() else {"status":"not_reported",**bfields()})
