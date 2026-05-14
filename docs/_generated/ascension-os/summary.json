@@ -1,9 +1,23 @@
 {
   "autonomous_persistence_allowed": false,
   "claim_boundary": "local bounded public evidence",
+  "generated_from": "ascension_os_registry",
   "human_review_required": true,
-  "name": "summary",
   "no_auto_merge": true,
+  "outputs": [
+    "archive_reuse",
+    "capabilities",
+    "capacity_reinvestment",
+    "cycles",
+    "enterprise_intakes",
+    "latest",
+    "open_rsi_eval_runs",
+    "regulated_boundary_triage",
+    "scorecards",
+    "self_improvement_gauntlet_runs",
+    "value_to_capacity",
+    "verified_enterprise_alpha"
+  ],
   "regulated_boundary": "regulated-boundary-safe documentation-only automation",
   "token_boundary": "utility-only $AGIALPHA settlement record"
 }
