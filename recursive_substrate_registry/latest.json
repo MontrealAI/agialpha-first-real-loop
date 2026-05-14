@@ -1,10 +1,10 @@
 {
   "schema_version": "agialpha.recursive_cycle.v1",
-  "cycle_id": "recursive-cycle-084",
-  "cycle_index": 83,
-  "generated_at": "2026-05-14T00:34:06.867434+00:00",
+  "cycle_id": "recursive-cycle-096",
+  "cycle_index": 95,
+  "generated_at": "2026-05-14T04:31:48.719649+00:00",
   "repository": "MontrealAI/agialpha-first-real-loop",
-  "commit_sha": "e43c1b53676e2d9dfb20a497c7b58cb68a9ca946",
+  "commit_sha": "317e0f580ecebb5c82389f67cd5b3d0cf0abc742",
   "status": "success",
   "substrate_layers": {
     "agents": true,
