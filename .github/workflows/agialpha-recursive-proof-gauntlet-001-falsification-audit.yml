@@ -1,0 +1,15 @@
+name: AGI ALPHA Recursive Proof Gauntlet 001 / falsification-audit
+on: {workflow_dispatch: {}}
+permissions: {contents: read, actions: read}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m agialpha_recursive_gauntlet generate-candidates --repo-root . --out recursive-gauntlet-runs/test
+      - run: python -m agialpha_recursive_gauntlet lock-candidates --run recursive-gauntlet-runs/test
+      - run: python -m agialpha_recursive_gauntlet generate-heldout --run recursive-gauntlet-runs/test --task-count 16
+      - run: python -m agialpha_recursive_gauntlet evaluate --repo-root . --run recursive-gauntlet-runs/test
+      - run: python -m agialpha_recursive_gauntlet falsification-audit --run recursive-gauntlet-runs/test --out recursive-gauntlet-runs/test/10_falsification/falsification_audit.json
