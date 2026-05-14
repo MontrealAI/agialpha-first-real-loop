@@ -126,3 +126,6 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/secu
 See `README_RECURSIVE_GAUNTLET.md` and `docs/recursive-gauntlet/README.md`.
 
 - Ascension Scorecard docs: [docs/ascension-scorecard/README.md](docs/ascension-scorecard/README.md)
+
+## AGI ALPHA Ascension OS
+Run `python -m agialpha_ascension_os run-cycle --repo-root . --registry ascension_os_registry --out ascension-os-runs/test` for a compact governed recursive machine-labor vertical slice with bounded claims. See [README_ASCENSION_OS.md](README_ASCENSION_OS.md) and [README_VALUATION_SUPPORT.md](README_VALUATION_SUPPORT.md).
