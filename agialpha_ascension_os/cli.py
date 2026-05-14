@@ -68,7 +68,7 @@ def validate_cmd(args):
 def build_data(args):
     out=Path(args.out); out.mkdir(parents=True, exist_ok=True)
     reg=Path(args.registry)
-    mapping={"latest":"latest.json","cycles":"cycles.json","enterprise_intakes":"enterprise_intakes.json","regulated_boundary_triage":"regulated_boundary_triage.json","scorecards":"scorecards.json","open_rsi_eval_runs":"open_rsi_eval_runs.json","self_improvement_gauntlet_runs":"self_improvement_gauntlet_runs.json","archive_reuse":"archive_reuse.json","verified_enterprise_alpha":"verified_enterprise_alpha.json","value_to_capacity":"value_to_capacity.json","capacity_reinvestment":"capacity_reinvestment.json","capabilities":"capabilities.json","summary":"registry.json"}
+    mapping={"latest":"latest.json","cycles":"cycles.json","enterprise_intakes":"enterprise_intakes.json","regulated_boundary_triage":"regulated_boundary_triage.json","scorecards":"scorecards.json","open_rsi_eval_runs":"open_rsi_eval_runs.json","self_improvement_gauntlet_runs":"self_improvement_gauntlet_runs.json","archive_reuse":"archive_reuse.json","verified_enterprise_alpha":"verified_enterprise_alpha.json","value_to_capacity":"value_to_capacity.json","capacity_reinvestment":"capacity_reinvestment.json","capabilities":"capabilities.json","summary":"summary.json"}
     for name,src in mapping.items():
         p=reg/src
         payload=_read_json(p) if p.exists() else {"status":"unavailable","source":src,**bfields()}
