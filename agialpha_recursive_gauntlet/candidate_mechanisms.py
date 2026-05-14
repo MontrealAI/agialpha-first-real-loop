@@ -39,7 +39,7 @@ def generate_candidates(run: Path, count: int = 6):
             "candidate_id": cid,
             "candidate_type": ALLOWED_TYPES[(i - 1) % len(ALLOWED_TYPES)],
             "changed_files": ["docs/recursive-gauntlet/README.md"],
-            "patch_path": str(patch_path.as_posix()),
+            "patch_path": "candidate.patch",
             "rationale": "Improve recursive proof quality",
             "expected_benefit": "higher held-out completeness",
             "expected_risk": "low",

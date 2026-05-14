@@ -16,6 +16,42 @@ def _manifest(run):
     return {"schema_version": "agialpha.recursive_gauntlet.run.v1", "run_id": run.name, "generated_at": now_iso(), "repository": "MontrealAI/agialpha-first-real-loop", "commit_sha": "unknown", "status": "pending", "candidate_mechanisms_generated": 0, "candidate_mechanisms_locked": 0, "heldout_tasks_generated_after_lock": 0, "candidate_beats_incumbent": "not_reported", "candidate_advantage_delta": "not_reported", "replay_pass": "not_reported", "falsification_pass": "not_reported", "promotion_status": "not_started", "hard_safety_counters": {"raw_secret_leak_count": 0, "external_target_scan_count": 0, "exploit_execution_count": 0, "malware_generation_count": 0, "social_engineering_content_count": 0, "unsafe_automerge_count": 0, "critical_safety_incidents": 0}, "claim_boundary": CLAIM_BOUNDARY}
 
 
+
+
+def _ingest_runs_into_registry(reg: Path):
+    runs_root = Path("recursive-gauntlet-runs")
+    runs = read_json(reg / "runs.json") if (reg / "runs.json").exists() else {"claim_boundary": CLAIM_BOUNDARY, "items": []}
+    candidates = read_json(reg / "candidates.json") if (reg / "candidates.json").exists() else {"claim_boundary": CLAIM_BOUNDARY, "items": []}
+    evaluations = read_json(reg / "evaluations.json") if (reg / "evaluations.json").exists() else {"claim_boundary": CLAIM_BOUNDARY, "items": []}
+    heldout = read_json(reg / "heldout_tasks.json") if (reg / "heldout_tasks.json").exists() else {"claim_boundary": CLAIM_BOUNDARY, "items": []}
+
+    seen_runs = {x.get("run_id") for x in runs.get("items", []) if isinstance(x, dict)}
+    if runs_root.exists():
+        for run_dir in sorted(p for p in runs_root.iterdir() if p.is_dir()):
+            manifest = run_dir / "00_manifest.json"
+            if not manifest.exists():
+                continue
+            m = read_json(manifest)
+            run_id = m.get("run_id", run_dir.name)
+            if run_id not in seen_runs:
+                runs.setdefault("items", []).append(m)
+                seen_runs.add(run_id)
+            for cp in sorted((run_dir / "02_candidates").glob("candidate-*/candidate.json")):
+                candidates.setdefault("items", []).append(read_json(cp))
+            ev = run_dir / "05_evaluations/candidate_vs_incumbent.json"
+            if ev.exists():
+                evaluations.setdefault("items", []).append(read_json(ev))
+            ht = run_dir / "04_heldout_tasks/heldout_tasks.json"
+            if ht.exists():
+                heldout.setdefault("items", []).extend(read_json(ht).get("tasks", []))
+
+    write_json(reg / "runs.json", runs)
+    write_json(reg / "candidates.json", candidates)
+    write_json(reg / "evaluations.json", evaluations)
+    write_json(reg / "heldout_tasks.json", heldout)
+    latest = runs.get("items", [])[-1] if runs.get("items") else {"claim_boundary": CLAIM_BOUNDARY, "items": []}
+    write_json(reg / "latest.json", latest if isinstance(latest, dict) else {"claim_boundary": CLAIM_BOUNDARY, "items": []})
+
 def _build_data(reg: Path, out: Path):
     out.mkdir(parents=True, exist_ok=True)
     mapping = {
@@ -85,6 +121,7 @@ def main():
         reg = Path(args.registry)
         if not reg.exists():
             init_registry(reg)
+        _ingest_runs_into_registry(reg)
         _build_data(reg, Path(args.out))
     elif args.cmd == 'emit-manifest':
         run = Path(args.run); write_json(Path(args.out), read_json(run / '00_manifest.json'))

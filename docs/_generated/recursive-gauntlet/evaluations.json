@@ -1,4 +1,12 @@
 {
   "claim_boundary": "AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return.",
-  "items": []
+  "items": [
+    {
+      "best_candidate": "candidate-001",
+      "candidate_beats_incumbent": true,
+      "candidate_advantage_delta": 0.35,
+      "heldout_task_count": 4,
+      "claim_boundary": "AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return."
+    }
+  ]
 }
