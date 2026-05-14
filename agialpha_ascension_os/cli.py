@@ -6,7 +6,7 @@ def _read_json(path):
     return json.loads(Path(path).read_text())
 
 def discover(args):
-    out={"schema_version":"agialpha.ascension.discovery.v1","repo_root":str(Path(args.repo_root).resolve()),**bfields()}
+    out={"schema_version":"agialpha.ascension.discovery.v1","repo_root":args.repo_root,**bfields()}
     write_json(Path(args.registry)/"latest.json",out)
 
 def run_cycle(args):

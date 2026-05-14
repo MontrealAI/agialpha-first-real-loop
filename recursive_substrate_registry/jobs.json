@@ -3382,5 +3382,797 @@
     "seed_id": "seed-006",
     "human_review_required": true,
     "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-097-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-097-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-097-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-097-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-097-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-097-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-098-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-098-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-098-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-098-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-098-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-098-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-099-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-099-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-099-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-099-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-099-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-099-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-100-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-100-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-100-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-100-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-100-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-100-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-101-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-101-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-101-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-101-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-101-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-101-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-102-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-102-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-102-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-102-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-102-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-102-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-103-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-103-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-103-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-103-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-103-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-103-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-104-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-104-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-104-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-104-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-104-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-104-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-105-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-105-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-105-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-105-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-105-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-105-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-106-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-106-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-106-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-106-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-106-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-106-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-107-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-107-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-107-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-107-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-107-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-107-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-108-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-108-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-108-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-108-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-108-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-108-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-109-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-109-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-109-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-109-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-109-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-109-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-110-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-110-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-110-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-110-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-110-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-110-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-111-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-111-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-111-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-111-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-111-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-111-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-112-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-112-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-112-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-112-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-112-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-112-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-113-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-113-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-113-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-113-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-113-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-113-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-114-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-114-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-114-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-114-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-114-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-114-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-115-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-115-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-115-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-115-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-115-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-115-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-116-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-116-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-116-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-116-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-116-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-116-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-117-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-117-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-117-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-117-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-117-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-117-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-118-job-001",
+    "seed_id": "seed-001",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-118-job-002",
+    "seed_id": "seed-002",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-118-job-003",
+    "seed_id": "seed-003",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-118-job-004",
+    "seed_id": "seed-004",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-118-job-005",
+    "seed_id": "seed-005",
+    "human_review_required": true,
+    "status": "completed"
+  },
+  {
+    "job_id": "recursive-cycle-118-job-006",
+    "seed_id": "seed-006",
+    "human_review_required": true,
+    "status": "completed"
   }
 ]
