@@ -11,19 +11,29 @@ ALLOWED_TYPES = [
 ]
 
 
+def _candidate_patch() -> str:
+    return (
+        "diff --git a/docs/recursive-gauntlet/README.md b/docs/recursive-gauntlet/README.md\n"
+        "--- a/docs/recursive-gauntlet/README.md\n"
+        "+++ b/docs/recursive-gauntlet/README.md\n"
+        "@@ -1,3 +1,4 @@\n"
+        " # Recursive Gauntlet\n"
+        " \n"
+        " AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return.\n"
+        "+- Candidate mechanism note: preserve local bounded recursive substrate evidence.\n"
+    )
+
+
 def generate_candidates(run: Path, count: int = 6):
     base = run / "02_candidates"
     base.mkdir(parents=True, exist_ok=True)
     out = []
-    patch = (
-        "diff --git a/docs/recursive-gauntlet/README.md b/docs/recursive-gauntlet/README.md\n"
-        "+Local bounded recursive substrate evidence candidate note\n"
-    )
+    patch = _candidate_patch()
     for i in range(1, count + 1):
         cid = f"candidate-{i:03d}"
         cdir = base / cid
         cdir.mkdir(parents=True, exist_ok=True)
-        (cdir / "candidate.patch").write_text(patch + "\n", encoding="utf-8")
+        (cdir / "candidate.patch").write_text(patch, encoding="utf-8")
         cand = {
             "candidate_id": cid,
             "candidate_type": ALLOWED_TYPES[(i - 1) % len(ALLOWED_TYPES)],
