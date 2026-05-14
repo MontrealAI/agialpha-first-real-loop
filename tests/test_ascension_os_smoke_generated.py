@@ -8,8 +8,9 @@ def run(cmd):
 
 def test_vertical_slice_commands_and_boundaries():
     d = tempfile.mkdtemp()
+    registry = os.path.join(d, "registry")
     cmds = [
-        ["discover", "--repo-root", ".", "--registry", "ascension_os_registry"],
+        ["discover", "--repo-root", ".", "--registry", registry],
         ["run-cycle", "--repo-root", ".", "--registry", "ascension_os_registry", "--out", d],
         ["run-open-rsi-eval", "--repo-root", ".", "--out", d, "--task-count", "4"],
         ["run-gauntlet", "--repo-root", ".", "--out", d, "--task-count", "4"],

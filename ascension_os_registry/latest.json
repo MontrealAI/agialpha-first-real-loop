@@ -4,7 +4,7 @@
   "human_review_required": true,
   "no_auto_merge": true,
   "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-  "repo_root": "/workspace/agialpha-first-real-loop",
+  "repo_root": ".",
   "schema_version": "agialpha.ascension.discovery.v1",
   "token_boundary": "utility-only $AGIALPHA settlement record"
 }
