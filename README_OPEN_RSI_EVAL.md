@@ -1,3 +1,1 @@
-# OPEN-RSI-EVAL-001
-
-local bounded public evidence.
+# README_OPEN_RSI_EVAL
