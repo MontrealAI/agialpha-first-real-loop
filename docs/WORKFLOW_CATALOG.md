@@ -172,3 +172,10 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 | `agialpha-recursive-substrate-002-replay.yml` | Core | `workflow_dispatch`, `schedule` | Replay-only verification of existing run path. | Replay evidence only; no claim promotion. | no |
 | `agialpha-recursive-substrate-002-falsification-audit.yml` | Core | `workflow_dispatch`, `schedule` | Falsification audit artifact. | No overclaim/no-automerge checks only. | no |
 | `agialpha-recursive-substrate-002-vnext.yml` | Core | `workflow_dispatch`, `schedule` | vNext candidate artifacts. | Human-governed promotion required. | no |
+
+
+
+`agialpha-recursive-proof-gauntlet-001-lifecycle.yml`
+`agialpha-recursive-proof-gauntlet-001-replay.yml`
+`agialpha-recursive-proof-gauntlet-001-falsification-audit.yml`
+`agialpha-recursive-proof-gauntlet-001-safe-pr.yml`

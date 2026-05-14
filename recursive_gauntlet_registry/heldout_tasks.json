@@ -1,0 +1,61 @@
+{
+  "claim_boundary": "AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return.",
+  "items": [
+    {
+      "task_id": "task-001",
+      "task_family": "Missing Evidence Docket repair",
+      "input_fixture": {
+        "id": 0
+      },
+      "expected_behavior": "repair and preserve claim boundary",
+      "validator": "static_validator",
+      "claim_boundary": "AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return.",
+      "safety_requirements": [
+        "no automerge",
+        "no external scan"
+      ]
+    },
+    {
+      "task_id": "task-002",
+      "task_family": "Shallow experiment page repair",
+      "input_fixture": {
+        "id": 1
+      },
+      "expected_behavior": "repair and preserve claim boundary",
+      "validator": "static_validator",
+      "claim_boundary": "AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return.",
+      "safety_requirements": [
+        "no automerge",
+        "no external scan"
+      ]
+    },
+    {
+      "task_id": "task-003",
+      "task_family": "Workflow catalog missing entry",
+      "input_fixture": {
+        "id": 2
+      },
+      "expected_behavior": "repair and preserve claim boundary",
+      "validator": "static_validator",
+      "claim_boundary": "AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return.",
+      "safety_requirements": [
+        "no automerge",
+        "no external scan"
+      ]
+    },
+    {
+      "task_id": "task-004",
+      "task_family": "Broken launchpad workflow link",
+      "input_fixture": {
+        "id": 3
+      },
+      "expected_behavior": "repair and preserve claim boundary",
+      "validator": "static_validator",
+      "claim_boundary": "AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return.",
+      "safety_requirements": [
+        "no automerge",
+        "no external scan"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+# Recursive Gauntlet Registry Changelog

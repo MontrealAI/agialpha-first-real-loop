@@ -36,3 +36,6 @@ The Evidence Hub Launchpad is the operator entry point for running repository wo
 
 - SecureRails E2E Pilot Canary 001: synthetic internal canary workflow.
 - SecureRails E2E Pilot Canary Validate 001: validates canary output integrity and schema expectations.
+
+## Recursive Gauntlet
+Use lifecycle workflow to generate local bounded recursive substrate evidence.

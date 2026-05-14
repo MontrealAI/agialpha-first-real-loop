@@ -1,0 +1,107 @@
+{
+  "claim_boundary": "AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return.",
+  "items": [
+    {
+      "candidate_id": "candidate-001",
+      "candidate_type": "validator improvement",
+      "changed_files": [
+        "docs/recursive-gauntlet/README.md"
+      ],
+      "patch_path": "candidate.patch",
+      "rationale": "Improve recursive proof quality",
+      "expected_benefit": "higher held-out completeness",
+      "expected_risk": "low",
+      "rollback_note": "revert patch",
+      "claim_boundary_impact": "preserved",
+      "safety_impact": "none",
+      "utility_token_impact": "utility-only accounting preserved",
+      "candidate_hash": "55650a6d4d7ba03afe995150cd974b6e04f869889dfecd34a6fcb55e3d4b45f8",
+      "claim_boundary": "AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return."
+    },
+    {
+      "candidate_id": "candidate-002",
+      "candidate_type": "test improvement",
+      "changed_files": [
+        "docs/recursive-gauntlet/README.md"
+      ],
+      "patch_path": "candidate.patch",
+      "rationale": "Improve recursive proof quality",
+      "expected_benefit": "higher held-out completeness",
+      "expected_risk": "low",
+      "rollback_note": "revert patch",
+      "claim_boundary_impact": "preserved",
+      "safety_impact": "none",
+      "utility_token_impact": "utility-only accounting preserved",
+      "candidate_hash": "94bbd6d32a9aaf3e403f7ec6fefb90df0c7b9f28769c5b3801ca0783714f82be",
+      "claim_boundary": "AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return."
+    },
+    {
+      "candidate_id": "candidate-003",
+      "candidate_type": "workflow launchpad improvement",
+      "changed_files": [
+        "docs/recursive-gauntlet/README.md"
+      ],
+      "patch_path": "candidate.patch",
+      "rationale": "Improve recursive proof quality",
+      "expected_benefit": "higher held-out completeness",
+      "expected_risk": "low",
+      "rollback_note": "revert patch",
+      "claim_boundary_impact": "preserved",
+      "safety_impact": "none",
+      "utility_token_impact": "utility-only accounting preserved",
+      "candidate_hash": "0fa1c6d8e4675e14042471109a92345580f062dc9ab455ee71f6c976515e2f42",
+      "claim_boundary": "AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return."
+    },
+    {
+      "candidate_id": "candidate-004",
+      "candidate_type": "Evidence Docket template improvement",
+      "changed_files": [
+        "docs/recursive-gauntlet/README.md"
+      ],
+      "patch_path": "candidate.patch",
+      "rationale": "Improve recursive proof quality",
+      "expected_benefit": "higher held-out completeness",
+      "expected_risk": "low",
+      "rollback_note": "revert patch",
+      "claim_boundary_impact": "preserved",
+      "safety_impact": "none",
+      "utility_token_impact": "utility-only accounting preserved",
+      "candidate_hash": "58654e66c39c48863d4da77d4acbdcc3f769651b653c2cbd631e72b8e8cb4e66",
+      "claim_boundary": "AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return."
+    },
+    {
+      "candidate_id": "candidate-005",
+      "candidate_type": "ProofBundle template improvement",
+      "changed_files": [
+        "docs/recursive-gauntlet/README.md"
+      ],
+      "patch_path": "candidate.patch",
+      "rationale": "Improve recursive proof quality",
+      "expected_benefit": "higher held-out completeness",
+      "expected_risk": "low",
+      "rollback_note": "revert patch",
+      "claim_boundary_impact": "preserved",
+      "safety_impact": "none",
+      "utility_token_impact": "utility-only accounting preserved",
+      "candidate_hash": "7e8e1e3c7ee34050e0e91143104baf119858fb8563d8d406f9167982acc89f09",
+      "claim_boundary": "AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return."
+    },
+    {
+      "candidate_id": "candidate-006",
+      "candidate_type": "claim-boundary detector improvement",
+      "changed_files": [
+        "docs/recursive-gauntlet/README.md"
+      ],
+      "patch_path": "candidate.patch",
+      "rationale": "Improve recursive proof quality",
+      "expected_benefit": "higher held-out completeness",
+      "expected_risk": "low",
+      "rollback_note": "revert patch",
+      "claim_boundary_impact": "preserved",
+      "safety_impact": "none",
+      "utility_token_impact": "utility-only accounting preserved",
+      "candidate_hash": "51a37d3b2e1e58e5bc96d704d967618fa89669d4cdc4aaf869e06338bca126b7",
+      "claim_boundary": "AGI ALPHA Recursive Proof Gauntlet produces local, bounded recursive substrate evidence. It does not claim achieved AGI, achieved ASI, superintelligence, empirical SOTA, safe autonomy, cybersecurity certification, official benchmark victory, legal approval, or investment return."
+    }
+  ]
+}
