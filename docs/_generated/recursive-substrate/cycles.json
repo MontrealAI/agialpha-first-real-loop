@@ -3841,5 +3841,761 @@
       "critical_safety_incidents": 0
     },
     "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
+  },
+  {
+    "schema_version": "agialpha.recursive_cycle.v1",
+    "cycle_id": "recursive-cycle-062",
+    "cycle_index": 61,
+    "generated_at": "2026-05-14T00:23:32.288807+00:00",
+    "repository": "MontrealAI/agialpha-first-real-loop",
+    "commit_sha": "084ee7e560de3ec91432a4fbe6ea313ffdc52f20",
+    "status": "success",
+    "substrate_layers": {
+      "agents": true,
+      "jobs": true,
+      "validators": true,
+      "memory": true,
+      "governance": true,
+      "settlement": true,
+      "recursive_improvement": true,
+      "human_governed_promotion": true
+    },
+    "open_ended_loop": {
+      "insights_generated": 1,
+      "nova_seeds_generated": 16,
+      "jobs_generated": 6,
+      "validators_generated": 6,
+      "capabilities_archived": 6,
+      "vnext_candidates_generated": 6
+    },
+    "proof_loop": {
+      "proofbundles_created": 1,
+      "evidence_dockets_created": 1,
+      "replay_reports_created": "pending",
+      "falsification_reports_created": "pending"
+    },
+    "governance_loop": {
+      "policy_decisions_created": "pending",
+      "human_review_records_created": "pending",
+      "promotion_gates_passed": 0,
+      "promotion_gates_failed": 1
+    },
+    "settlement_loop": {
+      "work_vaults_created": "pending",
+      "mark_allocations_created": 16,
+      "sovereign_assignments_created": 16,
+      "utility_settlement_records_created": 6
+    },
+    "metrics": {
+      "recursive_substrate_readiness_score": "pending",
+      "open_ended_discovery_score": "pending",
+      "proof_density_score": "pending",
+      "memory_reuse_score": "pending",
+      "vnext_compounding_score": "pending",
+      "human_governance_integrity": "pending"
+    },
+    "hard_safety_counters": {
+      "raw_secret_leak_count": 0,
+      "external_target_scan_count": 0,
+      "exploit_execution_count": 0,
+      "malware_generation_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0,
+      "critical_safety_incidents": 0
+    },
+    "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
+  },
+  {
+    "schema_version": "agialpha.recursive_cycle.v1",
+    "cycle_id": "recursive-cycle-063",
+    "cycle_index": 62,
+    "generated_at": "2026-05-14T00:23:32.551887+00:00",
+    "repository": "MontrealAI/agialpha-first-real-loop",
+    "commit_sha": "084ee7e560de3ec91432a4fbe6ea313ffdc52f20",
+    "status": "success",
+    "substrate_layers": {
+      "agents": true,
+      "jobs": true,
+      "validators": true,
+      "memory": true,
+      "governance": true,
+      "settlement": true,
+      "recursive_improvement": true,
+      "human_governed_promotion": true
+    },
+    "open_ended_loop": {
+      "insights_generated": 1,
+      "nova_seeds_generated": 16,
+      "jobs_generated": 6,
+      "validators_generated": 6,
+      "capabilities_archived": 6,
+      "vnext_candidates_generated": 6
+    },
+    "proof_loop": {
+      "proofbundles_created": 1,
+      "evidence_dockets_created": 1,
+      "replay_reports_created": "pending",
+      "falsification_reports_created": "pending"
+    },
+    "governance_loop": {
+      "policy_decisions_created": "pending",
+      "human_review_records_created": "pending",
+      "promotion_gates_passed": 0,
+      "promotion_gates_failed": 1
+    },
+    "settlement_loop": {
+      "work_vaults_created": "pending",
+      "mark_allocations_created": 16,
+      "sovereign_assignments_created": 16,
+      "utility_settlement_records_created": 6
+    },
+    "metrics": {
+      "recursive_substrate_readiness_score": "pending",
+      "open_ended_discovery_score": "pending",
+      "proof_density_score": "pending",
+      "memory_reuse_score": "pending",
+      "vnext_compounding_score": "pending",
+      "human_governance_integrity": "pending"
+    },
+    "hard_safety_counters": {
+      "raw_secret_leak_count": 0,
+      "external_target_scan_count": 0,
+      "exploit_execution_count": 0,
+      "malware_generation_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0,
+      "critical_safety_incidents": 0
+    },
+    "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
+  },
+  {
+    "schema_version": "agialpha.recursive_cycle.v1",
+    "cycle_id": "recursive-cycle-064",
+    "cycle_index": 63,
+    "generated_at": "2026-05-14T00:23:32.819053+00:00",
+    "repository": "MontrealAI/agialpha-first-real-loop",
+    "commit_sha": "084ee7e560de3ec91432a4fbe6ea313ffdc52f20",
+    "status": "success",
+    "substrate_layers": {
+      "agents": true,
+      "jobs": true,
+      "validators": true,
+      "memory": true,
+      "governance": true,
+      "settlement": true,
+      "recursive_improvement": true,
+      "human_governed_promotion": true
+    },
+    "open_ended_loop": {
+      "insights_generated": 1,
+      "nova_seeds_generated": 16,
+      "jobs_generated": 6,
+      "validators_generated": 6,
+      "capabilities_archived": 6,
+      "vnext_candidates_generated": 6
+    },
+    "proof_loop": {
+      "proofbundles_created": 1,
+      "evidence_dockets_created": 1,
+      "replay_reports_created": "pending",
+      "falsification_reports_created": "pending"
+    },
+    "governance_loop": {
+      "policy_decisions_created": "pending",
+      "human_review_records_created": "pending",
+      "promotion_gates_passed": 0,
+      "promotion_gates_failed": 1
+    },
+    "settlement_loop": {
+      "work_vaults_created": "pending",
+      "mark_allocations_created": 16,
+      "sovereign_assignments_created": 16,
+      "utility_settlement_records_created": 6
+    },
+    "metrics": {
+      "recursive_substrate_readiness_score": "pending",
+      "open_ended_discovery_score": "pending",
+      "proof_density_score": "pending",
+      "memory_reuse_score": "pending",
+      "vnext_compounding_score": "pending",
+      "human_governance_integrity": "pending"
+    },
+    "hard_safety_counters": {
+      "raw_secret_leak_count": 0,
+      "external_target_scan_count": 0,
+      "exploit_execution_count": 0,
+      "malware_generation_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0,
+      "critical_safety_incidents": 0
+    },
+    "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
+  },
+  {
+    "schema_version": "agialpha.recursive_cycle.v1",
+    "cycle_id": "recursive-cycle-065",
+    "cycle_index": 64,
+    "generated_at": "2026-05-14T00:23:33.109191+00:00",
+    "repository": "MontrealAI/agialpha-first-real-loop",
+    "commit_sha": "084ee7e560de3ec91432a4fbe6ea313ffdc52f20",
+    "status": "success",
+    "substrate_layers": {
+      "agents": true,
+      "jobs": true,
+      "validators": true,
+      "memory": true,
+      "governance": true,
+      "settlement": true,
+      "recursive_improvement": true,
+      "human_governed_promotion": true
+    },
+    "open_ended_loop": {
+      "insights_generated": 1,
+      "nova_seeds_generated": 16,
+      "jobs_generated": 6,
+      "validators_generated": 6,
+      "capabilities_archived": 6,
+      "vnext_candidates_generated": 6
+    },
+    "proof_loop": {
+      "proofbundles_created": 1,
+      "evidence_dockets_created": 1,
+      "replay_reports_created": "pending",
+      "falsification_reports_created": "pending"
+    },
+    "governance_loop": {
+      "policy_decisions_created": "pending",
+      "human_review_records_created": "pending",
+      "promotion_gates_passed": 0,
+      "promotion_gates_failed": 1
+    },
+    "settlement_loop": {
+      "work_vaults_created": "pending",
+      "mark_allocations_created": 16,
+      "sovereign_assignments_created": 16,
+      "utility_settlement_records_created": 6
+    },
+    "metrics": {
+      "recursive_substrate_readiness_score": "pending",
+      "open_ended_discovery_score": "pending",
+      "proof_density_score": "pending",
+      "memory_reuse_score": "pending",
+      "vnext_compounding_score": "pending",
+      "human_governance_integrity": "pending"
+    },
+    "hard_safety_counters": {
+      "raw_secret_leak_count": 0,
+      "external_target_scan_count": 0,
+      "exploit_execution_count": 0,
+      "malware_generation_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0,
+      "critical_safety_incidents": 0
+    },
+    "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
+  },
+  {
+    "schema_version": "agialpha.recursive_cycle.v1",
+    "cycle_id": "recursive-cycle-066",
+    "cycle_index": 65,
+    "generated_at": "2026-05-14T00:23:33.374047+00:00",
+    "repository": "MontrealAI/agialpha-first-real-loop",
+    "commit_sha": "084ee7e560de3ec91432a4fbe6ea313ffdc52f20",
+    "status": "success",
+    "substrate_layers": {
+      "agents": true,
+      "jobs": true,
+      "validators": true,
+      "memory": true,
+      "governance": true,
+      "settlement": true,
+      "recursive_improvement": true,
+      "human_governed_promotion": true
+    },
+    "open_ended_loop": {
+      "insights_generated": 1,
+      "nova_seeds_generated": 16,
+      "jobs_generated": 6,
+      "validators_generated": 6,
+      "capabilities_archived": 6,
+      "vnext_candidates_generated": 6
+    },
+    "proof_loop": {
+      "proofbundles_created": 1,
+      "evidence_dockets_created": 1,
+      "replay_reports_created": "pending",
+      "falsification_reports_created": "pending"
+    },
+    "governance_loop": {
+      "policy_decisions_created": "pending",
+      "human_review_records_created": "pending",
+      "promotion_gates_passed": 0,
+      "promotion_gates_failed": 1
+    },
+    "settlement_loop": {
+      "work_vaults_created": "pending",
+      "mark_allocations_created": 16,
+      "sovereign_assignments_created": 16,
+      "utility_settlement_records_created": 6
+    },
+    "metrics": {
+      "recursive_substrate_readiness_score": "pending",
+      "open_ended_discovery_score": "pending",
+      "proof_density_score": "pending",
+      "memory_reuse_score": "pending",
+      "vnext_compounding_score": "pending",
+      "human_governance_integrity": "pending"
+    },
+    "hard_safety_counters": {
+      "raw_secret_leak_count": 0,
+      "external_target_scan_count": 0,
+      "exploit_execution_count": 0,
+      "malware_generation_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0,
+      "critical_safety_incidents": 0
+    },
+    "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
+  },
+  {
+    "schema_version": "agialpha.recursive_cycle.v1",
+    "cycle_id": "recursive-cycle-067",
+    "cycle_index": 66,
+    "generated_at": "2026-05-14T00:23:33.632458+00:00",
+    "repository": "MontrealAI/agialpha-first-real-loop",
+    "commit_sha": "084ee7e560de3ec91432a4fbe6ea313ffdc52f20",
+    "status": "success",
+    "substrate_layers": {
+      "agents": true,
+      "jobs": true,
+      "validators": true,
+      "memory": true,
+      "governance": true,
+      "settlement": true,
+      "recursive_improvement": true,
+      "human_governed_promotion": true
+    },
+    "open_ended_loop": {
+      "insights_generated": 1,
+      "nova_seeds_generated": 16,
+      "jobs_generated": 6,
+      "validators_generated": 6,
+      "capabilities_archived": 6,
+      "vnext_candidates_generated": 6
+    },
+    "proof_loop": {
+      "proofbundles_created": 1,
+      "evidence_dockets_created": 1,
+      "replay_reports_created": "pending",
+      "falsification_reports_created": "pending"
+    },
+    "governance_loop": {
+      "policy_decisions_created": "pending",
+      "human_review_records_created": "pending",
+      "promotion_gates_passed": 0,
+      "promotion_gates_failed": 1
+    },
+    "settlement_loop": {
+      "work_vaults_created": "pending",
+      "mark_allocations_created": 16,
+      "sovereign_assignments_created": 16,
+      "utility_settlement_records_created": 6
+    },
+    "metrics": {
+      "recursive_substrate_readiness_score": "pending",
+      "open_ended_discovery_score": "pending",
+      "proof_density_score": "pending",
+      "memory_reuse_score": "pending",
+      "vnext_compounding_score": "pending",
+      "human_governance_integrity": "pending"
+    },
+    "hard_safety_counters": {
+      "raw_secret_leak_count": 0,
+      "external_target_scan_count": 0,
+      "exploit_execution_count": 0,
+      "malware_generation_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0,
+      "critical_safety_incidents": 0
+    },
+    "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
+  },
+  {
+    "schema_version": "agialpha.recursive_cycle.v1",
+    "cycle_id": "recursive-cycle-068",
+    "cycle_index": 67,
+    "generated_at": "2026-05-14T00:23:33.916704+00:00",
+    "repository": "MontrealAI/agialpha-first-real-loop",
+    "commit_sha": "084ee7e560de3ec91432a4fbe6ea313ffdc52f20",
+    "status": "success",
+    "substrate_layers": {
+      "agents": true,
+      "jobs": true,
+      "validators": true,
+      "memory": true,
+      "governance": true,
+      "settlement": true,
+      "recursive_improvement": true,
+      "human_governed_promotion": true
+    },
+    "open_ended_loop": {
+      "insights_generated": 1,
+      "nova_seeds_generated": 16,
+      "jobs_generated": 6,
+      "validators_generated": 6,
+      "capabilities_archived": 6,
+      "vnext_candidates_generated": 6
+    },
+    "proof_loop": {
+      "proofbundles_created": 1,
+      "evidence_dockets_created": 1,
+      "replay_reports_created": "pending",
+      "falsification_reports_created": "pending"
+    },
+    "governance_loop": {
+      "policy_decisions_created": "pending",
+      "human_review_records_created": "pending",
+      "promotion_gates_passed": 0,
+      "promotion_gates_failed": 1
+    },
+    "settlement_loop": {
+      "work_vaults_created": "pending",
+      "mark_allocations_created": 16,
+      "sovereign_assignments_created": 16,
+      "utility_settlement_records_created": 6
+    },
+    "metrics": {
+      "recursive_substrate_readiness_score": "pending",
+      "open_ended_discovery_score": "pending",
+      "proof_density_score": "pending",
+      "memory_reuse_score": "pending",
+      "vnext_compounding_score": "pending",
+      "human_governance_integrity": "pending"
+    },
+    "hard_safety_counters": {
+      "raw_secret_leak_count": 0,
+      "external_target_scan_count": 0,
+      "exploit_execution_count": 0,
+      "malware_generation_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0,
+      "critical_safety_incidents": 0
+    },
+    "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
+  },
+  {
+    "schema_version": "agialpha.recursive_cycle.v1",
+    "cycle_id": "recursive-cycle-069",
+    "cycle_index": 68,
+    "generated_at": "2026-05-14T00:23:34.215143+00:00",
+    "repository": "MontrealAI/agialpha-first-real-loop",
+    "commit_sha": "084ee7e560de3ec91432a4fbe6ea313ffdc52f20",
+    "status": "success",
+    "substrate_layers": {
+      "agents": true,
+      "jobs": true,
+      "validators": true,
+      "memory": true,
+      "governance": true,
+      "settlement": true,
+      "recursive_improvement": true,
+      "human_governed_promotion": true
+    },
+    "open_ended_loop": {
+      "insights_generated": 1,
+      "nova_seeds_generated": 16,
+      "jobs_generated": 6,
+      "validators_generated": 6,
+      "capabilities_archived": 6,
+      "vnext_candidates_generated": 6
+    },
+    "proof_loop": {
+      "proofbundles_created": 1,
+      "evidence_dockets_created": 1,
+      "replay_reports_created": "pending",
+      "falsification_reports_created": "pending"
+    },
+    "governance_loop": {
+      "policy_decisions_created": "pending",
+      "human_review_records_created": "pending",
+      "promotion_gates_passed": 0,
+      "promotion_gates_failed": 1
+    },
+    "settlement_loop": {
+      "work_vaults_created": "pending",
+      "mark_allocations_created": 16,
+      "sovereign_assignments_created": 16,
+      "utility_settlement_records_created": 6
+    },
+    "metrics": {
+      "recursive_substrate_readiness_score": "pending",
+      "open_ended_discovery_score": "pending",
+      "proof_density_score": "pending",
+      "memory_reuse_score": "pending",
+      "vnext_compounding_score": "pending",
+      "human_governance_integrity": "pending"
+    },
+    "hard_safety_counters": {
+      "raw_secret_leak_count": 0,
+      "external_target_scan_count": 0,
+      "exploit_execution_count": 0,
+      "malware_generation_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0,
+      "critical_safety_incidents": 0
+    },
+    "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
+  },
+  {
+    "schema_version": "agialpha.recursive_cycle.v1",
+    "cycle_id": "recursive-cycle-070",
+    "cycle_index": 69,
+    "generated_at": "2026-05-14T00:23:34.486608+00:00",
+    "repository": "MontrealAI/agialpha-first-real-loop",
+    "commit_sha": "084ee7e560de3ec91432a4fbe6ea313ffdc52f20",
+    "status": "success",
+    "substrate_layers": {
+      "agents": true,
+      "jobs": true,
+      "validators": true,
+      "memory": true,
+      "governance": true,
+      "settlement": true,
+      "recursive_improvement": true,
+      "human_governed_promotion": true
+    },
+    "open_ended_loop": {
+      "insights_generated": 1,
+      "nova_seeds_generated": 16,
+      "jobs_generated": 6,
+      "validators_generated": 6,
+      "capabilities_archived": 6,
+      "vnext_candidates_generated": 6
+    },
+    "proof_loop": {
+      "proofbundles_created": 1,
+      "evidence_dockets_created": 1,
+      "replay_reports_created": "pending",
+      "falsification_reports_created": "pending"
+    },
+    "governance_loop": {
+      "policy_decisions_created": "pending",
+      "human_review_records_created": "pending",
+      "promotion_gates_passed": 0,
+      "promotion_gates_failed": 1
+    },
+    "settlement_loop": {
+      "work_vaults_created": "pending",
+      "mark_allocations_created": 16,
+      "sovereign_assignments_created": 16,
+      "utility_settlement_records_created": 6
+    },
+    "metrics": {
+      "recursive_substrate_readiness_score": "pending",
+      "open_ended_discovery_score": "pending",
+      "proof_density_score": "pending",
+      "memory_reuse_score": "pending",
+      "vnext_compounding_score": "pending",
+      "human_governance_integrity": "pending"
+    },
+    "hard_safety_counters": {
+      "raw_secret_leak_count": 0,
+      "external_target_scan_count": 0,
+      "exploit_execution_count": 0,
+      "malware_generation_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0,
+      "critical_safety_incidents": 0
+    },
+    "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
+  },
+  {
+    "schema_version": "agialpha.recursive_cycle.v1",
+    "cycle_id": "recursive-cycle-071",
+    "cycle_index": 70,
+    "generated_at": "2026-05-14T00:23:34.762534+00:00",
+    "repository": "MontrealAI/agialpha-first-real-loop",
+    "commit_sha": "084ee7e560de3ec91432a4fbe6ea313ffdc52f20",
+    "status": "success",
+    "substrate_layers": {
+      "agents": true,
+      "jobs": true,
+      "validators": true,
+      "memory": true,
+      "governance": true,
+      "settlement": true,
+      "recursive_improvement": true,
+      "human_governed_promotion": true
+    },
+    "open_ended_loop": {
+      "insights_generated": 1,
+      "nova_seeds_generated": 16,
+      "jobs_generated": 6,
+      "validators_generated": 6,
+      "capabilities_archived": 6,
+      "vnext_candidates_generated": 6
+    },
+    "proof_loop": {
+      "proofbundles_created": 1,
+      "evidence_dockets_created": 1,
+      "replay_reports_created": "pending",
+      "falsification_reports_created": "pending"
+    },
+    "governance_loop": {
+      "policy_decisions_created": "pending",
+      "human_review_records_created": "pending",
+      "promotion_gates_passed": 0,
+      "promotion_gates_failed": 1
+    },
+    "settlement_loop": {
+      "work_vaults_created": "pending",
+      "mark_allocations_created": 16,
+      "sovereign_assignments_created": 16,
+      "utility_settlement_records_created": 6
+    },
+    "metrics": {
+      "recursive_substrate_readiness_score": "pending",
+      "open_ended_discovery_score": "pending",
+      "proof_density_score": "pending",
+      "memory_reuse_score": "pending",
+      "vnext_compounding_score": "pending",
+      "human_governance_integrity": "pending"
+    },
+    "hard_safety_counters": {
+      "raw_secret_leak_count": 0,
+      "external_target_scan_count": 0,
+      "exploit_execution_count": 0,
+      "malware_generation_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0,
+      "critical_safety_incidents": 0
+    },
+    "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
+  },
+  {
+    "schema_version": "agialpha.recursive_cycle.v1",
+    "cycle_id": "recursive-cycle-072",
+    "cycle_index": 71,
+    "generated_at": "2026-05-14T00:23:35.025370+00:00",
+    "repository": "MontrealAI/agialpha-first-real-loop",
+    "commit_sha": "084ee7e560de3ec91432a4fbe6ea313ffdc52f20",
+    "status": "success",
+    "substrate_layers": {
+      "agents": true,
+      "jobs": true,
+      "validators": true,
+      "memory": true,
+      "governance": true,
+      "settlement": true,
+      "recursive_improvement": true,
+      "human_governed_promotion": true
+    },
+    "open_ended_loop": {
+      "insights_generated": 1,
+      "nova_seeds_generated": 16,
+      "jobs_generated": 6,
+      "validators_generated": 6,
+      "capabilities_archived": 6,
+      "vnext_candidates_generated": 6
+    },
+    "proof_loop": {
+      "proofbundles_created": 1,
+      "evidence_dockets_created": 1,
+      "replay_reports_created": "pending",
+      "falsification_reports_created": "pending"
+    },
+    "governance_loop": {
+      "policy_decisions_created": "pending",
+      "human_review_records_created": "pending",
+      "promotion_gates_passed": 0,
+      "promotion_gates_failed": 1
+    },
+    "settlement_loop": {
+      "work_vaults_created": "pending",
+      "mark_allocations_created": 16,
+      "sovereign_assignments_created": 16,
+      "utility_settlement_records_created": 6
+    },
+    "metrics": {
+      "recursive_substrate_readiness_score": "pending",
+      "open_ended_discovery_score": "pending",
+      "proof_density_score": "pending",
+      "memory_reuse_score": "pending",
+      "vnext_compounding_score": "pending",
+      "human_governance_integrity": "pending"
+    },
+    "hard_safety_counters": {
+      "raw_secret_leak_count": 0,
+      "external_target_scan_count": 0,
+      "exploit_execution_count": 0,
+      "malware_generation_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0,
+      "critical_safety_incidents": 0
+    },
+    "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
+  },
+  {
+    "schema_version": "agialpha.recursive_cycle.v1",
+    "cycle_id": "recursive-cycle-073",
+    "cycle_index": 72,
+    "generated_at": "2026-05-14T00:33:54.747566+00:00",
+    "repository": "MontrealAI/agialpha-first-real-loop",
+    "commit_sha": "e43c1b53676e2d9dfb20a497c7b58cb68a9ca946",
+    "status": "success",
+    "substrate_layers": {
+      "agents": true,
+      "jobs": true,
+      "validators": true,
+      "memory": true,
+      "governance": true,
+      "settlement": true,
+      "recursive_improvement": true,
+      "human_governed_promotion": true
+    },
+    "open_ended_loop": {
+      "insights_generated": 1,
+      "nova_seeds_generated": 16,
+      "jobs_generated": 6,
+      "validators_generated": 6,
+      "capabilities_archived": 6,
+      "vnext_candidates_generated": 6
+    },
+    "proof_loop": {
+      "proofbundles_created": 1,
+      "evidence_dockets_created": 1,
+      "replay_reports_created": "pending",
+      "falsification_reports_created": "pending"
+    },
+    "governance_loop": {
+      "policy_decisions_created": "pending",
+      "human_review_records_created": "pending",
+      "promotion_gates_passed": 0,
+      "promotion_gates_failed": 1
+    },
+    "settlement_loop": {
+      "work_vaults_created": "pending",
+      "mark_allocations_created": 16,
+      "sovereign_assignments_created": 16,
+      "utility_settlement_records_created": 6
+    },
+    "metrics": {
+      "recursive_substrate_readiness_score": "pending",
+      "open_ended_discovery_score": "pending",
+      "proof_density_score": "pending",
+      "memory_reuse_score": "pending",
+      "vnext_compounding_score": "pending",
+      "human_governance_integrity": "pending"
+    },
+    "hard_safety_counters": {
+      "raw_secret_leak_count": 0,
+      "external_target_scan_count": 0,
+      "exploit_execution_count": 0,
+      "malware_generation_count": 0,
+      "social_engineering_content_count": 0,
+      "unsafe_automerge_count": 0,
+      "critical_safety_incidents": 0
+    },
+    "claim_boundary": "This recursive substrate cycle is local, bounded evidence of governance and machine-labor infrastructure. It does not claim achieved AGI, ASI, superintelligence, empirical SOTA, safe autonomy, official benchmark victory, or external validation."
   }
 ]
