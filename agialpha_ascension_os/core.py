@@ -54,14 +54,13 @@ def run_cycle(repo_root:Path, out:Path, registry:Path):
     wj(out/"cycle.json", {"status":"ok",**bfields()})
     _write_legacy_reports(out)
     run_open_rsi_eval(out,16); run_gauntlet(out,12); verified_enterprise_alpha(out); value_to_capacity(out)
-    should_write_registry = out.is_relative_to(repo_root)
-    if should_write_registry:
-        registry.mkdir(parents=True, exist_ok=True)
-        (registry/"runs").mkdir(parents=True, exist_ok=True)
-        run_id = hashlib.sha256(str(out.relative_to(repo_root)).encode()).hexdigest()[:16]
-        record={"run_id":run_id,"status":"accepted",**_safe_run_ref(repo_root, out),**bfields()}
-        for n in ["registry","latest","cycles","enterprise_workflows","regulated_boundary_triage","proofbundles","evidence_dockets","work_vaults","settlements","capabilities","open_rsi_eval_runs","gauntlet_runs","verified_enterprise_alpha","value_to_capacity","valuation_support"]:
-            _append_registry_record(registry/f"{n}.json", record)
+    registry.mkdir(parents=True, exist_ok=True)
+    (registry/"runs").mkdir(parents=True, exist_ok=True)
+    run_basis = str(out.relative_to(repo_root)) if out.is_relative_to(repo_root) else str(out.resolve())
+    run_id = hashlib.sha256(run_basis.encode()).hexdigest()[:16]
+    record={"run_id":run_id,"status":"accepted",**_safe_run_ref(repo_root, out),**bfields()}
+    for n in ["registry","latest","cycles","enterprise_workflows","regulated_boundary_triage","proofbundles","evidence_dockets","work_vaults","settlements","capabilities","open_rsi_eval_runs","gauntlet_runs","verified_enterprise_alpha","value_to_capacity","valuation_support"]:
+        _append_registry_record(registry/f"{n}.json", record)
 
 def run_open_rsi_eval(out:Path, task_count:int):
     data={"task_count":task_count,"baselines":{"B0":"static repo","B1":"docs-only recursive claim","B2":"CI automation without memory","B3":"evidence automation without archive reuse","B4":{"status":"fail_required"},"B5":{"status":"available"},"B6":{"status":"available"},"B7":{"status":"pending"}},"comparison":{"B6_vs_B5":"unavailable"},**bfields()}
