@@ -32,8 +32,16 @@ def _append_registry_record(path: Path, record: dict):
     existing = rj(path) or {"records": []}
     if "records" not in existing or not isinstance(existing["records"], list):
         existing = {"records": []}
-    existing["records"].append(record)
+    key = (record.get("run_id"), record.get("status"))
+    already = any((r.get("run_id"), r.get("status")) == key for r in existing["records"])
+    if not already:
+        existing["records"].append(record)
     wj(path, existing)
+
+def _safe_run_ref(repo_root: Path, out: Path) -> dict:
+    if out.is_relative_to(repo_root):
+        return {"run_ref": str(out.relative_to(repo_root))}
+    return {"run_ref": "external_run"}
 
 def run_cycle(repo_root:Path, out:Path, registry:Path):
     packs=workflow_packs(); wj(out/"enterprise_workflows.json", {"workflows":packs,**bfields()})
@@ -46,11 +54,14 @@ def run_cycle(repo_root:Path, out:Path, registry:Path):
     wj(out/"cycle.json", {"status":"ok",**bfields()})
     _write_legacy_reports(out)
     run_open_rsi_eval(out,16); run_gauntlet(out,12); verified_enterprise_alpha(out); value_to_capacity(out)
-    registry.mkdir(parents=True, exist_ok=True)
-    (registry/"runs").mkdir(parents=True, exist_ok=True)
-    record={"run":str(out),"status":"accepted",**bfields()}
-    for n in ["registry","latest","cycles","enterprise_workflows","regulated_boundary_triage","proofbundles","evidence_dockets","work_vaults","settlements","capabilities","open_rsi_eval_runs","gauntlet_runs","verified_enterprise_alpha","value_to_capacity","valuation_support"]:
-        _append_registry_record(registry/f"{n}.json", record)
+    should_write_registry = out.is_relative_to(repo_root)
+    if should_write_registry:
+        registry.mkdir(parents=True, exist_ok=True)
+        (registry/"runs").mkdir(parents=True, exist_ok=True)
+        run_id = hashlib.sha256(str(out.relative_to(repo_root)).encode()).hexdigest()[:16]
+        record={"run_id":run_id,"status":"accepted",**_safe_run_ref(repo_root, out),**bfields()}
+        for n in ["registry","latest","cycles","enterprise_workflows","regulated_boundary_triage","proofbundles","evidence_dockets","work_vaults","settlements","capabilities","open_rsi_eval_runs","gauntlet_runs","verified_enterprise_alpha","value_to_capacity","valuation_support"]:
+            _append_registry_record(registry/f"{n}.json", record)
 
 def run_open_rsi_eval(out:Path, task_count:int):
     data={"task_count":task_count,"baselines":{"B0":"static repo","B1":"docs-only recursive claim","B2":"CI automation without memory","B3":"evidence automation without archive reuse","B4":{"status":"fail_required"},"B5":{"status":"available"},"B6":{"status":"available"},"B7":{"status":"pending"}},"comparison":{"B6_vs_B5":"unavailable"},**bfields()}
