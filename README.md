@@ -120,3 +120,7 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `.github/workflows/secu
 
 
 - SecureRails Human Review Console 001: human-governed promotion, decision ledger, manual merge required, no auto-merge.
+
+
+## AGI ALPHA Recursive Proof Gauntlet
+See `README_RECURSIVE_GAUNTLET.md` and `docs/recursive-gauntlet/README.md`.

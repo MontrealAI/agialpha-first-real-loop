@@ -110,3 +110,6 @@ Use this format for every incident: **Symptom → Likely cause → Fix → What 
 - trust-center check failure: run `python scripts/secure_rails_trust_center_check.py .`.
 - incident schema failure: validate `docs/secure-rails/templates/security-incident-record-example.json`.
 - certification overclaim failure: remove prohibited certification/guarantee/exemption claims.
+
+## Recursive Gauntlet
+If validate fails, ensure lock-candidates runs before generate-heldout.

@@ -1,0 +1,29 @@
+name: AGI ALPHA Recursive Proof Gauntlet 001 / Lifecycle
+on:
+  workflow_dispatch:
+    inputs:
+      candidate_count: {default: "6", required: false}
+      heldout_task_count: {default: "16", required: false}
+      publish_gauntlet_tab: {default: "true", required: false}
+permissions:
+  contents: read
+  actions: read
+jobs:
+  gauntlet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python -m agialpha_recursive_gauntlet generate-candidates --repo-root . --out recursive-gauntlet-runs/test --candidate-count ${{ inputs.candidate_count }}
+      - run: python -m agialpha_recursive_gauntlet lock-candidates --run recursive-gauntlet-runs/test
+      - run: python -m agialpha_recursive_gauntlet generate-heldout --run recursive-gauntlet-runs/test --task-count ${{ inputs.heldout_task_count }}
+      - run: python -m agialpha_recursive_gauntlet evaluate --repo-root . --run recursive-gauntlet-runs/test
+      - run: python -m agialpha_recursive_gauntlet replay --run recursive-gauntlet-runs/test --out recursive-gauntlet-runs/test/09_replay/replay_report.json
+      - run: python -m agialpha_recursive_gauntlet falsification-audit --run recursive-gauntlet-runs/test --out recursive-gauntlet-runs/test/10_falsification/falsification_audit.json
+      - run: python -m agialpha_recursive_gauntlet validate --run recursive-gauntlet-runs/test
+      - run: python -m agialpha_recursive_gauntlet emit-manifest --run recursive-gauntlet-runs/test --out recursive-gauntlet-runs/test/evidence-run-manifest.json
+      - run: python -m agialpha_recursive_gauntlet build-data --registry recursive_gauntlet_registry --out docs/_generated/recursive-gauntlet
+      - uses: actions/upload-artifact@v4
+        with: {name: recursive-gauntlet-run, path: recursive-gauntlet-runs/test}

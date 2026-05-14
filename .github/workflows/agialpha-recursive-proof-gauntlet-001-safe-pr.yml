@@ -1,0 +1,11 @@
+name: AGI ALPHA Recursive Proof Gauntlet 001 / safe-pr
+on: {workflow_dispatch: {}}
+permissions: {contents: read, actions: read}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m agialpha_recursive_gauntlet validate --run recursive-gauntlet-runs/test 
