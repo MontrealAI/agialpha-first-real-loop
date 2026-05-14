@@ -20,7 +20,7 @@ jobs:
         with: {python-version: '3.11'}
       - run: python scripts/secure_rails_claim_boundary_check.py .
       - run: python -m agialpha_ascension_scorecard build-scorecard --repo-root . --out ascension-scorecard-runs/latest
-      - run: python -m agialpha_ascension_scorecard run-open-rsi-eval --repo-root . --out ascension-scorecard-runs/latest --task-count ${{ inputs.task_count }}
+      - run: python -m agialpha_ascension_scorecard run-open-rsi-eval --repo-root . --out ascension-scorecard-runs/latest --task-count ${{ inputs.task_count || '16' }}
       - run: python -m agialpha_ascension_scorecard evaluate-archive-reuse --repo-root . --run ascension-scorecard-runs/latest
       - run: python -m agialpha_ascension_scorecard value-to-capacity --run ascension-scorecard-runs/latest
       - run: python -m agialpha_ascension_scorecard replay --run ascension-scorecard-runs/latest

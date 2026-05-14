@@ -36,6 +36,16 @@ def main(argv=None):
     elif a.cmd=='emit-manifest': jwrite(a.out,{"run":str(a.run),"claim_boundary":CLAIM_BOUNDARY_SHORT,"token_boundary":TOKEN_BOUNDARY,"human_review_required":True,"no_autonomous_persistence":True})
     elif a.cmd=='build-data':
         reg=Path(a.registry); out=Path(a.out); out.mkdir(parents=True,exist_ok=True)
-        names=['latest','scorecards','open_rsi_eval_runs','public_evidence_axes','archive_reuse','value_to_capacity','summary']
-        for n in names: jwrite(out/f'{n}.json', jread(reg/f'{n}.json', [] if n!='summary' else {}))
+        sources = {
+            'latest': 'latest.json',
+            'scorecards': 'scorecards.json',
+            'open_rsi_eval_runs': 'open_rsi_eval_runs.json',
+            'public_evidence_axes': 'public_evidence_axes.json',
+            'archive_reuse': 'archive_reuse_results.json',
+            'value_to_capacity': 'value_to_capacity_results.json',
+            'summary': 'summary.json',
+        }
+        for name, source in sources.items():
+            default = {} if name == 'summary' else []
+            jwrite(out / f'{name}.json', jread(reg / source, default))
     return 0
