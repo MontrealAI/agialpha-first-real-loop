@@ -59,7 +59,7 @@ def run_cycle(repo_root:Path, out:Path, registry:Path):
     if out.is_relative_to(repo_root):
         run_id_seed = str(out.relative_to(repo_root))
     else:
-        run_id_seed = "external_ascension_cycle"
+        run_id_seed = f"external:{out.resolve()}"
     run_id = hashlib.sha256(run_id_seed.encode()).hexdigest()[:16]
     record={"run_id":run_id,"status":"accepted",**_safe_run_ref(repo_root, out),**bfields()}
     for n in ["registry","latest","cycles","enterprise_workflows","regulated_boundary_triage","proofbundles","evidence_dockets","work_vaults","settlements","capabilities","open_rsi_eval_runs","gauntlet_runs","verified_enterprise_alpha","value_to_capacity","valuation_support"]:
