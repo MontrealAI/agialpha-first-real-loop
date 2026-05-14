@@ -1,0 +1,9 @@
+{
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "local bounded public evidence",
+  "human_review_required": true,
+  "name": "cycles",
+  "no_auto_merge": true,
+  "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+  "token_boundary": "utility-only $AGIALPHA settlement record"
+}
