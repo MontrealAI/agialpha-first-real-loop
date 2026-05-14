@@ -184,3 +184,13 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 | `agialpha-ascension-scorecard-001-replay.yml` | Core | `workflow_dispatch`, `schedule` | Replay report artifacts for ascension runs. | Replay-only evidence. | no |
 | `agialpha-ascension-scorecard-001-falsification-audit.yml` | Core | `workflow_dispatch`, `schedule` | Falsification audit artifacts for ascension runs. | Claim-boundary enforcement only. | no |
 | `agialpha-open-rsi-eval-001.yml` | Core | `workflow_dispatch`, `schedule` | Open RSI Eval artifacts (B0-B7 ladder, B6/B5 status). | Human review required before persistence. | no |
+
+| `agialpha-ascension-os-001-lifecycle.yml` | Core | workflow_dispatch,schedule | Ascension OS artifacts | Human review required; no Pages deploy. | no |
+
+| `agialpha-ascension-os-001-replay.yml` | Core | workflow_dispatch,schedule | Ascension OS replay artifacts. | Replay-only evidence; no direct Pages deploy. | no |
+
+| `agialpha-ascension-os-001-falsification-audit.yml` | Core | workflow_dispatch,schedule | Ascension OS falsification audit artifacts. | Claim-boundary enforcement only; no direct Pages deploy. | no |
+
+| `agialpha-ascension-os-001-vnext.yml` | Core | workflow_dispatch,schedule | Ascension OS vNext candidate artifacts. | Human-governed promotion required; no auto-merge. | no |
+
+| `agialpha-self-improvement-gauntlet-001.yml` | Core | workflow_dispatch,schedule | Self-improvement gauntlet run artifacts. | Human review required; no autonomous persistence. | no |
