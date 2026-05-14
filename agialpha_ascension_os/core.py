@@ -80,11 +80,12 @@ def run_cycle(repo_root:Path, out:Path, registry:Path):
     wj(out/"work_vault.json",{"utility_budget":100,"alpha_work_units":12,"real_payment_used":False,**bfields()})
     wj(out/"settlement_receipt.json",{"settlement_type":"utility-only","receipt":"local JSON receipt",**bfields()})
     wj(out/"capability_archive.json",{"reusable_capabilities":["ascension_os_slice"],**bfields()})
+    wj(out/"cycle.json",{"status":"ok",**bfields()})
     run_open_rsi_eval(out,16)
     verified_enterprise_alpha(out)
+    value_to_capacity(out)
     valuation_support(repo_root,out,out)
-    wj(out/"replay_report.json",{"status":"pass",**bfields()})
-    wj(out/"falsification_audit.json",{"status":"pass","b4_failed":True,**bfields()})
+    wj(out/"22_reports"/"ascension_scorecard.json",{"status":"generated",**bfields()})
     wj(out/"summary.json", {"status":"generated", "run_ref": str(out), **bfields()})
     wj(out/"summary.md", "# Ascension OS run\n")
     registry.mkdir(parents=True, exist_ok=True)
@@ -98,10 +99,14 @@ def run_cycle(repo_root:Path, out:Path, registry:Path):
 def replay(run:Path):
     if not run.exists():
         raise FileNotFoundError(f"run directory not found: {run}")
-    wj(run/"replay_report.json",{"status":"pass",**bfields()})
+    status = "pass" if (run/"cycle.json").exists() else "fail"
+    wj(run/"replay_report.json",{"status":status,**bfields()})
 def falsification(run:Path): wj(run/"falsification_audit.json",{"status":"pass","b4_failed":True,**bfields()})
 def validate(run:Path):
-    payload = {"status":"pass" if (run/"replay_report.json").exists() and (run/"falsification_audit.json").exists() else "fail",**bfields()}
+    replay_report = rj(run/"replay_report.json") or {}
+    falsification_report = rj(run/"falsification_audit.json") or {}
+    is_pass = replay_report.get("status") == "pass" and falsification_report.get("status") == "pass"
+    payload = {"status":"pass" if is_pass else "fail",**bfields()}
     wj(run/"validation_report.json", payload)
     wj(run/"22_reports"/"validation_report.json", payload)
 def build_data(registry:Path, out:Path):
