@@ -50,7 +50,11 @@ def _stable_run_ref(out: Path) -> str:
     if "ascension-os-runs" in parts:
         idx = parts.index("ascension-os-runs")
         return "/".join(parts[idx:])
-    return out.as_posix()
+    if "runs" in parts:
+        idx = parts.index("runs")
+        return "/".join(parts[idx:])
+    # Keep registry references portable for ad-hoc absolute output paths (e.g. /tmp/...).
+    return f"runs/{out.name}"
 
 def _append_registry_record(path: Path, record: dict):
     existing = rj(path) or {"records": []}
