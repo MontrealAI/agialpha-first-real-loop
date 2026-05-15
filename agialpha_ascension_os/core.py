@@ -53,8 +53,11 @@ def _stable_run_ref(out: Path) -> str:
     if "runs" in parts:
         idx = parts.index("runs")
         return "/".join(parts[idx:])
-    # Keep registry references portable for ad-hoc absolute output paths (e.g. /tmp/...).
-    return f"runs/{out.name}"
+    # Portable fallback for arbitrary absolute paths with uniqueness preserved.
+    # Include enough parent structure to avoid collisions like /tmp/x and /var/tmp/x.
+    cleaned = [segment for segment in parts if segment and segment != "."]
+    tail = cleaned[-3:] if len(cleaned) >= 3 else cleaned
+    return "runs/external/" + "/".join(tail)
 
 def _append_registry_record(path: Path, record: dict):
     existing = rj(path) or {"records": []}
