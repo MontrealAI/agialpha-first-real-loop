@@ -1,4 +1,4 @@
-import argparse, json, hashlib
+import argparse, json, hashlib, shutil
 from pathlib import Path
 from .commercial_readiness import build_commercial_readiness
 from .implementation_comparison import build_implementation_comparison
@@ -22,7 +22,9 @@ def build(repo_root:Path, ascension_registry:Path, comparables:Path, out:Path, r
         else:
             row["scenario_multiples"]={str(m):m*float(c.get("revenue_proxy",1)) for m in [10,20,30,50]}
         market.append(row)
-    manifest={"run_id":hashlib.sha256(str(out).encode()).hexdigest()[:12],"run_ref":str(out),"statement":DISCLAIMER,**bfields()}
+    run_id = hashlib.sha256(str(out).encode()).hexdigest()[:12]
+    portable_run_dir = registry / "runs" / run_id
+    manifest={"run_id":run_id,"run_ref":str(portable_run_dir),"statement":DISCLAIMER,**bfields()}
     wj(out/"00_manifest.json",manifest)
     wj(out/"01_market_context.json", build_market_context(len(entries)))
     wj(out/"02_implementation_side_comparison.json", build_implementation_comparison(str(ascension_registry)))
@@ -36,9 +38,13 @@ def build(repo_root:Path, ascension_registry:Path, comparables:Path, out:Path, r
     (out/"09_not_an_investment_claim.md").write_text("Not an investment claim; scenario analysis only.\n")
     wj(out/"evidence-run-manifest.json",manifest)
     registry.mkdir(parents=True, exist_ok=True)
+    portable_run_dir.mkdir(parents=True, exist_ok=True)
+    for artifact in out.iterdir():
+        if artifact.is_file():
+            shutil.copy2(artifact, portable_run_dir / artifact.name)
     wj(registry/"latest.json", manifest)
     wj(registry/"registry.json", {"records":[manifest]})
-    wj(registry/"runs"/manifest["run_id"]/"00_manifest.json", manifest)
+    wj(portable_run_dir/"00_manifest.json", manifest)
 
 def validate(run:Path):
     req=["00_manifest.json","03_market_equivalence_sensitivity.json","09_not_an_investment_claim.md"]

@@ -9,6 +9,76 @@
       "run_ref": "ascension-os-runs/test",
       "status": "generated",
       "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "run_ref": "/tmp/tmp9j5ot7xv",
+      "status": "generated",
+      "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "run_ref": "/tmp/tmpjsq4p93x",
+      "status": "generated",
+      "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "run_ref": "/tmp/tmpoio9unbs",
+      "status": "generated",
+      "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "run_ref": "/tmp/tmpb_u7rxwd",
+      "status": "generated",
+      "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "run_ref": "/tmp/tmp10z7prue",
+      "status": "generated",
+      "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "run_ref": "/tmp/tmpmlz6ljl6",
+      "status": "generated",
+      "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "run_ref": "/tmp/tmp__1od90p",
+      "status": "generated",
+      "token_boundary": "utility-only $AGIALPHA settlement record"
     }
   ]
 }
