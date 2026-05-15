@@ -50,7 +50,9 @@ def build(repo_root: Path, ascension_registry: Path, comparables: Path, market_c
     out=Path(out); out.mkdir(parents=True,exist_ok=True)
     run_id=hashlib.sha256(str(out.resolve()).encode()).hexdigest()[:12]; files["00_manifest.json"]["run_id"]=run_id
     for n,d in files.items(): _wj(out/n,d)
-    for n in ["11_investor_diligence_index.md","12_valuation_support_memo.md","13_not_an_investment_claim.md"]: (out/n).write_text(REQUIRED_BOUNDARY_TEXT+"\n",encoding="utf-8")
+    for n in ["11_investor_diligence_index.md","12_valuation_support_memo.md"]:
+        (out/n).write_text(REQUIRED_BOUNDARY_TEXT+"\n",encoding="utf-8")
+    (out/"13_not_an_investment_claim.md").write_text("AGI ALPHA does not assert a valuation in this document. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.\n", encoding="utf-8")
     _wj(out/"evidence-run-manifest.json",{"run_id":run_id,**bf})
     reg=Path(registry); rdir=reg/"runs"/run_id; rdir.mkdir(parents=True,exist_ok=True)
     for f in out.iterdir():
