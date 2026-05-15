@@ -318,7 +318,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run_ref": "/tmp/ascension-os-test",
+      "run_ref": "runs/ascension-os-test",
       "status": "accepted",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     }

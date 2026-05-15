@@ -155,7 +155,16 @@ def validate(run:Path):
     wj(run/"22_reports"/"validation_report.json", payload)
 def build_data(registry:Path, out:Path):
     out.mkdir(parents=True, exist_ok=True)
-    wj(out/"latest.json", rj(registry/"latest.json") or {"status":"unavailable",**bfields()})
+    latest = rj(registry/"latest.json") or {"status":"unavailable",**bfields()}
+    if isinstance(latest, dict) and isinstance(latest.get("records"), list):
+        filtered=[]
+        for rec in latest["records"]:
+            run_ref = rec.get("run_ref") if isinstance(rec, dict) else None
+            if isinstance(run_ref, str) and run_ref.startswith("/"):
+                continue
+            filtered.append(rec)
+        latest = {**latest, "records": filtered}
+    wj(out/"latest.json", latest)
     for name in ["summary","open_rsi_eval","verified_enterprise_alpha","valuation_support","value_to_capacity","capacity_reinvestment"]:
         src = registry/f"{name}.json"
         wj(out/f"{name}.json", rj(src) or {"status":"unavailable","missing_metrics":"not_reported",**bfields()})
