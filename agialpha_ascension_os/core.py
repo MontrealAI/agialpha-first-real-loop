@@ -84,6 +84,7 @@ def run_cycle(repo_root:Path, out:Path, registry:Path):
     run_open_rsi_eval(out,16)
     verified_enterprise_alpha(out)
     value_to_capacity(out)
+    capacity_reinvestment(out)
     valuation_support(repo_root,out,out)
     wj(out/"22_reports"/"ascension_scorecard.json",{"status":"generated",**bfields()})
     wj(out/"summary.json", {"status":"generated", "run_ref": str(out), **bfields()})
