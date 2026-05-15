@@ -4,7 +4,11 @@
   "no_auto_merge": true,
   "no_autonomous_persistence": true,
   "required_boundary_text": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
-  "run_id": "91b29dca541d",
-  "run_ref": "runs/91b29dca541d",
+  "rows": [
+    {
+      "reported_category_valuation_comparable": "not_reported",
+      "scenario_multiples": "not_reported"
+    }
+  ],
   "strategic_direction_text": "AGI ALPHA\u2019s long-horizon superintelligence / Kardashev / value-to-energy framing is a strategic direction, not a present achievement claim. Near-term valuation support must be based only on verified work, replay, Evidence Dockets, ProofBundles, Work Vaults, enterprise workflow evidence, commercial-readiness evidence, customer-reviewed dockets if available, and governance integrity."
 }
