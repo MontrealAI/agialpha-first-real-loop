@@ -1,11 +1,14 @@
 name: AGI ALPHA Valuation Support 002 / Implementation-Side Dossier
+
 on:
   workflow_dispatch:
   schedule:
     - cron: '0 7 * * 1'
+
 permissions:
   contents: read
   actions: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,11 +17,25 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python scripts/secure_rails_claim_boundary_check.py
-      - run: python -m agialpha_valuation_support build --repo-root . --ascension-registry ascension_os_registry --comparables config/valuation_support_public_comparables.example.json --market-context config/valuation_support_market_context.example.json --out valuation-support-runs/test
-      - run: python -m agialpha_valuation_support validate --run valuation-support-runs/test
-      - run: python -m agialpha_valuation_support build-data --registry valuation_support_registry --out docs/_generated/valuation-support
-      - uses: actions/upload-artifact@v4
+      - name: SecureRails checks
+        run: |
+          python scripts/secure_rails_claim_boundary_check.py
+          python scripts/secure_rails_human_review_check.py
+      - name: Ascension OS validation (if available)
+        run: |
+          if [ -f ascension_os_registry/latest.json ]; then
+            python -m agialpha_ascension_os validate --run "$(jq -r '.run_ref // empty' ascension_os_registry/latest.json)" || true
+          fi
+      - name: Build valuation support dossier
+        run: python -m agialpha_valuation_support build --repo-root . --ascension-registry ascension_os_registry --comparables config/valuation_support_public_comparables.example.json --market-context config/valuation_support_market_context.example.json --out valuation-support-runs/test
+      - name: Validate no investment/token/valuation overclaims
+        run: python -m agialpha_valuation_support validate --run valuation-support-runs/test
+      - name: Validate regulated-boundary firewall
+        run: python scripts/secure_rails_use_case_triage_check.py
+      - name: Build generated data
+        run: python -m agialpha_valuation_support build-data --registry valuation_support_registry --out docs/_generated/valuation-support
+      - name: Upload valuation-support dossier artifact
+        uses: actions/upload-artifact@v4
         with:
           name: valuation-support-dossier
           path: valuation-support-runs/test
