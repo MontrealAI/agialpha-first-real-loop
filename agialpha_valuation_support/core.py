@@ -40,6 +40,14 @@ def build(repo_root:Path, ascension_registry:Path, comparables:Path, market_cont
     run_id=hashlib.sha256(str(out).encode()).hexdigest()[:12]
     files={"00_manifest.json":{"run_id":run_id,"statement":REQUIRED_BOUNDARY_TEXT,"market_context":mctx.get("market_context", {}),**bf},"01_category_valuation_signal.json":{"reported_category_valuation_comparable":valuation,"market_context":mctx.get("market_context", {}),**bf},"02_public_comparables.json":cmp,"03_agialpha_evidence_inventory.json":{"items":evid,**bf},"04_implementation_side_comparison.json":{"axes":axis_records,**bf},"05_implementation_equivalence_score.json":score,"06_market_equivalence_sensitivity.json":market_eq,"07_commercial_readiness.json":comm,"08_moat_assessment.json":moat,"09_risk_boundary.json":risk,"10_missing_evidence.json":miss}
     for n,d in files.items(): _wj(out/n,d)
+    # Legacy compatibility aliases during v002 rollout
+    _wj(out/"03_market_equivalence_sensitivity.json", {"rows": [{"reported_category_valuation_comparable": valuation, "scenario_multiples": req_arr if isinstance(valuation,(int,float)) else "not_reported"}], **bf})
+    _wj(out/"04_commercial_readiness.json", comm)
+    _wj(out/"05_moat_assessment.json", moat)
+    _wj(out/"06_risk_boundary.json", risk)
+    _wj(out/"07_missing_evidence.json", miss)
+    (out/"08_valuation_support_memo.md").write_text(REQUIRED_BOUNDARY_TEXT+"\n",encoding='utf-8')
+    (out/"09_not_an_investment_claim.md").write_text(REQUIRED_BOUNDARY_TEXT+"\n",encoding='utf-8')
     (out/"11_investor_diligence_index.md").write_text(REQUIRED_BOUNDARY_TEXT+"\n",encoding='utf-8')
     (out/"12_valuation_support_memo.md").write_text(REQUIRED_BOUNDARY_TEXT+"\n",encoding='utf-8')
     (out/"13_not_an_investment_claim.md").write_text(REQUIRED_BOUNDARY_TEXT+"\n",encoding='utf-8')
@@ -64,12 +72,16 @@ def build_data(registry:Path, out:Path):
     if run_path.is_absolute():
         rpath = run_path
     elif run_ref:
-        candidate_direct = run_path.resolve()
-        candidate_registry_prefixed = (registry / run_path).resolve()
-        if str(run_ref).startswith(str(registry)) or candidate_direct.exists():
-            rpath = candidate_direct
-        else:
-            rpath = candidate_registry_prefixed
+        candidates = [
+            run_path.resolve(),
+            (registry / run_path).resolve(),
+            (registry.parent / run_path).resolve(),
+        ]
+        rpath = candidates[1]
+        for c in candidates:
+            if (c / "00_manifest.json").exists():
+                rpath = c
+                break
     else:
         rpath = (registry / 'runs').resolve()
     mapping={"public_comparables":"02_public_comparables.json","evidence_inventory":"03_agialpha_evidence_inventory.json","implementation_comparison":"04_implementation_side_comparison.json","implementation_equivalence_score":"05_implementation_equivalence_score.json","valuation_support_scorecard":"05_implementation_equivalence_score.json","market_equivalence_sensitivity":"06_market_equivalence_sensitivity.json","commercial_readiness":"07_commercial_readiness.json","moat_assessment":"08_moat_assessment.json","risk_boundary":"09_risk_boundary.json","missing_evidence":"10_missing_evidence.json"}
