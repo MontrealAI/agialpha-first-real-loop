@@ -37,7 +37,7 @@ def _regulated_triage(workflow_name:str, flags:dict):
     }
 
 def workflow_packs():
-    names=["software_quality_pack","evidence_ops_pack","defensive_security_docs_pack"]
+    names=["software_quality_pack","evidence_ops_pack","docs_ops_pack","compliance_readiness_docs_pack","procurement_fixture_analysis_pack","sales_enablement_fixture_pack","defensive_security_docs_pack","trust_center_readiness_pack","enterprise_pilot_readiness_pack"]
     packs=[]
     for n in names:
         packs.append({"job_id":hashlib.sha256(n.encode()).hexdigest()[:10],"workflow_type":n,"synthetic_inputs_used":True,"prohibited_actions_checked":["payment_or_custody","wallet_or_trading","kyc_aml","legal_advice","medical_advice","hr_or_worker_evaluation","credit_or_lending","insurance","offensive_cyber"],"validator_requirements":["human_review_required"],"proofbundle_plan":"emit local proofbundle","evidence_docket_plan":"emit local docket",**bfields()})
@@ -84,6 +84,7 @@ def run_cycle(repo_root:Path, out:Path, registry:Path):
     run_open_rsi_eval(out,16)
     verified_enterprise_alpha(out)
     value_to_capacity(out)
+    capacity_reinvestment(out)
     valuation_support(repo_root,out,out)
     wj(out/"22_reports"/"ascension_scorecard.json",{"status":"generated",**bfields()})
     wj(out/"summary.json", {"status":"generated", "run_ref": str(out), **bfields()})
@@ -91,10 +92,21 @@ def run_cycle(repo_root:Path, out:Path, registry:Path):
     registry.mkdir(parents=True, exist_ok=True)
     record = {"run_ref":str(out),"status":"accepted",**bfields()}
     _append_registry_record(registry/"latest.json", record)
-    for name in ["summary", "open_rsi_eval", "verified_enterprise_alpha", "valuation_support"]:
+    for name in ["summary", "open_rsi_eval", "verified_enterprise_alpha", "valuation_support", "value_to_capacity", "capacity_reinvestment"]:
         artifact = rj(out/f"{name}.json")
         if artifact is not None:
             _append_registry_record(registry/f"{name}.json", artifact)
+    # expected append-only registry paths
+    registry_aliases={
+        "enterprise_intakes.json":{"status":"accepted", **bfields()},
+        "insights.json":{"status":"generated", **bfields()},
+        "nova_seeds.json":{"status":"generated", **bfields()},
+        "jobs.json":{"status":"generated", **bfields()},
+        "validators.json":{"status":"generated", **bfields()},
+        "self_improvement_gauntlet_runs.json":{"status":"generated", **bfields()},
+    }
+    for name, payload in registry_aliases.items():
+        _append_registry_record(registry/name, payload)
 
 def replay(run:Path):
     if not run.exists():
@@ -112,9 +124,18 @@ def validate(run:Path):
 def build_data(registry:Path, out:Path):
     out.mkdir(parents=True, exist_ok=True)
     wj(out/"latest.json", rj(registry/"latest.json") or {"status":"unavailable",**bfields()})
-    for name in ["summary","open_rsi_eval","verified_enterprise_alpha","valuation_support"]:
+    for name in ["summary","open_rsi_eval","verified_enterprise_alpha","valuation_support","value_to_capacity","capacity_reinvestment"]:
         src = registry/f"{name}.json"
         wj(out/f"{name}.json", rj(src) or {"status":"unavailable","missing_metrics":"not_reported",**bfields()})
+    # compatibility aliases expected by public docs/routes
+    alias={
+        "scorecards.json":"summary.json",
+        "open_rsi_eval_runs.json":"open_rsi_eval.json",
+        "self_improvement_gauntlet_runs.json":"summary.json",
+        "archive_reuse.json":"summary.json",
+    }
+    for out_name, src_name in alias.items():
+        wj(out/out_name, rj(out/src_name) or {"status":"not_reported","missing_metrics":"not_reported",**bfields()})
 
 def run_gauntlet(out:Path, task_count:int): wj(out/"run_gauntlet.json",{"task_count":task_count,**bfields()})
 def value_to_capacity(run:Path): wj(run/"value_to_capacity.json",{"value_to_capacity_proxy":1,**bfields()})
