@@ -3,16 +3,6 @@
   "contracted_arr_usd": "not_reported",
   "current_arr_usd": "not_reported",
   "human_review_required": true,
-  "market_context": {
-    "ai_agent_software_spend_2025": "not_reported",
-    "ai_agent_software_spend_2026": "not_reported",
-    "ai_agent_software_spend_2027": "not_reported",
-    "claim_boundary": "Manual context only. Not a forecast, valuation assertion, investment claim, or token-value claim.",
-    "enterprise_apps_with_agents_2026_pct": "not_reported",
-    "genai_annual_value_high": "not_reported",
-    "genai_annual_value_low": "not_reported",
-    "source_links": []
-  },
   "no_auto_merge": true,
   "no_autonomous_persistence": true,
   "not_a_revenue_forecast": true,
