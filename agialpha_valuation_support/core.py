@@ -2,6 +2,7 @@ from __future__ import annotations
 import argparse, hashlib, json, shutil
 from pathlib import Path
 from .boundaries import boundary_fields, REQUIRED_BOUNDARY_TEXT
+from .valuation_support_scorecard import build_scorecard
 
 AXES=[f"axis_{i:02d}" for i in range(1,31)]
 
@@ -41,14 +42,29 @@ def build(repo_root:Path, ascension_registry:Path, comparables:Path, market_cont
     files={"00_manifest.json":{"run_id":run_id,"statement":REQUIRED_BOUNDARY_TEXT,"market_context":mctx.get("market_context", {}),**bf},"01_category_valuation_signal.json":{"reported_category_valuation_comparable":valuation,"market_context":mctx.get("market_context", {}),**bf},"02_public_comparables.json":cmp,"03_agialpha_evidence_inventory.json":{"items":evid,**bf},"04_implementation_side_comparison.json":{"axes":axis_records,**bf},"05_implementation_equivalence_score.json":score,"06_market_equivalence_sensitivity.json":market_eq,"07_commercial_readiness.json":comm,"08_moat_assessment.json":moat,"09_risk_boundary.json":risk,"10_missing_evidence.json":miss}
     for n,d in files.items(): _wj(out/n,d)
     # Legacy compatibility aliases during v002 rollout
+    legacy_rows=[]
+    for c in comp:
+        cval = c.get("reported_valuation_usd", c.get("reported_category_valuation_comparable", "not_reported"))
+        scenario = {str(m): (cval/m if isinstance(cval,(int,float)) else "not_reported") for m in [10,20,30,50]}
+        legacy_rows.append({
+            "name": c.get("name", "unavailable"),
+            "reported_category_valuation_comparable": cval,
+            "source": c.get("source", "not_reported"),
+            "scenario_multiples": scenario if isinstance(cval,(int,float)) else "not_reported",
+        })
+    if not legacy_rows:
+        legacy_rows=[{"name":"unavailable","reported_category_valuation_comparable":"not_reported","source":"not_reported","scenario_multiples":"not_reported"}]
+    legacy_scorecard=build_scorecard()
+    legacy_scorecard["valuation_support_readiness_tier"]=score.get("readiness_tier","T0")
+    legacy_scorecard["implementation_equivalence_score"]=score.get("implementation_equivalence_score","not_reported")
     _wj(out/"01_market_context.json", {"market_context": mctx.get("market_context", {}), **bf})
     _wj(out/"02_implementation_side_comparison.json", {"status": "included", "axes": axis_records, **bf})
-    _wj(out/"03_market_equivalence_sensitivity.json", {"rows": [{"reported_category_valuation_comparable": valuation, "scenario_multiples": req_arr if isinstance(valuation,(int,float)) else "not_reported"}], **bf})
+    _wj(out/"03_market_equivalence_sensitivity.json", {"rows": legacy_rows, **bf})
     _wj(out/"04_commercial_readiness.json", comm)
     _wj(out/"05_moat_assessment.json", moat)
     _wj(out/"06_risk_boundary.json", risk)
     _wj(out/"07_missing_evidence.json", miss)
-    _wj(out/"10_valuation_support_scorecard.json", score)
+    _wj(out/"10_valuation_support_scorecard.json", legacy_scorecard)
     (out/"08_valuation_support_memo.md").write_text(REQUIRED_BOUNDARY_TEXT+"\n",encoding='utf-8')
     (out/"09_not_an_investment_claim.md").write_text(REQUIRED_BOUNDARY_TEXT+"\n",encoding='utf-8')
     (out/"11_investor_diligence_index.md").write_text(REQUIRED_BOUNDARY_TEXT+"\n",encoding='utf-8')
