@@ -50,7 +50,11 @@ def _stable_run_ref(out: Path) -> str:
     if "ascension-os-runs" in parts:
         idx = parts.index("ascension-os-runs")
         return "/".join(parts[idx:])
-    return out.as_posix()
+    if "runs" in parts:
+        idx = parts.index("runs")
+        return "/".join(parts[idx:])
+    # Keep registry references portable for ad-hoc absolute output paths (e.g. /tmp/...).
+    return f"runs/{out.name}"
 
 def _append_registry_record(path: Path, record: dict):
     existing = rj(path) or {"records": []}
@@ -151,7 +155,16 @@ def validate(run:Path):
     wj(run/"22_reports"/"validation_report.json", payload)
 def build_data(registry:Path, out:Path):
     out.mkdir(parents=True, exist_ok=True)
-    wj(out/"latest.json", rj(registry/"latest.json") or {"status":"unavailable",**bfields()})
+    latest = rj(registry/"latest.json") or {"status":"unavailable",**bfields()}
+    if isinstance(latest, dict) and isinstance(latest.get("records"), list):
+        filtered=[]
+        for rec in latest["records"]:
+            run_ref = rec.get("run_ref") if isinstance(rec, dict) else None
+            if isinstance(run_ref, str) and run_ref.startswith("/"):
+                continue
+            filtered.append(rec)
+        latest = {**latest, "records": filtered}
+    wj(out/"latest.json", latest)
     for name in ["summary","open_rsi_eval","verified_enterprise_alpha","valuation_support","value_to_capacity","capacity_reinvestment"]:
         src = registry/f"{name}.json"
         wj(out/f"{name}.json", rj(src) or {"status":"unavailable","missing_metrics":"not_reported",**bfields()})
