@@ -17,14 +17,14 @@ def _exists(repo:Path, rel:str):
     p=repo/rel
     return p.exists(), rel
 
-def build(repo_root:Path, ascension_registry:Path, comparables:Path, market_context:Path, out:Path, registry:Path=Path('valuation_support_registry')):
+def build(repo_root:Path, ascension_registry:Path, comparables:Path, market_context:Path|None, out:Path, registry:Path=Path('valuation_support_registry')):
     repo_root=repo_root.resolve(); out.mkdir(parents=True, exist_ok=True)
     bf=boundary_fields()
     cmp=_rj(comparables,{"comparables":[]})
-    mctx=_rj(market_context,{"market_context":{}})
+    mctx=_rj(market_context,{"market_context":{}}) if market_context else {"market_context":{}}
     comp=cmp.get('comparables',[])
     top=comp[0] if comp else {}
-    valuation=top.get('reported_valuation_usd','not_reported')
+    valuation=top.get('reported_valuation_usd', top.get('reported_category_valuation_comparable','not_reported'))
     evid=[]
     for t,p in [("agialpha_ascension_os","agialpha_ascension_os"),("ascension_os_registry",str(ascension_registry)),("replay_reports","ascension-os-runs"),("proofbundles","secure_rails_registry/work_vaults"),("evidence_dockets","evidence_registry"),("workflows",".github/workflows"),("docs","docs"),("tests","tests")]:
         ex,rp=_exists(repo_root,p); evid.append({"artifact_type":t,"path":rp,"exists":ex,"validated":True if ex else "not_reported","evidence_level":"local" if ex else "not_reported","valuation_relevance":"implementation evidence","claim_boundary":REQUIRED_BOUNDARY_TEXT})
@@ -64,7 +64,18 @@ def build_data(registry:Path, out:Path):
     if run_path.is_absolute():
         rpath = run_path
     elif run_ref:
-        rpath = (registry / run_path).resolve()
+        candidates = [
+            (registry / run_path).resolve(),
+            run_path.resolve(),
+        ]
+        registry_name = registry.name
+        if run_path.parts and run_path.parts[0] == registry_name:
+            candidates.insert(0, (Path.cwd() / run_path).resolve())
+        rpath = candidates[0]
+        for c in candidates:
+            if (c / '00_manifest.json').exists():
+                rpath = c
+                break
     else:
         rpath = (registry / 'runs').resolve()
     mapping={"public_comparables":"02_public_comparables.json","evidence_inventory":"03_agialpha_evidence_inventory.json","implementation_comparison":"04_implementation_side_comparison.json","implementation_equivalence_score":"05_implementation_equivalence_score.json","valuation_support_scorecard":"05_implementation_equivalence_score.json","market_equivalence_sensitivity":"06_market_equivalence_sensitivity.json","commercial_readiness":"07_commercial_readiness.json","moat_assessment":"08_moat_assessment.json","risk_boundary":"09_risk_boundary.json","missing_evidence":"10_missing_evidence.json"}
