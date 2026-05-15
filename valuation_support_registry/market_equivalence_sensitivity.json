@@ -1,12 +1,31 @@
 {
   "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
   "comparison_limit_text": "Any comparison to private self-improving-AI labs is limited to public implementation-side evidence available in this repository and manually entered public comparables. Missing external data is shown as not_reported.",
+  "contracted_arr_usd": "not_reported",
+  "current_arr_usd": "not_reported",
   "human_review_required": true,
-  "implementation_equivalence_score": 0.62,
   "no_auto_merge": true,
   "no_autonomous_persistence": true,
+  "not_a_revenue_forecast": true,
+  "not_a_token_value_claim": true,
+  "not_a_valuation_assertion": true,
   "not_an_investment_claim": true,
-  "readiness_tier": "T2",
+  "pipeline_arr_usd": "not_reported",
+  "required_arr_by_multiple": {
+    "10": 465000000,
+    "20": 232500000,
+    "30": 155000000,
+    "50": 93000000
+  },
+  "revenue_multiple_scenarios": [
+    10,
+    20,
+    30,
+    50
+  ],
+  "scenario_caveats": [
+    "Scenario math only, not a forecast."
+  ],
   "strategic_direction_text": "AGI ALPHA\u2019s long-horizon superintelligence / Kardashev / value-to-energy framing is a strategic direction, not a present achievement claim. Near-term valuation support must be based only on verified work, replay, Evidence Dockets, ProofBundles, Work Vaults, enterprise workflow evidence, customer-reviewed dockets if available, commercial-readiness evidence, and governance integrity.",
-  "tier_cap_reason": "Hard cap: evidence docket and replay report incomplete."
+  "target_comparable_valuation_usd": 4650000000
 }
