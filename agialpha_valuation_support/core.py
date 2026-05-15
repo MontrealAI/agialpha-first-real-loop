@@ -73,9 +73,9 @@ def build_data(registry:Path, out:Path):
         rpath = run_path
     elif run_ref:
         candidates = [
-            run_path.resolve(),
             (registry / run_path).resolve(),
             (registry.parent / run_path).resolve(),
+            run_path.resolve(),
         ]
         rpath = candidates[1]
         for c in candidates:
