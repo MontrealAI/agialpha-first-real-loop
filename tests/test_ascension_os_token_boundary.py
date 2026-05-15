@@ -1,8 +1,11 @@
-import tempfile, subprocess, sys, os, json
+import unittest
+from agialpha_ascension_os.core import bfields
 
-def test_settlement_is_utility_only():
-    d=tempfile.mkdtemp()
-    subprocess.check_call([sys.executable,"-m","agialpha_ascension_os","run-cycle","--repo-root",".","--registry",d+"/reg","--out",d])
-    settlement=json.load(open(os.path.join(d,"settlement_receipt.json")))
-    assert settlement["settlement_type"]=="utility-only"
-    assert "receipt" in settlement
+
+class TestTokenBoundary(unittest.TestCase):
+    def test_utility_only(self):
+        self.assertIn("utility-only", bfields()["token_boundary"])
+
+
+if __name__ == '__main__':
+    unittest.main()

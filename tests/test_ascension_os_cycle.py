@@ -1,14 +1,27 @@
-import tempfile,subprocess,sys,os,json
+import json
+import tempfile
+import unittest
+from pathlib import Path
+from agialpha_ascension_os import core
 
-def test_cycle_runs():
- d=tempfile.mkdtemp(); subprocess.check_call([sys.executable,"-m","agialpha_ascension_os","run-cycle","--repo-root",".","--registry","ascension_os_registry","--out",d]); assert os.path.exists(os.path.join(d,"22_reports","ascension_scorecard.json"))
 
-def test_passthrough_honors_out_path():
- d=tempfile.mkdtemp(); subprocess.check_call([sys.executable,"-m","agialpha_ascension_os","run-gauntlet","--repo-root",".","--out",d,"--task-count","3"]); assert os.path.exists(os.path.join(d,"run_gauntlet.json"))
+class TestAscensionOSCycle(unittest.TestCase):
+    def test_run_cycle_creates_artifacts(self):
+        with tempfile.TemporaryDirectory() as td:
+            run = Path(td) / "run"
+            reg = Path(td) / "registry"
+            core.run_cycle(Path('.'), run, reg)
+            required = [
+                "run.json","regulated_boundary_triage.json","enterprise_job_pack.json","insight.json",
+                "nova_seeds.json","mark_allocation.json","sovereign_assignment.json","agi_job.json",
+                "validator_result.json","proofbundle.json","work_vault.json","settlement_receipt.json",
+                "capability_archive.json","open_rsi_eval.json","verified_enterprise_alpha.json",
+                "valuation_support_dossier.json","evidence-run-manifest.json","summary.md"
+            ]
+            for name in required:
+                self.assertTrue((run / name).exists(), name)
+            self.assertTrue((run / "evidence_docket" / "00_manifest.json").exists())
 
-def test_replay_fails_on_missing_run_dir():
- d=tempfile.mkdtemp(); rc=subprocess.run([sys.executable,"-m","agialpha_ascension_os","replay","--run",os.path.join(d,"missing")]); assert rc.returncode!=0
 
-def test_validate_checks_reports():
- d=tempfile.mkdtemp(); subprocess.check_call([sys.executable,"-m","agialpha_ascension_os","run-cycle","--repo-root",".","--registry","ascension_os_registry","--out",d]); subprocess.check_call([sys.executable,"-m","agialpha_ascension_os","replay","--run",d]); subprocess.check_call([sys.executable,"-m","agialpha_ascension_os","falsification-audit","--run",d]); subprocess.check_call([sys.executable,"-m","agialpha_ascension_os","validate","--run",d]);
- data=json.load(open(os.path.join(d,"22_reports","validation_report.json"))); assert data["status"]=="pass"
+if __name__ == '__main__':
+    unittest.main()

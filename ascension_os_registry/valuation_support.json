@@ -6,7 +6,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run": "/tmp/ascension-os-test",
+      "run": "external_run",
       "status": "accepted",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -16,7 +16,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run": "/tmp/ascension-os-test",
+      "run": "external_run",
       "status": "accepted",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -26,7 +26,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run": "/tmp/tmp1qn52bxw",
+      "run": "external_run",
       "status": "accepted",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -36,7 +36,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run": "/tmp/tmp1h9ku29w",
+      "run": "external_run",
       "status": "accepted",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -46,7 +46,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run": "/tmp/tmpcmir1vxp",
+      "run": "external_run",
       "status": "accepted",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -56,7 +56,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run": "/tmp/tmp8345x1sc",
+      "run": "external_run",
       "status": "accepted",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -66,7 +66,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run": "/tmp/tmpz991ky2z",
+      "run": "external_run",
       "status": "accepted",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -76,7 +76,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run": "/tmp/tmpkoe5qtd_",
+      "run": "external_run",
       "status": "accepted",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -210,6 +210,26 @@
       "run_id": "fb269f483f9e6b1c",
       "run_ref": "external_run",
       "status": "accepted",
+      "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "comparables": {
+        "comparables": [
+          {
+            "name": "Example Comparable A",
+            "reported_category_valuation_comparable": "not_reported",
+            "revenue_proxy": 1,
+            "source": "not_reported"
+          }
+        ]
+      },
+      "human_review_required": true,
+      "missing_metrics": "not_reported",
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "statement": "AGI ALPHA does not assert a valuation in this document. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
     {

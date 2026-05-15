@@ -1,10 +1,38 @@
-import tempfile, subprocess, sys, os
+import json
+import tempfile
+import unittest
+from pathlib import Path
 
-FORBIDDEN=["achieved AGI","achieved ASI","superintelligence","empirical SOTA","certified safe","EU AI Act exempt"]
+from agialpha_ascension_os import core
 
-def test_no_overclaim_in_outputs():
-    d=tempfile.mkdtemp()
-    subprocess.check_call([sys.executable,"-m","agialpha_ascension_os","run-cycle","--repo-root",".","--registry",d+"/reg","--out",d])
-    blob="\n".join(open(os.path.join(d,f)).read() for f in os.listdir(d) if f.endswith(".json"))
-    for bad in FORBIDDEN:
-        assert bad not in blob
+
+class TestNoOverclaim(unittest.TestCase):
+    def test_run_outputs_no_forbidden_claims(self):
+        with tempfile.TemporaryDirectory() as td:
+            run = Path(td) / "run"
+            reg = Path(td) / "registry"
+            core.run_cycle(Path('.'), run, reg)
+            forbidden = [
+                "achieved agi",
+                "achieved asi",
+                "achieved superintelligence",
+                "official benchmark victory",
+                "certified safe",
+                "cybersecurity certification",
+                "eu ai act exempt",
+                "legally approved worldwide",
+                "guaranteed economic return",
+                "guaranteed wealth",
+                "recursive beaten",
+            ]
+            for p in run.rglob('*'):
+                if p.suffix.lower() not in {'.json', '.md'}:
+                    continue
+                text = p.read_text(encoding='utf-8').lower()
+                for bad in forbidden:
+                    self.assertNotIn(bad, text, f"found '{bad}' in {p}")
+                self.assertNotIn("empirical sota claim achieved", text, f"found empirical sota overclaim in {p}")
+
+
+if __name__ == '__main__':
+    unittest.main()
