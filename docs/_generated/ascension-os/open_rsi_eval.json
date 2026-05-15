@@ -278,6 +278,37 @@
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
       "task_count": 16,
       "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "baselines": {
+        "B0": "static repository",
+        "B1": "docs-only recursive claim",
+        "B2": "CI automation without memory",
+        "B3": "evidence automation without archive reuse",
+        "B4": {
+          "reason": "ungated self-modification lacks human review",
+          "status": "fail"
+        },
+        "B5": {
+          "status": "available"
+        },
+        "B6": {
+          "status": "available"
+        },
+        "B7": {
+          "status": "pending_human_review"
+        }
+      },
+      "claim_boundary": "local bounded public evidence",
+      "comparison": {
+        "B6_vs_B5": "unavailable_honest_missing_inputs"
+      },
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "task_count": 16,
+      "token_boundary": "utility-only $AGIALPHA settlement record"
     }
   ]
 }
