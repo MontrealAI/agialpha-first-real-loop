@@ -1,0 +1,24 @@
+name: AGI ALPHA Valuation Support 002 / Implementation-Side Dossier
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 7 * * 1'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python scripts/secure_rails_claim_boundary_check.py || true
+      - run: python -m agialpha_valuation_support build --repo-root . --ascension-registry ascension_os_registry --comparables config/valuation_support_public_comparables.example.json --market-context config/valuation_support_market_context.example.json --out valuation-support-runs/test
+      - run: python -m agialpha_valuation_support validate --run valuation-support-runs/test
+      - run: python -m agialpha_valuation_support build-data --registry valuation_support_registry --out docs/_generated/valuation-support
+      - uses: actions/upload-artifact@v4
+        with:
+          name: valuation-support-dossier
+          path: valuation-support-runs/test
