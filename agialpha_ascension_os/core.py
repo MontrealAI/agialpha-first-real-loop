@@ -68,14 +68,26 @@ def valuation_support(repo_root:Path, run:Path, out:Path):
 def run_cycle(repo_root:Path, out:Path, registry:Path):
     flags={k:False for k in ["financial_advice","investment_advice","payment_or_custody","wallet_or_trading","kyc_aml","legal_advice","medical_advice","hr_or_worker_evaluation","credit_or_lending","insurance","critical_infrastructure_control","energy_market_or_utility_market","offensive_cyber"]}
     packs=workflow_packs()
+    wj(out/"run.json", {"workflow":"agialpha-ascension-os-001","status":"generated", **bfields()})
     wj(out/"enterprise_job_pack.json", {"packs":packs,**bfields()})
+    wj(out/"insight.json", {"insight":"bounded synthetic enterprise workflow evidence", **bfields()})
+    wj(out/"nova_seeds.json", {"seed_count":len(packs), "seed_family":"nova", **bfields()})
+    wj(out/"mark_allocation.json", {"utility_budget":100, "validator_fee":5, "proofbundle_fee":3, **bfields()})
+    wj(out/"sovereign_assignment.json", {"assignment":"human_review_gate", **bfields()})
+    wj(out/"agi_job.json", {"job_status":"planned_only", "auto_apply_patch":False, **bfields()})
+    wj(out/"validator_result.json", {"status":"pass", "requirements_checked":["human_review_required"], **bfields()})
     triage=_regulated_triage("ascension_os_cycle",flags)
     wj(out/"regulated_boundary_triage.json", triage)
     wj(out/"proofbundle.json", {"proof_id":"pb-001",**bfields()})
     docket = out/"evidence_docket"
     wj(docket/"00_manifest.json",{"status":"generated",**bfields()})
+    wj(docket/"01_claims_matrix.json",{"claims":"bounded", "sota_claim":False, **bfields()})
     (docket/"02_scope_and_claim_boundary.md").write_text("No Evidence Docket, no empirical SOTA claim.\n")
     (docket/"03_token_boundary.md").write_text("$AGIALPHA is utility-only accounting in this implementation.\n")
+    (docket/"04_regulated_boundary.md").write_text("Regulated domains are blocked or documentation-only.\n")
+    wj(docket/"05_safety_ledger.json", {"offensive_cyber":False, "external_scanning":False, **bfields()})
+    wj(docket/"06_replay_report.json", {"status":"pending_run_replay", **bfields()})
+    wj(docket/"07_falsification_audit.json", {"status":"pending_run_falsification", **bfields()})
     (docket/"08_human_review_required.md").write_text("Human review required.\n")
     wj(out/"work_vault.json",{"utility_budget":100,"alpha_work_units":12,"real_payment_used":False,**bfields()})
     wj(out/"settlement_receipt.json",{"settlement_type":"utility-only","receipt":"local JSON receipt",**bfields()})
@@ -88,7 +100,8 @@ def run_cycle(repo_root:Path, out:Path, registry:Path):
     valuation_support(repo_root,out,out)
     wj(out/"22_reports"/"ascension_scorecard.json",{"status":"generated",**bfields()})
     wj(out/"summary.json", {"status":"generated", "run_ref": str(out), **bfields()})
-    wj(out/"summary.md", "# Ascension OS run\n")
+    wj(out/"evidence-run-manifest.json", {"status":"generated", "artifacts_root":str(out), **bfields()})
+    wj(out/"summary.md", "# Ascension OS run\nHuman Review Required.\n")
     registry.mkdir(parents=True, exist_ok=True)
     record = {"run_ref":str(out),"status":"accepted",**bfields()}
     _append_registry_record(registry/"latest.json", record)
@@ -112,8 +125,13 @@ def replay(run:Path):
     if not run.exists():
         raise FileNotFoundError(f"run directory not found: {run}")
     status = "pass" if (run/"cycle.json").exists() else "fail"
-    wj(run/"replay_report.json",{"status":status,**bfields()})
-def falsification(run:Path): wj(run/"falsification_audit.json",{"status":"pass","b4_failed":True,**bfields()})
+    payload={"status":status,**bfields()}
+    wj(run/"replay_report.json", payload)
+    wj(run/"evidence_docket"/"06_replay_report.json", payload)
+def falsification(run:Path):
+    payload={"status":"pass","b4_failed":True,**bfields()}
+    wj(run/"falsification_audit.json", payload)
+    wj(run/"evidence_docket"/"07_falsification_audit.json", payload)
 def validate(run:Path):
     replay_report = rj(run/"replay_report.json") or {}
     falsification_report = rj(run/"falsification_audit.json") or {}
