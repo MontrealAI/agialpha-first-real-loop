@@ -3,6 +3,7 @@ import json, hashlib, shutil
 from pathlib import Path
 from .boundaries import boundary_fields, REQUIRED_BOUNDARY_TEXT
 from .implementation_axes import AXES
+from .validate import scan_forbidden_language
 
 FORBIDDEN = ["agi alpha is worth", "fair market value", "guaranteed valuation", "guaranteed return", "token appreciation", "securities offering", "profit rights", "ownership rights", "achieved agi", "achieved asi", "achieved superintelligence", "empirical sota", "eu ai act exempt", "legally approved worldwide", "recursive beaten"]
 
@@ -68,6 +69,9 @@ def validate(run: Path):
     miss = [n for n in needed if not (Path(run) / n).exists()]
     if miss:
         raise SystemExit("missing artifacts: " + ",".join(miss))
+    violations = scan_forbidden_language(Path(run))
+    if violations:
+        raise SystemExit("forbidden language detected: " + " | ".join(violations))
 
 def build_data(registry: Path, out: Path):
     registry = Path(registry)
