@@ -16,7 +16,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run_ref": "/tmp/tmp9j5ot7xv",
+      "run_ref": "external_run",
       "status": "generated",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -26,7 +26,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run_ref": "/tmp/tmpjsq4p93x",
+      "run_ref": "external_run",
       "status": "generated",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -36,7 +36,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run_ref": "/tmp/tmpoio9unbs",
+      "run_ref": "external_run",
       "status": "generated",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -46,7 +46,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run_ref": "/tmp/tmpb_u7rxwd",
+      "run_ref": "external_run",
       "status": "generated",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -56,7 +56,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run_ref": "/tmp/tmp10z7prue",
+      "run_ref": "external_run",
       "status": "generated",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -66,7 +66,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run_ref": "/tmp/tmpmlz6ljl6",
+      "run_ref": "external_run",
       "status": "generated",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -76,7 +76,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run_ref": "/tmp/tmp__1od90p",
+      "run_ref": "external_run",
       "status": "generated",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     },
@@ -86,7 +86,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
-      "run_ref": "/tmp/ascension-os-test",
+      "run_ref": "external_run",
       "status": "generated",
       "token_boundary": "utility-only $AGIALPHA settlement record"
     }
