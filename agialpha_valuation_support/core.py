@@ -59,7 +59,17 @@ def build_data(registry:Path, out:Path):
     mapping={"implementation_comparison":"02_implementation_side_comparison.json","valuation_support_scorecard":"10_valuation_support_scorecard.json","market_equivalence_sensitivity":"03_market_equivalence_sensitivity.json","commercial_readiness":"04_commercial_readiness.json","moat_assessment":"05_moat_assessment.json","risk_boundary":"06_risk_boundary.json"}
     run_ref = (latest or {}).get("run_ref", "runs/test")
     run_path = Path(run_ref)
-    if not run_path.is_absolute():
-        run_path = (registry / run_path).resolve()
+    if run_path.is_absolute():
+        resolved_run_path = run_path
+    else:
+        candidates = [
+            (registry / run_path).resolve(),
+            (registry.parent / run_path).resolve(),
+        ]
+        resolved_run_path = candidates[0]
+        for candidate in candidates:
+            if (candidate / "00_manifest.json").exists():
+                resolved_run_path = candidate
+                break
     for n,src in mapping.items():
-        wj(out/f"{n}.json", rj(run_path/src) if (run_path/src).exists() else {"status":"not_reported",**bfields()})
+        wj(out/f"{n}.json", rj(resolved_run_path/src) if (resolved_run_path/src).exists() else {"status":"not_reported",**bfields()})

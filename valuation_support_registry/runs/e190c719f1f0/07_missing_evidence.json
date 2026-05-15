@@ -1,0 +1,12 @@
+{
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "valuation-support evidence only",
+  "human_review_required": true,
+  "missing": [
+    "audited external market data"
+  ],
+  "no_auto_merge": true,
+  "regulated_boundary": "documentation_only",
+  "status": "not_reported",
+  "token_boundary": "utility-only $AGIALPHA; no token value claim"
+}
