@@ -391,6 +391,66 @@
       "statement": "This is a directional operational usefulness proxy, not a financial projection, ROI claim, investment claim, token-value claim, legal conclusion, or guaranteed economic result.",
       "token_boundary": "utility-only $AGIALPHA settlement record",
       "verified_enterprise_alpha": 216
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "formula": {
+        "business_usefulness_score": 2,
+        "cost_risk_proxy": 2,
+        "evidence_quality_score": 3,
+        "governance_integrity_score": 3,
+        "regulated_boundary_integrity_score": 3,
+        "replay_integrity_score": 2,
+        "reusable_capability_score": 2,
+        "verified_work_score": 2
+      },
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "statement": "This is a directional operational usefulness proxy, not a financial projection, ROI claim, investment claim, token-value claim, legal conclusion, or guaranteed economic result.",
+      "token_boundary": "utility-only $AGIALPHA settlement record",
+      "verified_enterprise_alpha": 216
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "formula": {
+        "business_usefulness_score": 2,
+        "cost_risk_proxy": 2,
+        "evidence_quality_score": 3,
+        "governance_integrity_score": 3,
+        "regulated_boundary_integrity_score": 3,
+        "replay_integrity_score": 2,
+        "reusable_capability_score": 2,
+        "verified_work_score": 2
+      },
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "statement": "This is a directional operational usefulness proxy, not a financial projection, ROI claim, investment claim, token-value claim, legal conclusion, or guaranteed economic result.",
+      "token_boundary": "utility-only $AGIALPHA settlement record",
+      "verified_enterprise_alpha": 216
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "formula": {
+        "business_usefulness_score": 2,
+        "cost_risk_proxy": 2,
+        "evidence_quality_score": 3,
+        "governance_integrity_score": 3,
+        "regulated_boundary_integrity_score": 3,
+        "replay_integrity_score": 2,
+        "reusable_capability_score": 2,
+        "verified_work_score": 2
+      },
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "statement": "This is a directional operational usefulness proxy, not a financial projection, ROI claim, investment claim, token-value claim, legal conclusion, or guaranteed economic result.",
+      "token_boundary": "utility-only $AGIALPHA settlement record",
+      "verified_enterprise_alpha": 216
     }
   ]
 }
