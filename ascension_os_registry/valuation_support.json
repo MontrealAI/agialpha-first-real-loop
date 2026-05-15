@@ -451,6 +451,125 @@
       "regulated_boundary": "regulated-boundary-safe documentation-only automation",
       "statement": "AGI ALPHA does not assert a valuation in this document. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "comparables": {
+        "comparables": [
+          {
+            "category": "self_improving_ai",
+            "claim_boundary": "Manual comparable only. Not an investment claim, valuation assertion, token-value claim, or superiority claim.",
+            "comparable_id": "recursive_public_2026_05_13",
+            "name": "Recursive Superintelligence",
+            "public_code_available": "not_reported",
+            "public_enterprise_workflows_available": "not_reported",
+            "public_evidence_dockets_available": "not_reported",
+            "public_recursive_eval_available": "not_reported",
+            "public_replay_available": "not_reported",
+            "public_technical_results_available": "not_reported",
+            "reported_raise_usd": 650000000,
+            "reported_thesis": "AI systems that conduct experiments to safely improve themselves, identify limitations, write benchmarks, and rewrite their own codebase.",
+            "reported_valuation_date": "2026-05-13",
+            "reported_valuation_usd": 4650000000,
+            "source_links": [
+              {
+                "source_date": "2026-05-13",
+                "source_title": "GV announcement",
+                "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+                "supported_fact": "Reported category funding and thesis."
+              }
+            ]
+          }
+        ],
+        "schema_version": "agialpha.valuation_support_public_comparables.v2"
+      },
+      "human_review_required": true,
+      "missing_metrics": "not_reported",
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "statement": "AGI ALPHA does not assert a valuation in this document. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "comparables": {
+        "comparables": [
+          {
+            "category": "self_improving_ai",
+            "claim_boundary": "Manual comparable only. Not an investment claim, valuation assertion, token-value claim, or superiority claim.",
+            "comparable_id": "recursive_public_2026_05_13",
+            "name": "Recursive Superintelligence",
+            "public_code_available": "not_reported",
+            "public_enterprise_workflows_available": "not_reported",
+            "public_evidence_dockets_available": "not_reported",
+            "public_recursive_eval_available": "not_reported",
+            "public_replay_available": "not_reported",
+            "public_technical_results_available": "not_reported",
+            "reported_category_valuation_comparable": "not_reported",
+            "reported_raise_usd": 650000000,
+            "reported_thesis": "AI systems that conduct experiments to safely improve themselves, identify limitations, write benchmarks, and rewrite their own codebase.",
+            "reported_valuation_date": "2026-05-13",
+            "reported_valuation_usd": 4650000000,
+            "source_links": [
+              {
+                "source_date": "2026-05-13",
+                "source_title": "GV announcement",
+                "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+                "supported_fact": "Reported category funding and thesis."
+              }
+            ]
+          }
+        ],
+        "schema_version": "agialpha.valuation_support_public_comparables.v2"
+      },
+      "human_review_required": true,
+      "missing_metrics": "not_reported",
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "statement": "AGI ALPHA does not assert a valuation in this document. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "comparables": {
+        "comparables": [
+          {
+            "category": "self_improving_ai",
+            "claim_boundary": "Manual comparable only. Not an investment claim, valuation assertion, token-value claim, or superiority claim.",
+            "comparable_id": "recursive_public_2026_05_13",
+            "name": "Recursive Superintelligence",
+            "public_code_available": "not_reported",
+            "public_enterprise_workflows_available": "not_reported",
+            "public_evidence_dockets_available": "not_reported",
+            "public_recursive_eval_available": "not_reported",
+            "public_replay_available": "not_reported",
+            "public_technical_results_available": "not_reported",
+            "reported_category_valuation_comparable": "not_reported",
+            "reported_raise_usd": 650000000,
+            "reported_thesis": "AI systems that conduct experiments to safely improve themselves, identify limitations, write benchmarks, and rewrite their own codebase.",
+            "reported_valuation_date": "2026-05-13",
+            "reported_valuation_usd": 4650000000,
+            "source_links": [
+              {
+                "source_date": "2026-05-13",
+                "source_title": "GV announcement",
+                "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+                "supported_fact": "Reported category funding and thesis."
+              }
+            ]
+          }
+        ],
+        "schema_version": "agialpha.valuation_support_public_comparables.v2"
+      },
+      "human_review_required": true,
+      "missing_metrics": "not_reported",
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "statement": "AGI ALPHA does not assert a valuation in this document. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "token_boundary": "utility-only $AGIALPHA settlement record"
     }
   ]
 }
