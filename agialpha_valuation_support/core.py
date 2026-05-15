@@ -59,9 +59,15 @@ def build(repo_root:Path, ascension_registry:Path, comparables:Path, market_cont
     _wj(registry/"registry.json",{"records":[{"run_id":run_id}],**bf})
 
 def validate(run:Path):
-    needed=[f"{i:02d}_{n}" for i,n in [(0,'manifest.json'),(1,'category_valuation_signal.json'),(2,'public_comparables.json'),(3,'agialpha_evidence_inventory.json'),(4,'implementation_side_comparison.json'),(5,'implementation_equivalence_score.json'),(6,'market_equivalence_sensitivity.json'),(7,'commercial_readiness.json'),(8,'moat_assessment.json'),(9,'risk_boundary.json'),(10,'missing_evidence.json')]]
-    missing=[n for n in needed if not (run/n).exists()]
-    if missing: raise SystemExit(f"missing artifacts: {missing}")
+    v2_needed=[f"{i:02d}_{n}" for i,n in [(0,'manifest.json'),(1,'category_valuation_signal.json'),(2,'public_comparables.json'),(3,'agialpha_evidence_inventory.json'),(4,'implementation_side_comparison.json'),(5,'implementation_equivalence_score.json'),(6,'market_equivalence_sensitivity.json'),(7,'commercial_readiness.json'),(8,'moat_assessment.json'),(9,'risk_boundary.json'),(10,'missing_evidence.json')]]
+    v1_needed=["00_manifest.json","01_market_context.json","02_implementation_side_comparison.json","03_market_equivalence_sensitivity.json","04_commercial_readiness.json","05_moat_assessment.json","06_risk_boundary.json","07_missing_evidence.json","08_valuation_support_memo.md","09_not_an_investment_claim.md","10_valuation_support_scorecard.json"]
+    missing_v2=[n for n in v2_needed if not (run/n).exists()]
+    if not missing_v2:
+        return
+    missing_v1=[n for n in v1_needed if not (run/n).exists()]
+    if not missing_v1:
+        return
+    raise SystemExit(f"missing artifacts for both v2 and v1 layouts: v2={missing_v2}; v1={missing_v1}")
 
 def build_data(registry:Path, out:Path):
     out.mkdir(parents=True,exist_ok=True)
@@ -84,7 +90,25 @@ def build_data(registry:Path, out:Path):
                 break
     else:
         rpath = (registry / 'runs').resolve()
-    mapping={"public_comparables":"02_public_comparables.json","evidence_inventory":"03_agialpha_evidence_inventory.json","implementation_comparison":"04_implementation_side_comparison.json","implementation_equivalence_score":"05_implementation_equivalence_score.json","valuation_support_scorecard":"05_implementation_equivalence_score.json","market_equivalence_sensitivity":"06_market_equivalence_sensitivity.json","commercial_readiness":"07_commercial_readiness.json","moat_assessment":"08_moat_assessment.json","risk_boundary":"09_risk_boundary.json","missing_evidence":"10_missing_evidence.json"}
-    for k,v in mapping.items(): _wj(out/f"{k}.json",_rj(rpath/v,{"not_reported":True,**boundary_fields()}))
+    mapping={
+        "public_comparables":["02_public_comparables.json"],
+        "evidence_inventory":["03_agialpha_evidence_inventory.json"],
+        "implementation_comparison":["04_implementation_side_comparison.json","02_implementation_side_comparison.json"],
+        "implementation_equivalence_score":["05_implementation_equivalence_score.json","10_valuation_support_scorecard.json"],
+        "valuation_support_scorecard":["05_implementation_equivalence_score.json","10_valuation_support_scorecard.json"],
+        "market_equivalence_sensitivity":["06_market_equivalence_sensitivity.json","03_market_equivalence_sensitivity.json"],
+        "commercial_readiness":["07_commercial_readiness.json","04_commercial_readiness.json"],
+        "moat_assessment":["08_moat_assessment.json","05_moat_assessment.json"],
+        "risk_boundary":["09_risk_boundary.json","06_risk_boundary.json"],
+        "missing_evidence":["10_missing_evidence.json","07_missing_evidence.json"],
+    }
+    for k,candidates in mapping.items():
+        selected = None
+        for c in candidates:
+            cp = rpath / c
+            if cp.exists():
+                selected = cp
+                break
+        _wj(out/f"{k}.json",_rj(selected,{"not_reported":True,**boundary_fields()}) if selected else {"not_reported":True,**boundary_fields()})
     _wj(out/'summary.json',{"sections":14,**boundary_fields()})
 
