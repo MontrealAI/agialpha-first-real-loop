@@ -41,11 +41,14 @@ def build(repo_root:Path, ascension_registry:Path, comparables:Path, market_cont
     files={"00_manifest.json":{"run_id":run_id,"statement":REQUIRED_BOUNDARY_TEXT,"market_context":mctx.get("market_context", {}),**bf},"01_category_valuation_signal.json":{"reported_category_valuation_comparable":valuation,"market_context":mctx.get("market_context", {}),**bf},"02_public_comparables.json":cmp,"03_agialpha_evidence_inventory.json":{"items":evid,**bf},"04_implementation_side_comparison.json":{"axes":axis_records,**bf},"05_implementation_equivalence_score.json":score,"06_market_equivalence_sensitivity.json":market_eq,"07_commercial_readiness.json":comm,"08_moat_assessment.json":moat,"09_risk_boundary.json":risk,"10_missing_evidence.json":miss}
     for n,d in files.items(): _wj(out/n,d)
     # Legacy compatibility aliases during v002 rollout
+    _wj(out/"01_market_context.json", {"market_context": mctx.get("market_context", {}), **bf})
+    _wj(out/"02_implementation_side_comparison.json", {"status": "included", "axes": axis_records, **bf})
     _wj(out/"03_market_equivalence_sensitivity.json", {"rows": [{"reported_category_valuation_comparable": valuation, "scenario_multiples": req_arr if isinstance(valuation,(int,float)) else "not_reported"}], **bf})
     _wj(out/"04_commercial_readiness.json", comm)
     _wj(out/"05_moat_assessment.json", moat)
     _wj(out/"06_risk_boundary.json", risk)
     _wj(out/"07_missing_evidence.json", miss)
+    _wj(out/"10_valuation_support_scorecard.json", score)
     (out/"08_valuation_support_memo.md").write_text(REQUIRED_BOUNDARY_TEXT+"\n",encoding='utf-8')
     (out/"09_not_an_investment_claim.md").write_text(REQUIRED_BOUNDARY_TEXT+"\n",encoding='utf-8')
     (out/"11_investor_diligence_index.md").write_text(REQUIRED_BOUNDARY_TEXT+"\n",encoding='utf-8')
