@@ -112,7 +112,7 @@ def build_data(registry:Path, out:Path):
         "evidence_inventory":["03_agialpha_evidence_inventory.json"],
         "implementation_comparison":["04_implementation_side_comparison.json","02_implementation_side_comparison.json"],
         "implementation_equivalence_score":["05_implementation_equivalence_score.json","10_valuation_support_scorecard.json"],
-        "valuation_support_scorecard":["05_implementation_equivalence_score.json","10_valuation_support_scorecard.json"],
+        "valuation_support_scorecard":["10_valuation_support_scorecard.json","05_implementation_equivalence_score.json"],
         "market_equivalence_sensitivity":["06_market_equivalence_sensitivity.json","03_market_equivalence_sensitivity.json"],
         "commercial_readiness":["07_commercial_readiness.json","04_commercial_readiness.json"],
         "moat_assessment":["08_moat_assessment.json","05_moat_assessment.json"],
