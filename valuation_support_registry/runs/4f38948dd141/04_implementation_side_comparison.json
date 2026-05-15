@@ -1,0 +1,640 @@
+{
+  "axes": [
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.7,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_01",
+      "axis_name": "Axis 1",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.7,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_02",
+      "axis_name": "Axis 2",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.7,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_03",
+      "axis_name": "Axis 3",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.7,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_04",
+      "axis_name": "Axis 4",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.7,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_05",
+      "axis_name": "Axis 5",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.7,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_06",
+      "axis_name": "Axis 6",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.7,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_07",
+      "axis_name": "Axis 7",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.7,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_08",
+      "axis_name": "Axis 8",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.7,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_09",
+      "axis_name": "Axis 9",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_10",
+      "axis_name": "Axis 10",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_11",
+      "axis_name": "Axis 11",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_12",
+      "axis_name": "Axis 12",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_13",
+      "axis_name": "Axis 13",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_14",
+      "axis_name": "Axis 14",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_15",
+      "axis_name": "Axis 15",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_16",
+      "axis_name": "Axis 16",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_17",
+      "axis_name": "Axis 17",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_18",
+      "axis_name": "Axis 18",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_19",
+      "axis_name": "Axis 19",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_20",
+      "axis_name": "Axis 20",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_21",
+      "axis_name": "Axis 21",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_22",
+      "axis_name": "Axis 22",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_23",
+      "axis_name": "Axis 23",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_24",
+      "axis_name": "Axis 24",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_25",
+      "axis_name": "Axis 25",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_26",
+      "axis_name": "Axis 26",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_27",
+      "axis_name": "Axis 27",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_28",
+      "axis_name": "Axis 28",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_29",
+      "axis_name": "Axis 29",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    },
+    {
+      "agialpha_evidence_level": "local",
+      "agialpha_score": 0.5,
+      "agialpha_supporting_artifacts": [
+        "agialpha_ascension_os",
+        "ascension_os_registry"
+      ],
+      "axis_id": "axis_30",
+      "axis_name": "Axis 30",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "comparable_public_evidence_level": "not_reported",
+      "comparable_public_score": "not_reported",
+      "comparable_supporting_sources": [],
+      "implementation_side_result": "not_enough_public_data",
+      "missing_evidence": [
+        "not publicly reported in this repository"
+      ],
+      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "not_an_investment_claim": true,
+      "valuation_relevance": "implementation-side signal only"
+    }
+  ],
+  "comparison_limit_text": "Any comparison to private self-improving-AI labs is limited to public implementation-side evidence available in this repository and manually entered public comparables. Missing external data is shown as not_reported.",
+  "human_review_required": true,
+  "no_auto_merge": true,
+  "no_autonomous_persistence": true,
+  "required_boundary_text": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+  "strategic_direction_text": "AGI ALPHA\u2019s long-horizon superintelligence / Kardashev / value-to-energy framing is a strategic direction, not a present achievement claim. Near-term valuation support must be based only on verified work, replay, Evidence Dockets, ProofBundles, Work Vaults, enterprise workflow evidence, commercial-readiness evidence, customer-reviewed dockets if available, and governance integrity."
+}
