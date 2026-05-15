@@ -22,6 +22,13 @@ def wj(p: Path, d: dict):
 def rj(p: Path):
     return json.loads(p.read_text()) if p.exists() else None
 
+def _stable_run_ref(run_path: Path) -> str:
+    parts = run_path.parts
+    if "ascension-os-runs" in parts:
+        idx = parts.index("ascension-os-runs")
+        return "/".join(parts[idx:])
+    return "external_run"
+
 def _regulated_triage(workflow_name:str, flags:dict):
     blocked = any(flags.values())
     return {
@@ -99,11 +106,12 @@ def run_cycle(repo_root:Path, out:Path, registry:Path):
     capacity_reinvestment(out)
     valuation_support(repo_root,out,out)
     wj(out/"22_reports"/"ascension_scorecard.json",{"status":"generated",**bfields()})
-    wj(out/"summary.json", {"status":"generated", "run_ref": str(out), **bfields()})
-    wj(out/"evidence-run-manifest.json", {"status":"generated", "artifacts_root":str(out), **bfields()})
+    stable_run_ref = _stable_run_ref(out)
+    wj(out/"summary.json", {"status":"generated", "run_ref": stable_run_ref, **bfields()})
+    wj(out/"evidence-run-manifest.json", {"status":"generated", "artifacts_root":stable_run_ref, **bfields()})
     wj(out/"summary.md", "# Ascension OS run\nHuman Review Required.\n")
     registry.mkdir(parents=True, exist_ok=True)
-    record = {"run_ref":str(out),"status":"accepted",**bfields()}
+    record = {"run_ref":stable_run_ref,"status":"accepted",**bfields()}
     _append_registry_record(registry/"latest.json", record)
     for name in ["summary", "open_rsi_eval", "verified_enterprise_alpha", "valuation_support", "value_to_capacity", "capacity_reinvestment"]:
         artifact = rj(out/f"{name}.json")
