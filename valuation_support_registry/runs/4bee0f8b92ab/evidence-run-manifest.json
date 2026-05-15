@@ -1,0 +1,10 @@
+{
+  "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+  "comparison_limit_text": "Any comparison to private self-improving-AI labs is limited to public implementation-side evidence available in this repository and manually entered public comparables. Missing external data is shown as not_reported.",
+  "human_review_required": true,
+  "no_auto_merge": true,
+  "no_autonomous_persistence": true,
+  "not_an_investment_claim": true,
+  "run_id": "4bee0f8b92ab",
+  "strategic_direction_text": "AGI ALPHA\u2019s long-horizon superintelligence / Kardashev / value-to-energy framing is a strategic direction, not a present achievement claim. Near-term valuation support must be based only on verified work, replay, Evidence Dockets, ProofBundles, Work Vaults, enterprise workflow evidence, customer-reviewed dockets if available, commercial-readiness evidence, and governance integrity."
+}

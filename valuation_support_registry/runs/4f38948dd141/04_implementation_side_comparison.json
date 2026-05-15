@@ -2,639 +2,880 @@
   "axes": [
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.7,
+      "agialpha_score": 0.8,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_01",
-      "axis_name": "Axis 1",
+      "axis_name": "Public executable implementation",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.7,
+      "agialpha_score": 0.8,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_02",
-      "axis_name": "Axis 2",
+      "axis_name": "One-command local run",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.7,
+      "agialpha_score": 0.8,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_03",
-      "axis_name": "Axis 3",
+      "axis_name": "CI workflow support",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.7,
+      "agialpha_score": 0.8,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_04",
-      "axis_name": "Axis 4",
+      "axis_name": "Deterministic replay",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.7,
+      "agialpha_score": 0.8,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_05",
-      "axis_name": "Axis 5",
+      "axis_name": "Replay report completeness",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.7,
+      "agialpha_score": 0.8,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_06",
-      "axis_name": "Axis 6",
+      "axis_name": "Falsification audit completeness",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.7,
+      "agialpha_score": 0.8,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_07",
-      "axis_name": "Axis 7",
+      "axis_name": "Evidence Docket completeness",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.7,
+      "agialpha_score": 0.8,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_08",
-      "axis_name": "Axis 8",
+      "axis_name": "ProofBundle completeness",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.7,
+      "agialpha_score": 0.8,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_09",
-      "axis_name": "Axis 9",
+      "axis_name": "SecureRails / safety-governance checks",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.8,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_10",
-      "axis_name": "Axis 10",
+      "axis_name": "Claim-boundary integrity",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.8,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_11",
-      "axis_name": "Axis 11",
+      "axis_name": "Token-boundary integrity",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.8,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_12",
-      "axis_name": "Axis 12",
+      "axis_name": "Regulated-boundary firewall",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.8,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_13",
-      "axis_name": "Axis 13",
+      "axis_name": "No autonomous persistence",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.8,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_14",
-      "axis_name": "Axis 14",
+      "axis_name": "No auto-merge",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.6,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_15",
-      "axis_name": "Axis 15",
+      "axis_name": "Open RSI Eval completeness",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.6,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_16",
-      "axis_name": "Axis 16",
+      "axis_name": "Self-Improvement Gauntlet completeness",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.6,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_17",
-      "axis_name": "Axis 17",
+      "axis_name": "B0-B7 baseline ladder",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.6,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_18",
-      "axis_name": "Axis 18",
+      "axis_name": "B6 vs B5 comparison",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.6,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_19",
-      "axis_name": "Axis 19",
+      "axis_name": "Archive reuse evidence",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.6,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_20",
-      "axis_name": "Axis 20",
+      "axis_name": "Lineage metaproductivity evidence",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.6,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_21",
-      "axis_name": "Axis 21",
+      "axis_name": "Work Vault / Capability Archive evidence",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.6,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_22",
-      "axis_name": "Axis 22",
+      "axis_name": "Enterprise Workflow Pack evidence",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.6,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_23",
-      "axis_name": "Axis 23",
+      "axis_name": "Verified Enterprise Alpha evidence",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.6,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_24",
-      "axis_name": "Axis 24",
+      "axis_name": "Value-to-Capacity Proxy evidence",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.6,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_25",
-      "axis_name": "Axis 25",
+      "axis_name": "Capacity Reinvestment Proxy evidence",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.6,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_26",
-      "axis_name": "Axis 26",
+      "axis_name": "Commercial-readiness evidence",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.4,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_27",
-      "axis_name": "Axis 27",
+      "axis_name": "Customer-pilot readiness evidence",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.4,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_28",
-      "axis_name": "Axis 28",
+      "axis_name": "Public UI / Evidence Mission Control readiness",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.4,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_29",
-      "axis_name": "Axis 29",
+      "axis_name": "External replay readiness",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     },
     {
       "agialpha_evidence_level": "local",
-      "agialpha_score": 0.5,
+      "agialpha_score": 0.4,
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
-        "ascension_os_registry"
+        "ascension_os_registry",
+        "secure_rails_registry/work_vaults"
       ],
       "axis_id": "axis_30",
-      "axis_name": "Axis 30",
+      "axis_name": "Missing-evidence honesty",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "comparable_public_evidence_level": "not_reported",
       "comparable_public_score": "not_reported",
-      "comparable_supporting_sources": [],
+      "comparable_supporting_sources": [
+        {
+          "source_date": "2026-05-13",
+          "source_title": "GV announcement",
+          "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
+          "supported_fact": "Reported category funding and thesis."
+        }
+      ],
       "implementation_side_result": "not_enough_public_data",
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "provide external replay and customer-reviewed dockets",
+      "next_best_action": "add externally replayed and customer-reviewed evidence",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side signal only"
+      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
     }
   ],
+  "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
   "comparison_limit_text": "Any comparison to private self-improving-AI labs is limited to public implementation-side evidence available in this repository and manually entered public comparables. Missing external data is shown as not_reported.",
   "human_review_required": true,
   "no_auto_merge": true,
   "no_autonomous_persistence": true,
-  "required_boundary_text": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
-  "strategic_direction_text": "AGI ALPHA\u2019s long-horizon superintelligence / Kardashev / value-to-energy framing is a strategic direction, not a present achievement claim. Near-term valuation support must be based only on verified work, replay, Evidence Dockets, ProofBundles, Work Vaults, enterprise workflow evidence, commercial-readiness evidence, customer-reviewed dockets if available, and governance integrity."
+  "not_an_investment_claim": true,
+  "strategic_direction_text": "AGI ALPHA\u2019s long-horizon superintelligence / Kardashev / value-to-energy framing is a strategic direction, not a present achievement claim. Near-term valuation support must be based only on verified work, replay, Evidence Dockets, ProofBundles, Work Vaults, enterprise workflow evidence, customer-reviewed dockets if available, commercial-readiness evidence, and governance integrity."
 }

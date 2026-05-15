@@ -1,25 +1,22 @@
 {
   "checks": {
-    "no_achieved_agi_asi_claim": true,
-    "no_auto_merge": true,
+    "no_achieved_agi_asi_superintelligence_claim": true,
     "no_certification_legal_exemption_claim": true,
-    "no_direct_pages_deploy": true,
-    "no_empirical_sota_claim": true,
-    "no_energy_utility_market_claim": true,
+    "no_energy_or_utility_market_claim": true,
     "no_fair_market_value_opinion": true,
     "no_financial_advice": true,
     "no_investment_advice": true,
-    "no_payment_wallet_custody_kyc_aml_logic": true,
     "no_regulated_decisioning": true,
     "no_roi_guarantee": true,
-    "no_securities_offering_language": true,
+    "no_securities_offering": true,
     "no_token_value_claim": true,
     "no_valuation_assertion": true
   },
+  "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
   "comparison_limit_text": "Any comparison to private self-improving-AI labs is limited to public implementation-side evidence available in this repository and manually entered public comparables. Missing external data is shown as not_reported.",
   "human_review_required": true,
   "no_auto_merge": true,
   "no_autonomous_persistence": true,
-  "required_boundary_text": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
-  "strategic_direction_text": "AGI ALPHA\u2019s long-horizon superintelligence / Kardashev / value-to-energy framing is a strategic direction, not a present achievement claim. Near-term valuation support must be based only on verified work, replay, Evidence Dockets, ProofBundles, Work Vaults, enterprise workflow evidence, commercial-readiness evidence, customer-reviewed dockets if available, and governance integrity."
+  "not_an_investment_claim": true,
+  "strategic_direction_text": "AGI ALPHA\u2019s long-horizon superintelligence / Kardashev / value-to-energy framing is a strategic direction, not a present achievement claim. Near-term valuation support must be based only on verified work, replay, Evidence Dockets, ProofBundles, Work Vaults, enterprise workflow evidence, customer-reviewed dockets if available, commercial-readiness evidence, and governance integrity."
 }

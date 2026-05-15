@@ -1,5 +1,5 @@
 {
-  "schema_version": "agialpha.valuation_support_market_context.v2",
+  "schema_version": "agialpha.valuation_support_market_context.v1",
   "market_context": {
     "ai_agent_software_spend_2025": "not_reported",
     "ai_agent_software_spend_2026": "not_reported",
@@ -7,7 +7,7 @@
     "enterprise_apps_with_agents_2026_pct": "not_reported",
     "genai_annual_value_low": "not_reported",
     "genai_annual_value_high": "not_reported",
-    "source_links": [],
-    "claim_boundary": "Manual context only. Not a forecast, valuation assertion, investment claim, or token-value claim."
-  }
+    "source_links": []
+  },
+  "claim_boundary": "Manual market-context fixture only. Not a market forecast, investment claim, or valuation assertion."
 }

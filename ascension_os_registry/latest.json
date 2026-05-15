@@ -341,6 +341,36 @@
       "run_ref": "runs/external/var/tmp/ascension-os-test",
       "status": "accepted",
       "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "run_ref": "runs/external/tmp/tmp90ei2rr4",
+      "status": "accepted",
+      "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "run_ref": "runs/external/tmp/tmp470ibfe_",
+      "status": "accepted",
+      "token_boundary": "utility-only $AGIALPHA settlement record"
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence",
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-boundary-safe documentation-only automation",
+      "run_ref": "runs/external/tmp/tmppon5_3f7",
+      "status": "accepted",
+      "token_boundary": "utility-only $AGIALPHA settlement record"
     }
   ]
 }
