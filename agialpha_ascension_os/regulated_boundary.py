@@ -4,15 +4,18 @@ REGULATED_FLAGS=["financial advice","investment advice","payment/custody","walle
 
 
 def _matches_flag(text: str, flag: str) -> bool:
-    """Match full regulated phrases (including slash forms), not fragments."""
-    candidate = re.sub(r"[/-]+", " ", flag.lower())
+    """Match regulated phrases; slash-delimited terms are OR-keyword triggers."""
+    if "/" in flag:
+        terms = [part.strip().lower() for part in flag.split("/") if part.strip()]
+        return any(bool(re.search(rf"\b{re.escape(term)}\b", text)) for term in terms)
+    candidate = re.sub(r"[-]+", " ", flag.lower())
     candidate = re.sub(r"\s+", " ", candidate).strip()
     pattern = rf"\b{re.escape(candidate)}\b"
     return bool(re.search(pattern, text))
 
 def regulated_boundary_triage(workflow:dict)->dict:
     t=(workflow.get('workflow_type','')+' '+workflow.get('description','')).lower()
-    normalized_text = re.sub(r"[/-]+", " ", t)
+    normalized_text = re.sub(r"[-]+", " ", t)
     normalized_text = re.sub(r"\s+", " ", normalized_text).strip()
     hits=[f for f in REGULATED_FLAGS if _matches_flag(normalized_text, f)]
     blocked=bool(hits)
