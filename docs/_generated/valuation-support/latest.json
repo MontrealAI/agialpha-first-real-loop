@@ -5,6 +5,7 @@
   "no_auto_merge": true,
   "regulated_boundary": "documentation_only",
   "run_id": "4f38948dd141",
+  "run_ref": "runs/4f38948dd141",
   "statement": "AGI ALPHA does not assert a valuation in this document. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
   "token_boundary": "utility-only $AGIALPHA; no token value claim"
 }
