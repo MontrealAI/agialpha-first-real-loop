@@ -6,7 +6,7 @@
   "no_auto_merge": true,
   "no_autonomous_persistence": true,
   "not_an_investment_claim": true,
-  "readiness_tier": "T6",
+  "readiness_tier": "T2",
   "strategic_direction_text": "AGI ALPHA\u2019s long-horizon superintelligence / Kardashev / value-to-energy framing is a strategic direction, not a present achievement claim. Near-term valuation support must be based only on verified work, replay, Evidence Dockets, ProofBundles, Work Vaults, enterprise workflow evidence, customer-reviewed dockets if available, commercial-readiness evidence, and governance integrity.",
-  "tier_cap_reason": "No customer-reviewed dockets, external replay, and paid-pilot/revenue evidence."
+  "tier_cap_reason": "Hard cap: missing evidence dockets or replay reports."
 }

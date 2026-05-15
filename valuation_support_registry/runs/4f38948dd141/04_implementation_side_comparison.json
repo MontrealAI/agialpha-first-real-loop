@@ -6,7 +6,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_01",
       "axis_name": "Public executable implementation",
@@ -35,7 +36,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_02",
       "axis_name": "One-command local run",
@@ -64,7 +66,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_03",
       "axis_name": "CI workflow support",
@@ -93,7 +96,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_04",
       "axis_name": "Deterministic replay",
@@ -122,7 +126,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_05",
       "axis_name": "Replay report completeness",
@@ -151,7 +156,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_06",
       "axis_name": "Falsification audit completeness",
@@ -180,7 +186,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_07",
       "axis_name": "Evidence Docket completeness",
@@ -209,7 +216,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_08",
       "axis_name": "ProofBundle completeness",
@@ -238,7 +246,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_09",
       "axis_name": "SecureRails / safety-governance checks",
@@ -267,7 +276,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_10",
       "axis_name": "Claim-boundary integrity",
@@ -296,7 +306,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_11",
       "axis_name": "Token-boundary integrity",
@@ -325,7 +336,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_12",
       "axis_name": "Regulated-boundary firewall",
@@ -354,7 +366,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_13",
       "axis_name": "No autonomous persistence",
@@ -383,7 +396,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_14",
       "axis_name": "No auto-merge",
@@ -412,7 +426,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_15",
       "axis_name": "Open RSI Eval completeness",
@@ -441,7 +456,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_16",
       "axis_name": "Self-Improvement Gauntlet completeness",
@@ -470,7 +486,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_17",
       "axis_name": "B0-B7 baseline ladder",
@@ -499,7 +516,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_18",
       "axis_name": "B6 vs B5 comparison",
@@ -528,7 +546,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_19",
       "axis_name": "Archive reuse evidence",
@@ -557,7 +576,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_20",
       "axis_name": "Lineage metaproductivity evidence",
@@ -586,7 +606,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_21",
       "axis_name": "Work Vault / Capability Archive evidence",
@@ -615,7 +636,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_22",
       "axis_name": "Enterprise Workflow Pack evidence",
@@ -644,7 +666,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_23",
       "axis_name": "Verified Enterprise Alpha evidence",
@@ -673,7 +696,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_24",
       "axis_name": "Value-to-Capacity Proxy evidence",
@@ -702,7 +726,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_25",
       "axis_name": "Capacity Reinvestment Proxy evidence",
@@ -731,7 +756,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_26",
       "axis_name": "Commercial-readiness evidence",
@@ -760,7 +786,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_27",
       "axis_name": "Customer-pilot readiness evidence",
@@ -789,7 +816,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_28",
       "axis_name": "Public UI / Evidence Mission Control readiness",
@@ -818,7 +846,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_29",
       "axis_name": "External replay readiness",
@@ -847,7 +876,8 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "secure_rails_registry/work_vaults"
+        "evidence_registry",
+        "scripts/secure_rails_claim_boundary_check.py"
       ],
       "axis_id": "axis_30",
       "axis_name": "Missing-evidence honesty",

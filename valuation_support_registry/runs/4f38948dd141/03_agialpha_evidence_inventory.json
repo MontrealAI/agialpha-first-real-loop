@@ -4,13 +4,13 @@
   "human_review_required": true,
   "items": [
     {
-      "artifact_type": "agialpha_ascension_os",
+      "artifact_type": "agialpha_ascension_os_package",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "evidence_level": "local",
       "exists": true,
       "path": "agialpha_ascension_os",
       "validated": true,
-      "valuation_relevance": "implementation-side evidence"
+      "valuation_relevance": "core implementation package"
     },
     {
       "artifact_type": "ascension_os_registry",
@@ -19,34 +19,43 @@
       "exists": true,
       "path": "ascension_os_registry",
       "validated": true,
-      "valuation_relevance": "implementation-side evidence"
+      "valuation_relevance": "registry evidence"
     },
     {
-      "artifact_type": "replay_reports",
+      "artifact_type": "ascension_os_runs",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "evidence_level": "not_reported",
       "exists": false,
       "path": "ascension-os-runs",
       "validated": "not_reported",
-      "valuation_relevance": "implementation-side evidence"
+      "valuation_relevance": "local replay runs"
     },
     {
-      "artifact_type": "proofbundles",
+      "artifact_type": "scorecard_runs",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
-      "evidence_level": "local",
-      "exists": true,
-      "path": "secure_rails_registry/work_vaults",
-      "validated": true,
-      "valuation_relevance": "implementation-side evidence"
+      "evidence_level": "not_reported",
+      "exists": false,
+      "path": "ascension-scorecard-runs",
+      "validated": "not_reported",
+      "valuation_relevance": "scorecard runs"
     },
     {
-      "artifact_type": "evidence_dockets",
+      "artifact_type": "evidence_registry",
       "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
       "evidence_level": "local",
       "exists": true,
       "path": "evidence_registry",
       "validated": true,
-      "valuation_relevance": "implementation-side evidence"
+      "valuation_relevance": "evidence dockets"
+    },
+    {
+      "artifact_type": "secure_rails_checks",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "evidence_level": "local",
+      "exists": true,
+      "path": "scripts/secure_rails_claim_boundary_check.py",
+      "validated": true,
+      "valuation_relevance": "governance checks"
     },
     {
       "artifact_type": "workflows",
@@ -55,7 +64,7 @@
       "exists": true,
       "path": ".github/workflows",
       "validated": true,
-      "valuation_relevance": "implementation-side evidence"
+      "valuation_relevance": "ci workflow support"
     },
     {
       "artifact_type": "docs",
@@ -64,7 +73,7 @@
       "exists": true,
       "path": "docs",
       "validated": true,
-      "valuation_relevance": "implementation-side evidence"
+      "valuation_relevance": "operator and reviewer docs"
     },
     {
       "artifact_type": "tests",
@@ -73,7 +82,16 @@
       "exists": true,
       "path": "tests",
       "validated": true,
-      "valuation_relevance": "implementation-side evidence"
+      "valuation_relevance": "deterministic tests"
+    },
+    {
+      "artifact_type": "generated_valuation_data",
+      "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
+      "evidence_level": "local",
+      "exists": true,
+      "path": "docs/_generated/valuation-support",
+      "validated": true,
+      "valuation_relevance": "mission control data"
     }
   ],
   "no_auto_merge": true,
