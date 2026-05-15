@@ -6,8 +6,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_01",
       "axis_name": "Public executable implementation",
@@ -26,9 +28,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -36,8 +38,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_02",
       "axis_name": "One-command local run",
@@ -56,9 +60,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -66,8 +70,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_03",
       "axis_name": "CI workflow support",
@@ -86,9 +92,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -96,8 +102,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_04",
       "axis_name": "Deterministic replay",
@@ -116,9 +124,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -126,8 +134,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_05",
       "axis_name": "Replay report completeness",
@@ -146,9 +156,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -156,8 +166,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_06",
       "axis_name": "Falsification audit completeness",
@@ -176,9 +188,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -186,8 +198,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_07",
       "axis_name": "Evidence Docket completeness",
@@ -206,9 +220,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -216,8 +230,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_08",
       "axis_name": "ProofBundle completeness",
@@ -236,9 +252,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -246,8 +262,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_09",
       "axis_name": "SecureRails / safety-governance checks",
@@ -266,9 +284,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -276,8 +294,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_10",
       "axis_name": "Claim-boundary integrity",
@@ -296,9 +316,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -306,8 +326,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_11",
       "axis_name": "Token-boundary integrity",
@@ -326,9 +348,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -336,8 +358,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_12",
       "axis_name": "Regulated-boundary firewall",
@@ -356,9 +380,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -366,8 +390,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_13",
       "axis_name": "No autonomous persistence",
@@ -386,9 +412,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -396,8 +422,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_14",
       "axis_name": "No auto-merge",
@@ -416,9 +444,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -426,8 +454,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_15",
       "axis_name": "Open RSI Eval completeness",
@@ -446,9 +476,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -456,8 +486,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_16",
       "axis_name": "Self-Improvement Gauntlet completeness",
@@ -476,9 +508,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -486,8 +518,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_17",
       "axis_name": "B0-B7 baseline ladder",
@@ -506,9 +540,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -516,8 +550,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_18",
       "axis_name": "B6 vs B5 comparison",
@@ -536,9 +572,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -546,8 +582,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_19",
       "axis_name": "Archive reuse evidence",
@@ -566,9 +604,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -576,8 +614,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_20",
       "axis_name": "Lineage metaproductivity evidence",
@@ -596,9 +636,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -606,8 +646,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_21",
       "axis_name": "Work Vault / Capability Archive evidence",
@@ -626,9 +668,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -636,8 +678,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_22",
       "axis_name": "Enterprise Workflow Pack evidence",
@@ -656,9 +700,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -666,8 +710,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_23",
       "axis_name": "Verified Enterprise Alpha evidence",
@@ -686,9 +732,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -696,8 +742,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_24",
       "axis_name": "Value-to-Capacity Proxy evidence",
@@ -716,9 +764,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -726,8 +774,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_25",
       "axis_name": "Capacity Reinvestment Proxy evidence",
@@ -746,9 +796,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -756,8 +806,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_26",
       "axis_name": "Commercial-readiness evidence",
@@ -776,9 +828,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -786,8 +838,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_27",
       "axis_name": "Customer-pilot readiness evidence",
@@ -806,9 +860,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -816,8 +870,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_28",
       "axis_name": "Public UI / Evidence Mission Control readiness",
@@ -836,9 +892,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -846,8 +902,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_29",
       "axis_name": "External replay readiness",
@@ -866,9 +924,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     },
     {
       "agialpha_evidence_level": "local",
@@ -876,8 +934,10 @@
       "agialpha_supporting_artifacts": [
         "agialpha_ascension_os",
         "ascension_os_registry",
-        "evidence_registry",
-        "scripts/secure_rails_claim_boundary_check.py"
+        "ascension_os_registry/open_rsi_eval.json",
+        "ascension_os_registry/proofbundles.json",
+        "ascension_os_registry/enterprise_workflows.json",
+        "ascension_os_registry/verified_enterprise_alpha.json"
       ],
       "axis_id": "axis_30",
       "axis_name": "Missing-evidence honesty",
@@ -896,9 +956,9 @@
       "missing_evidence": [
         "not publicly reported in this repository"
       ],
-      "next_best_action": "add externally replayed and customer-reviewed evidence",
+      "next_best_action": "Add customer-reviewed dockets, external replay, and commercial evidence.",
       "not_an_investment_claim": true,
-      "valuation_relevance": "implementation-side stronger on public evidence when comparable data is missing"
+      "valuation_relevance": "Implementation-side stronger on public evidence when comparable implementation fields are not publicly reported in this repository."
     }
   ],
   "claim_boundary": "AGI ALPHA does not assert a valuation. This dossier organizes implementation-side evidence that may support a valuation-comparable discussion. It is not investment advice, financial advice, a securities offering, a token-value claim, a guarantee of return, or a fair-market-value opinion.",
