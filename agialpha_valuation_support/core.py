@@ -26,7 +26,7 @@ def build(repo_root:Path, ascension_registry:Path, comparables:Path, market_cont
     top=comp[0] if comp else {}
     valuation=top.get('reported_valuation_usd','not_reported')
     evid=[]
-    for t,p in [("agialpha_ascension_os","agialpha_ascension_os"),("ascension_os_registry","ascension_os_registry"),("replay_reports","ascension-os-runs"),("proofbundles","secure_rails_registry/work_vaults"),("evidence_dockets","evidence_registry"),("workflows",".github/workflows"),("docs","docs"),("tests","tests")]:
+    for t,p in [("agialpha_ascension_os","agialpha_ascension_os"),("ascension_os_registry",str(ascension_registry)),("replay_reports","ascension-os-runs"),("proofbundles","secure_rails_registry/work_vaults"),("evidence_dockets","evidence_registry"),("workflows",".github/workflows"),("docs","docs"),("tests","tests")]:
         ex,rp=_exists(repo_root,p); evid.append({"artifact_type":t,"path":rp,"exists":ex,"validated":True if ex else "not_reported","evidence_level":"local" if ex else "not_reported","valuation_relevance":"implementation evidence","claim_boundary":REQUIRED_BOUNDARY_TEXT})
     axis_records=[]
     for i,name in enumerate(AXES,1):
@@ -59,8 +59,14 @@ def build_data(registry:Path, out:Path):
     out.mkdir(parents=True,exist_ok=True)
     latest=_rj(registry/'latest.json',{})
     _wj(out/'latest.json',latest)
-    run=registry/latest.get('run_ref','runs').replace('runs/','runs/')
-    rpath=(registry/run).resolve()
+    run_ref = latest.get('run_ref', 'runs')
+    run_path = Path(run_ref)
+    if run_path.is_absolute():
+        rpath = run_path
+    else:
+        candidate_direct = (registry / run_path).resolve()
+        candidate_from_parent = (registry.parent / run_path).resolve()
+        rpath = candidate_direct if (candidate_direct / '00_manifest.json').exists() else candidate_from_parent
     mapping={"public_comparables":"02_public_comparables.json","evidence_inventory":"03_agialpha_evidence_inventory.json","implementation_comparison":"04_implementation_side_comparison.json","implementation_equivalence_score":"05_implementation_equivalence_score.json","valuation_support_scorecard":"05_implementation_equivalence_score.json","market_equivalence_sensitivity":"06_market_equivalence_sensitivity.json","commercial_readiness":"07_commercial_readiness.json","moat_assessment":"08_moat_assessment.json","risk_boundary":"09_risk_boundary.json","missing_evidence":"10_missing_evidence.json"}
     for k,v in mapping.items(): _wj(out/f"{k}.json",_rj(rpath/v,{"not_reported":True,**boundary_fields()}))
     _wj(out/'summary.json',{"sections":14,**boundary_fields()})
