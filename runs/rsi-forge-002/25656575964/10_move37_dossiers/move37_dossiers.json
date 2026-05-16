@@ -1,0 +1,77 @@
+[
+  {
+    "advantage_delta_vs_B5": 0.0511,
+    "candidate_id": "EvidenceKernel-c1-k07",
+    "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
+    "decision": "accepted for governed kernel promotion",
+    "dossier_id": "move37-cycle-1-EvidenceKernel-c1-k07",
+    "eci_level": "E3_REPLAYED",
+    "novelty_distance": 0.057,
+    "stress_tests": [
+      "alternate seeds",
+      "nearby baseline",
+      "policy shock",
+      "replay determinism"
+    ]
+  },
+  {
+    "advantage_delta_vs_B5": 0.0617,
+    "candidate_id": "EvidenceKernel-c2-k15",
+    "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
+    "decision": "accepted for governed kernel promotion",
+    "dossier_id": "move37-cycle-2-EvidenceKernel-c2-k15",
+    "eci_level": "E3_REPLAYED",
+    "novelty_distance": 0.0498,
+    "stress_tests": [
+      "alternate seeds",
+      "nearby baseline",
+      "policy shock",
+      "replay determinism"
+    ]
+  },
+  {
+    "advantage_delta_vs_B5": 0.0823,
+    "candidate_id": "EvidenceKernel-c3-k16",
+    "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
+    "decision": "accepted for governed kernel promotion",
+    "dossier_id": "move37-cycle-3-EvidenceKernel-c3-k16",
+    "eci_level": "E3_REPLAYED",
+    "novelty_distance": 0.0594,
+    "stress_tests": [
+      "alternate seeds",
+      "nearby baseline",
+      "policy shock",
+      "replay determinism"
+    ]
+  },
+  {
+    "advantage_delta_vs_B5": 0.1106,
+    "candidate_id": "EvidenceKernel-c4-k16",
+    "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
+    "decision": "accepted for governed kernel promotion",
+    "dossier_id": "move37-cycle-4-EvidenceKernel-c4-k16",
+    "eci_level": "E3_REPLAYED",
+    "novelty_distance": 0.0599,
+    "stress_tests": [
+      "alternate seeds",
+      "nearby baseline",
+      "policy shock",
+      "replay determinism"
+    ]
+  },
+  {
+    "advantage_delta_vs_B5": 0.1434,
+    "candidate_id": "EvidenceKernel-c5-k13",
+    "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
+    "decision": "accepted for governed kernel promotion",
+    "dossier_id": "move37-cycle-5-EvidenceKernel-c5-k13",
+    "eci_level": "E3_REPLAYED",
+    "novelty_distance": 0.0539,
+    "stress_tests": [
+      "alternate seeds",
+      "nearby baseline",
+      "policy shock",
+      "replay determinism"
+    ]
+  }
+]
