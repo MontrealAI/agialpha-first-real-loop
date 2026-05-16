@@ -12,7 +12,6 @@
       "public_recursive_eval_available": "not_reported",
       "public_replay_available": "not_reported",
       "public_technical_results_available": "not_reported",
-      "reported_category_valuation_comparable": "not_reported",
       "reported_raise_usd": 650000000,
       "reported_thesis": "AI systems that conduct experiments to safely improve themselves, identify limitations, write benchmarks, and rewrite their own codebase.",
       "reported_valuation_date": "2026-05-13",
@@ -22,7 +21,13 @@
           "source_date": "2026-05-13",
           "source_title": "GV announcement",
           "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
-          "supported_fact": "Reported category funding and thesis."
+          "supported_fact": "Reported funding and valuation category signal."
+        },
+        {
+          "source_date": "2026-05-13",
+          "source_title": "Recursive website",
+          "source_url": "https://www.recursive.com/",
+          "supported_fact": "Public self-improving AI category framing."
         }
       ]
     }

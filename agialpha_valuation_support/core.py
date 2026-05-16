@@ -6,6 +6,7 @@ from .validate import scan_forbidden_language
 from .evidence_inventory import build_evidence_inventory
 from .implementation_comparison import build_implementation_comparison
 from .valuation_support_scorecard import build_scorecard
+from .public_comparables import load_public_comparables, first_comparable
 
 def _rj(p, default):
     p = Path(p)
@@ -25,9 +26,9 @@ def _tier(inv):
 
 def build(repo_root: Path, ascension_registry: Path, comparables: Path, market_context: Path, out: Path, registry: Path = Path("valuation_support_registry")):
     bf = boundary_fields()
-    cmp = _rj(comparables, {"schema_version":"agialpha.valuation_support_public_comparables.v2","comparables":[]})
+    cmp = load_public_comparables(comparables)
     mctx = _rj(market_context, {"schema_version":"agialpha.valuation_support_market_context.v1","market_context":{},"source_links":[]})
-    top=(cmp.get("comparables") or [{}])[0]
+    top=first_comparable(cmp)
     val=top.get("reported_valuation_usd","not_reported")
     inv=build_evidence_inventory(Path(repo_root))
     comp=build_implementation_comparison(inv, top)
