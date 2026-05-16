@@ -8,6 +8,24 @@
   ],
   "no_auto_merge": true,
   "not_an_investment_claim": true,
+  "records": [
+    {
+      "payload": {
+        "autonomous_persistence_allowed": false,
+        "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+        "customer_data_boundary": "Synthetic or customer-approved redacted inputs only; no raw PII or secrets.",
+        "human_review_required": true,
+        "missing_evidence": [
+          "paid_pilot_or_commercial_commitment_status:not_reported"
+        ],
+        "no_auto_merge": true,
+        "not_an_investment_claim": true,
+        "regulated_boundary": "Not legal, medical, HR, credit, insurance, investment, payment, custody, KYC/AML, or regulated decisioning.",
+        "token_boundary": "$AGIALPHA is utility-only accounting; not equity, debt, yield, ROI, or token value evidence."
+      },
+      "run_id": "49b55256a9b1"
+    }
+  ],
   "regulated_boundary": "Not legal, medical, HR, credit, insurance, investment, payment, custody, KYC/AML, or regulated decisioning.",
   "token_boundary": "$AGIALPHA is utility-only accounting; not equity, debt, yield, ROI, or token value evidence."
 }

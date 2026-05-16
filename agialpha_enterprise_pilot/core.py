@@ -35,6 +35,15 @@ def _next_run_id(reg: Path, repo_root: Path, out: Path, workflow_family: str, cu
     seed = f"{repo_root.resolve()}|{out.resolve()}|{workflow_family}|{customer_mode}|{next_index}"
     return hashlib.sha256(seed.encode()).hexdigest()[:12]
 
+def _append_registry_collection(reg: Path, name: str, run_id: str, payload: dict):
+    path = reg / f"{name}.json"
+    doc = _rj(path, {"records": [], **boundary_fields()})
+    records = doc.get("records", [])
+    records.append({"run_id": run_id, "payload": payload})
+    doc.update(boundary_fields())
+    doc["records"] = records
+    _wj(path, doc)
+
 def build(repo_root: Path, out: Path, workflow_family: str, customer_mode: str, registry: Path = Path("enterprise_pilot_registry")):
     repo_root = Path(repo_root).resolve()
     out = Path(out).resolve()
@@ -85,8 +94,8 @@ def build(repo_root: Path, out: Path, workflow_family: str, customer_mode: str, 
     registry_doc["runs"] = runs
     _wj(reg / "registry.json", registry_doc)
     for k, n in [("pilots", "01_pilot_intake.json"), ("pilot_intakes", "01_pilot_intake.json"), ("regulated_boundary_triage", "02_regulated_boundary_triage.json"), ("customer_attestations", "03_customer_use_attestation.json"), ("job_packs", "04_enterprise_job_pack.json"), ("proofbundles", "06_proofbundle.json"), ("evidence_dockets", "07_evidence_docket.json"), ("work_vaults", "08_work_vault.json"), ("settlement_receipts", "09_utility_settlement_receipt.json"), ("customer_reviews", "10_customer_review_record.json"), ("external_replay_packets", "11_external_replay_packet.json"), ("commercial_readiness_scorecards", "12_commercial_readiness_scorecard.json"), ("valuation_support_links", "14_valuation_support_link.json"), ("missing_evidence", "15_missing_evidence.json")]:
-        _wj(reg / f"{k}.json", _rj(out / n, {}))
-    _wj(reg / "pilot_outcomes.json", {"path": str(out / "13_pilot_outcome_dossier.md"), **boundary_fields()})
+        _append_registry_collection(reg, k, run_id, _rj(out / n, {}))
+    _append_registry_collection(reg, "pilot_outcomes", run_id, {"path": f"runs/{run_id}/13_pilot_outcome_dossier.md"})
     _append_changelog(reg / "CHANGELOG.md", run_id)
 
 def validate(run: Path):
