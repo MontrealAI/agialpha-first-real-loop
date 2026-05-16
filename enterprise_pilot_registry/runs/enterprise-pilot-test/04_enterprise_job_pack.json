@@ -1,0 +1,41 @@
+{
+  "job_pack_id": "jobpack-enterprise-pilot-test",
+  "workflow_family": "software_quality_pack",
+  "synthetic_inputs_used": true,
+  "customer_approved_redacted_inputs_used": false,
+  "prohibited_actions_checked": true,
+  "regulated_boundary_result": "passed",
+  "validator_plan": {
+    "checks": [
+      "determinism",
+      "boundary_fields"
+    ]
+  },
+  "proofbundle_plan": {
+    "required": true
+  },
+  "evidence_docket_plan": {
+    "required": true
+  },
+  "customer_review_plan": {
+    "status": "pending"
+  },
+  "external_replay_plan": {
+    "required": true
+  },
+  "work_vault_plan": {
+    "local_json_only": true
+  },
+  "utility_settlement_receipt_plan": {
+    "local_json_only": true
+  },
+  "commercial_usefulness_hypothesis": "safe customer-pilot evidence",
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "token_boundary": "$AGIALPHA is utility-only accounting and not investment, securities, or token-value evidence.",
+  "regulated_boundary": "Not legal, medical, HR, credit, insurance, KYC/AML, banking, brokerage, custody, payment, or regulated decisioning.",
+  "customer_data_boundary": "synthetic_only or customer_approved_redacted only; no raw PII.",
+  "human_review_required": true,
+  "autonomous_persistence_allowed": false,
+  "no_auto_merge": true,
+  "not_an_investment_claim": true
+}
