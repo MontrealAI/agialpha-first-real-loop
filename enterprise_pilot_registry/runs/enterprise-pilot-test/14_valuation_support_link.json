@@ -1,0 +1,17 @@
+{
+  "pilot_id": "pilot-software_quality_pack",
+  "commercial_readiness_tier": "C8",
+  "customer_review_status": "pending",
+  "external_replay_status": "complete",
+  "repeatable_deployment_status": "complete",
+  "paid_pilot_or_commercial_commitment_status": "not_reported",
+  "evidence_docket_path": "07_evidence_docket/",
+  "proofbundle_path": "06_proofbundle.json",
+  "work_vault_path": "08_work_vault.json",
+  "settlement_receipt_path": "09_utility_settlement_receipt.json",
+  "missing_evidence": [
+    "paid_pilot_or_commercial_commitment:not_reported"
+  ],
+  "claim_boundary": "implementation_evidence_only",
+  "not_an_investment_claim": true
+}

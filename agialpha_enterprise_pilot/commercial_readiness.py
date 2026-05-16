@@ -1,0 +1,1 @@
+def score(r): return {'commercial_readiness_tier':'C8','paid_pilot_or_commercial_commitment_status':'not_reported','missing_evidence':['paid_pilot_or_commercial_commitment:not_reported']}

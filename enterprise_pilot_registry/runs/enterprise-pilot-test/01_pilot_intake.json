@@ -1,0 +1,22 @@
+{
+  "schema_version": "agialpha.enterprise_pilot_intake.v1",
+  "pilot_id": "pilot-software_quality_pack",
+  "customer_label": "synthetic_customer",
+  "customer_data_mode": "synthetic_only",
+  "workflow_family": "software_quality_pack",
+  "intended_use": "synthetic enterprise workflow evidence generation",
+  "excluded_uses_acknowledged": true,
+  "regulated_boundary_triage_required": true,
+  "proofbundle_required": true,
+  "evidence_docket_required": true,
+  "external_replay_packet_required": true,
+  "customer_review_required": true,
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "token_boundary": "$AGIALPHA is utility-only accounting only.",
+  "regulated_boundary": "No regulated decisioning; block legal/medical/hr/credit/insurance/kyc/aml/banking/brokerage/custody/payment.",
+  "customer_data_boundary": "synthetic_or_customer_approved_redacted_only",
+  "human_review_required": true,
+  "autonomous_persistence_allowed": false,
+  "no_auto_merge": true,
+  "not_an_investment_claim": true
+}

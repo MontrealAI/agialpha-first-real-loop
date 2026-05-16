@@ -1,0 +1,16 @@
+{
+  "work_vault_id": "wv-pilot-software_quality_pack",
+  "pilot_id": "pilot-software_quality_pack",
+  "job_pack_id": "pilot-software_quality_pack-software_quality_pack",
+  "alpha_work_units_estimate": 100,
+  "validator_fee_units": 10,
+  "replay_fee_units": 5,
+  "proofbundle_fee_units": 7,
+  "evidence_docket_fee_units": 7,
+  "archive_access_units": 2,
+  "unused_budget_refund_units": 9,
+  "settlement_status": "simulated_local_receipt_only",
+  "claim_boundary": "utility_only",
+  "token_boundary": "utility_only",
+  "not_an_investment_claim": true
+}
