@@ -1,0 +1,21 @@
+{
+  "alpha_work_units_estimate": 100,
+  "archive_access_units": 2,
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "customer_data_boundary": "Synthetic or customer-approved redacted inputs only; no raw PII or secrets.",
+  "evidence_docket_fee_units": 8,
+  "human_review_required": true,
+  "job_pack_id": "jobpack-pilot-enterprise-pilot-c8f627064e0d-software_quality_pack",
+  "no_auto_merge": true,
+  "not_an_investment_claim": true,
+  "pilot_id": "pilot-enterprise-pilot-c8f627064e0d",
+  "proofbundle_fee_units": 8,
+  "regulated_boundary": "Not legal, medical, HR, credit, insurance, investment, payment, custody, KYC/AML, or regulated decisioning.",
+  "replay_fee_units": 5,
+  "settlement_status": "simulated_local_receipt_only",
+  "token_boundary": "$AGIALPHA is utility-only accounting; not equity, debt, yield, ROI, or token value evidence.",
+  "unused_budget_refund_units": 0,
+  "validator_fee_units": 5,
+  "work_vault_id": "workvault-pilot-enterprise-pilot-c8f627064e0d"
+}
