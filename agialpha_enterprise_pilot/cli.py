@@ -66,7 +66,7 @@ def build(repo_root,out,workflow_family,customer_mode,registry=None):
         fh.write(f'- {pid}: build recorded\n')
 
 def validate_run(run):
-    req=['01_pilot_intake.json','02_regulated_boundary_triage.json','03_customer_use_attestation.json','04_enterprise_job_pack.json','06_proofbundle.json','07_evidence_docket/docket.json','08_work_vault.json','09_utility_settlement_receipt.json','10_customer_review_record.json','11_external_replay_packet.json','12_commercial_readiness_scorecard.json','14_valuation_support_link.json','16_pilot_outcome.json']
+    req=['01_pilot_intake.json','02_regulated_boundary_triage.json','03_customer_use_attestation.json','04_enterprise_job_pack.json','05_validator_plan.json','06_proofbundle.json','07_evidence_docket/docket.json','08_work_vault.json','09_utility_settlement_receipt.json','10_customer_review_record.json','11_external_replay_packet.json','12_commercial_readiness_scorecard.json','14_valuation_support_link.json','16_pilot_outcome.json']
     run=Path(run)
     miss=[x for x in req if not (run/x).exists()]
     if miss: raise SystemExit('missing:'+','.join(miss))
