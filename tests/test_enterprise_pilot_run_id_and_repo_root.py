@@ -16,6 +16,7 @@ def _run_build(repo_root: Path, out_dir: Path):
         sys.executable, '-m', 'agialpha_enterprise_pilot', 'build',
         '--repo-root', str(repo_root), '--out', str(out_dir),
         '--workflow-family', 'software_quality_pack', '--customer-mode', 'synthetic_only',
+        '--registry', 'enterprise_pilot_registry',
     ], env=_env_with_repo(repo_root))
 
 
@@ -38,6 +39,7 @@ def test_registry_written_under_repo_root_not_cwd():
         sys.executable, '-m', 'agialpha_enterprise_pilot', 'build',
         '--repo-root', str(repo), '--out', str(out),
         '--workflow-family', 'software_quality_pack', '--customer-mode', 'synthetic_only',
+        '--registry', 'enterprise_pilot_registry',
     ], cwd=external_cwd, env=_env_with_repo(repo))
     assert (repo / 'enterprise_pilot_registry' / 'latest.json').exists()
     assert not (external_cwd / 'enterprise_pilot_registry' / 'latest.json').exists()

@@ -15,7 +15,7 @@ def _unique_run_id(out_path: Path, workflow_family: str, customer_mode: str) -> 
     digest = hashlib.sha256(f"{out_path}:{workflow_family}:{customer_mode}:{now}".encode("utf-8")).hexdigest()[:8]
     return f"enterprise-pilot-{now}-{digest}"
 
-def build(repo_root,out,workflow_family,customer_mode,registry='enterprise_pilot_registry'):
+def build(repo_root,out,workflow_family,customer_mode,registry=None):
     repo_root_path = Path(repo_root).resolve()
     run=Path(out); run.mkdir(parents=True,exist_ok=True); b=boundary_fields(); pid=_unique_run_id(run, workflow_family, customer_mode)
     intake={"schema_version":"agialpha.enterprise_pilot_intake.v1","pilot_id":pid,"customer_label":"synthetic_customer" if customer_mode=="synthetic_only" else "redacted_customer","customer_data_mode":customer_mode,"workflow_family":workflow_family,"intended_use":"enterprise pilot evidence workflow","excluded_uses_acknowledged":True,"regulated_boundary_triage_required":True,"proofbundle_required":True,"evidence_docket_required":True,"external_replay_packet_required":True,"customer_review_required":True,**b}
@@ -32,16 +32,18 @@ def build(repo_root,out,workflow_family,customer_mode,registry='enterprise_pilot
     sc={"schema_version":"agialpha.commercial_readiness_scorecard.v1","commercial_readiness_tier":"C6","paid_pilot_or_commercial_commitment_status":"not_reported","missing_evidence":["paid_pilot_or_commercial_commitment_status:not_reported"],**b}
     outcome={"schema_version":"agialpha.enterprise_pilot_outcome.v1","pilot_id":pid,"commercial_readiness_tier":"C6",**b}
     vsl={"pilot_id":pid,"commercial_readiness_tier":"C6","customer_review_status":"pending","external_replay_status":"complete","repeatable_deployment_status":"complete","paid_pilot_or_commercial_commitment_status":"not_reported","evidence_docket_path":"07_evidence_docket/docket.json","proofbundle_path":"06_proofbundle.json","work_vault_path":"08_work_vault.json","settlement_receipt_path":"09_utility_settlement_receipt.json","missing_evidence":["paid_pilot_or_commercial_commitment_status:not_reported"],"statement":"This pilot evidence may support commercial-readiness and implementation-side valuation-support analysis. It does not assert valuation, investment return, token value, revenue, ARR, ROI, fair market value, or financial advice.",**b}
-    files=[('00_manifest.json',{"run_id":pid,**b}),('01_pilot_intake.json',intake),('02_regulated_boundary_triage.json',t),('03_customer_use_attestation.json',att),('04_enterprise_job_pack.json',jp),('05_validator_plan.json',vp),('06_proofbundle.json',pb),('08_work_vault.json',wv),('09_utility_settlement_receipt.json',sr),('10_customer_review_record.json',cr),('11_external_replay_packet.json',er),('12_commercial_readiness_scorecard.json',sc),('14_valuation_support_link.json',vsl),('15_missing_evidence.json',{"missing_evidence":sc['missing_evidence']}),('evidence-run-manifest.json',{"run_id":pid}),('summary.md',f"# Pilot Outcome Dossier\n\nTier: C6\n")]
+    files=[('00_manifest.json',{"run_id":pid,**b}),('01_pilot_intake.json',intake),('02_regulated_boundary_triage.json',t),('03_customer_use_attestation.json',att),('04_enterprise_job_pack.json',jp),('05_validator_plan.json',vp),('06_proofbundle.json',pb),('08_work_vault.json',wv),('09_utility_settlement_receipt.json',sr),('10_customer_review_record.json',cr),('11_external_replay_packet.json',er),('12_commercial_readiness_scorecard.json',sc),('14_valuation_support_link.json',vsl),('15_missing_evidence.json',{"missing_evidence":sc['missing_evidence']}),('16_pilot_outcome.json',outcome),('evidence-run-manifest.json',{"run_id":pid}),('summary.md',f"# Pilot Outcome Dossier\n\nTier: C6\n")]
     for n,o in files: wj(run/n,o) if n.endswith('.json') else Path(run/n).write_text(o,encoding='utf-8')
     wj(run/'07_evidence_docket/docket.json',docket); Path(run/'13_pilot_outcome_dossier.md').write_text('# Pilot Outcome Dossier\n\nTier: C6\n',encoding='utf-8')
+    if registry is None:
+        return
     rr=(repo_root_path / registry).resolve(); (rr/'runs'/pid).mkdir(parents=True,exist_ok=True)
     generated_paths = [
         '00_manifest.json','01_pilot_intake.json','02_regulated_boundary_triage.json','03_customer_use_attestation.json',
         '04_enterprise_job_pack.json','05_validator_plan.json','06_proofbundle.json','07_evidence_docket','08_work_vault.json',
         '09_utility_settlement_receipt.json','10_customer_review_record.json','11_external_replay_packet.json',
         '12_commercial_readiness_scorecard.json','13_pilot_outcome_dossier.md','14_valuation_support_link.json',
-        '15_missing_evidence.json','evidence-run-manifest.json','summary.md'
+        '15_missing_evidence.json','16_pilot_outcome.json','evidence-run-manifest.json','summary.md'
     ]
     for rel in generated_paths:
         src = run / rel
@@ -78,7 +80,7 @@ def build_data(registry,out):
 
 def main():
     p=argparse.ArgumentParser(); sp=p.add_subparsers(dest='cmd',required=True)
-    b=sp.add_parser('build'); b.add_argument('--repo-root',required=True); b.add_argument('--out',required=True); b.add_argument('--workflow-family',choices=JOB_PACKS,required=True); b.add_argument('--customer-mode',choices=['synthetic_only','customer_approved_redacted'],required=True); b.set_defaults(func=lambda a: build(a.repo_root,a.out,a.workflow_family,a.customer_mode))
+    b=sp.add_parser('build'); b.add_argument('--repo-root',required=True); b.add_argument('--out',required=True); b.add_argument('--workflow-family',choices=JOB_PACKS,required=True); b.add_argument('--customer-mode',choices=['synthetic_only','customer_approved_redacted'],required=True); b.add_argument('--registry',default=None); b.set_defaults(func=lambda a: build(a.repo_root,a.out,a.workflow_family,a.customer_mode,a.registry))
     v=sp.add_parser('validate'); v.add_argument('--run',required=True); v.set_defaults(func=lambda a: validate_run(a.run))
     d=sp.add_parser('build-data'); d.add_argument('--registry',required=True); d.add_argument('--out',required=True); d.set_defaults(func=lambda a: build_data(a.registry,a.out))
     s=sp.add_parser('summarize'); s.add_argument('--run',required=True); s.add_argument('--out',required=True); s.set_defaults(func=lambda a: Path(a.out).write_text('# Pilot Outcome Dossier\n\nTier: C6\n',encoding='utf-8'))
