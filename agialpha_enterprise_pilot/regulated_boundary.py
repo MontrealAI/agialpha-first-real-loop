@@ -1,9 +1,9 @@
 from .boundaries import boundary_fields
 import re
 BLOCK = [
-    "hr", "credit", "insurance", "medical", "legal", "investment",
+    "hr", "human resources", "credit", "insurance", "medical", "legal", "investment",
     "financial advice", "financial advisor", "financial adviser",
-    "kyc", "aml", "custody", "procurement", "contract"
+    "kyc", "aml", "custody", "payment", "payment processing", "procurement", "contract"
 ]
 BLOCK_PATTERNS = [
     rf"\b{re.escape(term)}\b" for term in BLOCK

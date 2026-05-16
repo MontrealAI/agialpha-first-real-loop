@@ -24,3 +24,13 @@ def test_brokerage_variant_is_blocked():
 def test_financial_advice_is_blocked():
     result = triage("financial advice assistant for teams")
     assert result["regulated_boundary_result"] == "blocked"
+
+
+def test_payment_processing_is_blocked():
+    result = triage("payment processing assistant")
+    assert result["regulated_boundary_result"] == "blocked"
+
+
+def test_human_resources_phrase_is_blocked():
+    result = triage("human resources screening workflow")
+    assert result["regulated_boundary_result"] == "blocked"
