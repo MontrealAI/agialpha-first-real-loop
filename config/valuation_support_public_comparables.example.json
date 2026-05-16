@@ -20,11 +20,16 @@
           "source_title": "GV announcement",
           "source_url": "https://www.gv.com/news/recursive-superintelligence-self-improving-ai",
           "source_date": "2026-05-13",
-          "supported_fact": "Reported category funding and thesis."
+          "supported_fact": "Reported funding and valuation category signal."
+        },
+        {
+          "source_title": "Recursive website",
+          "source_url": "https://www.recursive.com/",
+          "source_date": "2026-05-13",
+          "supported_fact": "Public self-improving AI category framing."
         }
       ],
-      "claim_boundary": "Manual comparable only. Not an investment claim, valuation assertion, token-value claim, or superiority claim.",
-      "reported_category_valuation_comparable": "not_reported"
+      "claim_boundary": "Manual comparable only. Not an investment claim, valuation assertion, token-value claim, or superiority claim."
     }
   ]
 }
