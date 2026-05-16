@@ -1,0 +1,23 @@
+{
+  "archive": {
+    "artifacts": [
+      "ColdChain-Energy-Compiler-v0"
+    ],
+    "candidates": 5,
+    "frontier_cells": 1,
+    "occupied_cells": 1
+  },
+  "claim_boundary": "This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+  "eci": {
+    "highest_evidence_level": "E2_EXECUTED_SCAFFOLD",
+    "ledger_total": 1
+  },
+  "next_action": "Run clean replay, full baseline suite, cost/safety audit, and independent review.",
+  "schema": "agialpha.rsi_state_for_next_run.v1",
+  "state_manifest": {
+    "cycle_index": 2,
+    "persistence_rule": "cycle_index increments exactly +1; archive counters must not silently reset.",
+    "previous_docket_id": "ColdChain-Energy-Loop-001-seed-003",
+    "state_payload_hash_pending": true
+  }
+}
