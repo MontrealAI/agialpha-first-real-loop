@@ -1,7 +1,7 @@
 from .boundaries import boundary_fields
 import re
 BLOCK = [
-    "hr", "human resources", "credit", "insurance", "medical", "legal", "investment",
+    "hr", "human resources", "worker evaluation", "credit", "lending", "insurance", "medical", "legal", "investment",
     "financial advice", "financial advisor", "financial adviser",
     "kyc", "aml", "custody", "payment", "payment processing", "procurement", "contract"
 ]

@@ -44,3 +44,13 @@ def test_hyphenated_financial_adviser_is_blocked():
 def test_hyphenated_human_resources_is_blocked():
     result = triage("human-resources screening")
     assert result["regulated_boundary_result"] == "blocked"
+
+
+def test_lending_intent_is_blocked():
+    result = triage("lending decision support")
+    assert result["regulated_boundary_result"] == "blocked"
+
+
+def test_worker_evaluation_is_blocked():
+    result = triage("worker evaluation assistant")
+    assert result["regulated_boundary_result"] == "blocked"
