@@ -2,10 +2,12 @@
   "autonomous_persistence_allowed": false,
   "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
   "customer_data_boundary": "Synthetic or customer-approved redacted inputs only; no raw PII or secrets.",
+  "external_replay_packet_id": "replay-software_quality_pilot",
   "human_review_required": true,
   "no_auto_merge": true,
   "not_an_investment_claim": true,
-  "records": [],
+  "pilot_id": "software_quality_pilot",
   "regulated_boundary": "Not legal, medical, HR, credit, insurance, investment, payment, custody, KYC/AML, or regulated decisioning.",
+  "status": "generated",
   "token_boundary": "$AGIALPHA is utility-only accounting; not equity, debt, yield, ROI, or token value evidence."
 }

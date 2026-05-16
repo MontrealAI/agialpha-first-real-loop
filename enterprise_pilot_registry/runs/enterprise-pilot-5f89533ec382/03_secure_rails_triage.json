@@ -5,7 +5,7 @@
   "human_review_required": true,
   "no_auto_merge": true,
   "not_an_investment_claim": true,
-  "records": [],
   "regulated_boundary": "Not legal, medical, HR, credit, insurance, investment, payment, custody, KYC/AML, or regulated decisioning.",
+  "status": "passed",
   "token_boundary": "$AGIALPHA is utility-only accounting; not equity, debt, yield, ROI, or token value evidence."
 }

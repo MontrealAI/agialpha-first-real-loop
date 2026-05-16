@@ -1,0 +1,202 @@
+{
+  "pilots": [
+    {
+      "pilot_id": "software_quality_pilot",
+      "title": "Software Quality Pilot",
+      "customer_problem": "synthetic",
+      "synthetic_fixture_only": true,
+      "real_customer_data_used": false,
+      "pii_used": false,
+      "regulated_domain_flags": [],
+      "allowed_mode": "synthetic_only",
+      "job_pack": "software_quality_pack",
+      "validators": [
+        "deterministic"
+      ],
+      "proofbundle_plan": "local",
+      "evidence_docket_plan": "local",
+      "work_vault_plan": "utility_only",
+      "customer_review_template": "pending",
+      "external_replay_plan": "local",
+      "claim_boundary": "no_overclaim",
+      "token_boundary": "utility_only",
+      "regulated_boundary": "documentation_only"
+    },
+    {
+      "pilot_id": "evidence_ops_pilot",
+      "title": "Evidence Ops Pilot",
+      "customer_problem": "synthetic",
+      "synthetic_fixture_only": true,
+      "real_customer_data_used": false,
+      "pii_used": false,
+      "regulated_domain_flags": [],
+      "allowed_mode": "synthetic_only",
+      "job_pack": "software_quality_pack",
+      "validators": [
+        "deterministic"
+      ],
+      "proofbundle_plan": "local",
+      "evidence_docket_plan": "local",
+      "work_vault_plan": "utility_only",
+      "customer_review_template": "pending",
+      "external_replay_plan": "local",
+      "claim_boundary": "no_overclaim",
+      "token_boundary": "utility_only",
+      "regulated_boundary": "documentation_only"
+    },
+    {
+      "pilot_id": "documentation_ops_pilot",
+      "title": "Documentation Ops Pilot",
+      "customer_problem": "synthetic",
+      "synthetic_fixture_only": true,
+      "real_customer_data_used": false,
+      "pii_used": false,
+      "regulated_domain_flags": [],
+      "allowed_mode": "synthetic_only",
+      "job_pack": "software_quality_pack",
+      "validators": [
+        "deterministic"
+      ],
+      "proofbundle_plan": "local",
+      "evidence_docket_plan": "local",
+      "work_vault_plan": "utility_only",
+      "customer_review_template": "pending",
+      "external_replay_plan": "local",
+      "claim_boundary": "no_overclaim",
+      "token_boundary": "utility_only",
+      "regulated_boundary": "documentation_only"
+    },
+    {
+      "pilot_id": "defensive_security_docs_pilot",
+      "title": "Defensive Security Docs Pilot",
+      "customer_problem": "synthetic",
+      "synthetic_fixture_only": true,
+      "real_customer_data_used": false,
+      "pii_used": false,
+      "regulated_domain_flags": [],
+      "allowed_mode": "synthetic_only",
+      "job_pack": "software_quality_pack",
+      "validators": [
+        "deterministic"
+      ],
+      "proofbundle_plan": "local",
+      "evidence_docket_plan": "local",
+      "work_vault_plan": "utility_only",
+      "customer_review_template": "pending",
+      "external_replay_plan": "local",
+      "claim_boundary": "no_overclaim",
+      "token_boundary": "utility_only",
+      "regulated_boundary": "documentation_only"
+    },
+    {
+      "pilot_id": "trust_center_readiness_pilot",
+      "title": "Trust Center Readiness Pilot",
+      "customer_problem": "synthetic",
+      "synthetic_fixture_only": true,
+      "real_customer_data_used": false,
+      "pii_used": false,
+      "regulated_domain_flags": [],
+      "allowed_mode": "synthetic_only",
+      "job_pack": "software_quality_pack",
+      "validators": [
+        "deterministic"
+      ],
+      "proofbundle_plan": "local",
+      "evidence_docket_plan": "local",
+      "work_vault_plan": "utility_only",
+      "customer_review_template": "pending",
+      "external_replay_plan": "local",
+      "claim_boundary": "no_overclaim",
+      "token_boundary": "utility_only",
+      "regulated_boundary": "documentation_only"
+    },
+    {
+      "pilot_id": "workflow_governance_pilot",
+      "title": "Workflow Governance Pilot",
+      "customer_problem": "synthetic",
+      "synthetic_fixture_only": true,
+      "real_customer_data_used": false,
+      "pii_used": false,
+      "regulated_domain_flags": [],
+      "allowed_mode": "synthetic_only",
+      "job_pack": "software_quality_pack",
+      "validators": [
+        "deterministic"
+      ],
+      "proofbundle_plan": "local",
+      "evidence_docket_plan": "local",
+      "work_vault_plan": "utility_only",
+      "customer_review_template": "pending",
+      "external_replay_plan": "local",
+      "claim_boundary": "no_overclaim",
+      "token_boundary": "utility_only",
+      "regulated_boundary": "documentation_only"
+    },
+    {
+      "pilot_id": "compliance_readiness_docs_pilot",
+      "title": "Compliance Readiness Docs Pilot",
+      "customer_problem": "synthetic",
+      "synthetic_fixture_only": true,
+      "real_customer_data_used": false,
+      "pii_used": false,
+      "regulated_domain_flags": [],
+      "allowed_mode": "synthetic_only",
+      "job_pack": "software_quality_pack",
+      "validators": [
+        "deterministic"
+      ],
+      "proofbundle_plan": "local",
+      "evidence_docket_plan": "local",
+      "work_vault_plan": "utility_only",
+      "customer_review_template": "pending",
+      "external_replay_plan": "local",
+      "claim_boundary": "no_overclaim",
+      "token_boundary": "utility_only",
+      "regulated_boundary": "documentation_only"
+    },
+    {
+      "pilot_id": "external_replay_readiness_pilot",
+      "title": "External Replay Readiness Pilot",
+      "customer_problem": "synthetic",
+      "synthetic_fixture_only": true,
+      "real_customer_data_used": false,
+      "pii_used": false,
+      "regulated_domain_flags": [],
+      "allowed_mode": "synthetic_only",
+      "job_pack": "software_quality_pack",
+      "validators": [
+        "deterministic"
+      ],
+      "proofbundle_plan": "local",
+      "evidence_docket_plan": "local",
+      "work_vault_plan": "utility_only",
+      "customer_review_template": "pending",
+      "external_replay_plan": "local",
+      "claim_boundary": "no_overclaim",
+      "token_boundary": "utility_only",
+      "regulated_boundary": "documentation_only"
+    },
+    {
+      "pilot_id": "valuation_support_evidence_pilot",
+      "title": "Valuation Support Evidence Pilot",
+      "customer_problem": "synthetic",
+      "synthetic_fixture_only": true,
+      "real_customer_data_used": false,
+      "pii_used": false,
+      "regulated_domain_flags": [],
+      "allowed_mode": "synthetic_only",
+      "job_pack": "software_quality_pack",
+      "validators": [
+        "deterministic"
+      ],
+      "proofbundle_plan": "local",
+      "evidence_docket_plan": "local",
+      "work_vault_plan": "utility_only",
+      "customer_review_template": "pending",
+      "external_replay_plan": "local",
+      "claim_boundary": "no_overclaim",
+      "token_boundary": "utility_only",
+      "regulated_boundary": "documentation_only"
+    }
+  ]
+}
