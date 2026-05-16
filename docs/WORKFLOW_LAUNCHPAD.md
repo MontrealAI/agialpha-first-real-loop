@@ -39,3 +39,4 @@ The Evidence Hub Launchpad is the operator entry point for running repository wo
 
 ## Recursive Gauntlet
 Use lifecycle workflow to generate local bounded recursive substrate evidence.
+\n- Enterprise Pilot: README_ENTERPRISE_PILOT.md and workflow agialpha-enterprise-pilot-001.yml
