@@ -1,1 +1,3 @@
-# Enterprise Pilot Registry
+- append-only registry
+- run_id=0a0a9f17a351 appended
+- run_id=e741a93f30e9 appended
