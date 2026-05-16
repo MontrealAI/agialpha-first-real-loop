@@ -129,3 +129,5 @@ See `README_RECURSIVE_GAUNTLET.md` and `docs/recursive-gauntlet/README.md`.
 
 ## AGI ALPHA Ascension OS
 Run `python -m agialpha_ascension_os run-cycle --repo-root . --registry ascension_os_registry --out ascension-os-runs/test` for a compact governed recursive machine-labor vertical slice with bounded claims. See [README_ASCENSION_OS.md](README_ASCENSION_OS.md) and [README_VALUATION_SUPPORT.md](README_VALUATION_SUPPORT.md).
+
+- Enterprise Pilot: [README_ENTERPRISE_PILOT.md](README_ENTERPRISE_PILOT.md)
