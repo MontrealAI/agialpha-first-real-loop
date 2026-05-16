@@ -28,7 +28,7 @@ Valuation-comparable discussion is only defensible when grounded in reproducible
 - If fixture fields are absent, outputs explicitly render `not_reported`; they are never converted to zeros.
 
 ## Readiness tiers and hard caps
-The dossier emits T0–T10 readiness tiers with hard caps (for example: no replay report caps readiness at T2; no ProofBundle caps at T3; no customer-reviewed dockets caps at T6).
+Current implementation emits T2–T6 readiness tiers with hard caps (for example: no replay report caps readiness at T2; no ProofBundle caps at T3; no customer-reviewed dockets caps at T6).
 
 ## Local deterministic commands
 - `python -m agialpha_valuation_support build --repo-root . --ascension-registry ascension_os_registry --comparables config/valuation_support_public_comparables.example.json --market-context config/valuation_support_market_context.example.json --out /tmp/valuation-support-test`
@@ -37,6 +37,7 @@ The dossier emits T0–T10 readiness tiers with hard caps (for example: no repla
 - `python -m agialpha_valuation_support summarize --run /tmp/valuation-support-test --out /tmp/valuation-support-test/12_valuation_support_memo.md`
 
 ## Output locations
-- Run outputs: `valuation-support-runs/<run_id>/`
+- Run outputs are written to the explicit `--out` directory passed to `build` (for example `/tmp/valuation-support-test`).
+- A registry copy is written to `valuation_support_registry/runs/<run_id>/`.
 - Registry (append-only history): `valuation_support_registry/`
 - UI-consumable generated data: `docs/_generated/valuation-support/`
