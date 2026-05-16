@@ -1,5 +1,5 @@
 from pathlib import Path
-import json, hashlib, shutil
+import json, hashlib, shutil, uuid
 from .intake import create_intake
 from .regulated_boundary import triage
 from .customer_attestation import create_attestation
@@ -30,7 +30,9 @@ def _append_changelog(path: Path, run_id: str):
     path.write_text(existing + line, encoding="utf-8")
 
 def build(repo_root: Path, out: Path, workflow_family: str, customer_mode: str, registry: Path = Path("enterprise_pilot_registry")):
-    run_id = hashlib.sha256(str(Path(out).resolve()).encode()).hexdigest()[:12]
+    repo_root = Path(repo_root).resolve()
+    out = Path(out)
+    run_id = hashlib.sha256(f"{out.resolve()}::{uuid.uuid4().hex}".encode()).hexdigest()[:12]
     pid = f"pilot-{run_id}"
     intake = create_intake(pid, workflow_family, customer_mode)
     tri = triage(intake)
@@ -62,7 +64,7 @@ def build(repo_root: Path, out: Path, workflow_family: str, customer_mode: str, 
     (out / "summary.md").write_text(f"run_id: {run_id}\n", encoding="utf-8")
     _wj(out / "evidence-run-manifest.json", {"run_id": run_id, **boundary_fields()})
 
-    reg = Path(registry)
+    reg = (repo_root / registry).resolve() if not Path(registry).is_absolute() else Path(registry)
     rdir = reg / "runs" / run_id
     rdir.mkdir(parents=True, exist_ok=True)
     for f in out.iterdir():
