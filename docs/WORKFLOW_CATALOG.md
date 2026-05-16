@@ -199,3 +199,5 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 | `agialpha-valuation-support-002.yml` | Core | workflow_dispatch,schedule | Implementation-side valuation support dossier artifacts + evidence-run-manifest.json. | Non-promissory evidence only; human review required; no direct Pages deploy; no auto-merge. | no |
 
 | `agialpha-ascension-os-001.yml` | Core | `workflow_dispatch` | Ascension OS run-cycle, replay, falsification, validate, generated data artifact. | Bounded evidence only; human review required; no direct Pages deploy; no auto-merge. | no |
+
+| `agialpha-enterprise-pilot-001.yml` | Core | `workflow_dispatch`, `schedule` | Enterprise pilot evidence factory artifacts and generated data. | Human review required; no direct Pages deploy; no auto-merge. | no |
