@@ -1,5 +1,7 @@
 from pathlib import Path
 import argparse, json, shutil
+from datetime import datetime, timezone
+import hashlib
 from .boundaries import boundary_fields
 from .regulated_boundary import triage
 JOB_PACKS=["software_quality_pack","evidence_ops_pack","docs_ops_pack","trust_center_readiness_pack","secure_rails_readiness_pack","defensive_security_docs_pack","workflow_catalog_readiness_pack","external_replay_readiness_pack","enterprise_pilot_readiness_pack","commercial_packaging_readiness_pack"]
@@ -8,8 +10,14 @@ EXCLUDED=["HR / worker evaluation","profiling of individuals","automated decisio
 def wj(path,obj): Path(path).parent.mkdir(parents=True,exist_ok=True); Path(path).write_text(json.dumps(obj,indent=2)+"\n",encoding='utf-8')
 def loadj(p,d): return json.loads(Path(p).read_text()) if Path(p).exists() else d
 
+def _unique_run_id(out_path: Path, workflow_family: str, customer_mode: str) -> str:
+    now = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    digest = hashlib.sha256(f"{out_path}:{workflow_family}:{customer_mode}:{now}".encode("utf-8")).hexdigest()[:8]
+    return f"enterprise-pilot-{now}-{digest}"
+
 def build(repo_root,out,workflow_family,customer_mode,registry='enterprise_pilot_registry'):
-    run=Path(out); run.mkdir(parents=True,exist_ok=True); b=boundary_fields(); pid=run.name
+    repo_root_path = Path(repo_root).resolve()
+    run=Path(out); run.mkdir(parents=True,exist_ok=True); b=boundary_fields(); pid=_unique_run_id(run, workflow_family, customer_mode)
     intake={"schema_version":"agialpha.enterprise_pilot_intake.v1","pilot_id":pid,"customer_label":"synthetic_customer" if customer_mode=="synthetic_only" else "redacted_customer","customer_data_mode":customer_mode,"workflow_family":workflow_family,"intended_use":"enterprise pilot evidence workflow","excluded_uses_acknowledged":True,"regulated_boundary_triage_required":True,"proofbundle_required":True,"evidence_docket_required":True,"external_replay_packet_required":True,"customer_review_required":True,**b}
     t=triage(intake["intended_use"])
     att={"schema_version":"agialpha.customer_use_attestation.v1","pilot_id":pid,"excluded_uses":EXCLUDED,"excluded_uses_acknowledged":True,**b}
@@ -27,7 +35,7 @@ def build(repo_root,out,workflow_family,customer_mode,registry='enterprise_pilot
     files=[('00_manifest.json',{"run_id":pid,**b}),('01_pilot_intake.json',intake),('02_regulated_boundary_triage.json',t),('03_customer_use_attestation.json',att),('04_enterprise_job_pack.json',jp),('05_validator_plan.json',vp),('06_proofbundle.json',pb),('08_work_vault.json',wv),('09_utility_settlement_receipt.json',sr),('10_customer_review_record.json',cr),('11_external_replay_packet.json',er),('12_commercial_readiness_scorecard.json',sc),('14_valuation_support_link.json',vsl),('15_missing_evidence.json',{"missing_evidence":sc['missing_evidence']}),('evidence-run-manifest.json',{"run_id":pid}),('summary.md',f"# Pilot Outcome Dossier\n\nTier: C6\n")]
     for n,o in files: wj(run/n,o) if n.endswith('.json') else Path(run/n).write_text(o,encoding='utf-8')
     wj(run/'07_evidence_docket/docket.json',docket); Path(run/'13_pilot_outcome_dossier.md').write_text('# Pilot Outcome Dossier\n\nTier: C6\n',encoding='utf-8')
-    rr=Path(registry); (rr/'runs'/pid).mkdir(parents=True,exist_ok=True)
+    rr=(repo_root_path / registry).resolve(); (rr/'runs'/pid).mkdir(parents=True,exist_ok=True)
     for p in run.iterdir(): shutil.copytree(p,rr/'runs'/pid/p.name,dirs_exist_ok=True) if p.is_dir() else shutil.copy2(p,rr/'runs'/pid/p.name)
     top=['registry','latest','pilots','pilot_intakes','regulated_boundary_triage','customer_attestations','job_packs','proofbundles','evidence_dockets','work_vaults','settlement_receipts','customer_reviews','external_replay_packets','commercial_readiness_scorecards','pilot_outcomes','valuation_support_links','missing_evidence']
     for n in top:
