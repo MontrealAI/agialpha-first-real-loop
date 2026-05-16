@@ -8,3 +8,10 @@ def test_build_creates_artifacts():
   run_build(d)
   assert Path(d,'06_proofbundle.json').exists()
   assert Path(d,'07_evidence_docket.json').exists()
+
+def test_registry_is_append_only_across_runs():
+ with tempfile.TemporaryDirectory() as d1, tempfile.TemporaryDirectory() as d2:
+  run_build(d1)
+  run_build(d2)
+  reg=json.loads(Path('enterprise_pilot_registry/registry.json').read_text(encoding='utf-8'))
+  assert len(reg.get('runs',[])) >= 2

@@ -24,6 +24,11 @@ def _wj(p: Path, d: dict):
 def _rj(p: Path, d: dict):
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else d
 
+def _append_changelog(path: Path, run_id: str):
+    line = f"- run_id={run_id} appended\n"
+    existing = path.read_text(encoding="utf-8") if path.exists() else ""
+    path.write_text(existing + line, encoding="utf-8")
+
 def build(repo_root: Path, out: Path, workflow_family: str, customer_mode: str, registry: Path = Path("enterprise_pilot_registry")):
     run_id = hashlib.sha256(str(Path(out).resolve()).encode()).hexdigest()[:12]
     pid = f"pilot-{run_id}"
@@ -64,11 +69,17 @@ def build(repo_root: Path, out: Path, workflow_family: str, customer_mode: str, 
         if f.is_file():
             shutil.copy2(f, rdir / f.name)
     _wj(reg / "latest.json", {"run_id": run_id, "run_ref": f"runs/{run_id}", **boundary_fields()})
-    _wj(reg / "registry.json", {"runs": [{"run_id": run_id}], **boundary_fields()})
+    registry_doc = _rj(reg / "registry.json", {"runs": [], **boundary_fields()})
+    runs = registry_doc.get("runs", [])
+    if not any(item.get("run_id") == run_id for item in runs if isinstance(item, dict)):
+        runs.append({"run_id": run_id, "run_ref": f"runs/{run_id}"})
+    registry_doc.update(boundary_fields())
+    registry_doc["runs"] = runs
+    _wj(reg / "registry.json", registry_doc)
     for k, n in [("pilots", "01_pilot_intake.json"), ("pilot_intakes", "01_pilot_intake.json"), ("regulated_boundary_triage", "02_regulated_boundary_triage.json"), ("customer_attestations", "03_customer_use_attestation.json"), ("job_packs", "04_enterprise_job_pack.json"), ("proofbundles", "06_proofbundle.json"), ("evidence_dockets", "07_evidence_docket.json"), ("work_vaults", "08_work_vault.json"), ("settlement_receipts", "09_utility_settlement_receipt.json"), ("customer_reviews", "10_customer_review_record.json"), ("external_replay_packets", "11_external_replay_packet.json"), ("commercial_readiness_scorecards", "12_commercial_readiness_scorecard.json"), ("valuation_support_links", "14_valuation_support_link.json"), ("missing_evidence", "15_missing_evidence.json")]:
         _wj(reg / f"{k}.json", _rj(out / n, {}))
     _wj(reg / "pilot_outcomes.json", {"path": str(out / "13_pilot_outcome_dossier.md"), **boundary_fields()})
-    (reg / "CHANGELOG.md").write_text("- append-only registry\n", encoding="utf-8")
+    _append_changelog(reg / "CHANGELOG.md", run_id)
 
 def validate(run: Path):
     validate_run(Path(run))
