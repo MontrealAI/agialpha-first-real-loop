@@ -14,3 +14,7 @@ def test_investment_advice_is_blocked():
 def test_lending_intent_is_blocked():
  o=triage({'pilot_id':'p4','intended_use':'lending decision support','workflow_family':'enterprise_pilot_readiness_pack'})
  assert o['regulated_boundary_blocked'] is True
+
+def test_hyphenated_regulated_terms_are_blocked():
+ o=triage({'pilot_id':'p5','intended_use':'financial-advice and human-resources automation','workflow_family':'docs_ops_pack'})
+ assert o['regulated_boundary_blocked'] is True

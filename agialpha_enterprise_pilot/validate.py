@@ -8,4 +8,4 @@ def validate_run(run:Path):
  if m: raise SystemExit("missing artifacts: "+", ".join(m))
  txt="\n".join(p.read_text(encoding="utf-8").lower() for p in run.iterdir() if p.suffix in {".json",".md"})
  for pat in FORB:
-  if re.search(pat,txt) and "not investment advice" not in txt: raise SystemExit(f"forbidden language: {pat}")
+  if re.search(pat,txt): raise SystemExit(f"forbidden language: {pat}")
