@@ -11,5 +11,5 @@ def test_enterprise_pilot_docs_exist_and_state_boundaries():
     for path in required:
         assert Path(path).exists(), path
     text = Path("README_ENTERPRISE_PILOT.md").read_text().lower()
-    assert "not a regulated decision system" in text
+    assert "not regulated decisioning" in text
     assert "utility-only" in text
