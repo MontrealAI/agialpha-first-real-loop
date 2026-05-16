@@ -1,5 +1,5 @@
 from pathlib import Path
-import json, hashlib, shutil
+import json, hashlib
 from .intake import create_intake
 from .regulated_boundary import triage
 from .customer_attestation import create_attestation
@@ -44,6 +44,11 @@ def _append_registry_collection(reg: Path, name: str, run_id: str, payload: dict
     doc["records"] = records
     _wj(path, doc)
 
+def _canonical_output_names(mapping: list[tuple[str, dict]]) -> list[str]:
+    names = [name for name, _ in mapping]
+    names.extend(["00_manifest.json", "13_pilot_outcome_dossier.md", "summary.md", "evidence-run-manifest.json"])
+    return names
+
 def build(repo_root: Path, out: Path, workflow_family: str, customer_mode: str, registry: Path = Path("enterprise_pilot_registry")):
     repo_root = Path(repo_root).resolve()
     out = Path(out).resolve()
@@ -82,9 +87,10 @@ def build(repo_root: Path, out: Path, workflow_family: str, customer_mode: str, 
 
     rdir = reg / "runs" / run_id
     rdir.mkdir(parents=True, exist_ok=True)
-    for f in out.iterdir():
-        if f.is_file():
-            shutil.copy2(f, rdir / f.name)
+    for fname in _canonical_output_names(mapping):
+        src = out / fname
+        if src.exists() and src.is_file():
+            (rdir / fname).write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
     _wj(reg / "latest.json", {"run_id": run_id, "run_ref": f"runs/{run_id}", **boundary_fields()})
     registry_doc = _rj(reg / "registry.json", {"runs": [], **boundary_fields()})
     runs = registry_doc.get("runs", [])

@@ -3,6 +3,9 @@ from pathlib import Path
 
 def run_build(tmp):
  subprocess.check_call([sys.executable,'-m','agialpha_enterprise_pilot','build','--repo-root','.','--out',tmp,'--workflow-family','software_quality_pack','--customer-mode','synthetic_only'])
+
+def run_build_with_registry(tmp, registry):
+ subprocess.check_call([sys.executable,'-m','agialpha_enterprise_pilot','build','--repo-root','.','--out',tmp,'--workflow-family','software_quality_pack','--customer-mode','synthetic_only','--registry',registry])
 def test_build_creates_artifacts():
  with tempfile.TemporaryDirectory() as d:
   run_build(d)
@@ -32,3 +35,16 @@ def test_pilot_outcome_registry_uses_stable_run_relative_path():
   outcomes=json.loads(Path('enterprise_pilot_registry/pilot_outcomes.json').read_text(encoding='utf-8'))
   rec=outcomes['records'][-1]
   assert rec['payload']['path'].startswith(f"runs/{rec['run_id']}/")
+
+def test_build_supports_registry_override():
+ with tempfile.TemporaryDirectory() as d:
+  run_build_with_registry(d,'enterprise_pilot_registry_alt')
+  assert Path('enterprise_pilot_registry_alt/registry.json').exists()
+
+def test_stale_out_files_not_copied_to_registry_snapshot():
+ with tempfile.TemporaryDirectory() as d:
+  Path(d,'debug.tmp').write_text('stale',encoding='utf-8')
+  run_build(d)
+  latest=json.loads(Path('enterprise_pilot_registry/latest.json').read_text(encoding='utf-8'))
+  run_id=latest['run_id']
+  assert not Path(f'enterprise_pilot_registry/runs/{run_id}/debug.tmp').exists()

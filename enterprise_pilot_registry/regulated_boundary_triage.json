@@ -25,6 +25,24 @@
         "triage_id": "triage-pilot-49b55256a9b1"
       },
       "run_id": "49b55256a9b1"
+    },
+    {
+      "payload": {
+        "autonomous_persistence_allowed": false,
+        "block_reason": "none",
+        "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+        "customer_data_boundary": "Synthetic or customer-approved redacted inputs only; no raw PII or secrets.",
+        "human_review_required": true,
+        "no_auto_merge": true,
+        "not_an_investment_claim": true,
+        "pilot_id": "pilot-ff0390c3a294",
+        "regulated_boundary": "Not legal, medical, HR, credit, insurance, investment, payment, custody, KYC/AML, or regulated decisioning.",
+        "regulated_boundary_blocked": false,
+        "status": "passed",
+        "token_boundary": "$AGIALPHA is utility-only accounting; not equity, debt, yield, ROI, or token value evidence.",
+        "triage_id": "triage-pilot-ff0390c3a294"
+      },
+      "run_id": "ff0390c3a294"
     }
   ],
   "regulated_boundary": "Not legal, medical, HR, credit, insurance, investment, payment, custody, KYC/AML, or regulated decisioning.",
