@@ -1,0 +1,19 @@
+{
+  "boundary": "This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+  "forbidden_claims": [
+    "achieved AGI",
+    "achieved ASI",
+    "empirical SOTA without baselines",
+    "safe autonomy without adversarial evidence",
+    "guaranteed economic return",
+    "civilization-scale capability"
+  ],
+  "required_for_stronger_claims": [
+    "independent replay",
+    "full baseline suite",
+    "cost ledger review",
+    "safety ledger review",
+    "delayed outcome or external validation"
+  ],
+  "schema": "agialpha.claim_boundary.v1"
+}
