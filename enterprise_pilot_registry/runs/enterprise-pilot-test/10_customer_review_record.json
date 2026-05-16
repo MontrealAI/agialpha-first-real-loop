@@ -1,0 +1,13 @@
+{
+  "customer_review_id": "review-enterprise-pilot-test",
+  "pilot_id": "enterprise-pilot-test",
+  "status": "pending",
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "token_boundary": "$AGIALPHA is utility-only accounting and not investment, securities, or token-value evidence.",
+  "regulated_boundary": "Not legal, medical, HR, credit, insurance, KYC/AML, banking, brokerage, custody, payment, or regulated decisioning.",
+  "customer_data_boundary": "synthetic_only or customer_approved_redacted only; no raw PII.",
+  "human_review_required": true,
+  "autonomous_persistence_allowed": false,
+  "no_auto_merge": true,
+  "not_an_investment_claim": true
+}

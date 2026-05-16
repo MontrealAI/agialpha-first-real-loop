@@ -1,0 +1,24 @@
+{
+  "pilot_id": "enterprise-pilot-test",
+  "commercial_readiness_tier": "C6",
+  "customer_review_status": "pending",
+  "external_replay_status": "complete",
+  "repeatable_deployment_status": "complete",
+  "paid_pilot_or_commercial_commitment_status": "not_reported",
+  "evidence_docket_path": "07_evidence_docket/docket.json",
+  "proofbundle_path": "06_proofbundle.json",
+  "work_vault_path": "08_work_vault.json",
+  "settlement_receipt_path": "09_utility_settlement_receipt.json",
+  "missing_evidence": [
+    "paid_pilot_or_commercial_commitment_status:not_reported"
+  ],
+  "statement": "This pilot evidence may support commercial-readiness and implementation-side valuation-support analysis. It does not assert valuation, investment return, token value, revenue, ARR, ROI, fair market value, or financial advice.",
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "token_boundary": "$AGIALPHA is utility-only accounting and not investment, securities, or token-value evidence.",
+  "regulated_boundary": "Not legal, medical, HR, credit, insurance, KYC/AML, banking, brokerage, custody, payment, or regulated decisioning.",
+  "customer_data_boundary": "synthetic_only or customer_approved_redacted only; no raw PII.",
+  "human_review_required": true,
+  "autonomous_persistence_allowed": false,
+  "no_auto_merge": true,
+  "not_an_investment_claim": true
+}
