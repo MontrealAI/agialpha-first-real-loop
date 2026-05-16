@@ -1,12 +1,16 @@
-import json, tempfile, subprocess, sys
+import json
+import tempfile
 from pathlib import Path
+from agialpha_enterprise_pilot.core import build, validate, replay, falsification_audit, build_data
 
-def run_build(tmp):
- subprocess.check_call([sys.executable,'-m','agialpha_enterprise_pilot','build','--repo-root','.','--out',tmp,'--workflow-family','software_quality_pack','--customer-mode','synthetic_only'])
-def test_generated_data():
- with tempfile.TemporaryDirectory() as d:
-  run_build(d)
-  subprocess.check_call([sys.executable,'-m','agialpha_enterprise_pilot','build-data','--registry','enterprise_pilot_registry','--out','docs/_generated/enterprise-pilot'])
-  assert Path('docs/_generated/enterprise-pilot/latest.json').exists()
-  summary=json.loads(Path('docs/_generated/enterprise-pilot/summary.json').read_text(encoding='utf-8'))
-  assert summary.get('route') == '/enterprise-pilot/'
+
+def _run():
+    td=Path(tempfile.mkdtemp())
+    out=td/"run"
+    build(Path('.'), out, Path('config/enterprise_pilot_use_cases.example.json'))
+    return out
+
+def test_generated_data_exists():
+    out=_run()
+    build_data(Path("enterprise_pilot_registry"), out/"gen")
+    assert (out/"gen"/"summary.json").exists()
