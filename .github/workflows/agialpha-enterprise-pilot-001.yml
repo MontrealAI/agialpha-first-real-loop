@@ -13,8 +13,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: python scripts/secure_rails_claim_boundary_check.py . || true
-      - run: python -m agialpha_ascension_os validate --run ascension-os-runs/test || true
+      - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python -m agialpha_ascension_os validate --run ascension-os-runs/test
       - run: python -m agialpha_enterprise_pilot build --repo-root . --out /tmp/enterprise-pilot-test --workflow-family software_quality_pack --customer-mode synthetic_only
       - run: python -m agialpha_enterprise_pilot validate --run /tmp/enterprise-pilot-test
       - run: python -m agialpha_enterprise_pilot build-data --registry enterprise_pilot_registry --out docs/_generated/enterprise-pilot
