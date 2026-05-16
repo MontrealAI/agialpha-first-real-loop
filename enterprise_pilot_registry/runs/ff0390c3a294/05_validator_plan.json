@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "intake",
+    "triage",
+    "attestation",
+    "proofbundle",
+    "docket"
+  ],
+  "job_pack_id": "jobpack-pilot-ff0390c3a294-software_quality_pack",
+  "pilot_id": "pilot-ff0390c3a294",
+  "validator_plan_id": "validator-pilot-ff0390c3a294"
+}
