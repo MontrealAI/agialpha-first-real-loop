@@ -1,5 +1,74 @@
-[
-  {
-    "pilot_id": "enterprise-pilot-test"
-  }
-]
+{
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "customer_data_boundary": "Synthetic or customer-approved redacted inputs only; no raw PII or secrets.",
+  "customer_data_mode": "synthetic_only",
+  "customer_label": "synthetic_customer",
+  "customer_review_required": true,
+  "evidence_docket_required": true,
+  "excluded_uses_acknowledged": true,
+  "external_replay_packet_required": true,
+  "human_review_required": true,
+  "intended_use": "enterprise workflow evidence generation",
+  "no_auto_merge": true,
+  "not_an_investment_claim": true,
+  "pilot_id": "pilot-e741a93f30e9",
+  "proofbundle_required": true,
+  "records": [
+    {
+      "payload": {
+        "autonomous_persistence_allowed": false,
+        "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+        "customer_data_boundary": "Synthetic or customer-approved redacted inputs only; no raw PII or secrets.",
+        "customer_data_mode": "synthetic_only",
+        "customer_label": "synthetic_customer",
+        "customer_review_required": true,
+        "evidence_docket_required": true,
+        "excluded_uses_acknowledged": true,
+        "external_replay_packet_required": true,
+        "human_review_required": true,
+        "intended_use": "enterprise workflow evidence generation",
+        "no_auto_merge": true,
+        "not_an_investment_claim": true,
+        "pilot_id": "pilot-49b55256a9b1",
+        "proofbundle_required": true,
+        "regulated_boundary": "Not legal, medical, HR, credit, insurance, investment, payment, custody, KYC/AML, or regulated decisioning.",
+        "regulated_boundary_triage_required": true,
+        "schema_version": "agialpha.enterprise_pilot_intake.v1",
+        "token_boundary": "$AGIALPHA is utility-only accounting; not equity, debt, yield, ROI, or token value evidence.",
+        "workflow_family": "software_quality_pack"
+      },
+      "run_id": "49b55256a9b1"
+    },
+    {
+      "payload": {
+        "autonomous_persistence_allowed": false,
+        "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+        "customer_data_boundary": "Synthetic or customer-approved redacted inputs only; no raw PII or secrets.",
+        "customer_data_mode": "synthetic_only",
+        "customer_label": "synthetic_customer",
+        "customer_review_required": true,
+        "evidence_docket_required": true,
+        "excluded_uses_acknowledged": true,
+        "external_replay_packet_required": true,
+        "human_review_required": true,
+        "intended_use": "enterprise workflow evidence generation",
+        "no_auto_merge": true,
+        "not_an_investment_claim": true,
+        "pilot_id": "pilot-ff0390c3a294",
+        "proofbundle_required": true,
+        "regulated_boundary": "Not legal, medical, HR, credit, insurance, investment, payment, custody, KYC/AML, or regulated decisioning.",
+        "regulated_boundary_triage_required": true,
+        "schema_version": "agialpha.enterprise_pilot_intake.v1",
+        "token_boundary": "$AGIALPHA is utility-only accounting; not equity, debt, yield, ROI, or token value evidence.",
+        "workflow_family": "software_quality_pack"
+      },
+      "run_id": "ff0390c3a294"
+    }
+  ],
+  "regulated_boundary": "Not legal, medical, HR, credit, insurance, investment, payment, custody, KYC/AML, or regulated decisioning.",
+  "regulated_boundary_triage_required": true,
+  "schema_version": "agialpha.enterprise_pilot_intake.v1",
+  "token_boundary": "$AGIALPHA is utility-only accounting; not equity, debt, yield, ROI, or token value evidence.",
+  "workflow_family": "software_quality_pack"
+}
