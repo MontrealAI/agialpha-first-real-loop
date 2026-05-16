@@ -6,3 +6,7 @@ def test_blocked_fixture():
 def test_whole_word_match_avoids_false_positive():
  o=triage({'pilot_id':'p2','intended_use':'throughput optimization','workflow_family':'docs_ops_pack'})
  assert o['regulated_boundary_blocked'] is False
+
+def test_investment_advice_is_blocked():
+ o=triage({'pilot_id':'p3','intended_use':'provide investment advice to customers','workflow_family':'enterprise_pilot_readiness_pack'})
+ assert o['regulated_boundary_blocked'] is True
