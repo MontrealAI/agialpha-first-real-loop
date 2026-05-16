@@ -1,0 +1,41 @@
+name: AGI ALPHA Enterprise Pilot 001 / Evidence Factory
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python -m agialpha_ascension_os run-cycle --repo-root . --registry ascension_os_registry --out ascension-os-runs/test
+      - run: python -m agialpha_ascension_os replay --run ascension-os-runs/test
+      - run: python -m agialpha_ascension_os falsification-audit --run ascension-os-runs/test
+      - run: python -m agialpha_ascension_os validate --run ascension-os-runs/test
+      - name: Enforce Ascension validation status gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = Path('ascension-os-runs/test/validation_report.json')
+          if not report.exists():
+              raise SystemExit('missing ascension validation_report.json')
+          status = json.loads(report.read_text()).get('status')
+          if status != 'pass':
+              raise SystemExit(f'ascension validation failed: {status}')
+          PY
+      - run: python -m agialpha_enterprise_pilot build --repo-root . --out /tmp/enterprise-pilot-test --workflow-family software_quality_pack --customer-mode synthetic_only --registry enterprise_pilot_registry
+      - run: python -m agialpha_enterprise_pilot validate --run /tmp/enterprise-pilot-test
+      - run: python -m agialpha_enterprise_pilot build-data --registry enterprise_pilot_registry --out docs/_generated/enterprise-pilot
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agialpha-enterprise-pilot-001
+          path: |
+            /tmp/enterprise-pilot-test
+            docs/_generated/enterprise-pilot
