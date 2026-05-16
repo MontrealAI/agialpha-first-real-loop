@@ -1,0 +1,32 @@
+{
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "customer_data_boundary": "Synthetic or customer-approved redacted inputs only; no raw PII or secrets.",
+  "excluded_uses": [
+    "HR / worker evaluation",
+    "profiling of individuals",
+    "automated decisions about natural persons",
+    "credit / lending",
+    "insurance",
+    "medical use",
+    "legal advice",
+    "financial or investment advice",
+    "KYC/AML",
+    "banking / brokerage / custody",
+    "critical infrastructure control",
+    "energy or utility market participation",
+    "offensive cyber",
+    "cybersecurity certification",
+    "autonomous procurement",
+    "binding contract execution"
+  ],
+  "excluded_uses_acknowledged": true,
+  "human_review_required": true,
+  "no_auto_merge": true,
+  "not_an_investment_claim": true,
+  "pilot_id": "pilot-49b55256a9b1",
+  "regulated_boundary": "Not legal, medical, HR, credit, insurance, investment, payment, custody, KYC/AML, or regulated decisioning.",
+  "schema_version": "agialpha.customer_use_attestation.v1",
+  "status": "accepted",
+  "token_boundary": "$AGIALPHA is utility-only accounting; not equity, debt, yield, ROI, or token value evidence."
+}

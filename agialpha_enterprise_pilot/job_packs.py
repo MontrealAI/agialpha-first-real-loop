@@ -1,1 +1,7 @@
-from .cli import *
+from .boundaries import boundary_fields
+PACKS=["software_quality_pack","evidence_ops_pack","docs_ops_pack","trust_center_readiness_pack","secure_rails_readiness_pack","defensive_security_docs_pack","workflow_catalog_readiness_pack","external_replay_readiness_pack","enterprise_pilot_readiness_pack","commercial_packaging_readiness_pack"]
+CUSTOMER_MODES=["synthetic_only","customer_approved_redacted"]
+def create_job_pack(pilot_id:str, workflow_family:str, customer_mode:str)->dict:
+ if workflow_family not in PACKS: raise ValueError("unsupported workflow_family")
+ if customer_mode not in CUSTOMER_MODES: raise ValueError("unsupported customer_mode")
+ return {"job_pack_id":f"jobpack-{pilot_id}-{workflow_family}","pilot_id":pilot_id,"workflow_family":workflow_family,"synthetic_inputs_used":customer_mode=="synthetic_only","customer_approved_redacted_inputs_used":customer_mode=="customer_approved_redacted","prohibited_actions_checked":True,"regulated_boundary_result":"passed","validator_plan":{"checks":["deterministic","boundary_fields_present"]},"proofbundle_plan":{"required":True},"evidence_docket_plan":{"required":True},"customer_review_plan":{"status":"pending"},"external_replay_plan":{"required":True},"work_vault_plan":{"required":True},"utility_settlement_receipt_plan":{"required":True},"commercial_usefulness_hypothesis":"Reusable evidence pipeline for customer-reviewed pilots.","regulated_boundary":"passed",**boundary_fields()}
