@@ -37,10 +37,10 @@ def _next_run_id(reg: Path, repo_root: Path, out: Path, workflow_family: str, cu
 
 def _append_registry_collection(reg: Path, name: str, run_id: str, payload: dict):
     path = reg / f"{name}.json"
-    doc = _rj(path, {"records": [], **boundary_fields()})
-    records = doc.get("records", [])
+    raw = _rj(path, {"records": [], **boundary_fields()})
+    records = raw.get("records", []) if isinstance(raw, dict) and isinstance(raw.get("records"), list) else []
+    doc = {"records": records, **boundary_fields()}
     records.append({"run_id": run_id, "payload": payload})
-    doc.update(boundary_fields())
     doc["records"] = records
     _wj(path, doc)
 
@@ -109,5 +109,12 @@ def build_data(registry: Path, out: Path):
     out.mkdir(parents=True, exist_ok=True)
     latest = _rj(registry / "latest.json", {})
     _wj(out / "latest.json", latest)
-    for n in ["summary", "pilots", "commercial_readiness_scorecards", "customer_reviews", "external_replay_packets", "valuation_support_links", "missing_evidence"]:
+    for n in ["pilots", "commercial_readiness_scorecards", "customer_reviews", "external_replay_packets", "valuation_support_links", "missing_evidence"]:
         _wj(out / f"{n}.json", _rj(registry / f"{n}.json", {"not_reported": True, **boundary_fields()}))
+    _wj(out / "summary.json", {
+        "route": "/enterprise-pilot/",
+        "experiment_route": "/experiments/agialpha-enterprise-pilot-001/",
+        "sections": 14,
+        "latest_run": latest.get("run_id", "not_reported"),
+        **boundary_fields(),
+    })

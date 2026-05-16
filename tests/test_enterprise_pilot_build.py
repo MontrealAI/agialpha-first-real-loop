@@ -32,6 +32,7 @@ def test_pilot_outcome_registry_uses_stable_run_relative_path():
   outcomes=json.loads(Path('enterprise_pilot_registry/pilot_outcomes.json').read_text(encoding='utf-8'))
   rec=outcomes['records'][-1]
   assert rec['payload']['path'].startswith(f"runs/{rec['run_id']}/")
+  assert 'path' not in outcomes
 
 def test_cli_build_accepts_registry_override():
  with tempfile.TemporaryDirectory() as d, tempfile.TemporaryDirectory() as reg:

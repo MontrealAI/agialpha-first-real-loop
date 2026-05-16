@@ -8,3 +8,5 @@ def test_generated_data():
   run_build(d)
   subprocess.check_call([sys.executable,'-m','agialpha_enterprise_pilot','build-data','--registry','enterprise_pilot_registry','--out','docs/_generated/enterprise-pilot'])
   assert Path('docs/_generated/enterprise-pilot/latest.json').exists()
+  summary=json.loads(Path('docs/_generated/enterprise-pilot/summary.json').read_text(encoding='utf-8'))
+  assert summary.get('route') == '/enterprise-pilot/'
