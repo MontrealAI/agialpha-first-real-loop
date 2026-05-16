@@ -15,7 +15,11 @@ jobs:
         with:
           python-version: '3.11'
       - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python -m agialpha_ascension_os run-cycle --repo-root . --registry ascension_os_registry --out ascension-os-runs/test
+      - run: python -m agialpha_ascension_os replay --run ascension-os-runs/test
+      - run: python -m agialpha_ascension_os falsification-audit --run ascension-os-runs/test
       - run: python -m agialpha_ascension_os validate --run ascension-os-runs/test
+      - run: python -c "import json, pathlib, sys; p=pathlib.Path('ascension-os-runs/test/validation_report.json'); d=json.loads(p.read_text(encoding='utf-8')); sys.exit(0 if d.get('status')=='pass' else 1)"
       - run: python -m agialpha_enterprise_pilot build --repo-root . --out /tmp/enterprise-pilot-test --workflow-family software_quality_pack --customer-mode synthetic_only
       - run: python -m agialpha_enterprise_pilot validate --run /tmp/enterprise-pilot-test
       - run: python -m agialpha_enterprise_pilot build-data --registry enterprise_pilot_registry --out docs/_generated/enterprise-pilot

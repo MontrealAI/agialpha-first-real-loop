@@ -10,3 +10,7 @@ def test_whole_word_match_avoids_false_positive():
 def test_investment_advice_is_blocked():
  o=triage({'pilot_id':'p3','intended_use':'provide investment advice to clients','workflow_family':'evidence_ops_pack'})
  assert o['regulated_boundary_blocked'] is True
+
+def test_lending_intent_is_blocked():
+ o=triage({'pilot_id':'p4','intended_use':'lending decision support','workflow_family':'evidence_ops_pack'})
+ assert o['regulated_boundary_blocked'] is True

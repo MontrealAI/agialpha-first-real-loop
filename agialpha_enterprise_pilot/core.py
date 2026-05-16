@@ -33,7 +33,7 @@ def _next_run_id(reg: Path, repo_root: Path, out: Path, workflow_family: str, cu
     registry_doc = _rj(reg / "registry.json", {"runs": []})
     next_index = len(registry_doc.get("runs", [])) + 1
     seed = f"{repo_root.resolve()}|{out.resolve()}|{workflow_family}|{customer_mode}|{next_index}"
-    return hashlib.sha256(seed.encode()).hexdigest()[:12]
+    return f"enterprise-pilot-{hashlib.sha256(seed.encode()).hexdigest()[:12]}"
 
 def _append_registry_collection(reg: Path, name: str, run_id: str, payload: dict):
     path = reg / f"{name}.json"
