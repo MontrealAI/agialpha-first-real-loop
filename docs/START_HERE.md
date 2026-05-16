@@ -43,3 +43,4 @@ This guide serves three audiences: non-technical operators, technical contributo
 
 ## Doctrine
 **No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.**
+\n- Enterprise Pilot: README_ENTERPRISE_PILOT.md and workflow agialpha-enterprise-pilot-001.yml

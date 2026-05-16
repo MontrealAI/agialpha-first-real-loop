@@ -1,1 +1,1 @@
-# Enterprise Pilot Registry
+- append-only registry

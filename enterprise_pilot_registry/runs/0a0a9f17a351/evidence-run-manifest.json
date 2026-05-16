@@ -5,7 +5,7 @@
   "human_review_required": true,
   "no_auto_merge": true,
   "not_an_investment_claim": true,
-  "path": "/tmp/enterprise-pilot-test/13_pilot_outcome_dossier.md",
   "regulated_boundary": "Not legal, medical, HR, credit, insurance, investment, payment, custody, KYC/AML, or regulated decisioning.",
+  "run_id": "0a0a9f17a351",
   "token_boundary": "$AGIALPHA is utility-only accounting; not equity, debt, yield, ROI, or token value evidence."
 }
