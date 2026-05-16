@@ -1,0 +1,646 @@
+{
+  "claim_boundary": "Proxy only. Scaling claims require real-task Evidence Dockets. This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+  "rows": [
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.0,
+      "nodes": 1,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.0,
+      "nodes": 1,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.0,
+      "nodes": 1,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.0,
+      "nodes": 1,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.03,
+      "nodes": 2,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5287
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.03,
+      "nodes": 2,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5287
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.03,
+      "nodes": 2,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5287
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.03,
+      "nodes": 2,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5287
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.09,
+      "nodes": 4,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5413
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.09,
+      "nodes": 4,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5413
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.09,
+      "nodes": 4,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5413
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.09,
+      "nodes": 4,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5413
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.21,
+      "nodes": 8,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5117
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.21,
+      "nodes": 8,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5117
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.21,
+      "nodes": 8,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5117
+    },
+    {
+      "agents": 1,
+      "coordination_overhead_proxy": 0.21,
+      "nodes": 8,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5117
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.05,
+      "nodes": 1,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5548
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.05,
+      "nodes": 1,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5548
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.05,
+      "nodes": 1,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5548
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.05,
+      "nodes": 1,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5548
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.08,
+      "nodes": 2,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5807
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.08,
+      "nodes": 2,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5807
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.08,
+      "nodes": 2,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5807
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.08,
+      "nodes": 2,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5807
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.14,
+      "nodes": 4,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.59
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.14,
+      "nodes": 4,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.59
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.14,
+      "nodes": 4,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.59
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.14,
+      "nodes": 4,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.59
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.26,
+      "nodes": 8,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5569
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.26,
+      "nodes": 8,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5569
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.26,
+      "nodes": 8,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5569
+    },
+    {
+      "agents": 2,
+      "coordination_overhead_proxy": 0.26,
+      "nodes": 8,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5569
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.15,
+      "nodes": 1,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5826
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.15,
+      "nodes": 1,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5826
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.15,
+      "nodes": 1,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5826
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.15,
+      "nodes": 1,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5826
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.18,
+      "nodes": 2,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.6056
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.18,
+      "nodes": 2,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.6056
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.18,
+      "nodes": 2,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.6056
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.18,
+      "nodes": 2,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.6056
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.24,
+      "nodes": 4,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.6129
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.24,
+      "nodes": 4,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.6129
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.24,
+      "nodes": 4,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.6129
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.24,
+      "nodes": 4,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.6129
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.36,
+      "nodes": 8,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5802
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.36,
+      "nodes": 8,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5802
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.36,
+      "nodes": 8,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5802
+    },
+    {
+      "agents": 4,
+      "coordination_overhead_proxy": 0.36,
+      "nodes": 8,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5802
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.35,
+      "nodes": 1,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5445
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.35,
+      "nodes": 1,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5445
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.35,
+      "nodes": 1,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5445
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.35,
+      "nodes": 1,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5445
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.38,
+      "nodes": 2,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.565
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.38,
+      "nodes": 2,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.565
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.38,
+      "nodes": 2,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.565
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.38,
+      "nodes": 2,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.565
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.44,
+      "nodes": 4,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.573
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.44,
+      "nodes": 4,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.573
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.44,
+      "nodes": 4,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.573
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.44,
+      "nodes": 4,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.573
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.56,
+      "nodes": 8,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5476
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.56,
+      "nodes": 8,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5476
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.56,
+      "nodes": 8,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5476
+    },
+    {
+      "agents": 8,
+      "coordination_overhead_proxy": 0.56,
+      "nodes": 8,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.5476
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.75,
+      "nodes": 1,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.4057
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.75,
+      "nodes": 1,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.4057
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.75,
+      "nodes": 1,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.4057
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.75,
+      "nodes": 1,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.4057
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.78,
+      "nodes": 2,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.4239
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.78,
+      "nodes": 2,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.4239
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.78,
+      "nodes": 2,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.4239
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.78,
+      "nodes": 2,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.4239
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.84,
+      "nodes": 4,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.4348
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.84,
+      "nodes": 4,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.4348
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.84,
+      "nodes": 4,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.4348
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.84,
+      "nodes": 4,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.4348
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.96,
+      "nodes": 8,
+      "router": "R0",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.423
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.96,
+      "nodes": 8,
+      "router": "R1",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.423
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.96,
+      "nodes": 8,
+      "router": "R2",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.423
+    },
+    {
+      "agents": 16,
+      "coordination_overhead_proxy": 0.96,
+      "nodes": 8,
+      "router": "R5",
+      "status": "proxy_only_pending_real_task_measurement",
+      "verified_work_proxy": 1.423
+    }
+  ],
+  "schema": "agialpha.coordination_scaling_proxy.v1"
+}
