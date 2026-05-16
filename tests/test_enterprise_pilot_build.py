@@ -46,3 +46,13 @@ def test_stale_out_files_not_copied_to_run_snapshot():
   latest=json.loads(Path('enterprise_pilot_registry/latest.json').read_text(encoding='utf-8'))
   run_id=latest['run_id']
   assert not Path('enterprise_pilot_registry','runs',run_id,'debug.tmp').exists()
+
+def test_legacy_list_registry_is_migrated_and_preserved():
+ with tempfile.TemporaryDirectory() as d, tempfile.TemporaryDirectory() as reg:
+  pilots_path=Path(reg,'pilots.json')
+  pilots_path.write_text(json.dumps([{'pilot_id':'legacy-pilot'}]),encoding='utf-8')
+  subprocess.check_call([sys.executable,'-m','agialpha_enterprise_pilot','build','--repo-root','.','--out',d,'--workflow-family','software_quality_pack','--customer-mode','synthetic_only','--registry',reg])
+  pilots=json.loads(pilots_path.read_text(encoding='utf-8'))
+  assert isinstance(pilots.get('records'),list)
+  assert any(r.get('run_id')=='legacy_not_reported' for r in pilots['records'])
+  assert len(pilots['records']) >= 2

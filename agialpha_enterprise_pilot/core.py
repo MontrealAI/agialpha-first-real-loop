@@ -38,7 +38,17 @@ def _next_run_id(reg: Path, repo_root: Path, out: Path, workflow_family: str, cu
 def _append_registry_collection(reg: Path, name: str, run_id: str, payload: dict):
     path = reg / f"{name}.json"
     raw = _rj(path, {"records": [], **boundary_fields()})
-    records = raw.get("records", []) if isinstance(raw, dict) and isinstance(raw.get("records"), list) else []
+    if isinstance(raw, dict) and isinstance(raw.get("records"), list):
+        records = raw.get("records", [])
+    elif isinstance(raw, list):
+        records = []
+        for item in raw:
+            if isinstance(item, dict) and "run_id" in item and "payload" in item:
+                records.append(item)
+            else:
+                records.append({"run_id": "legacy_not_reported", "payload": item})
+    else:
+        records = []
     doc = {"records": records, **boundary_fields()}
     records.append({"run_id": run_id, "payload": payload})
     doc["records"] = records
