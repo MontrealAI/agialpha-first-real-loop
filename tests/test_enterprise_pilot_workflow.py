@@ -8,4 +8,5 @@ def test_enterprise_pilot_workflow_exists_and_disables_pages_automerge():
     assert "schedule:" in wf
     assert "actions/upload-artifact" in wf
     assert "deploy pages" not in wf
+    assert "actions/deploy-pages" not in wf
     assert "automerge" not in wf
