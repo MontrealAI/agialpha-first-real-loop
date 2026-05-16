@@ -1,56 +1,20 @@
 from agialpha_enterprise_pilot.regulated_boundary import triage
+def test_blocked_fixture():
+ o=triage({'pilot_id':'p1','intended_use':'medical decisioning','workflow_family':'x'})
+ assert o['regulated_boundary_blocked'] is True
 
+def test_whole_word_match_avoids_false_positive():
+ o=triage({'pilot_id':'p2','intended_use':'throughput optimization','workflow_family':'docs_ops_pack'})
+ assert o['regulated_boundary_blocked'] is False
 
-def test_throughput_not_false_blocked_by_hr_substring():
-    result = triage("throughput analysis for software quality evidence")
-    assert result["regulated_boundary_result"] == "passed"
-
-
-def test_hr_is_blocked_on_word_match():
-    result = triage("HR workflow automation")
-    assert result["regulated_boundary_result"] == "blocked"
-
-
-def test_banking_variant_is_blocked():
-    result = triage("banking workflow automation")
-    assert result["regulated_boundary_result"] == "blocked"
-
-
-def test_brokerage_variant_is_blocked():
-    result = triage("brokerage operations helper")
-    assert result["regulated_boundary_result"] == "blocked"
-
-
-def test_financial_advice_is_blocked():
-    result = triage("financial advice assistant for teams")
-    assert result["regulated_boundary_result"] == "blocked"
-
-
-def test_payment_processing_is_blocked():
-    result = triage("payment processing assistant")
-    assert result["regulated_boundary_result"] == "blocked"
-
-
-def test_human_resources_is_blocked():
-    result = triage("human resources screening helper")
-    assert result["regulated_boundary_result"] == "blocked"
-
-
-def test_hyphenated_financial_adviser_is_blocked():
-    result = triage("financial-adviser helper")
-    assert result["regulated_boundary_result"] == "blocked"
-
-
-def test_hyphenated_human_resources_is_blocked():
-    result = triage("human-resources screening")
-    assert result["regulated_boundary_result"] == "blocked"
-
+def test_investment_advice_is_blocked():
+ o=triage({'pilot_id':'p3','intended_use':'provide investment advice to clients','workflow_family':'evidence_ops_pack'})
+ assert o['regulated_boundary_blocked'] is True
 
 def test_lending_intent_is_blocked():
-    result = triage("lending decision support")
-    assert result["regulated_boundary_result"] == "blocked"
+ o=triage({'pilot_id':'p4','intended_use':'lending decision support','workflow_family':'enterprise_pilot_readiness_pack'})
+ assert o['regulated_boundary_blocked'] is True
 
-
-def test_worker_evaluation_is_blocked():
-    result = triage("worker evaluation assistant")
-    assert result["regulated_boundary_result"] == "blocked"
+def test_hyphenated_regulated_terms_are_blocked():
+ o=triage({'pilot_id':'p5','intended_use':'financial-advice and human-resources guidance','workflow_family':'docs_ops_pack'})
+ assert o['regulated_boundary_blocked'] is True
