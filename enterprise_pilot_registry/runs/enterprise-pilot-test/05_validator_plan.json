@@ -1,0 +1,9 @@
+{
+  "validator_plan_id": "validator-enterprise-pilot-test",
+  "checks": [
+    "regulated_boundary_firewall",
+    "no_investment_claim",
+    "no_token_value_claim"
+  ],
+  "complete": true
+}
