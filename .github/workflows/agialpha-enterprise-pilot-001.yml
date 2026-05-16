@@ -14,8 +14,9 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: python scripts/secure_rails_claim_boundary_check.py .
+      - run: python -m agialpha_ascension_os run-cycle --repo-root . --registry ascension_os_registry --out ascension-os-runs/test
       - run: python -m agialpha_ascension_os replay --run ascension-os-runs/test
-      - run: python -m agialpha_ascension_os falsification --run ascension-os-runs/test
+      - run: python -m agialpha_ascension_os falsification-audit --run ascension-os-runs/test
       - run: python -m agialpha_ascension_os validate --run ascension-os-runs/test
       - name: Enforce Ascension validation status gate
         run: |
