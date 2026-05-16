@@ -56,3 +56,12 @@ def test_legacy_list_registry_is_migrated_without_data_loss():
   migrated=json.loads(p.read_text(encoding='utf-8'))
   assert migrated['records'][0]['run_id']=='legacy'
   assert migrated['records'][0]['payload']['pilot_id']=='old-pilot'
+
+
+def test_build_scorecard_reflects_pending_customer_review():
+ with tempfile.TemporaryDirectory() as d:
+  run_build(d)
+  scorecard=json.loads(Path(d,'12_commercial_readiness_scorecard.json').read_text(encoding='utf-8'))
+  review=json.loads(Path(d,'10_customer_review_record.json').read_text(encoding='utf-8'))
+  assert review['status']=='pending'
+  assert scorecard['commercial_readiness_tier']=='C5'

@@ -61,7 +61,7 @@ def build(repo_root: Path, out: Path, workflow_family: str, customer_mode: str, 
     intake = create_intake(pid, workflow_family, customer_mode)
     tri = triage(intake)
     att = create_attestation(pid)
-    jp = create_job_pack(pid, workflow_family, customer_mode)
+    jp = create_job_pack(pid, workflow_family, customer_mode, tri["status"])
     vp = create_validator_plan(pid, jp["job_pack_id"])
     pb = create_proofbundle(pid, jp["job_pack_id"])
     dk = create_docket(pid, pb["proofbundle_id"])
@@ -69,7 +69,15 @@ def build(repo_root: Path, out: Path, workflow_family: str, customer_mode: str, 
     rc = create_receipt(pid, wv["work_vault_id"])
     cr = create_customer_review(pid)
     er = create_external_replay(pid)
-    sc = build_scorecard()
+    sc = build_scorecard(
+        has_attestation=att.get("status") == "attested",
+        has_triage=tri.get("status") == "passed",
+        has_proofbundle=pb.get("status") == "created",
+        has_docket=dk.get("status") == "created",
+        has_replay=er.get("status") == "generated",
+        has_review=cr.get("status") == "completed",
+        repeatable=not tri.get("regulated_boundary_blocked", False),
+    )
     link = create_link(pid, sc["commercial_readiness_tier"])
     miss = {"missing_evidence": link["missing_evidence"], **boundary_fields()}
 
