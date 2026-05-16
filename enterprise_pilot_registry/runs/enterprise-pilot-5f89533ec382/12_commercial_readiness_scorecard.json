@@ -1,11 +1,15 @@
 {
   "autonomous_persistence_allowed": false,
   "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "commercial_readiness_tier": "C5",
   "customer_data_boundary": "Synthetic or customer-approved redacted inputs only; no raw PII or secrets.",
   "human_review_required": true,
+  "missing_evidence": [
+    "paid_pilot_or_commercial_commitment_status:not_reported"
+  ],
   "no_auto_merge": true,
   "not_an_investment_claim": true,
-  "records": [],
+  "paid_pilot_or_commercial_commitment_status": "not_reported",
   "regulated_boundary": "Not legal, medical, HR, credit, insurance, investment, payment, custody, KYC/AML, or regulated decisioning.",
   "token_boundary": "$AGIALPHA is utility-only accounting; not equity, debt, yield, ROI, or token value evidence."
 }
