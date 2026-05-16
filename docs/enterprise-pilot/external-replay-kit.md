@@ -5,7 +5,7 @@ The external replay kit documents reproducible reruns for customer review.
 It is evidence and verification support only:
 - not production deployment
 - not autonomous persistence
-- not legal/compliance/security certification
+- not legal/compliance conclusions or formal security attestation
 
 See:
 - `docs/enterprise-pilot/external-replay.md`
