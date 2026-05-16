@@ -12,4 +12,5 @@ def test_enterprise_pilot_docs_exist_and_state_boundaries():
         assert Path(path).exists(), path
     text = Path("README_ENTERPRISE_PILOT.md").read_text().lower()
     assert "not regulated decisioning" in text
-    assert "utility-only" in text
+    assert "not investment advice" in text
+    assert "not token-value claims" in text
