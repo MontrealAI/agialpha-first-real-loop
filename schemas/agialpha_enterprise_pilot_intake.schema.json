@@ -1,1 +1,1 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","required":["schema_version","pilot_id","customer_data_mode","workflow_family","claim_boundary","token_boundary","regulated_boundary","not_an_investment_claim"]}
+{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","required":["schema_version","pilot_id","customer_data_mode","workflow_family","excluded_uses_acknowledged","claim_boundary","token_boundary","regulated_boundary","not_an_investment_claim"]}
