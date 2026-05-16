@@ -1,0 +1,30 @@
+{
+  "pilot_id": "pilot-software_quality_pack",
+  "excluded_uses": [
+    "HR / worker evaluation",
+    "profiling of individuals",
+    "automated decisions about natural persons",
+    "credit / lending",
+    "insurance",
+    "medical use",
+    "legal advice",
+    "financial or investment advice",
+    "KYC/AML",
+    "banking / brokerage / custody",
+    "critical infrastructure control",
+    "energy or utility market participation",
+    "offensive cyber",
+    "cybersecurity certification",
+    "autonomous procurement",
+    "binding contract execution"
+  ],
+  "excluded_uses_acknowledged": true,
+  "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+  "token_boundary": "$AGIALPHA is utility-only accounting only.",
+  "regulated_boundary": "No regulated decisioning; block legal/medical/hr/credit/insurance/kyc/aml/banking/brokerage/custody/payment.",
+  "customer_data_boundary": "synthetic_or_customer_approved_redacted_only",
+  "human_review_required": true,
+  "autonomous_persistence_allowed": false,
+  "no_auto_merge": true,
+  "not_an_investment_claim": true
+}

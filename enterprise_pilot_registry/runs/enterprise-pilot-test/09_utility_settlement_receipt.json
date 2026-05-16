@@ -1,0 +1,7 @@
+{
+  "settlement_receipt_id": "sr-pilot-software_quality_pack",
+  "pilot_id": "pilot-software_quality_pack",
+  "work_vault_id": "wv-pilot-software_quality_pack",
+  "receipt_mode": "local_json_only",
+  "notice": "This is a utility-only local accounting receipt for validated work. It is not payment processing, custody, money transmission, securities activity, token-value evidence, investment return, or financial advice."
+}
