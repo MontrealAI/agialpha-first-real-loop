@@ -13,6 +13,7 @@ BLOCK_PATTERNS = [
 ]
 def triage(intended_use: str):
     t = intended_use.lower()
-    blocked = any(re.search(pattern, t) for pattern in BLOCK_PATTERNS)
+    normalized = re.sub(r"[^a-z0-9]+", " ", t).strip()
+    blocked = any(re.search(pattern, normalized) for pattern in BLOCK_PATTERNS)
     r = {"regulated_boundary_result": "blocked" if blocked else "passed", "regulated_boundary_blocked": blocked, "documentation_only": blocked}
     r.update(boundary_fields()); return r
