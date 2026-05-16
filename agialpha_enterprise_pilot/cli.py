@@ -36,13 +36,32 @@ def build(repo_root,out,workflow_family,customer_mode,registry='enterprise_pilot
     for n,o in files: wj(run/n,o) if n.endswith('.json') else Path(run/n).write_text(o,encoding='utf-8')
     wj(run/'07_evidence_docket/docket.json',docket); Path(run/'13_pilot_outcome_dossier.md').write_text('# Pilot Outcome Dossier\n\nTier: C6\n',encoding='utf-8')
     rr=(repo_root_path / registry).resolve(); (rr/'runs'/pid).mkdir(parents=True,exist_ok=True)
-    for p in run.iterdir(): shutil.copytree(p,rr/'runs'/pid/p.name,dirs_exist_ok=True) if p.is_dir() else shutil.copy2(p,rr/'runs'/pid/p.name)
+    generated_paths = [
+        '00_manifest.json','01_pilot_intake.json','02_regulated_boundary_triage.json','03_customer_use_attestation.json',
+        '04_enterprise_job_pack.json','05_validator_plan.json','06_proofbundle.json','07_evidence_docket','08_work_vault.json',
+        '09_utility_settlement_receipt.json','10_customer_review_record.json','11_external_replay_packet.json',
+        '12_commercial_readiness_scorecard.json','13_pilot_outcome_dossier.md','14_valuation_support_link.json',
+        '15_missing_evidence.json','evidence-run-manifest.json','summary.md'
+    ]
+    for rel in generated_paths:
+        src = run / rel
+        dst = rr / 'runs' / pid / rel
+        if src.is_dir():
+            shutil.copytree(src, dst, dirs_exist_ok=True)
+        elif src.exists():
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dst)
     top=['registry','latest','pilots','pilot_intakes','regulated_boundary_triage','customer_attestations','job_packs','proofbundles','evidence_dockets','work_vaults','settlement_receipts','customer_reviews','external_replay_packets','commercial_readiness_scorecards','pilot_outcomes','valuation_support_links','missing_evidence']
     for n in top:
         path=rr/f'{n}.json'
         if n in ('registry','latest'): continue
         arr=loadj(path,[]); arr.append({'pilot_id':pid} if n=='pilots' else {'run_id':pid}); wj(path,arr)
-    wj(rr/'latest.json',{'run_id':pid}); wj(rr/'registry.json',{'latest_run_id':pid}); Path(rr/'CHANGELOG.md').write_text('# Enterprise Pilot Registry\n',encoding='utf-8')
+    wj(rr/'latest.json',{'run_id':pid}); wj(rr/'registry.json',{'latest_run_id':pid})
+    changelog = rr / 'CHANGELOG.md'
+    if not changelog.exists():
+        changelog.write_text('# Enterprise Pilot Registry\n\n', encoding='utf-8')
+    with changelog.open('a', encoding='utf-8') as fh:
+        fh.write(f'- {pid}: build recorded\n')
 
 def validate_run(run):
     req=['01_pilot_intake.json','02_regulated_boundary_triage.json','03_customer_use_attestation.json','04_enterprise_job_pack.json','06_proofbundle.json','07_evidence_docket/docket.json','08_work_vault.json','09_utility_settlement_receipt.json','10_customer_review_record.json','11_external_replay_packet.json','12_commercial_readiness_scorecard.json','14_valuation_support_link.json']
