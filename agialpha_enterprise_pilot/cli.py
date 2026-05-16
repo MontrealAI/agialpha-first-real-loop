@@ -66,14 +66,14 @@ def build(repo_root,out,workflow_family,customer_mode,registry=None):
         fh.write(f'- {pid}: build recorded\n')
 
 def validate_run(run):
-    req=['01_pilot_intake.json','02_regulated_boundary_triage.json','03_customer_use_attestation.json','04_enterprise_job_pack.json','06_proofbundle.json','07_evidence_docket/docket.json','08_work_vault.json','09_utility_settlement_receipt.json','10_customer_review_record.json','11_external_replay_packet.json','12_commercial_readiness_scorecard.json','14_valuation_support_link.json']
+    req=['01_pilot_intake.json','02_regulated_boundary_triage.json','03_customer_use_attestation.json','04_enterprise_job_pack.json','06_proofbundle.json','07_evidence_docket/docket.json','08_work_vault.json','09_utility_settlement_receipt.json','10_customer_review_record.json','11_external_replay_packet.json','12_commercial_readiness_scorecard.json','14_valuation_support_link.json','16_pilot_outcome.json']
     run=Path(run)
     miss=[x for x in req if not (run/x).exists()]
     if miss: raise SystemExit('missing:'+','.join(miss))
 
 def build_data(registry,out):
     r,o=Path(registry),Path(out); o.mkdir(parents=True,exist_ok=True)
-    for n in ['latest','pilots','commercial_readiness_scorecards','customer_reviews','external_replay_packets','valuation_support_links','missing_evidence']:
+    for n in ['latest','pilots','pilot_outcomes','commercial_readiness_scorecards','customer_reviews','external_replay_packets','valuation_support_links','missing_evidence']:
         src=r/f'{n}.json';
         if src.exists(): (o/f'{n}.json').write_text(src.read_text(),encoding='utf-8')
     wj(o/'summary.json',{"routes":["/enterprise-pilot/","/experiments/agialpha-enterprise-pilot-001/"]})
