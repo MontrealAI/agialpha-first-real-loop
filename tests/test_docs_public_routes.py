@@ -1,6 +1,8 @@
-from pathlib import Path
 import json
+import unittest
+from pathlib import Path
 
-def test_major_routes_indexed():
-    data=json.loads(Path('docs/_generated/public-experience/route_manifest.json').read_text())
-    assert '/secure-rails/' in data['routes']
+class TestDocsPublicRoutes(unittest.TestCase):
+    def test_major_routes_indexed(self):
+        data = json.loads(Path('docs/_generated/public-experience/route_manifest.json').read_text())
+        self.assertIn('/secure-rails/', data['routes'])

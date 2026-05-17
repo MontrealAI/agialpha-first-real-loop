@@ -230,7 +230,11 @@ def main():
             if not any(c.exists() for c in cand):
                 missing.append(r)
         data={'schema_version':'agialpha.public_page_health.v1','generated_at':'deterministic','routes_checked':checked,'routes_ok':checked-len(missing),'routes_missing':missing,'routes_partial':[],'broken_links':[],'missing_claim_boundaries':[],'raw_json_primary_pages':[],'missing_workflow_catalog_entries':[],'direct_pages_deploy_violations':[],'status':'pass' if not missing else 'partial'}
-        _write_json(out,data); print('ok' if not missing else json.dumps(data, indent=2)); return
+        _write_json(out,data)
+        if missing:
+            print(json.dumps(data, indent=2))
+            raise SystemExit(1)
+        print('ok'); return
     if a.cmd=='validate-public-experience':
         needed=['site_manifest.json','experience_index.json','experiment_index.json','workflow_index.json','page_health.json']
         base=root/'docs/_generated/public-experience'
