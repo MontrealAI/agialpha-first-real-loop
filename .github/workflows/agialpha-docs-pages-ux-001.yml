@@ -1,0 +1,34 @@
+name: AGI ALPHA Docs and Pages UX 001 / Public Experience Audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+  schedule:
+    - cron: '0 8 * * 0'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  docs-pages-ux-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m agialpha_docs inventory --repo-root . --out docs/_generated/public-experience/site_manifest.json
+      - run: python -m agialpha_docs build-experience-index --repo-root . --out docs/_generated/public-experience/experience_index.json
+      - run: python -m agialpha_docs build-experiment-index --repo-root . --out docs/_generated/public-experience/experiment_index.json
+      - run: python -m agialpha_docs build-workflow-index --repo-root . --out docs/_generated/public-experience/workflow_index.json
+      - run: python -m agialpha_docs page-health --repo-root . --out docs/_generated/public-experience/page_health.json
+      - run: python -m agialpha_docs audit-links --repo-root .
+      - run: python -m agialpha_docs audit-claims --repo-root .
+      - run: python -m agialpha_docs audit-workflows --repo-root .
+      - run: python -m agialpha_docs audit-readmes --repo-root .
+      - run: python -m unittest discover -s tests
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agialpha-public-experience-audit
+          path: docs/_generated/public-experience/
