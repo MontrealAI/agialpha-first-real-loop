@@ -1,0 +1,20 @@
+{
+  "schema_version": "agialpha.public_route_manifest.v1",
+  "routes": [
+    "/",
+    "/secure-rails/",
+    "/cybersecurity-sovereign/",
+    "/enterprise-pilot/",
+    "/ascension-os/",
+    "/recursive-substrate/",
+    "/open-rsi-eval/",
+    "/self-improvement-gauntlet/",
+    "/valuation-support/",
+    "/work-vaults/",
+    "/evidence-dockets/",
+    "/proofbundles/",
+    "/workflow-launchpad/",
+    "/experiments/",
+    "/raw-data/"
+  ]
+}
