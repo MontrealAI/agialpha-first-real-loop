@@ -1,4 +1,4 @@
-name: AGI ALPHA Enterprise Pilot 001 / Evidence Factory
+name: AGI ALPHA Enterprise Pilot 001 / Evidence Docket Factory
 on:
   workflow_dispatch:
   schedule:
@@ -14,15 +14,22 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python scripts/secure_rails_claim_boundary_check.py .
-      - run: python -m agialpha_ascension_os run-cycle --repo-root . --registry ascension_os_registry --out ascension-os-runs/test
-      - run: python -m agialpha_ascension_os replay --run ascension-os-runs/test
-      - run: python -m agialpha_ascension_os falsification-audit --run ascension-os-runs/test
-      - run: python -m agialpha_ascension_os validate --run ascension-os-runs/test
-      - run: python -c "import json,sys; s=json.load(open('ascension-os-runs/test/validation_report.json',encoding='utf-8')).get('status'); sys.exit(0 if s=='pass' else 1)"
-      - run: python -m agialpha_enterprise_pilot build --repo-root . --out /tmp/enterprise-pilot-test --workflow-family software_quality_pack --customer-mode synthetic_only
-      - run: python -m agialpha_enterprise_pilot validate --run /tmp/enterprise-pilot-test
-      - run: python -m agialpha_enterprise_pilot build-data --registry enterprise_pilot_registry --out docs/_generated/enterprise-pilot
+      - name: SecureRails checks
+        run: |
+          python scripts/secure_rails_claim_boundary_check.py .
+          python scripts/secure_rails_no_automerge_check.py .
+      - name: Build enterprise pilot evidence package
+        run: python -m agialpha_enterprise_pilot build --repo-root . --use-cases config/enterprise_pilot_use_cases.example.json --out /tmp/enterprise-pilot-test
+      - name: Replay
+        run: python -m agialpha_enterprise_pilot replay --run /tmp/enterprise-pilot-test
+      - name: Falsification audit
+        run: python -m agialpha_enterprise_pilot falsification-audit --run /tmp/enterprise-pilot-test
+      - name: Validate
+        run: python -m agialpha_enterprise_pilot validate --run /tmp/enterprise-pilot-test
+      - name: Emit manifest
+        run: python -m agialpha_enterprise_pilot emit-manifest --run /tmp/enterprise-pilot-test --out /tmp/enterprise-pilot-test/evidence-run-manifest.json
+      - name: Build generated data
+        run: python -m agialpha_enterprise_pilot build-data --registry enterprise_pilot_registry --out docs/_generated/enterprise-pilot
       - uses: actions/upload-artifact@v4
         with:
           name: enterprise-pilot-artifacts
