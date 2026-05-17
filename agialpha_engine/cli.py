@@ -38,8 +38,10 @@ def run_cycle(repo_root, registry, out, candidate_seeds, evaluate_seeds, sandbox
     ensure_registry(registry)
     reg = pathlib.Path(registry)
     run_id = f"engine-run-{len(_jread(reg/'cycles.json', [])) + 1:03d}"
-    rp = pathlib.Path(out); rp.mkdir(parents=True, exist_ok=True)
-    (reg / 'runs' / run_id).mkdir(parents=True, exist_ok=True)
+    recorded_run_dir = reg / 'runs' / run_id
+    recorded_run_dir.mkdir(parents=True, exist_ok=True)
+    rp = recorded_run_dir
+    outp = pathlib.Path(out) if out else None
 
     seeds = []
     for i in range(candidate_seeds):
@@ -58,7 +60,10 @@ def run_cycle(repo_root, registry, out, candidate_seeds, evaluate_seeds, sandbox
         with tempfile.TemporaryDirectory(prefix=f'agialpha-engine-sandbox-{run_id}-') as td:
             shutil.copytree(repo_root, pathlib.Path(td)/'repo', dirs_exist_ok=True)
             res = subprocess.run(['python','-c','print("sandbox-ok")'], cwd=pathlib.Path(td)/'repo', capture_output=True, text=True)
-            sand.append({"candidate": c['candidate'],"sandbox": str(pathlib.Path(td)/'repo'),"exit_code": res.returncode,"stdout_hash": _sha_text(res.stdout[:5000]),"stderr_hash": _sha_text(res.stderr[:5000]),"status": "pass" if res.returncode == 0 else "fail"})
+            sandbox_evidence_dir = rp / 'sandbox_evidence' / c['candidate']
+            sandbox_evidence_dir.mkdir(parents=True, exist_ok=True)
+            _jwrite(sandbox_evidence_dir / 'result.json', {"exit_code": res.returncode, "stdout": res.stdout[:5000], "stderr": res.stderr[:5000]})
+            sand.append({"candidate": c['candidate'],"sandbox": str(sandbox_evidence_dir),"exit_code": res.returncode,"stdout_hash": _sha_text(res.stdout[:5000]),"stderr_hash": _sha_text(res.stderr[:5000]),"status": "pass" if res.returncode == 0 else "fail"})
 
     accepted=[c for c in filtered if c['family'] in ('validator_synthesis','benchmark_generation','capability_reuse')]
     rejected=[c for c in filtered if c not in accepted]
@@ -76,6 +81,12 @@ def run_cycle(repo_root, registry, out, candidate_seeds, evaluate_seeds, sandbox
     cyc=_jread(reg/'cycles.json',[]);cyc.append({"run_id":run_id,"metrics":metrics});_jwrite(reg/'cycles.json',cyc)
     _jwrite(reg/'latest.json',{"run_id":run_id,"metrics":metrics,"EngineReadinessScore":score})
     cur=_jread(reg/'scorecards.json',[]);cur.append({"run_id":run_id,"EngineReadinessScore":score});_jwrite(reg/'scorecards.json',cur)
+    if outp and outp != rp:
+        outp.mkdir(parents=True, exist_ok=True)
+        for f in ['03_filtered_candidates.json','06_sandbox_evaluations.json','07_baselines.json','12_proofbundle.json','16_scorecard.json']:
+            shutil.copy2(rp / f, outp / f)
+        if (rp / '13_evidence_docket').exists():
+            shutil.copytree(rp / '13_evidence_docket', outp / '13_evidence_docket', dirs_exist_ok=True)
     return rp
 
 def build_data(registry,out):
