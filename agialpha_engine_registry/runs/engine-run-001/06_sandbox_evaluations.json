@@ -1,0 +1,34 @@
+[
+  {
+    "candidate": "engine-run-001-cand-001",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-001-3nr8wisq/repo",
+    "exit_code": 1,
+    "stdout_hash": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "stderr_hash": "3b7b33711c37edd0be919ace7b6aec8b6fedda0fa4a8be437c00eeb9dd037a7f",
+    "status": "fail"
+  },
+  {
+    "candidate": "engine-run-001-cand-002",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-001-xvexozcn/repo",
+    "exit_code": 1,
+    "stdout_hash": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "stderr_hash": "88a53e807d130d035a122ed809f674c3cb0e7dbc58668e99dbfa8f3f3f197c70",
+    "status": "fail"
+  },
+  {
+    "candidate": "engine-run-001-cand-003",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-001-qkta7o7t/repo",
+    "exit_code": 1,
+    "stdout_hash": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "stderr_hash": "77f363b63dd596a371c757826003163b9e3d0113caf6ec14ec02b2d1702fe174",
+    "status": "fail"
+  },
+  {
+    "candidate": "engine-run-001-cand-004",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-001-3dm_d9ny/repo",
+    "exit_code": 1,
+    "stdout_hash": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "stderr_hash": "4a7c556e3efcd2a5edc84bda590751d4fccdc367bca1ee0172d856124a14cf42",
+    "status": "fail"
+  }
+]
