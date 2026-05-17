@@ -181,5 +181,68 @@
         "claim_boundary": "local bounded recursive experiment-engine evidence"
       }
     ]
+  },
+  {
+    "run_id": "engine-run-004",
+    "accepted": [
+      {
+        "candidate": "engine-run-004-cand-002",
+        "family": "validator_synthesis",
+        "validator": "validator-002",
+        "regulated_boundary_blocked": false,
+        "claim_boundary": "local bounded recursive experiment-engine evidence"
+      },
+      {
+        "candidate": "engine-run-004-cand-003",
+        "family": "benchmark_generation",
+        "validator": "validator-003",
+        "regulated_boundary_blocked": false,
+        "claim_boundary": "local bounded recursive experiment-engine evidence"
+      },
+      {
+        "candidate": "engine-run-004-cand-004",
+        "family": "capability_reuse",
+        "validator": "validator-004",
+        "regulated_boundary_blocked": false,
+        "claim_boundary": "local bounded recursive experiment-engine evidence"
+      }
+    ],
+    "rejected": [
+      {
+        "candidate": "engine-run-004-cand-001",
+        "family": "evaluator_improvement",
+        "validator": "validator-001",
+        "regulated_boundary_blocked": false,
+        "claim_boundary": "local bounded recursive experiment-engine evidence"
+      },
+      {
+        "candidate": "engine-run-004-cand-005",
+        "family": "replay_hardening",
+        "validator": "validator-005",
+        "regulated_boundary_blocked": false,
+        "claim_boundary": "local bounded recursive experiment-engine evidence"
+      },
+      {
+        "candidate": "engine-run-004-cand-006",
+        "family": "evidence_docket_repair",
+        "validator": "validator-006",
+        "regulated_boundary_blocked": false,
+        "claim_boundary": "local bounded recursive experiment-engine evidence"
+      },
+      {
+        "candidate": "engine-run-004-cand-007",
+        "family": "proofbundle_repair",
+        "validator": "validator-007",
+        "regulated_boundary_blocked": false,
+        "claim_boundary": "local bounded recursive experiment-engine evidence"
+      },
+      {
+        "candidate": "engine-run-004-cand-008",
+        "family": "workflow_catalog_repair",
+        "validator": "validator-008",
+        "regulated_boundary_blocked": false,
+        "claim_boundary": "local bounded recursive experiment-engine evidence"
+      }
+    ]
   }
 ]

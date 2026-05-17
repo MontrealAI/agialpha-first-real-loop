@@ -208,5 +208,8 @@
     "regulated_boundary": "regulated decisioning blocked; documentation-only or human-review-required",
     "human_review_required": true,
     "autonomous_persistence_allowed": false
+  },
+  {
+    "run_id": "engine-run-004"
   }
 ]
