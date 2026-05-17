@@ -1,0 +1,70 @@
+{
+  "schema_version": "agialpha.engine.proofbundle.v1",
+  "run_id": "engine-run-001",
+  "input_hashes": {},
+  "candidate_hashes": {
+    "engine-run-001-cand-001": "401431668c4598344d10d48bc1bc2c0f90d246ef932cba9352d680f46ee69c7b",
+    "engine-run-001-cand-002": "bb5b37ab11a5c922ce829e07618f04048ad0b0292175d8b6d7d8d63b24c0d7c9",
+    "engine-run-001-cand-003": "5f2c93dc5258ee5dacc09a5debaafbe1e383b5efc59a18ec03b5f96a163d3170",
+    "engine-run-001-cand-004": "50d122db739b70c6d44f05334545dd61feb55eed7d8e110ba08af59eb706a760",
+    "engine-run-001-cand-005": "e344b511df7c2085ca3363376608e361624de28865e8a6122c570bb89ac75066",
+    "engine-run-001-cand-006": "5b1b802aefdb9df4c31891339f9686547819fe0788c8efcf8309253bc27f3a55",
+    "engine-run-001-cand-007": "1d6e771ac3bf01cf175cd262258eb8174b4b39147d77fe3dfc9c34a9ae44e826",
+    "engine-run-001-cand-008": "2170ace7d4094c2ac8006e58347553fdb874e871d2ee3cdee519bf3a10da269a",
+    "engine-run-001-cand-009": "37acf3b89ab522d108d4914190bef9322b509cb3dcabde2939c437cfcfb117c2",
+    "engine-run-001-cand-010": "f4f2a03abcc684cd1ea677b0a79be17b061ea339602640ea3581bdea2e5621ac",
+    "engine-run-001-cand-011": "9634f96f79be64d606da35ede6a6afd3af1aca9b77acbbef829d1e841532b541",
+    "engine-run-001-cand-012": "2144b1bbfcb13b61c4c3ccb02111122a9607b157ff97201604ec5457f7e2298b",
+    "engine-run-001-cand-013": "45a173605438c8d5ffc157d9e8027666e6aedeb0d5c025d452e4157c144bac5f",
+    "engine-run-001-cand-014": "8976fe90340a3b4a0e29211d9f277f5d27e47d7769140023b821993053237e7d",
+    "engine-run-001-cand-015": "718665225bc66c6aef38a1f6f62b3723e4006f9e5fcee3b7f68cb757de59f575",
+    "engine-run-001-cand-016": "e814dc8b58c4db84bbbc47d8e03dbfdc47ed25b22d62bbb6f2e87f108c36ba29"
+  },
+  "sandbox_hashes": {
+    "engine-run-001-cand-001": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "engine-run-001-cand-002": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "engine-run-001-cand-003": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "engine-run-001-cand-004": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70"
+  },
+  "output_hashes": {},
+  "validator_results": [
+    {
+      "validator_id": "val-001",
+      "candidate": "engine-run-001-cand-001",
+      "spec": "deterministic-fixture"
+    },
+    {
+      "validator_id": "val-002",
+      "candidate": "engine-run-001-cand-002",
+      "spec": "deterministic-fixture"
+    },
+    {
+      "validator_id": "val-003",
+      "candidate": "engine-run-001-cand-003",
+      "spec": "deterministic-fixture"
+    },
+    {
+      "validator_id": "val-004",
+      "candidate": "engine-run-001-cand-004",
+      "spec": "deterministic-fixture"
+    }
+  ],
+  "baseline_results": {
+    "B0": "no_engine",
+    "B1": "docs_only",
+    "B2": "fixed_checklist",
+    "B3": "random_seed_generator",
+    "B4": "fail",
+    "B5": "current_governance_harness",
+    "B6": "alpha_factory_engine",
+    "B7": "pending_human_review",
+    "B6_beats_B5": true,
+    "B6_advantage_delta_vs_B5": 8
+  },
+  "replay_instructions": "python -m agialpha_engine replay --run <run_dir>",
+  "claim_boundary": "local bounded recursive experiment-engine evidence",
+  "token_boundary": "$AGIALPHA utility-only accounting",
+  "regulated_boundary": "regulated decisioning blocked; documentation-only or human-review-required",
+  "human_review_required": true,
+  "autonomous_persistence_allowed": false
+}
