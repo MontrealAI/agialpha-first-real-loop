@@ -1,0 +1,11 @@
+name: AGI ALPHA Engine 001 / vNext
+on: {workflow_dispatch: {}, schedule: [{cron: '0 6 * * 0'}]}
+permissions: {contents: read, actions: read}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m agialpha_engine run-cycle --repo-root . --registry agialpha_engine_registry --out /tmp/agialpha-engine-vnext --candidate-seeds 16 --evaluate-seeds 8 --sandbox-evals 4
