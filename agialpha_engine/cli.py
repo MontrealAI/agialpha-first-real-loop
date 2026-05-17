@@ -17,6 +17,18 @@ def _jwrite(p, o):
 def _sha_text(s):
     return hashlib.sha256(s.encode()).hexdigest()
 
+
+
+def _copy_repo_to_sandbox(src_root, dst_repo):
+    src_root = pathlib.Path(src_root).resolve()
+    dst_repo = pathlib.Path(dst_repo).resolve()
+    if src_root == dst_repo or src_root in dst_repo.parents:
+        raise ValueError('sandbox destination cannot be inside repo_root')
+    ignore = shutil.ignore_patterns('.git', '__pycache__', '.pytest_cache', '.mypy_cache')
+    if dst_repo.exists():
+        shutil.rmtree(dst_repo)
+    shutil.copytree(src_root, dst_repo, ignore=ignore)
+
 def ensure_registry(reg):
     reg = pathlib.Path(reg); reg.mkdir(parents=True, exist_ok=True)
     keys=['registry','latest','cycles','experiments','generated_benchmarks','generated_validators','patch_plans','workflow_variants','agent_variants','sandbox_runs','baseline_results','qd_archive','capability_archive','lineage_graph','metaproductivity','vnext_tasks','proofbundles','evidence_dockets','scorecards','missing_evidence']
@@ -69,7 +81,7 @@ def run_cycle(repo_root, registry, out, candidate_seeds, evaluate_seeds, sandbox
     rejected=[c for c in filtered if c not in accepted]
     vnext=[{"task_id":f"vnext-{i+1:03d}","from_capability":a['candidate'],"status":"pending_human_review"} for i,a in enumerate(accepted)]
     baselines={"B0":"no_engine","B1":"docs_only","B2":"fixed_checklist","B3":"random_seed_generator","B4":"fail","B5":"current_governance_harness","B6":"alpha_factory_engine","B7":"pending_human_review","B6_beats_B5":len(filtered)>0,"B6_advantage_delta_vs_B5":len(filtered)}
-    metrics={"candidates_generated":len(seeds),"candidates_filtered":len(filtered),"candidates_evaluated":len(sand),"candidates_blocked_regulated":len([s for s in seeds if s['regulated_boundary_blocked']]),"benchmarks_generated":1,"validators_generated":len(validators),"patch_plans_generated":len(patch),"patch_plans_sandbox_evaluated":len(patch),"workflow_variants_generated":1,"agent_variants_generated":1,"sandbox_runs":len(sand),"sandbox_passes":len([s for s in sand if s['status']=='pass']),"sandbox_failures":len([s for s in sand if s['status']=='fail']),"accepted_capabilities":len(accepted),"rejected_candidates":len(rejected),"descendant_tasks_generated":len(vnext),"descendant_tasks_evaluated":"pending","B6_beats_B5":baselines['B6_beats_B5'],"B6_advantage_delta_vs_B5":baselines['B6_advantage_delta_vs_B5'],"B4_ungated_self_modification_failed":True,"replay_pass":True,"falsification_pass":True,"proofbundle_complete":True,"evidence_docket_complete":True,"qd_archive_coverage":len(filtered),"lineage_metaproductivity":len(vnext),"cost_risk_proxy":1,"claim_boundary_integrity":True,"token_boundary_integrity":True,"regulated_boundary_integrity":True,"raw_secret_leak_count":0,"external_target_scan_count":0,"exploit_execution_count":0,"malware_generation_count":0,"social_engineering_content_count":0,"unsafe_automerge_count":0,"critical_safety_incidents":0,"overclaims_blocked":1,"unsafe_claims_missed":0}
+    metrics={"candidates_generated":len(seeds),"candidates_filtered":len(filtered),"candidates_evaluated":len(sand),"candidates_blocked_regulated":len([s for s in seeds if s['regulated_boundary_blocked']]),"benchmarks_generated":1,"validators_generated":len(validators),"patch_plans_generated":len(patch),"patch_plans_sandbox_evaluated":min(len(patch), len(sand)),"workflow_variants_generated":1,"agent_variants_generated":1,"sandbox_runs":len(sand),"sandbox_passes":len([s for s in sand if s['status']=='pass']),"sandbox_failures":len([s for s in sand if s['status']=='fail']),"accepted_capabilities":len(accepted),"rejected_candidates":len(rejected),"descendant_tasks_generated":len(vnext),"descendant_tasks_evaluated":"pending","B6_beats_B5":baselines['B6_beats_B5'],"B6_advantage_delta_vs_B5":baselines['B6_advantage_delta_vs_B5'],"B4_ungated_self_modification_failed":True,"replay_pass":True,"falsification_pass":True,"proofbundle_complete":True,"evidence_docket_complete":True,"qd_archive_coverage":len(filtered),"lineage_metaproductivity":len(vnext),"cost_risk_proxy":1,"claim_boundary_integrity":True,"token_boundary_integrity":True,"regulated_boundary_integrity":True,"raw_secret_leak_count":0,"external_target_scan_count":0,"exploit_execution_count":0,"malware_generation_count":0,"social_engineering_content_count":0,"unsafe_automerge_count":0,"critical_safety_incidents":0,"overclaims_blocked":1,"unsafe_claims_missed":0}
     score = max(1, metrics['candidates_generated']) * max(1, metrics['validators_generated'])
 
     _jwrite(rp/'16_scorecard.json', {"EngineReadinessScore": score, "metrics": metrics})
