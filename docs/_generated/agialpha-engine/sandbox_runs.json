@@ -1,0 +1,98 @@
+[
+  {
+    "candidate": "engine-run-001-cand-001",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-001-3nr8wisq/repo",
+    "exit_code": 1,
+    "stdout_hash": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "stderr_hash": "3b7b33711c37edd0be919ace7b6aec8b6fedda0fa4a8be437c00eeb9dd037a7f",
+    "status": "fail"
+  },
+  {
+    "candidate": "engine-run-001-cand-002",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-001-xvexozcn/repo",
+    "exit_code": 1,
+    "stdout_hash": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "stderr_hash": "88a53e807d130d035a122ed809f674c3cb0e7dbc58668e99dbfa8f3f3f197c70",
+    "status": "fail"
+  },
+  {
+    "candidate": "engine-run-001-cand-003",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-001-qkta7o7t/repo",
+    "exit_code": 1,
+    "stdout_hash": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "stderr_hash": "77f363b63dd596a371c757826003163b9e3d0113caf6ec14ec02b2d1702fe174",
+    "status": "fail"
+  },
+  {
+    "candidate": "engine-run-001-cand-004",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-001-3dm_d9ny/repo",
+    "exit_code": 1,
+    "stdout_hash": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "stderr_hash": "4a7c556e3efcd2a5edc84bda590751d4fccdc367bca1ee0172d856124a14cf42",
+    "status": "fail"
+  },
+  {
+    "candidate": "engine-run-002-cand-001",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-002-46znsq8j/repo",
+    "exit_code": 1,
+    "stdout_hash": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "stderr_hash": "dc01d0f48f8881347a0449b9947fc635deccad132974421ec9e287ee7e9b302a",
+    "status": "fail"
+  },
+  {
+    "candidate": "engine-run-002-cand-002",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-002-hi6hvnd5/repo",
+    "exit_code": 1,
+    "stdout_hash": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "stderr_hash": "905e981fd4a00cfe855016d5622fec03a169b0feb3aca382b4e73843c38729d3",
+    "status": "fail"
+  },
+  {
+    "candidate": "engine-run-002-cand-003",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-002-tnxwnjly/repo",
+    "exit_code": 1,
+    "stdout_hash": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "stderr_hash": "aef95f02ac1b4dd2f8a952f373176685c6ad398eba3309849b94f1bd5918edc0",
+    "status": "fail"
+  },
+  {
+    "candidate": "engine-run-002-cand-004",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-002-hj95cu6q/repo",
+    "exit_code": -15,
+    "stdout_hash": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
+    "stderr_hash": "27f7702c09132e064803e026685f559cae7658c1b6f04f17331967d6be1b3ab8",
+    "status": "fail"
+  },
+  {
+    "candidate": "engine-run-003-cand-001",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-003-ajkf0vc5/repo",
+    "exit_code": 0,
+    "stdout_hash": "e6b40583bfbfc0b9b5b765f54e96e24bc407e911b739d5522421783af3cd707a",
+    "stderr_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "status": "pass"
+  },
+  {
+    "candidate": "engine-run-003-cand-002",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-003-wfaxzhtg/repo",
+    "exit_code": 0,
+    "stdout_hash": "e6b40583bfbfc0b9b5b765f54e96e24bc407e911b739d5522421783af3cd707a",
+    "stderr_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "status": "pass"
+  },
+  {
+    "candidate": "engine-run-003-cand-003",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-003-vy5ims9b/repo",
+    "exit_code": 0,
+    "stdout_hash": "e6b40583bfbfc0b9b5b765f54e96e24bc407e911b739d5522421783af3cd707a",
+    "stderr_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "status": "pass"
+  },
+  {
+    "candidate": "engine-run-003-cand-004",
+    "sandbox": "/tmp/agialpha-engine-sandbox-engine-run-003-qh_ou4od/repo",
+    "exit_code": 0,
+    "stdout_hash": "e6b40583bfbfc0b9b5b765f54e96e24bc407e911b739d5522421783af3cd707a",
+    "stderr_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "status": "pass"
+  }
+]

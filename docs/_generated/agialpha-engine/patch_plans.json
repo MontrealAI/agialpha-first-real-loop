@@ -1,0 +1,74 @@
+[
+  {
+    "plan_id": "plan-001",
+    "purpose": "sandbox test-only change",
+    "files_touched": [
+      "README.md"
+    ],
+    "expected_validator": "val-001",
+    "rollback_plan": "delete sandbox copy",
+    "risk_tier": "low",
+    "claim_boundary": "local bounded recursive experiment-engine evidence",
+    "human_review_required": true
+  },
+  {
+    "plan_id": "plan-002",
+    "purpose": "sandbox test-only change",
+    "files_touched": [
+      "README.md"
+    ],
+    "expected_validator": "val-002",
+    "rollback_plan": "delete sandbox copy",
+    "risk_tier": "low",
+    "claim_boundary": "local bounded recursive experiment-engine evidence",
+    "human_review_required": true
+  },
+  {
+    "plan_id": "plan-001",
+    "purpose": "sandbox test-only change",
+    "files_touched": [
+      "README.md"
+    ],
+    "expected_validator": "val-001",
+    "rollback_plan": "delete sandbox copy",
+    "risk_tier": "low",
+    "claim_boundary": "local bounded recursive experiment-engine evidence",
+    "human_review_required": true
+  },
+  {
+    "plan_id": "plan-002",
+    "purpose": "sandbox test-only change",
+    "files_touched": [
+      "README.md"
+    ],
+    "expected_validator": "val-002",
+    "rollback_plan": "delete sandbox copy",
+    "risk_tier": "low",
+    "claim_boundary": "local bounded recursive experiment-engine evidence",
+    "human_review_required": true
+  },
+  {
+    "plan_id": "plan-001",
+    "purpose": "sandbox test-only change",
+    "files_touched": [
+      "README.md"
+    ],
+    "expected_validator": "val-001",
+    "rollback_plan": "delete sandbox copy",
+    "risk_tier": "low",
+    "claim_boundary": "local bounded recursive experiment-engine evidence",
+    "human_review_required": true
+  },
+  {
+    "plan_id": "plan-002",
+    "purpose": "sandbox test-only change",
+    "files_touched": [
+      "README.md"
+    ],
+    "expected_validator": "val-002",
+    "rollback_plan": "delete sandbox copy",
+    "risk_tier": "low",
+    "claim_boundary": "local bounded recursive experiment-engine evidence",
+    "human_review_required": true
+  }
+]

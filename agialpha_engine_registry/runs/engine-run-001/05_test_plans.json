@@ -1,0 +1,34 @@
+[
+  {
+    "candidate": "engine-run-001-cand-001",
+    "plan": "local deterministic checks"
+  },
+  {
+    "candidate": "engine-run-001-cand-002",
+    "plan": "local deterministic checks"
+  },
+  {
+    "candidate": "engine-run-001-cand-003",
+    "plan": "local deterministic checks"
+  },
+  {
+    "candidate": "engine-run-001-cand-004",
+    "plan": "local deterministic checks"
+  },
+  {
+    "candidate": "engine-run-001-cand-005",
+    "plan": "local deterministic checks"
+  },
+  {
+    "candidate": "engine-run-001-cand-006",
+    "plan": "local deterministic checks"
+  },
+  {
+    "candidate": "engine-run-001-cand-007",
+    "plan": "local deterministic checks"
+  },
+  {
+    "candidate": "engine-run-001-cand-008",
+    "plan": "local deterministic checks"
+  }
+]
