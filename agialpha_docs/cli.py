@@ -106,7 +106,7 @@ def _write_json(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, indent=2), encoding='utf-8')
 
 def _major_routes():
-    return ['/', '/secure-rails/', '/enterprise-pilot/', '/ascension-os/', '/recursive-substrate/', '/open-rsi-eval/', '/self-improvement-gauntlet/', '/valuation-support/', '/work-vaults/', '/evidence-dockets/', '/proofbundles/', '/workflow-launchpad/', '/experiments/', '/raw-data/']
+    return ['/', '/secure-rails/', '/cybersecurity-sovereign/', '/enterprise-pilot/', '/ascension-os/', '/recursive-substrate/', '/open-rsi-eval/', '/self-improvement-gauntlet/', '/valuation-support/', '/work-vaults/', '/evidence-dockets/', '/proofbundles/', '/workflow-launchpad/', '/experiments/', '/raw-data/']
 
 def main():
     p=argparse.ArgumentParser(); sub=p.add_subparsers(dest='cmd', required=True)
@@ -148,6 +148,9 @@ def main():
         missing=[]
         for r in _major_routes():
             if r=='/':
+                home_candidates=[root/'README.md', root/'docs/index.md', root/'docs/EVIDENCE_MISSION_CONTROL.md']
+                if not any(c.exists() for c in home_candidates):
+                    missing.append(r)
                 continue
             slug=r.strip('/')
             cand=[root/'docs'/f'{slug}.md', root/'docs'/slug/'README.md', root/'docs'/slug/'index.html']

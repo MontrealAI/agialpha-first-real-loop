@@ -1,8 +1,8 @@
 {
   "schema_version": "agialpha.public_page_health.v1",
   "generated_at": "deterministic",
-  "routes_checked": 14,
-  "routes_ok": 14,
+  "routes_checked": 15,
+  "routes_ok": 15,
   "routes_missing": [],
   "routes_partial": [],
   "broken_links": [],
