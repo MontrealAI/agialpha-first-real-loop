@@ -3,7 +3,7 @@ import argparse, datetime, hashlib, json, os, pathlib, shutil, subprocess, tempf
 CLAIM_BOUNDARY = "local bounded recursive experiment-engine evidence"
 TOKEN_BOUNDARY = "$AGIALPHA utility-only accounting"
 REG_BOUNDARY = "regulated decisioning blocked; documentation-only or human-review-required"
-FAMILIES = ["evaluator_improvement","replay_hardening","evidence_docket_repair","proofbundle_repair","workflow_catalog_repair","generated_data_integrity","claim_boundary_hardening","token_boundary_hardening","regulated_boundary_hardening","docs_operator_usability","sandbox_patch_candidate","validator_synthesis","benchmark_generation","capability_reuse","open_rsi_eval_adapter","self_improvement_gauntlet"]
+FAMILIES = ["validator_synthesis","benchmark_generation","capability_reuse","evaluator_improvement","replay_hardening","evidence_docket_repair","proofbundle_repair","workflow_catalog_repair","generated_data_integrity","claim_boundary_hardening","token_boundary_hardening","regulated_boundary_hardening","docs_operator_usability","sandbox_patch_candidate","open_rsi_eval_adapter","self_improvement_gauntlet"]
 
 def _jread(p, d):
     p = pathlib.Path(p)
@@ -96,7 +96,21 @@ def run_cycle(repo_root, registry, out, candidate_seeds, evaluate_seeds, sandbox
     _jwrite(dd/'00_manifest.json',{"run_id":run_id})
     _jwrite(rp/'03_filtered_candidates.json', filtered); _jwrite(rp/'06_sandbox_evaluations.json', sand); _jwrite(rp/'07_baselines.json', baselines)
     cyc=_jread(reg/'cycles.json',[]);cyc.append({"run_id":run_id,"metrics":metrics});_jwrite(reg/'cycles.json',cyc)
-    _jwrite(reg/'latest.json',{"run_id":run_id,"metrics":metrics,"EngineReadinessScore":score})
+    prev_latest = _jread(reg/'latest.json', {})
+    latest_payload = {
+        'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        'repo_root': str(pathlib.Path(repo_root).resolve()),
+        'claim_boundary': CLAIM_BOUNDARY,
+        'token_boundary': TOKEN_BOUNDARY,
+        'regulated_boundary': REG_BOUNDARY,
+        'run_id': run_id,
+        'metrics': metrics,
+        'EngineReadinessScore': score,
+    }
+    if isinstance(prev_latest, dict):
+        for k in ('repo_root','claim_boundary','token_boundary','regulated_boundary'):
+            latest_payload[k] = prev_latest.get(k, latest_payload[k])
+    _jwrite(reg/'latest.json', latest_payload)
 
     for fn, data in [
         ('experiments.json', seeds),
