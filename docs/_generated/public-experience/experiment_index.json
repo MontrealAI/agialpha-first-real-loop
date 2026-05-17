@@ -2,26 +2,28 @@
   "schema_version": "agialpha.experiment_index.v1",
   "experiments": [
     {
-      "slug": "agialpha-enterprise-pilot-001",
-      "route": "/experiments/agialpha-enterprise-pilot-001/",
-      "workflow": ".github/workflows/agialpha-enterprise-pilot-001-lifecycle.yml",
-      "status": "pending generated data",
-      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
-      "next_action": "Run workflow and inspect Evidence Docket/ProofBundle."
-    },
-    {
-      "slug": "agialpha-valuation-support-002",
-      "route": "/experiments/agialpha-valuation-support-002/",
-      "workflow": ".github/workflows/agialpha-valuation-support-002-lifecycle.yml",
-      "status": "pending generated data",
-      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
-      "next_action": "Run workflow and inspect Evidence Docket/ProofBundle."
-    },
-    {
       "slug": "agialpha-ascension-os-001",
       "route": "/experiments/agialpha-ascension-os-001/",
-      "workflow": ".github/workflows/agialpha-ascension-os-001-lifecycle.yml",
+      "workflow": ".github/workflows/agialpha-ascension-os-001.yml",
+      "generated_data": [
+        "docs/experiments/agialpha-ascension-os-001/evidence-run-manifest.json"
+      ],
       "status": "pending generated data",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "next_action": "Run workflow and inspect Evidence Docket/ProofBundle."
+    },
+    {
+      "slug": "agialpha-enterprise-pilot-001",
+      "route": "/experiments/agialpha-enterprise-pilot-001/",
+      "workflow": ".github/workflows/agialpha-enterprise-pilot-001.yml",
+      "generated_data": [
+        "docs/experiments/agialpha-enterprise-pilot-001/evidence-run-manifest.json"
+      ],
+      "status": "pending generated data",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
       "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
       "next_action": "Run workflow and inspect Evidence Docket/ProofBundle."
     },
@@ -29,15 +31,25 @@
       "slug": "agialpha-recursive-substrate-001",
       "route": "/experiments/agialpha-recursive-substrate-001/",
       "workflow": ".github/workflows/agialpha-recursive-substrate-001-lifecycle.yml",
+      "generated_data": [
+        "docs/experiments/agialpha-recursive-substrate-001/evidence-run-manifest.json"
+      ],
       "status": "pending generated data",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
       "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
       "next_action": "Run workflow and inspect Evidence Docket/ProofBundle."
     },
     {
-      "slug": "cyber-ga-sovereign-001",
-      "route": "/experiments/cyber-ga-sovereign-001/",
-      "workflow": ".github/workflows/cyber-ga-sovereign-001-lifecycle.yml",
+      "slug": "agialpha-valuation-support-002",
+      "route": "/experiments/agialpha-valuation-support-002/",
+      "workflow": ".github/workflows/agialpha-valuation-support-002.yml",
+      "generated_data": [
+        "docs/experiments/agialpha-valuation-support-002/evidence-run-manifest.json"
+      ],
       "status": "pending generated data",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
       "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
       "next_action": "Run workflow and inspect Evidence Docket/ProofBundle."
     },
@@ -45,7 +57,25 @@
       "slug": "agiga-foundry-001",
       "route": "/experiments/agiga-foundry-001/",
       "workflow": ".github/workflows/agiga-foundry-001-lifecycle.yml",
+      "generated_data": [
+        "docs/experiments/agiga-foundry-001/evidence-run-manifest.json"
+      ],
       "status": "pending generated data",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "next_action": "Run workflow and inspect Evidence Docket/ProofBundle."
+    },
+    {
+      "slug": "cyber-ga-sovereign-001",
+      "route": "/experiments/cyber-ga-sovereign-001/",
+      "workflow": ".github/workflows/cyber-ga-sovereign-001-lifecycle.yml",
+      "generated_data": [
+        "docs/experiments/cyber-ga-sovereign-001/evidence-run-manifest.json"
+      ],
+      "status": "pending generated data",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
       "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
       "next_action": "Run workflow and inspect Evidence Docket/ProofBundle."
     }

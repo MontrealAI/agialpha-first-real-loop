@@ -10,7 +10,9 @@
       ],
       "generated_data": [],
       "registry_sources": [],
-      "workflow_files": [],
+      "workflow_files": [
+        ".github/workflows/evidence-hub-publish.yml"
+      ],
       "evidence_docket_paths": [],
       "proofbundle_paths": [],
       "status": "complete",
@@ -320,7 +322,9 @@
       ],
       "generated_data": [],
       "registry_sources": [],
-      "workflow_files": [],
+      "workflow_files": [
+        ".github/workflows/evidence-hub-publish.yml"
+      ],
       "evidence_docket_paths": [],
       "proofbundle_paths": [],
       "status": "complete",
@@ -344,7 +348,9 @@
       ],
       "generated_data": [],
       "registry_sources": [],
-      "workflow_files": [],
+      "workflow_files": [
+        ".github/workflows/evidence-hub-publish.yml"
+      ],
       "evidence_docket_paths": [],
       "proofbundle_paths": [],
       "status": "complete",
@@ -368,7 +374,9 @@
       ],
       "generated_data": [],
       "registry_sources": [],
-      "workflow_files": [],
+      "workflow_files": [
+        ".github/workflows/evidence-hub-publish.yml"
+      ],
       "evidence_docket_paths": [],
       "proofbundle_paths": [],
       "status": "complete",

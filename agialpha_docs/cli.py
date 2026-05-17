@@ -112,7 +112,7 @@ def _major_routes():
 
 def _experience_specs():
     return [
-        ('home','Home / Evidence Mission Control','/',['docs/EVIDENCE_MISSION_CONTROL.md'],['.github/workflows/evidence-mission-control-publisher.yml']),
+        ('home','Home / Evidence Mission Control','/',['docs/EVIDENCE_MISSION_CONTROL.md'],['.github/workflows/evidence-hub-publish.yml']),
         ('secure-rails','SecureRails','/secure-rails/',['docs/secure-rails/README.md'],['.github/workflows/secure-rails-compliance-guard.yml']),
         ('cybersecurity-sovereign','Cybersecurity Sovereign','/cybersecurity-sovereign/',['docs/cybersecurity-sovereign/index.html'],['.github/workflows/cyber-ga-sovereign-001-lifecycle.yml']),
         ('recursive-substrate','Recursive Substrate','/recursive-substrate/',['docs/recursive-substrate/README.md'],['.github/workflows/agialpha-recursive-substrate-001-lifecycle.yml']),
@@ -124,9 +124,9 @@ def _experience_specs():
         ('work-vaults','Work Vaults / MARK / Sovereigns','/work-vaults/',['docs/work-vaults/README.md'],['.github/workflows/securerails-work-vault-demo.yml']),
         ('evidence-dockets','Evidence Dockets','/evidence-dockets/',['docs/evidence-dockets/README.md'],['.github/workflows/agialpha-enterprise-pilot-001.yml']),
         ('proofbundles','ProofBundles','/proofbundles/',['docs/proofbundles/README.md'],['.github/workflows/agialpha-enterprise-pilot-001.yml']),
-        ('workflow-launchpad','Workflow Launchpad','/workflow-launchpad/',['docs/WORKFLOW_LAUNCHPAD.md'],['.github/workflows/evidence-mission-control-publisher.yml']),
-        ('experiment-index','Experiment Index','/experiments/',['docs/EXPERIMENT_INDEX.md'],['.github/workflows/evidence-mission-control-publisher.yml']),
-        ('raw-data','Raw Data Index','/raw-data/',['docs/RAW_DATA_INDEX.md'],['.github/workflows/evidence-mission-control-publisher.yml']),
+        ('workflow-launchpad','Workflow Launchpad','/workflow-launchpad/',['docs/WORKFLOW_LAUNCHPAD.md'],['.github/workflows/evidence-hub-publish.yml']),
+        ('experiment-index','Experiment Index','/experiments/',['docs/EXPERIMENT_INDEX.md'],['.github/workflows/evidence-hub-publish.yml']),
+        ('raw-data','Raw Data Index','/raw-data/',['docs/RAW_DATA_INDEX.md'],['.github/workflows/evidence-hub-publish.yml']),
     ]
 
 def _build_experience_index(repo_root: Path) -> dict:
@@ -135,7 +135,7 @@ def _build_experience_index(repo_root: Path) -> dict:
     for eid,title,route,docs,wfs in _experience_specs():
         existing_docs=[d for d in docs if (repo_root/d).exists()]
         existing_wfs=[w for w in wfs if (repo_root/w).exists()]
-        status='complete' if existing_docs else 'pending'
+        status='complete' if (existing_docs and existing_wfs) else ('partial' if (existing_docs or existing_wfs) else 'pending')
         experiences.append({
             'experience_id': eid,
             'title': title,
@@ -157,6 +157,43 @@ def _build_experience_index(repo_root: Path) -> dict:
             'raw_json_secondary_links': ['/docs/_generated/public-experience/summary.json'],
         })
     return {'schema_version':'agialpha.public_experience_registry.v1','experiences':experiences}
+
+
+
+def _build_experiment_index(repo_root: Path) -> dict:
+    claim='No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.'
+    expected=[
+        'agialpha-enterprise-pilot-001','agialpha-valuation-support-002','agialpha-ascension-os-001',
+        'agialpha-recursive-substrate-001','cyber-ga-sovereign-001','agiga-foundry-001'
+    ]
+    found=set(expected)
+    exp_dir=repo_root/'docs'/'experiments'
+    if exp_dir.exists():
+        for child in exp_dir.iterdir():
+            if child.is_dir():
+                found.add(child.name)
+    experiments=[]
+    for slug in sorted(found):
+        wf_candidates=[
+            f'.github/workflows/{slug}.yml',
+            f'.github/workflows/{slug}-lifecycle.yml',
+            f'.github/workflows/{slug}-autonomous.yml',
+        ]
+        workflow=next((w for w in wf_candidates if (repo_root/w).exists()), wf_candidates[1])
+        generated=[f'docs/experiments/{slug}/evidence-run-manifest.json']
+        has_generated=any((repo_root/g).exists() for g in generated)
+        experiments.append({
+            'slug':slug,
+            'route':f'/experiments/{slug}/',
+            'workflow':workflow,
+            'generated_data':generated,
+            'status':'complete' if has_generated else 'pending generated data',
+            'replay_status':'not_reported',
+            'falsification_status':'not_reported',
+            'claim_boundary':claim,
+            'next_action':'Run workflow and inspect Evidence Docket/ProofBundle.'
+        })
+    return {'schema_version':'agialpha.experiment_index.v1','experiments':experiments}
 
 def main():
     p=argparse.ArgumentParser(); sub=p.add_subparsers(dest='cmd', required=True)
@@ -184,9 +221,7 @@ def main():
         _write_json(out,_build_experience_index(root)); return
     if a.cmd=='build-experiment-index':
         out=Path(a.out or (root/'docs/_generated/public-experience/experiment_index.json'))
-        src=root/'docs/_generated/public-experience/experiment_index.json'
-        data=json.loads(src.read_text(encoding='utf-8')) if src.exists() else {'experiments': []}
-        _write_json(out,data); return
+        _write_json(out,_build_experiment_index(root)); return
     if a.cmd=='build-workflow-index':
         out=Path(a.out or (root/'docs/_generated/public-experience/workflow_index.json'))
         w=[str(p.relative_to(root)) for p in sorted((root/'.github/workflows').glob('*.yml'))]
