@@ -22,6 +22,7 @@ jobs:
       - run: python -m agialpha_docs build-experience-index --repo-root . --out docs/_generated/public-experience/experience_index.json
       - run: python -m agialpha_docs build-experiment-index --repo-root . --out docs/_generated/public-experience/experiment_index.json
       - run: python -m agialpha_docs build-workflow-index --repo-root . --out docs/_generated/public-experience/workflow_index.json
+      - run: python -m agialpha_docs build-route-manifest --repo-root . --out docs/_generated/public-experience/route_manifest.json
       - run: python -m agialpha_docs page-health --repo-root . --out docs/_generated/public-experience/page_health.json
       - run: python -m agialpha_docs audit-links --repo-root .
       - run: python -m agialpha_docs audit-claims --repo-root .

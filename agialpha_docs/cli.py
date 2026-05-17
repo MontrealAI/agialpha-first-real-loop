@@ -185,7 +185,7 @@ def _build_experiment_index(repo_root: Path) -> dict:
 
 def main():
     p=argparse.ArgumentParser(); sub=p.add_subparsers(dest='cmd', required=True)
-    for c in ['inventory','audit-links','audit-workflows','audit-claims','audit-readmes','build-index','freshness','build-experience-index','build-experiment-index','build-workflow-index','page-health','validate-public-experience']:
+    for c in ['inventory','audit-links','audit-workflows','audit-claims','audit-readmes','build-index','freshness','build-experience-index','build-experiment-index','build-workflow-index','build-route-manifest','page-health','validate-public-experience']:
         sp=sub.add_parser(c); sp.add_argument('--repo-root', default='.'); sp.add_argument('--out', default='')
     a=p.parse_args(); root=Path(a.repo_root).resolve()
     if a.cmd=='inventory':
@@ -214,6 +214,10 @@ def main():
         out=Path(a.out or (root/'docs/_generated/public-experience/workflow_index.json'))
         w=[str(p.relative_to(root)) for p in sorted((root/'.github/workflows').glob('*.yml'))]
         _write_json(out, {'schema_version':'agialpha.workflow_index.v1','workflows':w}); return
+
+    if a.cmd=='build-route-manifest':
+        out=Path(a.out or (root/'docs/_generated/public-experience/route_manifest.json'))
+        _write_json(out, {'schema_version':'agialpha.public_route_manifest.v1','routes':_major_routes()}); return
     if a.cmd=='page-health':
         out=Path(a.out or (root/'docs/_generated/public-experience/page_health.json'))
         missing=[]
