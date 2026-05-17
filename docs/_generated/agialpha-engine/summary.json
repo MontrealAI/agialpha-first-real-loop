@@ -1,0 +1,19 @@
+{
+  "schema_version": "agialpha.engine.summary.v1",
+  "generated_at": "2026-05-17T04:08:51.603612+00:00",
+  "latest_run_id": "pending",
+  "candidates_generated": "pending",
+  "candidates_evaluated": "pending",
+  "sandbox_runs": "pending",
+  "validators_generated": "pending",
+  "proofbundles_created": "pending",
+  "evidence_dockets_created": "pending",
+  "accepted_capabilities": "pending",
+  "rejected_candidates": "pending",
+  "descendant_tasks_generated": "pending",
+  "B6_beats_B5": "pending",
+  "engine_readiness_score": "pending",
+  "claim_boundary": "local bounded recursive experiment-engine evidence",
+  "token_boundary": "$AGIALPHA utility-only accounting only",
+  "regulated_boundary": "regulated domains blocked and marked human_review_required"
+}
