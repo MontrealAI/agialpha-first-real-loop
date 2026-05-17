@@ -1,4 +1,4 @@
-name: AGI ALPHA Engine 001 / Alpha-Factory Lifecycle
+name: AGI ALPHA Engine 001 / Replay
 on:
   workflow_dispatch:
   schedule:
@@ -14,4 +14,4 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: python -m agialpha_engine discover --repo-root . --registry agialpha_engine_registry
+      - run: python -m agialpha_engine replay --run agialpha_engine_registry/runs/engine-run-001
