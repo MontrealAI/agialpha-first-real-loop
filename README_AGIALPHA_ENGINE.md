@@ -1,0 +1,3 @@
+# AGI ALPHA Engine 001
+
+Engine not recorder. TARGET → EMIT → FILTER → ATLAS → TEST-PLAN → EVAL → INSERT → PROMOTE.

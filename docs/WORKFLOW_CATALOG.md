@@ -206,3 +206,5 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 - AGI ALPHA Docs and Pages UX 001: `agialpha-docs-pages-ux-001.yml`
 
 | `agialpha-docs-pages-ux-001.yml` | Core | `workflow_dispatch`, `pull_request`, `schedule` | Public experience audit artifact bundle. | Documentation-only audit; no direct Pages deploy; no auto-merge. | no |
+
+| `agialpha-engine-001-lifecycle.yml` | Core | `workflow_dispatch`, `schedule` | Engine 001 lifecycle artifacts. | Human review required; no direct Pages deploy; no auto-merge. | no |

@@ -1,0 +1,4 @@
+import tempfile, subprocess, pathlib
+
+def test_commands():
+ d=tempfile.mkdtemp(); reg=tempfile.mkdtemp(); out=tempfile.mkdtemp(); subprocess.check_call(["python","-m","agialpha_engine","discover","--repo-root",".","--registry",reg]); subprocess.check_call(["python","-m","agialpha_engine","run-cycle","--repo-root",".","--registry",reg,"--out",d]); subprocess.check_call(["python","-m","agialpha_engine","run-gauntlet","--repo-root",".","--out",d,"--task-count","16"]); subprocess.check_call(["python","-m","agialpha_engine","replay","--run",d]); subprocess.check_call(["python","-m","agialpha_engine","falsification-audit","--run",d]); subprocess.check_call(["python","-m","agialpha_engine","validate","--run",d]); subprocess.check_call(["python","-m","agialpha_engine","build-data","--registry",reg,"--out",out]); subprocess.check_call(["python","-m","agialpha_engine","emit-manifest","--run",d,"--out",str(pathlib.Path(d)/"evidence-run-manifest.json")])
