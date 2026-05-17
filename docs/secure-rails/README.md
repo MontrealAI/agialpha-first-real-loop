@@ -20,3 +20,6 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 See ../TROUBLESHOOTING.md
 ## Next best action
 Run the workflow and inspect generated evidence.
+
+## Work Vaults / MARK / Sovereigns
+See [work-vaults-mark-sovereigns.md](work-vaults-mark-sovereigns.md).

@@ -12,7 +12,7 @@ SecureRails → Enterprise Pilot → ProofBundles → Evidence Dockets → Work 
 ## Public experiences
 | experience | what it shows | route | workflow | status |
 |---|---|---|---|---|
-| Home | Evidence Mission Control overview | `/` | `evidence-mission-control-publisher.yml` | partial |
+| Home | Evidence Mission Control overview | `/` | `evidence-hub-publish.yml` | partial |
 | SecureRails | governance and policy guardrails | `/secure-rails/` | `secure-rails-compliance-guard.yml` | complete |
 | Enterprise Pilot | pilot evidence and dockets | `/enterprise-pilot/` | `agialpha-enterprise-pilot-001.yml` | partial |
 
@@ -32,6 +32,8 @@ $AGIALPHA is represented here as utility-only accounting. This page does not ass
 This system does not perform regulated financial, legal, medical, HR, credit, insurance, KYC/AML, custody, trading, banking, brokerage, money-transmission, energy-market, utility-market, law-enforcement, biometric, or critical-infrastructure-control decisioning.
 
 ## Documentation index
+
+- Work Vaults / MARK / Sovereigns: [docs/secure-rails/work-vaults-mark-sovereigns.md](docs/secure-rails/work-vaults-mark-sovereigns.md)
 - [docs/PUBLIC_SITE_GUIDE.md](docs/PUBLIC_SITE_GUIDE.md)
 - [docs/EXPERIMENT_INDEX.md](docs/EXPERIMENT_INDEX.md)
 - [docs/WORKFLOW_CATALOG.md](docs/WORKFLOW_CATALOG.md)
