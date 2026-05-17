@@ -1,0 +1,24 @@
+name: AGI ALPHA Engine 001 / Alpha-Factory Lifecycle
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 0"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m agialpha_engine discover --repo-root . --registry agialpha_engine_registry
+      - run: python -m agialpha_engine run-cycle --repo-root . --registry agialpha_engine_registry --out /tmp/agialpha-engine-lifecycle --candidate-seeds 16 --evaluate-seeds 8 --sandbox-evals 4
+      - run: python -m agialpha_engine run-gauntlet --repo-root . --out /tmp/agialpha-engine-lifecycle --task-count 16
+      - run: python -m agialpha_engine replay --run agialpha_engine_registry/runs/engine-run-001
+      - run: python -m agialpha_engine falsification-audit --run agialpha_engine_registry/runs/engine-run-001
+      - run: python -m agialpha_engine validate --run agialpha_engine_registry/runs/engine-run-001
+      - run: python -m agialpha_engine emit-manifest --run agialpha_engine_registry/runs/engine-run-001 --out agialpha_engine_registry/runs/engine-run-001/evidence-run-manifest.json
+      - run: python -m agialpha_engine build-data --registry agialpha_engine_registry --out docs/_generated/agialpha-engine
