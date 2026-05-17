@@ -129,6 +129,16 @@ def run_cycle(repo_root, registry, out, candidate_seeds, evaluate_seeds, sandbox
     cur=_jread(reg/'scorecards.json',[]);cur.append({"run_id":run_id,"EngineReadinessScore":score});_jwrite(reg/'scorecards.json',cur)
     return rp
 
+
+
+def _required_run_artifacts(run_path):
+    req=[
+        run_path/'12_proofbundle.json',
+        run_path/'13_evidence_docket'/'00_manifest.json',
+        run_path/'16_scorecard.json',
+    ]
+    return [str(x) for x in req if not x.exists()]
+
 def build_data(registry,out):
     reg=pathlib.Path(registry); out=pathlib.Path(out); out.mkdir(parents=True,exist_ok=True)
     files=['latest','experiments','generated_benchmarks','generated_validators','patch_plans','sandbox_runs','baseline_results','qd_archive','capability_archive','vnext_tasks','scorecards','missing_evidence']
@@ -154,8 +164,21 @@ def main(argv=None):
     if a.cmd=='discover': discover(a.repo_root,a.registry)
     elif a.cmd=='run-cycle': run_cycle(a.repo_root,a.registry,a.out or str(pathlib.Path(a.registry)/'runs'/'ad-hoc'),a.candidate_seeds,a.evaluate_seeds,a.sandbox_evals)
     elif a.cmd=='run-gauntlet': _jwrite(pathlib.Path(a.out)/'gauntlet.json',{"task_count":a.task_count,"status":"pass"})
-    elif a.cmd=='replay': _jwrite(pathlib.Path(a.run)/'14_replay_report.json',{"status":"pass"})
-    elif a.cmd=='falsification-audit': _jwrite(pathlib.Path(a.run)/'15_falsification_audit.json',{"status":"pass","unsafe_claims_missed":0})
+    elif a.cmd=='replay':
+        run_path=pathlib.Path(a.run)
+        missing=_required_run_artifacts(run_path)
+        report={"status":"pass" if not missing else "fail","missing_artifacts":missing,"claim_boundary":CLAIM_BOUNDARY,"token_boundary":TOKEN_BOUNDARY,"regulated_boundary":REG_BOUNDARY}
+        _jwrite(run_path/'14_replay_report.json',report)
+        if missing: return 1
+    elif a.cmd=='falsification-audit':
+        run_path=pathlib.Path(a.run)
+        missing=_required_run_artifacts(run_path)
+        scorecard=_jread(run_path/'16_scorecard.json',{}) if not missing else {}
+        metrics=scorecard.get('metrics',{}) if isinstance(scorecard,dict) else {}
+        unsafe_claims_missed=metrics.get('unsafe_claims_missed','not_reported')
+        report={"status":"pass" if not missing else "fail","unsafe_claims_missed":unsafe_claims_missed if not missing else 'not_reported',"missing_artifacts":missing,"claim_boundary":CLAIM_BOUNDARY,"token_boundary":TOKEN_BOUNDARY,"regulated_boundary":REG_BOUNDARY}
+        _jwrite(run_path/'15_falsification_audit.json',report)
+        if missing: return 1
     elif a.cmd=='validate':
         rp=pathlib.Path(a.run); req=['12_proofbundle.json','13_evidence_docket/00_manifest.json','16_scorecard.json']
         miss=[x for x in req if not (rp/x).exists()]
