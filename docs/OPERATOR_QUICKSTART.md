@@ -43,3 +43,7 @@
 
 ## I want to know if it worked
 - Check workflow status + artifacts + Evidence Docket + replay log + safety ledger + claim boundary.
+
+
+## Claim boundary
+No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
