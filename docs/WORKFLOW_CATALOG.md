@@ -202,3 +202,7 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 
 | `agialpha-enterprise-pilot-001.yml` | Core | `workflow_dispatch`, `schedule` | Enterprise pilot evidence factory artifacts and generated data. | Human review required; no direct Pages deploy; no auto-merge. | no |
 \n- Enterprise Pilot: README_ENTERPRISE_PILOT.md and workflow agialpha-enterprise-pilot-001.yml
+
+- AGI ALPHA Docs and Pages UX 001: `agialpha-docs-pages-ux-001.yml`
+
+| `agialpha-docs-pages-ux-001.yml` | Core | `workflow_dispatch`, `pull_request`, `schedule` | Public experience audit artifact bundle. | Documentation-only audit; no direct Pages deploy; no auto-merge. | no |

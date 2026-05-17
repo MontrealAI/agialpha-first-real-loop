@@ -1,0 +1,14 @@
+{
+  "schema_version": "agialpha.public_page_health.v1",
+  "generated_at": "deterministic",
+  "routes_checked": 15,
+  "routes_ok": 15,
+  "routes_missing": [],
+  "routes_partial": [],
+  "broken_links": [],
+  "missing_claim_boundaries": [],
+  "raw_json_primary_pages": [],
+  "missing_workflow_catalog_entries": [],
+  "direct_pages_deploy_violations": [],
+  "status": "pass"
+}
