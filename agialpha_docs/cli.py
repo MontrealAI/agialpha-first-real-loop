@@ -221,7 +221,7 @@ def main():
         for r in _major_routes():
             checked += 1
             if r=='/':
-                home_candidates=[root/'README.md', root/'docs/index.md', root/'docs/EVIDENCE_MISSION_CONTROL.md']
+                home_candidates=[root/'docs/index.md', root/'docs/EVIDENCE_MISSION_CONTROL.md']
                 if not any(c.exists() for c in home_candidates):
                     missing.append(r)
                 continue
