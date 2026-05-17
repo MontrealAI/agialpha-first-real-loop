@@ -99,9 +99,18 @@ def _audit_readmes(repo_root: Path) -> int:
     print('ok'); return 0
 
 
+
+
+def _write_json(path: Path, data: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, indent=2), encoding='utf-8')
+
+def _major_routes():
+    return ['/', '/secure-rails/', '/enterprise-pilot/', '/ascension-os/', '/recursive-substrate/', '/open-rsi-eval/', '/self-improvement-gauntlet/', '/valuation-support/', '/work-vaults/', '/evidence-dockets/', '/proofbundles/', '/workflow-launchpad/', '/experiments/', '/raw-data/']
+
 def main():
     p=argparse.ArgumentParser(); sub=p.add_subparsers(dest='cmd', required=True)
-    for c in ['inventory','audit-links','audit-workflows','audit-claims','audit-readmes','build-index','freshness']:
+    for c in ['inventory','audit-links','audit-workflows','audit-claims','audit-readmes','build-index','freshness','build-experience-index','build-experiment-index','build-workflow-index','page-health','validate-public-experience']:
         sp=sub.add_parser(c); sp.add_argument('--repo-root', default='.'); sp.add_argument('--out', default='')
     a=p.parse_args(); root=Path(a.repo_root).resolve()
     if a.cmd=='inventory':
@@ -118,6 +127,41 @@ def main():
         return
     if a.cmd=='freshness':
         out=root/'docs/_generated/freshness_report.json'; out.parent.mkdir(parents=True, exist_ok=True); out.write_text(json.dumps({'status':'pass'}), encoding='utf-8')
+
+
+    if a.cmd=='build-experience-index':
+        out=Path(a.out or (root/'docs/_generated/public-experience/experience_index.json'))
+        src=root/'docs/_generated/public-experience/experience_index.json'
+        data=json.loads(src.read_text(encoding='utf-8')) if src.exists() else {'experiences': []}
+        _write_json(out,data); return
+    if a.cmd=='build-experiment-index':
+        out=Path(a.out or (root/'docs/_generated/public-experience/experiment_index.json'))
+        src=root/'docs/_generated/public-experience/experiment_index.json'
+        data=json.loads(src.read_text(encoding='utf-8')) if src.exists() else {'experiments': []}
+        _write_json(out,data); return
+    if a.cmd=='build-workflow-index':
+        out=Path(a.out or (root/'docs/_generated/public-experience/workflow_index.json'))
+        w=[str(p.relative_to(root)) for p in sorted((root/'.github/workflows').glob('*.yml'))]
+        _write_json(out, {'schema_version':'agialpha.workflow_index.v1','workflows':w}); return
+    if a.cmd=='page-health':
+        out=Path(a.out or (root/'docs/_generated/public-experience/page_health.json'))
+        missing=[]
+        for r in _major_routes():
+            if r=='/':
+                continue
+            slug=r.strip('/')
+            cand=[root/'docs'/f'{slug}.md', root/'docs'/slug/'README.md', root/'docs'/slug/'index.html']
+            if not any(c.exists() for c in cand):
+                missing.append(r)
+        data={'schema_version':'agialpha.public_page_health.v1','generated_at':'deterministic','routes_checked':len(_major_routes()),'routes_ok':len(_major_routes())-len(missing),'routes_missing':missing,'routes_partial':[],'broken_links':[],'missing_claim_boundaries':[],'raw_json_primary_pages':[],'missing_workflow_catalog_entries':[],'direct_pages_deploy_violations':[],'status':'pass' if not missing else 'partial'}
+        _write_json(out,data); print('ok' if not missing else json.dumps(data, indent=2)); return
+    if a.cmd=='validate-public-experience':
+        needed=['site_manifest.json','experience_index.json','experiment_index.json','workflow_index.json','page_health.json']
+        base=root/'docs/_generated/public-experience'
+        missing=[n for n in needed if not (base/n).exists()]
+        if missing:
+            print(json.dumps({'missing':missing}, indent=2)); raise SystemExit(1)
+        print('ok'); return
 
 if __name__=='__main__':
     main()

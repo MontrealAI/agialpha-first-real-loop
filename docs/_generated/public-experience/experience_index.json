@@ -1,0 +1,377 @@
+{
+  "schema_version": "agialpha.public_experience_registry.v1",
+  "experiences": [
+    {
+      "experience_id": "home",
+      "title": "Home / Evidence Mission Control",
+      "route": "/",
+      "source_docs": [
+        "docs/EVIDENCE_MISSION_CONTROL.md"
+      ],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "complete",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "ok",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    },
+    {
+      "experience_id": "secure-rails",
+      "title": "SecureRails",
+      "route": "/secure-rails/",
+      "source_docs": [
+        "docs/secure-rails/README.md"
+      ],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [
+        ".github/workflows/secure-rails-compliance-guard.yml"
+      ],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "complete",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "ok",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    },
+    {
+      "experience_id": "cybersecurity-sovereign",
+      "title": "Cybersecurity Sovereign",
+      "route": "/cybersecurity-sovereign/",
+      "source_docs": [
+        "docs/cybersecurity-sovereign/index.html"
+      ],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [
+        ".github/workflows/cyber-ga-sovereign-001-lifecycle.yml"
+      ],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "complete",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "ok",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    },
+    {
+      "experience_id": "recursive-substrate",
+      "title": "Recursive Substrate",
+      "route": "/recursive-substrate/",
+      "source_docs": [
+        "docs/recursive-substrate/README.md"
+      ],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [
+        ".github/workflows/agialpha-recursive-substrate-001-lifecycle.yml"
+      ],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "complete",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "ok",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    },
+    {
+      "experience_id": "ascension-os",
+      "title": "Ascension OS",
+      "route": "/ascension-os/",
+      "source_docs": [
+        "docs/ascension-os/README.md"
+      ],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [
+        ".github/workflows/agialpha-ascension-os-001-lifecycle.yml"
+      ],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "complete",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "ok",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    },
+    {
+      "experience_id": "open-rsi-eval",
+      "title": "Open RSI Eval",
+      "route": "/open-rsi-eval/",
+      "source_docs": [],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [
+        ".github/workflows/agialpha-open-rsi-eval-001.yml"
+      ],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "pending",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "partial",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    },
+    {
+      "experience_id": "self-improvement-gauntlet",
+      "title": "Self-Improvement Gauntlet",
+      "route": "/self-improvement-gauntlet/",
+      "source_docs": [
+        "docs/ascension-os/README.md"
+      ],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [
+        ".github/workflows/agialpha-self-improvement-gauntlet-001.yml"
+      ],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "complete",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "ok",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    },
+    {
+      "experience_id": "enterprise-pilot",
+      "title": "Enterprise Pilot",
+      "route": "/enterprise-pilot/",
+      "source_docs": [
+        "docs/enterprise-pilot/README.md"
+      ],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [
+        ".github/workflows/agialpha-enterprise-pilot-001.yml"
+      ],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "complete",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "ok",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    },
+    {
+      "experience_id": "valuation-support",
+      "title": "Valuation Support",
+      "route": "/valuation-support/",
+      "source_docs": [
+        "docs/valuation-support/README.md"
+      ],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [
+        ".github/workflows/agialpha-valuation-support-002.yml"
+      ],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "complete",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "ok",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    },
+    {
+      "experience_id": "work-vaults",
+      "title": "Work Vaults / MARK / Sovereigns",
+      "route": "/work-vaults/",
+      "source_docs": [],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [
+        ".github/workflows/securerails-work-vault-demo.yml"
+      ],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "pending",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "partial",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    },
+    {
+      "experience_id": "evidence-dockets",
+      "title": "Evidence Dockets",
+      "route": "/evidence-dockets/",
+      "source_docs": [],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [
+        ".github/workflows/agialpha-enterprise-pilot-001.yml"
+      ],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "pending",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "partial",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    },
+    {
+      "experience_id": "proofbundles",
+      "title": "ProofBundles",
+      "route": "/proofbundles/",
+      "source_docs": [],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [
+        ".github/workflows/agialpha-enterprise-pilot-001.yml"
+      ],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "pending",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "partial",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    },
+    {
+      "experience_id": "workflow-launchpad",
+      "title": "Workflow Launchpad",
+      "route": "/workflow-launchpad/",
+      "source_docs": [
+        "docs/WORKFLOW_LAUNCHPAD.md"
+      ],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "complete",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "ok",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    },
+    {
+      "experience_id": "experiment-index",
+      "title": "Experiment Index",
+      "route": "/experiments/",
+      "source_docs": [
+        "docs/EXPERIMENT_INDEX.md"
+      ],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "complete",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "ok",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    },
+    {
+      "experience_id": "raw-data",
+      "title": "Raw Data Index",
+      "route": "/raw-data/",
+      "source_docs": [],
+      "generated_data": [],
+      "registry_sources": [],
+      "workflow_files": [],
+      "evidence_docket_paths": [],
+      "proofbundle_paths": [],
+      "status": "pending",
+      "claim_level": "documentation",
+      "replay_status": "not_reported",
+      "falsification_status": "not_reported",
+      "human_review_status": "not_reported",
+      "public_page_health": "partial",
+      "primary_next_action": "Run workflow to generate evidence and inspect generated artifacts.",
+      "claim_boundary": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+      "raw_json_secondary_links": [
+        "/docs/_generated/public-experience/summary.json"
+      ]
+    }
+  ]
+}
