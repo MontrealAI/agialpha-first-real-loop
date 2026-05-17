@@ -71,10 +71,12 @@ def run_cycle(repo_root, registry, out, candidate_seeds, evaluate_seeds, sandbox
             blocked = set()
             if rel == '.':
                 blocked.update({'.git', '__pycache__'})
-                if registry_rel is not None:
-                    blocked.add(registry_rel.parts[0])
-            if registry_rel is not None and (rel == str(registry_rel) or rel.startswith(str(registry_rel) + os.sep)):
-                blocked.update(set(names))
+            if registry_rel is not None:
+                relp = pathlib.Path(rel)
+                if relp == registry_rel or registry_rel in relp.parents:
+                    blocked.update(set(names))
+                elif relp == registry_rel.parent:
+                    blocked.add(registry_rel.name)
             return blocked
         shutil.copytree(repo_root, sandbox_repo, dirs_exist_ok=True, ignore=_ignore)
         res = subprocess.run(['python','-c','print(\"sandbox-ok\")'], cwd=sandbox_repo, capture_output=True, text=True)
@@ -95,6 +97,24 @@ def run_cycle(repo_root, registry, out, candidate_seeds, evaluate_seeds, sandbox
     _jwrite(rp/'03_filtered_candidates.json', filtered); _jwrite(rp/'06_sandbox_evaluations.json', sand); _jwrite(rp/'07_baselines.json', baselines)
     cyc=_jread(reg/'cycles.json',[]);cyc.append({"run_id":run_id,"metrics":metrics});_jwrite(reg/'cycles.json',cyc)
     _jwrite(reg/'latest.json',{"run_id":run_id,"metrics":metrics,"EngineReadinessScore":score})
+
+    for fn, data in [
+        ('experiments.json', seeds),
+        ('generated_validators.json', validators),
+        ('patch_plans.json', patch),
+        ('sandbox_runs.json', sand),
+        ('baseline_results.json', [baselines]),
+        ('workflow_variants.json', [{"id":"wv-001","run_id":run_id}]),
+        ('agent_variants.json', [{"id":"av-001","run_id":run_id}]),
+        ('qd_archive.json', [{"run_id":run_id,"accepted":accepted,"rejected":rejected}]),
+        ('capability_archive.json', accepted),
+        ('vnext_tasks.json', vnext),
+        ('proofbundles.json', [{"run_id":run_id}]),
+        ('evidence_dockets.json', [{"run_id":run_id}]),
+    ]:
+        cur = _jread(reg/fn, [])
+        cur.extend(data if isinstance(data, list) else [data])
+        _jwrite(reg/fn, cur)
     if outp != rp:
         _jwrite(outp/'16_scorecard.json', {"EngineReadinessScore": score, "metrics": metrics})
         _jwrite(outp/'12_proofbundle.json', _jread(rp/'12_proofbundle.json', {}))
