@@ -1,7 +1,7 @@
-# Enterprise Pilot
+# Evidence Dockets
 
 ## What this is
-Public documentation for enterprise-pilot.
+Public documentation for evidence-dockets.
 ## What this is not
 Not a certification, investment product, or autonomous claim system.
 ## Why it matters
@@ -13,7 +13,7 @@ Use the related GitHub Actions workflow from docs/WORKFLOW_LAUNCHPAD.md.
 ## What to inspect
 Inspect artifacts, Evidence Dockets, ProofBundles, and claim boundaries.
 ## Where it appears on GitHub Pages
-/enterprise-pilot/
+/evidence-dockets/
 ## Claim boundary
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
 ## Troubleshooting
