@@ -49,3 +49,5 @@ This system does not perform regulated financial, legal, medical, HR, credit, in
 - Recursive Substrate
 
 - Work Vaults / MARK / Sovereigns: [docs/secure-rails/work-vaults-mark-sovereigns.md](docs/secure-rails/work-vaults-mark-sovereigns.md)
+
+- AGI ALPHA Engine 001: [README_AGIALPHA_ENGINE.md](README_AGIALPHA_ENGINE.md)

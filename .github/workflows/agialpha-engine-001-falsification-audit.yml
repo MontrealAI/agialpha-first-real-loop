@@ -1,11 +1,18 @@
 name: AGI ALPHA Engine 001 / Falsification Audit
-on: {workflow_dispatch: {}, schedule: [{cron: '0 6 * * 0'}]}
-permissions: {contents: read, actions: read}
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * 0"
+permissions:
+  contents: read
+  actions: read
 jobs:
-  run:
+  falsification_audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '3.11'}
-      - run: python -m agialpha_engine falsification-audit --run agialpha_engine_registry/runs/engine-run-001
+        with:
+          python-version: "3.11"
+      - run: python -m agialpha_engine run-cycle --repo-root . --registry engine_registry --out /tmp/agialpha-engine-falsification --candidate-tasks 16 --evaluate-tasks 6 --variants-per-task 2
+      - run: python -m agialpha_engine falsification-audit --run /tmp/agialpha-engine-falsification
