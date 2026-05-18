@@ -1,0 +1,62 @@
+[
+  {
+    "B0": "no_engine",
+    "B1": "docs_only",
+    "B2": "fixed_checklist",
+    "B3": "random_seed_generator",
+    "B4": "fail",
+    "B5": "current_governance_harness",
+    "B6": "alpha_factory_engine",
+    "B6_advantage_delta_vs_B5": 8,
+    "B6_beats_B5": true,
+    "B7": "pending_human_review"
+  },
+  {
+    "B0": "no_engine",
+    "B1": "docs_only",
+    "B2": "fixed_checklist",
+    "B3": "random_seed_generator",
+    "B4": "fail",
+    "B5": "current_governance_harness",
+    "B6": "alpha_factory_engine",
+    "B6_advantage_delta_vs_B5": 8,
+    "B6_beats_B5": true,
+    "B7": "pending_human_review"
+  },
+  {
+    "B0": "no_engine",
+    "B1": "docs_only",
+    "B2": "fixed_checklist",
+    "B3": "random_seed_generator",
+    "B4": "fail",
+    "B5": "current_governance_harness",
+    "B6": "alpha_factory_engine",
+    "B6_advantage_delta_vs_B5": 8,
+    "B6_beats_B5": true,
+    "B7": "pending_human_review"
+  },
+  {
+    "B0": "no_engine",
+    "B1": "docs_only",
+    "B2": "fixed_checklist",
+    "B3": "random_seed_generator",
+    "B4": "fail",
+    "B5": "current_governance_harness",
+    "B6": "alpha_factory_engine",
+    "B6_advantage_delta_vs_B5": 8,
+    "B6_beats_B5": true,
+    "B7": "pending_human_review"
+  },
+  {
+    "B0": "no_engine",
+    "B1": "docs_only",
+    "B2": "fixed_checklist",
+    "B3": "random_seed_generator",
+    "B4": "fail",
+    "B5": "current_governance_harness",
+    "B6": "alpha_factory_engine",
+    "B6_advantage_delta_vs_B5": 8,
+    "B6_beats_B5": true,
+    "B7": "pending_human_review"
+  }
+]
