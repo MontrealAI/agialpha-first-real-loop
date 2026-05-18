@@ -161,6 +161,22 @@ def validate(args):
     atomic_write_json(run / "validate.json", {"status": "ok", "validated": True, **BOUNDARIES})
 
 
+
+
+def _detect_current_run_dir(registry: Path) -> Path | None:
+    candidates = [
+        Path("agialpha-engine-runs/test"),
+        Path("/tmp/agialpha-engine-test"),
+    ]
+    runs_dir = registry / "runs"
+    if runs_dir.exists() and runs_dir.is_dir():
+        children = sorted([x for x in runs_dir.iterdir() if x.is_dir()], key=lambda x: x.name)
+        if children:
+            candidates.insert(0, children[-1])
+    for c in candidates:
+        if (c / "05_validators/validator_specs.json").exists() or (c / "10_proofbundles/proofbundle.json").exists():
+            return c
+    return None
 def _read_registry_json(registry: Path, name: str, default):
     path = registry / name
     if not path.exists():
@@ -183,6 +199,19 @@ def build_data(args):
     ablations = _read_registry_json(registry, "ablation_results.json", "not_reported")
     proofbundles = _read_registry_json(registry, "proofbundles.json", [])
     evidence_dockets = _read_registry_json(registry, "evidence_dockets.json", [])
+
+    run_dir = _detect_current_run_dir(registry)
+    run_validators = []
+    run_proofbundles = []
+    run_evidence_dockets = []
+    run_descendants = []
+    if run_dir is not None:
+        run_validators = _read_registry_json(run_dir, "05_validators/validator_specs.json", [])
+        pb = _read_registry_json(run_dir, "10_proofbundles/proofbundle.json", {})
+        run_proofbundles = [pb] if isinstance(pb, dict) and pb else []
+        ed = _read_registry_json(run_dir, "11_evidence_docket/00_manifest.json", {})
+        run_evidence_dockets = [ed] if isinstance(ed, dict) and ed else []
+        run_descendants = _read_registry_json(run_dir, "13_descendants/descendant_tasks.json", [])
     archive = _read_registry_json(registry, "capability_archive.json", [])
     lineage = _read_registry_json(registry, "lineage_graph.json", [])
     descendants = _read_registry_json(registry, "descendant_tasks.json", [])
@@ -193,10 +222,10 @@ def build_data(args):
     summary = {
         "registry": str(registry),
         "candidate_tasks_generated": len(tasks) if isinstance(tasks, list) else "unavailable",
-        "validators_generated": len(validators) if isinstance(validators, list) else "unavailable",
-        "proofbundles_created": len(proofbundles) if isinstance(proofbundles, list) else "unavailable",
-        "evidence_dockets_created": len(evidence_dockets) if isinstance(evidence_dockets, list) else "unavailable",
-        "descendant_tasks_generated": len(descendants) if isinstance(descendants, list) else "unavailable",
+        "validators_generated": (len(run_validators) if isinstance(run_validators, list) and run_validators else (len(validators) if isinstance(validators, list) else "unavailable")),
+        "proofbundles_created": (len(run_proofbundles) if run_proofbundles else (len(proofbundles) if isinstance(proofbundles, list) else "unavailable")),
+        "evidence_dockets_created": (len(run_evidence_dockets) if run_evidence_dockets else (len(evidence_dockets) if isinstance(evidence_dockets, list) else "unavailable")),
+        "descendant_tasks_generated": (len(run_descendants) if isinstance(run_descendants, list) and run_descendants else (len(descendants) if isinstance(descendants, list) else "unavailable")),
         "missing_metrics_not_faked": True,
     }
 
@@ -242,9 +271,9 @@ def main():
     rc.add_argument("--repo-root")
     rc.add_argument("--registry")
     rc.add_argument("--out", default="agialpha-engine-runs/test")
-    rc.add_argument("--candidate-tasks", type=int, default=32)
-    rc.add_argument("--evaluate-tasks", type=int, default=12)
-    rc.add_argument("--variants-per-task", type=int, default=3)
+    rc.add_argument("--candidate-tasks", "--candidate-seeds", dest="candidate_tasks", type=int, default=32)
+    rc.add_argument("--evaluate-tasks", "--evaluate-seeds", dest="evaluate_tasks", type=int, default=12)
+    rc.add_argument("--variants-per-task", "--sandbox-evals", dest="variants_per_task", type=int, default=3)
     rc.set_defaults(f=run_cycle)
 
     ore = sp.add_parser("run-open-rsi-eval")
