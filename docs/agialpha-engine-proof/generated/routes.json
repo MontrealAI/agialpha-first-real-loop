@@ -1,0 +1,13 @@
+{
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+  "human_review_required": true,
+  "nav_label": "AGI ALPHA Engine Proof",
+  "no_auto_merge": true,
+  "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+  "routes": [
+    "/agialpha-engine-proof/",
+    "/experiments/agialpha-engine-002/"
+  ],
+  "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+}

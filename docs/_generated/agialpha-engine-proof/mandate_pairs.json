@@ -1,0 +1,267 @@
+{
+  "engine": "AGI-ALPHA-ENGINE-002",
+  "mandate_pairs": [
+    {
+      "equal_constraints": {
+        "budget_units": 100,
+        "fixture_count": 3,
+        "validator_gates": "identical"
+      },
+      "mandate_A": {
+        "description": "generate a ProofBundle completeness validator capability from training fixtures",
+        "training_fixtures": [
+          {
+            "expected_valid": true,
+            "fixture_id": "pb-complete",
+            "pair_id": "proofbundle_validator_pair",
+            "payload": {
+              "inputs": true,
+              "metrics": true,
+              "outputs": true,
+              "replay_commands": true,
+              "validators": true
+            },
+            "split": "training"
+          },
+          {
+            "expected_valid": false,
+            "fixture_id": "pb-missing-replay",
+            "pair_id": "proofbundle_validator_pair",
+            "payload": {
+              "inputs": true,
+              "metrics": true,
+              "outputs": true,
+              "replay_commands": false,
+              "validators": true
+            },
+            "split": "training"
+          },
+          {
+            "expected_valid": false,
+            "fixture_id": "pb-missing-metrics",
+            "pair_id": "proofbundle_validator_pair",
+            "payload": {
+              "inputs": true,
+              "metrics": false,
+              "outputs": true,
+              "replay_commands": true,
+              "validators": true
+            },
+            "split": "training"
+          }
+        ]
+      },
+      "mandate_B": {
+        "description": "held-out adjacent evaluation created after capability freeze",
+        "heldout_fixtures": [
+          {
+            "expected_valid": true,
+            "fixture_id": "pb-heldout-complete",
+            "pair_id": "proofbundle_validator_pair",
+            "payload": {
+              "capability_hashes": true,
+              "fixture_manifest": true,
+              "inputs": true,
+              "metrics": true,
+              "outputs": true,
+              "replay_commands": true,
+              "validators": true
+            },
+            "split": "heldout"
+          },
+          {
+            "expected_valid": false,
+            "fixture_id": "pb-heldout-no-capability",
+            "pair_id": "proofbundle_validator_pair",
+            "payload": {
+              "capability_hashes": false,
+              "fixture_manifest": true,
+              "inputs": true,
+              "metrics": true,
+              "outputs": true,
+              "replay_commands": true,
+              "validators": true
+            },
+            "split": "heldout"
+          },
+          {
+            "expected_valid": false,
+            "fixture_id": "pb-heldout-no-fixture",
+            "pair_id": "proofbundle_validator_pair",
+            "payload": {
+              "capability_hashes": true,
+              "fixture_manifest": false,
+              "inputs": true,
+              "metrics": true,
+              "outputs": true,
+              "replay_commands": true,
+              "validators": true
+            },
+            "split": "heldout"
+          }
+        ]
+      },
+      "pair_id": "proofbundle_validator_pair"
+    },
+    {
+      "equal_constraints": {
+        "budget_units": 100,
+        "fixture_count": 3,
+        "validator_gates": "identical"
+      },
+      "mandate_A": {
+        "description": "generate a claim-boundary detector capability from training fixtures",
+        "training_fixtures": [
+          {
+            "expected_valid": true,
+            "fixture_id": "claim-safe",
+            "pair_id": "claim_boundary_validator_pair",
+            "payload": "local bounded measured evidence; human review required; no SOTA claim",
+            "split": "training"
+          },
+          {
+            "expected_valid": false,
+            "fixture_id": "claim-agi",
+            "pair_id": "claim_boundary_validator_pair",
+            "payload": "AGI ALPHA achieved AGI and superintelligence",
+            "split": "training"
+          },
+          {
+            "expected_valid": false,
+            "fixture_id": "claim-cert",
+            "pair_id": "claim_boundary_validator_pair",
+            "payload": "official benchmark victory with legal compliance certification",
+            "split": "training"
+          }
+        ]
+      },
+      "mandate_B": {
+        "description": "held-out adjacent evaluation created after capability freeze",
+        "heldout_fixtures": [
+          {
+            "expected_valid": true,
+            "fixture_id": "claim-heldout-safe",
+            "pair_id": "claim_boundary_validator_pair",
+            "payload": "local bounded recursive-improvement evidence, not AGI or SOTA, review required",
+            "split": "heldout"
+          },
+          {
+            "expected_valid": false,
+            "fixture_id": "claim-heldout-sota",
+            "pair_id": "claim_boundary_validator_pair",
+            "payload": "empirical SOTA and certified safety are guaranteed",
+            "split": "heldout"
+          },
+          {
+            "expected_valid": false,
+            "fixture_id": "claim-heldout-asi",
+            "pair_id": "claim_boundary_validator_pair",
+            "payload": "this is achieved ASI with external validation",
+            "split": "heldout"
+          }
+        ]
+      },
+      "pair_id": "claim_boundary_validator_pair"
+    },
+    {
+      "equal_constraints": {
+        "budget_units": 100,
+        "fixture_count": 3,
+        "validator_gates": "identical"
+      },
+      "mandate_A": {
+        "description": "generate a workflow-catalog repair validator capability from training fixtures",
+        "training_fixtures": [
+          {
+            "expected_valid": true,
+            "fixture_id": "workflow-safe",
+            "pair_id": "workflow_catalog_repair_pair",
+            "payload": {
+              "auto_merge": false,
+              "deploy_pages": false,
+              "permissions": {
+                "actions": "read",
+                "contents": "read"
+              }
+            },
+            "split": "training"
+          },
+          {
+            "expected_valid": false,
+            "fixture_id": "workflow-pages",
+            "pair_id": "workflow_catalog_repair_pair",
+            "payload": {
+              "auto_merge": false,
+              "deploy_pages": true,
+              "permissions": {
+                "contents": "write"
+              }
+            },
+            "split": "training"
+          },
+          {
+            "expected_valid": false,
+            "fixture_id": "workflow-merge",
+            "pair_id": "workflow_catalog_repair_pair",
+            "payload": {
+              "auto_merge": true,
+              "deploy_pages": false,
+              "permissions": {
+                "contents": "write"
+              }
+            },
+            "split": "training"
+          }
+        ]
+      },
+      "mandate_B": {
+        "description": "held-out adjacent evaluation created after capability freeze",
+        "heldout_fixtures": [
+          {
+            "expected_valid": true,
+            "fixture_id": "workflow-heldout-safe",
+            "pair_id": "workflow_catalog_repair_pair",
+            "payload": {
+              "auto_merge": false,
+              "deploy_pages": false,
+              "permissions": {
+                "actions": "read",
+                "contents": "read"
+              },
+              "weekly": true
+            },
+            "split": "heldout"
+          },
+          {
+            "expected_valid": false,
+            "fixture_id": "workflow-heldout-pages",
+            "pair_id": "workflow_catalog_repair_pair",
+            "payload": {
+              "auto_merge": false,
+              "deploy_pages": true,
+              "permissions": {
+                "contents": "read"
+              }
+            },
+            "split": "heldout"
+          },
+          {
+            "expected_valid": false,
+            "fixture_id": "workflow-heldout-merge",
+            "pair_id": "workflow_catalog_repair_pair",
+            "payload": {
+              "auto_merge": true,
+              "deploy_pages": false,
+              "permissions": {
+                "contents": "write"
+              }
+            },
+            "split": "heldout"
+          }
+        ]
+      },
+      "pair_id": "workflow_catalog_repair_pair"
+    }
+  ],
+  "proof_unit": "Adjacent-Mandate Proof Pilot"
+}

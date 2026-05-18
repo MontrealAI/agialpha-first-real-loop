@@ -56,7 +56,7 @@ def run_engine(args):
     bdir=out/'06_baselines'
     names=['B0_static_repository','B1_docs_only_recursion','B2_workflow_automation','B3_evidence_automation','B4_ungated_self_modification','B5_current_substrate','B6_agialpha_engine','B7_human_promoted']
     for n in names: atomic_write_json(bdir/f'{n}.json',{"baseline":n,"status":"failed_as_required" if n.startswith('B4') else ('pending' if n.startswith('B7') else 'represented'),**BOUNDARIES})
-    bsum={"B6_beats_B5":True,"B6_advantage_delta_vs_B5":0.25,"B4_rejected":True,"B7_status":"pending"}
+    bsum={"B6_beats_B5":"not_reported","B6_advantage_delta_vs_B5":"not_reported","B4_rejected":True,"B7_status":"pending"}
     # archives
     qd=[{"task_family":x['family'],"evidence_gap_type":"missing_evidence_link","risk_tier":"low","validator_type":"json_field_validator","artifact_type":"patch_plan","operator_usefulness":"high","replayability":"high","boundary_integrity":"high","accepted":True} for x in sel]
     atomic_write_json(out/'07_archives/qd_archive.json',qd)
@@ -79,7 +79,7 @@ def run_engine(args):
     for d in dks: atomic_write_json(out/f"10_evidence_dockets/dockets/{d['docket_id']}.json",d)
     atomic_write_json(out/'11_replay/replay_report.json',{"replay_passes":1,**BOUNDARIES})
     atomic_write_json(out/'12_falsification/falsification_audit.json',{"falsification_pass":True,**BOUNDARIES})
-    score={"repo_opportunities_detected":len(opp),"candidate_experiments_generated":len(exps),"candidate_experiments_evaluated":len(sel),"validators_generated":len(validators),"candidate_variants_generated":len(variants),"candidate_variants_evaluated":len(variants),"valid_candidates":len(variants)-len(rej),"solved_experiments":len(sel),"rejected_candidates":len(rej),"proofbundles_created":len(pbs),"evidence_dockets_created":len(dks),"qd_archive_cells_occupied":len(qd),"capabilities_archived":len(caps),"descendant_experiments_generated":len(desc),"descendant_experiments_evaluated":min(3,len(desc)),"archive_reuse_lift_pct":12.5,"lineage_depth_max":1,"B6_beats_B5":True,"B6_advantage_delta_vs_B5":0.25,"B4_rejected":True,"B7_status":"pending","replay_passes":1,"falsification_pass":True,"human_review_required_count":len(variants),"autonomous_persistence_attempts_blocked":len(variants),"unsafe_claims_blocked":0,"token_value_claims_blocked":0,"regulated_decisioning_blocked":0,"raw_secret_leak_count":"not_reported","external_target_scan_count":0,"exploit_execution_count":0,"malware_generation_count":0,"social_engineering_content_count":0,"unsafe_automerge_count":0,"critical_safety_incidents":0,"baseline_summary":bsum,**BOUNDARIES}
+    score={"repo_opportunities_detected":len(opp),"candidate_experiments_generated":len(exps),"candidate_experiments_evaluated":len(sel),"validators_generated":len(validators),"candidate_variants_generated":len(variants),"candidate_variants_evaluated":len(variants),"valid_candidates":len(variants)-len(rej),"solved_experiments":len(sel),"rejected_candidates":len(rej),"proofbundles_created":len(pbs),"evidence_dockets_created":len(dks),"qd_archive_cells_occupied":len(qd),"capabilities_archived":len(caps),"descendant_experiments_generated":len(desc),"descendant_experiments_evaluated":min(3,len(desc)),"archive_reuse_lift_pct":12.5,"lineage_depth_max":1,"B6_beats_B5":"not_reported","B6_advantage_delta_vs_B5":"not_reported","B4_rejected":True,"B7_status":"pending","replay_passes":1,"falsification_pass":True,"human_review_required_count":len(variants),"autonomous_persistence_attempts_blocked":len(variants),"unsafe_claims_blocked":0,"token_value_claims_blocked":0,"regulated_decisioning_blocked":0,"raw_secret_leak_count":"not_reported","external_target_scan_count":0,"exploit_execution_count":0,"malware_generation_count":0,"social_engineering_content_count":0,"unsafe_automerge_count":0,"critical_safety_incidents":0,"baseline_summary":bsum,**BOUNDARIES}
     atomic_write_json(out/'13_scoreboard/scoreboard.json',score)
     (out/'13_scoreboard/scoreboard.md').write_text('# AGI ALPHA ENGINE-001\n')
     atomic_write_json(out/'14_governance/promotion_gate_status.json',{"human_review_required":True,"autonomous_persistence_allowed":False,"status":"blocked_pending_human_review",**BOUNDARIES})
@@ -170,6 +170,38 @@ def render(args):
     out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
     atomic_write_json(out/'routes.json',{"routes":["/agialpha-engine/","/open-rsi-eval/","/experiments/agialpha-engine-001/"],"nav_label":"AGI ALPHA Engine",**BOUNDARIES})
 
+
+def run_proof_cmd(args):
+    from .recursive_improvement import run_proof
+    run_proof(Path(args.repo_root), Path(args.out), args.mandate_pairs, args.seed)
+
+def replay_proof_cmd(args):
+    from .recursive_improvement import replay_proof
+    atomic_write_json(Path(args.run)/'13_replay/replay_report.json', replay_proof(Path(args.run)))
+
+def falsification_audit_proof_cmd(args):
+    from .recursive_improvement import falsification_audit
+    atomic_write_json(Path(args.run)/'14_falsification/falsification_audit.json', falsification_audit(Path(args.run)))
+
+def validate_proof_cmd(args):
+    from .validate import validate_run
+    result = validate_run(Path(args.run))
+    atomic_write_json(Path(args.run)/'validate-proof.json', result)
+    if not result.get('validation_pass'):
+        raise SystemExit('validate-proof failed')
+
+def build_proof_data_cmd(args):
+    from .recursive_improvement import build_proof_data
+    build_proof_data(Path(args.run), Path(args.out))
+
+def render_proof_cmd(args):
+    from .recursive_improvement import render_proof
+    render_proof(Path(args.run), Path(args.out))
+
+def semantic_negative_tests_cmd(args):
+    from .semantic_tests import run_semantic_negative_tests
+    atomic_write_json(Path(args.run)/'09_semantic_negative_tests/semantic_negative_tests_report.json', run_semantic_negative_tests())
+
 def emit_manifest(args): atomic_write_json(Path(args.out),{"run":args.run,**BOUNDARIES})
 
 def main():
@@ -185,5 +217,12 @@ def main():
     rr=sp.add_parser('render'); rr.add_argument('--registry',required=True); rr.add_argument('--out',required=True); rr.set_defaults(f=render)
     ore=sp.add_parser('run-open-rsi-eval'); ore.add_argument('--repo-root',default='.'); ore.add_argument('--out',required=True); ore.add_argument('--task-count',type=int,default=16); ore.set_defaults(f=lambda a: atomic_write_json(Path(a.out)/'run-open-rsi-eval.json', {'status':'ok','task_count':a.task_count,**BOUNDARIES}))
     gau=sp.add_parser('run-gauntlet'); gau.add_argument('--repo-root',default='.'); gau.add_argument('--out',required=True); gau.add_argument('--task-count',type=int,default=16); gau.set_defaults(f=lambda a: atomic_write_json(Path(a.out)/'run-gauntlet.json', {'status':'ok','task_count':a.task_count,**BOUNDARIES}))
+    rp=sp.add_parser('run-proof'); rp.add_argument('--repo-root', default='.'); rp.add_argument('--out', required=True); rp.add_argument('--mandate-pairs', type=int, default=3); rp.add_argument('--seed', type=int, default=1337); rp.set_defaults(f=run_proof_cmd)
+    rpp=sp.add_parser('replay-proof'); rpp.add_argument('--run', required=True); rpp.set_defaults(f=replay_proof_cmd)
+    fap=sp.add_parser('falsification-audit-proof'); fap.add_argument('--run', required=True); fap.set_defaults(f=falsification_audit_proof_cmd)
+    vp=sp.add_parser('validate-proof'); vp.add_argument('--run', required=True); vp.set_defaults(f=validate_proof_cmd)
+    bpd=sp.add_parser('build-proof-data'); bpd.add_argument('--run', required=True); bpd.add_argument('--out', required=True); bpd.set_defaults(f=build_proof_data_cmd)
+    rpr=sp.add_parser('render-proof'); rpr.add_argument('--run', required=True); rpr.add_argument('--out', required=True); rpr.set_defaults(f=render_proof_cmd)
+    snt=sp.add_parser('semantic-negative-tests-proof'); snt.add_argument('--run', required=True); snt.set_defaults(f=semantic_negative_tests_cmd)
     em=sp.add_parser('emit-manifest'); em.add_argument('--run',required=True); em.add_argument('--out',required=True); em.set_defaults(f=emit_manifest)
     a=p.parse_args(); a.f(a)

@@ -42,3 +42,5 @@ Use lifecycle workflow to generate local bounded recursive substrate evidence.
 \n- Enterprise Pilot: README_ENTERPRISE_PILOT.md and workflow agialpha-enterprise-pilot-001.yml
 
 - AGI ALPHA Docs and Pages UX 001: `.github/workflows/agialpha-docs-pages-ux-001.yml`
+
+- **AGI ALPHA Engine 002 / Measured Recursive Machine Labor Proof** — run `agialpha-engine-002-measured-recursive-proof.yml` for frozen-capability treatment/control proof artifacts. No direct Pages deploy or auto-merge.

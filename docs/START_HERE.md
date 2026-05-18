@@ -44,3 +44,7 @@ This guide serves three audiences: non-technical operators, technical contributo
 ## Doctrine
 **No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.**
 \n- Enterprise Pilot: README_ENTERPRISE_PILOT.md and workflow agialpha-enterprise-pilot-001.yml
+
+## Engine 002 proof quick start
+
+For measured recursive machine labor evidence, run the Engine 002 proof commands in `README_AGIALPHA_ENGINE_PROOF.md`. A supported result requires Evidence Dockets, ProofBundles, replay, falsification, treatment/control metrics, and human review before promotion.

@@ -51,3 +51,7 @@ This system does not perform regulated financial, legal, medical, HR, credit, in
 - Work Vaults / MARK / Sovereigns: [docs/secure-rails/work-vaults-mark-sovereigns.md](docs/secure-rails/work-vaults-mark-sovereigns.md)
 
 - AGI ALPHA Engine 001: [README_AGIALPHA_ENGINE.md](README_AGIALPHA_ENGINE.md)
+
+## AGI ALPHA Engine 002 proof
+
+See `README_AGIALPHA_ENGINE_PROOF.md` and `docs/agialpha-engine-proof/` for the measured recursive machine labor proof. The proof uses frozen capabilities, held-out adjacent mandates, treatment vs shadow-control comparison, replay, falsification, ProofBundles, Evidence Dockets, and human-review gates; it does not claim achieved AGI/ASI, empirical SOTA, certification, token value, or ROI.

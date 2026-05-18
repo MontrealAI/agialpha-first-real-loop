@@ -15,7 +15,7 @@ def main():
     b.add_argument("--registry", default="enterprise_pilot_registry")
     b.add_argument("--workflow-family")
     b.add_argument("--customer-mode")
-    b.set_defaults(func=lambda a: build(Path(a.repo_root), Path(a.out), Path(a.use_cases or "config/enterprise_pilot_use_cases.example.json"), Path(a.registry)))
+    b.set_defaults(func=lambda a: build(Path(a.repo_root), Path(a.out), Path(a.use_cases) if a.use_cases else Path(a.repo_root) / "config/enterprise_pilot_use_cases.example.json", Path(a.registry), a.workflow_family, a.customer_mode))
 
     v = sp.add_parser("validate"); v.add_argument("--run", required=True); v.set_defaults(func=lambda a: validate(Path(a.run)))
     r = sp.add_parser("replay"); r.add_argument("--run", required=True); r.set_defaults(func=lambda a: replay(Path(a.run)))
