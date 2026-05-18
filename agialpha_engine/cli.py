@@ -20,7 +20,7 @@ def _must_exist(path: Path, missing: list[str]) -> None:
 def discover(args):
     reg = Path(args.registry)
     reg.mkdir(parents=True, exist_ok=True)
-    tasks = generate_tasks(max(args.candidate_tasks, 12))
+    tasks = generate_tasks(max(args.candidate_tasks, 0))
     atomic_write_json(reg / "task_candidates.json", tasks)
     atomic_write_json(reg / "latest.json", {"run_id": "run-001", **BOUNDARIES})
 
@@ -168,6 +168,10 @@ def _detect_current_run_dir(registry: Path) -> Path | None:
         Path("agialpha-engine-runs/test"),
         Path("/tmp/agialpha-engine-test"),
     ]
+    tmp_root = Path("/tmp")
+    if tmp_root.exists():
+        tmp_candidates = sorted(tmp_root.glob("agialpha-engine-*"), key=lambda x: x.name)
+        candidates = tmp_candidates + candidates
     runs_dir = registry / "runs"
     if runs_dir.exists() and runs_dir.is_dir():
         children = sorted([x for x in runs_dir.iterdir() if x.is_dir()], key=lambda x: x.name)
@@ -232,11 +236,15 @@ def build_data(args):
     atomic_write_json(out / "latest.json", latest)
     atomic_write_json(out / "summary.json", summary)
     atomic_write_json(out / "tasks.json", tasks)
-    atomic_write_json(out / "validators.json", validators)
+    effective_validators = run_validators if isinstance(run_validators, list) and run_validators else validators
+    effective_proofbundles = run_proofbundles if run_proofbundles else proofbundles
+    effective_evidence_dockets = run_evidence_dockets if run_evidence_dockets else evidence_dockets
+
+    atomic_write_json(out / "validators.json", effective_validators)
     atomic_write_json(out / "baselines.json", baselines)
     atomic_write_json(out / "ablations.json", ablations)
-    atomic_write_json(out / "proofbundles.json", proofbundles)
-    atomic_write_json(out / "evidence_dockets.json", evidence_dockets)
+    atomic_write_json(out / "proofbundles.json", effective_proofbundles)
+    atomic_write_json(out / "evidence_dockets.json", effective_evidence_dockets)
     atomic_write_json(out / "archive.json", archive)
     atomic_write_json(out / "lineage.json", lineage)
     atomic_write_json(out / "descendants.json", descendants)
