@@ -210,6 +210,7 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 | `agialpha-engine-001-lifecycle.yml` | Core | `workflow_dispatch`, `schedule` | Engine lifecycle artifacts, replay, falsification, generated data. | Human review required; no auto-merge; no direct Pages deploy. | no |
 
 | `agialpha-engine-001-falsification-audit.yml` | Core | `workflow_dispatch`, `schedule` | Engine falsification audit artifacts. | Claim-boundary enforcement only; no direct Pages deploy. | no |
+| `agialpha-engine-001-open-rsi-eval.yml` | Core | `workflow_dispatch`, `schedule` | Engine Open RSI evaluation artifacts. | Synthetic/local fixtures only; no direct Pages deploy. | no |
 | `agialpha-engine-001-gauntlet.yml` | Core | `workflow_dispatch`, `schedule` | Engine gauntlet run artifacts. | Human review required; no auto-merge; no direct Pages deploy. | no |
 | `agialpha-engine-001-replay.yml` | Core | `workflow_dispatch`, `schedule` | Engine replay artifacts. | Replay-only evidence; no direct Pages deploy. | no |
 | `agialpha-engine-001-vnext.yml` | Core | `workflow_dispatch`, `schedule` | Engine vNext candidate artifacts. | Human-governed promotion required; no direct Pages deploy. | no |
