@@ -1,562 +1,746 @@
 [
   {
-    "candidate": "engine-run-001-cand-001",
-    "family": "evaluator_improvement",
-    "validator": "validator-001",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-002",
-    "family": "replay_hardening",
-    "validator": "validator-002",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-003",
-    "family": "evidence_docket_repair",
-    "validator": "validator-003",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-004",
-    "family": "proofbundle_repair",
-    "validator": "validator-004",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-005",
-    "family": "workflow_catalog_repair",
-    "validator": "validator-005",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-006",
-    "family": "generated_data_integrity",
-    "validator": "validator-006",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-007",
-    "family": "claim_boundary_hardening",
-    "validator": "validator-007",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-008",
-    "family": "token_boundary_hardening",
-    "validator": "validator-008",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-009",
-    "family": "regulated_boundary_hardening",
-    "validator": "validator-009",
-    "regulated_boundary_blocked": true,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-010",
-    "family": "docs_operator_usability",
-    "validator": "validator-010",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-011",
-    "family": "sandbox_patch_candidate",
-    "validator": "validator-011",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-012",
-    "family": "validator_synthesis",
-    "validator": "validator-012",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-013",
-    "family": "benchmark_generation",
-    "validator": "validator-013",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-014",
-    "family": "capability_reuse",
-    "validator": "validator-014",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-015",
-    "family": "open_rsi_eval_adapter",
-    "validator": "validator-015",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-001-cand-016",
-    "family": "self_improvement_gauntlet",
-    "validator": "validator-016",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-001",
-    "family": "evaluator_improvement",
-    "validator": "validator-001",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-002",
-    "family": "replay_hardening",
-    "validator": "validator-002",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-003",
-    "family": "evidence_docket_repair",
-    "validator": "validator-003",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-004",
-    "family": "proofbundle_repair",
-    "validator": "validator-004",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-005",
-    "family": "workflow_catalog_repair",
-    "validator": "validator-005",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-006",
-    "family": "generated_data_integrity",
-    "validator": "validator-006",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-007",
-    "family": "claim_boundary_hardening",
-    "validator": "validator-007",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-008",
-    "family": "token_boundary_hardening",
-    "validator": "validator-008",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-009",
-    "family": "regulated_boundary_hardening",
-    "validator": "validator-009",
-    "regulated_boundary_blocked": true,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-010",
-    "family": "docs_operator_usability",
-    "validator": "validator-010",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-011",
-    "family": "sandbox_patch_candidate",
-    "validator": "validator-011",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-012",
-    "family": "validator_synthesis",
-    "validator": "validator-012",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-013",
-    "family": "benchmark_generation",
-    "validator": "validator-013",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-014",
-    "family": "capability_reuse",
-    "validator": "validator-014",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-015",
-    "family": "open_rsi_eval_adapter",
-    "validator": "validator-015",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-002-cand-016",
-    "family": "self_improvement_gauntlet",
-    "validator": "validator-016",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-001",
-    "family": "evaluator_improvement",
-    "validator": "validator-001",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-002",
-    "family": "replay_hardening",
-    "validator": "validator-002",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-003",
-    "family": "evidence_docket_repair",
-    "validator": "validator-003",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-004",
-    "family": "proofbundle_repair",
-    "validator": "validator-004",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-005",
-    "family": "workflow_catalog_repair",
-    "validator": "validator-005",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-006",
-    "family": "generated_data_integrity",
-    "validator": "validator-006",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-007",
-    "family": "claim_boundary_hardening",
-    "validator": "validator-007",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-008",
-    "family": "token_boundary_hardening",
-    "validator": "validator-008",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-009",
-    "family": "regulated_boundary_hardening",
-    "validator": "validator-009",
-    "regulated_boundary_blocked": true,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-010",
-    "family": "docs_operator_usability",
-    "validator": "validator-010",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-011",
-    "family": "sandbox_patch_candidate",
-    "validator": "validator-011",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-012",
-    "family": "validator_synthesis",
-    "validator": "validator-012",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-013",
-    "family": "benchmark_generation",
-    "validator": "validator-013",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-014",
-    "family": "capability_reuse",
-    "validator": "validator-014",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-015",
-    "family": "open_rsi_eval_adapter",
-    "validator": "validator-015",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-003-cand-016",
-    "family": "self_improvement_gauntlet",
-    "validator": "validator-016",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-001",
-    "family": "evaluator_improvement",
-    "validator": "validator-001",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-002",
-    "family": "validator_synthesis",
-    "validator": "validator-002",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-003",
-    "family": "benchmark_generation",
-    "validator": "validator-003",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-004",
-    "family": "capability_reuse",
-    "validator": "validator-004",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-005",
-    "family": "replay_hardening",
-    "validator": "validator-005",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-006",
-    "family": "evidence_docket_repair",
-    "validator": "validator-006",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-007",
-    "family": "proofbundle_repair",
-    "validator": "validator-007",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-008",
-    "family": "workflow_catalog_repair",
-    "validator": "validator-008",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-009",
-    "family": "generated_data_integrity",
-    "validator": "validator-009",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-010",
-    "family": "claim_boundary_hardening",
-    "validator": "validator-010",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-011",
-    "family": "token_boundary_hardening",
-    "validator": "validator-011",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-012",
-    "family": "regulated_boundary_hardening",
-    "validator": "validator-012",
-    "regulated_boundary_blocked": true,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-013",
-    "family": "docs_operator_usability",
-    "validator": "validator-013",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-014",
-    "family": "sandbox_patch_candidate",
-    "validator": "validator-014",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-015",
-    "family": "open_rsi_eval_adapter",
-    "validator": "validator-015",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-004-cand-016",
-    "family": "self_improvement_gauntlet",
-    "validator": "validator-016",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-001",
-    "family": "evaluator_improvement",
-    "validator": "validator-001",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-002",
-    "family": "validator_synthesis",
-    "validator": "validator-002",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-003",
-    "family": "benchmark_generation",
-    "validator": "validator-003",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-004",
-    "family": "capability_reuse",
-    "validator": "validator-004",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-005",
-    "family": "replay_hardening",
-    "validator": "validator-005",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-006",
-    "family": "evidence_docket_repair",
-    "validator": "validator-006",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-007",
-    "family": "proofbundle_repair",
-    "validator": "validator-007",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-008",
-    "family": "workflow_catalog_repair",
-    "validator": "validator-008",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-009",
-    "family": "generated_data_integrity",
-    "validator": "validator-009",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-010",
-    "family": "claim_boundary_hardening",
-    "validator": "validator-010",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-011",
-    "family": "token_boundary_hardening",
-    "validator": "validator-011",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-012",
-    "family": "regulated_boundary_hardening",
-    "validator": "validator-012",
-    "regulated_boundary_blocked": true,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-013",
-    "family": "docs_operator_usability",
-    "validator": "validator-013",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-014",
-    "family": "sandbox_patch_candidate",
-    "validator": "validator-014",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-015",
-    "family": "open_rsi_eval_adapter",
-    "validator": "validator-015",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
-  },
-  {
-    "candidate": "engine-run-005-cand-016",
-    "family": "self_improvement_gauntlet",
-    "validator": "validator-016",
-    "regulated_boundary_blocked": false,
-    "claim_boundary": "local bounded recursive experiment-engine evidence"
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-001",
+    "family": "Evidence Docket completeness repair",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/ascension-001-external-review.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/ascension-001-external-review.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/ascension-001-external-review.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-002",
+    "family": "ProofBundle completeness repair",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/benchmark-gauntlet-001-challenge-pack.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/benchmark-gauntlet-001-challenge-pack.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/benchmark-gauntlet-001-challenge-pack.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-003",
+    "family": "Replay hardening",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/benchmark-gauntlet-001-external-review.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/benchmark-gauntlet-001-external-review.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/benchmark-gauntlet-001-external-review.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-004",
+    "family": "Falsification audit hardening",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/claim-boundary-concern.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/claim-boundary-concern.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/claim-boundary-concern.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-005",
+    "family": "Workflow catalog repair",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/cyber-sovereign-002-external-review.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/cyber-sovereign-002-external-review.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/cyber-sovereign-002-external-review.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-006",
+    "family": "GitHub Pages route integrity",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/cyber-sovereign-external-review.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/cyber-sovereign-external-review.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/cyber-sovereign-external-review.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-007",
+    "family": "Generated-data completeness",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/evidence-docket-bug.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/evidence-docket-bug.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/evidence-docket-bug.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-008",
+    "family": "Claim-boundary hardening",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/evidence-factory-followup.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/evidence-factory-followup.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/evidence-factory-followup.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-009",
+    "family": "Token-boundary hardening",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/external-review-attestation.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/external-review-attestation.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/external-review-attestation.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-010",
+    "family": "Regulated-boundary hardening",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/frontier-external-review.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/frontier-external-review.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/frontier-external-review.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-011",
+    "family": "SecureRails safety-ledger hardening",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/helios-002-external-review.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/helios-002-external-review.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/helios-002-external-review.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-012",
+    "family": "Work Vault linkage",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/helios-003-external-review.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/helios-003-external-review.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/helios-003-external-review.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-013",
+    "family": "MARK allocation linkage",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/helios-external-review.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/helios-external-review.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/helios-external-review.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-014",
+    "family": "Sovereign assignment linkage",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/l4-external-review.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/l4-external-review.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/l4-external-review.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-015",
+    "family": "Capability Archive compression",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/omega-aegis-001-external-review.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/omega-aegis-001-external-review.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/omega-aegis-001-external-review.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-016",
+    "family": "QD archive coverage",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/omega-gauntlet-001-challenge-pack.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/omega-gauntlet-001-challenge-pack.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/omega-gauntlet-001-challenge-pack.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-017",
+    "family": "Operator documentation usability",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/omega-gauntlet-001-external-review.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/omega-gauntlet-001-external-review.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/omega-gauntlet-001-external-review.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-018",
+    "family": "Reviewer replay kit usability",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/phoenix-hub-001-challenge-pack.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/phoenix-hub-001-challenge-pack.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/phoenix-hub-001-challenge-pack.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-019",
+    "family": "Enterprise pilot evidence quality",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/phoenix-hub-001-external-review.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/phoenix-hub-001-external-review.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/phoenix-hub-001-external-review.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-020",
+    "family": "Valuation-support missing-evidence honesty",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/replay-failure.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/replay-failure.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/replay-failure.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-021",
+    "family": "Recursive Substrate vNext proposal",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/rsi-forge-001-external-review.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/rsi-forge-001-external-review.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/rsi-forge-001-external-review.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-022",
+    "family": "Ascension OS scorecard hardening",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/rsi-forge-002-external-review.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/rsi-forge-002-external-review.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/rsi-forge-002-external-review.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-023",
+    "family": "Open RSI Eval task generator hardening",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/safety-ledger-concern.md",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/safety-ledger-concern.md"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/safety-ledger-concern.md",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "baseline_spec": "B6 vs B5",
+    "candidate_solution_plan": "Patch-plan only, no auto-apply",
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_hints": [
+      "boundary hardening"
+    ],
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-024",
+    "family": "Self-Improvement Gauntlet task hardening",
+    "generated_validator": {
+      "target": ".github/ISSUE_TEMPLATE/securerails-human-review.yml",
+      "validator_type": "path_existence_validator"
+    },
+    "human_review_required": true,
+    "input_artifacts": [
+      ".github/ISSUE_TEMPLATE/securerails-human-review.yml"
+    ],
+    "local_mutation_operators": [
+      "patch_plan",
+      "docs_plan"
+    ],
+    "problem_statement": "Repair .github/ISSUE_TEMPLATE/securerails-human-review.yml",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "replay_plan": "deterministic local replay",
+    "risk_tier": "low",
+    "safety_policy": "no network, no auto-merge",
+    "success_criteria": "validator_pass",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "why_it_matters": "Improve bounded local substrate quality"
   }
 ]

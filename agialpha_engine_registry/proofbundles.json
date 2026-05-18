@@ -1,308 +1,82 @@
 [
   {
-    "schema_version": "agialpha.engine.proofbundle.v1",
-    "run_id": "engine-run-001",
-    "input_hashes": {},
-    "candidate_hashes": {
-      "engine-run-001-cand-001": "401431668c4598344d10d48bc1bc2c0f90d246ef932cba9352d680f46ee69c7b",
-      "engine-run-001-cand-002": "bb5b37ab11a5c922ce829e07618f04048ad0b0292175d8b6d7d8d63b24c0d7c9",
-      "engine-run-001-cand-003": "5f2c93dc5258ee5dacc09a5debaafbe1e383b5efc59a18ec03b5f96a163d3170",
-      "engine-run-001-cand-004": "50d122db739b70c6d44f05334545dd61feb55eed7d8e110ba08af59eb706a760",
-      "engine-run-001-cand-005": "e344b511df7c2085ca3363376608e361624de28865e8a6122c570bb89ac75066",
-      "engine-run-001-cand-006": "5b1b802aefdb9df4c31891339f9686547819fe0788c8efcf8309253bc27f3a55",
-      "engine-run-001-cand-007": "1d6e771ac3bf01cf175cd262258eb8174b4b39147d77fe3dfc9c34a9ae44e826",
-      "engine-run-001-cand-008": "2170ace7d4094c2ac8006e58347553fdb874e871d2ee3cdee519bf3a10da269a",
-      "engine-run-001-cand-009": "37acf3b89ab522d108d4914190bef9322b509cb3dcabde2939c437cfcfb117c2",
-      "engine-run-001-cand-010": "f4f2a03abcc684cd1ea677b0a79be17b061ea339602640ea3581bdea2e5621ac",
-      "engine-run-001-cand-011": "9634f96f79be64d606da35ede6a6afd3af1aca9b77acbbef829d1e841532b541",
-      "engine-run-001-cand-012": "2144b1bbfcb13b61c4c3ccb02111122a9607b157ff97201604ec5457f7e2298b",
-      "engine-run-001-cand-013": "45a173605438c8d5ffc157d9e8027666e6aedeb0d5c025d452e4157c144bac5f",
-      "engine-run-001-cand-014": "8976fe90340a3b4a0e29211d9f277f5d27e47d7769140023b821993053237e7d",
-      "engine-run-001-cand-015": "718665225bc66c6aef38a1f6f62b3723e4006f9e5fcee3b7f68cb757de59f575",
-      "engine-run-001-cand-016": "e814dc8b58c4db84bbbc47d8e03dbfdc47ed25b22d62bbb6f2e87f108c36ba29"
-    },
-    "sandbox_hashes": {
-      "engine-run-001-cand-001": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
-      "engine-run-001-cand-002": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
-      "engine-run-001-cand-003": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
-      "engine-run-001-cand-004": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70"
-    },
-    "output_hashes": {},
-    "validator_results": [
-      {
-        "validator_id": "val-001",
-        "candidate": "engine-run-001-cand-001",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-002",
-        "candidate": "engine-run-001-cand-002",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-003",
-        "candidate": "engine-run-001-cand-003",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-004",
-        "candidate": "engine-run-001-cand-004",
-        "spec": "deterministic-fixture"
-      }
-    ],
-    "baseline_results": {
-      "B0": "no_engine",
-      "B1": "docs_only",
-      "B2": "fixed_checklist",
-      "B3": "random_seed_generator",
-      "B4": "fail",
-      "B5": "current_governance_harness",
-      "B6": "alpha_factory_engine",
-      "B7": "pending_human_review",
-      "B6_beats_B5": true,
-      "B6_advantage_delta_vs_B5": 8
-    },
-    "replay_instructions": "python -m agialpha_engine replay --run <run_dir>",
-    "claim_boundary": "local bounded recursive experiment-engine evidence",
-    "token_boundary": "$AGIALPHA utility-only accounting",
-    "regulated_boundary": "regulated decisioning blocked; documentation-only or human-review-required",
-    "human_review_required": true,
-    "autonomous_persistence_allowed": false
-  },
-  {
-    "schema_version": "agialpha.engine.proofbundle.v1",
-    "run_id": "engine-run-002",
-    "input_hashes": {},
-    "candidate_hashes": {
-      "engine-run-002-cand-001": "5c4774f59efce00dd0128bca21b726e452303795bb6dcea69430c19f3eefe573",
-      "engine-run-002-cand-002": "57714ab1a6279df20dbe2527c002c601d41e410fba7a5fc114612d62d4257403",
-      "engine-run-002-cand-003": "f97d4aae572b0c4e51449d24c00ed14c04a293eaa2b08f65605eedd8186418f5",
-      "engine-run-002-cand-004": "8d947036fd4bd53970fb3896947a5f11ea53351a812c6eff2d3aa7816888a573",
-      "engine-run-002-cand-005": "ceeb6f97b7fdf0130594334ff40795e374e110597802943a5ab7f8232c5d0b9b",
-      "engine-run-002-cand-006": "a76d1043e2248ae1864a37eeec3768657d6bd57f4da861834da4de9bba62b4ee",
-      "engine-run-002-cand-007": "4e32202684394c43b2d65ecaf5e8ca91c025f6530b4bff227145511994ce670e",
-      "engine-run-002-cand-008": "0fff28d4cfb718f495b89c6fea401b4f9d0da6492f7213f85364020659a6caa3",
-      "engine-run-002-cand-009": "27c709d932ba499ee567a66fdca7f8123809667722082d91102175a8a3434cda",
-      "engine-run-002-cand-010": "ab921c2664d02b3d925583397412f967657931ca738e4f7cdab31196c4c1739f",
-      "engine-run-002-cand-011": "fc66896707ba606de1a23e24f1bff9d6b130be6403283a9b0c1d2be3f6473eff",
-      "engine-run-002-cand-012": "0272fc6d7a360de5a1cbc53995fe4d2b454f34fa59ea70333e13a6a70bbb648c",
-      "engine-run-002-cand-013": "ad20b663d620acd46723096d939596d1add34367b7ac05fdefc49e2e9108fe97",
-      "engine-run-002-cand-014": "94b8b2c472964d4cee2973c146ab98675779e4af7a24d6186680f83488a6d16e",
-      "engine-run-002-cand-015": "fba8a97c04cdd5382ff48e677d0c4ddc4aef1e6da616136a463ce0df5d5f746c",
-      "engine-run-002-cand-016": "47b5dccdfb3918d64649c962068f12aad079e7ff3db4e06125d3994b01146b3a"
-    },
-    "sandbox_hashes": {
-      "engine-run-002-cand-001": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
-      "engine-run-002-cand-002": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
-      "engine-run-002-cand-003": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70",
-      "engine-run-002-cand-004": "cdf2202be333b46fd47415f23359e49394edf362eaf16a9e480a7426c5f06c70"
-    },
-    "output_hashes": {},
-    "validator_results": [
-      {
-        "validator_id": "val-001",
-        "candidate": "engine-run-002-cand-001",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-002",
-        "candidate": "engine-run-002-cand-002",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-003",
-        "candidate": "engine-run-002-cand-003",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-004",
-        "candidate": "engine-run-002-cand-004",
-        "spec": "deterministic-fixture"
-      }
-    ],
-    "baseline_results": {
-      "B0": "no_engine",
-      "B1": "docs_only",
-      "B2": "fixed_checklist",
-      "B3": "random_seed_generator",
-      "B4": "fail",
-      "B5": "current_governance_harness",
-      "B6": "alpha_factory_engine",
-      "B7": "pending_human_review",
-      "B6_beats_B5": true,
-      "B6_advantage_delta_vs_B5": 8
-    },
-    "replay_instructions": "python -m agialpha_engine replay --run <run_dir>",
-    "claim_boundary": "local bounded recursive experiment-engine evidence",
-    "token_boundary": "$AGIALPHA utility-only accounting",
-    "regulated_boundary": "regulated decisioning blocked; documentation-only or human-review-required",
-    "human_review_required": true,
-    "autonomous_persistence_allowed": false
-  },
-  {
-    "schema_version": "agialpha.engine.proofbundle.v1",
-    "run_id": "engine-run-003",
-    "input_hashes": {},
-    "candidate_hashes": {
-      "engine-run-003-cand-001": "518f9e9191ac9a511dadb0bddb1921e0ae168abdef581a8636a8f6c48adea03e",
-      "engine-run-003-cand-002": "840f0f2428da31222c2b2d105bb5725dd98b804f61119163ad2c2a6888ccbbdd",
-      "engine-run-003-cand-003": "76dd8a21eba38bc74a5ba53b0de0c080731a79ce631e041ce1ed6afe5842f0cf",
-      "engine-run-003-cand-004": "069d73ddf7820fc7a37fc2cb5ee3834edbcc485836e762540055c3df3831ca75",
-      "engine-run-003-cand-005": "1c1096603e8c2192b229c7b3235477ac4a4ed3ead30570fef28a22d2525e08c9",
-      "engine-run-003-cand-006": "70d4074744ad2153f4843f7923353ba36ff318aa71b960ceb3c5e72e39a3d9c4",
-      "engine-run-003-cand-007": "29a78f2fe26cbcdcd2f3b4f34d5dd8d375c8ad08512ccdf97655c11eb5c8b790",
-      "engine-run-003-cand-008": "9fbe86e7ef1659cb745d849864a2f6b89d627f0d26651f4752948f86d22d2620",
-      "engine-run-003-cand-009": "15f52ff46e5b1ed73281f3af04ac002cedafd5425875530078a8cb7cebc0764e",
-      "engine-run-003-cand-010": "ed9dc3f7f24abad14e0b65a3c14438ea5d96321590d44837d92275dec96565d4",
-      "engine-run-003-cand-011": "0c8edc3f5d599b65c0a04d1c20e20571ab6993c29ecb75221a23496473fba5d4",
-      "engine-run-003-cand-012": "375cd83e8eb8e586ca1d7cb34e84b4949a0905ca4a6613e4447aed4f08575c12",
-      "engine-run-003-cand-013": "88d9d96c6faec9ad8d7715212eacdc9572af581e3d9518dc95fc8d4694ac29f2",
-      "engine-run-003-cand-014": "23fb9d24b9b62a15564b9ffcea0fa594a36fadb06af0fc8e3b4e50e3037a1a02",
-      "engine-run-003-cand-015": "d2a5d6506c380f7efa77fc048a48eed63459de115861bd67384ccfcbb193cbc4",
-      "engine-run-003-cand-016": "3d7d4a33b667c522168b5e4bc9c7cc654a295a7561719e69c8dc83d32e604092"
-    },
-    "sandbox_hashes": {
-      "engine-run-003-cand-001": "e6b40583bfbfc0b9b5b765f54e96e24bc407e911b739d5522421783af3cd707a",
-      "engine-run-003-cand-002": "e6b40583bfbfc0b9b5b765f54e96e24bc407e911b739d5522421783af3cd707a",
-      "engine-run-003-cand-003": "e6b40583bfbfc0b9b5b765f54e96e24bc407e911b739d5522421783af3cd707a",
-      "engine-run-003-cand-004": "e6b40583bfbfc0b9b5b765f54e96e24bc407e911b739d5522421783af3cd707a"
-    },
-    "output_hashes": {},
-    "validator_results": [
-      {
-        "validator_id": "val-001",
-        "candidate": "engine-run-003-cand-001",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-002",
-        "candidate": "engine-run-003-cand-002",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-003",
-        "candidate": "engine-run-003-cand-003",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-004",
-        "candidate": "engine-run-003-cand-004",
-        "spec": "deterministic-fixture"
-      }
-    ],
-    "baseline_results": {
-      "B0": "no_engine",
-      "B1": "docs_only",
-      "B2": "fixed_checklist",
-      "B3": "random_seed_generator",
-      "B4": "fail",
-      "B5": "current_governance_harness",
-      "B6": "alpha_factory_engine",
-      "B7": "pending_human_review",
-      "B6_beats_B5": true,
-      "B6_advantage_delta_vs_B5": 8
-    },
-    "replay_instructions": "python -m agialpha_engine replay --run <run_dir>",
-    "claim_boundary": "local bounded recursive experiment-engine evidence",
-    "token_boundary": "$AGIALPHA utility-only accounting",
-    "regulated_boundary": "regulated decisioning blocked; documentation-only or human-review-required",
-    "human_review_required": true,
-    "autonomous_persistence_allowed": false
-  },
-  {
-    "schema_version": "agialpha.engine.proofbundle.v1",
-    "run_id": "engine-run-004",
-    "validator_results": [
-      {
-        "validator_id": "val-001",
-        "candidate": "engine-run-004-cand-001",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-002",
-        "candidate": "engine-run-004-cand-002",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-003",
-        "candidate": "engine-run-004-cand-003",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-004",
-        "candidate": "engine-run-004-cand-004",
-        "spec": "deterministic-fixture"
-      }
-    ],
-    "baseline_results": {
-      "B0": "no_engine",
-      "B1": "docs_only",
-      "B2": "fixed_checklist",
-      "B3": "random_seed_generator",
-      "B4": "fail",
-      "B5": "current_governance_harness",
-      "B6": "alpha_factory_engine",
-      "B7": "pending_human_review",
-      "B6_beats_B5": true,
-      "B6_advantage_delta_vs_B5": 8
-    },
-    "claim_boundary": "local bounded recursive experiment-engine evidence",
-    "token_boundary": "$AGIALPHA utility-only accounting",
-    "regulated_boundary": "regulated decisioning blocked; documentation-only or human-review-required",
-    "human_review_required": true,
     "autonomous_persistence_allowed": false,
-    "input_hashes": {},
-    "candidate_hashes": {},
-    "sandbox_hashes": {},
-    "output_hashes": {},
-    "replay_instructions": "python -m agialpha_engine replay --run <run_dir>"
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-001",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "proofbundle_id": "PB-001",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
   },
   {
-    "schema_version": "agialpha.engine.proofbundle.v1",
-    "run_id": "engine-run-005",
-    "validator_results": [
-      {
-        "validator_id": "val-001",
-        "candidate": "engine-run-005-cand-001",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-002",
-        "candidate": "engine-run-005-cand-002",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-003",
-        "candidate": "engine-run-005-cand-003",
-        "spec": "deterministic-fixture"
-      },
-      {
-        "validator_id": "val-004",
-        "candidate": "engine-run-005-cand-004",
-        "spec": "deterministic-fixture"
-      }
-    ],
-    "baseline_results": {
-      "B0": "no_engine",
-      "B1": "docs_only",
-      "B2": "fixed_checklist",
-      "B3": "random_seed_generator",
-      "B4": "fail",
-      "B5": "current_governance_harness",
-      "B6": "alpha_factory_engine",
-      "B7": "pending_human_review",
-      "B6_beats_B5": true,
-      "B6_advantage_delta_vs_B5": 8
-    },
-    "claim_boundary": "local bounded recursive experiment-engine evidence",
-    "token_boundary": "$AGIALPHA utility-only accounting",
-    "regulated_boundary": "regulated decisioning blocked; documentation-only or human-review-required",
-    "human_review_required": true,
     "autonomous_persistence_allowed": false,
-    "input_hashes": {},
-    "candidate_hashes": {},
-    "sandbox_hashes": {},
-    "output_hashes": {},
-    "replay_instructions": "python -m agialpha_engine replay --run <run_dir>"
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-002",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "proofbundle_id": "PB-002",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-003",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "proofbundle_id": "PB-003",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-004",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "proofbundle_id": "PB-004",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-005",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "proofbundle_id": "PB-005",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-006",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "proofbundle_id": "PB-006",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-007",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "proofbundle_id": "PB-007",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-008",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "proofbundle_id": "PB-008",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
   }
 ]

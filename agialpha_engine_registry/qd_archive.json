@@ -1,311 +1,90 @@
 [
   {
-    "accepted": [],
-    "rejected": [
-      {
-        "candidate": "engine-run-001-cand-001",
-        "family": "evaluator_improvement",
-        "validator": "validator-001",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-001-cand-002",
-        "family": "replay_hardening",
-        "validator": "validator-002",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-001-cand-003",
-        "family": "evidence_docket_repair",
-        "validator": "validator-003",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-001-cand-004",
-        "family": "proofbundle_repair",
-        "validator": "validator-004",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-001-cand-005",
-        "family": "workflow_catalog_repair",
-        "validator": "validator-005",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-001-cand-006",
-        "family": "generated_data_integrity",
-        "validator": "validator-006",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-001-cand-007",
-        "family": "claim_boundary_hardening",
-        "validator": "validator-007",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-001-cand-008",
-        "family": "token_boundary_hardening",
-        "validator": "validator-008",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      }
-    ]
+    "accepted": true,
+    "artifact_type": "patch_plan",
+    "boundary_integrity": "high",
+    "evidence_gap_type": "missing_evidence_link",
+    "operator_usefulness": "high",
+    "replayability": "high",
+    "risk_tier": "low",
+    "task_family": "Evidence Docket completeness repair",
+    "validator_type": "json_field_validator"
   },
   {
-    "accepted": [],
-    "rejected": [
-      {
-        "candidate": "engine-run-002-cand-001",
-        "family": "evaluator_improvement",
-        "validator": "validator-001",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-002-cand-002",
-        "family": "replay_hardening",
-        "validator": "validator-002",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-002-cand-003",
-        "family": "evidence_docket_repair",
-        "validator": "validator-003",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-002-cand-004",
-        "family": "proofbundle_repair",
-        "validator": "validator-004",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-002-cand-005",
-        "family": "workflow_catalog_repair",
-        "validator": "validator-005",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-002-cand-006",
-        "family": "generated_data_integrity",
-        "validator": "validator-006",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-002-cand-007",
-        "family": "claim_boundary_hardening",
-        "validator": "validator-007",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-002-cand-008",
-        "family": "token_boundary_hardening",
-        "validator": "validator-008",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      }
-    ]
+    "accepted": true,
+    "artifact_type": "patch_plan",
+    "boundary_integrity": "high",
+    "evidence_gap_type": "missing_evidence_link",
+    "operator_usefulness": "high",
+    "replayability": "high",
+    "risk_tier": "low",
+    "task_family": "ProofBundle completeness repair",
+    "validator_type": "json_field_validator"
   },
   {
-    "accepted": [],
-    "rejected": [
-      {
-        "candidate": "engine-run-003-cand-001",
-        "family": "evaluator_improvement",
-        "validator": "validator-001",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-003-cand-002",
-        "family": "replay_hardening",
-        "validator": "validator-002",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-003-cand-003",
-        "family": "evidence_docket_repair",
-        "validator": "validator-003",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-003-cand-004",
-        "family": "proofbundle_repair",
-        "validator": "validator-004",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-003-cand-005",
-        "family": "workflow_catalog_repair",
-        "validator": "validator-005",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-003-cand-006",
-        "family": "generated_data_integrity",
-        "validator": "validator-006",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-003-cand-007",
-        "family": "claim_boundary_hardening",
-        "validator": "validator-007",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-003-cand-008",
-        "family": "token_boundary_hardening",
-        "validator": "validator-008",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      }
-    ]
+    "accepted": true,
+    "artifact_type": "patch_plan",
+    "boundary_integrity": "high",
+    "evidence_gap_type": "missing_evidence_link",
+    "operator_usefulness": "high",
+    "replayability": "high",
+    "risk_tier": "low",
+    "task_family": "Replay hardening",
+    "validator_type": "json_field_validator"
   },
   {
-    "run_id": "engine-run-004",
-    "accepted": [
-      {
-        "candidate": "engine-run-004-cand-002",
-        "family": "validator_synthesis",
-        "validator": "validator-002",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-004-cand-003",
-        "family": "benchmark_generation",
-        "validator": "validator-003",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-004-cand-004",
-        "family": "capability_reuse",
-        "validator": "validator-004",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      }
-    ],
-    "rejected": [
-      {
-        "candidate": "engine-run-004-cand-001",
-        "family": "evaluator_improvement",
-        "validator": "validator-001",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-004-cand-005",
-        "family": "replay_hardening",
-        "validator": "validator-005",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-004-cand-006",
-        "family": "evidence_docket_repair",
-        "validator": "validator-006",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-004-cand-007",
-        "family": "proofbundle_repair",
-        "validator": "validator-007",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-004-cand-008",
-        "family": "workflow_catalog_repair",
-        "validator": "validator-008",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      }
-    ]
+    "accepted": true,
+    "artifact_type": "patch_plan",
+    "boundary_integrity": "high",
+    "evidence_gap_type": "missing_evidence_link",
+    "operator_usefulness": "high",
+    "replayability": "high",
+    "risk_tier": "low",
+    "task_family": "Falsification audit hardening",
+    "validator_type": "json_field_validator"
   },
   {
-    "run_id": "engine-run-005",
-    "accepted": [
-      {
-        "candidate": "engine-run-005-cand-002",
-        "family": "validator_synthesis",
-        "validator": "validator-002",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-005-cand-003",
-        "family": "benchmark_generation",
-        "validator": "validator-003",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-005-cand-004",
-        "family": "capability_reuse",
-        "validator": "validator-004",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      }
-    ],
-    "rejected": [
-      {
-        "candidate": "engine-run-005-cand-001",
-        "family": "evaluator_improvement",
-        "validator": "validator-001",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-005-cand-005",
-        "family": "replay_hardening",
-        "validator": "validator-005",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-005-cand-006",
-        "family": "evidence_docket_repair",
-        "validator": "validator-006",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-005-cand-007",
-        "family": "proofbundle_repair",
-        "validator": "validator-007",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      },
-      {
-        "candidate": "engine-run-005-cand-008",
-        "family": "workflow_catalog_repair",
-        "validator": "validator-008",
-        "regulated_boundary_blocked": false,
-        "claim_boundary": "local bounded recursive experiment-engine evidence"
-      }
-    ]
+    "accepted": true,
+    "artifact_type": "patch_plan",
+    "boundary_integrity": "high",
+    "evidence_gap_type": "missing_evidence_link",
+    "operator_usefulness": "high",
+    "replayability": "high",
+    "risk_tier": "low",
+    "task_family": "Workflow catalog repair",
+    "validator_type": "json_field_validator"
+  },
+  {
+    "accepted": true,
+    "artifact_type": "patch_plan",
+    "boundary_integrity": "high",
+    "evidence_gap_type": "missing_evidence_link",
+    "operator_usefulness": "high",
+    "replayability": "high",
+    "risk_tier": "low",
+    "task_family": "GitHub Pages route integrity",
+    "validator_type": "json_field_validator"
+  },
+  {
+    "accepted": true,
+    "artifact_type": "patch_plan",
+    "boundary_integrity": "high",
+    "evidence_gap_type": "missing_evidence_link",
+    "operator_usefulness": "high",
+    "replayability": "high",
+    "risk_tier": "low",
+    "task_family": "Generated-data completeness",
+    "validator_type": "json_field_validator"
+  },
+  {
+    "accepted": true,
+    "artifact_type": "patch_plan",
+    "boundary_integrity": "high",
+    "evidence_gap_type": "missing_evidence_link",
+    "operator_usefulness": "high",
+    "replayability": "high",
+    "risk_tier": "low",
+    "task_family": "Claim-boundary hardening",
+    "validator_type": "json_field_validator"
   }
 ]

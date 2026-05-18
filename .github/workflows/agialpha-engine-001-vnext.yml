@@ -1,18 +1,27 @@
-name: AGI ALPHA Engine 001 / vNext Candidates
+name: AGI ALPHA Engine 001 / Open-Ended Self-Improvement Lifecycle
 on:
   workflow_dispatch:
+    inputs:
+      candidate_experiments: {default: "24", required: false}
+      evaluate_experiments: {default: "8", required: false}
+      variants_per_experiment: {default: "3", required: false}
+      publish_engine_tab: {default: "true", required: false}
   schedule:
-    - cron: "0 6 * * 0"
+    - cron: "0 0 * * 0"
 permissions:
   contents: read
   actions: read
 jobs:
-  vnext:
+  run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - run: python -m agialpha_engine run-cycle --repo-root . --registry engine_registry --out /tmp/agialpha-engine-vnext --candidate-tasks 32 --evaluate-tasks 12 --variants-per-task 3
-      - run: python -m agialpha_engine validate --run /tmp/agialpha-engine-vnext
+        with: {python-version: "3.11"}
+      - run: python -m agialpha_engine diagnose --repo-root . --out agialpha-engine-runs/test
+      - run: python -m agialpha_engine run --repo-root . --registry agialpha_engine_registry --out agialpha-engine-runs/test --candidate-experiments ${{ inputs.candidate_experiments || 24 }} --evaluate-experiments ${{ inputs.evaluate_experiments || 8 }} --variants-per-experiment ${{ inputs.variants_per_experiment || 3 }}
+      - run: python -m agialpha_engine replay --run agialpha-engine-runs/test
+      - run: python -m agialpha_engine falsification-audit --run agialpha-engine-runs/test
+      - run: python -m agialpha_engine validate --run agialpha-engine-runs/test
+      - run: python -m agialpha_engine emit-manifest --run agialpha-engine-runs/test --out agialpha-engine-runs/test/evidence-run-manifest.json
+      - run: python -m agialpha_engine build-data --registry agialpha_engine_registry --out docs/_generated/agialpha-engine
