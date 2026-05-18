@@ -1,90 +1,90 @@
 [
   {
     "autonomous_persistence_allowed": false,
-    "capability_id": "CAP-001",
     "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
-    "from_experiment": "AGI-ALPHA-ENGINE-001-EXP-001",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-001",
     "human_review_required": true,
     "no_auto_merge": true,
     "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
-    "status": "accepted",
-    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_id": "VAL-001",
+    "validator_type": "json_field_validator"
   },
   {
     "autonomous_persistence_allowed": false,
-    "capability_id": "CAP-002",
     "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
-    "from_experiment": "AGI-ALPHA-ENGINE-001-EXP-002",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-002",
     "human_review_required": true,
     "no_auto_merge": true,
     "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
-    "status": "accepted",
-    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_id": "VAL-002",
+    "validator_type": "json_field_validator"
   },
   {
     "autonomous_persistence_allowed": false,
-    "capability_id": "CAP-003",
     "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
-    "from_experiment": "AGI-ALPHA-ENGINE-001-EXP-003",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-003",
     "human_review_required": true,
     "no_auto_merge": true,
     "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
-    "status": "accepted",
-    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_id": "VAL-003",
+    "validator_type": "json_field_validator"
   },
   {
     "autonomous_persistence_allowed": false,
-    "capability_id": "CAP-004",
     "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
-    "from_experiment": "AGI-ALPHA-ENGINE-001-EXP-004",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-004",
     "human_review_required": true,
     "no_auto_merge": true,
     "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
-    "status": "accepted",
-    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_id": "VAL-004",
+    "validator_type": "json_field_validator"
   },
   {
     "autonomous_persistence_allowed": false,
-    "capability_id": "CAP-005",
     "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
-    "from_experiment": "AGI-ALPHA-ENGINE-001-EXP-005",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-005",
     "human_review_required": true,
     "no_auto_merge": true,
     "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
-    "status": "accepted",
-    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_id": "VAL-005",
+    "validator_type": "json_field_validator"
   },
   {
     "autonomous_persistence_allowed": false,
-    "capability_id": "CAP-006",
     "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
-    "from_experiment": "AGI-ALPHA-ENGINE-001-EXP-006",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-006",
     "human_review_required": true,
     "no_auto_merge": true,
     "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
-    "status": "accepted",
-    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_id": "VAL-006",
+    "validator_type": "json_field_validator"
   },
   {
     "autonomous_persistence_allowed": false,
-    "capability_id": "CAP-007",
     "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
-    "from_experiment": "AGI-ALPHA-ENGINE-001-EXP-007",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-007",
     "human_review_required": true,
     "no_auto_merge": true,
     "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
-    "status": "accepted",
-    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_id": "VAL-007",
+    "validator_type": "json_field_validator"
   },
   {
     "autonomous_persistence_allowed": false,
-    "capability_id": "CAP-008",
     "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
-    "from_experiment": "AGI-ALPHA-ENGINE-001-EXP-008",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-008",
     "human_review_required": true,
     "no_auto_merge": true,
     "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
-    "status": "accepted",
-    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_id": "VAL-008",
+    "validator_type": "json_field_validator"
   }
 ]
