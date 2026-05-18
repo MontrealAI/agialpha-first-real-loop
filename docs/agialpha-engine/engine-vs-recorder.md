@@ -1,0 +1,1 @@
+AGI ALPHA previously emphasized evidence, replay, claim boundaries, and governance. ENGINE-001 adds the executable recursive experiment engine: it generates tasks, designs validators, evaluates baselines, performs ablations, archives capabilities, and produces descendant work. Evidence remains mandatory, but the engine now creates the experiments rather than only recording them.

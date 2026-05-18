@@ -1,0 +1,1602 @@
+[
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "docs usability repair",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-001",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "docs usability repair task 1",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "workflow catalog completeness",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-002",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "workflow catalog completeness task 2",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "Evidence Docket completeness",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-003",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "Evidence Docket completeness task 3",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "ProofBundle completeness",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-004",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "ProofBundle completeness task 4",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "generated-data index health",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-005",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "generated-data index health task 5",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "broken-link repair",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-006",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "broken-link repair task 6",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "claim-boundary hardening",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-007",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "claim-boundary hardening task 7",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "token-boundary hardening",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-008",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "token-boundary hardening task 8",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "regulated-boundary hardening",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-009",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "regulated-boundary hardening task 9",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "SecureRails safety-ledger hardening",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-010",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "SecureRails safety-ledger hardening task 10",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "no-auto-merge enforcement",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-011",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "no-auto-merge enforcement task 11",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "replay determinism repair",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-012",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "replay determinism repair task 12",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "falsification audit hardening",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-013",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "falsification audit hardening task 13",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "schema validation repair",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-014",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "schema validation repair task 14",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "benchmark adapter readiness",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-015",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "benchmark adapter readiness task 15",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "Open RSI Eval fixture generation",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-016",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "Open RSI Eval fixture generation task 16",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "Self-Improvement Gauntlet fixture generation",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-017",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "Self-Improvement Gauntlet fixture generation task 17",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "QD archive coverage",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-018",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "QD archive coverage task 18",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "capability archive compression",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-019",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "capability archive compression task 19",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "lineage metaproductivity measurement",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-020",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "lineage metaproductivity measurement task 20",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "enterprise pilot readiness",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-021",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "enterprise pilot readiness task 21",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "valuation-support missing-evidence repair",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-022",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "valuation-support missing-evidence repair task 22",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "public UI card completeness",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-023",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "public UI card completeness task 23",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "operator runbook quality",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-024",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "operator runbook quality task 24",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "reviewer replay kit quality",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-025",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "reviewer replay kit quality task 25",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "Work Vault accounting integrity",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-026",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "Work Vault accounting integrity task 26",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "utility receipt boundary",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-027",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "utility receipt boundary task 27",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "MARK/Sovereign linkage",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-028",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "MARK/Sovereign linkage task 28",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "rejected-variant preservation",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-029",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "rejected-variant preservation task 29",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "vNext descendant generation",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-030",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "vNext descendant generation task 30",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "negative-result ledger",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-031",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "negative-result ledger task 31",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  },
+  {
+    "ablation_plan": {
+      "variants": [
+        "no_archive",
+        "full_engine"
+      ]
+    },
+    "allowed_mode": "safe_local_eval",
+    "autonomous_persistence_allowed": false,
+    "baseline_plan": {
+      "compare": [
+        "B5",
+        "B6"
+      ]
+    },
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "evidence_docket_plan": {
+      "required": true
+    },
+    "family": "external replay readiness",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "opportunity": "repo-owned deterministic improvement",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "regulated_domain_flags": {
+      "regulated": false
+    },
+    "replay_plan": {
+      "deterministic": true
+    },
+    "repo_owned_scope": true,
+    "risk_tier": "low",
+    "schema_version": "agialpha.engine.task.v1",
+    "solver_plan": {
+      "type": "patch_proposal_only"
+    },
+    "success_criteria": [
+      "validator_pass"
+    ],
+    "synthetic_fixture_only": true,
+    "task_id": "ENG-TASK-032",
+    "task_manifest": {
+      "target": "docs"
+    },
+    "title": "external replay readiness task 32",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+    "validator_spec": {
+      "type": "presence_check"
+    }
+  }
+]

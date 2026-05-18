@@ -1,1 +1,1 @@
-"""boundaries module for AGI ALPHA Engine."""
+from .context import BOUNDARIES
