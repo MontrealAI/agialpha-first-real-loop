@@ -151,10 +151,42 @@ def render(args):
 
 def emit_manifest(args): atomic_write_json(Path(args.out),{"run":args.run,**BOUNDARIES})
 
+
+
+def discover_legacy(args):
+    registry = Path(args.registry)
+    out = registry / "discover"
+    diagnose(argparse.Namespace(repo_root=args.repo_root, out=str(out)))
+    opportunities = _read(out / "01_repo_diagnosis/opportunity_map.json", [])
+    atomic_write_json(registry / "task_candidates.json", opportunities)
+    atomic_write_json(registry / "latest.json", {"run_id": "discover", **BOUNDARIES})
+
+
+def run_cycle_legacy(args):
+    candidate_experiments = int(getattr(args, "candidate_tasks", getattr(args, "candidate_seeds", 24)))
+    evaluate_experiments = int(getattr(args, "evaluate_tasks", getattr(args, "evaluate_seeds", 8)))
+    variants_per_experiment = int(getattr(args, "variants_per_task", getattr(args, "sandbox_evals", 3)))
+    run_engine(argparse.Namespace(
+        repo_root=args.repo_root,
+        registry=args.registry,
+        out=args.out,
+        candidate_experiments=candidate_experiments,
+        evaluate_experiments=evaluate_experiments,
+        variants_per_experiment=variants_per_experiment,
+    ))
+    selected = _read(Path(args.out) / "02_experiment_generation/selected_experiments.json", [])
+    atomic_write_json(Path(args.out) / "10_proofbundles/proofbundle.json", {
+        "proofbundle_id": "PB-legacy",
+        "tasks": len(selected),
+        **BOUNDARIES,
+    })
+
 def main():
     p=argparse.ArgumentParser(); sp=p.add_subparsers(dest='cmd',required=True)
     d=sp.add_parser('diagnose'); d.add_argument('--repo-root',default='.'); d.add_argument('--out',required=True); d.set_defaults(f=diagnose)
+    disc=sp.add_parser('discover'); disc.add_argument('--repo-root',default='.'); disc.add_argument('--registry',required=True); disc.set_defaults(f=discover_legacy)
     r=sp.add_parser('run'); r.add_argument('--repo-root',default='.'); r.add_argument('--registry',required=True); r.add_argument('--out',required=True); r.add_argument('--candidate-experiments',type=int,default=24); r.add_argument('--evaluate-experiments',type=int,default=8); r.add_argument('--variants-per-experiment',type=int,default=3); r.set_defaults(f=run_engine)
+    rc=sp.add_parser('run-cycle'); rc.add_argument('--repo-root',default='.'); rc.add_argument('--registry',required=True); rc.add_argument('--out',required=True); rc.add_argument('--candidate-tasks',type=int,default=24); rc.add_argument('--evaluate-tasks',type=int,default=8); rc.add_argument('--variants-per-task',type=int,default=3); rc.add_argument('--candidate-seeds',type=int); rc.add_argument('--evaluate-seeds',type=int); rc.add_argument('--sandbox-evals',type=int); rc.set_defaults(f=run_cycle_legacy)
     rep=sp.add_parser('replay'); rep.add_argument('--run',required=True); rep.set_defaults(f=replay)
     fa=sp.add_parser('falsification-audit'); fa.add_argument('--run',required=True); fa.set_defaults(f=falsification_audit)
     v=sp.add_parser('validate'); v.add_argument('--run',required=True); v.set_defaults(f=validate)
