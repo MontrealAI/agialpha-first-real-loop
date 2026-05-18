@@ -1,15 +1,7 @@
-import json, pathlib, subprocess, tempfile
+import subprocess, sys
+from pathlib import Path
 
-ROOT=pathlib.Path(__file__).resolve().parents[1]
+def run(*args): subprocess.check_call([sys.executable,'-m','agialpha_engine',*args])
 
-def run_cycle(tmp):
-    reg=tmp/'reg'; out=tmp/'run'
-    subprocess.run(['python','-m','agialpha_engine','discover','--repo-root',str(ROOT),'--registry',str(reg)],check=True)
-    subprocess.run(['python','-m','agialpha_engine','run-cycle','--repo-root',str(ROOT),'--registry',str(reg),'--out',str(out),'--candidate-seeds','16','--evaluate-seeds','8','--sandbox-evals','4'],check=True)
-    return reg,out
-
-
-def test_smoke_baselines():
-    with tempfile.TemporaryDirectory() as td:
-        reg,out=run_cycle(pathlib.Path(td))
-        assert out.exists()
+def test_cycle(tmp_path):
+ out=tmp_path/'run'; run('run-cycle','--repo-root','.','--registry','engine_registry','--out',str(out),'--candidate-tasks','16','--evaluate-tasks','6','--variants-per-task','2'); assert (out/'10_proofbundles/proofbundle.json').exists()

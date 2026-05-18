@@ -1,24 +1,71 @@
-name: AGI ALPHA Engine 001 / Alpha-Factory Lifecycle
+name: AGI ALPHA Engine 001 / Lifecycle
+
 on:
   workflow_dispatch:
+    inputs:
+      candidate_tasks:
+        description: Candidate tasks to generate
+        required: false
+        default: '32'
+      evaluate_tasks:
+        description: Tasks to evaluate
+        required: false
+        default: '12'
+      variants_per_task:
+        description: Variants per task
+        required: false
+        default: '3'
+      publish_engine_tab:
+        description: Trigger central publisher if supported
+        required: false
+        default: 'true'
   schedule:
-    - cron: "0 6 * * 0"
+    - cron: '0 0 * * 0'
+
 permissions:
   contents: read
   actions: read
+
 jobs:
-  run:
+  lifecycle:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-      - run: python -m agialpha_engine discover --repo-root . --registry agialpha_engine_registry
-      - run: python -m agialpha_engine run-cycle --repo-root . --registry agialpha_engine_registry --out agialpha-engine-runs/test --candidate-seeds 16 --evaluate-seeds 8 --sandbox-evals 4
-      - run: python -m agialpha_engine run-gauntlet --repo-root . --out agialpha-engine-runs/test --task-count 16
+          python-version: '3.11'
+
+      - name: SecureRails checks (if present)
+        run: |
+          if ls scripts/secure_rails_*.py >/dev/null 2>&1; then
+            for f in scripts/secure_rails_*.py; do
+              python "$f"
+            done
+          else
+            echo "No SecureRails scripts found."
+          fi
+
+      - run: python -m agialpha_engine discover --repo-root . --registry engine_registry --candidate-tasks ${{ github.event.inputs.candidate_tasks || '32' }}
+      - run: python -m agialpha_engine run-cycle --repo-root . --registry engine_registry --out agialpha-engine-runs/test --candidate-tasks ${{ github.event.inputs.candidate_tasks || '32' }} --evaluate-tasks ${{ github.event.inputs.evaluate_tasks || '12' }} --variants-per-task ${{ github.event.inputs.variants_per_task || '3' }}
+      - run: python -m agialpha_engine run-open-rsi-eval --repo-root . --out agialpha-engine-runs/test --task-count 16
+      - run: python -m agialpha_engine run-gauntlet --repo-root . --out agialpha-engine-runs/test --task-count 12
+      - run: python -m agialpha_engine evaluate-baselines --repo-root . --run agialpha-engine-runs/test
+      - run: python -m agialpha_engine run-ablations --repo-root . --run agialpha-engine-runs/test
       - run: python -m agialpha_engine replay --run agialpha-engine-runs/test
       - run: python -m agialpha_engine falsification-audit --run agialpha-engine-runs/test
       - run: python -m agialpha_engine validate --run agialpha-engine-runs/test
       - run: python -m agialpha_engine emit-manifest --run agialpha-engine-runs/test --out agialpha-engine-runs/test/evidence-run-manifest.json
-      - run: python -m agialpha_engine build-data --registry agialpha_engine_registry --out docs/_generated/agialpha-engine
+      - run: python -m agialpha_engine build-data --registry engine_registry --out docs/_generated/agialpha-engine
+
+      - name: Upload engine artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: agialpha-engine-001-lifecycle
+          path: |
+            agialpha-engine-runs/test
+            docs/_generated/agialpha-engine
+
+      - name: Trigger central Evidence Mission Control publisher (if configured)
+        if: ${{ github.event.inputs.publish_engine_tab == 'true' }}
+        run: echo "Central publisher trigger is convention-managed and intentionally not direct Pages deploy."

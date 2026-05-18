@@ -214,3 +214,5 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 | `agialpha-engine-001-gauntlet.yml` | Core | `workflow_dispatch`, `schedule` | Engine gauntlet run artifacts. | Human review required; no auto-merge; no direct Pages deploy. | no |
 | `agialpha-engine-001-replay.yml` | Core | `workflow_dispatch`, `schedule` | Engine replay artifacts. | Replay-only evidence; no direct Pages deploy. | no |
 | `agialpha-engine-001-vnext.yml` | Core | `workflow_dispatch`, `schedule` | Engine vNext candidate artifacts. | Human-governed promotion required; no direct Pages deploy. | no |
+
+| `agialpha-engine-001-lifecycle.yml` | Core | `workflow_dispatch`, `schedule` | Engine lifecycle artifacts. | Human review required; no direct Pages deploy; no auto-merge. | no |
