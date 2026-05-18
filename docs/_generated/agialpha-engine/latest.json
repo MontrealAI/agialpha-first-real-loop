@@ -1,5 +1,5 @@
 {
-  "run_id": "engine-run-004",
+  "run_id": "engine-run-005",
   "metrics": {
     "candidates_generated": 16,
     "candidates_filtered": 8,
@@ -42,7 +42,7 @@
     "unsafe_claims_missed": 0
   },
   "EngineReadinessScore": 64,
-  "generated_at": "2026-05-17T23:30:23.074796+00:00",
+  "generated_at": "2026-05-18T00:28:46.511733+00:00",
   "repo_root": "/workspace/agialpha-first-real-loop",
   "claim_boundary": "local bounded recursive experiment-engine evidence",
   "token_boundary": "$AGIALPHA utility-only accounting",
