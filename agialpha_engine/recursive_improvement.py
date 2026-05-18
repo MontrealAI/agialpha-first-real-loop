@@ -291,15 +291,27 @@ def render_proof(run_dir: Path, out: Path) -> None:
     out.mkdir(parents=True, exist_ok=True)
     summary = json.loads((run_dir / "15_public_summary" / "summary.json").read_text())
     metrics = summary["metrics"]
+    status_text = (run_dir / "15_public_summary" / "stronger_claim_status.md").read_text().strip()
+    unsupported_notice = "" if summary["stronger_claim_supported"] else "<p><strong>The stronger claim is not supported by this run.</strong></p>"
+    safety_counters = {
+        k: metrics[k]
+        for k in metrics
+        if k.endswith("_count") or k.endswith("violations") or k == "critical_safety_incidents"
+    }
     html = f"""<!doctype html><meta charset='utf-8'><title>AGI ALPHA Engine Proof</title>
 <h1>AGI ALPHA Engine Proof</h1>
-<section><h2>Stronger claim status: {summary['stronger_claim_status']}</h2><p>{(run_dir / '15_public_summary' / 'stronger_claim_status.md').read_text().strip()}</p></section>
+<section><h2>Stronger claim status: {summary['stronger_claim_status']}</h2>{unsupported_notice}<p>{status_text}</p></section>
 <section><h2>Mandate A → Frozen Capability → Held-out Mandate B</h2><p>Each pair freezes a capability hash before held-out evaluation.</p></section>
 <section><h2>Treatment vs Shadow Control</h2><table><tr><th>Treatment</th><th>Shadow control</th><th>Delta</th></tr><tr><td>{metrics['treatment_score']}</td><td>{metrics['shadow_control_score']}</td><td>{metrics['improvement_delta']}</td></tr></table></section>
 <section><h2>Computed vRCI / recursive-improvement metrics</h2><p>vRCI: {metrics['vRCI_computed']}; B6 vs B5: {metrics['B6_beats_B5_computed']}</p></section>
-<section><h2>Falsification panel</h2><p>Replay: {metrics['replay_pass']}; falsification: {metrics['falsification_pass']}</p></section>
+<section><h2>Falsification panel</h2><p>Falsification audit: {metrics['falsification_pass']}</p></section>
 <section><h2>Semantic negative tests panel</h2><p>{metrics['semantic_negative_tests_passed']}</p></section>
 <section><h2>Adversarial Evidence Docket panel</h2><p>Failed variants, rejected claims, disagreements, baseline regressions, and falsification attempts are preserved.</p></section>
-<section><h2>ProofBundles</h2><p>See run artifacts.</p></section><section><h2>Evidence Dockets</h2><p>Human review gate required.</p></section><section><h2>Safety and boundary counters</h2><pre>{json.dumps({k: metrics[k] for k in metrics if k.endswith('_count') or k.endswith('violations')}, indent=2)}</pre></section><section><h2>Raw data links</h2><p>Raw JSON is secondary to this summary.</p></section>"""
+<section><h2>ProofBundles</h2><p>See run artifacts.</p></section>
+<section><h2>Evidence Dockets</h2><p>Evidence Dockets are complete before claim support is considered.</p></section>
+<section><h2>Replay status</h2><p>Replay pass: {metrics['replay_pass']}</p></section>
+<section><h2>Safety and boundary counters</h2><pre>{json.dumps(safety_counters, indent=2)}</pre></section>
+<section><h2>Human review gate</h2><p>Human review remains required before public promotion; this renderer does not auto-promote claims.</p></section>
+<section><h2>Raw data links</h2><p>Raw JSON is secondary to this summary.</p></section>"""
     _write_text(out / "index.html", html)
     atomic_write_json(out / "routes.json", {"routes": ["/agialpha-engine-proof/", "/experiments/agialpha-engine-002/"], "nav_label": "AGI ALPHA Engine Proof", **BOUNDARIES})
