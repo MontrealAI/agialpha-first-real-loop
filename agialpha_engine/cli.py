@@ -170,7 +170,7 @@ def _detect_current_run_dir(registry: Path) -> Path | None:
     ]
     tmp_root = Path("/tmp")
     if tmp_root.exists():
-        tmp_candidates = sorted(tmp_root.glob("agialpha-engine-*"), key=lambda x: x.name)
+        tmp_candidates = sorted(tmp_root.glob("agialpha-engine-*"), key=lambda x: x.stat().st_mtime, reverse=True)
         candidates = tmp_candidates + candidates
     runs_dir = registry / "runs"
     if runs_dir.exists() and runs_dir.is_dir():
@@ -209,6 +209,7 @@ def build_data(args):
     run_proofbundles = []
     run_evidence_dockets = []
     run_descendants = []
+    run_ablations = "not_reported"
     if run_dir is not None:
         run_validators = _read_registry_json(run_dir, "05_validators/validator_specs.json", [])
         pb = _read_registry_json(run_dir, "10_proofbundles/proofbundle.json", {})
@@ -216,6 +217,7 @@ def build_data(args):
         ed = _read_registry_json(run_dir, "11_evidence_docket/00_manifest.json", {})
         run_evidence_dockets = [ed] if isinstance(ed, dict) and ed else []
         run_descendants = _read_registry_json(run_dir, "13_descendants/descendant_tasks.json", [])
+        run_ablations = _read_registry_json(run_dir, "08_ablations/ablation_results.json", "not_reported")
     archive = _read_registry_json(registry, "capability_archive.json", [])
     lineage = _read_registry_json(registry, "lineage_graph.json", [])
     descendants = _read_registry_json(registry, "descendant_tasks.json", [])
@@ -242,12 +244,15 @@ def build_data(args):
 
     atomic_write_json(out / "validators.json", effective_validators)
     atomic_write_json(out / "baselines.json", baselines)
-    atomic_write_json(out / "ablations.json", ablations)
+    effective_ablations = run_ablations if run_ablations != "not_reported" else ablations
+    effective_descendants = run_descendants if isinstance(run_descendants, list) and run_descendants else descendants
+
+    atomic_write_json(out / "ablations.json", effective_ablations)
     atomic_write_json(out / "proofbundles.json", effective_proofbundles)
     atomic_write_json(out / "evidence_dockets.json", effective_evidence_dockets)
     atomic_write_json(out / "archive.json", archive)
     atomic_write_json(out / "lineage.json", lineage)
-    atomic_write_json(out / "descendants.json", descendants)
+    atomic_write_json(out / "descendants.json", effective_descendants)
     atomic_write_json(out / "vrci.json", _read_registry_json(registry, "scorecards.json", {"status": "not_reported"}))
     atomic_write_json(out / "replay_reports.json", replay_reports)
     atomic_write_json(out / "falsification_reports.json", falsification_reports)
