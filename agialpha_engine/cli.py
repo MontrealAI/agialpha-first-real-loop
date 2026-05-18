@@ -89,6 +89,8 @@ def _write_cmd_ok(target_dir: Path, name: str) -> None:
 
 
 def run_open_rsi_eval(args):
+    if not args.out:
+        raise SystemExit("run-open-rsi-eval requires --out")
     _write_cmd_ok(Path(args.out), "run-open-rsi-eval")
 
 
@@ -166,7 +168,10 @@ def validate(args):
 def _detect_current_run_dir(registry: Path, run_hint: str | None = None) -> Path | None:
     candidates = []
     if run_hint:
-        candidates.append(Path(run_hint))
+        hinted = Path(run_hint)
+        if (hinted / "05_validators/validator_specs.json").exists() or (hinted / "10_proofbundles/proofbundle.json").exists():
+            return hinted
+        candidates.append(hinted)
     candidates += [
         Path("agialpha-engine-runs/test"),
         Path("/tmp/agialpha-engine-test"),
@@ -174,7 +179,7 @@ def _detect_current_run_dir(registry: Path, run_hint: str | None = None) -> Path
     tmp_root = Path("/tmp")
     if tmp_root.exists():
         tmp_candidates = sorted(tmp_root.glob("agialpha-engine-*"), key=lambda x: x.stat().st_mtime, reverse=True)
-        candidates = tmp_candidates + candidates
+        candidates = candidates + tmp_candidates
     runs_dir = registry / "runs"
     if runs_dir.exists() and runs_dir.is_dir():
         children = sorted([x for x in runs_dir.iterdir() if x.is_dir()], key=lambda x: x.name)
@@ -293,7 +298,7 @@ def main():
 
     ore = sp.add_parser("run-open-rsi-eval")
     ore.add_argument("--repo-root", default=".")
-    ore.add_argument("--out")
+    ore.add_argument("--out", required=True)
     ore.add_argument("--task-count", type=int, default=0)
     ore.set_defaults(f=run_open_rsi_eval)
 
