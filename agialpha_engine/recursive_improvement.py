@@ -169,8 +169,8 @@ def run_proof(repo_root: Path, out: Path, mandate_pairs: int = 3, seed: int = 13
     metrics = compute_metrics(raw_for_metrics)
     atomic_write_json(out / "08_comparison" / "computed_metrics.json", metrics)
     atomic_write_json(out / "08_comparison" / "B6_vs_B5.json", {**json.loads((out / "08_comparison" / "B6_vs_B5.json").read_text()), "B6_beats_B5_computed": metrics["B6_beats_B5_computed"]})
-    atomic_write_json(out / "13_replay" / "replay_report.json", replay_proof(out))
     atomic_write_json(out / "14_falsification" / "falsification_audit.json", falsification_audit(out))
+    atomic_write_json(out / "13_replay" / "replay_report.json", replay_proof(out))
     status = SUPPORTED_TEXT if stronger_claim_supported(metrics) else NOT_SUPPORTED_TEXT
     summary = {"run_id": run_id, "engine": "AGI-ALPHA-ENGINE-002", "stronger_claim_status": "SUPPORTED" if status == SUPPORTED_TEXT else "NOT_SUPPORTED", "stronger_claim_supported": status == SUPPORTED_TEXT, "metrics": metrics, **BOUNDARIES}
     atomic_write_json(out / "15_public_summary" / "summary.json", summary)
@@ -179,6 +179,48 @@ def run_proof(repo_root: Path, out: Path, mandate_pairs: int = 3, seed: int = 13
     atomic_write_json(out / "evidence-run-manifest.json", {"run_id": run_id, "proofbundle_index": "10_proofbundles/proofbundle_index.json", "evidence_docket_index": "11_evidence_dockets/docket_index.json", "computed_metrics": "08_comparison/computed_metrics.json", "summary": "15_public_summary/summary.json", **BOUNDARIES})
     return summary
 
+
+
+def _read_json_or(path: Path, default: Any) -> Any:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError, KeyError, TypeError):
+        return default
+
+def _proofbundle_complete(run_dir: Path) -> bool:
+    index = _read_json_or(run_dir / "10_proofbundles" / "proofbundle_index.json", {})
+    bundles = index.get("proofbundles", []) if isinstance(index, dict) else []
+    return bool(index.get("proofbundle_complete") is True and bundles and all(b.get("complete") is True for b in bundles))
+
+def _evidence_docket_complete(run_dir: Path) -> bool:
+    index = _read_json_or(run_dir / "11_evidence_dockets" / "docket_index.json", {})
+    dockets = index.get("dockets", []) if isinstance(index, dict) else []
+    return bool(index.get("evidence_docket_complete") is True and dockets and all(d.get("complete") is True for d in dockets))
+
+def _semantic_negative_tests_passed(run_dir: Path) -> bool:
+    expected = [
+        "forbidden_claim_injection", "regulated_domain_injection", "human_review_gate_failure",
+        "replay_tampering", "artifact_hash_mismatch", "auto_merge_attempt", "secret_like_fixture_redaction",
+    ]
+    for name in expected:
+        rec = _read_json_or(run_dir / "09_semantic_negative_tests" / f"{name}.json", {})
+        if rec.get("pass") is not True or rec.get("blocked") is not True:
+            return False
+    return True
+
+def _adversarial_fixtures_passed(run_dir: Path) -> bool:
+    required = ["failed_runs", "rejected_claims", "evaluator_disagreements", "baseline_regressions", "falsification_attempts"]
+    for name in required:
+        rec = _read_json_or(run_dir / "12_adversarial_docket" / f"{name}.json", {})
+        rows = rec.get(name) if isinstance(rec, dict) else None
+        if not isinstance(rows, list) or not rows:
+            return False
+    return True
+
+def _falsification_pass_from_report(run_dir: Path) -> bool:
+    report = _read_json_or(run_dir / "14_falsification" / "falsification_audit.json", {})
+    checks = report.get("checks", {}) if isinstance(report, dict) else {}
+    return bool(report.get("falsification_pass") is True and checks and all(value is True for value in checks.values()))
 
 def replay_proof(run_dir: Path) -> dict[str, Any]:
     run_dir = Path(run_dir)
@@ -196,11 +238,11 @@ def replay_proof(run_dir: Path) -> dict[str, Any]:
         "shadow_control_results": shadow,
         "B4_rejected": True,
         "replay_pass": True,
-        "falsification_pass": True,
-        "proofbundle_complete": True,
-        "evidence_docket_complete": True,
-        "semantic_negative_tests_passed": True,
-        "adversarial_fixtures_passed": True,
+        "falsification_pass": _falsification_pass_from_report(run_dir),
+        "proofbundle_complete": _proofbundle_complete(run_dir),
+        "evidence_docket_complete": _evidence_docket_complete(run_dir),
+        "semantic_negative_tests_passed": _semantic_negative_tests_passed(run_dir),
+        "adversarial_fixtures_passed": _adversarial_fixtures_passed(run_dir),
         "safety_counters": {k: metrics[k] for k in metrics if k.endswith("_count") or k.endswith("violations") or k == "critical_safety_incidents"},
     }
     recomputed = compute_metrics(raw)
@@ -220,10 +262,10 @@ def falsification_audit(run_dir: Path) -> dict[str, Any]:
         "heldout_leakage_absent": leakage["heldout_leakage_detected"] is False,
         "B6_not_hardcoded": metrics.get("B6_vs_B5_formula") is not None,
         "vRCI_not_hardcoded": metrics.get("vRCI_formula") is not None,
-        "proofbundle_complete": metrics.get("proofbundle_complete") is True,
-        "evidence_docket_complete": metrics.get("evidence_docket_complete") is True,
-        "semantic_negative_tests_present": metrics.get("semantic_negative_tests_passed") is True,
-        "adversarial_docket_present": (run_dir / "12_adversarial_docket" / "falsification_attempts.json").exists(),
+        "proofbundle_complete": _proofbundle_complete(run_dir),
+        "evidence_docket_complete": _evidence_docket_complete(run_dir),
+        "semantic_negative_tests_present": _semantic_negative_tests_passed(run_dir),
+        "adversarial_docket_present": _adversarial_fixtures_passed(run_dir),
         "public_status_gated": True,
     }
     return {"falsification_pass": all(checks.values()), "checks": checks, **BOUNDARIES}

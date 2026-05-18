@@ -30,6 +30,7 @@ def read_json(path: Path) -> Any:
 def validate_run(run_dir: Path) -> dict[str, Any]:
     missing = [p for p in REQUIRED_RUN_FILES if not (run_dir / p).exists()]
     metrics = read_json(run_dir / "08_comparison" / "computed_metrics.json") if not missing else {}
+    replay_report = read_json(run_dir / "13_replay" / "replay_report.json") if not missing else {}
     status_text = (run_dir / "15_public_summary" / "stronger_claim_status.md").read_text(encoding="utf-8") if (run_dir / "15_public_summary" / "stronger_claim_status.md").exists() else ""
     forbidden_hits = [term for term in FORBIDDEN_TEXT if term in status_text]
     safety_nonzero = {k: metrics.get(k) for k in SAFETY_COUNTERS if metrics.get(k) not in (0, None)}
@@ -42,7 +43,8 @@ def validate_run(run_dir: Path) -> dict[str, Any]:
         "forbidden_hits": forbidden_hits,
         "token_boundary_validation_pass": metrics.get("token_boundary_violations") == 0,
         "regulated_boundary_validation_pass": metrics.get("regulated_boundary_violations") == 0,
-        "replay_validation_pass": metrics.get("replay_pass") is True,
+        "replay_validation_pass": metrics.get("replay_pass") is True and replay_report.get("replay_pass") is True,
+        "replay_report_pass": replay_report.get("replay_pass") is True,
         "freeze_validation_pass": bool(metrics.get("capability_hashes")) and metrics.get("capabilities_frozen") == metrics.get("capabilities_generated"),
         "safety_validation_pass": not safety_nonzero,
         "safety_nonzero": safety_nonzero,
