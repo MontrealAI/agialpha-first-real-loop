@@ -8,6 +8,7 @@ on:
 permissions:
   contents: read
   actions: read
+  artifact-metadata: write
 
 jobs:
   open-rsi-eval:
