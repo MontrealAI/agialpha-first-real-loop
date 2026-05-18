@@ -1,0 +1,34 @@
+[
+  {
+    "candidate": "engine-run-005-cand-001",
+    "sandbox": "/workspace/agialpha-first-real-loop/agialpha_engine_registry/runs/engine-run-005/sandboxes/sandbox-001/repo",
+    "exit_code": 0,
+    "stdout_hash": "e6b40583bfbfc0b9b5b765f54e96e24bc407e911b739d5522421783af3cd707a",
+    "stderr_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "status": "pass"
+  },
+  {
+    "candidate": "engine-run-005-cand-002",
+    "sandbox": "/workspace/agialpha-first-real-loop/agialpha_engine_registry/runs/engine-run-005/sandboxes/sandbox-002/repo",
+    "exit_code": 0,
+    "stdout_hash": "e6b40583bfbfc0b9b5b765f54e96e24bc407e911b739d5522421783af3cd707a",
+    "stderr_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "status": "pass"
+  },
+  {
+    "candidate": "engine-run-005-cand-003",
+    "sandbox": "/workspace/agialpha-first-real-loop/agialpha_engine_registry/runs/engine-run-005/sandboxes/sandbox-003/repo",
+    "exit_code": 0,
+    "stdout_hash": "e6b40583bfbfc0b9b5b765f54e96e24bc407e911b739d5522421783af3cd707a",
+    "stderr_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "status": "pass"
+  },
+  {
+    "candidate": "engine-run-005-cand-004",
+    "sandbox": "/workspace/agialpha-first-real-loop/agialpha_engine_registry/runs/engine-run-005/sandboxes/sandbox-004/repo",
+    "exit_code": 0,
+    "stdout_hash": "e6b40583bfbfc0b9b5b765f54e96e24bc407e911b739d5522421783af3cd707a",
+    "stderr_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "status": "pass"
+  }
+]

@@ -19,5 +19,26 @@
     "validator": "validator-004",
     "regulated_boundary_blocked": false,
     "claim_boundary": "local bounded recursive experiment-engine evidence"
+  },
+  {
+    "candidate": "engine-run-005-cand-002",
+    "family": "validator_synthesis",
+    "validator": "validator-002",
+    "regulated_boundary_blocked": false,
+    "claim_boundary": "local bounded recursive experiment-engine evidence"
+  },
+  {
+    "candidate": "engine-run-005-cand-003",
+    "family": "benchmark_generation",
+    "validator": "validator-003",
+    "regulated_boundary_blocked": false,
+    "claim_boundary": "local bounded recursive experiment-engine evidence"
+  },
+  {
+    "candidate": "engine-run-005-cand-004",
+    "family": "capability_reuse",
+    "validator": "validator-004",
+    "regulated_boundary_blocked": false,
+    "claim_boundary": "local bounded recursive experiment-engine evidence"
   }
 ]
