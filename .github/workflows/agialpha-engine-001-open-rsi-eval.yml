@@ -1,14 +1,21 @@
-name: agialpha-engine-001-open-rsi-eval.yml
+name: AGI ALPHA Engine 001 / Open RSI Eval
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * 0"
+    - cron: "0 5 * * 0"
 permissions:
   contents: read
   actions: read
 jobs:
-  run:
+  open_rsi_eval:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python -m agialpha_engine discover --repo-root . --registry engine_registry
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m agialpha_engine run-open-rsi-eval --repo-root . --out /tmp/agialpha-engine-open-rsi --task-count 16
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agialpha-engine-001-open-rsi-eval
+          path: /tmp/agialpha-engine-open-rsi

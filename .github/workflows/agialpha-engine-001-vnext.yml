@@ -1,14 +1,18 @@
-name: agialpha-engine-001-vnext.yml
+name: AGI ALPHA Engine 001 / vNext Candidates
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * 0"
+    - cron: "0 6 * * 0"
 permissions:
   contents: read
   actions: read
 jobs:
-  run:
+  vnext:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python -m agialpha_engine discover --repo-root . --registry engine_registry
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m agialpha_engine run-cycle --repo-root . --registry engine_registry --out /tmp/agialpha-engine-vnext --candidate-tasks 32 --evaluate-tasks 12 --variants-per-task 3
+      - run: python -m agialpha_engine validate --run /tmp/agialpha-engine-vnext
