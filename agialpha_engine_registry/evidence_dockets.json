@@ -1,17 +1,82 @@
 [
   {
-    "run_id": "engine-run-001"
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "docket_id": "ED-001",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-001",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
   },
   {
-    "run_id": "engine-run-002"
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "docket_id": "ED-002",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-002",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
   },
   {
-    "run_id": "engine-run-003"
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "docket_id": "ED-003",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-003",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
   },
   {
-    "run_id": "engine-run-004"
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "docket_id": "ED-004",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-004",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
   },
   {
-    "run_id": "engine-run-005"
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "docket_id": "ED-005",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-005",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "docket_id": "ED-006",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-006",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "docket_id": "ED-007",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-007",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "docket_id": "ED-008",
+    "experiment_id": "AGI-ALPHA-ENGINE-001-EXP-008",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
   }
 ]
