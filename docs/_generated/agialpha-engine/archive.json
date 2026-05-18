@@ -1,0 +1,44 @@
+[
+  {
+    "candidate": "engine-run-004-cand-002",
+    "claim_boundary": "local bounded recursive experiment-engine evidence",
+    "family": "validator_synthesis",
+    "regulated_boundary_blocked": false,
+    "validator": "validator-002"
+  },
+  {
+    "candidate": "engine-run-004-cand-003",
+    "claim_boundary": "local bounded recursive experiment-engine evidence",
+    "family": "benchmark_generation",
+    "regulated_boundary_blocked": false,
+    "validator": "validator-003"
+  },
+  {
+    "candidate": "engine-run-004-cand-004",
+    "claim_boundary": "local bounded recursive experiment-engine evidence",
+    "family": "capability_reuse",
+    "regulated_boundary_blocked": false,
+    "validator": "validator-004"
+  },
+  {
+    "candidate": "engine-run-005-cand-002",
+    "claim_boundary": "local bounded recursive experiment-engine evidence",
+    "family": "validator_synthesis",
+    "regulated_boundary_blocked": false,
+    "validator": "validator-002"
+  },
+  {
+    "candidate": "engine-run-005-cand-003",
+    "claim_boundary": "local bounded recursive experiment-engine evidence",
+    "family": "benchmark_generation",
+    "regulated_boundary_blocked": false,
+    "validator": "validator-003"
+  },
+  {
+    "candidate": "engine-run-005-cand-004",
+    "claim_boundary": "local bounded recursive experiment-engine evidence",
+    "family": "capability_reuse",
+    "regulated_boundary_blocked": false,
+    "validator": "validator-004"
+  }
+]

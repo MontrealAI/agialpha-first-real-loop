@@ -31,10 +31,14 @@ def run_cycle(args):
     tasks = generate_tasks(args.candidate_tasks)
     sel = tasks[: args.evaluate_tasks]
     rej = tasks[args.evaluate_tasks :]
+    atomic_write_json(run / "02_experiment_generation/candidate_experiments.json", tasks)
     atomic_write_json(run / "03_task_foundry/candidate_tasks.json", tasks)
+    atomic_write_json(run / "02_experiment_generation/selected_experiments.json", sel)
     atomic_write_json(run / "03_task_foundry/selected_tasks.json", sel)
     atomic_write_json(run / "03_task_foundry/rejected_tasks.json", rej)
+    atomic_write_json(run / "03_validator_synthesis/validators.json", [t["validator_spec"] for t in sel])
     atomic_write_json(run / "05_validators/validator_specs.json", [t["validator_spec"] for t in sel])
+    atomic_write_json(run / "04_candidate_generation/candidates.json", [t["solver_plan"] for t in sel])
     atomic_write_json(run / "06_solver_plans/solver_plans.json", [t["solver_plan"] for t in sel])
     variants_per_task = max(1, int(args.variants_per_task))
     variant_records = []
@@ -50,6 +54,8 @@ def run_cycle(args):
             }
             atomic_write_json(run / f"06_solver_plans/patch_proposals/{variant_id}.json", rec)
             variant_records.append(rec)
+    atomic_write_json(run / "04_candidate_generation/variants.json", variant_records)
+    atomic_write_json(run / "04_candidate_generation/rejected_variants.json", [])
     atomic_write_json(run / "06_solver_plans/variant_manifest.json", {"variants_per_task": variants_per_task, "variant_count": len(variant_records), "variants": variant_records})
     bdir = run / "07_benchmarks"
     for b in [
@@ -74,10 +80,9 @@ def run_cycle(args):
     atomic_write_json(run / "11_evidence_docket/00_manifest.json", {"docket_id": "ED-001", **BOUNDARIES})
     atomic_write_json(run / "12_archive/capability_archive.json", sel)
     atomic_write_json(run / "12_archive/rejected_archive.json", rej)
-    atomic_write_json(
-        run / "13_descendants/descendant_tasks.json",
-        [{"from": t["task_id"], "descendant": t["task_id"] + "-D1"} for t in sel],
-    )
+    descendants = [{"from": t["task_id"], "descendant": t["task_id"] + "-D1"} for t in sel]
+    atomic_write_json(run / "08_descendants/descendant_experiments.json", descendants)
+    atomic_write_json(run / "13_descendants/descendant_tasks.json", descendants)
     atomic_write_json(run / "13_descendants/vnext_candidates.json", [{"candidate": "vnext-001", "status": "pending_human_review"}])
     atomic_write_json(run / "14_work_vault/work_vault.json", {"alpha_work_units": len(sel) * 10, **BOUNDARIES})
     atomic_write_json(run / "14_work_vault/utility_settlement_receipt.json", {"receipt_id": "UTIL-001", "utility_only": True})
@@ -284,17 +289,38 @@ def main():
     d = sp.add_parser("discover")
     d.add_argument("--repo-root")
     d.add_argument("--registry")
-    d.add_argument("--candidate-tasks", type=int, default=32)
+    d.add_argument("--candidate-tasks", "--candidate-experiments", dest="candidate_tasks", type=int, default=24)
     d.set_defaults(f=discover)
+
+    dg = sp.add_parser("diagnose")
+    dg.add_argument("--repo-root")
+    dg.add_argument("--out", default="agialpha-engine-runs/test")
+    dg.add_argument("--candidate-experiments", type=int, default=24)
+    dg.set_defaults(
+        f=lambda a: (
+            setattr(a, "registry", a.out),
+            setattr(a, "candidate_tasks", a.candidate_experiments),
+            discover(a),
+        )[-1]
+    )
 
     rc = sp.add_parser("run-cycle")
     rc.add_argument("--repo-root")
     rc.add_argument("--registry")
     rc.add_argument("--out", default="agialpha-engine-runs/test")
-    rc.add_argument("--candidate-tasks", "--candidate-seeds", dest="candidate_tasks", type=int, default=32)
-    rc.add_argument("--evaluate-tasks", "--evaluate-seeds", dest="evaluate_tasks", type=int, default=12)
+    rc.add_argument("--candidate-tasks", "--candidate-seeds", "--candidate-experiments", dest="candidate_tasks", type=int, default=24)
+    rc.add_argument("--evaluate-tasks", "--evaluate-seeds", "--evaluate-experiments", dest="evaluate_tasks", type=int, default=8)
     rc.add_argument("--variants-per-task", "--sandbox-evals", dest="variants_per_task", type=int, default=3)
     rc.set_defaults(f=run_cycle)
+
+    rn = sp.add_parser("run")
+    rn.add_argument("--repo-root")
+    rn.add_argument("--registry")
+    rn.add_argument("--out", default="agialpha-engine-runs/test")
+    rn.add_argument("--candidate-experiments", dest="candidate_tasks", type=int, default=24)
+    rn.add_argument("--evaluate-experiments", dest="evaluate_tasks", type=int, default=8)
+    rn.add_argument("--variants-per-experiment", dest="variants_per_task", type=int, default=3)
+    rn.set_defaults(f=run_cycle)
 
     ore = sp.add_parser("run-open-rsi-eval")
     ore.add_argument("--repo-root", default=".")

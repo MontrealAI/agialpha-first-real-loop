@@ -1,0 +1,12 @@
+[
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "proofbundle_id": "PB-001",
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "tasks": 8,
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  }
+]
