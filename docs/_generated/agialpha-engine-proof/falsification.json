@@ -1,0 +1,22 @@
+{
+  "autonomous_persistence_allowed": false,
+  "checks": {
+    "B6_not_hardcoded": true,
+    "adversarial_docket_present": true,
+    "capability_mutation_rejected": true,
+    "equal_budget": true,
+    "evidence_docket_complete": true,
+    "heldout_leakage_absent": true,
+    "proofbundle_complete": true,
+    "public_status_gated": true,
+    "semantic_negative_tests_present": true,
+    "treatment_beats_shadow_control": true,
+    "vRCI_not_hardcoded": true
+  },
+  "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+  "falsification_pass": true,
+  "human_review_required": true,
+  "no_auto_merge": true,
+  "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+  "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+}

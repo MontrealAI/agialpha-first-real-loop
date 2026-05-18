@@ -7,3 +7,5 @@ Canonical experiment families are mapped in [WORKFLOW_CATALOG](WORKFLOW_CATALOG.
 - RSI Governor/Forge
 - HELIOS
 - Gauntlets
+
+- `AGI-ALPHA-ENGINE-002`: Measured Recursive Machine Labor Proof; adjacent-mandate pilot with frozen capability, held-out evaluation, treatment vs shadow control, replay, falsification, ProofBundles, and Evidence Dockets.

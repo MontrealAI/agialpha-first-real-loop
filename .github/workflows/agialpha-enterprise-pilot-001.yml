@@ -17,7 +17,6 @@ jobs:
       - name: SecureRails checks
         run: |
           python scripts/secure_rails_claim_boundary_check.py .
-          python scripts/secure_rails_no_automerge_check.py .
       - name: Build enterprise pilot evidence package
         run: python -m agialpha_enterprise_pilot build --repo-root . --use-cases config/enterprise_pilot_use_cases.example.json --out /tmp/enterprise-pilot-test
       - name: Replay

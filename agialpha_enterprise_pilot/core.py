@@ -36,12 +36,12 @@ def _next_run_id(reg: Path, repo_root: Path, out: Path, seed: str) -> str:
     return f"enterprise-pilot-{hashlib.sha256(f'{repo_root}|{out}|{seed}|{next_index}'.encode()).hexdigest()[:12]}"
 
 
-def build(repo_root: Path, out: Path, use_cases: Path, registry: Path = Path("enterprise_pilot_registry")):
+def build(repo_root: Path, out: Path, use_cases: Path, registry: Path = Path("enterprise_pilot_registry"), workflow_family_override: str | None = None, customer_mode_override: str | None = None):
     repo_root = Path(repo_root).resolve(); out = Path(out).resolve(); reg = (repo_root / registry)
     fixtures = json.loads(Path(use_cases).read_text(encoding="utf-8"))
     pilot = fixtures["pilots"][0]
-    workflow_family = pilot.get("job_pack", "software_quality_pack")
-    customer_mode = pilot.get("allowed_mode", "synthetic_only")
+    workflow_family = workflow_family_override or pilot.get("job_pack", "software_quality_pack")
+    customer_mode = customer_mode_override or pilot.get("allowed_mode", "synthetic_only")
     run_id = _next_run_id(reg, repo_root, out, pilot["pilot_id"])
     pid = pilot["pilot_id"]
 

@@ -1,0 +1,46 @@
+name: AGI ALPHA Engine 002 / Measured Recursive Machine Labor Proof
+
+on:
+  workflow_dispatch:
+  pull_request:
+  schedule:
+    - cron: '17 4 * * 1'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  measured-recursive-proof:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run SecureRails checks if present
+        run: |
+          set -e
+          if [ -f scripts/secure_rails_claim_boundary_check.py ]; then python scripts/secure_rails_claim_boundary_check.py .; fi
+          if [ -f scripts/secure_rails_no_automerge_check.py ]; then python scripts/secure_rails_no_automerge_check.py .; fi
+      - name: Run measured recursive proof
+        run: python -m agialpha_engine run-proof --repo-root . --out agialpha-engine-proof-runs/engine-002 --mandate-pairs 3 --seed 1337
+      - name: Replay proof
+        run: python -m agialpha_engine replay-proof --run agialpha-engine-proof-runs/engine-002
+      - name: Falsification audit
+        run: python -m agialpha_engine falsification-audit-proof --run agialpha-engine-proof-runs/engine-002
+      - name: Validate proof
+        run: python -m agialpha_engine validate-proof --run agialpha-engine-proof-runs/engine-002
+      - name: Run semantic negative tests
+        run: python -m agialpha_engine semantic-negative-tests-proof --run agialpha-engine-proof-runs/engine-002
+      - name: Build generated data
+        run: python -m agialpha_engine build-proof-data --run agialpha-engine-proof-runs/engine-002 --out docs/_generated/agialpha-engine-proof
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: agialpha-engine-002-measured-recursive-proof
+          path: |
+            agialpha-engine-proof-runs/engine-002
+            docs/_generated/agialpha-engine-proof

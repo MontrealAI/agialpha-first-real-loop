@@ -1,0 +1,13 @@
+{
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+  "computed_metrics": "08_comparison/computed_metrics.json",
+  "evidence_docket_index": "11_evidence_dockets/docket_index.json",
+  "human_review_required": true,
+  "no_auto_merge": true,
+  "proofbundle_index": "10_proofbundles/proofbundle_index.json",
+  "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+  "run_id": "agialpha-engine-proof-test",
+  "summary": "15_public_summary/summary.json",
+  "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+}

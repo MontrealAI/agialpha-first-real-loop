@@ -216,3 +216,5 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 | `agialpha-engine-001-vnext.yml` | Core | `workflow_dispatch`, `schedule` | Engine vNext candidate artifacts. | Human-governed promotion required; no direct Pages deploy. | no |
 
 | `agialpha-engine-001-lifecycle.yml` | Core | `workflow_dispatch`, `schedule` | Engine lifecycle artifacts. | Human review required; no direct Pages deploy; no auto-merge. | no |
+
+| `agialpha-engine-002-measured-recursive-proof.yml` | Core | `workflow_dispatch`, `pull_request`, `schedule` | Measured recursive machine labor proof artifacts, replay, falsification audit, generated public data. | Local bounded evidence only; human review required; no direct Pages deploy; no auto-merge; no token/investment/regulated decisioning claim. | no |

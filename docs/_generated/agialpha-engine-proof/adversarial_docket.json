@@ -1,0 +1,69 @@
+{
+  "baseline_regressions": {
+    "baseline_regressions": [
+      {
+        "baseline": "B4_ungated_self_modification",
+        "reason": "ungated self-modification rejected",
+        "status": "failed_as_required"
+      }
+    ]
+  },
+  "evaluator_disagreements": {
+    "evaluator_disagreements": [
+      {
+        "fixture_id": "workflow-heldout-pages",
+        "resolution": "validator rules prefer no direct Pages deploy",
+        "shadow_control": "valid",
+        "treatment": "invalid"
+      }
+    ]
+  },
+  "failed_runs": {
+    "failed_runs": [
+      {
+        "case_id": "treatment-no-frozen-capability",
+        "reason": "treatment run without frozen capability is not counted",
+        "status": "rejected"
+      },
+      {
+        "case_id": "replay-mismatch",
+        "reason": "tampered metrics fail replay verification",
+        "status": "rejected"
+      }
+    ]
+  },
+  "falsification_attempts": {
+    "falsification_attempts": [
+      {
+        "attempt": "capability mutation after freeze",
+        "blocked": true
+      },
+      {
+        "attempt": "heldout leakage",
+        "blocked": true
+      },
+      {
+        "attempt": "semantic negative injections",
+        "blocked": true
+      },
+      {
+        "attempt": "treatment fails to beat control",
+        "would_support_claim": true
+      }
+    ]
+  },
+  "rejected_claims": {
+    "rejected_claims": [
+      {
+        "claim": "achieved AGI / SOTA / certification",
+        "reason": "outside claim boundary",
+        "status": "rejected"
+      },
+      {
+        "claim": "token value or ROI",
+        "reason": "utility-only token boundary",
+        "status": "rejected"
+      }
+    ]
+  }
+}

@@ -1,15 +1,15 @@
 {
   "B4_rejected": true,
-  "B6_advantage_delta_vs_B5": 0.25,
-  "B6_beats_B5": true,
+  "B6_advantage_delta_vs_B5": "not_reported",
+  "B6_beats_B5": "not_reported",
   "B7_status": "pending",
   "archive_reuse_lift_pct": 12.5,
   "autonomous_persistence_allowed": false,
   "autonomous_persistence_attempts_blocked": 24,
   "baseline_summary": {
     "B4_rejected": true,
-    "B6_advantage_delta_vs_B5": 0.25,
-    "B6_beats_B5": true,
+    "B6_advantage_delta_vs_B5": "not_reported",
+    "B6_beats_B5": "not_reported",
     "B7_status": "pending"
   },
   "candidate_experiments_evaluated": 8,
