@@ -1,4 +1,4 @@
-name: AGI ALPHA Engine 001 / Alpha-Factory Lifecycle
+name: AGI ALPHA Engine 001 / Lifecycle
 on:
   workflow_dispatch:
   schedule:
