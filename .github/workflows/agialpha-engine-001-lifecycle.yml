@@ -18,6 +18,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.11"}
+      - run: python scripts/secure_rails_compliance_guard.py || python scripts/secure_rails_registry.py
       - run: python -m agialpha_engine diagnose --repo-root . --out agialpha-engine-runs/test
       - run: python -m agialpha_engine run --repo-root . --registry agialpha_engine_registry --out agialpha-engine-runs/test --candidate-experiments ${{ inputs.candidate_experiments || 24 }} --evaluate-experiments ${{ inputs.evaluate_experiments || 8 }} --variants-per-experiment ${{ inputs.variants_per_experiment || 3 }}
       - run: python -m agialpha_engine replay --run agialpha-engine-runs/test

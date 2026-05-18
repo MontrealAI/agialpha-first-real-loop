@@ -71,6 +71,7 @@ def run_engine(args):
     pbs=[{"proofbundle_id":f"PB-{i+1:03d}","experiment_id":x['experiment_id'],**BOUNDARIES} for i,x in enumerate(sel)]
     atomic_write_json(out/'09_proofbundles/proofbundle_index.json',pbs)
     for pb in pbs: atomic_write_json(out/f"09_proofbundles/proofbundles/{pb['proofbundle_id']}.json",pb)
+    atomic_write_json(out/'10_proofbundles/proofbundle.json', {"proofbundle_id": pbs[0]['proofbundle_id'] if pbs else 'PB-000', "proofbundles": pbs, **BOUNDARIES})
     dks=[{"docket_id":f"ED-{i+1:03d}","experiment_id":x['experiment_id'],**BOUNDARIES} for i,x in enumerate(sel)]
     atomic_write_json(out/'10_evidence_dockets/docket_index.json',dks)
     for d in dks: atomic_write_json(out/f"10_evidence_dockets/dockets/{d['docket_id']}.json",d)
@@ -129,7 +130,7 @@ def replay(args):
     _require_run_artifacts(run, [
         "02_experiment_generation/selected_experiments.json",
         "03_validator_synthesis/validators.json",
-        "09_proofbundles/proofbundle_index.json",
+        "10_proofbundles/proofbundle.json",
         "10_evidence_dockets/docket_index.json",
     ], "replay")
     atomic_write_json(run/'11_replay/replay_report.json',{"replay_passes":1,**BOUNDARIES})
