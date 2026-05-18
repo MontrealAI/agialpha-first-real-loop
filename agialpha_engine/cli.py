@@ -26,16 +26,21 @@ def discover(args):
 
 
 def run_cycle(args):
-    run = Path(args.out)
+    out_path = args.out or "agialpha-engine-runs/test"
+    run = Path(out_path)
     run.mkdir(parents=True, exist_ok=True)
     tasks = generate_tasks(args.candidate_tasks)
     sel = tasks[: args.evaluate_tasks]
     rej = tasks[args.evaluate_tasks :]
+    variants_per_task = max(1, int(args.variants_per_task))
     atomic_write_json(run / "03_task_foundry/candidate_tasks.json", tasks)
     atomic_write_json(run / "03_task_foundry/selected_tasks.json", sel)
     atomic_write_json(run / "03_task_foundry/rejected_tasks.json", rej)
     atomic_write_json(run / "05_validators/validator_specs.json", [t["validator_spec"] for t in sel])
-    atomic_write_json(run / "06_solver_plans/solver_plans.json", [t["solver_plan"] for t in sel])
+    solver_plans = []
+    for t in sel:
+        solver_plans.append({"task_id": t["task_id"], "variants": [{"variant_id": f"{t['task_id']}-V{i+1}", "plan": t["solver_plan"]} for i in range(variants_per_task)]})
+    atomic_write_json(run / "06_solver_plans/solver_plans.json", solver_plans)
     for t in sel:
         atomic_write_json(
             run / f"06_solver_plans/patch_proposals/{t['task_id']}.json",
@@ -65,7 +70,7 @@ def run_cycle(args):
     hashes = {t["task_id"]: _hash(t) for t in sel}
     atomic_write_json(run / "09_lock_then_reveal/candidate_hashes.json", hashes)
     atomic_write_json(run / "09_lock_then_reveal/lock_integrity_report.json", {"lock_then_reveal_pass": True})
-    atomic_write_json(run / "10_proofbundles/proofbundle.json", {"proofbundle_id": "PB-001", "tasks": len(sel), **BOUNDARIES})
+    atomic_write_json(run / "10_proofbundles/proofbundle.json", {"proofbundle_id": "PB-001", "tasks": len(sel), "variants_per_task": variants_per_task, **BOUNDARIES})
     atomic_write_json(run / "11_evidence_docket/00_manifest.json", {"docket_id": "ED-001", **BOUNDARIES})
     atomic_write_json(run / "12_archive/capability_archive.json", sel)
     atomic_write_json(run / "12_archive/rejected_archive.json", rej)
@@ -156,28 +161,42 @@ def validate(args):
     atomic_write_json(run / "validate.json", {"status": "ok", "validated": True, **BOUNDARIES})
 
 
+def _read_json(path: Path):
+    if not path.exists():
+        return {"status": "not_reported", "reason": f"missing:{path.name}"}
+    with path.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 def build_data(args):
+    registry = Path(args.registry)
     out = Path(args.out)
-    for f in [
-        "latest.json",
-        "summary.json",
-        "tasks.json",
-        "validators.json",
-        "baselines.json",
-        "ablations.json",
-        "proofbundles.json",
-        "evidence_dockets.json",
-        "archive.json",
-        "lineage.json",
-        "descendants.json",
-        "vrci.json",
-        "replay_reports.json",
-        "falsification_reports.json",
-        "missing_evidence.json",
-    ]:
-        atomic_write_json(out / f, {"status": "ok"})
+    if not registry.exists():
+        raise SystemExit(f"build-data failed: registry path does not exist: {registry}")
 
+    mapping = {
+        "latest.json": "latest.json",
+        "tasks.json": "task_candidates.json",
+        "validators.json": "validators.json",
+        "baselines.json": "baseline_results.json",
+        "ablations.json": "ablation_results.json",
+        "proofbundles.json": "proofbundles.json",
+        "evidence_dockets.json": "evidence_dockets.json",
+        "archive.json": "capability_archive.json",
+        "lineage.json": "lineage_graph.json",
+        "descendants.json": "descendant_tasks.json",
+        "vrci.json": "scorecards.json",
+        "replay_reports.json": "replay_reports.json",
+        "falsification_reports.json": "falsification_reports.json",
+        "missing_evidence.json": "missing_evidence.json",
+    }
 
+    summary = {"status": "ok", "registry": str(registry), **BOUNDARIES}
+    for out_name, reg_name in mapping.items():
+        data = _read_json(registry / reg_name)
+        atomic_write_json(out / out_name, data)
+    summary["task_count"] = len(_read_json(registry / "task_candidates.json")) if isinstance(_read_json(registry / "task_candidates.json"), list) else "not_reported"
+    atomic_write_json(out / "summary.json", summary)
 def render(args):
     atomic_write_json(
         Path(args.out) / "routes.json",
@@ -202,7 +221,7 @@ def main():
     rc = sp.add_parser("run-cycle")
     rc.add_argument("--repo-root")
     rc.add_argument("--registry")
-    rc.add_argument("--out")
+    rc.add_argument("--out", default="agialpha-engine-runs/test")
     rc.add_argument("--candidate-tasks", type=int, default=32)
     rc.add_argument("--evaluate-tasks", type=int, default=12)
     rc.add_argument("--variants-per-task", type=int, default=3)
@@ -243,8 +262,8 @@ def main():
     v.set_defaults(f=validate)
 
     bd = sp.add_parser("build-data")
-    bd.add_argument("--registry")
-    bd.add_argument("--out")
+    bd.add_argument("--registry", required=True)
+    bd.add_argument("--out", required=True)
     bd.set_defaults(f=build_data)
 
     r = sp.add_parser("render")
