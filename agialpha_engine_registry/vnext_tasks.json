@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "task_id": "vnext-001",
+    "from_capability": "engine-run-004-cand-002",
+    "status": "pending_human_review"
+  },
+  {
+    "task_id": "vnext-002",
+    "from_capability": "engine-run-004-cand-003",
+    "status": "pending_human_review"
+  },
+  {
+    "task_id": "vnext-003",
+    "from_capability": "engine-run-004-cand-004",
+    "status": "pending_human_review"
+  }
+]

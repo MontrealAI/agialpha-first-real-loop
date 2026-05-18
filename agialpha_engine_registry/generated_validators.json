@@ -58,5 +58,25 @@
     "validator_id": "val-004",
     "candidate": "engine-run-003-cand-004",
     "spec": "deterministic-fixture"
+  },
+  {
+    "validator_id": "val-001",
+    "candidate": "engine-run-004-cand-001",
+    "spec": "deterministic-fixture"
+  },
+  {
+    "validator_id": "val-002",
+    "candidate": "engine-run-004-cand-002",
+    "spec": "deterministic-fixture"
+  },
+  {
+    "validator_id": "val-003",
+    "candidate": "engine-run-004-cand-003",
+    "spec": "deterministic-fixture"
+  },
+  {
+    "validator_id": "val-004",
+    "candidate": "engine-run-004-cand-004",
+    "spec": "deterministic-fixture"
   }
 ]

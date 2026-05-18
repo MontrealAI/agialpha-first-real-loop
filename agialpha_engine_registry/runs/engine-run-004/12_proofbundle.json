@@ -1,0 +1,48 @@
+{
+  "schema_version": "agialpha.engine.proofbundle.v1",
+  "run_id": "engine-run-004",
+  "validator_results": [
+    {
+      "validator_id": "val-001",
+      "candidate": "engine-run-004-cand-001",
+      "spec": "deterministic-fixture"
+    },
+    {
+      "validator_id": "val-002",
+      "candidate": "engine-run-004-cand-002",
+      "spec": "deterministic-fixture"
+    },
+    {
+      "validator_id": "val-003",
+      "candidate": "engine-run-004-cand-003",
+      "spec": "deterministic-fixture"
+    },
+    {
+      "validator_id": "val-004",
+      "candidate": "engine-run-004-cand-004",
+      "spec": "deterministic-fixture"
+    }
+  ],
+  "baseline_results": {
+    "B0": "no_engine",
+    "B1": "docs_only",
+    "B2": "fixed_checklist",
+    "B3": "random_seed_generator",
+    "B4": "fail",
+    "B5": "current_governance_harness",
+    "B6": "alpha_factory_engine",
+    "B7": "pending_human_review",
+    "B6_beats_B5": true,
+    "B6_advantage_delta_vs_B5": 8
+  },
+  "claim_boundary": "local bounded recursive experiment-engine evidence",
+  "token_boundary": "$AGIALPHA utility-only accounting",
+  "regulated_boundary": "regulated decisioning blocked; documentation-only or human-review-required",
+  "human_review_required": true,
+  "autonomous_persistence_allowed": false,
+  "input_hashes": {},
+  "candidate_hashes": {},
+  "sandbox_hashes": {},
+  "output_hashes": {},
+  "replay_instructions": "python -m agialpha_engine replay --run <run_dir>"
+}
