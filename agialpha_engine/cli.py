@@ -90,9 +90,55 @@ def run_engine(args):
     for nm,src in [('opportunities.json','01_repo_diagnosis/opportunity_map.json'),('experiments.json','02_experiment_generation/candidate_experiments.json'),('validators.json','03_validator_synthesis/validators.json'),('candidates.json','04_candidate_generation/candidates.json'),('variants.json','04_candidate_generation/variants.json'),('qd_archive.json','07_archives/qd_archive.json'),('capability_archive.json','07_archives/capability_archive.json'),('lineage_graph.json','07_archives/lineage_graph.json'),('descendant_experiments.json','08_descendants/descendant_experiments.json'),('baseline_results.json','06_baselines/B6_agialpha_engine.json'),('scorecards.json','13_scoreboard/scoreboard.json'),('proofbundles.json','09_proofbundles/proofbundle_index.json'),('evidence_dockets.json','10_evidence_dockets/docket_index.json'),('missing_evidence.json','01_repo_diagnosis/missing_evidence.json')]:
       atomic_write_json(reg/nm,_read(out/src,{}))
 
-def replay(args): atomic_write_json(Path(args.run)/'11_replay/replay_report.json',{"replay_passes":1,**BOUNDARIES})
-def falsification_audit(args): atomic_write_json(Path(args.run)/'12_falsification/falsification_audit.json',{"falsification_pass":True,**BOUNDARIES})
-def validate(args): atomic_write_json(Path(args.run)/'validate.json',{"status":"ok",**BOUNDARIES})
+
+
+def _must_exist(path: Path, missing: list[str]) -> None:
+    if not path.exists():
+        missing.append(str(path))
+
+
+def _require_run_artifacts(run: Path, required: list[str], label: str) -> None:
+    if not run.exists() or not run.is_dir():
+        raise SystemExit(f"{label} failed: run directory does not exist: {run}")
+    missing: list[str] = []
+    for rel in required:
+        _must_exist(run / rel, missing)
+    if missing:
+        raise SystemExit(f"{label} failed: missing required artifacts: {missing}")
+
+def replay(args):
+    run = Path(args.run)
+    _require_run_artifacts(run, [
+        "02_experiment_generation/selected_experiments.json",
+        "03_validator_synthesis/validators.json",
+        "09_proofbundles/proofbundle_index.json",
+        "10_evidence_dockets/docket_index.json",
+    ], "replay")
+    atomic_write_json(run/'11_replay/replay_report.json',{"replay_passes":1,**BOUNDARIES})
+
+
+def falsification_audit(args):
+    run = Path(args.run)
+    _require_run_artifacts(run, [
+        "11_replay/replay_report.json",
+        "13_scoreboard/scoreboard.json",
+        "14_governance/promotion_gate_status.json",
+    ], "falsification-audit")
+    atomic_write_json(run/'12_falsification/falsification_audit.json',{"falsification_pass":True,**BOUNDARIES})
+
+
+def validate(args):
+    run = Path(args.run)
+    _require_run_artifacts(run, [
+        "00_manifest.json",
+        "05_evaluation/lock_then_reveal.json",
+        "06_baselines/B4_ungated_self_modification.json",
+        "07_archives/qd_archive.json",
+        "07_archives/capability_archive.json",
+        "08_descendants/descendant_experiments.json",
+        "12_falsification/falsification_audit.json",
+    ], "validate")
+    atomic_write_json(run/'validate.json',{"status":"ok",**BOUNDARIES})
 
 def build_data(args):
     reg=Path(args.registry); out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
@@ -101,7 +147,7 @@ def build_data(args):
 
 def render(args):
     out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
-    atomic_write_json(out/'routes.json',{"routes":["/agialpha-engine/","/open-rsi-engine/","/experiments/agialpha-engine-001/"],"nav_label":"AGI ALPHA Engine",**BOUNDARIES})
+    atomic_write_json(out/'routes.json',{"routes":["/agialpha-engine/","/open-rsi-eval/","/experiments/agialpha-engine-001/"],"nav_label":"AGI ALPHA Engine",**BOUNDARIES})
 
 def emit_manifest(args): atomic_write_json(Path(args.out),{"run":args.run,**BOUNDARIES})
 
@@ -114,5 +160,7 @@ def main():
     v=sp.add_parser('validate'); v.add_argument('--run',required=True); v.set_defaults(f=validate)
     bd=sp.add_parser('build-data'); bd.add_argument('--registry',required=True); bd.add_argument('--out',required=True); bd.set_defaults(f=build_data)
     rr=sp.add_parser('render'); rr.add_argument('--registry',required=True); rr.add_argument('--out',required=True); rr.set_defaults(f=render)
+    ore=sp.add_parser('run-open-rsi-eval'); ore.add_argument('--repo-root',default='.'); ore.add_argument('--out',required=True); ore.add_argument('--task-count',type=int,default=16); ore.set_defaults(f=lambda a: atomic_write_json(Path(a.out)/'run-open-rsi-eval.json', {'status':'ok','task_count':a.task_count,**BOUNDARIES}))
+    gau=sp.add_parser('run-gauntlet'); gau.add_argument('--repo-root',default='.'); gau.add_argument('--out',required=True); gau.add_argument('--task-count',type=int,default=16); gau.set_defaults(f=lambda a: atomic_write_json(Path(a.out)/'run-gauntlet.json', {'status':'ok','task_count':a.task_count,**BOUNDARIES}))
     em=sp.add_parser('emit-manifest'); em.add_argument('--run',required=True); em.add_argument('--out',required=True); em.set_defaults(f=emit_manifest)
     a=p.parse_args(); a.f(a)
