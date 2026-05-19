@@ -15,3 +15,18 @@ class T(unittest.TestCase):
             with zipfile.ZipFile(z,'w') as f:f.writestr('a.bin',b'\x00\x01')
             r=ingest_artifact(z)
             self.assertIn('unsupported_binary', r['quarantine_reasons'])
+
+
+    def test_zip_openai_project_key_quarantine(self):
+        with tempfile.TemporaryDirectory() as td:
+            z=Path(td)/'c.zip'
+            with zipfile.ZipFile(z,'w') as f:f.writestr('a.txt','OPENAI_API_KEY=sk-proj-AbCdEf_1234567890')
+            r=ingest_artifact(z)
+            self.assertIn('secret_like_content', r['quarantine_reasons'])
+
+    def test_zip_pkcs8_key_quarantine(self):
+        with tempfile.TemporaryDirectory() as td:
+            z=Path(td)/'d.zip'
+            with zipfile.ZipFile(z,'w') as f:f.writestr('a.txt','-----BEGIN PRIVATE KEY-----\nabc')
+            r=ingest_artifact(z)
+            self.assertIn('secret_like_content', r['quarantine_reasons'])
