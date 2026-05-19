@@ -1,0 +1,28 @@
+name: AGI ALPHA Engine 002 / Measured Recursive Machine Labor Replay
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_path:
+        description: 'Run directory path'
+        required: false
+        default: 'agialpha-engine-runs/test'
+  schedule:
+    - cron: '17 4 * * 1'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Replay
+        run: python -m agialpha_engine replay --run "${{ inputs.run_path || 'agialpha-engine-runs/test' }}"
