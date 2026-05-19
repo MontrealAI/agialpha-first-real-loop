@@ -171,16 +171,25 @@ def validate(args):
         falsification_report=_read_json(run/'12_falsification/falsification_audit.json',{})
         replay_ok = replay_report.get('replay_pass') is True or replay_report.get('replay_passes',0) > 0
         falsification_ok = falsification_report.get('falsification_pass') is True
+        failed_requirements = gate.get('failed_requirements') if isinstance(gate.get('failed_requirements'), list) else None
+        allowed_sentence = gate.get('allowed_public_sentence') if isinstance(gate.get('allowed_public_sentence'), str) else ''
+        status = gate.get('status')
+        status_consistent = (
+            (status == 'supported' and failed_requirements == [])
+            or (status == 'not_supported' and isinstance(failed_requirements, list) and len(failed_requirements) > 0)
+        )
         gate_ok = (
             gate.get('claim') == 'machine_labor_recursively_improves_measured_falsifiable'
-            and gate.get('status') in {'supported','not_supported'}
-            and isinstance(gate.get('failed_requirements'), list)
+            and status in {'supported','not_supported'}
+            and isinstance(failed_requirements, list)
+            and status_consistent
             and isinstance(gate.get('supporting_artifacts'), list)
             and isinstance(gate.get('raw_metric_sources'), list)
             and gate.get('computed_not_hardcoded') in {True, False}
             and gate.get('human_review_required') is True
             and gate.get('autonomous_persistence_allowed') is False
-            and isinstance(gate.get('allowed_public_sentence'), str) and bool(gate.get('allowed_public_sentence').strip())
+            and bool(allowed_sentence.strip())
+            and not _has_forbidden_overclaim(allowed_sentence)
         )
         status='ok' if (gate_ok and replay_ok and falsification_ok) else 'failed'
         atomic_write_json(run/'validate.json',{'status':status,'replay_ok':replay_ok,'falsification_ok':falsification_ok,'gate_ok':gate_ok,**BOUNDARIES})
@@ -261,6 +270,17 @@ def _adversarial_pass(run: Path) -> bool:
             return False
     return True
 
+
+
+
+def _has_forbidden_overclaim(text: str) -> bool:
+    forbidden = [
+        'achieved agi','achieved asi','superintelligence','empirical sota','official benchmark victory',
+        'security certification','legal compliance certification','eu ai act exemption','token value',
+        'investment return','roi','yield'
+    ]
+    low = text.lower()
+    return any(term in low for term in forbidden)
 
 def _derive_safety_counters(run: Path):
     from .semantic_tests import safety_counters_from_artifacts
