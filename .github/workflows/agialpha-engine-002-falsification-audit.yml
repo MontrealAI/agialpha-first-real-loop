@@ -37,3 +37,11 @@ jobs:
           fi
       - name: Run falsification audit
         run: python -m agialpha_engine falsification-audit --run "${{ inputs.run_path || 'agialpha-engine-runs/test' }}"
+
+      - name: Upload falsification artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: agialpha-engine-002-falsification-audit-report
+          path: |
+            ${{ inputs.run_path || 'agialpha-engine-runs/test' }}/12_falsification/falsification_audit.json
+            ${{ inputs.run_path || 'agialpha-engine-runs/test' }}/11_replay/replay_report.json

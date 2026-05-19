@@ -37,3 +37,11 @@ jobs:
           fi
       - name: Replay
         run: python -m agialpha_engine replay --run "${{ inputs.run_path || 'agialpha-engine-runs/test' }}"
+
+      - name: Upload replay artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: agialpha-engine-002-replay-report
+          path: |
+            ${{ inputs.run_path || 'agialpha-engine-runs/test' }}/11_replay/replay_report.json
+            ${{ inputs.run_path || 'agialpha-engine-runs/test' }}/06_metrics/computed_metrics.json

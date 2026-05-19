@@ -38,9 +38,16 @@ jobs:
           python-version: '3.11'
       - name: Run SecureRails checks if present
         run: |
-          set -e
-          if [ -f scripts/secure_rails_claim_boundary_check.py ]; then python scripts/secure_rails_claim_boundary_check.py .; fi
-          if [ -f scripts/secure_rails_no_automerge_check.py ]; then python scripts/secure_rails_no_automerge_check.py .; fi
+          set -euo pipefail
+          shopt -s nullglob
+          for script in scripts/secure_rails_*_check.py; do
+            if grep -q "<repo_root>" "$script"; then
+              echo "Running $script ."
+              python "$script" .
+            else
+              echo "Skipping $script (non-repo-root check)"
+            fi
+          done
       - name: Diagnose
         run: python -m agialpha_engine diagnose --repo-root . --out agialpha-engine-runs/test
       - name: Run recursive chain
