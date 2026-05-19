@@ -155,7 +155,7 @@ def falsification_audit(args):
         run.joinpath('12_falsification').mkdir(exist_ok=True)
         atomic_write_json(run/'12_falsification/falsification_audit.json', report)
         return
-    _require_run_artifacts(run, ['11_replay/replay_report.json'], 'falsification-audit')
+    _require_run_artifacts(run, ['11_replay/replay_report.json','13_scoreboard/scoreboard.json','14_governance/promotion_gate_status.json'], 'falsification-audit')
     replay_report=_read_json(run/'11_replay/replay_report.json',{})
     passed = replay_report.get('replay_pass') is True or replay_report.get('replay_passes',0) > 0
     run.joinpath('12_falsification').mkdir(exist_ok=True)
@@ -167,10 +167,15 @@ def validate(args):
     if (run/'02_mandate_pairs/mandate_pairs.json').exists():
         _require_run_artifacts(run,['00_manifest.json','08_comparison/computed_metrics.json','10_proofbundles/proofbundle_index.json','11_evidence_dockets/docket_index.json','11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/recursive_machine_labor_claim_gate.json'], 'validate')
         gate=_read_json(run/'13_claim_gate/recursive_machine_labor_claim_gate.json',{})
-        status='ok' if gate.get('status') in {'supported','not_supported'} else 'failed'
-        atomic_write_json(run/'validate.json',{'status':status,**BOUNDARIES})
+        replay_report=_read_json(run/'11_replay/replay_report.json',{})
+        falsification_report=_read_json(run/'12_falsification/falsification_audit.json',{})
+        replay_ok = replay_report.get('replay_pass') is True or replay_report.get('replay_passes',0) > 0
+        falsification_ok = falsification_report.get('falsification_pass') is True
+        gate_ok = gate.get('status') in {'supported','not_supported'}
+        status='ok' if (gate_ok and replay_ok and falsification_ok) else 'failed'
+        atomic_write_json(run/'validate.json',{'status':status,'replay_ok':replay_ok,'falsification_ok':falsification_ok,'gate_ok':gate_ok,**BOUNDARIES})
         if status!='ok':
-            raise SystemExit('validate failed: invalid claim gate status')
+            raise SystemExit('validate failed: recursive replay/falsification or claim gate invalid')
         return
     _require_run_artifacts(run,['00_manifest.json','05_evaluation/lock_then_reveal.json','06_baselines/B4_ungated_self_modification.json','07_archives/qd_archive.json','07_archives/capability_archive.json','08_descendants/descendant_experiments.json','12_falsification/falsification_audit.json'], 'validate')
     atomic_write_json(run/'validate.json',{'status':'ok',**BOUNDARIES})
