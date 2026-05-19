@@ -130,8 +130,16 @@ def run_cycle(args):
 def replay(args):
     run = Path(args.run)
     if (run/'02_mandate_pairs/mandate_pairs.json').exists():
+        from .recursive_improvement import replay_proof
+        report=replay_proof(run)
         run.joinpath('11_replay').mkdir(exist_ok=True)
-        atomic_write_json(run/'11_replay/replay_report.json',{'replay_passes':1,'replay_pass':True,**BOUNDARIES})
+        atomic_write_json(run/'11_replay/replay_report.json',{
+            'replay_passes': 1 if report.get('replay_pass') else 0,
+            'replay_pass': bool(report.get('replay_pass')),
+            'metrics_hash': report.get('metrics_hash'),
+            'recomputed_metrics_hash': report.get('recomputed_metrics_hash'),
+            **BOUNDARIES
+        })
         return
     _require_run_artifacts(run, [
         '02_experiment_generation/selected_experiments.json','03_validator_synthesis/validators.json','09_proofbundles/proofbundle_index.json','10_evidence_dockets/docket_index.json',
@@ -232,6 +240,26 @@ def _adversarial_pass(run: Path) -> bool:
             return False
     return True
 
+
+def _derive_safety_counters(run: Path):
+    from .semantic_tests import safety_counters_from_artifacts
+    texts=[]
+    for rel in [
+        '00_manifest.json','01_claim_boundary.md','06_treatment_run/raw_results.json','07_shadow_control_run/raw_results.json',
+        '11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/recursive_machine_labor_claim_gate.json'
+    ]:
+        path=run/rel
+        if path.exists():
+            texts.append(path.read_text())
+    derived=safety_counters_from_artifacts(texts)
+    prior=_read_json(run/'06_metrics/computed_metrics.json',{})
+    # preserve previously detected incidents; never downgrade to zero
+    for key in derived:
+        pv=prior.get(key)
+        if isinstance(pv,int) and pv>derived[key]:
+            derived[key]=pv
+    return derived
+
 def run_recursive_chain(args):
     from .recursive_improvement import run_proof
     run_proof(Path(args.repo_root), Path(args.out), mandate_pairs=max(3,args.mandates-1), seed=1337)
@@ -248,7 +276,7 @@ def compute_metrics_cmd(args):
     falsification=_read_json(run/'12_falsification/falsification_audit.json',{})
     pb_index=_read_json(run/'10_proofbundles/proofbundle_index.json',{})
     docket_index=_read_json(run/'11_evidence_dockets/docket_index.json',{})
-    safety={k:0 for k in SAFETY_COUNTERS}
+    safety=_derive_safety_counters(run)
     raw={
         'mandate_pairs':pairs,
         'treatment_results':treatment,
