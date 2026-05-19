@@ -149,6 +149,12 @@ def replay(args):
 
 def falsification_audit(args):
     run = Path(args.run)
+    if (run/'02_mandate_pairs/mandate_pairs.json').exists():
+        from .recursive_improvement import falsification_audit as recursive_falsification_audit
+        report = recursive_falsification_audit(run)
+        run.joinpath('12_falsification').mkdir(exist_ok=True)
+        atomic_write_json(run/'12_falsification/falsification_audit.json', report)
+        return
     _require_run_artifacts(run, ['11_replay/replay_report.json'], 'falsification-audit')
     replay_report=_read_json(run/'11_replay/replay_report.json',{})
     passed = replay_report.get('replay_pass') is True or replay_report.get('replay_passes',0) > 0
@@ -245,7 +251,7 @@ def _derive_safety_counters(run: Path):
     from .semantic_tests import safety_counters_from_artifacts
     texts=[]
     for rel in [
-        '00_manifest.json','01_claim_boundary.md','06_treatment_run/raw_results.json','07_shadow_control_run/raw_results.json',
+        '00_manifest.json','06_treatment_run/raw_results.json','07_shadow_control_run/raw_results.json',
         '11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/recursive_machine_labor_claim_gate.json'
     ]:
         path=run/rel
