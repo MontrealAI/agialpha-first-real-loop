@@ -273,7 +273,29 @@ def _derive_safety_counters(run: Path):
 
 def run_recursive_chain(args):
     from .recursive_improvement import run_proof
-    run_proof(Path(args.repo_root), Path(args.out), mandate_pairs=max(3,args.mandates-1), seed=1337)
+    out = Path(args.out)
+    reg = Path(args.registry)
+    run_proof(Path(args.repo_root), out, mandate_pairs=max(3,args.mandates-1), seed=1337)
+    reg.mkdir(parents=True, exist_ok=True)
+    atomic_write_json(reg/'latest.json', {'run_id': out.name, **BOUNDARIES})
+    mirrors = [
+        ('opportunities.json', '02_mandate_pairs/mandate_pairs.json'),
+        ('experiments.json', '02_mandate_pairs/mandate_pairs.json'),
+        ('validators.json', '06_treatment_run/validator_results.json'),
+        ('candidates.json', '03_mandate_A_training/generated_capabilities.json'),
+        ('variants.json', '09_semantic_negative_tests/forbidden_claim_injection.json'),
+        ('qd_archive.json', '12_adversarial_docket/baseline_regressions.json'),
+        ('capability_archive.json', '04_capability_freeze/frozen_capabilities.json'),
+        ('lineage_graph.json', '02_mandate_pairs/mandate_pairs.json'),
+        ('descendant_experiments.json', '05_heldout_mandate_B/heldout_fixtures.json'),
+        ('baseline_results.json', '08_comparison/B6_vs_B5.json'),
+        ('scorecards.json', '08_comparison/computed_metrics.json'),
+        ('proofbundles.json', '10_proofbundles/proofbundle_index.json'),
+        ('evidence_dockets.json', '11_evidence_dockets/docket_index.json'),
+        ('missing_evidence.json', '12_adversarial_docket/failed_runs.json'),
+    ]
+    for nm, src in mirrors:
+        atomic_write_json(reg / nm, _read(out / src, {'status': 'not_reported', **BOUNDARIES}))
 
 def compute_metrics_cmd(args):
     from .metrics import compute_metrics, SAFETY_COUNTERS
