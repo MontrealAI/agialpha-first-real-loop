@@ -171,9 +171,23 @@ def validate(args):
         falsification_report=_read_json(run/'12_falsification/falsification_audit.json',{})
         replay_ok = replay_report.get('replay_pass') is True or replay_report.get('replay_passes',0) > 0
         falsification_ok = falsification_report.get('falsification_pass') is True
-        gate_ok = gate.get('status') in {'supported','not_supported'}
+        required_gate_fields = {
+            'claim': str,
+            'status': str,
+            'allowed_public_sentence': str,
+            'failed_requirements': list,
+            'supporting_artifacts': list,
+            'raw_metric_sources': list,
+            'computed_not_hardcoded': bool,
+            'human_review_required': bool,
+            'autonomous_persistence_allowed': bool,
+        }
+        gate_shape_ok = all((k in gate and isinstance(gate.get(k), t)) for k, t in required_gate_fields.items())
+        gate_status_ok = gate.get('status') in {'supported','not_supported'}
+        gate_boundary_ok = gate.get('human_review_required') is True and gate.get('autonomous_persistence_allowed') is False
+        gate_ok = gate_shape_ok and gate_status_ok and gate_boundary_ok
         status='ok' if (gate_ok and replay_ok and falsification_ok) else 'failed'
-        atomic_write_json(run/'validate.json',{'status':status,'replay_ok':replay_ok,'falsification_ok':falsification_ok,'gate_ok':gate_ok,**BOUNDARIES})
+        atomic_write_json(run/'validate.json',{'status':status,'replay_ok':replay_ok,'falsification_ok':falsification_ok,'gate_ok':gate_ok,'gate_shape_ok':gate_shape_ok,'gate_status_ok':gate_status_ok,'gate_boundary_ok':gate_boundary_ok,**BOUNDARIES})
         if status!='ok':
             raise SystemExit('validate failed: recursive replay/falsification or claim gate invalid')
         return
@@ -342,7 +356,6 @@ def compute_metrics_cmd(args):
         'hardcoded_metric_markers_found': 0,
         'human_review_required_count': len(pairs),
         'raw_metric_sources':['06_treatment_run/raw_results.json','07_shadow_control_run/raw_results.json'],
-        'vRCI_computed': m.get('metrics_computed_from_raw_results',False),
     })
     run.joinpath('06_metrics').mkdir(exist_ok=True)
     atomic_write_json(run/'06_metrics/computed_metrics.json',m)
