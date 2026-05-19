@@ -167,6 +167,8 @@ def validate(args):
     if (run/'02_mandate_pairs/mandate_pairs.json').exists():
         _require_run_artifacts(run,['00_manifest.json','08_comparison/computed_metrics.json','10_proofbundles/proofbundle_index.json','11_evidence_dockets/docket_index.json','11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/recursive_machine_labor_claim_gate.json'], 'validate')
         gate=_read_json(run/'13_claim_gate/recursive_machine_labor_claim_gate.json',{})
+        from .claim_gate import RecursiveMachineLaborClaimGate
+        expected_gate = RecursiveMachineLaborClaimGate.evaluate(run)
         replay_report=_read_json(run/'11_replay/replay_report.json',{})
         falsification_report=_read_json(run/'12_falsification/falsification_audit.json',{})
         replay_ok = replay_report.get('replay_pass') is True or replay_report.get('replay_passes',0) > 0
@@ -190,9 +192,12 @@ def validate(args):
             and gate.get('autonomous_persistence_allowed') is False
             and bool(allowed_sentence.strip())
             and not _has_forbidden_overclaim(allowed_sentence)
+            and gate.get('status') == expected_gate.get('status')
+            and gate.get('failed_requirements') == expected_gate.get('failed_requirements')
+            and gate.get('computed_not_hardcoded') == expected_gate.get('computed_not_hardcoded')
         )
         status='ok' if (gate_ok and replay_ok and falsification_ok) else 'failed'
-        atomic_write_json(run/'validate.json',{'status':status,'replay_ok':replay_ok,'falsification_ok':falsification_ok,'gate_ok':gate_ok,**BOUNDARIES})
+        atomic_write_json(run/'validate.json',{'status':status,'replay_ok':replay_ok,'falsification_ok':falsification_ok,'gate_ok':gate_ok,'gate_matches_metrics': gate.get('status') == expected_gate.get('status') and gate.get('failed_requirements') == expected_gate.get('failed_requirements'),**BOUNDARIES})
         if status!='ok':
             raise SystemExit('validate failed: recursive replay/falsification or claim gate invalid')
         return
