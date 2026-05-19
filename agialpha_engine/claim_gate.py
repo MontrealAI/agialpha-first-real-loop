@@ -19,7 +19,7 @@ class RecursiveMachineLaborClaimGate:
             'm1_frozen_capability': metrics.get('frozen_capability_packages_created',0) >= 1,
             'm2_b6_beats_b5': metrics.get('m2_b6_beats_b5') is True,
             'm3_b6_beats_b5': metrics.get('m3_b6_beats_b5') is True,
-            'computed_not_hardcoded': metrics.get('vRCI_computed') is True and metrics.get('hardcoded_metric_markers_found') == 0,
+            'computed_not_hardcoded': isinstance(metrics.get('vRCI_value', metrics.get('vRCI_computed')), (int, float)) and metrics.get('metrics_computed_from_raw_results') is True and metrics.get('hardcoded_metric_markers_found') == 0,
             'b6_beats_b5': metrics.get('B6_beats_B5') is True,
             'heldout_evaluated': metrics.get('heldout_descendant_mandates_evaluated',0) >= 1,
             'replay_pass': metrics.get('replay_passes',0) >= 1,
