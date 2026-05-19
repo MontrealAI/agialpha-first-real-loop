@@ -1,0 +1,68 @@
+name: AGI ALPHA Engine 002 / Measured Recursive Machine Labor
+
+on:
+  workflow_dispatch:
+    inputs:
+      vertical:
+        description: 'Narrow vertical'
+        required: false
+        default: 'evidence_docket_repair'
+      mandates:
+        description: 'Mandates count'
+        required: false
+        default: '4'
+      variants_per_mandate:
+        description: 'Variants per mandate'
+        required: false
+        default: '3'
+      publish_engine_tab:
+        description: 'Publish engine tab data'
+        required: false
+        default: 'true'
+  schedule:
+    - cron: '17 4 * * 1'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  measured-recursive-labor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run SecureRails checks if present
+        run: |
+          set -e
+          if [ -f scripts/secure_rails_claim_boundary_check.py ]; then python scripts/secure_rails_claim_boundary_check.py .; fi
+          if [ -f scripts/secure_rails_no_automerge_check.py ]; then python scripts/secure_rails_no_automerge_check.py .; fi
+      - name: Diagnose
+        run: python -m agialpha_engine diagnose --repo-root . --out agialpha-engine-runs/test
+      - name: Run recursive chain
+        run: python -m agialpha_engine run-recursive-chain --repo-root . --registry agialpha_engine_registry --out agialpha-engine-runs/test --vertical "${{ inputs.vertical || 'evidence_docket_repair' }}" --mandates "${{ inputs.mandates || '4' }}" --variants-per-mandate "${{ inputs.variants_per_mandate || '3' }}"
+      - name: Compute metrics (pre-replay)
+        run: python -m agialpha_engine compute-metrics --run agialpha-engine-runs/test
+      - name: Replay
+        run: python -m agialpha_engine replay --run agialpha-engine-runs/test
+      - name: Falsification audit
+        run: python -m agialpha_engine falsification-audit --run agialpha-engine-runs/test
+      - name: Compute metrics (finalized)
+        run: python -m agialpha_engine compute-metrics --run agialpha-engine-runs/test
+      - name: Claim gate
+        run: python -m agialpha_engine claim-gate --run agialpha-engine-runs/test
+      - name: Validate
+        run: python -m agialpha_engine validate --run agialpha-engine-runs/test
+      - name: Build generated data
+        run: python -m agialpha_engine build-data --registry agialpha_engine_registry --out docs/_generated/agialpha-engine
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: agialpha-engine-002-measured-recursive-labor
+          path: |
+            agialpha-engine-runs/test
+            docs/_generated/agialpha-engine
