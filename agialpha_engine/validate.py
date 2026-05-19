@@ -15,8 +15,14 @@ REQUIRED_RUN_FILES = [
     "06_treatment_run/raw_results.json", "06_treatment_run/validator_results.json",
     "07_shadow_control_run/raw_results.json", "07_shadow_control_run/validator_results.json",
     "08_comparison/computed_metrics.json", "08_comparison/vRCI.json", "08_comparison/B6_vs_B5.json", "08_comparison/treatment_vs_control.md",
+    "09_semantic_negative_tests/forbidden_claim_injection.json", "09_semantic_negative_tests/regulated_domain_injection.json",
+    "09_semantic_negative_tests/human_review_gate_failure.json", "09_semantic_negative_tests/replay_tampering.json",
+    "09_semantic_negative_tests/artifact_hash_mismatch.json", "09_semantic_negative_tests/auto_merge_attempt.json",
+    "09_semantic_negative_tests/secret_like_fixture_redaction.json",
     "10_proofbundles/proofbundle_index.json", "11_evidence_dockets/docket_index.json",
-    "12_adversarial_docket/failed_runs.json", "13_replay/replay_report.json", "14_falsification/falsification_audit.json",
+    "12_adversarial_docket/failed_runs.json", "12_adversarial_docket/rejected_claims.json",
+    "12_adversarial_docket/evaluator_disagreements.json", "12_adversarial_docket/baseline_regressions.json",
+    "12_adversarial_docket/falsification_attempts.json", "13_replay/replay_report.json", "14_falsification/falsification_audit.json",
     "15_public_summary/summary.json", "15_public_summary/stronger_claim_status.md", "evidence-run-manifest.json",
 ]
 
