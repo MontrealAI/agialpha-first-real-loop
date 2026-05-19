@@ -165,7 +165,7 @@ def falsification_audit(args):
 def validate(args):
     run = Path(args.run)
     if (run/'02_mandate_pairs/mandate_pairs.json').exists():
-        _require_run_artifacts(run,['00_manifest.json','08_comparison/computed_metrics.json','10_proofbundles/proofbundle_index.json','11_evidence_dockets/docket_index.json','11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/recursive_machine_labor_claim_gate.json'], 'validate')
+        _require_run_artifacts(run,['00_manifest.json','06_metrics/computed_metrics.json','08_comparison/computed_metrics.json','10_proofbundles/proofbundle_index.json','11_evidence_dockets/docket_index.json','11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/recursive_machine_labor_claim_gate.json'], 'validate')
         gate=_read_json(run/'13_claim_gate/recursive_machine_labor_claim_gate.json',{})
         replay_report=_read_json(run/'11_replay/replay_report.json',{})
         falsification_report=_read_json(run/'12_falsification/falsification_audit.json',{})
@@ -386,6 +386,7 @@ def compute_metrics_cmd(args):
 def claim_gate_cmd(args):
     from .claim_gate import RecursiveMachineLaborClaimGate
     run=Path(args.run)
+    _require_run_artifacts(run, ['06_metrics/computed_metrics.json'], 'claim-gate')
     run.joinpath('13_claim_gate').mkdir(exist_ok=True)
     atomic_write_json(run/'13_claim_gate/recursive_machine_labor_claim_gate.json', RecursiveMachineLaborClaimGate.evaluate(run))
 def main():
