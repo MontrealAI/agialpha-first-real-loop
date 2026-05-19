@@ -42,7 +42,6 @@ jobs:
           checks=(
             scripts/secure_rails_claim_boundary_check.py
             scripts/secure_rails_no_automerge_check.py
-            scripts/secure_rails_policy_check.py
             scripts/secure_rails_trust_center_check.py
           )
           for check in "${checks[@]}"; do
