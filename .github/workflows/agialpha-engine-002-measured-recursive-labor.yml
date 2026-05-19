@@ -45,14 +45,14 @@ jobs:
         run: python -m agialpha_engine diagnose --repo-root . --out agialpha-engine-runs/test
       - name: Run recursive chain
         run: python -m agialpha_engine run-recursive-chain --repo-root . --registry agialpha_engine_registry --out agialpha-engine-runs/test --vertical "${{ inputs.vertical || 'evidence_docket_repair' }}" --mandates "${{ inputs.mandates || '4' }}" --variants-per-mandate "${{ inputs.variants_per_mandate || '3' }}"
-      - name: Compute metrics
-        run: python -m agialpha_engine compute-metrics --run agialpha-engine-runs/test
-      - name: Claim gate
-        run: python -m agialpha_engine claim-gate --run agialpha-engine-runs/test
       - name: Replay
         run: python -m agialpha_engine replay --run agialpha-engine-runs/test
       - name: Falsification audit
         run: python -m agialpha_engine falsification-audit --run agialpha-engine-runs/test
+      - name: Compute metrics
+        run: python -m agialpha_engine compute-metrics --run agialpha-engine-runs/test
+      - name: Claim gate
+        run: python -m agialpha_engine claim-gate --run agialpha-engine-runs/test
       - name: Validate
         run: python -m agialpha_engine validate --run agialpha-engine-runs/test
       - name: Build generated data
