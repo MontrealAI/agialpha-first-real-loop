@@ -154,6 +154,9 @@ def falsification_audit(args):
         report = recursive_falsification_audit(run)
         run.joinpath('12_falsification').mkdir(exist_ok=True)
         atomic_write_json(run/'12_falsification/falsification_audit.json', report)
+        # Recompute metrics/claim gate only after replay + falsification artifacts exist.
+        compute_metrics_cmd(argparse.Namespace(run=str(run)))
+        claim_gate_cmd(argparse.Namespace(run=str(run)))
         return
     _require_run_artifacts(run, ['11_replay/replay_report.json','13_scoreboard/scoreboard.json','14_governance/promotion_gate_status.json'], 'falsification-audit')
     replay_report=_read_json(run/'11_replay/replay_report.json',{})
@@ -217,8 +220,6 @@ def render(args):
 def run_proof_cmd(args):
     from .recursive_improvement import run_proof
     run_proof(Path(args.repo_root), Path(args.out), args.mandate_pairs, args.seed)
-    compute_metrics_cmd(argparse.Namespace(run=args.out))
-    claim_gate_cmd(argparse.Namespace(run=args.out))
 
 def replay_proof_cmd(args):
     from .recursive_improvement import replay_proof
