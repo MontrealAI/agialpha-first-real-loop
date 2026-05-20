@@ -391,7 +391,10 @@ def claim_gate_cmd(args):
     run=Path(args.run)
     _require_run_artifacts(run, ['06_metrics/computed_metrics.json'], 'claim-gate')
     run.joinpath('13_claim_gate').mkdir(exist_ok=True)
-    atomic_write_json(run/'13_claim_gate/recursive_machine_labor_claim_gate.json', RecursiveMachineLaborClaimGate.evaluate(run))
+    gate = RecursiveMachineLaborClaimGate.evaluate(run)
+    atomic_write_json(run/'13_claim_gate/recursive_machine_labor_claim_gate.json', gate)
+    if getattr(args, 'out', None):
+        atomic_write_json(Path(args.out), gate)
 def main():
     p=argparse.ArgumentParser(); sp=p.add_subparsers(dest='cmd',required=True)
     d=sp.add_parser('diagnose'); d.add_argument('--repo-root',default='.'); d.add_argument('--out',required=True); d.set_defaults(f=diagnose)
@@ -400,7 +403,7 @@ def main():
     rc=sp.add_parser('run-cycle'); rc.add_argument('--repo-root', default='.'); rc.add_argument('--registry', required=True); rc.add_argument('--out', required=True); rc.add_argument('--candidate-seeds', type=int); rc.add_argument('--evaluate-seeds', type=int); rc.add_argument('--sandbox-evals', type=int); rc.add_argument('--candidate-tasks', type=int, default=24); rc.add_argument('--evaluate-tasks', type=int, default=8); rc.add_argument('--variants-per-task', type=int, default=3); rc.set_defaults(f=run_cycle)
     rrc=sp.add_parser('run-recursive-chain'); rrc.add_argument('--repo-root',default='.'); rrc.add_argument('--registry',required=True); rrc.add_argument('--out',required=True); rrc.add_argument('--vertical',default='evidence_docket_repair'); rrc.add_argument('--mandates',type=int,default=4); rrc.add_argument('--variants-per-mandate',type=int,default=3); rrc.set_defaults(f=run_recursive_chain)
     cm=sp.add_parser('compute-metrics'); cm.add_argument('--run',required=True); cm.set_defaults(f=compute_metrics_cmd)
-    cg=sp.add_parser('claim-gate'); cg.add_argument('--run',required=True); cg.set_defaults(f=claim_gate_cmd)
+    cg=sp.add_parser('claim-gate'); cg.add_argument('--run',required=True); cg.add_argument('--out'); cg.set_defaults(f=claim_gate_cmd)
     rep=sp.add_parser('replay'); rep.add_argument('--run',required=True); rep.set_defaults(f=replay)
     fa=sp.add_parser('falsification-audit'); fa.add_argument('--run',required=True); fa.set_defaults(f=falsification_audit)
     v=sp.add_parser('validate'); v.add_argument('--run',required=True); v.set_defaults(f=validate)
@@ -438,6 +441,22 @@ def main():
             )
         )
     )
+    rmr=sp.add_parser('run-measured-recursion')
+    rmr.add_argument('--repo-root', default='.')
+    rmr.add_argument('--registry', default='agialpha_engine_registry')
+    rmr.add_argument('--out', required=True)
+    rmr.add_argument('--cycles', type=int, default=2)
+    rmr.add_argument('--candidate-tasks', type=int, default=24)
+    rmr.add_argument('--evaluate-tasks', type=int, default=12)
+    rmr.add_argument('--variants-per-task', type=int, default=3)
+    rmr.add_argument('--heldout-descendants', type=int, default=8)
+    rmr.add_argument('--seed', type=int, default=1337)
+    rmr.set_defaults(f=lambda a: run_proof_cmd(argparse.Namespace(
+        repo_root=a.repo_root, out=a.out, mandate_pairs=max(2,int(a.heldout_descendants)),
+        cycles=max(2,int(a.cycles)), train_tasks=max(1,int(a.candidate_tasks)),
+        heldout_tasks=max(1,int(a.evaluate_tasks)), variants_per_task=max(1,int(a.variants_per_task)),
+        variants_per_experiment=max(1,int(a.variants_per_task)), seed=a.seed,
+    )))
     rpp=sp.add_parser('replay-proof'); rpp.add_argument('--run', required=True); rpp.set_defaults(f=replay_proof_cmd)
     fap=sp.add_parser('falsification-audit-proof'); fap.add_argument('--run', required=True); fap.set_defaults(f=falsification_audit_proof_cmd)
     vp=sp.add_parser('validate-proof'); vp.add_argument('--run', required=True); vp.set_defaults(f=validate_proof_cmd)

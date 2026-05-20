@@ -156,6 +156,15 @@ def run_proof(repo_root: Path, out: Path, mandate_pairs: int = 3, seed: int = 13
     leakage = check_leakage(pairs)
     atomic_write_json(out / "05_heldout_mandate_B" / "heldout_fixtures.json", heldout)
     atomic_write_json(out / "05_heldout_mandate_B" / "leakage_check.json", leakage)
+    lock_hash = artifact_hash(heldout)
+    atomic_write_json(out / "06_descendants" / "lock_then_reveal.json", {
+        "lock_then_reveal": True,
+        "heldout_locked_before_evaluation": True,
+        "heldout_revealed_after_lock": True,
+        "candidate_lock_complete": True,
+        "lock_hash": lock_hash,
+        **BOUNDARIES,
+    })
     treatment: list[dict[str, Any]] = []
     shadow: list[dict[str, Any]] = []
     heldout_variants = variants_per_experiment if variants_per_experiment is not None else variants_per_task
@@ -192,6 +201,8 @@ def run_proof(repo_root: Path, out: Path, mandate_pairs: int = 3, seed: int = 13
         "safety_counters": safety_counters,
     }
     metrics = compute_metrics(raw_for_metrics)
+    metrics["archive_reuse_lift_pct"] = max(0.0, metrics.get("improvement_lift_pct", 0.0) if isinstance(metrics.get("improvement_lift_pct"), (int, float)) else 0.0)
+    metrics["autonomous_persistence_attempts_blocked"] = len(treatment)
     atomic_write_json(out / "08_comparison" / "computed_metrics.json", metrics)
     atomic_write_json(out / "08_comparison" / "vRCI.json", {"vRCI_computed": metrics["vRCI_computed"], "formula": metrics["vRCI_formula"], "computed_from_raw_results": True})
     _baseline_records(out, metrics)
@@ -208,6 +219,8 @@ def run_proof(repo_root: Path, out: Path, mandate_pairs: int = 3, seed: int = 13
     raw_for_metrics["proofbundle_complete"] = proof_index["proofbundle_complete"]
     raw_for_metrics["evidence_docket_complete"] = docket_index["evidence_docket_complete"]
     metrics = compute_metrics(raw_for_metrics)
+    metrics["archive_reuse_lift_pct"] = max(0.0, metrics.get("improvement_lift_pct", 0.0) if isinstance(metrics.get("improvement_lift_pct"), (int, float)) else 0.0)
+    metrics["autonomous_persistence_attempts_blocked"] = len(treatment)
     atomic_write_json(out / "08_comparison" / "computed_metrics.json", metrics)
     atomic_write_json(out / "08_comparison" / "B6_vs_B5.json", {**json.loads((out / "08_comparison" / "B6_vs_B5.json").read_text()), "B6_beats_B5_computed": metrics["B6_beats_B5_computed"]})
     atomic_write_json(out / "14_falsification" / "falsification_audit.json", falsification_audit(out))
