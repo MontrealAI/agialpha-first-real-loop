@@ -22,14 +22,14 @@ def _salt() -> str:
     return hashlib.sha256(os.urandom(32)).hexdigest()
 
 
-def _hashed(value: str, salt: str | None = None) -> str:
-    effective_salt = salt if salt is not None else _salt()
-    return hashlib.sha256((effective_salt + ":" + value).encode()).hexdigest()
+def _hashed(value: str, salt: str) -> str:
+    return hashlib.sha256((salt + ":" + value).encode()).hexdigest()
 
 def find_secret_like(text: str, *, path: str = "<memory>", salt: str | None = None):
     findings = []
+    effective_salt = salt if salt is not None else _salt()
     for idx, line in enumerate(text.splitlines(), start=1):
         for finding_type, pat in SECRET_PATTERNS:
             for m in pat.finditer(line):
-                findings.append({"path": str(Path(path)), "line": idx, "hash": _hashed(m.group(0), salt=salt), "type": finding_type})
+                findings.append({"path": str(Path(path)), "line": idx, "hash": _hashed(m.group(0), effective_salt), "type": finding_type})
     return findings

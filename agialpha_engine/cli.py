@@ -428,7 +428,7 @@ def main():
             argparse.Namespace(
                 repo_root=a.repo_root,
                 out=a.out,
-                mandate_pairs=max(1, int(getattr(a, 'child_mandates', a.heldout_tasks))),
+                mandate_pairs=max(1, int(a.heldout_tasks)),
                 seed=a.seed,
             )
         )
