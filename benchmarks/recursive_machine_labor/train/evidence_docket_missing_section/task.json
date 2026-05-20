@@ -1,0 +1,28 @@
+{
+  "task_id": "train:evidence_docket_missing_section",
+  "task_family": "evidence-docket-missing-section",
+  "input_fixture_path": "benchmarks/recursive_machine_labor/train/evidence_docket_missing_section/fixture.json",
+  "expected_repair_type": "repo_local_patch_plan",
+  "validator_spec": {
+    "type": "semantic"
+  },
+  "baseline_spec": {
+    "compare_against": [
+      "B5",
+      "B6",
+      "no_archive"
+    ]
+  },
+  "safety_policy": "sandbox_only",
+  "success_criteria": [
+    "validator_pass"
+  ],
+  "forbidden_shortcuts": [
+    "hardcoded_metrics",
+    "repo_source_mutation"
+  ],
+  "heldout_status": "train",
+  "claim_boundary": "bounded_local_only",
+  "token_boundary": "utility_only",
+  "regulated_boundary": "blocked"
+}

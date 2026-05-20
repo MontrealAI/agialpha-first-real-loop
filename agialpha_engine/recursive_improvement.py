@@ -42,6 +42,41 @@ def _write_pair_dirs(run_dir: Path, pairs: list[dict[str, Any]]) -> None:
         atomic_write_json(run_dir / "02_mandate_pairs" / pair["pair_id"] / "manifest.json", pair)
 
 
+def _limit_split_fixtures(pairs: list[dict[str, Any]], split_key: str, total_limit: int) -> list[dict[str, Any]]:
+    field = "training_fixtures" if split_key == "mandate_A" else "heldout_fixtures"
+    remaining = max(0, int(total_limit))
+    pools = [list(pair[split_key].get(field, [])) for pair in pairs]
+    assigned: list[list[dict[str, Any]]] = [[] for _ in pairs]
+    # Round-robin allocation prevents starving later pairs when limits are small.
+    while remaining > 0:
+        progressed = False
+        for idx, pool in enumerate(pools):
+            if remaining <= 0:
+                break
+            if pool:
+                assigned[idx].append(pool.pop(0))
+                remaining -= 1
+                progressed = True
+        if not progressed:
+            break
+    for idx, pair in enumerate(pairs):
+        pair[split_key][field] = assigned[idx]
+    return pairs
+
+
+def _expand_rows_with_variants(rows: list[dict[str, Any]], variants_per_task: int) -> list[dict[str, Any]]:
+    count = max(1, int(variants_per_task))
+    if count == 1:
+        return rows
+    expanded: list[dict[str, Any]] = []
+    for row in rows:
+        for idx in range(count):
+            record = dict(row)
+            record["variant_id"] = f"v{idx+1}"
+            expanded.append(record)
+    return expanded
+
+
 def _evidence_dockets(run_dir: Path, pair_ids: list[str], metrics: dict[str, Any]) -> dict[str, Any]:
     ddir = run_dir / "11_evidence_dockets" / "dockets"
     dockets = []
@@ -87,13 +122,15 @@ def _baseline_records(run_dir: Path, metrics: dict[str, Any]) -> None:
     })
 
 
-def run_proof(repo_root: Path, out: Path, mandate_pairs: int = 3, seed: int = 1337) -> dict[str, Any]:
+def run_proof(repo_root: Path, out: Path, mandate_pairs: int = 3, seed: int = 1337, cycles: int = 3, train_tasks: int = 16, heldout_tasks: int = 12, variants_per_task: int = 3, variants_per_experiment: int | None = None) -> dict[str, Any]:
     repo_root = Path(repo_root)
     out = Path(out)
     sandbox = LocalSandbox(repo_root, seed)
     pairs = default_mandate_pairs(mandate_pairs)
+    pairs = _limit_split_fixtures(pairs, "mandate_A", int(train_tasks))
+    pairs = _limit_split_fixtures(pairs, "mandate_B", int(heldout_tasks))
     run_id = out.name
-    manifest = {"schema_version": "agialpha.engine002.run.v1", "run_id": run_id, "engine": "AGI-ALPHA-ENGINE-002", "seed": seed, "sandbox": sandbox.describe(), **BOUNDARIES}
+    manifest = {"schema_version": "agialpha.engine002.run.v1", "run_id": run_id, "engine": "AGI-ALPHA-ENGINE-002", "seed": seed, "sandbox": sandbox.describe(), "run_config": {"cycles": cycles, "train_tasks": train_tasks, "heldout_tasks": heldout_tasks, "variants_per_task": variants_per_task, "variants_per_experiment": variants_per_experiment, "mandate_pairs": mandate_pairs}, **BOUNDARIES}
     atomic_write_json(out / "00_manifest.json", manifest)
     _write_text(out / "01_claim_boundary.md", "# Claim Boundary\n\nLocal, bounded, measured recursive machine labor proof only. No achieved AGI/ASI, empirical SOTA, certification, legal/compliance exemption, investment, token value, regulated decisioning, offensive cyber, auto-merge, or autonomous persistence claim. $AGIALPHA is utility-only accounting; no wallet/custody/payment/KYC/AML/trading. Human review is required before promotion.\n")
     _write_pair_dirs(out, pairs)
@@ -102,7 +139,7 @@ def run_proof(repo_root: Path, out: Path, mandate_pairs: int = 3, seed: int = 13
     capabilities: dict[str, dict[str, Any]] = {}
     for pair in pairs:
         rows = _training_eval(pair)
-        training_rows.extend(rows)
+        training_rows.extend(_expand_rows_with_variants(rows, variants_per_task))
         capabilities[pair["pair_id"]] = freeze_capability(pair, rows)
     frozen = list(capabilities.values())
     capability_hashes = {c["pair_id"]: c["capability_hash"] for c in frozen}
@@ -119,9 +156,13 @@ def run_proof(repo_root: Path, out: Path, mandate_pairs: int = 3, seed: int = 13
     leakage = check_leakage(pairs)
     atomic_write_json(out / "05_heldout_mandate_B" / "heldout_fixtures.json", heldout)
     atomic_write_json(out / "05_heldout_mandate_B" / "leakage_check.json", leakage)
-    constraints = sandbox.describe()
-    treatment = run_heldout(pairs, capabilities, "treatment", constraints)
-    shadow = run_heldout(pairs, capabilities, "shadow_control", constraints)
+    treatment: list[dict[str, Any]] = []
+    shadow: list[dict[str, Any]] = []
+    heldout_variants = variants_per_experiment if variants_per_experiment is not None else variants_per_task
+    for cycle_index in range(max(1, int(cycles))):
+        constraints = {**sandbox.describe(), "cycle_index": cycle_index}
+        treatment.extend(_expand_rows_with_variants(run_heldout(pairs, capabilities, "treatment", constraints), heldout_variants))
+        shadow.extend(_expand_rows_with_variants(run_heldout(pairs, capabilities, "shadow_control", constraints), heldout_variants))
     atomic_write_json(out / "06_treatment_run" / "raw_results.json", {"results": treatment})
     atomic_write_json(out / "06_treatment_run" / "validator_results.json", {"validator_results": treatment, "same_constraints_as_shadow_control": True})
     atomic_write_json(out / "07_shadow_control_run" / "raw_results.json", {"results": shadow})
