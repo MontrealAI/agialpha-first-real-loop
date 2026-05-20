@@ -45,11 +45,22 @@ def _write_pair_dirs(run_dir: Path, pairs: list[dict[str, Any]]) -> None:
 def _limit_split_fixtures(pairs: list[dict[str, Any]], split_key: str, total_limit: int) -> list[dict[str, Any]]:
     field = "training_fixtures" if split_key == "mandate_A" else "heldout_fixtures"
     remaining = max(0, int(total_limit))
-    for pair in pairs:
-        fixtures = list(pair[split_key].get(field, []))
-        take = min(len(fixtures), remaining)
-        pair[split_key][field] = fixtures[:take]
-        remaining -= take
+    pools = [list(pair[split_key].get(field, [])) for pair in pairs]
+    assigned: list[list[dict[str, Any]]] = [[] for _ in pairs]
+    # Round-robin allocation prevents starving later pairs when limits are small.
+    while remaining > 0:
+        progressed = False
+        for idx, pool in enumerate(pools):
+            if remaining <= 0:
+                break
+            if pool:
+                assigned[idx].append(pool.pop(0))
+                remaining -= 1
+                progressed = True
+        if not progressed:
+            break
+    for idx, pair in enumerate(pairs):
+        pair[split_key][field] = assigned[idx]
     return pairs
 
 

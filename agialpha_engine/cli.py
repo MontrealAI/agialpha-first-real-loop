@@ -415,7 +415,7 @@ def main():
     rrp.add_argument('--out', required=True)
     rrp.add_argument('--suite', default='repo_evidence_ops')
     rrp.add_argument('--parent-mandates', type=int, default=2)
-    rrp.add_argument('--child-mandates', type=int)
+    rrp.add_argument('--child-mandates', type=int, default=3)
     rrp.add_argument('--min-lift-pct', type=int, default=15)
     rrp.add_argument('--cycles', type=int, default=3)
     rrp.add_argument('--train-tasks', type=int, default=16)
@@ -428,7 +428,7 @@ def main():
             argparse.Namespace(
                 repo_root=a.repo_root,
                 out=a.out,
-                mandate_pairs=max(1, int(a.child_mandates if a.child_mandates is not None else a.heldout_tasks)),
+                mandate_pairs=max(1, int(a.child_mandates)),
                 cycles=a.cycles,
                 train_tasks=a.train_tasks,
                 heldout_tasks=a.heldout_tasks,
