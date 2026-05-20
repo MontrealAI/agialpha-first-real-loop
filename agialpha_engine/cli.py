@@ -217,6 +217,8 @@ def render(args):
 def run_proof_cmd(args):
     from .recursive_improvement import run_proof
     run_proof(Path(args.repo_root), Path(args.out), args.mandate_pairs, args.seed)
+    compute_metrics_cmd(argparse.Namespace(run=args.out))
+    claim_gate_cmd(argparse.Namespace(run=args.out))
 
 def replay_proof_cmd(args):
     from .recursive_improvement import replay_proof
