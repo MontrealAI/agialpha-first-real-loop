@@ -219,7 +219,17 @@ def render(args):
 
 def run_proof_cmd(args):
     from .recursive_improvement import run_proof
-    run_proof(Path(args.repo_root), Path(args.out), args.mandate_pairs, args.seed)
+    run_proof(
+        Path(args.repo_root),
+        Path(args.out),
+        args.mandate_pairs,
+        args.seed,
+        cycles=getattr(args, "cycles", 3),
+        train_tasks=getattr(args, "train_tasks", 16),
+        heldout_tasks=getattr(args, "heldout_tasks", 12),
+        variants_per_task=getattr(args, "variants_per_task", 3),
+        variants_per_experiment=getattr(args, "variants_per_experiment", None),
+    )
 
 def replay_proof_cmd(args):
     from .recursive_improvement import replay_proof
@@ -415,15 +425,20 @@ def main():
     rrp.add_argument('--out', required=True)
     rrp.add_argument('--suite', default='repo_evidence_ops')
     rrp.add_argument('--parent-mandates', type=int, default=2)
-    rrp.add_argument('--child-mandates', type=int, default=6)
+    rrp.add_argument('--child-mandates', type=int, default=None)
     rrp.add_argument('--min-lift-pct', type=int, default=15)
+    rrp.add_argument('--cycles', type=int, default=3)
+    rrp.add_argument('--train-tasks', type=int, default=16)
+    rrp.add_argument('--heldout-tasks', type=int, default=12)
+    rrp.add_argument('--variants-per-task', type=int, default=3)
+    rrp.add_argument('--variants-per-experiment', type=int)
     rrp.add_argument('--seed', type=int, default=1337)
     rrp.set_defaults(
         f=lambda a: run_proof_cmd(
             argparse.Namespace(
                 repo_root=a.repo_root,
                 out=a.out,
-                mandate_pairs=max(1, int(a.child_mandates)),
+                mandate_pairs=max(1, int(a.child_mandates if a.child_mandates is not None else a.heldout_tasks)),
                 seed=a.seed,
             )
         )

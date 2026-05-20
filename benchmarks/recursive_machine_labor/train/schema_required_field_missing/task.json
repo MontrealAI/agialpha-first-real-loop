@@ -1,0 +1,28 @@
+{
+  "task_id": "train:schema_required_field_missing",
+  "task_family": "schema-required-field-missing",
+  "input_fixture_path": "benchmarks/recursive_machine_labor/train/schema_required_field_missing/fixture.json",
+  "expected_repair_type": "repo_local_patch_plan",
+  "validator_spec": {
+    "type": "semantic"
+  },
+  "baseline_spec": {
+    "compare_against": [
+      "B5",
+      "B6",
+      "no_archive"
+    ]
+  },
+  "safety_policy": "sandbox_only",
+  "success_criteria": [
+    "validator_pass"
+  ],
+  "forbidden_shortcuts": [
+    "hardcoded_metrics",
+    "repo_source_mutation"
+  ],
+  "heldout_status": "train",
+  "claim_boundary": "bounded_local_only",
+  "token_boundary": "utility_only",
+  "regulated_boundary": "blocked"
+}
