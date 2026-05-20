@@ -4,6 +4,8 @@ from __future__ import annotations
 import hashlib
 import json
 import random
+import shutil
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -54,3 +56,29 @@ class LocalSandbox:
 
     def describe(self) -> dict[str, Any]:
         return dict(self.constraints)
+
+    def apply_candidate_patch(self, fixture_path: Path, replacement_text: str) -> dict[str, Any]:
+        fixture_path = Path(fixture_path).resolve()
+        if not fixture_path.is_file():
+            raise ValueError("fixture_path must be a file")
+        if self.repo_root not in fixture_path.parents:
+            raise ValueError("fixture_path must stay within repo root")
+        rel = fixture_path.relative_to(self.repo_root)
+        if ".." in rel.parts:
+            raise ValueError("path traversal rejected")
+        with tempfile.TemporaryDirectory(prefix="agialpha-sandbox-") as td:
+            temp_root = Path(td)
+            temp_fixture = temp_root / rel
+            temp_fixture.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(fixture_path, temp_fixture)
+            before_hash = file_hash(temp_fixture)
+            temp_fixture.write_text(replacement_text, encoding="utf-8")
+            after_hash = file_hash(temp_fixture)
+            return {
+                "sandbox_root": str(temp_root),
+                "relative_fixture": str(rel),
+                "input_hash": before_hash,
+                "sandbox_output_hash": after_hash,
+                "repo_source_hash_unchanged": file_hash(fixture_path) == before_hash,
+                "autonomous_persistence_allowed": False,
+            }
