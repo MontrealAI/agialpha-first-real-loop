@@ -406,6 +406,25 @@ def main():
     ore=sp.add_parser('run-open-rsi-eval'); ore.add_argument('--repo-root',default='.'); ore.add_argument('--out',required=True); ore.add_argument('--task-count',type=int,default=16); ore.set_defaults(f=lambda a: atomic_write_json(Path(a.out)/'run-open-rsi-eval.json', {'status':'ok','task_count':a.task_count,**BOUNDARIES}))
     gau=sp.add_parser('run-gauntlet'); gau.add_argument('--repo-root',default='.'); gau.add_argument('--out',required=True); gau.add_argument('--task-count',type=int,default=16); gau.set_defaults(f=lambda a: atomic_write_json(Path(a.out)/'run-gauntlet.json', {'status':'ok','task_count':a.task_count,**BOUNDARIES}))
     rp=sp.add_parser('run-proof'); rp.add_argument('--repo-root', default='.'); rp.add_argument('--out', required=True); rp.add_argument('--mandate-pairs', type=int, default=3); rp.add_argument('--seed', type=int, default=1337); rp.set_defaults(f=run_proof_cmd)
+    rrp=sp.add_parser('run-recursive-proof')
+    rrp.add_argument('--repo-root', default='.')
+    rrp.add_argument('--registry', default='agialpha_engine_registry')
+    rrp.add_argument('--out', required=True)
+    rrp.add_argument('--suite', default='repo_evidence_ops')
+    rrp.add_argument('--parent-mandates', type=int, default=2)
+    rrp.add_argument('--child-mandates', type=int, default=6)
+    rrp.add_argument('--min-lift-pct', type=int, default=15)
+    rrp.add_argument('--seed', type=int, default=1337)
+    rrp.set_defaults(
+        f=lambda a: run_proof_cmd(
+            argparse.Namespace(
+                repo_root=a.repo_root,
+                out=a.out,
+                mandate_pairs=max(1, int(a.child_mandates)),
+                seed=a.seed,
+            )
+        )
+    )
     rpp=sp.add_parser('replay-proof'); rpp.add_argument('--run', required=True); rpp.set_defaults(f=replay_proof_cmd)
     fap=sp.add_parser('falsification-audit-proof'); fap.add_argument('--run', required=True); fap.set_defaults(f=falsification_audit_proof_cmd)
     vp=sp.add_parser('validate-proof'); vp.add_argument('--run', required=True); vp.set_defaults(f=validate_proof_cmd)
