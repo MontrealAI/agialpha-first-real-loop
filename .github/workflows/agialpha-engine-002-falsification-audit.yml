@@ -1,0 +1,64 @@
+name: AGI ALPHA Engine 002 / Measured Recursive Machine Labor Falsification Audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_path:
+        description: 'Run directory path'
+        required: false
+        default: 'agialpha-engine-runs/test'
+  schedule:
+    - cron: '27 4 * * 1'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  falsification-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Provision run artifacts if missing
+        env:
+          RUN_PATH: "${{ inputs.run_path || 'agialpha-engine-runs/test' }}"
+        run: |
+          set -euo pipefail
+          required=(
+            "$RUN_PATH/00_manifest.json"
+            "$RUN_PATH/02_experiment_generation/selected_experiments.json"
+            "$RUN_PATH/03_validator_synthesis/validators.json"
+            "$RUN_PATH/09_proofbundles/proofbundle_index.json"
+            "$RUN_PATH/10_evidence_dockets/docket_index.json"
+          )
+          needs_provision=0
+          for required_file in "${required[@]}"; do
+            if [ ! -f "$required_file" ]; then
+              needs_provision=1
+              break
+            fi
+          done
+          if [ "$needs_provision" -eq 1 ]; then
+            python -m agialpha_engine diagnose --repo-root . --out "$RUN_PATH"
+            python -m agialpha_engine run-recursive-chain --repo-root . --registry agialpha_engine_registry --out "$RUN_PATH" --vertical evidence_docket_repair --mandates 4 --variants-per-mandate 3
+            python -m agialpha_engine compute-metrics --run "$RUN_PATH"
+            python -m agialpha_engine claim-gate --run "$RUN_PATH"
+          fi
+      - name: Ensure replay report exists
+        run: python -m agialpha_engine replay --run "${{ inputs.run_path || 'agialpha-engine-runs/test' }}"
+      - name: Run falsification audit
+        run: python -m agialpha_engine falsification-audit --run "${{ inputs.run_path || 'agialpha-engine-runs/test' }}"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: agialpha-engine-002-falsification-audit-report
+          if-no-files-found: error
+          path: |
+            ${{ inputs.run_path || 'agialpha-engine-runs/test' }}/11_replay/replay_report.json
+            ${{ inputs.run_path || 'agialpha-engine-runs/test' }}/12_falsification/falsification_audit.json
