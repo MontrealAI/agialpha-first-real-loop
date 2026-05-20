@@ -23,3 +23,18 @@ class TestRedaction002(unittest.TestCase):
         self.assertEqual(f[0]['path'], 'fixtures/example.txt')
         self.assertEqual(f[0]['line'], 2)
         self.assertNotIn(token, str(f))
+
+
+
+def test_same_secret_same_hash_within_scan():
+    token = "ghp_" + ("a" * 24)
+    findings = find_secret_like(f"x={token}\ny={token}")
+    assert len(findings) == 2
+    assert findings[0]["hash"] == findings[1]["hash"]
+
+
+def test_random_salt_differs_across_scans_without_env():
+    token = "ghp_" + ("b" * 24)
+    a = find_secret_like(f"x={token}")
+    b = find_secret_like(f"x={token}")
+    assert a[0]["hash"] != b[0]["hash"]

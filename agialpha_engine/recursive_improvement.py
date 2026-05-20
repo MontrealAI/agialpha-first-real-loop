@@ -87,13 +87,13 @@ def _baseline_records(run_dir: Path, metrics: dict[str, Any]) -> None:
     })
 
 
-def run_proof(repo_root: Path, out: Path, mandate_pairs: int = 3, seed: int = 1337) -> dict[str, Any]:
+def run_proof(repo_root: Path, out: Path, mandate_pairs: int = 3, seed: int = 1337, cycles: int = 3, train_tasks: int = 16, heldout_tasks: int = 12, variants_per_task: int = 3, variants_per_experiment: int | None = None) -> dict[str, Any]:
     repo_root = Path(repo_root)
     out = Path(out)
     sandbox = LocalSandbox(repo_root, seed)
     pairs = default_mandate_pairs(mandate_pairs)
     run_id = out.name
-    manifest = {"schema_version": "agialpha.engine002.run.v1", "run_id": run_id, "engine": "AGI-ALPHA-ENGINE-002", "seed": seed, "sandbox": sandbox.describe(), **BOUNDARIES}
+    manifest = {"schema_version": "agialpha.engine002.run.v1", "run_id": run_id, "engine": "AGI-ALPHA-ENGINE-002", "seed": seed, "sandbox": sandbox.describe(), "run_config": {"cycles": cycles, "train_tasks": train_tasks, "heldout_tasks": heldout_tasks, "variants_per_task": variants_per_task, "variants_per_experiment": variants_per_experiment, "mandate_pairs": mandate_pairs}, **BOUNDARIES}
     atomic_write_json(out / "00_manifest.json", manifest)
     _write_text(out / "01_claim_boundary.md", "# Claim Boundary\n\nLocal, bounded, measured recursive machine labor proof only. No achieved AGI/ASI, empirical SOTA, certification, legal/compliance exemption, investment, token value, regulated decisioning, offensive cyber, auto-merge, or autonomous persistence claim. $AGIALPHA is utility-only accounting; no wallet/custody/payment/KYC/AML/trading. Human review is required before promotion.\n")
     _write_pair_dirs(out, pairs)
