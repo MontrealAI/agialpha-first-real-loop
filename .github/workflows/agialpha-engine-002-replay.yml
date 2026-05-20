@@ -1,12 +1,28 @@
-name: AGI ALPHA Engine 002 / Measured Recursive Machine Labor Replay
+name: AGI ALPHA Engine 002 / Measured Recursive Machine-Labor Proof
 
 on:
   workflow_dispatch:
     inputs:
-      run_path:
-        description: 'Run directory path'
+      suite:
+        description: Benchmark suite
         required: false
-        default: 'agialpha-engine-runs/test'
+        default: repo_evidence_ops
+      parent_mandates:
+        description: Parent mandates
+        required: false
+        default: '2'
+      child_mandates:
+        description: Child mandates
+        required: false
+        default: '6'
+      min_lift_pct:
+        description: Minimum lift percent
+        required: false
+        default: '15'
+      publish_engine_tab:
+        description: Publish generated engine tab artifacts
+        required: false
+        default: 'true'
   schedule:
     - cron: '17 4 * * 1'
 
@@ -15,46 +31,33 @@ permissions:
   actions: read
 
 jobs:
-  replay:
+  measured-recursive-proof:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Provision run artifacts if missing
-        env:
-          RUN_PATH: "${{ inputs.run_path || 'agialpha-engine-runs/test' }}"
+      - name: SecureRails checks
         run: |
-          set -euo pipefail
-          required=(
-            "$RUN_PATH/00_manifest.json"
-            "$RUN_PATH/02_experiment_generation/selected_experiments.json"
-            "$RUN_PATH/03_validator_synthesis/validators.json"
-            "$RUN_PATH/09_proofbundles/proofbundle_index.json"
-            "$RUN_PATH/10_evidence_dockets/docket_index.json"
-          )
-          needs_provision=0
-          for required_file in "${required[@]}"; do
-            if [ ! -f "$required_file" ]; then
-              needs_provision=1
-              break
-            fi
-          done
-          if [ "$needs_provision" -eq 1 ]; then
-            python -m agialpha_engine diagnose --repo-root . --out "$RUN_PATH"
-            python -m agialpha_engine run-recursive-chain --repo-root . --registry agialpha_engine_registry --out "$RUN_PATH" --vertical evidence_docket_repair --mandates 4 --variants-per-mandate 3
-            python -m agialpha_engine compute-metrics --run "$RUN_PATH"
-            python -m agialpha_engine claim-gate --run "$RUN_PATH"
-          fi
+          if [ -f scripts/secure_rails_claim_boundary_check.py ]; then python scripts/secure_rails_claim_boundary_check.py .; fi
+          if [ -f scripts/secure_rails_no_automerge_check.py ]; then python scripts/secure_rails_no_automerge_check.py .; fi
+      - name: Run recursive proof
+        run: |
+          python -m agialpha_engine run-recursive-proof --repo-root . --registry agialpha_engine_registry --out agialpha-engine-proof-runs/engine-002 --suite "${{ inputs.suite || 'repo_evidence_ops' }}" --parent-mandates "${{ inputs.parent_mandates || '2' }}" --child-mandates "${{ inputs.child_mandates || '6' }}" --min-lift-pct "${{ inputs.min_lift_pct || '15' }}"
       - name: Replay
-        run: python -m agialpha_engine replay --run "${{ inputs.run_path || 'agialpha-engine-runs/test' }}"
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        run: python -m agialpha_engine replay --run agialpha-engine-proof-runs/engine-002
+      - name: Falsification audit
+        run: python -m agialpha_engine falsification-audit --run agialpha-engine-proof-runs/engine-002
+      - name: Validate
+        run: python -m agialpha_engine validate --run agialpha-engine-proof-runs/engine-002
+      - name: Emit manifest
+        run: python -m agialpha_engine emit-manifest --run agialpha-engine-proof-runs/engine-002 --out agialpha-engine-proof-runs/engine-002/evidence-run-manifest.json
+      - name: Build generated data
+        run: python -m agialpha_engine build-data --registry agialpha_engine_registry --out docs/_generated/agialpha-engine
+      - uses: actions/upload-artifact@v4
         with:
-          name: agialpha-engine-002-replay-report
-          if-no-files-found: error
-          path: ${{ inputs.run_path || 'agialpha-engine-runs/test' }}/11_replay/replay_report.json
+          name: agialpha-engine-002-recursive-proof
+          path: |
+            agialpha-engine-proof-runs/engine-002
+            docs/_generated/agialpha-engine
