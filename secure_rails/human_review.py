@@ -22,6 +22,15 @@ def validate_promotion_gate(record: dict) -> list[str]:
     if not str(record.get("claim_boundary"," ")).strip(): errs.append("claim_boundary required")
     if record.get("promotion_target") in PROMOTION_TARGETS and cond.get("evidence_docket_present") is not True:
         errs.append("evidence_docket_present must be true")
+    human_review = record.get("human_review", {})
+    if not isinstance(human_review, dict):
+        errs.append("human_review must be an object")
+        human_review = {}
+    decision = human_review.get("decision")
+    if decision not in {"accepted", "rejected", "needs_changes"}:
+        errs.append("human_review.decision invalid")
+    if cond.get("human_review_decision_present") is True and decision != "accepted":
+        errs.append("promotion requires accepted human_review.decision")
     return errs
 
 def load_json(path: Path) -> dict:

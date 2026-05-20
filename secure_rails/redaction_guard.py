@@ -1,4 +1,5 @@
 import hashlib
+import os
 import re
 
 SECRET_PATTERNS = [
@@ -13,13 +14,17 @@ SECRET_PATTERNS = [
     ("secret_env", re.compile(r"(?i)(OPENAI_API_KEY|AWS_SECRET_ACCESS_KEY|GITHUB_TOKEN|SLACK_BOT_TOKEN)\s*[:=]\s*\S{8,}")),
 ]
 
-def _hashed(value: str) -> str:
-    return hashlib.sha256(("redaction-salt-v1:" + value).encode()).hexdigest()
+def _redaction_salt() -> str:
+    return os.environ.get("SECURERAILS_REDACTION_SALT", "redaction-salt-v1")
 
-def find_secret_like(text: str):
+
+def _hashed(value: str) -> str:
+    return hashlib.sha256((f"{_redaction_salt()}:" + value).encode()).hexdigest()
+
+def find_secret_like(text: str, path: str = "<memory>"):
     findings = []
     for idx, line in enumerate(text.splitlines(), start=1):
         for finding_type, pat in SECRET_PATTERNS:
             for m in pat.finditer(line):
-                findings.append({"line": idx, "hash": _hashed(m.group(0)), "type": finding_type})
+                findings.append({"path": path, "line": idx, "hash": _hashed(m.group(0)), "type": finding_type})
     return findings
