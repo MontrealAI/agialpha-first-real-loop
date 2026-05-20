@@ -1,0 +1,34 @@
+[
+  {
+    "child": "DESC-001",
+    "parent": "CAP-001"
+  },
+  {
+    "child": "DESC-002",
+    "parent": "CAP-002"
+  },
+  {
+    "child": "DESC-003",
+    "parent": "CAP-003"
+  },
+  {
+    "child": "DESC-004",
+    "parent": "CAP-004"
+  },
+  {
+    "child": "DESC-005",
+    "parent": "CAP-005"
+  },
+  {
+    "child": "DESC-006",
+    "parent": "CAP-006"
+  },
+  {
+    "child": "DESC-007",
+    "parent": "CAP-007"
+  },
+  {
+    "child": "DESC-008",
+    "parent": "CAP-008"
+  }
+]

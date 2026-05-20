@@ -1,0 +1,90 @@
+[
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_id": "DESC-001",
+    "from_capability": "CAP-001",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "status": "generated",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_id": "DESC-002",
+    "from_capability": "CAP-002",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "status": "generated",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_id": "DESC-003",
+    "from_capability": "CAP-003",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "status": "generated",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_id": "DESC-004",
+    "from_capability": "CAP-004",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "status": "generated",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_id": "DESC-005",
+    "from_capability": "CAP-005",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "status": "generated",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_id": "DESC-006",
+    "from_capability": "CAP-006",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "status": "generated",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_id": "DESC-007",
+    "from_capability": "CAP-007",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "status": "generated",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  },
+  {
+    "autonomous_persistence_allowed": false,
+    "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+    "descendant_experiment_id": "DESC-008",
+    "from_capability": "CAP-008",
+    "human_review_required": true,
+    "no_auto_merge": true,
+    "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+    "status": "generated",
+    "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+  }
+]
