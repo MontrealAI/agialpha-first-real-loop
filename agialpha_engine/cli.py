@@ -417,13 +417,18 @@ def main():
     rrp.add_argument('--parent-mandates', type=int, default=2)
     rrp.add_argument('--child-mandates', type=int, default=6)
     rrp.add_argument('--min-lift-pct', type=int, default=15)
+    rrp.add_argument('--cycles', type=int, default=3)
+    rrp.add_argument('--train-tasks', type=int, default=16)
+    rrp.add_argument('--heldout-tasks', type=int, default=12)
+    rrp.add_argument('--variants-per-task', type=int, default=3)
+    rrp.add_argument('--variants-per-experiment', type=int)
     rrp.add_argument('--seed', type=int, default=1337)
     rrp.set_defaults(
         f=lambda a: run_proof_cmd(
             argparse.Namespace(
                 repo_root=a.repo_root,
                 out=a.out,
-                mandate_pairs=max(1, int(a.child_mandates)),
+                mandate_pairs=max(1, int(getattr(a, 'child_mandates', a.heldout_tasks))),
                 seed=a.seed,
             )
         )

@@ -16,7 +16,10 @@ SECRET_PATTERNS = [
 ]
 
 def _salt() -> str:
-    return os.environ.get("SECURERAILS_REDACTION_SALT", "redaction-salt-local")
+    env = os.environ.get("SECURERAILS_REDACTION_SALT")
+    if env:
+        return env
+    return hashlib.sha256(os.urandom(32)).hexdigest()
 
 
 def _hashed(value: str, salt: str | None = None) -> str:
