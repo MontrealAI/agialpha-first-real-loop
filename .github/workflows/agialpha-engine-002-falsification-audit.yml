@@ -29,7 +29,21 @@ jobs:
           RUN_PATH: "${{ inputs.run_path || 'agialpha-engine-runs/test' }}"
         run: |
           set -euo pipefail
-          if [ ! -f "$RUN_PATH/00_manifest.json" ]; then
+          required=(
+            "$RUN_PATH/00_manifest.json"
+            "$RUN_PATH/02_experiment_generation/selected_experiments.json"
+            "$RUN_PATH/03_validator_synthesis/validators.json"
+            "$RUN_PATH/09_proofbundles/proofbundle_index.json"
+            "$RUN_PATH/10_evidence_dockets/docket_index.json"
+          )
+          needs_provision=0
+          for required_file in "${required[@]}"; do
+            if [ ! -f "$required_file" ]; then
+              needs_provision=1
+              break
+            fi
+          done
+          if [ "$needs_provision" -eq 1 ]; then
             python -m agialpha_engine diagnose --repo-root . --out "$RUN_PATH"
             python -m agialpha_engine run-recursive-chain --repo-root . --registry agialpha_engine_registry --out "$RUN_PATH" --vertical evidence_docket_repair --mandates 4 --variants-per-mandate 3
             python -m agialpha_engine compute-metrics --run "$RUN_PATH"
