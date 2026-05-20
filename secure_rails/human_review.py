@@ -19,6 +19,11 @@ def validate_promotion_gate(record: dict) -> list[str]:
     if cond.get("human_review_decision_present") is not True: errs.append("human_review_decision_present must be true")
     if cond.get("hard_safety_counters_zero") is not True: errs.append("hard_safety_counters_zero must be true")
     if cond.get("auto_merge_allowed") is not False: errs.append("auto_merge_allowed must be false")
+    review_status = str(record.get("human_review_status", "accepted")).strip().lower()
+    if review_status not in {"accepted", "rejected", "needs_changes", "pending"}:
+        errs.append("human_review_status invalid")
+    if review_status != "accepted":
+        errs.append("promotion requires accepted human review")
     if not str(record.get("claim_boundary"," ")).strip(): errs.append("claim_boundary required")
     if record.get("promotion_target") in PROMOTION_TARGETS and cond.get("evidence_docket_present") is not True:
         errs.append("evidence_docket_present must be true")

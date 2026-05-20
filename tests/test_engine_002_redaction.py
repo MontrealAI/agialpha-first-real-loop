@@ -16,3 +16,10 @@ class TestRedaction002(unittest.TestCase):
     def test_detects_pkcs8_headers(self):
         f=find_secret_like('-----BEGIN PRIVATE KEY-----\nabc\n-----END PRIVATE KEY-----')
         self.assertTrue(any(x['type']=='private_key_header' for x in f))
+
+    def test_reports_path_line_and_no_raw_secret(self):
+        token='ghp_'+'B'*24
+        f=find_secret_like('alpha\nvalue='+token, path='fixtures/example.txt', salt='unit-test-salt')
+        self.assertEqual(f[0]['path'], 'fixtures/example.txt')
+        self.assertEqual(f[0]['line'], 2)
+        self.assertNotIn(token, str(f))
