@@ -22,7 +22,9 @@ def validate_promotion_gate(record: dict) -> list[str]:
     review_status = str(record.get("human_review_status", "accepted")).strip().lower()
     if review_status not in {"accepted", "rejected", "needs_changes", "pending"}:
         errs.append("human_review_status invalid")
-    if review_status != "accepted":
+    if review_status == "pending":
+        errs.append("promotion pending human review")
+    elif review_status != "accepted":
         errs.append("promotion requires accepted human review")
     if not str(record.get("claim_boundary"," ")).strip(): errs.append("claim_boundary required")
     if record.get("promotion_target") in PROMOTION_TARGETS and cond.get("evidence_docket_present") is not True:
