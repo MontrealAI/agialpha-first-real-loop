@@ -165,8 +165,10 @@ def falsification_network_compounding(args):
     imports=_read(run/'05_skill_import/skill_import_events.json',{}).get('skill_import_events',[])
     comparison=_read(run/'06_heldout_reuse_tests/comparison.json',{})
     distinct_targets=len({i.get('target_agent_id') for i in imports if i.get('target_agent_id')})
+    extraction_total=len(accepted)+len(_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[]))+len(_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[]))
     claim_ok=(
-        len(jobs) >= 3
+        len(jobs) >= 5
+        and extraction_total == len(jobs)
         and len(accepted) >= 1
         and distinct_targets >= 3
         and comparison.get('D_shared_skill_network',0) > comparison.get('D_no_shared_skill',0)
@@ -205,8 +207,11 @@ def validate_network_compounding(args):
     accepted=_read(run/'03_skill_extraction/accepted_skill_packages.json',{}).get('accepted_skill_packages',[])
     imports=_read(run/'05_skill_import/skill_import_events.json',{}).get('skill_import_events',[])
     comparison=_read(run/'06_heldout_reuse_tests/comparison.json',{})
+    rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
+    failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
     recomputed_gate_supported=(
-        len(jobs) >= 3
+        len(jobs) >= 5
+        and (len(accepted)+len(rejected)+len(failures) == len(jobs))
         and len(accepted) >= 1
         and len({i.get('target_agent_id') for i in imports if i.get('target_agent_id')}) >= 3
         and comparison.get('D_shared_skill_network',0) > comparison.get('D_no_shared_skill',0)
