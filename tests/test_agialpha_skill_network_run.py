@@ -48,3 +48,27 @@ def test_validate_fails_on_inconsistent_replay_fields():
         proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
         assert proc.returncode != 0
         assert 'replay report inconsistent' in (proc.stderr + proc.stdout)
+
+
+def test_validate_fails_when_claim_gate_not_supported():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','2','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        assert proc.returncode != 0
+        assert 'claim gate not supported_local_bounded' in (proc.stderr + proc.stdout)
+
+
+def test_replay_fails_on_tampered_lift():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        metrics=json.loads((run/'07_metrics/network_skill_metrics.json').read_text())
+        metrics['network_skill_propagation_lift']=round(float(metrics['network_skill_propagation_lift'])+0.123,6)
+        (run/'07_metrics/network_skill_metrics.json').write_text(json.dumps(metrics))
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        replay=json.loads((run/'11_replay/replay_report.json').read_text())
+        assert replay['replay_pass'] is False
+        assert replay['replay_passes'] == 0

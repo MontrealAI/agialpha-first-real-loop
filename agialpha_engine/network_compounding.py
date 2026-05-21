@@ -87,8 +87,21 @@ def replay_network_compounding(args):
     run=Path(args.run)
     m=_read(run/'07_metrics/network_skill_metrics.json',{})
     c=_read(run/'06_heldout_reuse_tests/comparison.json',{})
-    ok=round(c.get('D_shared_skill_network',0)-c.get('D_no_shared_skill',0),6)==round(m.get('network_skill_propagation_lift',999),6)
-    atomic_write_json(run/'11_replay/replay_report.json',{"replay_pass":ok,"replay_passes":1 if ok else 0,**_base()})
+    b5_rows=_read(run/'06_heldout_reuse_tests/B5_no_shared_skill.json',{}).get('results',[])
+    b6_rows=_read(run/'06_heldout_reuse_tests/B6_shared_skill_network.json',{}).get('results',[])
+
+    def _dnet(rows):
+        if not rows:
+            return None
+        return sum(r['success_score']*r['validator_pass']*r['replay_pass']*r['proofbundle']*r['docket']/max(1,r['cost_risk_proxy']) for r in rows)/len(rows)
+
+    d5=_dnet(b5_rows)
+    d6=_dnet(b6_rows)
+    recomputed_lift=None if d5 is None or d6 is None else round(d6-d5,6)
+    comparison_lift=round(c.get('D_shared_skill_network',0)-c.get('D_no_shared_skill',0),6)
+    metric_lift=round(m.get('network_skill_propagation_lift',999),6)
+    ok=(recomputed_lift is not None and recomputed_lift==comparison_lift and recomputed_lift==metric_lift)
+    atomic_write_json(run/'11_replay/replay_report.json',{"replay_pass":ok,"replay_passes":1 if ok else 0,"recomputed_network_skill_propagation_lift":recomputed_lift,**_base()})
 
 def falsification_network_compounding(args):
     run=Path(args.run)
@@ -115,6 +128,9 @@ def validate_network_compounding(args):
         raise SystemExit('network-compounding-validate failed: replay did not pass')
     if not falsification_ok:
         raise SystemExit('network-compounding-validate failed: falsification audit did not pass')
+    gate=_read(run/'13_claim_gate/network_compounding_claim_gate.json',{})
+    if gate.get('claim_gate_status') != 'supported_local_bounded':
+        raise SystemExit('network-compounding-validate failed: claim gate not supported_local_bounded')
 
 def build_network_data(args):
     reg=Path(args.registry); out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
