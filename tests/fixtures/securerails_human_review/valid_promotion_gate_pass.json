@@ -10,7 +10,9 @@
     "safety_ledger_present": true,
     "claim_boundary_present": true,
     "hard_safety_counters_zero": true,
-    "auto_merge_allowed": false
+    "auto_merge_allowed": false,
+    "replay_present": true,
+    "falsification_audit_present": true
   },
   "gate_status": "pass",
   "failure_reasons": [],
