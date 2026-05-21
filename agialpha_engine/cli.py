@@ -4,6 +4,11 @@ import argparse, hashlib, json
 from pathlib import Path
 from .context import BOUNDARIES, atomic_write_json
 
+from .network_compounding import (
+    run_network_compounding, replay_network_compounding, falsification_network_compounding,
+    validate_network_compounding, build_network_data, render_network_data,
+)
+
 FAMILIES = [
 "Evidence Docket completeness repair","ProofBundle completeness repair","Replay hardening","Falsification audit hardening","Workflow catalog repair","GitHub Pages route integrity","Generated-data completeness","Claim-boundary hardening","Token-boundary hardening","Regulated-boundary hardening","SecureRails safety-ledger hardening","Work Vault linkage","MARK allocation linkage","Sovereign assignment linkage","Capability Archive compression","QD archive coverage","Operator documentation usability","Reviewer replay kit usability","Enterprise pilot evidence quality","Valuation-support missing-evidence honesty","Recursive Substrate vNext proposal","Ascension OS scorecard hardening","Open RSI Eval task generator hardening","Self-Improvement Gauntlet task hardening",
 ]
@@ -415,6 +420,12 @@ def main():
     v=sp.add_parser('validate'); v.add_argument('--run',required=True); v.set_defaults(f=validate)
     bd=sp.add_parser('build-data'); bd.add_argument('--registry',required=True); bd.add_argument('--out',required=True); bd.set_defaults(f=build_data)
     rr=sp.add_parser('render'); rr.add_argument('--registry',required=True); rr.add_argument('--out',required=True); rr.set_defaults(f=render)
+    ncr=sp.add_parser('network-compounding-run'); ncr.add_argument('--repo-root',default='.'); ncr.add_argument('--registry',required=True); ncr.add_argument('--out',required=True); ncr.add_argument('--jobs',type=int,default=5); ncr.add_argument('--target-agents',type=int,default=3); ncr.add_argument('--heldout-tasks',type=int,default=5); ncr.add_argument('--seed',type=int,default=123); ncr.set_defaults(f=run_network_compounding)
+    nrep=sp.add_parser('network-compounding-replay'); nrep.add_argument('--run',required=True); nrep.set_defaults(f=replay_network_compounding)
+    nfa=sp.add_parser('network-compounding-falsification-audit'); nfa.add_argument('--run',required=True); nfa.set_defaults(f=falsification_network_compounding)
+    nval=sp.add_parser('network-compounding-validate'); nval.add_argument('--run',required=True); nval.set_defaults(f=validate_network_compounding)
+    nbd=sp.add_parser('network-compounding-build-data'); nbd.add_argument('--registry',required=True); nbd.add_argument('--out',required=True); nbd.set_defaults(f=build_network_data)
+    nrd=sp.add_parser('network-compounding-render'); nrd.add_argument('--registry',required=True); nrd.add_argument('--out',required=True); nrd.set_defaults(f=render_network_data)
     ore=sp.add_parser('run-open-rsi-eval'); ore.add_argument('--repo-root',default='.'); ore.add_argument('--out',required=True); ore.add_argument('--task-count',type=int,default=16); ore.set_defaults(f=lambda a: atomic_write_json(Path(a.out)/'run-open-rsi-eval.json', {'status':'ok','task_count':a.task_count,**BOUNDARIES}))
     gau=sp.add_parser('run-gauntlet'); gau.add_argument('--repo-root',default='.'); gau.add_argument('--out',required=True); gau.add_argument('--task-count',type=int,default=16); gau.set_defaults(f=lambda a: atomic_write_json(Path(a.out)/'run-gauntlet.json', {'status':'ok','task_count':a.task_count,**BOUNDARIES}))
     rp=sp.add_parser('run-proof'); rp.add_argument('--repo-root', default='.'); rp.add_argument('--out', required=True); rp.add_argument('--mandate-pairs', type=int, default=3); rp.add_argument('--seed', type=int, default=1337); rp.set_defaults(f=run_proof_cmd)
