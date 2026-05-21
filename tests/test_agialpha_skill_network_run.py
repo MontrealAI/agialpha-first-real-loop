@@ -208,3 +208,16 @@ def test_seed_changes_outputs():
         m1=json.loads((run1/'07_metrics/network_skill_metrics.json').read_text())
         m2=json.loads((run2/'07_metrics/network_skill_metrics.json').read_text())
         assert m1['network_skill_propagation_lift'] != m2['network_skill_propagation_lift']
+
+
+def test_registry_skill_packages_sync_audited_statuses():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'; out=Path(td)/'gen'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        reg_skills=json.loads((reg/'skill_packages.json').read_text())['skill_packages']
+        assert all(s['replay_status']=='pass' and s['falsification_status']=='pass' for s in reg_skills)
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-build-data','--registry',str(reg),'--out',str(out)])
+        out_skills=json.loads((out/'skill_packages.json').read_text())['skill_packages']
+        assert all(s['replay_status']=='pass' and s['falsification_status']=='pass' for s in out_skills)

@@ -28,8 +28,10 @@ def _sync_run_to_registry(run: Path) -> None:
         return
     metrics=_read(run/'07_metrics/network_skill_metrics.json',{})
     gate=_read(run/'13_claim_gate/network_compounding_claim_gate.json',{})
+    skill_packages=_read(run/'03_skill_extraction/accepted_skill_packages.json',{}).get('accepted_skill_packages',[])
     atomic_write_json(reg/'network_skill_metrics.json',metrics)
     atomic_write_json(reg/'claim_gate_decisions.json',gate)
+    atomic_write_json(reg/'skill_packages.json',{'skill_packages':skill_packages, **_base()})
     atomic_write_json(reg/'latest.json',{'run_id': run.name, **_base()})
 
 def run_network_compounding(args):
