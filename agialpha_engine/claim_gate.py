@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from .context import BOUNDARIES
+
 SUPPORTED_SENTENCE = "In this local repo-owned benchmark, AGI ALPHA demonstrated machine labor that recursively improves in a measured, falsifiable way."
 NOT_SUPPORTED_SENTENCE = "Not demonstrated yet."
 
@@ -35,7 +37,7 @@ class RecursiveMachineLaborClaimGate:
         return {
             'schema_version': 'agialpha.engine.claim_gate.v2',
             'claim': RecursiveMachineLaborClaimGate.claim,
-            'claim_text': SUPPORTED_SENTENCE,
+            'claim_text': SUPPORTED_SENTENCE if status == 'supported' else NOT_SUPPORTED_SENTENCE,
             'status': status,
             'allowed_public_wording': SUPPORTED_SENTENCE if status == 'supported' else NOT_SUPPORTED_SENTENCE,
             'blocked_reasons': failed,
@@ -44,5 +46,5 @@ class RecursiveMachineLaborClaimGate:
             'computed_not_hardcoded': req['computed_not_hardcoded'],
             'human_review_required': True,
             'autonomous_persistence_allowed': False,
-            'claim_boundary': metrics.get('claim_boundary', ''),
+            'claim_boundary': metrics.get('claim_boundary') or BOUNDARIES['claim_boundary'],
         }
