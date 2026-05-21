@@ -31,7 +31,9 @@
       "autonomous_persistence_allowed": false,
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
       "human_review_required": true,
-      "imported_skills": [],
+      "imported_skills": [
+        "skill-1"
+      ],
       "last_updated": "2026-05-21",
       "native_skills": [],
       "no_auto_merge": true,
@@ -53,7 +55,9 @@
       "autonomous_persistence_allowed": false,
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
       "human_review_required": true,
-      "imported_skills": [],
+      "imported_skills": [
+        "skill-1"
+      ],
       "last_updated": "2026-05-21",
       "native_skills": [],
       "no_auto_merge": true,
@@ -75,7 +79,9 @@
       "autonomous_persistence_allowed": false,
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
       "human_review_required": true,
-      "imported_skills": [],
+      "imported_skills": [
+        "skill-1"
+      ],
       "last_updated": "2026-05-21",
       "native_skills": [],
       "no_auto_merge": true,

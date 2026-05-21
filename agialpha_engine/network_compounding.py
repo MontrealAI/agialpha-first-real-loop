@@ -1,4 +1,5 @@
 from __future__ import annotations
+import copy
 import hashlib, json, random
 from pathlib import Path
 from .context import BOUNDARIES, atomic_write_json
@@ -26,6 +27,7 @@ def run_network_compounding(args):
     manifests=[]
     for a in agents:
         manifests.append({"schema_version":"agialpha.agent_skill_manifest.v1","agent_id":a['agent_id'],"agent_role":a['agent_role'],"native_skills":[],"imported_skills":[],"quarantined_skills":[],"rejected_skills":[],"skill_import_policy":{"auto_import_allowed":True,"auto_activate_allowed":False,"human_review_required_for_activation":True,"regulated_boundary_block_required":True},"last_updated":"2026-05-21",**_base()})
+    manifests_before_import = copy.deepcopy(manifests)
     for i in range(args.jobs):
         jid=f"job-{i+1}"; aid=agents[0]["agent_id"]
         score=0.55 + i*0.03
@@ -66,7 +68,7 @@ def run_network_compounding(args):
     gate={"claim_gate_status":"supported_local_bounded" if claim_ok else "not_supported","supported_wording":"We have demonstrated local bounded networked skill compounding: one agent’s proof-bound job produced a validated Skill Package that other agents imported and used to improve held-out adjacent work against no-shared-skill baselines." if claim_ok else "Networked skill compounding claim not yet supported.","failed_reasons":[] if claim_ok else ["insufficient evidence"],**_base()}
     # write major artifacts
     atomic_write_json(out/'00_manifest.json',{"run_id":run_id,"experiment_id":"AGI-ALPHA-ENGINE-003",**_base()})
-    atomic_write_json(out/'01_agents/agent_registry.json',{"agents":agents,**_base()}); atomic_write_json(out/'01_agents/agent_skill_manifests_before.json',{"manifests":manifests,**_base()})
+    atomic_write_json(out/'01_agents/agent_registry.json',{"agents":agents,**_base()}); atomic_write_json(out/'01_agents/agent_skill_manifests_before.json',{"manifests":manifests_before_import,**_base()})
     atomic_write_json(out/'02_jobs/source_jobs.json',{"jobs":jobs,**_base()}); atomic_write_json(out/'02_jobs/raw_task_results.json',{"raw_task_results":raw,**_base()})
     atomic_write_json(out/'03_skill_extraction/skill_extraction_report.json',{"jobs_processed":len(jobs),**_base()}); atomic_write_json(out/'03_skill_extraction/accepted_skill_packages.json',{"accepted_skill_packages":accepted,**_base()}); atomic_write_json(out/'03_skill_extraction/rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(out/'03_skill_extraction/failure_learning_packages.json',{"failure_learning_packages":failure,**_base()})
     atomic_write_json(out/'04_network_skill_vault/network_skill_vault.json',{"skill_packages":accepted,**_base()}); atomic_write_json(out/'04_network_skill_vault/skill_publication_events.json',{"events":[{"skill_id":s['skill_id']} for s in accepted],**_base()})

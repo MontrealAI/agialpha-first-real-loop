@@ -16,6 +16,8 @@ def test_network_run_end_to_end():
         assert acc['raw_task_result_ids'] and acc['proofbundle_id'] and acc['evidence_docket_id']
         imp=json.loads((run/'05_skill_import/skill_import_events.json').read_text())['skill_import_events']
         assert len(imp)>=3 and all(i['activation_status']=='inactive' for i in imp)
+        manifests_before=json.loads((run/'01_agents/agent_skill_manifests_before.json').read_text())['manifests']
+        assert all(not mm.get('imported_skills') for mm in manifests_before)
         manifests=json.loads((run/'05_skill_import/agent_skill_manifests_after_import.json').read_text())['manifests']
         imported_agents=[mm for mm in manifests if mm.get('imported_skills')]
         assert len(imported_agents) >= 3
