@@ -186,3 +186,25 @@ def test_build_data_uses_post_replay_falsification_truth():
         assert metrics['replay_pass_rate'] == 1.0
         assert metrics['falsification_pass'] is True
         assert gate['claim_gate_status'] == 'supported_local_bounded'
+
+
+def test_skill_statuses_progress_from_pending_to_pass():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        skills=json.loads((run/'03_skill_extraction/accepted_skill_packages.json').read_text())['accepted_skill_packages']
+        assert all(s['replay_status']=='pending' and s['falsification_status']=='pending' for s in skills)
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        skills=json.loads((run/'03_skill_extraction/accepted_skill_packages.json').read_text())['accepted_skill_packages']
+        assert all(s['replay_status']=='pass' and s['falsification_status']=='pass' for s in skills)
+
+
+def test_seed_changes_outputs():
+    with tempfile.TemporaryDirectory() as td:
+        run1=Path(td)/'run1'; run2=Path(td)/'run2'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run1),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run2),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','999'])
+        m1=json.loads((run1/'07_metrics/network_skill_metrics.json').read_text())
+        m2=json.loads((run2/'07_metrics/network_skill_metrics.json').read_text())
+        assert m1['network_skill_propagation_lift'] != m2['network_skill_propagation_lift']

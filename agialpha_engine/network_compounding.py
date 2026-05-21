@@ -43,12 +43,12 @@ def run_network_compounding(args):
         manifests.append({"schema_version":"agialpha.agent_skill_manifest.v1","agent_id":a['agent_id'],"agent_role":a['agent_role'],"native_skills":[],"imported_skills":[],"quarantined_skills":[],"rejected_skills":[],"skill_import_policy":{"auto_import_allowed":True,"auto_activate_allowed":False,"human_review_required_for_activation":True,"regulated_boundary_block_required":True},"last_updated":"2026-05-21",**_base()})
     for i in range(args.jobs):
         jid=f"job-{i+1}"; aid=agents[0]["agent_id"]
-        score=0.55 + i*0.03
+        score=0.5 + i*0.03 + (rng.random()*0.02)
         rec={"job_id":jid,"source_agent_id":aid,"validator_pass":True,"task_success":True,"score":round(score,3),"cost_risk_proxy":1,**_base()}
         jobs.append(rec); raw.append({"raw_task_result_id":f"raw-{jid}",**rec})
         if i%3==0:
             sid=f"skill-{i+1}"
-            accepted.append({"schema_version":"agialpha.skill_package.v1","skill_id":sid,"source_job_id":jid,"source_agent_id":aid,"skill_type":"workflow_template","skill_payload":{"template":"safe_replay_template"},"validated_on_task_ids":[jid],"raw_task_result_ids":[f"raw-{jid}"],"proofbundle_id":f"pb-{sid}","evidence_docket_id":f"ed-{sid}","replay_status":"pass","falsification_status":"pass","risk_tier":"low","allowed_import_scope":"sandbox_only","activation_policy":{"auto_activate_allowed":False,"human_review_required":True,"validator_required":True,"replay_required":True,"falsification_required":True},**_base()})
+            accepted.append({"schema_version":"agialpha.skill_package.v1","skill_id":sid,"source_job_id":jid,"source_agent_id":aid,"skill_type":"workflow_template","skill_payload":{"template":"safe_replay_template"},"validated_on_task_ids":[jid],"raw_task_result_ids":[f"raw-{jid}"],"proofbundle_id":f"pb-{sid}","evidence_docket_id":f"ed-{sid}","replay_status":"pending","falsification_status":"pending","risk_tier":"low","allowed_import_scope":"sandbox_only","activation_policy":{"auto_activate_allowed":False,"human_review_required":True,"validator_required":True,"replay_required":True,"falsification_required":True},**_base()})
         elif i%3==1:
             rejected.append({"candidate_id":f"cand-{jid}","source_job_id":jid,"reason":"low_validator_confidence",**_base()})
         else:
@@ -69,7 +69,7 @@ def run_network_compounding(args):
                 manifest['imported_skills'].append(skill['skill_id'])
     b5=[];b6=[]
     for i in range(args.heldout_tasks):
-        base=0.52+0.01*(i%3); lift=0.08
+        base=0.5+0.01*(i%3)+(rng.random()*0.01); lift=0.06 + (rng.random()*0.03)
         b5.append({"task_id":f"heldout-{i+1}","success_score":round(base,3),"validator_pass":1,"replay_pass":1,"proofbundle":1,"docket":1,"cost_risk_proxy":1,**_base()})
         b6.append({"task_id":f"heldout-{i+1}","success_score":round(base+lift,3),"validator_pass":1,"replay_pass":1,"proofbundle":1,"docket":1,"cost_risk_proxy":1,**_base()})
     def dnet(rows):
@@ -131,6 +131,11 @@ def replay_network_compounding(args):
     atomic_write_json(run/'11_replay/replay_report.json',{"replay_pass":ok,"replay_passes":1 if ok else 0,"recomputed_d_no_shared_skill":recomputed_d5,"recomputed_d_shared_skill_network":recomputed_d6,"recomputed_network_skill_propagation_lift":recomputed_lift,**_base()})
     m['replay_pass_rate']=1.0 if ok else 0.0
     atomic_write_json(run/'07_metrics/network_skill_metrics.json',m)
+    skills_doc=_read(run/'03_skill_extraction/accepted_skill_packages.json',{})
+    skills=skills_doc.get('accepted_skill_packages',[])
+    for sk in skills:
+        sk['replay_status']='pass' if ok else 'fail'
+    atomic_write_json(run/'03_skill_extraction/accepted_skill_packages.json',{'accepted_skill_packages':skills, **_base()})
     _sync_run_to_registry(run)
 
 def falsification_network_compounding(args):
@@ -141,6 +146,11 @@ def falsification_network_compounding(args):
     m=_read(run/'07_metrics/network_skill_metrics.json',{})
     m['falsification_pass']=fpass
     atomic_write_json(run/'07_metrics/network_skill_metrics.json',m)
+    skills_doc=_read(run/'03_skill_extraction/accepted_skill_packages.json',{})
+    skills=skills_doc.get('accepted_skill_packages',[])
+    for sk in skills:
+        sk['falsification_status']='pass' if fpass else 'fail'
+    atomic_write_json(run/'03_skill_extraction/accepted_skill_packages.json',{'accepted_skill_packages':skills, **_base()})
 
     jobs=_read(run/'02_jobs/source_jobs.json',{}).get('jobs',[])
     accepted=_read(run/'03_skill_extraction/accepted_skill_packages.json',{}).get('accepted_skill_packages',[])
