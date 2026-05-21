@@ -4,8 +4,8 @@ import json
 from pathlib import Path
 from typing import Any
 
-SUPPORTED_SENTENCE = "AGI ALPHA ENGINE-002 demonstrates local bounded recursive machine-labor improvement under replayable falsifiable controls."
-NOT_SUPPORTED_SENTENCE = "AGI ALPHA ENGINE-002 did not yet support the stronger recursive-improvement claim. It remains evidence of safe, replayable, proof-docketed automation workflow orchestration with strict claim boundaries."
+SUPPORTED_SENTENCE = "In this local repo-owned benchmark, AGI ALPHA demonstrated machine labor that recursively improves in a measured, falsifiable way."
+NOT_SUPPORTED_SENTENCE = "Not demonstrated yet."
 
 class RecursiveMachineLaborClaimGate:
     claim = "machine_labor_recursively_improves_measured_falsifiable"
@@ -31,15 +31,18 @@ class RecursiveMachineLaborClaimGate:
             'safety_zero': metrics.get('critical_safety_incidents') == 0,
         }
         failed = [k for k,v in req.items() if not v]
-        status = 'supported' if not failed else 'not_supported'
+        status = 'supported' if not failed else 'blocked'
         return {
+            'schema_version': 'agialpha.engine.claim_gate.v2',
             'claim': RecursiveMachineLaborClaimGate.claim,
+            'claim_text': SUPPORTED_SENTENCE,
             'status': status,
-            'allowed_public_sentence': SUPPORTED_SENTENCE if status == 'supported' else NOT_SUPPORTED_SENTENCE,
-            'failed_requirements': failed,
+            'allowed_public_wording': SUPPORTED_SENTENCE if status == 'supported' else NOT_SUPPORTED_SENTENCE,
+            'blocked_reasons': failed,
             'supporting_artifacts': ['06_metrics/computed_metrics.json','11_replay/replay_report.json','12_falsification/falsification_audit.json'],
             'raw_metric_sources': metrics.get('raw_metric_sources',[]),
             'computed_not_hardcoded': req['computed_not_hardcoded'],
             'human_review_required': True,
             'autonomous_persistence_allowed': False,
+            'claim_boundary': metrics.get('claim_boundary', ''),
         }
