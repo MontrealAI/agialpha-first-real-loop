@@ -119,3 +119,30 @@ def test_replay_fails_on_tampered_canonical_comparison_lift():
         replay=json.loads((run/'11_replay/replay_report.json').read_text())
         assert replay['replay_pass'] is False
         assert replay['replay_passes'] == 0
+
+
+def test_validate_requires_three_distinct_import_targets():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        imports_doc=json.loads((run/'05_skill_import/skill_import_events.json').read_text())
+        for idx, ev in enumerate(imports_doc['skill_import_events']):
+            ev['target_agent_id']='agent-2'
+            ev['import_id']=f"dup-{idx}"
+        (run/'05_skill_import/skill_import_events.json').write_text(json.dumps(imports_doc))
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        assert proc.returncode != 0
+        assert 'claim gate status mismatch' in (proc.stderr + proc.stdout)
+
+
+def test_registry_lineage_contains_all_accepted_skills():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        accepted=json.loads((run/'03_skill_extraction/accepted_skill_packages.json').read_text())['accepted_skill_packages']
+        edges=json.loads((reg/'lineage_graph.json').read_text())['edges']
+        accepted_pairs={(a['source_job_id'],a['skill_id']) for a in accepted}
+        edge_pairs={(e['from'],e['to']) for e in edges}
+        assert accepted_pairs == edge_pairs
