@@ -117,6 +117,11 @@ Each row represents one workflow file and should be read with these fields:
 | `securerails-work-vault-demo.yml` | SecureRails | Actions (`workflow_dispatch` where provided), push/schedule as defined in file. | Evidence artifacts, logs, and where applicable Evidence Docket / ProofBundle outputs. | Never treat workflow pass as a claim promotion; verify Evidence Docket + safety ledger + claim boundary. | no |
 | `seed-runner-autonomous.yml` | Core | Actions (`workflow_dispatch` where provided), push/schedule as defined in file. | Evidence artifacts, logs, and where applicable Evidence Docket / ProofBundle outputs. | Never treat workflow pass as a claim promotion; verify Evidence Docket + safety ledger + claim boundary. | no |
 
+| `agialpha-engine-003-network-compounding.yml` | Core | Actions (`workflow_dispatch` where provided), push/schedule as defined in file. | Network compounding run, replay, falsification, validate, generated data artifacts. | Evidence-only workflow; human review required; never auto-merge or direct Pages deploy. | no |
+| `agialpha-engine-003-network-replay.yml` | Core | Actions (`workflow_dispatch` where provided), push/schedule as defined in file. | Replay report and integrity outputs for network compounding runs. | Evidence-only workflow; human review required; never auto-merge or direct Pages deploy. | no |
+| `agialpha-engine-003-network-falsification-audit.yml` | Core | Actions (`workflow_dispatch` where provided), push/schedule as defined in file. | Falsification audit outputs for network compounding runs. | Evidence-only workflow; human review required; never auto-merge or direct Pages deploy. | no |
+| `agialpha-engine-003-network-claim-gate.yml` | Core | Actions (`workflow_dispatch` where provided), push/schedule as defined in file. | Claim gate outputs and supporting artifacts for network compounding runs. | Evidence-only workflow; human review required; never auto-merge or direct Pages deploy. | no |
+
 ## Operator guidance
 - Open GitHub **Actions**, pick a workflow, then **Run workflow** when available.
 - Use `docs/OPERATOR_QUICKSTART.md` for step-by-step UI instructions and artifact review.
@@ -225,3 +230,5 @@ See `docs/secure-rails/e2e-pilot-canary.md` and workflow `securerails-e2e-pilot-
 
 | `agialpha-engine-002-recursive-proof.yml` | Core | `workflow_dispatch`, `schedule` | Engine-002 recursive proof lifecycle run (benchmark, replay, falsification, validate, manifest, generated data). | Local bounded evidence only; no direct Pages deploy; no auto-merge; human review required before promotion. | no |
 | `agialpha-engine-002-vnext.yml` | Core | `workflow_dispatch`, `schedule` | Engine-002 vNext wrapper workflow aligned to recursive-proof safety rails. | Human review required; no direct Pages deploy; no auto-merge. | no |
+
+- AGI ALPHA Engine 003 / Networked Skill Compounding workflows added.

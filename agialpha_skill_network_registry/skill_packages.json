@@ -1,0 +1,80 @@
+{
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+  "human_review_required": true,
+  "no_auto_merge": true,
+  "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+  "skill_packages": [
+    {
+      "activation_policy": {
+        "auto_activate_allowed": false,
+        "falsification_required": true,
+        "human_review_required": true,
+        "replay_required": true,
+        "validator_required": true
+      },
+      "allowed_import_scope": "sandbox_only",
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "evidence_docket_id": "ed-skill-1",
+      "falsification_status": "pass",
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "proofbundle_id": "pb-skill-1",
+      "raw_task_result_ids": [
+        "raw-job-1"
+      ],
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "replay_status": "pass",
+      "risk_tier": "low",
+      "schema_version": "agialpha.skill_package.v1",
+      "skill_id": "skill-1",
+      "skill_payload": {
+        "template": "safe_replay_template"
+      },
+      "skill_type": "workflow_template",
+      "source_agent_id": "agent-1",
+      "source_job_id": "job-1",
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validated_on_task_ids": [
+        "job-1"
+      ]
+    },
+    {
+      "activation_policy": {
+        "auto_activate_allowed": false,
+        "falsification_required": true,
+        "human_review_required": true,
+        "replay_required": true,
+        "validator_required": true
+      },
+      "allowed_import_scope": "sandbox_only",
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "evidence_docket_id": "ed-skill-4",
+      "falsification_status": "pass",
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "proofbundle_id": "pb-skill-4",
+      "raw_task_result_ids": [
+        "raw-job-4"
+      ],
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "replay_status": "pass",
+      "risk_tier": "low",
+      "schema_version": "agialpha.skill_package.v1",
+      "skill_id": "skill-4",
+      "skill_payload": {
+        "template": "safe_replay_template"
+      },
+      "skill_type": "workflow_template",
+      "source_agent_id": "agent-1",
+      "source_job_id": "job-4",
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validated_on_task_ids": [
+        "job-4"
+      ]
+    }
+  ],
+  "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+}

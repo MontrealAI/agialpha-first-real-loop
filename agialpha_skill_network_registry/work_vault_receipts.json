@@ -1,0 +1,44 @@
+{
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+  "human_review_required": true,
+  "no_auto_merge": true,
+  "receipts": [
+    {
+      "alpha_work_units_estimated": 42,
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "custody_used": false,
+      "evidence_docket_fee_units": 3,
+      "human_review_required": true,
+      "investment_claim_made": false,
+      "no_auto_merge": true,
+      "payment_executed": false,
+      "proofbundle_fee_units": 3,
+      "receipt_id": "receipt-1",
+      "receipt_note": "Synthetic local utility receipt only. No wallet, custody, payment, trading, KYC/AML, money transmission, securities functionality, token price, token value, token appreciation, or investment return.",
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "replay_fee_units": 5,
+      "schema_version": "agialpha.skill_network.work_vault_receipt.v1",
+      "settlement_mode": "synthetic_local_json_receipt_only",
+      "skill_id": "skill-1",
+      "skill_import_fee_units": 3,
+      "skill_publication_fee_units": 2,
+      "source_agent_id": "agent-1",
+      "source_job_id": "job-1",
+      "target_agent_ids": [
+        "agent-2",
+        "agent-3",
+        "agent-4"
+      ],
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "token_price_used": false,
+      "unused_budget_refund_units": 34,
+      "utility_budget_units": 100,
+      "validator_fee_units": 8,
+      "wallet_used": false
+    }
+  ],
+  "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+  "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+}
