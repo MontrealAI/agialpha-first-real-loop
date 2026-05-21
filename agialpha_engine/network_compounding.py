@@ -143,7 +143,13 @@ def replay_network_compounding(args):
 def falsification_network_compounding(args):
     run=Path(args.run)
     replay=_read(run/'11_replay/replay_report.json',{})
-    fpass=bool(replay.get('replay_pass'))
+    replay_pass_field=replay.get('replay_pass')
+    if not isinstance(replay_pass_field,bool):
+        raise SystemExit('network-compounding-falsification-audit failed: replay_pass must be boolean')
+    replay_passes=int(replay.get('replay_passes',0))
+    if replay_pass_field != (replay_passes > 0):
+        raise SystemExit('network-compounding-falsification-audit failed: replay report inconsistent (replay_pass vs replay_passes)')
+    fpass=(replay_pass_field is True and replay_passes > 0)
     atomic_write_json(run/'12_falsification/falsification_audit.json',{"falsification_pass":fpass,"adversarial_failures_caught":8,**_base()})
     m=_read(run/'07_metrics/network_skill_metrics.json',{})
     m['falsification_pass']=fpass
@@ -164,7 +170,6 @@ def falsification_network_compounding(args):
         and len(accepted) >= 1
         and distinct_targets >= 3
         and comparison.get('D_shared_skill_network',0) > comparison.get('D_no_shared_skill',0)
-        and bool(replay.get('replay_pass'))
         and fpass
     )
     gate={"claim_gate_status":"supported_local_bounded" if claim_ok else "not_supported","supported_wording":"We have demonstrated local bounded networked skill compounding: one agent’s proof-bound job produced a validated Skill Package that other agents imported and used to improve held-out adjacent work against no-shared-skill baselines." if claim_ok else "Networked skill compounding claim not yet supported.","failed_reasons":[] if claim_ok else ["insufficient evidence"],**_base()}

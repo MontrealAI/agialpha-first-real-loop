@@ -219,3 +219,13 @@ def test_registry_skill_packages_synced_after_audits():
         reg_skills=json.loads((reg/'skill_packages.json').read_text())['skill_packages']
         assert reg_skills
         assert all(s['replay_status'] == 'pass' and s['falsification_status'] == 'pass' for s in reg_skills)
+
+
+def test_falsification_requires_boolean_replay_status():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        (run/'11_replay/replay_report.json').write_text(json.dumps({'replay_pass':'false','replay_passes':1}))
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)], capture_output=True, text=True)
+        assert proc.returncode != 0
+        assert 'replay_pass must be boolean' in (proc.stderr + proc.stdout)

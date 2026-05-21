@@ -1,15 +1,38 @@
-name: AGI ALPHA Engine 003 / Networked Skill Compounding
-on: {workflow_dispatch: {}, schedule: [{cron: '0 4 * * 1'}]}
+name: AGI ALPHA Engine 003 / Networked Skill Compounding Replay
+on:
+  workflow_dispatch:
+    inputs:
+      run_path:
+        description: "Existing run path to replay (optional; defaults to registry latest run)"
+        required: false
+        type: string
+  schedule:
+    - cron: '0 4 * * 1'
 permissions: {contents: read, actions: read}
 jobs:
-  run:
+  replay:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: python -m agialpha_engine network-compounding-run --repo-root . --registry agialpha_skill_network_registry --out /tmp/agialpha-skill-network-test --jobs 5 --target-agents 3 --heldout-tasks 5 --seed 123
-      - run: python -m agialpha_engine network-compounding-replay --run /tmp/agialpha-skill-network-test
-      - run: python -m agialpha_engine network-compounding-falsification-audit --run /tmp/agialpha-skill-network-test
-      - run: python -m agialpha_engine network-compounding-validate --run /tmp/agialpha-skill-network-test
+      - name: Resolve run path
+        id: runpath
+        run: |
+          if [ -n "${{ inputs.run_path }}" ]; then
+            echo "RUN_PATH=${{ inputs.run_path }}" >> "$GITHUB_ENV"
+          else
+            python - <<'PY'
+import json
+from pathlib import Path
+latest = json.loads(Path('agialpha_skill_network_registry/latest.json').read_text())
+run_id = latest.get('run_id')
+if not run_id:
+    raise SystemExit('No run_id in agialpha_skill_network_registry/latest.json')
+print(f'RUN_PATH=agialpha_skill_network_registry/runs/{run_id}')
+PY
+          fi
+      - run: python -m agialpha_engine network-compounding-replay --run "$RUN_PATH"
+      - run: python -m agialpha_engine network-compounding-falsification-audit --run "$RUN_PATH"
+      - run: python -m agialpha_engine network-compounding-validate --run "$RUN_PATH"
       - run: python -m agialpha_engine network-compounding-build-data --registry agialpha_skill_network_registry --out docs/_generated/agialpha-skill-network
