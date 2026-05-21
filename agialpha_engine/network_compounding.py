@@ -99,8 +99,14 @@ def replay_network_compounding(args):
     d6=_dnet(b6_rows)
     recomputed_lift=None if d5 is None or d6 is None else round(d6-d5,6)
     comparison_lift=round(c.get('D_shared_skill_network',0)-c.get('D_no_shared_skill',0),6)
+    comparison_lift_canonical=round(c.get('NetworkSkillPropagationLift',999),6)
     metric_lift=round(m.get('network_skill_propagation_lift',999),6)
-    ok=(recomputed_lift is not None and recomputed_lift==comparison_lift and recomputed_lift==metric_lift)
+    ok=(
+        recomputed_lift is not None
+        and recomputed_lift==comparison_lift
+        and recomputed_lift==comparison_lift_canonical
+        and recomputed_lift==metric_lift
+    )
     atomic_write_json(run/'11_replay/replay_report.json',{"replay_pass":ok,"replay_passes":1 if ok else 0,"recomputed_network_skill_propagation_lift":recomputed_lift,**_base()})
 
 def falsification_network_compounding(args):
@@ -132,7 +138,22 @@ def validate_network_compounding(args):
     if not falsification_ok:
         raise SystemExit('network-compounding-validate failed: falsification audit did not pass')
     gate=_read(run/'13_claim_gate/network_compounding_claim_gate.json',{})
-    if gate.get('claim_gate_status') != 'supported_local_bounded':
+    jobs=_read(run/'02_jobs/source_jobs.json',{}).get('jobs',[])
+    accepted=_read(run/'03_skill_extraction/accepted_skill_packages.json',{}).get('accepted_skill_packages',[])
+    imports=_read(run/'05_skill_import/skill_import_events.json',{}).get('skill_import_events',[])
+    comparison=_read(run/'06_heldout_reuse_tests/comparison.json',{})
+    recomputed_gate_supported=(
+        len(jobs) >= 3
+        and len(accepted) >= 1
+        and len(imports) >= 3
+        and float(comparison.get('D_shared_skill_network',0)) > float(comparison.get('D_no_shared_skill',0))
+        and replay_ok
+        and falsification_ok
+    )
+    expected_status='supported_local_bounded' if recomputed_gate_supported else 'not_supported'
+    if gate.get('claim_gate_status') != expected_status:
+        raise SystemExit('network-compounding-validate failed: claim gate artifact inconsistent with recomputed evidence')
+    if expected_status != 'supported_local_bounded':
         raise SystemExit('network-compounding-validate failed: claim gate not supported_local_bounded')
 
 def build_network_data(args):

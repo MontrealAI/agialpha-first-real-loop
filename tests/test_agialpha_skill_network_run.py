@@ -92,3 +92,30 @@ def test_validate_requires_boolean_falsification_pass():
         proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
         assert proc.returncode != 0
         assert 'falsification_pass must be boolean' in (proc.stderr + proc.stdout)
+
+
+def test_validate_fails_on_tampered_claim_gate_status():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','2','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        gate=json.loads((run/'13_claim_gate/network_compounding_claim_gate.json').read_text())
+        gate['claim_gate_status']='supported_local_bounded'
+        (run/'13_claim_gate/network_compounding_claim_gate.json').write_text(json.dumps(gate))
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        assert proc.returncode != 0
+        assert 'claim gate artifact inconsistent' in (proc.stderr + proc.stdout)
+
+
+def test_replay_fails_on_tampered_canonical_comparison_lift():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        comp=json.loads((run/'06_heldout_reuse_tests/comparison.json').read_text())
+        comp['NetworkSkillPropagationLift']=round(float(comp['NetworkSkillPropagationLift'])+0.01,6)
+        (run/'06_heldout_reuse_tests/comparison.json').write_text(json.dumps(comp))
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        replay=json.loads((run/'11_replay/replay_report.json').read_text())
+        assert replay['replay_pass'] is False
+        assert replay['replay_passes'] == 0
