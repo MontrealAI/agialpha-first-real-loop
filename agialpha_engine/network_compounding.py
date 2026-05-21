@@ -76,8 +76,8 @@ def run_network_compounding(args):
     atomic_write_json(out/'07_metrics/network_skill_metrics.json',metrics); atomic_write_json(out/'07_metrics/network_skill_propagation_lift.json',{"network_skill_propagation_lift":lift,**_base()}); atomic_write_json(out/'07_metrics/compounding_exponent_proxy.json',{"compounding_exponent_proxy":"not_supported_yet",**_base()})
     receipt={"schema_version":"agialpha.skill_network.work_vault_receipt.v1","receipt_id":"receipt-1","skill_id":skill['skill_id'],"source_job_id":skill['source_job_id'],"source_agent_id":skill['source_agent_id'],"target_agent_ids":target_agents,"utility_budget_units":100,"alpha_work_units_estimated":42,"validator_fee_units":8,"replay_fee_units":5,"proofbundle_fee_units":3,"evidence_docket_fee_units":3,"skill_publication_fee_units":2,"skill_import_fee_units":len(target_agents),"unused_budget_refund_units":100-42-8-5-3-3-2-len(target_agents),"settlement_mode":"synthetic_local_json_receipt_only","wallet_used":False,"custody_used":False,"payment_executed":False,"token_price_used":False,"investment_claim_made":False,"receipt_note":"Synthetic local utility receipt only. No wallet, custody, payment, trading, KYC/AML, money transmission, securities functionality, token price, token value, token appreciation, or investment return.",**_base()}
     atomic_write_json(out/'08_work_vault/skill_work_vault_receipts.json',{"receipts":[receipt],**_base()})
-    atomic_write_json(out/'11_replay/replay_report.json',{"replay_pass":True,"replay_passes":1,**_base()})
-    atomic_write_json(out/'12_falsification/falsification_audit.json',{"falsification_pass":True,"adversarial_checks":["fake skill metric rejected","forbidden claim injection rejected","regulated-domain skill blocked","raw secret-like string redacted","auto-merge attempt rejected","replay mismatch detected","missing skill evidence detected","baseline regression detected"],**_base()})
+    atomic_write_json(out/'11_replay/replay_report.json',{"replay_pass":False,"replay_passes":0,"status":"pending_replay_execution",**_base()})
+    atomic_write_json(out/'12_falsification/falsification_audit.json',{"falsification_pass":False,"status":"pending_falsification_execution","adversarial_checks":["fake skill metric rejected","forbidden claim injection rejected","regulated-domain skill blocked","raw secret-like string redacted","auto-merge attempt rejected","replay mismatch detected","missing skill evidence detected","baseline regression detected"],**_base()})
     atomic_write_json(out/'13_claim_gate/network_compounding_claim_gate.json',gate)
     atomic_write_json(out/'evidence-run-manifest.json',{"run":str(out),"run_id":run_id,**_base()})
     # registry + generated placeholders
@@ -123,7 +123,10 @@ def validate_network_compounding(args):
     if replay_pass_field != (replay_passes > 0):
         raise SystemExit('network-compounding-validate failed: replay report inconsistent (replay_pass vs replay_passes)')
     replay_ok=replay_pass_field and replay_passes > 0
-    falsification_ok=bool(falsification.get('falsification_pass'))
+    falsification_pass_field=falsification.get('falsification_pass')
+    if not isinstance(falsification_pass_field,bool):
+        raise SystemExit('network-compounding-validate failed: falsification_pass must be boolean')
+    falsification_ok=falsification_pass_field
     if not replay_ok:
         raise SystemExit('network-compounding-validate failed: replay did not pass')
     if not falsification_ok:

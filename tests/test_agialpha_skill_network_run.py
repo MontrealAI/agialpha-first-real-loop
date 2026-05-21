@@ -72,3 +72,23 @@ def test_replay_fails_on_tampered_lift():
         replay=json.loads((run/'11_replay/replay_report.json').read_text())
         assert replay['replay_pass'] is False
         assert replay['replay_passes'] == 0
+
+
+def test_validate_fails_without_replay_and_falsification_execution():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        assert proc.returncode != 0
+        assert 'replay did not pass' in (proc.stderr + proc.stdout)
+
+
+def test_validate_requires_boolean_falsification_pass():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        (run/'12_falsification/falsification_audit.json').write_text(json.dumps({'falsification_pass':'false'}))
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        assert proc.returncode != 0
+        assert 'falsification_pass must be boolean' in (proc.stderr + proc.stdout)
