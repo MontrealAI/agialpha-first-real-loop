@@ -199,9 +199,9 @@ def validate(args):
             and failed_requirements == (recomputed_gate.get('failed_requirements') if isinstance(recomputed_gate.get('failed_requirements'), list) else recomputed_gate.get('blocked_reasons'))
             and gate.get('computed_not_hardcoded') == recomputed_gate.get('computed_not_hardcoded')
         )
-        status='ok' if (gate_ok and replay_ok and falsification_ok) else 'failed'
-        atomic_write_json(run/'validate.json',{'status':status,'replay_ok':replay_ok,'falsification_ok':falsification_ok,'gate_ok':gate_ok,'gate_matches_metrics': status == _normalize_claim_gate_status(recomputed_gate.get('status')) and failed_requirements == (recomputed_gate.get('failed_requirements') if isinstance(recomputed_gate.get('failed_requirements'), list) else recomputed_gate.get('blocked_reasons')),**BOUNDARIES})
-        if status!='ok':
+        validation_status='ok' if (gate_ok and replay_ok and falsification_ok) else 'failed'
+        atomic_write_json(run/'validate.json',{'status':validation_status,'replay_ok':replay_ok,'falsification_ok':falsification_ok,'gate_ok':gate_ok,'gate_matches_metrics': gate.get('status') == recomputed_gate.get('status') or _normalize_claim_gate_status(gate.get('status')) == _normalize_claim_gate_status(recomputed_gate.get('status')) and failed_requirements == (recomputed_gate.get('failed_requirements') if isinstance(recomputed_gate.get('failed_requirements'), list) else recomputed_gate.get('blocked_reasons')),**BOUNDARIES})
+        if validation_status!='ok':
             raise SystemExit('validate failed: recursive replay/falsification or claim gate invalid')
         return
     _require_run_artifacts(run,['00_manifest.json','05_evaluation/lock_then_reveal.json','06_baselines/B4_ungated_self_modification.json','07_archives/qd_archive.json','07_archives/capability_archive.json','08_descendants/descendant_experiments.json','12_falsification/falsification_audit.json'], 'validate')
