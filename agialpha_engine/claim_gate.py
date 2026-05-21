@@ -34,7 +34,8 @@ class RecursiveMachineLaborClaimGate:
         status = 'supported' if not failed else 'blocked'
         return {
             'schema_version': 'agialpha.engine.claim_gate.v2',
-            'claim': SUPPORTED_SENTENCE,
+            'claim': RecursiveMachineLaborClaimGate.claim,
+            'claim_text': SUPPORTED_SENTENCE,
             'status': status,
             'allowed_public_wording': SUPPORTED_SENTENCE if status == 'supported' else NOT_SUPPORTED_SENTENCE,
             'blocked_reasons': failed,
