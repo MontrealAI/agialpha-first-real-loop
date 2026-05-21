@@ -176,16 +176,16 @@ def validate(args):
         recomputed_gate = RecursiveMachineLaborClaimGate.evaluate(run)
         replay_ok = replay_report.get('replay_pass') is True or replay_report.get('replay_passes',0) > 0
         falsification_ok = falsification_report.get('falsification_pass') is True
-        failed_requirements = gate.get('failed_requirements') if isinstance(gate.get('failed_requirements'), list) else None
-        allowed_sentence = gate.get('allowed_public_sentence') if isinstance(gate.get('allowed_public_sentence'), str) else ''
-        status = gate.get('status')
+        failed_requirements = gate.get('failed_requirements') if isinstance(gate.get('failed_requirements'), list) else (gate.get('blocked_reasons') if isinstance(gate.get('blocked_reasons'), list) else None)
+        allowed_sentence = gate.get('allowed_public_sentence') if isinstance(gate.get('allowed_public_sentence'), str) else (gate.get('allowed_public_wording') if isinstance(gate.get('allowed_public_wording'), str) else '')
+        status = _normalize_claim_gate_status(gate.get('status'))
         status_consistent = (
             (status == 'supported' and failed_requirements == [])
-            or (status == 'not_supported' and isinstance(failed_requirements, list) and len(failed_requirements) > 0)
+            or (status == 'blocked' and isinstance(failed_requirements, list) and len(failed_requirements) > 0)
         )
         gate_ok = (
             gate.get('claim') == 'machine_labor_recursively_improves_measured_falsifiable'
-            and status in {'supported','not_supported'}
+            and status in {'supported','blocked'}
             and isinstance(failed_requirements, list)
             and status_consistent
             and isinstance(gate.get('supporting_artifacts'), list)
@@ -195,13 +195,14 @@ def validate(args):
             and gate.get('autonomous_persistence_allowed') is False
             and bool(allowed_sentence.strip())
             and not _has_forbidden_overclaim(allowed_sentence)
-            and gate.get('status') == recomputed_gate.get('status')
-            and gate.get('failed_requirements') == recomputed_gate.get('failed_requirements')
+            and status == _normalize_claim_gate_status(recomputed_gate.get('status'))
+            and failed_requirements == (recomputed_gate.get('failed_requirements') if isinstance(recomputed_gate.get('failed_requirements'), list) else recomputed_gate.get('blocked_reasons'))
             and gate.get('computed_not_hardcoded') == recomputed_gate.get('computed_not_hardcoded')
         )
-        status='ok' if (gate_ok and replay_ok and falsification_ok) else 'failed'
-        atomic_write_json(run/'validate.json',{'status':status,'replay_ok':replay_ok,'falsification_ok':falsification_ok,'gate_ok':gate_ok,'gate_matches_metrics': gate.get('status') == recomputed_gate.get('status') and gate.get('failed_requirements') == recomputed_gate.get('failed_requirements'),**BOUNDARIES})
-        if status!='ok':
+        validation_status='ok' if (gate_ok and replay_ok and falsification_ok) else 'failed'
+        gate_matches_metrics = status == _normalize_claim_gate_status(recomputed_gate.get('status')) and failed_requirements == (recomputed_gate.get('failed_requirements') if isinstance(recomputed_gate.get('failed_requirements'), list) else recomputed_gate.get('blocked_reasons'))
+        atomic_write_json(run/'validate.json',{'status':validation_status,'replay_ok':replay_ok,'falsification_ok':falsification_ok,'gate_ok':gate_ok,'gate_matches_metrics': gate_matches_metrics,**BOUNDARIES})
+        if validation_status!='ok':
             raise SystemExit('validate failed: recursive replay/falsification or claim gate invalid')
         return
     _require_run_artifacts(run,['00_manifest.json','05_evaluation/lock_then_reveal.json','06_baselines/B4_ungated_self_modification.json','07_archives/qd_archive.json','07_archives/capability_archive.json','08_descendants/descendant_experiments.json','12_falsification/falsification_audit.json'], 'validate')
@@ -280,6 +281,11 @@ def _adversarial_pass(run: Path) -> bool:
 
 
 
+
+def _normalize_claim_gate_status(status: str | None) -> str | None:
+    if status == "not_supported":
+        return "blocked"
+    return status
 
 def _has_forbidden_overclaim(text: str) -> bool:
     forbidden = [
