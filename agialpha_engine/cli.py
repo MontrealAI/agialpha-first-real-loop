@@ -181,11 +181,11 @@ def validate(args):
         status = gate.get('status')
         status_consistent = (
             (status == 'supported' and failed_requirements == [])
-            or (status == 'blocked' and isinstance(failed_requirements, list) and len(failed_requirements) > 0)
+            or (status in {'blocked','not_supported'} and isinstance(failed_requirements, list) and len(failed_requirements) > 0)
         )
         gate_ok = (
             gate.get('claim') == 'machine_labor_recursively_improves_measured_falsifiable'
-            and status in {'supported','blocked'}
+            and status in {'supported','blocked','not_supported'}
             and isinstance(failed_requirements, list)
             and status_consistent
             and isinstance(gate.get('supporting_artifacts'), list)
