@@ -4,6 +4,7 @@ from __future__ import annotations
 from typing import Any
 
 MISSING = "not_reported"
+UNAVAILABLE = "unavailable"
 SAFETY_COUNTERS = [
     "claim_boundary_violations", "token_boundary_violations", "regulated_boundary_violations",
     "raw_secret_leak_count", "external_target_scan_count", "exploit_execution_count",
@@ -26,7 +27,7 @@ def compute_metrics(raw: dict[str, Any], min_threshold: float = 0.01) -> dict[st
     shadow_score = _score(shadow)
     if isinstance(treatment_score, float) and isinstance(shadow_score, float):
         delta = round(treatment_score - shadow_score, 6)
-        lift = "unavailable" if shadow_score == 0 else round(delta / shadow_score * 100.0, 6)
+        lift = UNAVAILABLE if shadow_score == 0 else round(delta / shadow_score * 100.0, 6)
         vrci = round(delta * len(pairs), 6)
         b6_beats = delta >= min_threshold and treatment_score > shadow_score
     else:
@@ -57,6 +58,11 @@ def compute_metrics(raw: dict[str, Any], min_threshold: float = 0.01) -> dict[st
         "semantic_negative_tests_passed": raw.get("semantic_negative_tests_passed", "pending"),
         "adversarial_fixtures_passed": raw.get("adversarial_fixtures_passed", "pending"),
         "metrics_computed_from_raw_results": bool(treatment and shadow),
+        "raw_numerator_denominator": {
+            "treatment_rows": len(treatment),
+            "control_rows": len(shadow),
+            "mandate_pairs": len(pairs),
+        },
         "configured_minimum_threshold": min_threshold,
     }
     safety = raw.get("safety_counters", {})
