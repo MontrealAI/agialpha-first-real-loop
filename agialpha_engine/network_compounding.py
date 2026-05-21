@@ -3,7 +3,7 @@ import hashlib, json, random
 from pathlib import Path
 from .context import BOUNDARIES, atomic_write_json
 
-ROLES=["Reviewer Agent","Validator Agent","Operator Agent","Documentation Agent","SecureRails Agent"]
+ROLES=["Source Agent","Reviewer Agent","Validator Agent","Operator Agent","Documentation Agent","SecureRails Agent"]
 
 def _h(o):
     return hashlib.sha256(json.dumps(o,sort_keys=True).encode()).hexdigest()
@@ -39,7 +39,7 @@ def run_network_compounding(args):
     out=Path(args.out); reg=Path(args.registry); out.mkdir(parents=True,exist_ok=True); reg.mkdir(parents=True,exist_ok=True)
     run_id=out.name
     jobs=[]; raw=[]; accepted=[]; rejected=[]; failure=[]
-    agents=[{"agent_id":f"agent-{i+1}","agent_role":ROLES[i%len(ROLES)],**_base()} for i in range(max(args.target_agents+1,4))]
+    agents=[{"agent_id":f"agent-{i+1}","agent_role":ROLES[i%len(ROLES)],**_base()} for i in range(max(args.target_agents+1,5))]
     manifests=[]
     for a in agents:
         manifests.append({"schema_version":"agialpha.agent_skill_manifest.v1","agent_id":a['agent_id'],"agent_role":a['agent_role'],"native_skills":[],"imported_skills":[],"quarantined_skills":[],"rejected_skills":[],"skill_import_policy":{"auto_import_allowed":True,"auto_activate_allowed":False,"human_review_required_for_activation":True,"regulated_boundary_block_required":True},"last_updated":"2026-05-21",**_base()})
@@ -58,7 +58,12 @@ def run_network_compounding(args):
     if not accepted:
         raise SystemExit("at least one accepted skill required")
     skill=accepted[0]
-    target_agents=[a["agent_id"] for a in agents[1:1+args.target_agents]]
+    required_target_roles=["Reviewer Agent","Validator Agent","Operator Agent"]
+    role_to_agent={a["agent_role"]:a["agent_id"] for a in agents}
+    target_agents=[role_to_agent[r] for r in required_target_roles if r in role_to_agent]
+    if len(target_agents) < args.target_agents:
+        extras=[a["agent_id"] for a in agents if a["agent_id"] not in target_agents and a["agent_id"] != skill["source_agent_id"]]
+        target_agents.extend(extras[: args.target_agents - len(target_agents)])
     manifests_before_import=json.loads(json.dumps(manifests, sort_keys=True))
     imports=[]
     manifest_by_agent={m['agent_id']:m for m in manifests}
@@ -166,7 +171,7 @@ def falsification_network_compounding(args):
     comparison=_read(run/'06_heldout_reuse_tests/comparison.json',{})
     distinct_targets=len({i.get('target_agent_id') for i in imports if i.get('target_agent_id')})
     claim_ok=(
-        len(jobs) >= 3
+        len(jobs) >= 5
         and len(accepted) >= 1
         and distinct_targets >= 3
         and comparison.get('D_shared_skill_network',0) > comparison.get('D_no_shared_skill',0)
@@ -206,7 +211,7 @@ def validate_network_compounding(args):
     imports=_read(run/'05_skill_import/skill_import_events.json',{}).get('skill_import_events',[])
     comparison=_read(run/'06_heldout_reuse_tests/comparison.json',{})
     recomputed_gate_supported=(
-        len(jobs) >= 3
+        len(jobs) >= 5
         and len(accepted) >= 1
         and len({i.get('target_agent_id') for i in imports if i.get('target_agent_id')}) >= 3
         and comparison.get('D_shared_skill_network',0) > comparison.get('D_no_shared_skill',0)
