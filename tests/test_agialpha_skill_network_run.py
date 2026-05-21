@@ -172,3 +172,17 @@ def test_replay_fails_on_tampered_absolute_scores():
         replay=json.loads((run/'11_replay/replay_report.json').read_text())
         assert replay['replay_pass'] is False
 
+
+
+def test_build_data_uses_finalized_run_artifacts():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'; out=Path(td)/'gen'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-build-data','--registry',str(reg),'--out',str(out)])
+        metrics=json.loads((out/'network_skill_metrics.json').read_text())
+        gate=json.loads((out/'claim_gate.json').read_text())
+        assert metrics['replay_pass_rate'] == 1.0
+        assert metrics['falsification_pass'] is True
+        assert gate['claim_gate_status'] == 'supported_local_bounded'

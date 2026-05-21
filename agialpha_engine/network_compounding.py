@@ -81,7 +81,7 @@ def run_network_compounding(args):
     atomic_write_json(out/'13_claim_gate/network_compounding_claim_gate.json',gate)
     atomic_write_json(out/'evidence-run-manifest.json',{"run":str(out),"run_id":run_id,**_base()})
     # registry + generated placeholders
-    atomic_write_json(reg/'latest.json',{"run_id":run_id,**_base()}); atomic_write_json(reg/'agents.json',{"agents":agents,**_base()}); atomic_write_json(reg/'agent_skill_manifests.json',{"manifests":manifests,**_base()}); atomic_write_json(reg/'skill_packages.json',{"skill_packages":accepted,**_base()}); atomic_write_json(reg/'rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(reg/'failure_learning_packages.json',{"failure_learning_packages":failure,**_base()}); atomic_write_json(reg/'skill_imports.json',{"skill_imports":imports,**_base()}); atomic_write_json(reg/'network_skill_metrics.json',metrics); atomic_write_json(reg/'claim_gate_decisions.json',gate); atomic_write_json(reg/'work_vault_receipts.json',{"receipts":[receipt],**_base()}); atomic_write_json(reg/'lineage_graph.json',{"edges":[{"from":s['source_job_id'],"to":s['skill_id']} for s in accepted],**_base()})
+    atomic_write_json(reg/'latest.json',{"run_id":run_id,"run_path":str(out),**_base()}); atomic_write_json(reg/'agents.json',{"agents":agents,**_base()}); atomic_write_json(reg/'agent_skill_manifests.json',{"manifests":manifests,**_base()}); atomic_write_json(reg/'skill_packages.json',{"skill_packages":accepted,**_base()}); atomic_write_json(reg/'rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(reg/'failure_learning_packages.json',{"failure_learning_packages":failure,**_base()}); atomic_write_json(reg/'skill_imports.json',{"skill_imports":imports,**_base()}); atomic_write_json(reg/'network_skill_metrics.json',metrics); atomic_write_json(reg/'claim_gate_decisions.json',gate); atomic_write_json(reg/'work_vault_receipts.json',{"receipts":[receipt],**_base()}); atomic_write_json(reg/'lineage_graph.json',{"edges":[{"from":s['source_job_id'],"to":s['skill_id']} for s in accepted],**_base()})
 
 def replay_network_compounding(args):
     run=Path(args.run)
@@ -187,10 +187,25 @@ def validate_network_compounding(args):
 
 def build_network_data(args):
     reg=Path(args.registry); out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
-    mp={'latest':'latest.json','agents':'agents.json','skill_packages':'skill_packages.json','rejected_skill_candidates':'rejected_skill_candidates.json','failure_learning_packages':'failure_learning_packages.json','skill_imports':'skill_imports.json','network_skill_metrics':'network_skill_metrics.json','claim_gate':'claim_gate_decisions.json','lineage_graph':'lineage_graph.json','work_vault_receipts':'work_vault_receipts.json','summary':'network_skill_metrics.json'}
-    for k,v in mp.items(): atomic_write_json(out/f'{k}.json',_read(reg/v,{"status":"not_reported",**_base()}))
+    latest=_read(reg/'latest.json',{})
+    run_path=latest.get('run_path')
+    run=Path(run_path) if isinstance(run_path,str) and run_path else None
+    mp={'latest':'latest.json','agents':'agents.json','skill_packages':'skill_packages.json','rejected_skill_candidates':'rejected_skill_candidates.json','failure_learning_packages':'failure_learning_packages.json','skill_imports':'skill_imports.json','lineage_graph':'lineage_graph.json','work_vault_receipts':'work_vault_receipts.json'}
+    for k,v in mp.items():
+        atomic_write_json(out/f'{k}.json',_read(reg/v,{"status":"not_reported",**_base()}))
+
+    # Prefer finalized per-run artifacts for mutable verification state.
+    if run is not None and run.exists():
+        metrics=_read(run/'07_metrics/network_skill_metrics.json',_read(reg/'network_skill_metrics.json',{"status":"not_reported",**_base()}))
+        gate=_read(run/'13_claim_gate/network_compounding_claim_gate.json',_read(reg/'claim_gate_decisions.json',{"status":"not_reported",**_base()}))
+    else:
+        metrics=_read(reg/'network_skill_metrics.json',{"status":"not_reported",**_base()})
+        gate=_read(reg/'claim_gate_decisions.json',{"status":"not_reported",**_base()})
+    atomic_write_json(out/'network_skill_metrics.json',metrics)
+    atomic_write_json(out/'claim_gate.json',gate)
+    atomic_write_json(out/'summary.json',metrics)
     # alias
-    atomic_write_json(out/'b6_vs_b5.json',_read(reg/'network_skill_metrics.json',{}))
+    atomic_write_json(out/'b6_vs_b5.json',metrics)
 
 def render_network_data(args):
     out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
