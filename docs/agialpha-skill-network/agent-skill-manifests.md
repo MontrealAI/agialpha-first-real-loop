@@ -1,0 +1,1 @@
+# agent-skill-manifests
