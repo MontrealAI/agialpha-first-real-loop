@@ -1,6 +1,7 @@
 import json, subprocess, tempfile
 from pathlib import Path
 
+
 def test_network_run_end_to_end():
     with tempfile.TemporaryDirectory() as td:
         run=Path(td)/'run'; reg=Path(td)/'reg'; out=Path(td)/'gen'
@@ -16,3 +17,21 @@ def test_network_run_end_to_end():
         imp=json.loads((run/'05_skill_import/skill_import_events.json').read_text())['skill_import_events']
         assert len(imp)>=3 and all(i['activation_status']=='inactive' for i in imp)
         assert 'network_skill_propagation_lift' in m
+
+
+def test_validate_fails_on_failed_replay_or_falsification():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        (run/'11_replay/replay_report.json').write_text(json.dumps({'replay_pass': False, 'replay_passes': 0}))
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        assert proc.returncode != 0
+        assert 'replay did not pass' in (proc.stderr + proc.stdout)
+
+
+def test_run_fails_cleanly_for_zero_heldout_tasks():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','0','--seed','123'], capture_output=True, text=True)
+        assert proc.returncode != 0
+        assert 'heldout_tasks must be >= 1' in (proc.stderr + proc.stdout)

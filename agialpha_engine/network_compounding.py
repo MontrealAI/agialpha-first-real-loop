@@ -51,6 +51,8 @@ def run_network_compounding(args):
         b5.append({"task_id":f"heldout-{i+1}","success_score":round(base,3),"validator_pass":1,"replay_pass":1,"proofbundle":1,"docket":1,"cost_risk_proxy":1,**_base()})
         b6.append({"task_id":f"heldout-{i+1}","success_score":round(base+lift,3),"validator_pass":1,"replay_pass":1,"proofbundle":1,"docket":1,"cost_risk_proxy":1,**_base()})
     def dnet(rows):
+        if not rows:
+            raise SystemExit('heldout_tasks must be >= 1 for network-compounding-run')
         return sum(r['success_score']*r['validator_pass']*r['replay_pass']*r['proofbundle']*r['docket']/max(1,r['cost_risk_proxy']) for r in rows)/len(rows)
     d5=round(dnet(b5),6); d6=round(dnet(b6),6); lift=round(d6-d5,6)
     metrics={"jobs_run":len(jobs),"jobs_with_skill_extraction":len(jobs),"accepted_skill_packages":len(accepted),"rejected_skill_candidates":len(rejected),"failure_learning_packages":len(failure),"skills_published_to_vault":len(accepted),"agents_registered":len(agents),"agent_skill_manifests_created":len(manifests),"skill_import_events":len(imports),"target_agents_with_imported_skill":len(target_agents),"heldout_tasks_evaluated":len(b5),"B6_shared_skill_beats_B5_no_shared_skill":d6>d5,"B6_shared_skill_advantage_delta":lift,"network_skill_propagation_lift":lift,"network_skill_multiplier":round((d6/max(1e-6,d5)),4),"capability_compounding_rate":round((len(accepted)+len(failure))/max(1,len(jobs)),4),"compounding_exponent_proxy":"not_supported_yet","exponential_compounding_supported":False,"exponential_compounding_status":"not_supported_yet","raw_task_result_ids":[r['raw_task_result_id'] for r in raw],"replay_pass_rate":1.0,"falsification_pass":True,"adversarial_failures_caught":8,"autonomous_persistence_attempts_blocked":1,"human_review_required_count":len(imports)+len(jobs),"raw_secret_leak_count":0,"external_target_scan_count":0,"exploit_execution_count":0,"malware_generation_count":0,"social_engineering_content_count":0,"unsafe_automerge_count":0,"critical_safety_incidents":0,**_base()}
@@ -90,7 +92,16 @@ def validate_network_compounding(args):
     run=Path(args.run)
     req=['00_manifest.json','03_skill_extraction/accepted_skill_packages.json','05_skill_import/skill_import_events.json','06_heldout_reuse_tests/comparison.json','07_metrics/network_skill_metrics.json','11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/network_compounding_claim_gate.json']
     miss=[x for x in req if not (run/x).exists()]
-    if miss: raise SystemExit(f'missing artifacts: {miss}')
+    if miss:
+        raise SystemExit(f'missing artifacts: {miss}')
+    replay=_read(run/'11_replay/replay_report.json',{})
+    falsification=_read(run/'12_falsification/falsification_audit.json',{})
+    replay_ok=bool(replay.get('replay_pass')) or int(replay.get('replay_passes',0))>0
+    falsification_ok=bool(falsification.get('falsification_pass'))
+    if not replay_ok:
+        raise SystemExit('network-compounding-validate failed: replay did not pass')
+    if not falsification_ok:
+        raise SystemExit('network-compounding-validate failed: falsification audit did not pass')
 
 def build_network_data(args):
     reg=Path(args.registry); out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
