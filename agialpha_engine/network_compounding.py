@@ -43,8 +43,14 @@ def run_network_compounding(args):
     skill=accepted[0]
     target_agents=[a["agent_id"] for a in agents[1:1+args.target_agents]]
     imports=[]
+    manifest_by_agent={m['agent_id']:m for m in manifests}
     for t in target_agents:
         imports.append({"schema_version":"agialpha.skill_import.v1","import_id":f"import-{skill['skill_id']}-{t}","skill_id":skill['skill_id'],"source_agent_id":skill['source_agent_id'],"target_agent_id":t,"import_status":"imported","activation_status":"inactive","reason":"imported_for_sandbox_validation","validators_required":["validator-pass"],"heldout_tests_required":["B6_vs_B5"],**_base()})
+        manifest=manifest_by_agent.get(t)
+        if manifest is not None:
+            manifest.setdefault('imported_skills',[])
+            if skill['skill_id'] not in manifest['imported_skills']:
+                manifest['imported_skills'].append(skill['skill_id'])
     b5=[];b6=[]
     for i in range(args.heldout_tasks):
         base=0.52+0.01*(i%3); lift=0.08
@@ -96,7 +102,13 @@ def validate_network_compounding(args):
         raise SystemExit(f'missing artifacts: {miss}')
     replay=_read(run/'11_replay/replay_report.json',{})
     falsification=_read(run/'12_falsification/falsification_audit.json',{})
-    replay_ok=bool(replay.get('replay_pass')) or int(replay.get('replay_passes',0))>0
+    replay_pass_field=replay.get('replay_pass')
+    replay_passes=int(replay.get('replay_passes',0))
+    if not isinstance(replay_pass_field,bool):
+        raise SystemExit('network-compounding-validate failed: replay_pass must be boolean')
+    if replay_pass_field != (replay_passes > 0):
+        raise SystemExit('network-compounding-validate failed: replay report inconsistent (replay_pass vs replay_passes)')
+    replay_ok=replay_pass_field and replay_passes > 0
     falsification_ok=bool(falsification.get('falsification_pass'))
     if not replay_ok:
         raise SystemExit('network-compounding-validate failed: replay did not pass')

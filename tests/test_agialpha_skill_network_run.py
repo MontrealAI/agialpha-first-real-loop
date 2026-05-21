@@ -16,6 +16,9 @@ def test_network_run_end_to_end():
         assert acc['raw_task_result_ids'] and acc['proofbundle_id'] and acc['evidence_docket_id']
         imp=json.loads((run/'05_skill_import/skill_import_events.json').read_text())['skill_import_events']
         assert len(imp)>=3 and all(i['activation_status']=='inactive' for i in imp)
+        manifests=json.loads((run/'05_skill_import/agent_skill_manifests_after_import.json').read_text())['manifests']
+        imported_agents=[mm for mm in manifests if mm.get('imported_skills')]
+        assert len(imported_agents) >= 3
         assert 'network_skill_propagation_lift' in m
 
 
@@ -35,3 +38,13 @@ def test_run_fails_cleanly_for_zero_heldout_tasks():
         proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','0','--seed','123'], capture_output=True, text=True)
         assert proc.returncode != 0
         assert 'heldout_tasks must be >= 1' in (proc.stderr + proc.stdout)
+
+
+def test_validate_fails_on_inconsistent_replay_fields():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        (run/'11_replay/replay_report.json').write_text(json.dumps({'replay_pass': False, 'replay_passes': 1}))
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        assert proc.returncode != 0
+        assert 'replay report inconsistent' in (proc.stderr + proc.stdout)
