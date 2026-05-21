@@ -176,16 +176,16 @@ def validate(args):
         recomputed_gate = RecursiveMachineLaborClaimGate.evaluate(run)
         replay_ok = replay_report.get('replay_pass') is True or replay_report.get('replay_passes',0) > 0
         falsification_ok = falsification_report.get('falsification_pass') is True
-        failed_requirements = gate.get('failed_requirements') if isinstance(gate.get('failed_requirements'), list) else None
-        allowed_sentence = gate.get('allowed_public_sentence') if isinstance(gate.get('allowed_public_sentence'), str) else ''
+        failed_requirements = gate.get('failed_requirements') if isinstance(gate.get('failed_requirements'), list) else (gate.get('blocked_reasons') if isinstance(gate.get('blocked_reasons'), list) else None)
+        allowed_sentence = gate.get('allowed_public_sentence') if isinstance(gate.get('allowed_public_sentence'), str) else (gate.get('allowed_public_wording') if isinstance(gate.get('allowed_public_wording'), str) else '')
         status = gate.get('status')
         status_consistent = (
             (status == 'supported' and failed_requirements == [])
-            or (status == 'not_supported' and isinstance(failed_requirements, list) and len(failed_requirements) > 0)
+            or (status == 'blocked' and isinstance(failed_requirements, list) and len(failed_requirements) > 0)
         )
         gate_ok = (
             gate.get('claim') == 'machine_labor_recursively_improves_measured_falsifiable'
-            and status in {'supported','not_supported'}
+            and status in {'supported','blocked'}
             and isinstance(failed_requirements, list)
             and status_consistent
             and isinstance(gate.get('supporting_artifacts'), list)
@@ -196,11 +196,11 @@ def validate(args):
             and bool(allowed_sentence.strip())
             and not _has_forbidden_overclaim(allowed_sentence)
             and gate.get('status') == recomputed_gate.get('status')
-            and gate.get('failed_requirements') == recomputed_gate.get('failed_requirements')
+            and failed_requirements == (recomputed_gate.get('failed_requirements') if isinstance(recomputed_gate.get('failed_requirements'), list) else recomputed_gate.get('blocked_reasons'))
             and gate.get('computed_not_hardcoded') == recomputed_gate.get('computed_not_hardcoded')
         )
         status='ok' if (gate_ok and replay_ok and falsification_ok) else 'failed'
-        atomic_write_json(run/'validate.json',{'status':status,'replay_ok':replay_ok,'falsification_ok':falsification_ok,'gate_ok':gate_ok,'gate_matches_metrics': gate.get('status') == recomputed_gate.get('status') and gate.get('failed_requirements') == recomputed_gate.get('failed_requirements'),**BOUNDARIES})
+        atomic_write_json(run/'validate.json',{'status':status,'replay_ok':replay_ok,'falsification_ok':falsification_ok,'gate_ok':gate_ok,'gate_matches_metrics': gate.get('status') == recomputed_gate.get('status') and failed_requirements == (recomputed_gate.get('failed_requirements') if isinstance(recomputed_gate.get('failed_requirements'), list) else recomputed_gate.get('blocked_reasons')),**BOUNDARIES})
         if status!='ok':
             raise SystemExit('validate failed: recursive replay/falsification or claim gate invalid')
         return
