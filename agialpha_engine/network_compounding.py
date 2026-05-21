@@ -62,9 +62,9 @@ def run_network_compounding(args):
             raise SystemExit('heldout_tasks must be >= 1 for network-compounding-run')
         return sum(r['success_score']*r['validator_pass']*r['replay_pass']*r['proofbundle']*r['docket']/max(1,r['cost_risk_proxy']) for r in rows)/len(rows)
     d5=round(dnet(b5),6); d6=round(dnet(b6),6); lift=round(d6-d5,6)
-    metrics={"jobs_run":len(jobs),"jobs_with_skill_extraction":len(jobs),"accepted_skill_packages":len(accepted),"rejected_skill_candidates":len(rejected),"failure_learning_packages":len(failure),"skills_published_to_vault":len(accepted),"agents_registered":len(agents),"agent_skill_manifests_created":len(manifests),"skill_import_events":len(imports),"target_agents_with_imported_skill":len(target_agents),"heldout_tasks_evaluated":len(b5),"B6_shared_skill_beats_B5_no_shared_skill":d6>d5,"B6_shared_skill_advantage_delta":lift,"network_skill_propagation_lift":lift,"network_skill_multiplier":round((d6/max(1e-6,d5)),4),"capability_compounding_rate":round((len(accepted)+len(failure))/max(1,len(jobs)),4),"compounding_exponent_proxy":"not_supported_yet","exponential_compounding_supported":False,"exponential_compounding_status":"not_supported_yet","raw_task_result_ids":[r['raw_task_result_id'] for r in raw],"replay_pass_rate":1.0,"falsification_pass":True,"adversarial_failures_caught":8,"autonomous_persistence_attempts_blocked":1,"human_review_required_count":len(imports)+len(jobs),"raw_secret_leak_count":0,"external_target_scan_count":0,"exploit_execution_count":0,"malware_generation_count":0,"social_engineering_content_count":0,"unsafe_automerge_count":0,"critical_safety_incidents":0,**_base()}
+    metrics={"jobs_run":len(jobs),"jobs_with_skill_extraction":len(jobs),"accepted_skill_packages":len(accepted),"rejected_skill_candidates":len(rejected),"failure_learning_packages":len(failure),"skills_published_to_vault":len(accepted),"agents_registered":len(agents),"agent_skill_manifests_created":len(manifests),"skill_import_events":len(imports),"target_agents_with_imported_skill":len(target_agents),"heldout_tasks_evaluated":len(b5),"B6_shared_skill_beats_B5_no_shared_skill":d6>d5,"B6_shared_skill_advantage_delta":lift,"network_skill_propagation_lift":lift,"network_skill_multiplier":round((d6/max(1e-6,d5)),4),"capability_compounding_rate":round((len(accepted)+len(failure))/max(1,len(jobs)),4),"compounding_exponent_proxy":"not_supported_yet","exponential_compounding_supported":False,"exponential_compounding_status":"not_supported_yet","raw_task_result_ids":[r['raw_task_result_id'] for r in raw],"replay_pass_rate":"pending","falsification_pass":"pending","adversarial_failures_caught":8,"autonomous_persistence_attempts_blocked":1,"human_review_required_count":len(imports)+len(jobs),"raw_secret_leak_count":0,"external_target_scan_count":0,"exploit_execution_count":0,"malware_generation_count":0,"social_engineering_content_count":0,"unsafe_automerge_count":0,"critical_safety_incidents":0,**_base()}
     claim_ok= len(jobs)>=3 and len(accepted)>=1 and len(target_agents)>=3 and d6>d5
-    gate={"claim_gate_status":"supported_local_bounded" if claim_ok else "not_supported","supported_wording":"We have demonstrated local bounded networked skill compounding: one agent’s proof-bound job produced a validated Skill Package that other agents imported and used to improve held-out adjacent work against no-shared-skill baselines." if claim_ok else "Networked skill compounding claim not yet supported.","failed_reasons":[] if claim_ok else ["insufficient evidence"],**_base()}
+    gate={"claim_gate_status":"not_supported","supported_wording":"Networked skill compounding claim not yet supported.","failed_reasons":["replay_and_falsification_pending"] if claim_ok else ["insufficient_evidence"],**_base()}
     # write major artifacts
     atomic_write_json(out/'00_manifest.json',{"run_id":run_id,"experiment_id":"AGI-ALPHA-ENGINE-003",**_base()})
     atomic_write_json(out/'01_agents/agent_registry.json',{"agents":agents,**_base()}); atomic_write_json(out/'01_agents/agent_skill_manifests_before.json',{"manifests":manifests_before_import,**_base()})
@@ -98,21 +98,42 @@ def replay_network_compounding(args):
     d5=_dnet(b5_rows)
     d6=_dnet(b6_rows)
     recomputed_lift=None if d5 is None or d6 is None else round(d6-d5,6)
+    recomputed_d5=None if d5 is None else round(d5,6)
+    recomputed_d6=None if d6 is None else round(d6,6)
+    comparison_d5=round(c.get('D_no_shared_skill',999),6)
+    comparison_d6=round(c.get('D_shared_skill_network',999),6)
     comparison_lift=round(c.get('D_shared_skill_network',0)-c.get('D_no_shared_skill',0),6)
     comparison_canonical_lift=round(c.get('NetworkSkillPropagationLift',999),6)
     metric_lift=round(m.get('network_skill_propagation_lift',999),6)
     ok=(
         recomputed_lift is not None
+        and recomputed_d5==comparison_d5
+        and recomputed_d6==comparison_d6
         and recomputed_lift==comparison_lift
         and recomputed_lift==comparison_canonical_lift
         and recomputed_lift==metric_lift
     )
-    atomic_write_json(run/'11_replay/replay_report.json',{"replay_pass":ok,"replay_passes":1 if ok else 0,"recomputed_network_skill_propagation_lift":recomputed_lift,**_base()})
+    if isinstance(m,dict):
+        m['replay_pass_rate']=1.0 if ok else 0.0
+        m['falsification_pass']='pending'
+        atomic_write_json(run/'07_metrics/network_skill_metrics.json',m)
+    atomic_write_json(run/'11_replay/replay_report.json',{"replay_pass":ok,"replay_passes":1 if ok else 0,"recomputed_D_no_shared_skill":recomputed_d5,"recomputed_D_shared_skill_network":recomputed_d6,"recomputed_network_skill_propagation_lift":recomputed_lift,**_base()})
 
 def falsification_network_compounding(args):
     run=Path(args.run)
     replay=_read(run/'11_replay/replay_report.json',{})
-    atomic_write_json(run/'12_falsification/falsification_audit.json',{"falsification_pass":bool(replay.get('replay_pass')),"adversarial_failures_caught":8,**_base()})
+    falsification_pass=bool(replay.get('replay_pass'))
+    atomic_write_json(run/'12_falsification/falsification_audit.json',{"falsification_pass":falsification_pass,"adversarial_failures_caught":8,**_base()})
+    m=_read(run/'07_metrics/network_skill_metrics.json',{})
+    if isinstance(m,dict):
+        m['falsification_pass']=falsification_pass
+        atomic_write_json(run/'07_metrics/network_skill_metrics.json',m)
+    gate=_read(run/'13_claim_gate/network_compounding_claim_gate.json',{})
+    if replay.get('replay_pass') and falsification_pass and gate.get('failed_reasons')==['replay_and_falsification_pending']:
+        gate['claim_gate_status']='supported_local_bounded'
+        gate['supported_wording']='We have demonstrated local bounded networked skill compounding: one agent’s proof-bound job produced a validated Skill Package that other agents imported and used to improve held-out adjacent work against no-shared-skill baselines.'
+        gate['failed_reasons']=[]
+        atomic_write_json(run/'13_claim_gate/network_compounding_claim_gate.json',gate)
 
 def validate_network_compounding(args):
     run=Path(args.run)

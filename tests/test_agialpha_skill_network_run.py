@@ -146,3 +146,44 @@ def test_registry_lineage_contains_all_accepted_skills():
         accepted_pairs={(a['source_job_id'],a['skill_id']) for a in accepted}
         edge_pairs={(e['from'],e['to']) for e in edges}
         assert accepted_pairs == edge_pairs
+
+
+def test_run_starts_with_pending_verification_and_not_supported_gate():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        metrics=json.loads((run/'07_metrics/network_skill_metrics.json').read_text())
+        gate=json.loads((run/'13_claim_gate/network_compounding_claim_gate.json').read_text())
+        assert metrics['replay_pass_rate'] == 'pending'
+        assert metrics['falsification_pass'] == 'pending'
+        assert gate['claim_gate_status'] == 'not_supported'
+
+
+
+def test_replay_checks_absolute_heldout_scores():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        comparison=json.loads((run/'06_heldout_reuse_tests/comparison.json').read_text())
+        comparison['D_no_shared_skill']=round(float(comparison['D_no_shared_skill'])+0.1,6)
+        comparison['D_shared_skill_network']=round(float(comparison['D_shared_skill_network'])+0.1,6)
+        comparison['NetworkSkillPropagationLift']=round(comparison['D_shared_skill_network']-comparison['D_no_shared_skill'],6)
+        (run/'06_heldout_reuse_tests/comparison.json').write_text(json.dumps(comparison))
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        replay=json.loads((run/'11_replay/replay_report.json').read_text())
+        assert replay['replay_pass'] is False
+
+
+
+def test_falsification_updates_metrics_and_promotes_gate_when_verified():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        metrics=json.loads((run/'07_metrics/network_skill_metrics.json').read_text())
+        gate=json.loads((run/'13_claim_gate/network_compounding_claim_gate.json').read_text())
+        assert metrics['replay_pass_rate'] == 1.0
+        assert metrics['falsification_pass'] is True
+        assert gate['claim_gate_status'] == 'supported_local_bounded'
+
