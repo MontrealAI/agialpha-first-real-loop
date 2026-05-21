@@ -8,8 +8,8 @@ class TestEngine002ClaimGate(unittest.TestCase):
             run=Path(td); (run/'06_metrics').mkdir()
             (run/'06_metrics/computed_metrics.json').write_text(json.dumps({}))
             out=RecursiveMachineLaborClaimGate.evaluate(run)
-            self.assertEqual(out['status'],'not_supported')
-            self.assertTrue(out['failed_requirements'])
+            self.assertEqual(out['status'],'blocked')
+            self.assertTrue(out['blocked_reasons'])
 
 
     def test_numeric_vrci_counts_as_computed(self):
@@ -38,3 +38,19 @@ class TestEngine002ClaimGate(unittest.TestCase):
             (run/'06_metrics/computed_metrics.json').write_text(json.dumps(metrics))
             out=RecursiveMachineLaborClaimGate.evaluate(run)
             self.assertTrue(out['computed_not_hardcoded'])
+
+
+    def test_blocked_claim_text_is_safe(self):
+        with tempfile.TemporaryDirectory() as td:
+            run=Path(td); (run/'06_metrics').mkdir()
+            (run/'06_metrics/computed_metrics.json').write_text(json.dumps({}))
+            out=RecursiveMachineLaborClaimGate.evaluate(run)
+            self.assertEqual(out['status'], 'blocked')
+            self.assertEqual(out['claim_text'], 'Not demonstrated yet.')
+
+    def test_claim_boundary_fallback(self):
+        with tempfile.TemporaryDirectory() as td:
+            run=Path(td); (run/'06_metrics').mkdir()
+            (run/'06_metrics/computed_metrics.json').write_text(json.dumps({}))
+            out=RecursiveMachineLaborClaimGate.evaluate(run)
+            self.assertTrue(out['claim_boundary'])
