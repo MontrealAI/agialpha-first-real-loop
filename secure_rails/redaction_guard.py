@@ -13,7 +13,7 @@ SECRET_PATTERNS = [
     ("jwt_like", re.compile(r"eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")),
     ("password_assignment", re.compile(r"(?i)(password|passwd|pwd|secret|api[_-]?key)\s*[:=]\s*\S{8,}")),
     ("secret_env", re.compile(r"(?i)(OPENAI_API_KEY|AWS_SECRET_ACCESS_KEY|GITHUB_TOKEN|SLACK_BOT_TOKEN)\s*[:=]\s*\S{8,}")),
-    ("connection_string", re.compile(r"(?i)(postgres|mysql|mongodb|redis)://[^\s]+")),
+    ("connection_string", re.compile(r"(?i)(postgres(?:ql)?|mysql|mongodb|redis)://[^\s]+")),
 ]
 
 def _salt() -> str:
