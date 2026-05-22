@@ -16,6 +16,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
+      - name: SecureRails checks (if available)
+        run: |
+          if compgen -G 'scripts/secure_rails_*.py' > /dev/null; then
+            for s in scripts/secure_rails_*.py; do python "$s"; done
+          else
+            echo 'No scripts/secure_rails_*.py checks found; skipping.'
+          fi
       - name: Resolve run path
         id: runpath
         run: |

@@ -8,6 +8,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
+      - name: SecureRails checks (if available)
+        run: |
+          if compgen -G 'scripts/secure_rails_*.py' > /dev/null; then
+            for s in scripts/secure_rails_*.py; do python "$s"; done
+          else
+            echo 'No scripts/secure_rails_*.py checks found; skipping.'
+          fi
       - run: python -m agialpha_engine network-compounding-run --repo-root . --registry agialpha_skill_network_registry --out /tmp/agialpha-skill-network-test --jobs 5 --target-agents 3 --heldout-tasks 5 --seed 123
       - run: python -m agialpha_engine network-compounding-replay --run /tmp/agialpha-skill-network-test
       - run: python -m agialpha_engine network-compounding-falsification-audit --run /tmp/agialpha-skill-network-test
