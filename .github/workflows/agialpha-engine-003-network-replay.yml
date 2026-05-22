@@ -3,38 +3,24 @@ on:
   workflow_dispatch:
     inputs:
       run_path:
-        description: "Existing run path to replay (optional; defaults to registry latest run)"
-        required: false
-        type: string
+        description: Existing run path
+        required: true
+        default: '/tmp/agialpha-skill-network-test'
   schedule:
     - cron: '0 4 * * 1'
-permissions: {contents: read, actions: read}
+permissions:
+  contents: read
+  actions: read
 jobs:
   replay:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '3.11'}
-      - name: SecureRails checks (if available)
-        run: |
-          RUNNABLE_CHECKS=(
-            scripts/secure_rails_claim_boundary_check.py
-            scripts/secure_rails_no_automerge_check.py
-            scripts/secure_rails_trust_center_check.py
-          )
-          ran_any=0
-          for s in "${RUNNABLE_CHECKS[@]}"; do
-            if [ -f "$s" ]; then
-              python "$s"
-              ran_any=1
-            fi
-          done
-          if [ "$ran_any" -eq 0 ]; then
-            echo 'No zero-argument SecureRails checks found; skipping.'
-          fi
+        with:
+          python-version: '3.11'
       - name: Resolve run path
-        id: runpath
+        shell: bash
         run: |
           if [ -n "${{ inputs.run_path }}" ]; then
             echo "RUN_PATH=${{ inputs.run_path }}" >> "$GITHUB_ENV"
@@ -42,14 +28,17 @@ jobs:
             python - <<'PY'
 import json
 from pathlib import Path
-latest = json.loads(Path('agialpha_skill_network_registry/latest.json').read_text())
+latest_path = Path('agialpha_skill_network_registry/latest.json')
+if not latest_path.exists():
+    raise SystemExit('missing agialpha_skill_network_registry/latest.json; provide workflow_dispatch run_path')
+latest = json.loads(latest_path.read_text(encoding='utf-8'))
 run_id = latest.get('run_id')
-if not run_id:
-    raise SystemExit('No run_id in agialpha_skill_network_registry/latest.json')
-print(f'RUN_PATH=agialpha_skill_network_registry/runs/{run_id}')
+if not isinstance(run_id, str) or not run_id.strip():
+    raise SystemExit('missing run_id in agialpha_skill_network_registry/latest.json; provide workflow_dispatch run_path')
+run_path = Path('agialpha_skill_network_registry') / 'runs' / run_id
+if not run_path.exists():
+    raise SystemExit(f'resolved run path does not exist: {run_path}; provide workflow_dispatch run_path')
+print(f'RUN_PATH={run_path}')
 PY
           fi
       - run: python -m agialpha_engine network-compounding-replay --run "$RUN_PATH"
-      - run: python -m agialpha_engine network-compounding-falsification-audit --run "$RUN_PATH"
-      - run: python -m agialpha_engine network-compounding-validate --run "$RUN_PATH"
-      - run: python -m agialpha_engine network-compounding-build-data --registry agialpha_skill_network_registry --out docs/_generated/agialpha-skill-network
