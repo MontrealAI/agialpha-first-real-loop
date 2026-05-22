@@ -50,14 +50,14 @@ jobs:
           python -m agialpha_engine network-compounding-run \
             --repo-root . \
             --registry agialpha_skill_network_registry \
-            --out /tmp/agialpha-skill-network-test \
+            --out agialpha-engine-runs/network-skill-test \
             --jobs "${{ inputs.jobs || '5' }}" \
             --target-agents "${{ inputs.target_agents || '3' }}" \
             --heldout-tasks "${{ inputs.heldout_tasks || '5' }}" \
             --seed "${{ inputs.seed || '123' }}"
-      - run: python -m agialpha_engine network-compounding-replay --run /tmp/agialpha-skill-network-test
-      - run: python -m agialpha_engine network-compounding-falsification-audit --run /tmp/agialpha-skill-network-test
-      - run: python -m agialpha_engine network-compounding-validate --run /tmp/agialpha-skill-network-test
+      - run: python -m agialpha_engine network-compounding-replay --run agialpha-engine-runs/network-skill-test
+      - run: python -m agialpha_engine network-compounding-falsification-audit --run agialpha-engine-runs/network-skill-test
+      - run: python -m agialpha_engine network-compounding-validate --run agialpha-engine-runs/network-skill-test
       - name: Build generated data
         if: ${{ inputs.publish_skill_network_tab != 'false' }}
         run: python -m agialpha_engine network-compounding-build-data --registry agialpha_skill_network_registry --out docs/_generated/agialpha-skill-network
@@ -65,6 +65,6 @@ jobs:
         with:
           name: agialpha-engine-003-network-compounding
           path: |
-            /tmp/agialpha-skill-network-test
+            agialpha-engine-runs/network-skill-test
             agialpha_skill_network_registry
             docs/_generated/agialpha-skill-network
