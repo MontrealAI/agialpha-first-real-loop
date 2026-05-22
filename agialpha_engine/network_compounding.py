@@ -181,7 +181,7 @@ def falsification_network_compounding(args):
     if replay_pass_field != (replay_passes > 0):
         raise SystemExit('network-compounding-falsification-audit failed: replay report inconsistent (replay_pass vs replay_passes)')
     fpass=(replay_pass_field is True and replay_passes > 0)
-    atomic_write_json(run/'12_falsification/falsification_audit.json',{"falsification_pass":fpass,"adversarial_failures_caught":len(ADVERSARIAL_CHECKS),"semantic_tests_passed":True,"smoke_tests_only":False,"hard_coded_metric_count":0,"fake_zero_metric_count":0,**_base()})
+    atomic_write_json(run/'12_falsification/falsification_audit.json',{"falsification_pass":fpass,"adversarial_failures_caught":len(ADVERSARIAL_CHECKS),"semantic_tests_passed":fpass,"smoke_tests_only":False,"hard_coded_metric_count":0,"fake_zero_metric_count":0,**_base()})
     m=_read(run/'07_metrics/network_skill_metrics.json',{})
     m['falsification_pass']=fpass
     atomic_write_json(run/'07_metrics/network_skill_metrics.json',m)
