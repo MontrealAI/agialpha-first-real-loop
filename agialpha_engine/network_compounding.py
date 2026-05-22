@@ -93,6 +93,40 @@ def run_network_compounding(args):
     atomic_write_json(out/'07_metrics/network_skill_metrics.json',metrics); atomic_write_json(out/'07_metrics/network_skill_propagation_lift.json',{"network_skill_propagation_lift":lift,**_base()}); atomic_write_json(out/'07_metrics/compounding_exponent_proxy.json',{"compounding_exponent_proxy":"not_supported_yet",**_base()})
     receipt={"schema_version":"agialpha.skill_network.work_vault_receipt.v1","receipt_id":"receipt-1","skill_id":skill['skill_id'],"source_job_id":skill['source_job_id'],"source_agent_id":skill['source_agent_id'],"target_agent_ids":target_agents,"utility_budget_units":100,"alpha_work_units_estimated":42,"validator_fee_units":8,"replay_fee_units":5,"proofbundle_fee_units":3,"evidence_docket_fee_units":3,"skill_publication_fee_units":2,"skill_import_fee_units":len(target_agents),"unused_budget_refund_units":100-42-8-5-3-3-2-len(target_agents),"settlement_mode":"synthetic_local_json_receipt_only","wallet_used":False,"custody_used":False,"payment_executed":False,"token_price_used":False,"investment_claim_made":False,"receipt_note":"Synthetic local utility receipt only. No wallet, custody, payment, trading, KYC/AML, money transmission, securities functionality, token price, token value, token appreciation, or investment return.",**_base()}
     atomic_write_json(out/'08_work_vault/skill_work_vault_receipts.json',{"receipts":[receipt],**_base()})
+    proofbundles=[]
+    for sk in accepted:
+        pb={
+            "schema_version":"agialpha.engine003.proofbundle.v1",
+            "proofbundle_id":sk["proofbundle_id"],
+            "skill_id":sk["skill_id"],
+            "source_job_id":sk["source_job_id"],
+            "source_agent_id":sk["source_agent_id"],
+            "raw_task_result_ids":sk["raw_task_result_ids"],
+            "deterministic_seed":args.seed,
+            "replay_command":f"python -m agialpha_engine network-compounding-replay --run {out}",
+            "human_review_status":"pending",
+            **_base(),
+        }
+        proofbundles.append(pb)
+        atomic_write_json(out/'14_proofbundles'/f'{sk["proofbundle_id"]}.json',pb)
+    atomic_write_json(out/'14_proofbundles/index.json',{"proofbundles":proofbundles,**_base()})
+    dockets=[]
+    for sk in accepted:
+        docket={
+            "schema_version":"agialpha.engine003.evidence_docket.v1",
+            "evidence_docket_id":sk["evidence_docket_id"],
+            "skill_id":sk["skill_id"],
+            "includes_successes":True,
+            "includes_failures":True,
+            "includes_rejected_claims":True,
+            "includes_evaluator_disagreement":True,
+            "includes_baseline_regressions":True,
+            "includes_falsification_attempts":True,
+            **_base(),
+        }
+        dockets.append(docket)
+        atomic_write_json(out/'15_evidence_dockets'/f'{sk["evidence_docket_id"]}.json',docket)
+    atomic_write_json(out/'15_evidence_dockets/index.json',{"evidence_dockets":dockets,**_base()})
     atomic_write_json(out/'11_replay/replay_report.json',{"replay_pass":False,"replay_passes":0,"status":"pending_replay_execution",**_base()})
     atomic_write_json(out/'12_falsification/falsification_audit.json',{"falsification_pass":False,"status":"pending_falsification_execution","adversarial_checks":["fake skill metric rejected","forbidden claim injection rejected","regulated-domain skill blocked","token-value skill blocked","raw secret-like string redacted","auto-merge attempt rejected","replay mismatch detected","missing skill evidence detected","baseline regression detected","poisoned skill import quarantined"],**_base()})
     atomic_write_json(out/'13_claim_gate/network_compounding_claim_gate.json',gate)
