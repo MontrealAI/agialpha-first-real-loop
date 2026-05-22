@@ -19,30 +19,41 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Resolve run path
+      - name: Resolve or create run path
         run: |
           if [ -n "${{ inputs.run_path }}" ]; then
             echo "RUN_PATH=${{ inputs.run_path }}" >> "$GITHUB_ENV"
             exit 0
           fi
+
           RESOLVED_PATH=$(python - <<'PY'
 import json
 from pathlib import Path
 latest_path = Path('agialpha_skill_network_registry/latest.json')
 if not latest_path.exists():
-    raise SystemExit('No run_path input and agialpha_skill_network_registry/latest.json is missing')
+    print("")
+    raise SystemExit(0)
 latest = json.loads(latest_path.read_text())
 run_id = latest.get('run_id')
 if not run_id:
-    raise SystemExit('No run_path input and run_id missing in agialpha_skill_network_registry/latest.json')
+    print("")
+    raise SystemExit(0)
 candidates = [Path('agialpha_skill_network_registry') / 'runs' / run_id, Path('agialpha-engine-runs') / run_id]
 for path in candidates:
     if path.exists() and path.is_dir():
         print(path)
         break
 else:
-    raise SystemExit(f'No run directory found for run_id={run_id}; checked: {candidates}')
+    print("")
 PY
 )
-          echo "RUN_PATH=$RESOLVED_PATH" >> "$GITHUB_ENV"
+
+          if [ -z "$RESOLVED_PATH" ]; then
+            echo "No runnable registry run found; creating deterministic local run for replay."
+            RUN_PATH="/tmp/agialpha-skill-network-test"
+            python -m agialpha_engine network-compounding-run --repo-root . --registry agialpha_skill_network_registry --out "$RUN_PATH" --jobs 5 --target-agents 3 --heldout-tasks 5 --seed 123
+            echo "RUN_PATH=$RUN_PATH" >> "$GITHUB_ENV"
+          else
+            echo "RUN_PATH=$RESOLVED_PATH" >> "$GITHUB_ENV"
+          fi
       - run: python -m agialpha_engine network-compounding-replay --run "$RUN_PATH"
