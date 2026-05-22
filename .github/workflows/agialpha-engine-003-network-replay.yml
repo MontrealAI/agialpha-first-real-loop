@@ -19,6 +19,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: SecureRails checks (if available)
+        run: |
+          RUNNABLE_CHECKS=(
+            scripts/secure_rails_claim_boundary_check.py
+            scripts/secure_rails_no_automerge_check.py
+            scripts/secure_rails_trust_center_check.py
+          )
+          for s in "${RUNNABLE_CHECKS[@]}"; do
+            if [ -f "$s" ]; then python "$s"; fi
+          done
       - name: Resolve or create run path
         run: |
           if [ -n "${{ inputs.run_path }}" ]; then
