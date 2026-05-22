@@ -1,13 +1,40 @@
 name: AGI ALPHA Engine 003 / Networked Skill Compounding
-on: {workflow_dispatch: {}, schedule: [{cron: '0 4 * * 1'}]}
-permissions: {contents: read, actions: read}
+on:
+  workflow_dispatch:
+    inputs:
+      jobs:
+        description: Number of source jobs
+        required: false
+        default: '5'
+      target_agents:
+        description: Number of target agents
+        required: false
+        default: '3'
+      heldout_tasks:
+        description: Number of held-out tasks
+        required: false
+        default: '5'
+      seed:
+        description: Deterministic seed
+        required: false
+        default: '123'
+      publish_skill_network_tab:
+        description: Build generated skill-network data
+        required: false
+        default: 'true'
+  schedule:
+    - cron: '0 4 * * 1'
+permissions:
+  contents: read
+  actions: read
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '3.11'}
+        with:
+          python-version: '3.11'
       - name: SecureRails checks (if available)
         run: |
           RUNNABLE_CHECKS=(
@@ -15,18 +42,31 @@ jobs:
             scripts/secure_rails_no_automerge_check.py
             scripts/secure_rails_trust_center_check.py
           )
-          ran_any=0
           for s in "${RUNNABLE_CHECKS[@]}"; do
-            if [ -f "$s" ]; then
-              python "$s"
-              ran_any=1
-            fi
+            if [ -f "$s" ]; then python "$s"; fi
           done
-          if [ "$ran_any" -eq 0 ]; then
-            echo 'No zero-argument SecureRails checks found; skipping.'
-          fi
-      - run: python -m agialpha_engine network-compounding-run --repo-root . --registry agialpha_skill_network_registry --out /tmp/agialpha-skill-network-test --jobs 5 --target-agents 3 --heldout-tasks 5 --seed 123
-      - run: python -m agialpha_engine network-compounding-replay --run /tmp/agialpha-skill-network-test
-      - run: python -m agialpha_engine network-compounding-falsification-audit --run /tmp/agialpha-skill-network-test
-      - run: python -m agialpha_engine network-compounding-validate --run /tmp/agialpha-skill-network-test
-      - run: python -m agialpha_engine network-compounding-build-data --registry agialpha_skill_network_registry --out docs/_generated/agialpha-skill-network
+      - name: Run network compounding
+        run: |
+          RUN_PATH=agialpha-engine-runs/${{ github.run_id }}
+          python -m agialpha_engine network-compounding-run \
+            --repo-root . \
+            --registry agialpha_skill_network_registry \
+            --out "$RUN_PATH" \
+            --jobs "${{ inputs.jobs || '5' }}" \
+            --target-agents "${{ inputs.target_agents || '3' }}" \
+            --heldout-tasks "${{ inputs.heldout_tasks || '5' }}" \
+            --seed "${{ inputs.seed || '123' }}"
+          echo "RUN_PATH=$RUN_PATH" >> "$GITHUB_ENV"
+      - run: python -m agialpha_engine network-compounding-replay --run "$RUN_PATH"
+      - run: python -m agialpha_engine network-compounding-falsification-audit --run "$RUN_PATH"
+      - run: python -m agialpha_engine network-compounding-validate --run "$RUN_PATH"
+      - name: Build generated data
+        if: ${{ inputs.publish_skill_network_tab != 'false' }}
+        run: python -m agialpha_engine network-compounding-build-data --registry agialpha_skill_network_registry --out docs/_generated/agialpha-skill-network
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agialpha-engine-003-network-compounding
+          path: |
+            ${{ env.RUN_PATH }}
+            agialpha_skill_network_registry
+            docs/_generated/agialpha-skill-network
