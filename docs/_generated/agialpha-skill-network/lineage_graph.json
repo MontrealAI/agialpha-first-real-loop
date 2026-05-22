@@ -5,6 +5,10 @@
     {
       "from": "job-1",
       "to": "skill-1"
+    },
+    {
+      "from": "job-4",
+      "to": "skill-4"
     }
   ],
   "human_review_required": true,

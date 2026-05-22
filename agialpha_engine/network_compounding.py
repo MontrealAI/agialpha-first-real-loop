@@ -140,6 +140,24 @@ def replay_network_compounding(args):
     atomic_write_json(run/'03_skill_extraction/accepted_skill_packages.json',{'accepted_skill_packages':skills, **_base()})
     _sync_run_to_registry(run)
 
+
+
+def _job_outcome_coverage(jobs, accepted, rejected, failures):
+    job_ids=[j.get('job_id') for j in jobs if j.get('job_id')]
+    if len(job_ids) != len(jobs):
+        return False
+    outcome_job_ids=[]
+    outcome_job_ids.extend([r.get('source_job_id') for r in accepted])
+    outcome_job_ids.extend([r.get('source_job_id') for r in rejected])
+    outcome_job_ids.extend([r.get('source_job_id') for r in failures])
+    if any(jid is None for jid in outcome_job_ids):
+        return False
+    if len(outcome_job_ids) != len(jobs):
+        return False
+    if len(set(outcome_job_ids)) != len(outcome_job_ids):
+        return False
+    return set(outcome_job_ids) == set(job_ids)
+
 def falsification_network_compounding(args):
     run=Path(args.run)
     replay=_read(run/'11_replay/replay_report.json',{})
@@ -165,8 +183,12 @@ def falsification_network_compounding(args):
     imports=_read(run/'05_skill_import/skill_import_events.json',{}).get('skill_import_events',[])
     comparison=_read(run/'06_heldout_reuse_tests/comparison.json',{})
     distinct_targets=len({i.get('target_agent_id') for i in imports if i.get('target_agent_id')})
+    rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
+    failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
+    exact_one_outcome_per_job=_job_outcome_coverage(jobs, accepted, rejected, failures)
     claim_ok=(
-        len(jobs) >= 3
+        len(jobs) >= 5
+        and exact_one_outcome_per_job
         and len(accepted) >= 1
         and distinct_targets >= 3
         and comparison.get('D_shared_skill_network',0) > comparison.get('D_no_shared_skill',0)
@@ -205,8 +227,12 @@ def validate_network_compounding(args):
     accepted=_read(run/'03_skill_extraction/accepted_skill_packages.json',{}).get('accepted_skill_packages',[])
     imports=_read(run/'05_skill_import/skill_import_events.json',{}).get('skill_import_events',[])
     comparison=_read(run/'06_heldout_reuse_tests/comparison.json',{})
+    rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
+    failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
+    exact_one_outcome_per_job=_job_outcome_coverage(jobs, accepted, rejected, failures)
     recomputed_gate_supported=(
-        len(jobs) >= 3
+        len(jobs) >= 5
+        and exact_one_outcome_per_job
         and len(accepted) >= 1
         and len({i.get('target_agent_id') for i in imports if i.get('target_agent_id')}) >= 3
         and comparison.get('D_shared_skill_network',0) > comparison.get('D_no_shared_skill',0)
