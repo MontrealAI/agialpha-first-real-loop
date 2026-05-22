@@ -163,7 +163,7 @@ def falsification_network_compounding(args):
     replay=_read(run/'11_replay/replay_report.json',{})
     replay_pass_field=replay.get('replay_pass')
     if not isinstance(replay_pass_field,bool):
-        raise SystemExit('network-compounding-falsification-audit failed: replay_pass must be boolean')
+        raise SystemExit('network-compounding-falsification-audit failed: replay_pass must be boolean (run network-compounding-replay first)')
     replay_passes=int(replay.get('replay_passes',0))
     if replay_pass_field != (replay_passes > 0):
         raise SystemExit('network-compounding-falsification-audit failed: replay report inconsistent (replay_pass vs replay_passes)')
@@ -209,7 +209,7 @@ def validate_network_compounding(args):
     replay_pass_field=replay.get('replay_pass')
     replay_passes=int(replay.get('replay_passes',0))
     if not isinstance(replay_pass_field,bool):
-        raise SystemExit('network-compounding-validate failed: replay_pass must be boolean')
+        raise SystemExit('network-compounding-validate failed: replay_pass must be boolean (run network-compounding-replay first)')
     if replay_pass_field != (replay_passes > 0):
         raise SystemExit('network-compounding-validate failed: replay report inconsistent (replay_pass vs replay_passes)')
     replay_ok=replay_pass_field and replay_passes > 0
