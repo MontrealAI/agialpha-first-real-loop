@@ -200,7 +200,7 @@ def falsification_network_compounding(args):
 
 def validate_network_compounding(args):
     run=Path(args.run)
-    req=['00_manifest.json','03_skill_extraction/accepted_skill_packages.json','05_skill_import/skill_import_events.json','06_heldout_reuse_tests/comparison.json','07_metrics/network_skill_metrics.json','11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/network_compounding_claim_gate.json']
+    req=['00_manifest.json','02_jobs/source_jobs.json','03_skill_extraction/accepted_skill_packages.json','03_skill_extraction/rejected_skill_candidates.json','03_skill_extraction/failure_learning_packages.json','05_skill_import/skill_import_events.json','06_heldout_reuse_tests/comparison.json','07_metrics/network_skill_metrics.json','11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/network_compounding_claim_gate.json']
     miss=[x for x in req if not (run/x).exists()]
     if miss:
         raise SystemExit(f'missing artifacts: {miss}')
