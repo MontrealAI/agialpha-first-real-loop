@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montreal.ai/schemas/agialpha_failure_learning_package.schema.json",
+  "title": "AGI ALPHA Failure Learning Package",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "failure_learning_id",
+    "source_job_id",
+    "source_agent_id",
+    "failure_category",
+    "failure_summary",
+    "raw_task_result_ids",
+    "claim_boundary",
+    "token_boundary",
+    "regulated_boundary",
+    "human_review_required",
+    "autonomous_persistence_allowed",
+    "no_auto_merge"
+  ],
+  "properties": {
+    "failure_learning_id": {"type": "string", "minLength": 1},
+    "source_job_id": {"type": "string", "minLength": 1},
+    "source_agent_id": {"type": "string", "minLength": 1},
+    "failure_category": {"type": "string", "minLength": 1},
+    "failure_summary": {"type": "string", "minLength": 1},
+    "raw_task_result_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 1
+    },
+    "claim_boundary": {"type": "string", "minLength": 1},
+    "token_boundary": {"type": "string", "minLength": 1},
+    "regulated_boundary": {"type": "string", "minLength": 1},
+    "human_review_required": {"type": "boolean", "const": true},
+    "autonomous_persistence_allowed": {"type": "boolean", "const": false},
+    "no_auto_merge": {"type": "boolean", "const": true}
+  }
+}
