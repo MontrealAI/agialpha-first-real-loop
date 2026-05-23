@@ -23,3 +23,10 @@ python -m agialpha_engine network-compounding-validate --run /tmp/agialpha-skill
 - No Evidence Docket, no empirical SOTA claim.
 - Autonomous evidence production is allowed; autonomous claim promotion is not.
 - Human review is required for activation outside sandbox.
+
+## ENGINE-003 claim status wording
+
+- Supported local bounded wording (only when the claim gate passes):  
+  `AGI ALPHA demonstrated that one agent’s proof-bound job produced a validated Skill Package that other agents imported and used to improve held-out adjacent work against no-shared-skill baselines.`
+- Exponential wording boundary (default unless multi-cycle evidence supports it):  
+  `Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.`
