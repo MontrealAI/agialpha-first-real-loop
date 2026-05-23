@@ -27,6 +27,26 @@ def _compute_stream_payload(job_id: str, score: float, validator_pass: bool) -> 
 
 def _validate_sandbox_records(raw_task_results: list[dict], sandbox_records: list[dict]) -> tuple[bool, list[str]]:
     errors: list[str] = []
+    raw_ids = [row.get("sandbox_id") for row in raw_task_results]
+    sandbox_ids = [row.get("sandbox_id") for row in sandbox_records]
+    if len(sandbox_ids) != len(set(sandbox_ids)):
+        errors.append("sandbox records must not contain duplicate sandbox_id values")
+    if len(raw_ids) != len(set(raw_ids)):
+        errors.append("raw task results must not contain duplicate sandbox_id values")
+    raw_id_set = set(raw_ids)
+    sandbox_id_set = set(sandbox_ids)
+    extras = sorted(sid for sid in sandbox_id_set - raw_id_set if sid is not None)
+    missing = sorted(sid for sid in raw_id_set - sandbox_id_set if sid is not None)
+    if extras:
+        errors.append(f"unexpected sandbox records present: {extras}")
+    if missing:
+        errors.append(f"missing sandbox records for raw results: {missing}")
+    if any(sid in (None, "") for sid in sandbox_ids):
+        errors.append("sandbox_id must be present for every sandbox record")
+    if any(sid in (None, "") for sid in raw_ids):
+        errors.append("sandbox_id must be present for every raw task result")
+    if len(sandbox_records) != len(raw_task_results):
+        errors.append("sandbox record count must match raw task result count")
     by_id = {r.get("sandbox_id"): r for r in sandbox_records}
     roots = {r.get("allowed_root") for r in sandbox_records}
     if any(root in (None, "") for root in roots):
