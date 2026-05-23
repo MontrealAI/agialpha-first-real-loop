@@ -16,7 +16,7 @@
         "raw-job-1"
       ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
-      "replay_command": "python -m agialpha_engine network-compounding-replay --run /tmp/agialpha-skill-network-test",
+      "replay_command": "python -m agialpha_engine network-compounding-replay --run agialpha-engine-runs/network-skill-test",
       "schema_version": "agialpha.engine003.proofbundle.v1",
       "skill_id": "skill-1",
       "source_agent_id": "agent-1",
@@ -35,7 +35,7 @@
         "raw-job-4"
       ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
-      "replay_command": "python -m agialpha_engine network-compounding-replay --run /tmp/agialpha-skill-network-test",
+      "replay_command": "python -m agialpha_engine network-compounding-replay --run agialpha-engine-runs/network-skill-test",
       "schema_version": "agialpha.engine003.proofbundle.v1",
       "skill_id": "skill-4",
       "source_agent_id": "agent-1",
