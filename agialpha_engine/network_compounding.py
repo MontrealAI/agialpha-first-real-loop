@@ -2,6 +2,7 @@ from __future__ import annotations
 import hashlib, json, random
 from pathlib import Path
 from .context import BOUNDARIES, atomic_write_json
+from .network_claim_gate import evaluate_network_compounding_claim
 
 ROLES=["Reviewer Agent","Validator Agent","Operator Agent","Documentation Agent","SecureRails Agent"]
 
@@ -84,8 +85,17 @@ def run_network_compounding(args):
         return sum(r['success_score']*r['validator_pass']*r['replay_pass']*r['proofbundle']*r['docket']/max(1,r['cost_risk_proxy']) for r in rows)/len(rows)
     d5=round(dnet(b5),6); d6=round(dnet(b6),6); lift=round(d6-d5,6)
     metrics={"jobs_run":len(jobs),"jobs_with_skill_extraction":len(jobs),"accepted_skill_packages":len(accepted),"rejected_skill_candidates":len(rejected),"failure_learning_packages":len(failure),"skills_published_to_vault":len(accepted),"agents_registered":len(agents),"agent_skill_manifests_created":len(manifests),"skill_import_events":len(imports),"target_agents_with_imported_skill":len(target_agents),"heldout_tasks_evaluated":len(b5),"B6_shared_skill_beats_B5_no_shared_skill":d6>d5,"B6_shared_skill_advantage_delta":lift,"network_skill_propagation_lift":lift,"network_skill_multiplier":round((d6/max(1e-6,d5)),4),"capability_compounding_rate":round((len(accepted)+len(failure))/max(1,len(jobs)),4),"compounding_exponent_proxy":"not_supported_yet","exponential_compounding_supported":False,"exponential_compounding_status":"not_supported_yet","raw_task_result_ids":[r['raw_task_result_id'] for r in raw],"replay_pass_rate":"pending","falsification_pass":"pending","adversarial_failures_caught":8,"autonomous_persistence_attempts_blocked":1,"human_review_required_count":len(imports)+len(jobs),"raw_secret_leak_count":0,"external_target_scan_count":0,"exploit_execution_count":0,"malware_generation_count":0,"social_engineering_content_count":0,"unsafe_automerge_count":0,"critical_safety_incidents":0,**_base()}
-    claim_ok= False
-    gate={"claim_gate_status":"supported_local_bounded" if claim_ok else "not_supported","supported_wording":"We have demonstrated local bounded networked skill compounding: one agent’s proof-bound job produced a validated Skill Package that other agents imported and used to improve held-out adjacent work against no-shared-skill baselines." if claim_ok else "Networked skill compounding claim not yet supported.","failed_reasons":[] if claim_ok else ["replay_or_falsification_not_completed"],**_base()}
+    gate=evaluate_network_compounding_claim(
+        jobs_run=len(jobs),
+        exact_one_outcome_per_job=True,
+        accepted_skill_packages=len(accepted),
+        distinct_import_targets=len(set(target_agents)),
+        d_shared_skill_network=d6,
+        d_no_shared_skill=d5,
+        replay_ok=False,
+        falsification_ok=False,
+        critical_safety_incidents=0,
+    )
     # write major artifacts
     atomic_write_json(out/'00_manifest.json',{"run_id":run_id,"experiment_id":"AGI-ALPHA-ENGINE-003",**_base()})
     atomic_write_json(out/'01_agents/agent_registry.json',{"agents":agents,**_base()}); atomic_write_json(out/'01_agents/agent_skill_manifests_before.json',{"manifests":manifests_before_import,**_base()})
@@ -224,15 +234,17 @@ def falsification_network_compounding(args):
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
     failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
     exact_one_outcome_per_job=_job_outcome_coverage(jobs, accepted, rejected, failures)
-    claim_ok=(
-        len(jobs) >= 5
-        and exact_one_outcome_per_job
-        and len(accepted) >= 1
-        and distinct_targets >= 3
-        and comparison.get('D_shared_skill_network',0) > comparison.get('D_no_shared_skill',0)
-        and fpass
+    gate=evaluate_network_compounding_claim(
+        jobs_run=len(jobs),
+        exact_one_outcome_per_job=exact_one_outcome_per_job,
+        accepted_skill_packages=len(accepted),
+        distinct_import_targets=distinct_targets,
+        d_shared_skill_network=float(comparison.get('D_shared_skill_network',0)),
+        d_no_shared_skill=float(comparison.get('D_no_shared_skill',0)),
+        replay_ok=fpass,
+        falsification_ok=fpass,
+        critical_safety_incidents=int(m.get('critical_safety_incidents',0)),
     )
-    gate={"claim_gate_status":"supported_local_bounded" if claim_ok else "not_supported","supported_wording":"We have demonstrated local bounded networked skill compounding: one agent’s proof-bound job produced a validated Skill Package that other agents imported and used to improve held-out adjacent work against no-shared-skill baselines." if claim_ok else "Networked skill compounding claim not yet supported.","failed_reasons":[] if claim_ok else ["insufficient evidence"],**_base()}
     atomic_write_json(run/'13_claim_gate/network_compounding_claim_gate.json',gate)
     _sync_run_to_registry(run)
 
@@ -268,16 +280,17 @@ def validate_network_compounding(args):
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
     failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
     exact_one_outcome_per_job=_job_outcome_coverage(jobs, accepted, rejected, failures)
-    recomputed_gate_supported=(
-        len(jobs) >= 5
-        and exact_one_outcome_per_job
-        and len(accepted) >= 1
-        and len({i.get('target_agent_id') for i in imports if i.get('target_agent_id')}) >= 3
-        and comparison.get('D_shared_skill_network',0) > comparison.get('D_no_shared_skill',0)
-        and replay_ok
-        and falsification_ok
+    recomputed=evaluate_network_compounding_claim(
+        jobs_run=len(jobs),
+        exact_one_outcome_per_job=exact_one_outcome_per_job,
+        accepted_skill_packages=len(accepted),
+        distinct_import_targets=len({i.get('target_agent_id') for i in imports if i.get('target_agent_id')}),
+        d_shared_skill_network=float(comparison.get('D_shared_skill_network',0)),
+        d_no_shared_skill=float(comparison.get('D_no_shared_skill',0)),
+        replay_ok=replay_ok,
+        falsification_ok=falsification_ok,
     )
-    expected_gate_status='supported_local_bounded' if recomputed_gate_supported else 'not_supported'
+    expected_gate_status=recomputed.get('claim_gate_status')
     if gate.get('claim_gate_status') != expected_gate_status:
         raise SystemExit('network-compounding-validate failed: claim gate status mismatch with recomputed evidence')
     if expected_gate_status != 'supported_local_bounded':
