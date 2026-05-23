@@ -51,7 +51,7 @@ def run_network_compounding(args):
         jid=f"job-{i+1}"; aid=agents[0]["agent_id"]
         score=0.5 + i*0.03 + (rng.random()*0.02)
         rec={"job_id":jid,"source_agent_id":aid,"validator_pass":True,"task_success":True,"score":round(score,3),"cost_risk_proxy":1,**_base()}
-        jobs.append(rec); raw.append({"raw_task_result_id":f"raw-{jid}",**rec})
+        jobs.append(rec); raw.append({"task_result_id":f"raw-{jid}","raw_task_result_id":f"raw-{jid}","task_id":jid,"candidate_id":f"cand-{jid}","baseline_id":"B6_shared_skill_network","agent_id":aid,"skill_id":None,"seed":args.seed,"sandbox_id":f"sandbox-{jid}","validator_results":{"validator_pass":True},"raw_scores":{"score":round(score,3)},"cost_proxy":1,"safety_counters":{"critical_safety_incidents":0},"artifact_hashes":{},"passed":True,"failure_reason":"","claim_boundary":BOUNDARIES["claim_boundary"],"token_boundary":BOUNDARIES["token_boundary"],"regulated_boundary":BOUNDARIES["regulated_boundary"],"source_logs":[f"log-{jid}"],**rec})
         if i%3==0:
             sid=f"skill-{i+1}"
             accepted.append({"schema_version":"agialpha.skill_package.v1","skill_id":sid,"source_job_id":jid,"source_agent_id":aid,"skill_type":"workflow_template","skill_payload":{"template":"safe_replay_template"},"validated_on_task_ids":[jid],"raw_task_result_ids":[f"raw-{jid}"],"proofbundle_id":f"pb-{sid}","evidence_docket_id":f"ed-{sid}","replay_status":"pending","falsification_status":"pending","risk_tier":"low","allowed_import_scope":"sandbox_only","activation_policy":{"auto_activate_allowed":False,"human_review_required":True,"validator_required":True,"replay_required":True,"falsification_required":True},**_base()})
