@@ -277,6 +277,7 @@ def validate_network_compounding(args):
     accepted=_read(run/'03_skill_extraction/accepted_skill_packages.json',{}).get('accepted_skill_packages',[])
     imports=_read(run/'05_skill_import/skill_import_events.json',{}).get('skill_import_events',[])
     comparison=_read(run/'06_heldout_reuse_tests/comparison.json',{})
+    metrics=_read(run/'07_metrics/network_skill_metrics.json',{})
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
     failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
     exact_one_outcome_per_job=_job_outcome_coverage(jobs, accepted, rejected, failures)
@@ -289,6 +290,7 @@ def validate_network_compounding(args):
         d_no_shared_skill=float(comparison.get('D_no_shared_skill',0)),
         replay_ok=replay_ok,
         falsification_ok=falsification_ok,
+        critical_safety_incidents=int(metrics.get('critical_safety_incidents',0)),
     )
     expected_gate_status=recomputed.get('claim_gate_status')
     if gate.get('claim_gate_status') != expected_gate_status:
