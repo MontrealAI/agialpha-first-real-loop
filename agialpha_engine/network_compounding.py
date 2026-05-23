@@ -29,6 +29,10 @@ def _validate_sandbox_records(raw_task_results: list[dict], sandbox_records: lis
     errors: list[str] = []
     by_id = {r.get("sandbox_id"): r for r in sandbox_records}
     roots = {r.get("allowed_root") for r in sandbox_records}
+    if not sandbox_records:
+        errors.append("sandbox records missing")
+    if any(r.get("allowed_root") in (None, "") for r in sandbox_records):
+        errors.append("sandbox allowed_root must be present on every record")
     if len(roots) != 1:
         errors.append("sandbox allowed_root values must be consistent")
     for row in raw_task_results:
@@ -326,8 +330,13 @@ def validate_network_compounding(args):
     falsification_ok=falsification_pass_field
     if not replay_ok:
         raise SystemExit('network-compounding-validate failed: replay did not pass')
+    raw_task_results=_read(run/'02_jobs/raw_task_results.json',{}).get('raw_task_results',[])
+    sandbox_records=_read(run/'02_jobs/sandbox_records.json',{}).get('sandbox_records',[])
+    sandbox_integrity_ok, sandbox_integrity_errors = _validate_sandbox_records(raw_task_results, sandbox_records)
     if replay.get('sandbox_record_integrity_pass') is not True:
         raise SystemExit('network-compounding-validate failed: sandbox record integrity check failed')
+    if not sandbox_integrity_ok:
+        raise SystemExit(f'network-compounding-validate failed: sandbox record integrity check failed on revalidation: {sandbox_integrity_errors}')
     if not falsification_ok:
         raise SystemExit('network-compounding-validate failed: falsification audit did not pass')
     gate=_read(run/'13_claim_gate/network_compounding_claim_gate.json',{})
