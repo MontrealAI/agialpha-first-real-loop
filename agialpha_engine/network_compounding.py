@@ -19,6 +19,14 @@ def _base(extra=None):
     return d
 
 
+def _next_registry_index(existing: dict, run_id: str) -> dict:
+    previous_runs = existing.get("runs", []) if isinstance(existing, dict) else []
+    runs = [r for r in previous_runs if isinstance(r, str) and r]
+    if run_id not in runs:
+        runs.append(run_id)
+    return {"latest_run_id": run_id, "runs": runs, **_base()}
+
+
 def _compute_stream_payload(job_id: str, score: float, validator_pass: bool) -> tuple[str, str]:
     stdout = f"job={job_id};score={score:.3f};validator_pass={int(validator_pass)}"
     stderr = ""
@@ -118,6 +126,8 @@ def _sync_run_to_registry(run: Path) -> None:
     atomic_write_json(reg/'proofbundles.json',{'proofbundles': proofbundles, **_base()})
     atomic_write_json(reg/'evidence_dockets.json',{'evidence_dockets': evidence_dockets, **_base()})
     atomic_write_json(reg/'latest.json',{'run_id': run.name, **_base()})
+    existing_registry = _read(reg/'registry.json', {})
+    atomic_write_json(reg/'registry.json', _next_registry_index(existing_registry, run.name))
 
 def run_network_compounding(args):
     rng=random.Random(args.seed)
@@ -247,6 +257,8 @@ def run_network_compounding(args):
     atomic_write_json(out/'evidence-run-manifest.json',{"run":str(out),"run_id":run_id,"registry":str(reg),**_base()})
     # registry + generated placeholders
     atomic_write_json(reg/'latest.json',{"run_id":run_id,**_base()}); atomic_write_json(reg/'agents.json',{"agents":agents,**_base()}); atomic_write_json(reg/'agent_skill_manifests.json',{"manifests":manifests,**_base()}); atomic_write_json(reg/'skill_packages.json',{"skill_packages":accepted,**_base()}); atomic_write_json(reg/'rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(reg/'failure_learning_packages.json',{"failure_learning_packages":failure,**_base()}); atomic_write_json(reg/'skill_imports.json',{"skill_imports":imports,**_base()}); atomic_write_json(reg/'network_skill_metrics.json',metrics); atomic_write_json(reg/'claim_gate_decisions.json',gate); atomic_write_json(reg/'work_vault_receipts.json',{"receipts":[receipt],**_base()}); atomic_write_json(reg/'lineage_graph.json',{"edges":[{"from":s['source_job_id'],"to":s['skill_id']} for s in accepted],**_base()}); atomic_write_json(reg/'proofbundles.json',{"proofbundles":proofbundles,**_base()}); atomic_write_json(reg/'evidence_dockets.json',{"evidence_dockets":dockets,**_base()})
+    existing_registry = _read(reg/'registry.json', {})
+    atomic_write_json(reg/'registry.json', _next_registry_index(existing_registry, run_id))
 
 def replay_network_compounding(args):
     run=Path(args.run)
