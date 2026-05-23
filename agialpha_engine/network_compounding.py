@@ -25,6 +25,27 @@ def _compute_stream_payload(job_id: str, score: float, validator_pass: bool) -> 
     return stdout, stderr
 
 
+def _coerce_bool_strict(value, *, field_name: str, errors: list[str], sandbox_id: str) -> bool:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        lowered = value.strip().lower()
+        if lowered == "true":
+            return True
+        if lowered == "false":
+            return False
+    errors.append(f"{field_name} must be boolean for {sandbox_id}")
+    return False
+
+
+def _coerce_float_strict(value, *, field_name: str, errors: list[str], sandbox_id: str) -> float:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        errors.append(f"{field_name} must be numeric for {sandbox_id}")
+        return 0.0
+
+
 def _validate_sandbox_records(raw_task_results: list[dict], sandbox_records: list[dict]) -> tuple[bool, list[str]]:
     errors: list[str] = []
     raw_ids = [row.get("sandbox_id") for row in raw_task_results]
@@ -52,7 +73,19 @@ def _validate_sandbox_records(raw_task_results: list[dict], sandbox_records: lis
         if record is None:
             errors.append(f"missing sandbox record for {sandbox_id}")
             continue
-        expected_stdout, expected_stderr = _compute_stream_payload(task_id, float(row.get("score", row.get("raw_scores", {}).get("score", 0.0))), bool(row.get("validator_pass", row.get("validator_results", {}).get("validator_pass", False))))
+        row_score = _coerce_float_strict(
+            row.get("score", row.get("raw_scores", {}).get("score", 0.0)),
+            field_name="score",
+            errors=errors,
+            sandbox_id=sandbox_id or "unknown-sandbox",
+        )
+        row_validator_pass = _coerce_bool_strict(
+            row.get("validator_pass", row.get("validator_results", {}).get("validator_pass", False)),
+            field_name="validator_pass",
+            errors=errors,
+            sandbox_id=sandbox_id or "unknown-sandbox",
+        )
+        expected_stdout, expected_stderr = _compute_stream_payload(task_id, row_score, row_validator_pass)
         if record.get("stdout_hash") != _h(expected_stdout):
             errors.append(f"stdout_hash mismatch for {sandbox_id}")
         if record.get("stderr_hash") != _h(expected_stderr):
