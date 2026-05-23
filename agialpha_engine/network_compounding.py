@@ -29,9 +29,13 @@ def _sync_run_to_registry(run: Path) -> None:
     metrics=_read(run/'07_metrics/network_skill_metrics.json',{})
     gate=_read(run/'13_claim_gate/network_compounding_claim_gate.json',{})
     skill_packages=_read(run/'03_skill_extraction/accepted_skill_packages.json',{}).get('accepted_skill_packages',[])
+    proofbundles=_read(run/'14_proofbundles/index.json',{}).get('proofbundles',[])
+    evidence_dockets=_read(run/'15_evidence_dockets/index.json',{}).get('evidence_dockets',[])
     atomic_write_json(reg/'network_skill_metrics.json',metrics)
     atomic_write_json(reg/'claim_gate_decisions.json',gate)
     atomic_write_json(reg/'skill_packages.json',{'skill_packages': skill_packages, **_base()})
+    atomic_write_json(reg/'proofbundles.json',{'proofbundles': proofbundles, **_base()})
+    atomic_write_json(reg/'evidence_dockets.json',{'evidence_dockets': evidence_dockets, **_base()})
     atomic_write_json(reg/'latest.json',{'run_id': run.name, **_base()})
 
 def run_network_compounding(args):
@@ -93,12 +97,46 @@ def run_network_compounding(args):
     atomic_write_json(out/'07_metrics/network_skill_metrics.json',metrics); atomic_write_json(out/'07_metrics/network_skill_propagation_lift.json',{"network_skill_propagation_lift":lift,**_base()}); atomic_write_json(out/'07_metrics/compounding_exponent_proxy.json',{"compounding_exponent_proxy":"not_supported_yet",**_base()})
     receipt={"schema_version":"agialpha.skill_network.work_vault_receipt.v1","receipt_id":"receipt-1","skill_id":skill['skill_id'],"source_job_id":skill['source_job_id'],"source_agent_id":skill['source_agent_id'],"target_agent_ids":target_agents,"utility_budget_units":100,"alpha_work_units_estimated":42,"validator_fee_units":8,"replay_fee_units":5,"proofbundle_fee_units":3,"evidence_docket_fee_units":3,"skill_publication_fee_units":2,"skill_import_fee_units":len(target_agents),"unused_budget_refund_units":100-42-8-5-3-3-2-len(target_agents),"settlement_mode":"synthetic_local_json_receipt_only","wallet_used":False,"custody_used":False,"payment_executed":False,"token_price_used":False,"investment_claim_made":False,"receipt_note":"Synthetic local utility receipt only. No wallet, custody, payment, trading, KYC/AML, money transmission, securities functionality, token price, token value, token appreciation, or investment return.",**_base()}
     atomic_write_json(out/'08_work_vault/skill_work_vault_receipts.json',{"receipts":[receipt],**_base()})
+    proofbundles=[]
+    for sk in accepted:
+        pb={
+            "schema_version":"agialpha.engine003.proofbundle.v1",
+            "proofbundle_id":sk["proofbundle_id"],
+            "skill_id":sk["skill_id"],
+            "source_job_id":sk["source_job_id"],
+            "source_agent_id":sk["source_agent_id"],
+            "raw_task_result_ids":sk["raw_task_result_ids"],
+            "deterministic_seed":args.seed,
+            "replay_command":f"python -m agialpha_engine network-compounding-replay --run {out}",
+            "human_review_status":"pending",
+            **_base(),
+        }
+        proofbundles.append(pb)
+        atomic_write_json(out/'14_proofbundles'/f'{sk["proofbundle_id"]}.json',pb)
+    atomic_write_json(out/'14_proofbundles/index.json',{"proofbundles":proofbundles,**_base()})
+    dockets=[]
+    for sk in accepted:
+        docket={
+            "schema_version":"agialpha.engine003.evidence_docket.v1",
+            "evidence_docket_id":sk["evidence_docket_id"],
+            "skill_id":sk["skill_id"],
+            "includes_successes":True,
+            "includes_failures":True,
+            "includes_rejected_claims":True,
+            "includes_evaluator_disagreement":True,
+            "includes_baseline_regressions":True,
+            "includes_falsification_attempts":True,
+            **_base(),
+        }
+        dockets.append(docket)
+        atomic_write_json(out/'15_evidence_dockets'/f'{sk["evidence_docket_id"]}.json',docket)
+    atomic_write_json(out/'15_evidence_dockets/index.json',{"evidence_dockets":dockets,**_base()})
     atomic_write_json(out/'11_replay/replay_report.json',{"replay_pass":False,"replay_passes":0,"status":"pending_replay_execution",**_base()})
     atomic_write_json(out/'12_falsification/falsification_audit.json',{"falsification_pass":False,"status":"pending_falsification_execution","adversarial_checks":["fake skill metric rejected","forbidden claim injection rejected","regulated-domain skill blocked","token-value skill blocked","raw secret-like string redacted","auto-merge attempt rejected","replay mismatch detected","missing skill evidence detected","baseline regression detected","poisoned skill import quarantined"],**_base()})
     atomic_write_json(out/'13_claim_gate/network_compounding_claim_gate.json',gate)
     atomic_write_json(out/'evidence-run-manifest.json',{"run":str(out),"run_id":run_id,"registry":str(reg),**_base()})
     # registry + generated placeholders
-    atomic_write_json(reg/'latest.json',{"run_id":run_id,**_base()}); atomic_write_json(reg/'agents.json',{"agents":agents,**_base()}); atomic_write_json(reg/'agent_skill_manifests.json',{"manifests":manifests,**_base()}); atomic_write_json(reg/'skill_packages.json',{"skill_packages":accepted,**_base()}); atomic_write_json(reg/'rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(reg/'failure_learning_packages.json',{"failure_learning_packages":failure,**_base()}); atomic_write_json(reg/'skill_imports.json',{"skill_imports":imports,**_base()}); atomic_write_json(reg/'network_skill_metrics.json',metrics); atomic_write_json(reg/'claim_gate_decisions.json',gate); atomic_write_json(reg/'work_vault_receipts.json',{"receipts":[receipt],**_base()}); atomic_write_json(reg/'lineage_graph.json',{"edges":[{"from":s['source_job_id'],"to":s['skill_id']} for s in accepted],**_base()})
+    atomic_write_json(reg/'latest.json',{"run_id":run_id,**_base()}); atomic_write_json(reg/'agents.json',{"agents":agents,**_base()}); atomic_write_json(reg/'agent_skill_manifests.json',{"manifests":manifests,**_base()}); atomic_write_json(reg/'skill_packages.json',{"skill_packages":accepted,**_base()}); atomic_write_json(reg/'rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(reg/'failure_learning_packages.json',{"failure_learning_packages":failure,**_base()}); atomic_write_json(reg/'skill_imports.json',{"skill_imports":imports,**_base()}); atomic_write_json(reg/'network_skill_metrics.json',metrics); atomic_write_json(reg/'claim_gate_decisions.json',gate); atomic_write_json(reg/'work_vault_receipts.json',{"receipts":[receipt],**_base()}); atomic_write_json(reg/'lineage_graph.json',{"edges":[{"from":s['source_job_id'],"to":s['skill_id']} for s in accepted],**_base()}); atomic_write_json(reg/'proofbundles.json',{"proofbundles":proofbundles,**_base()}); atomic_write_json(reg/'evidence_dockets.json',{"evidence_dockets":dockets,**_base()})
 
 def replay_network_compounding(args):
     run=Path(args.run)
@@ -247,7 +285,7 @@ def validate_network_compounding(args):
 
 def build_network_data(args):
     reg=Path(args.registry); out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
-    mp={'latest':'latest.json','agents':'agents.json','skill_packages':'skill_packages.json','rejected_skill_candidates':'rejected_skill_candidates.json','failure_learning_packages':'failure_learning_packages.json','skill_imports':'skill_imports.json','network_skill_metrics':'network_skill_metrics.json','claim_gate':'claim_gate_decisions.json','lineage_graph':'lineage_graph.json','work_vault_receipts':'work_vault_receipts.json','summary':'network_skill_metrics.json'}
+    mp={'latest':'latest.json','agents':'agents.json','skill_packages':'skill_packages.json','rejected_skill_candidates':'rejected_skill_candidates.json','failure_learning_packages':'failure_learning_packages.json','skill_imports':'skill_imports.json','network_skill_metrics':'network_skill_metrics.json','claim_gate':'claim_gate_decisions.json','lineage_graph':'lineage_graph.json','work_vault_receipts':'work_vault_receipts.json','proofbundles':'proofbundles.json','evidence_dockets':'evidence_dockets.json','summary':'network_skill_metrics.json'}
     for k,v in mp.items(): atomic_write_json(out/f'{k}.json',_read(reg/v,{"status":"not_reported",**_base()}))
     # alias
     atomic_write_json(out/'b6_vs_b5.json',_read(reg/'network_skill_metrics.json',{}))
