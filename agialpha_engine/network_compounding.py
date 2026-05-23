@@ -43,7 +43,7 @@ def run_network_compounding(args):
     rng=random.Random(args.seed)
     out=Path(args.out); reg=Path(args.registry); out.mkdir(parents=True,exist_ok=True); reg.mkdir(parents=True,exist_ok=True)
     run_id=out.name
-    jobs=[]; raw=[]; accepted=[]; rejected=[]; failure=[]
+    jobs=[]; raw=[]; accepted=[]; rejected=[]; failure=[]; sandbox_records=[]
     agents=[{"agent_id":f"agent-{i+1}","agent_role":ROLES[i%len(ROLES)],**_base()} for i in range(max(args.target_agents+1,4))]
     manifests=[]
     for a in agents:
@@ -53,6 +53,24 @@ def run_network_compounding(args):
         score=0.5 + i*0.03 + (rng.random()*0.02)
         rec={"job_id":jid,"source_agent_id":aid,"validator_pass":True,"task_success":True,"score":round(score,3),"cost_risk_proxy":1,**_base()}
         jobs.append(rec); raw.append({"task_result_id":f"raw-{jid}","raw_task_result_id":f"raw-{jid}","task_id":jid,"candidate_id":f"cand-{jid}","baseline_id":"B6_shared_skill_network","agent_id":aid,"skill_id":None,"seed":args.seed,"sandbox_id":f"sandbox-{jid}","validator_results":{"validator_pass":True},"raw_scores":{"score":round(score,3)},"cost_proxy":1,"safety_counters":{"critical_safety_incidents":0},"artifact_hashes":{},"passed":True,"failure_reason":"","claim_boundary":BOUNDARIES["claim_boundary"],"token_boundary":BOUNDARIES["token_boundary"],"regulated_boundary":BOUNDARIES["regulated_boundary"],"source_logs":[f"log-{jid}"],**rec})
+        sandbox_records.append({
+            "schema_version": "agialpha.engine.sandbox_record.v1",
+            "sandbox_id": f"sandbox-{jid}",
+            "allowed_root": str(Path(args.repo_root).resolve()),
+            "seed": args.seed,
+            "network_disabled": True,
+            "repo_mutation_allowed": False,
+            "production_actuation_allowed": False,
+            "commands_run": [f"evaluate {jid}"],
+            "files_before": {},
+            "files_after": {},
+            "diff_summary": {"changed_files": 0},
+            "stdout_hash": _h({"job_id": jid, "stream": "stdout"}),
+            "stderr_hash": _h({"job_id": jid, "stream": "stderr"}),
+            "status": "pass",
+            "blocked_reason": "",
+            **_base(),
+        })
         if i%3==0:
             sid=f"skill-{i+1}"
             accepted.append({"schema_version":"agialpha.skill_package.v1","skill_id":sid,"source_job_id":jid,"source_agent_id":aid,"skill_type":"workflow_template","skill_payload":{"template":"safe_replay_template"},"validated_on_task_ids":[jid],"raw_task_result_ids":[f"raw-{jid}"],"proofbundle_id":f"pb-{sid}","evidence_docket_id":f"ed-{sid}","replay_status":"pending","falsification_status":"pending","risk_tier":"low","allowed_import_scope":"sandbox_only","activation_policy":{"auto_activate_allowed":False,"human_review_required":True,"validator_required":True,"replay_required":True,"falsification_required":True},**_base()})
@@ -100,6 +118,7 @@ def run_network_compounding(args):
     atomic_write_json(out/'00_manifest.json',{"run_id":run_id,"experiment_id":"AGI-ALPHA-ENGINE-003",**_base()})
     atomic_write_json(out/'01_agents/agent_registry.json',{"agents":agents,**_base()}); atomic_write_json(out/'01_agents/agent_skill_manifests_before.json',{"manifests":manifests_before_import,**_base()})
     atomic_write_json(out/'02_jobs/source_jobs.json',{"jobs":jobs,**_base()}); atomic_write_json(out/'02_jobs/raw_task_results.json',{"raw_task_results":raw,**_base()})
+    atomic_write_json(out/'02_jobs/sandbox_records.json',{"sandbox_records":sandbox_records,**_base()})
     atomic_write_json(out/'03_skill_extraction/skill_extraction_report.json',{"jobs_processed":len(jobs),**_base()}); atomic_write_json(out/'03_skill_extraction/accepted_skill_packages.json',{"accepted_skill_packages":accepted,**_base()}); atomic_write_json(out/'03_skill_extraction/rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(out/'03_skill_extraction/failure_learning_packages.json',{"failure_learning_packages":failure,**_base()})
     atomic_write_json(out/'04_network_skill_vault/network_skill_vault.json',{"skill_packages":accepted,**_base()}); atomic_write_json(out/'04_network_skill_vault/skill_publication_events.json',{"events":[{"skill_id":s['skill_id']} for s in accepted],**_base()})
     atomic_write_json(out/'05_skill_import/skill_import_events.json',{"skill_import_events":imports,**_base()}); atomic_write_json(out/'05_skill_import/agent_skill_manifests_after_import.json',{"manifests":manifests,**_base()})
