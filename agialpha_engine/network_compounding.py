@@ -19,6 +19,39 @@ def _base(extra=None):
     return d
 
 
+def _compute_stream_payload(job_id: str, score: float, validator_pass: bool) -> tuple[str, str]:
+    stdout = f"job={job_id};score={score:.3f};validator_pass={int(validator_pass)}"
+    stderr = ""
+    return stdout, stderr
+
+
+def _validate_sandbox_records(raw_task_results: list[dict], sandbox_records: list[dict]) -> tuple[bool, list[str]]:
+    errors: list[str] = []
+    by_id = {r.get("sandbox_id"): r for r in sandbox_records}
+    roots = {r.get("allowed_root") for r in sandbox_records}
+    if len(roots) != 1:
+        errors.append("sandbox allowed_root values must be consistent")
+    for row in raw_task_results:
+        sandbox_id = row.get("sandbox_id")
+        task_id = row.get("task_id", "")
+        record = by_id.get(sandbox_id)
+        if record is None:
+            errors.append(f"missing sandbox record for {sandbox_id}")
+            continue
+        expected_stdout, expected_stderr = _compute_stream_payload(task_id, float(row.get("score", row.get("raw_scores", {}).get("score", 0.0))), bool(row.get("validator_pass", row.get("validator_results", {}).get("validator_pass", False))))
+        if record.get("stdout_hash") != _h(expected_stdout):
+            errors.append(f"stdout_hash mismatch for {sandbox_id}")
+        if record.get("stderr_hash") != _h(expected_stderr):
+            errors.append(f"stderr_hash mismatch for {sandbox_id}")
+        if record.get("network_disabled") is not True:
+            errors.append(f"network_disabled must be true for {sandbox_id}")
+        if record.get("repo_mutation_allowed") is not False:
+            errors.append(f"repo_mutation_allowed must be false for {sandbox_id}")
+        if record.get("production_actuation_allowed") is not False:
+            errors.append(f"production_actuation_allowed must be false for {sandbox_id}")
+    return len(errors) == 0, errors
+
+
 def _sync_run_to_registry(run: Path) -> None:
     manifest=_read(run/'evidence-run-manifest.json',{})
     reg_path=manifest.get('registry')
@@ -53,6 +86,7 @@ def run_network_compounding(args):
         score=0.5 + i*0.03 + (rng.random()*0.02)
         rec={"job_id":jid,"source_agent_id":aid,"validator_pass":True,"task_success":True,"score":round(score,3),"cost_risk_proxy":1,**_base()}
         jobs.append(rec); raw.append({"task_result_id":f"raw-{jid}","raw_task_result_id":f"raw-{jid}","task_id":jid,"candidate_id":f"cand-{jid}","baseline_id":"B6_shared_skill_network","agent_id":aid,"skill_id":None,"seed":args.seed,"sandbox_id":f"sandbox-{jid}","validator_results":{"validator_pass":True},"raw_scores":{"score":round(score,3)},"cost_proxy":1,"safety_counters":{"critical_safety_incidents":0},"artifact_hashes":{},"passed":True,"failure_reason":"","claim_boundary":BOUNDARIES["claim_boundary"],"token_boundary":BOUNDARIES["token_boundary"],"regulated_boundary":BOUNDARIES["regulated_boundary"],"source_logs":[f"log-{jid}"],**rec})
+        stdout_payload, stderr_payload = _compute_stream_payload(jid, rec["score"], rec["validator_pass"])
         sandbox_records.append({
             "schema_version": "agialpha.engine.sandbox_record.v1",
             "sandbox_id": f"sandbox-{jid}",
@@ -65,8 +99,8 @@ def run_network_compounding(args):
             "files_before": {},
             "files_after": {},
             "diff_summary": {"changed_files": 0},
-            "stdout_hash": _h({"job_id": jid, "stream": "stdout"}),
-            "stderr_hash": _h({"job_id": jid, "stream": "stderr"}),
+            "stdout_hash": _h(stdout_payload),
+            "stderr_hash": _h(stderr_payload),
             "status": "pass",
             "blocked_reason": "",
             **_base(),
@@ -189,6 +223,9 @@ def replay_network_compounding(args):
     comparison_lift=round(c.get('D_shared_skill_network',0)-c.get('D_no_shared_skill',0),6)
     comparison_canonical_lift=round(c.get('NetworkSkillPropagationLift',999),6)
     metric_lift=round(m.get('network_skill_propagation_lift',999),6)
+    raw_task_results=_read(run/'02_jobs/raw_task_results.json',{}).get('raw_task_results',[])
+    sandbox_records=_read(run/'02_jobs/sandbox_records.json',{}).get('sandbox_records',[])
+    sandbox_ok, sandbox_errors = _validate_sandbox_records(raw_task_results, sandbox_records)
     ok=(
         recomputed_lift is not None
         and recomputed_d5==comparison_d5
@@ -196,8 +233,9 @@ def replay_network_compounding(args):
         and recomputed_lift==comparison_lift
         and recomputed_lift==comparison_canonical_lift
         and recomputed_lift==metric_lift
+        and sandbox_ok
     )
-    atomic_write_json(run/'11_replay/replay_report.json',{"replay_pass":ok,"replay_passes":1 if ok else 0,"recomputed_d_no_shared_skill":recomputed_d5,"recomputed_d_shared_skill_network":recomputed_d6,"recomputed_network_skill_propagation_lift":recomputed_lift,**_base()})
+    atomic_write_json(run/'11_replay/replay_report.json',{"replay_pass":ok,"replay_passes":1 if ok else 0,"recomputed_d_no_shared_skill":recomputed_d5,"recomputed_d_shared_skill_network":recomputed_d6,"recomputed_network_skill_propagation_lift":recomputed_lift,"sandbox_record_integrity_pass":sandbox_ok,"sandbox_record_errors":sandbox_errors,**_base()})
     m['replay_pass_rate']=1.0 if ok else 0.0
     atomic_write_json(run/'07_metrics/network_skill_metrics.json',m)
     skills_doc=_read(run/'03_skill_extraction/accepted_skill_packages.json',{})
@@ -269,7 +307,7 @@ def falsification_network_compounding(args):
 
 def validate_network_compounding(args):
     run=Path(args.run)
-    req=['00_manifest.json','02_jobs/source_jobs.json','03_skill_extraction/accepted_skill_packages.json','03_skill_extraction/rejected_skill_candidates.json','03_skill_extraction/failure_learning_packages.json','05_skill_import/skill_import_events.json','06_heldout_reuse_tests/comparison.json','07_metrics/network_skill_metrics.json','11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/network_compounding_claim_gate.json']
+    req=['00_manifest.json','02_jobs/source_jobs.json','02_jobs/raw_task_results.json','02_jobs/sandbox_records.json','03_skill_extraction/accepted_skill_packages.json','03_skill_extraction/rejected_skill_candidates.json','03_skill_extraction/failure_learning_packages.json','05_skill_import/skill_import_events.json','06_heldout_reuse_tests/comparison.json','07_metrics/network_skill_metrics.json','11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/network_compounding_claim_gate.json']
     miss=[x for x in req if not (run/x).exists()]
     if miss:
         raise SystemExit(f'missing artifacts: {miss}')
@@ -288,6 +326,8 @@ def validate_network_compounding(args):
     falsification_ok=falsification_pass_field
     if not replay_ok:
         raise SystemExit('network-compounding-validate failed: replay did not pass')
+    if replay.get('sandbox_record_integrity_pass') is not True:
+        raise SystemExit('network-compounding-validate failed: sandbox record integrity check failed')
     if not falsification_ok:
         raise SystemExit('network-compounding-validate failed: falsification audit did not pass')
     gate=_read(run/'13_claim_gate/network_compounding_claim_gate.json',{})
