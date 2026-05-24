@@ -131,8 +131,6 @@ def _sync_run_to_registry(run: Path) -> None:
     atomic_write_json(reg/'registry.json', _next_registry_index(existing_registry, run.name))
 
 def run_network_compounding(args):
-    if args.jobs < 5:
-        raise SystemExit("network-compounding-run requires --jobs >= 5")
     if args.target_agents < 3:
         raise SystemExit("network-compounding-run requires --target-agents >= 3")
     if args.heldout_tasks < 1:
