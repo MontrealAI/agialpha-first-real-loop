@@ -1,6 +1,7 @@
 import json
 import subprocess
 import tempfile
+import sys
 from pathlib import Path
 
 
@@ -11,7 +12,7 @@ def test_network_compounding_metrics_computed_from_raw_logs_without_fixed_wins()
 
         subprocess.check_call(
             [
-                "python",
+                sys.executable,
                 "-m",
                 "agialpha_engine",
                 "network-compounding-run",
