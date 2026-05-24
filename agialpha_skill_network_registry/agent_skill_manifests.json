@@ -10,7 +10,7 @@
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
       "human_review_required": true,
       "imported_skills": [],
-      "last_updated": "2026-05-21",
+      "last_updated": "seed-123",
       "native_skills": [],
       "no_auto_merge": true,
       "quarantined_skills": [],
@@ -34,7 +34,7 @@
       "imported_skills": [
         "skill-1"
       ],
-      "last_updated": "2026-05-21",
+      "last_updated": "seed-123",
       "native_skills": [],
       "no_auto_merge": true,
       "quarantined_skills": [],
@@ -58,7 +58,7 @@
       "imported_skills": [
         "skill-1"
       ],
-      "last_updated": "2026-05-21",
+      "last_updated": "seed-123",
       "native_skills": [],
       "no_auto_merge": true,
       "quarantined_skills": [],
@@ -82,7 +82,7 @@
       "imported_skills": [
         "skill-1"
       ],
-      "last_updated": "2026-05-21",
+      "last_updated": "seed-123",
       "native_skills": [],
       "no_auto_merge": true,
       "quarantined_skills": [],
