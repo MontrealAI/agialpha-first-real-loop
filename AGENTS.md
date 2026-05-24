@@ -1,5 +1,8 @@
 # AGENTS
 
+## Repo purpose
+- Provide deterministic AGI ALPHA evidence engines, safety rails, replay/falsification workflows, and public evidence artifacts with strict claim and boundary controls.
+
 ## Repo layout
 - `agialpha_*` Python packages implement deterministic workflows and CLIs.
 - `docs/` contains operator/reviewer docs and generated-data integration.
@@ -15,7 +18,7 @@
 ## SecureRails + boundary rules
 - No overclaims (no AGI/ASI/superintelligence/SOTA/certification claims).
 - Regulated-boundary firewall: block regulated financial/legal/medical/HR/credit/insurance and similar decisioning.
-- Utility-only accounting records; no real payments/custody/wallet/KYC/AML/trading.
+- Utility-only accounting records; no wallet/custody/payment/trading/KYC/AML logic or execution paths.
 - No offensive cyber, no external scanning/exploit/malware/social engineering.
 - Human review required; no autonomous persistence; no auto-merge.
 - Do not deploy GitHub Pages directly from new workflows.
