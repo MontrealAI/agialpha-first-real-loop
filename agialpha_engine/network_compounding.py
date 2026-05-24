@@ -365,6 +365,8 @@ def falsification_network_compounding(args):
     jobs=_read(run/'02_jobs/source_jobs.json',{}).get('jobs',[])
     accepted=_read(run/'03_skill_extraction/accepted_skill_packages.json',{}).get('accepted_skill_packages',[])
     imports=_read(run/'05_skill_import/skill_import_events.json',{}).get('skill_import_events',[])
+    manifests_obj=_read(run/'05_skill_import/agent_skill_manifests_after_import.json',{})
+    manifests=manifests_obj.get('agent_skill_manifests', manifests_obj.get('manifests', []))
     comparison=_read(run/'06_heldout_reuse_tests/comparison.json',{})
     distinct_targets=len({i.get('target_agent_id') for i in imports if i.get('target_agent_id')})
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
@@ -419,10 +421,25 @@ def validate_network_compounding(args):
     jobs=_read(run/'02_jobs/source_jobs.json',{}).get('jobs',[])
     accepted=_read(run/'03_skill_extraction/accepted_skill_packages.json',{}).get('accepted_skill_packages',[])
     imports=_read(run/'05_skill_import/skill_import_events.json',{}).get('skill_import_events',[])
+    manifests_obj=_read(run/'05_skill_import/agent_skill_manifests_after_import.json',{})
+    manifests=manifests_obj.get('agent_skill_manifests', manifests_obj.get('manifests', []))
     comparison=_read(run/'06_heldout_reuse_tests/comparison.json',{})
     metrics=_read(run/'07_metrics/network_skill_metrics.json',{})
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
     failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
+    active_imports=[imp for imp in imports if imp.get('import_status')=='imported']
+    inactive_outside_sandbox=[imp for imp in active_imports if imp.get('activation_status')=='inactive']
+    if len(inactive_outside_sandbox)!=len(active_imports):
+        raise SystemExit('network-compounding-validate failed: imported skills must remain inactive outside sandbox by default')
+    imported_skill_ids={imp.get('skill_id') for imp in active_imports if imp.get('skill_id')}
+    manifest_import_agent_ids=set()
+    for manifest in manifests:
+        agent_id=manifest.get('agent_id')
+        imported=manifest.get('imported_skills',[])
+        if agent_id and any(skill_id in imported for skill_id in imported_skill_ids):
+            manifest_import_agent_ids.add(agent_id)
+    if len(manifest_import_agent_ids) < 3:
+        raise SystemExit('network-compounding-validate failed: at least 3 agent manifests must reflect imported skills')
     exact_one_outcome_per_job=_job_outcome_coverage(jobs, accepted, rejected, failures)
     recomputed=evaluate_network_compounding_claim(
         jobs_run=len(jobs),
