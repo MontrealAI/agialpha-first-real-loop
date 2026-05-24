@@ -131,6 +131,8 @@ def _sync_run_to_registry(run: Path) -> None:
     atomic_write_json(reg/'registry.json', _next_registry_index(existing_registry, run.name))
 
 def run_network_compounding(args):
+    if args.heldout_tasks < 1:
+        raise SystemExit("heldout_tasks must be >= 1 for network-compounding-run")
     rng=random.Random(args.seed)
     out=Path(args.out); reg=Path(args.registry); out.mkdir(parents=True,exist_ok=True); reg.mkdir(parents=True,exist_ok=True)
     run_id=out.name
@@ -138,7 +140,7 @@ def run_network_compounding(args):
     agents=[{"agent_id":f"agent-{i+1}","agent_role":ROLES[i%len(ROLES)],**_base()} for i in range(max(args.target_agents+1,4))]
     manifests=[]
     for a in agents:
-        manifests.append({"schema_version":"agialpha.agent_skill_manifest.v1","agent_id":a['agent_id'],"agent_role":a['agent_role'],"native_skills":[],"imported_skills":[],"quarantined_skills":[],"rejected_skills":[],"skill_import_policy":{"auto_import_allowed":True,"auto_activate_allowed":False,"human_review_required_for_activation":True,"regulated_boundary_block_required":True},"last_updated":"2026-05-21",**_base()})
+        manifests.append({"schema_version":"agialpha.agent_skill_manifest.v1","agent_id":a['agent_id'],"agent_role":a['agent_role'],"native_skills":[],"imported_skills":[],"quarantined_skills":[],"rejected_skills":[],"skill_import_policy":{"auto_import_allowed":True,"auto_activate_allowed":False,"human_review_required_for_activation":True,"regulated_boundary_block_required":True},"last_updated":f"seed-{args.seed}",**_base()})
     for i in range(args.jobs):
         jid=f"job-{i+1}"; aid=agents[0]["agent_id"]
         score=0.5 + i*0.03 + (rng.random()*0.02)
