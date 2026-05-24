@@ -432,12 +432,13 @@ def validate_network_compounding(args):
     if len(inactive_outside_sandbox)!=len(active_imports):
         raise SystemExit('network-compounding-validate failed: imported skills must remain inactive outside sandbox by default')
     imported_skill_ids={imp.get('skill_id') for imp in active_imports if imp.get('skill_id')}
-    manifest_import_coverage=0
+    manifest_import_agent_ids=set()
     for manifest in manifests:
+        agent_id=manifest.get('agent_id')
         imported=manifest.get('imported_skills',[])
-        if any(skill_id in imported for skill_id in imported_skill_ids):
-            manifest_import_coverage += 1
-    if manifest_import_coverage < 3:
+        if agent_id and any(skill_id in imported for skill_id in imported_skill_ids):
+            manifest_import_agent_ids.add(agent_id)
+    if len(manifest_import_agent_ids) < 3:
         raise SystemExit('network-compounding-validate failed: at least 3 agent manifests must reflect imported skills')
     exact_one_outcome_per_job=_job_outcome_coverage(jobs, accepted, rejected, failures)
     recomputed=evaluate_network_compounding_claim(
