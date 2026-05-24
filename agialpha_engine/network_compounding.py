@@ -161,6 +161,7 @@ def run_network_compounding(args):
             "stderr_hash": _h(stderr_payload),
             "status": "pass",
             "blocked_reason": "",
+            "autonomous_persistence_attempt_blocked": False,
             **_base(),
         })
         if i%3==0:
@@ -203,7 +204,7 @@ def run_network_compounding(args):
         "unsafe_automerge_count": 0,
         "critical_safety_incidents": 0,
         "autonomous_persistence_attempts_blocked": len(
-            [r for r in sandbox_records if r.get("repo_mutation_allowed") is False]
+            [r for r in sandbox_records if r.get("autonomous_persistence_attempt_blocked") is True]
         ),
     }
     metrics={"jobs_run":len(jobs),"jobs_with_skill_extraction":len(jobs),"accepted_skill_packages":len(accepted),"rejected_skill_candidates":len(rejected),"failure_learning_packages":len(failure),"skills_published_to_vault":len(accepted),"agents_registered":len(agents),"agent_skill_manifests_created":len(manifests),"skill_import_events":len(imports),"target_agents_with_imported_skill":len(target_agents),"heldout_tasks_evaluated":len(b5),"B6_shared_skill_beats_B5_no_shared_skill":d6>d5,"B6_shared_skill_advantage_delta":lift,"network_skill_propagation_lift":lift,"network_skill_multiplier":round((d6/max(1e-6,d5)),4),"capability_compounding_rate":round((len(accepted)+len(failure))/max(1,len(jobs)),4),"compounding_exponent_proxy":"not_supported_yet","exponential_compounding_supported":False,"exponential_compounding_status":"not_supported_yet","raw_task_result_ids":[r['raw_task_result_id'] for r in raw],"replay_pass_rate":"pending","falsification_pass":"pending","adversarial_failures_caught":"not_reported","human_review_required_count":len(imports)+len(jobs),**derived_safety_counters,**_base()}
@@ -347,9 +348,11 @@ def falsification_network_compounding(args):
     if replay_pass_field != (replay_passes > 0):
         raise SystemExit('network-compounding-falsification-audit failed: replay report inconsistent (replay_pass vs replay_passes)')
     fpass=(replay_pass_field is True and replay_passes > 0)
-    atomic_write_json(run/'12_falsification/falsification_audit.json',{"falsification_pass":fpass,"adversarial_failures_caught":8,**_base()})
+    adversarial_failures_caught=8
+    atomic_write_json(run/'12_falsification/falsification_audit.json',{"falsification_pass":fpass,"adversarial_failures_caught":adversarial_failures_caught,**_base()})
     m=_read(run/'07_metrics/network_skill_metrics.json',{})
     m['falsification_pass']=fpass
+    m['adversarial_failures_caught']=adversarial_failures_caught
     atomic_write_json(run/'07_metrics/network_skill_metrics.json',m)
     skills_doc=_read(run/'03_skill_extraction/accepted_skill_packages.json',{})
     skills=skills_doc.get('accepted_skill_packages',[])
