@@ -44,3 +44,8 @@ python -m agialpha_engine network-compounding-build-data \
   --registry agialpha_skill_network_registry \
   --out docs/_generated/agialpha-skill-network
 ```
+
+## Workflow publication boundary
+
+ENGINE-003 workflows must never deploy GitHub Pages directly; they only emit artifacts and can signal a central Evidence Mission Control publisher when repository convention supports it.
+
