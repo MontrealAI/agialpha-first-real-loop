@@ -13,6 +13,11 @@
 ## Build/test commands
 - `python -m unittest discover -s tests`
 - `pytest -q` (if pytest is available)
+- `python -m agialpha_engine network-compounding-run --repo-root . --registry agialpha_skill_network_registry --out /tmp/agialpha-skill-network-test --jobs 5 --target-agents 3 --heldout-tasks 5 --seed 123`
+- `python -m agialpha_engine network-compounding-replay --run /tmp/agialpha-skill-network-test`
+- `python -m agialpha_engine network-compounding-falsification-audit --run /tmp/agialpha-skill-network-test`
+- `python -m agialpha_engine network-compounding-validate --run /tmp/agialpha-skill-network-test`
+- `python -m agialpha_engine network-compounding-build-data --registry agialpha_skill_network_registry --out docs/_generated/agialpha-skill-network`
 - SecureRails checks in `scripts/secure_rails_*.py`
 
 ## SecureRails + boundary rules
