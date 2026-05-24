@@ -185,7 +185,33 @@ def test_build_data_uses_post_replay_falsification_truth():
         gate=json.loads((out/'claim_gate.json').read_text())
         assert metrics['replay_pass_rate'] == 1.0
         assert metrics['falsification_pass'] is True
+        assert metrics['adversarial_failures_caught'] == 8
         assert gate['claim_gate_status'] == 'supported_local_bounded'
+
+
+def test_falsification_syncs_adversarial_counter_to_metrics():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        pre_metrics=json.loads((run/'07_metrics/network_skill_metrics.json').read_text())
+        assert pre_metrics['adversarial_failures_caught'] == 'not_reported'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        post_metrics=json.loads((run/'07_metrics/network_skill_metrics.json').read_text())
+        audit=json.loads((run/'12_falsification/falsification_audit.json').read_text())
+        assert post_metrics['adversarial_failures_caught'] == audit['adversarial_failures_caught']
+        assert post_metrics['adversarial_failures_caught'] == 8
+
+
+def test_no_blocked_persistence_attempts_when_none_recorded():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        metrics=json.loads((run/'07_metrics/network_skill_metrics.json').read_text())
+        sandbox_records=json.loads((run/'02_jobs/sandbox_records.json').read_text())['sandbox_records']
+        assert all(r.get('repo_mutation_allowed') is False for r in sandbox_records)
+        assert all(r.get('autonomous_persistence_attempt_blocked') is False for r in sandbox_records)
+        assert metrics['autonomous_persistence_attempts_blocked'] == 0
 
 
 def test_skill_statuses_progress_from_pending_to_pass():
