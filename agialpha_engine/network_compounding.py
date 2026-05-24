@@ -125,6 +125,7 @@ def _sync_run_to_registry(run: Path) -> None:
     atomic_write_json(reg/'skill_packages.json',{'skill_packages': skill_packages, **_base()})
     atomic_write_json(reg/'proofbundles.json',{'proofbundles': proofbundles, **_base()})
     atomic_write_json(reg/'evidence_dockets.json',{'evidence_dockets': evidence_dockets, **_base()})
+    atomic_write_json(reg/'skill_propagation_events.json',{'skill_propagation_events': _read(run/'05_skill_import/skill_import_events.json',{}).get('skill_import_events',[]), **_base()})
     atomic_write_json(reg/'latest.json',{'run_id': run.name, **_base()})
     existing_registry = _read(reg/'registry.json', {})
     atomic_write_json(reg/'registry.json', _next_registry_index(existing_registry, run.name))
@@ -256,7 +257,7 @@ def run_network_compounding(args):
     atomic_write_json(out/'13_claim_gate/network_compounding_claim_gate.json',gate)
     atomic_write_json(out/'evidence-run-manifest.json',{"run":str(out),"run_id":run_id,"registry":str(reg),**_base()})
     # registry + generated placeholders
-    atomic_write_json(reg/'latest.json',{"run_id":run_id,**_base()}); atomic_write_json(reg/'agents.json',{"agents":agents,**_base()}); atomic_write_json(reg/'agent_skill_manifests.json',{"manifests":manifests,**_base()}); atomic_write_json(reg/'skill_packages.json',{"skill_packages":accepted,**_base()}); atomic_write_json(reg/'rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(reg/'failure_learning_packages.json',{"failure_learning_packages":failure,**_base()}); atomic_write_json(reg/'skill_imports.json',{"skill_imports":imports,**_base()}); atomic_write_json(reg/'network_skill_metrics.json',metrics); atomic_write_json(reg/'claim_gate_decisions.json',gate); atomic_write_json(reg/'work_vault_receipts.json',{"receipts":[receipt],**_base()}); atomic_write_json(reg/'lineage_graph.json',{"edges":[{"from":s['source_job_id'],"to":s['skill_id']} for s in accepted],**_base()}); atomic_write_json(reg/'proofbundles.json',{"proofbundles":proofbundles,**_base()}); atomic_write_json(reg/'evidence_dockets.json',{"evidence_dockets":dockets,**_base()})
+    atomic_write_json(reg/'latest.json',{"run_id":run_id,**_base()}); atomic_write_json(reg/'agents.json',{"agents":agents,**_base()}); atomic_write_json(reg/'agent_skill_manifests.json',{"manifests":manifests,**_base()}); atomic_write_json(reg/'skill_packages.json',{"skill_packages":accepted,**_base()}); atomic_write_json(reg/'rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(reg/'failure_learning_packages.json',{"failure_learning_packages":failure,**_base()}); atomic_write_json(reg/'skill_imports.json',{"skill_imports":imports,**_base()}); atomic_write_json(reg/'skill_propagation_events.json',{"skill_propagation_events":imports,**_base()}); atomic_write_json(reg/'network_skill_metrics.json',metrics); atomic_write_json(reg/'claim_gate_decisions.json',gate); atomic_write_json(reg/'work_vault_receipts.json',{"receipts":[receipt],**_base()}); atomic_write_json(reg/'lineage_graph.json',{"edges":[{"from":s['source_job_id'],"to":s['skill_id']} for s in accepted],**_base()}); atomic_write_json(reg/'proofbundles.json',{"proofbundles":proofbundles,**_base()}); atomic_write_json(reg/'evidence_dockets.json',{"evidence_dockets":dockets,**_base()})
     existing_registry = _read(reg/'registry.json', {})
     atomic_write_json(reg/'registry.json', _next_registry_index(existing_registry, run_id))
 
@@ -423,7 +424,7 @@ def validate_network_compounding(args):
 
 def build_network_data(args):
     reg=Path(args.registry); out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
-    mp={'latest':'latest.json','agents':'agents.json','skill_packages':'skill_packages.json','rejected_skill_candidates':'rejected_skill_candidates.json','failure_learning_packages':'failure_learning_packages.json','skill_imports':'skill_imports.json','network_skill_metrics':'network_skill_metrics.json','claim_gate':'claim_gate_decisions.json','lineage_graph':'lineage_graph.json','work_vault_receipts':'work_vault_receipts.json','proofbundles':'proofbundles.json','evidence_dockets':'evidence_dockets.json','summary':'network_skill_metrics.json'}
+    mp={'latest':'latest.json','agents':'agents.json','skill_packages':'skill_packages.json','rejected_skill_candidates':'rejected_skill_candidates.json','failure_learning_packages':'failure_learning_packages.json','skill_imports':'skill_imports.json','skill_propagation_events':'skill_propagation_events.json','network_skill_metrics':'network_skill_metrics.json','claim_gate':'claim_gate_decisions.json','lineage_graph':'lineage_graph.json','work_vault_receipts':'work_vault_receipts.json','proofbundles':'proofbundles.json','evidence_dockets':'evidence_dockets.json','summary':'network_skill_metrics.json'}
     for k,v in mp.items(): atomic_write_json(out/f'{k}.json',_read(reg/v,{"status":"not_reported",**_base()}))
     # alias
     atomic_write_json(out/'b6_vs_b5.json',_read(reg/'network_skill_metrics.json',{}))

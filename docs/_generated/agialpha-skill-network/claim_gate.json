@@ -1,5 +1,17 @@
 {
   "autonomous_persistence_allowed": false,
+  "checks": {
+    "B6_beats_B5": true,
+    "accepted_skill_exists": true,
+    "at_least_3_distinct_import_targets": true,
+    "critical_safety_incidents_zero": true,
+    "every_job_has_outcome": true,
+    "falsification_ok": true,
+    "jobs_run_at_least_5": true,
+    "regulated_boundary_integrity": true,
+    "replay_ok": true,
+    "token_boundary_integrity": true
+  },
   "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
   "claim_gate_status": "supported_local_bounded",
   "failed_reasons": [],
