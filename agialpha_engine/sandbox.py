@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 import random
+import re
 import subprocess
 import shutil
 import tempfile
@@ -58,6 +59,15 @@ def _coerce_text_stream(value: Any) -> str:
     if isinstance(value, bytes):
         return value.decode("utf-8", errors="replace")
     return str(value)
+
+
+def _is_absolute_path_argument(arg: str) -> bool:
+    normalized = arg.replace("\\", "/")
+    if normalized.startswith("/"):
+        return True
+    if normalized.startswith("//"):
+        return True
+    return re.match(r"^[a-zA-Z]:/", normalized) is not None
 
 
 class LocalSandbox:
@@ -154,7 +164,7 @@ class LocalSandbox:
             }
         for arg in command:
             normalized = str(arg).replace("\\", "/")
-            if normalized.startswith("/"):
+            if _is_absolute_path_argument(normalized):
                 raise ValueError("absolute path arguments are not allowed in sandbox commands")
             if normalized == ".." or any(marker in normalized for marker in FORBIDDEN_PATH_SEGMENTS):
                 raise ValueError("path traversal rejected in command arguments")
@@ -188,7 +198,7 @@ class LocalSandbox:
                     stderr=subprocess.PIPE,
                     text=True,
                     env=safe_env,
-                    preexec_fn=os.setsid,
+                    start_new_session=True,
                 )
                 try:
                     out_text, err_text = process.communicate(timeout=timeout_seconds)
