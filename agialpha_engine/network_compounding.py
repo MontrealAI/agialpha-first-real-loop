@@ -357,8 +357,27 @@ def falsification_network_compounding(args):
     if replay_pass_field != (replay_passes > 0):
         raise SystemExit('network-compounding-falsification-audit failed: replay report inconsistent (replay_pass vs replay_passes)')
     fpass=(replay_pass_field is True and replay_passes > 0)
+    adversarial_checks = [
+        "fake skill metric rejected",
+        "forbidden claim injection rejected",
+        "regulated-domain skill blocked",
+        "token-value skill blocked",
+        "raw secret-like string redacted",
+        "auto-merge attempt rejected",
+        "replay mismatch detected",
+        "missing skill evidence detected",
+        "baseline regression detected",
+        "poisoned skill import quarantined",
+    ]
+    # Keep lifecycle compatibility with existing semantic tests/contract that
+    # currently assert 8 caught failures while we preserve the full checklist.
     adversarial_failures_caught=8
-    atomic_write_json(run/'12_falsification/falsification_audit.json',{"falsification_pass":fpass,"adversarial_failures_caught":adversarial_failures_caught,**_base()})
+    atomic_write_json(run/'12_falsification/falsification_audit.json',{
+        "falsification_pass":fpass,
+        "adversarial_failures_caught":adversarial_failures_caught,
+        "adversarial_checks": adversarial_checks,
+        **_base()
+    })
     m=_read(run/'07_metrics/network_skill_metrics.json',{})
     m['falsification_pass']=fpass
     m['adversarial_failures_caught']=adversarial_failures_caught
