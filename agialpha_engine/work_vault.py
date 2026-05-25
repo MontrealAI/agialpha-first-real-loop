@@ -11,6 +11,8 @@ RECEIPT_NOTE = (
 
 
 def build_skill_work_vault_receipt(*, receipt_id: str, skill_id: str, source_job_id: str, source_agent_id: str, target_agent_ids: list[str], utility_budget_units: int = 100) -> dict:
+    if not target_agent_ids:
+        raise ValueError("target_agent_ids must include at least one target agent")
     spent = 42 + 8 + 5 + 3 + 3 + 2 + len(target_agent_ids)
     if utility_budget_units < spent:
         raise ValueError(
