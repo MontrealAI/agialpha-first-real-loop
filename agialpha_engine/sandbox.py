@@ -28,6 +28,14 @@ def file_hash(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def snapshot_tree(root: Path) -> dict[str, str]:
+    snapshot: dict[str, str] = {}
+    for path in sorted(p for p in root.rglob("*") if p.is_file()):
+        rel = str(path.relative_to(root))
+        snapshot[rel] = file_hash(path)
+    return snapshot
+
+
 class LocalSandbox:
     """A deterministic local-only execution boundary.
 
@@ -97,16 +105,39 @@ class LocalSandbox:
         if ".." in Path(*command).parts:
             raise ValueError("path traversal rejected in command")
         self.assert_safe_text(" ".join(command))
+        files_before = snapshot_tree(root)
         start = time.time()
-        result = subprocess.run(
-            command,
-            cwd=root,
-            capture_output=True,
-            text=True,
-            timeout=timeout_seconds,
-            check=False,
-        )
+        timeout = False
+        result = None
+        stdout = ""
+        stderr = ""
+        blocked_reason = ""
+        try:
+            result = subprocess.run(
+                command,
+                cwd=root,
+                capture_output=True,
+                text=True,
+                timeout=timeout_seconds,
+                check=False,
+            )
+            stdout = result.stdout
+            stderr = result.stderr
+            blocked_reason = "" if result.returncode == 0 else f"exit_code_{result.returncode}"
+        except subprocess.TimeoutExpired as exc:
+            timeout = True
+            stdout = exc.stdout or ""
+            stderr = exc.stderr or ""
+            blocked_reason = "timeout_expired"
         elapsed_ms = int((time.time() - start) * 1000)
+        files_after = snapshot_tree(root)
+        changed_files = sorted(
+            set(files_before.keys()) | set(files_after.keys())
+        )
+        changed_files = [
+            rel for rel in changed_files
+            if files_before.get(rel) != files_after.get(rel)
+        ]
         return {
             "schema_version": "agialpha.engine.sandbox_record.v1",
             "sandbox_id": sandbox_id,
@@ -116,13 +147,13 @@ class LocalSandbox:
             "repo_mutation_allowed": False,
             "production_actuation_allowed": False,
             "commands_run": [" ".join(command)],
-            "files_before": {},
-            "files_after": {},
-            "diff_summary": {"changed_files": 0},
-            "stdout_hash": artifact_hash(result.stdout),
-            "stderr_hash": artifact_hash(result.stderr),
-            "status": "pass" if result.returncode == 0 else "fail",
-            "blocked_reason": "" if result.returncode == 0 else f"exit_code_{result.returncode}",
+            "files_before": files_before,
+            "files_after": files_after,
+            "diff_summary": {"changed_files": len(changed_files), "changed_paths": changed_files},
+            "stdout_hash": artifact_hash(stdout),
+            "stderr_hash": artifact_hash(stderr),
+            "status": "pass" if (result is not None and result.returncode == 0 and not timeout) else "fail",
+            "blocked_reason": blocked_reason,
             "timeout_ms": int(timeout_seconds * 1000),
             "elapsed_ms": elapsed_ms,
             **BOUNDARIES,
