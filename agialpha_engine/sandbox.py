@@ -15,6 +15,16 @@ from .context import BOUNDARIES
 
 FORBIDDEN_TARGET_MARKERS = ("http://", "https://", "ssh://", "git@", "nmap ", "curl ", "wget ")
 FORBIDDEN_PATH_SEGMENTS = ("../", "..\\", "/..", "\\..")
+FORBIDDEN_NETWORK_CODE_MARKERS = (
+    "import socket",
+    "from socket",
+    "socket.",
+    "urllib.request",
+    "requests.",
+    "http.client",
+    "ftplib",
+    "telnetlib",
+)
 
 
 def canonical_json(data: Any) -> str:
@@ -72,6 +82,8 @@ class LocalSandbox:
         lowered = text.lower()
         if any(marker in lowered for marker in FORBIDDEN_TARGET_MARKERS):
             raise ValueError("sandbox rejected external target or network marker")
+        if any(marker in lowered for marker in FORBIDDEN_NETWORK_CODE_MARKERS):
+            raise ValueError("sandbox rejected potential network-capable code marker")
 
     def describe(self) -> dict[str, Any]:
         return dict(self.constraints)
@@ -126,6 +138,16 @@ class LocalSandbox:
         stderr = ""
         blocked_reason = ""
         try:
+            safe_env = {
+                "NO_PROXY": "*",
+                "no_proxy": "*",
+                "HTTP_PROXY": "",
+                "HTTPS_PROXY": "",
+                "ALL_PROXY": "",
+                "http_proxy": "",
+                "https_proxy": "",
+                "all_proxy": "",
+            }
             result = subprocess.run(
                 command,
                 cwd=root,
@@ -133,6 +155,7 @@ class LocalSandbox:
                 text=True,
                 timeout=timeout_seconds,
                 check=False,
+                env=safe_env,
             )
             stdout = _coerce_text_stream(result.stdout)
             stderr = _coerce_text_stream(result.stderr)
@@ -142,6 +165,10 @@ class LocalSandbox:
             stdout = _coerce_text_stream(exc.stdout)
             stderr = _coerce_text_stream(exc.stderr)
             blocked_reason = "timeout_expired"
+        except (FileNotFoundError, OSError) as exc:
+            stdout = ""
+            stderr = _coerce_text_stream(str(exc))
+            blocked_reason = "command_not_executable"
         elapsed_ms = int((time.time() - start) * 1000)
         files_after = snapshot_tree(root)
         changed_files = sorted(
