@@ -48,6 +48,25 @@ def snapshot_tree(root: Path) -> dict[str, str]:
     return snapshot
 
 
+def snapshot_tree_bytes(root: Path) -> dict[str, bytes]:
+    snapshot: dict[str, bytes] = {}
+    for path in sorted(p for p in root.rglob("*") if p.is_file()):
+        rel = str(path.relative_to(root))
+        snapshot[rel] = path.read_bytes()
+    return snapshot
+
+
+def restore_tree_from_snapshot(root: Path, files_before: dict[str, bytes]) -> None:
+    existing = {str(p.relative_to(root)) for p in root.rglob("*") if p.is_file()}
+    expected = set(files_before.keys())
+    for rel in sorted(existing - expected):
+        (root / rel).unlink(missing_ok=True)
+    for rel, content in files_before.items():
+        path = root / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(content)
+
+
 def _coerce_text_stream(value: Any) -> str:
     if value is None:
         return ""
@@ -154,6 +173,7 @@ class LocalSandbox:
                 raise ValueError("path traversal rejected in command arguments")
         self.assert_safe_text(" ".join(command))
         files_before = snapshot_tree(root)
+        files_before_bytes = snapshot_tree_bytes(root)
         start = time.time()
         timeout = False
         result = None
@@ -161,7 +181,8 @@ class LocalSandbox:
         stderr = ""
         blocked_reason = ""
         try:
-            safe_env = {
+            safe_env = dict(os.environ)
+            safe_env.update({
                 "NO_PROXY": "*",
                 "no_proxy": "*",
                 "HTTP_PROXY": "",
@@ -170,7 +191,7 @@ class LocalSandbox:
                 "http_proxy": "",
                 "https_proxy": "",
                 "all_proxy": "",
-            }
+            })
             process = subprocess.Popen(
                 command,
                 cwd=root,
@@ -220,6 +241,13 @@ class LocalSandbox:
         mutation_detected = len(changed_files) > 0
         if mutation_detected and not blocked_reason:
             blocked_reason = "repo_mutation_detected"
+        if mutation_detected:
+            restore_tree_from_snapshot(root, files_before_bytes)
+            files_after = snapshot_tree(root)
+            changed_files = sorted(
+                rel for rel in set(files_before.keys()) | set(files_after.keys())
+                if files_before.get(rel) != files_after.get(rel)
+            )
         status = "pass" if (result is not None and result.returncode == 0 and not timeout and not mutation_detected) else "fail"
         return {
             "schema_version": "agialpha.engine.sandbox_record.v1",
