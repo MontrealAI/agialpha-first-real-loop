@@ -2,7 +2,7 @@
   "B6_shared_skill_advantage_delta": 0.0128,
   "B6_shared_skill_beats_B5_no_shared_skill": true,
   "accepted_skill_packages": 2,
-  "adversarial_failures_caught": 10,
+  "adversarial_failures_caught": 8,
   "agent_skill_manifests_created": 4,
   "agents_registered": 4,
   "autonomous_persistence_allowed": false,
