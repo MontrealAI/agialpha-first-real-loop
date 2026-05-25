@@ -25,6 +25,10 @@ FORBIDDEN_NETWORK_CODE_MARKERS = (
     "http.client",
     "ftplib",
     "telnetlib",
+    '__import__("socket")',
+    "__import__('socket')",
+    'import_module("socket")',
+    "import_module('socket')",
 )
 
 
@@ -150,6 +154,8 @@ class LocalSandbox:
             }
         for arg in command:
             normalized = str(arg).replace("\\", "/")
+            if normalized.startswith("/"):
+                raise ValueError("absolute path arguments are not allowed in sandbox commands")
             if normalized == ".." or any(marker in normalized for marker in FORBIDDEN_PATH_SEGMENTS):
                 raise ValueError("path traversal rejected in command arguments")
         self.assert_safe_text(" ".join(command))
