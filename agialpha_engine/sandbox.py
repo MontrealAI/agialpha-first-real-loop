@@ -4,8 +4,10 @@ from __future__ import annotations
 import hashlib
 import json
 import random
+import subprocess
 import shutil
 import tempfile
+import time
 from pathlib import Path
 from typing import Any
 
@@ -82,3 +84,46 @@ class LocalSandbox:
                 "repo_source_hash_unchanged": file_hash(fixture_path) == before_hash,
                 "autonomous_persistence_allowed": False,
             }
+
+    def run_local_command(self, *, sandbox_id: str, command: list[str], allowed_root: Path, timeout_seconds: float = 5.0) -> dict[str, Any]:
+        """Run a deterministic local-only command inside `allowed_root`.
+
+        The command is executed with shell=False and with no network action by policy.
+        This returns a normalized sandbox record schema used by Engine-003.
+        """
+        root = Path(allowed_root).resolve()
+        if not root.exists() or not root.is_dir():
+            raise ValueError("allowed_root must be an existing directory")
+        if ".." in Path(*command).parts:
+            raise ValueError("path traversal rejected in command")
+        self.assert_safe_text(" ".join(command))
+        start = time.time()
+        result = subprocess.run(
+            command,
+            cwd=root,
+            capture_output=True,
+            text=True,
+            timeout=timeout_seconds,
+            check=False,
+        )
+        elapsed_ms = int((time.time() - start) * 1000)
+        return {
+            "schema_version": "agialpha.engine.sandbox_record.v1",
+            "sandbox_id": sandbox_id,
+            "allowed_root": str(root),
+            "seed": self.seed,
+            "network_disabled": True,
+            "repo_mutation_allowed": False,
+            "production_actuation_allowed": False,
+            "commands_run": [" ".join(command)],
+            "files_before": {},
+            "files_after": {},
+            "diff_summary": {"changed_files": 0},
+            "stdout_hash": artifact_hash(result.stdout),
+            "stderr_hash": artifact_hash(result.stderr),
+            "status": "pass" if result.returncode == 0 else "fail",
+            "blocked_reason": "" if result.returncode == 0 else f"exit_code_{result.returncode}",
+            "timeout_ms": int(timeout_seconds * 1000),
+            "elapsed_ms": elapsed_ms,
+            **BOUNDARIES,
+        }
