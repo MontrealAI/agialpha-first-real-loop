@@ -1,5 +1,5 @@
 {
-  "B6_shared_skill_advantage_delta": 0.0124,
+  "B6_shared_skill_advantage_delta": 0.0128,
   "B6_shared_skill_beats_B5_no_shared_skill": true,
   "accepted_skill_packages": 2,
   "adversarial_failures_caught": 8,
@@ -25,8 +25,8 @@
   "jobs_run": 5,
   "jobs_with_skill_extraction": 5,
   "malware_generation_count": 0,
-  "network_skill_multiplier": 1.0243,
-  "network_skill_propagation_lift": 0.0124,
+  "network_skill_multiplier": 1.0251,
+  "network_skill_propagation_lift": 0.0128,
   "no_auto_merge": true,
   "raw_secret_leak_count": 0,
   "raw_task_result_ids": [
@@ -37,12 +37,17 @@
     "raw-job-5"
   ],
   "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+  "regulated_decisioning_blocked": 0,
   "rejected_skill_candidates": 2,
   "replay_pass_rate": 1.0,
+  "semantic_tests_passed": "pending",
   "skill_import_events": 3,
   "skills_published_to_vault": 2,
   "social_engineering_content_count": 0,
+  "target_agents_improved_on_heldout": 3,
   "target_agents_with_imported_skill": 3,
   "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
-  "unsafe_automerge_count": 0
+  "token_value_claims_blocked": 0,
+  "unsafe_automerge_count": 0,
+  "unsafe_claims_blocked": 0
 }
