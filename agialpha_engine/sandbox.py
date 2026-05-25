@@ -4,8 +4,10 @@ from __future__ import annotations
 import hashlib
 import json
 import random
+import subprocess
 import shutil
 import tempfile
+import time
 from pathlib import Path
 from typing import Any
 
@@ -24,6 +26,28 @@ def artifact_hash(data: Any) -> str:
 
 def file_hash(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def snapshot_tree(root: Path) -> dict[str, str]:
+    snapshot: dict[str, str] = {}
+    for path in sorted(p for p in root.rglob("*") if p.is_file()):
+        rel = str(path.relative_to(root))
+        snapshot[rel] = file_hash(path)
+    return snapshot
+
+
+def _coerce_text_stream(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, bytes):
+        return value.decode("utf-8", errors="replace")
+    return str(value)
+
+
+def _contains_parent_segment(arg: str) -> bool:
+    normalized = arg.replace("\\", "/")
+    segments = [seg for seg in normalized.split("/") if seg not in ("", ".")]
+    return any(seg == ".." for seg in segments)
 
 
 class LocalSandbox:
@@ -82,3 +106,75 @@ class LocalSandbox:
                 "repo_source_hash_unchanged": file_hash(fixture_path) == before_hash,
                 "autonomous_persistence_allowed": False,
             }
+
+    def run_local_command(self, *, sandbox_id: str, command: list[str], allowed_root: Path, timeout_seconds: float = 5.0) -> dict[str, Any]:
+        """Run a deterministic local-only command inside `allowed_root`.
+
+        The command is executed with shell=False and with no network action by policy.
+        This returns a normalized sandbox record schema used by Engine-003.
+        """
+        root = Path(allowed_root).resolve()
+        if not root.exists() or not root.is_dir():
+            raise ValueError("allowed_root must be an existing directory")
+        if root != self.repo_root and self.repo_root not in root.parents:
+            raise ValueError("allowed_root must stay within repo root")
+        if any(_contains_parent_segment(part) for part in command):
+            raise ValueError("path traversal rejected in command")
+        self.assert_safe_text(" ".join(command))
+        files_before = snapshot_tree(root)
+        start = time.time()
+        timeout = False
+        result = None
+        stdout = ""
+        stderr = ""
+        blocked_reason = ""
+        try:
+            result = subprocess.run(
+                command,
+                cwd=root,
+                capture_output=True,
+                text=True,
+                timeout=timeout_seconds,
+                check=False,
+            )
+            stdout = _coerce_text_stream(result.stdout)
+            stderr = _coerce_text_stream(result.stderr)
+            blocked_reason = "" if result.returncode == 0 else f"exit_code_{result.returncode}"
+        except subprocess.TimeoutExpired as exc:
+            timeout = True
+            stdout = _coerce_text_stream(exc.stdout)
+            stderr = _coerce_text_stream(exc.stderr)
+            blocked_reason = "timeout_expired"
+        elapsed_ms = int((time.time() - start) * 1000)
+        files_after = snapshot_tree(root)
+        changed_files = sorted(
+            set(files_before.keys()) | set(files_after.keys())
+        )
+        changed_files = [
+            rel for rel in changed_files
+            if files_before.get(rel) != files_after.get(rel)
+        ]
+        mutation_detected = len(changed_files) > 0
+        if mutation_detected and not blocked_reason:
+            blocked_reason = "repo_mutation_detected"
+        status = "pass" if (result is not None and result.returncode == 0 and not timeout and not mutation_detected) else "fail"
+        return {
+            "schema_version": "agialpha.engine.sandbox_record.v1",
+            "sandbox_id": sandbox_id,
+            "allowed_root": str(root),
+            "seed": self.seed,
+            "network_disabled": True,
+            "repo_mutation_allowed": False,
+            "production_actuation_allowed": False,
+            "commands_run": [" ".join(command)],
+            "files_before": files_before,
+            "files_after": files_after,
+            "diff_summary": {"changed_files": len(changed_files), "changed_paths": changed_files},
+            "stdout_hash": artifact_hash(stdout),
+            "stderr_hash": artifact_hash(stderr),
+            "status": status,
+            "blocked_reason": blocked_reason,
+            "timeout_ms": int(timeout_seconds * 1000),
+            "elapsed_ms": elapsed_ms,
+            **BOUNDARIES,
+        }
