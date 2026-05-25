@@ -8104,5 +8104,335 @@
     "candidate_id": "recursive-cycle-272-vnext-006",
     "from_capability": "recursive-cycle-272-cap-006",
     "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-273-vnext-001",
+    "from_capability": "recursive-cycle-273-cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-273-vnext-002",
+    "from_capability": "recursive-cycle-273-cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-273-vnext-003",
+    "from_capability": "recursive-cycle-273-cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-273-vnext-004",
+    "from_capability": "recursive-cycle-273-cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-273-vnext-005",
+    "from_capability": "recursive-cycle-273-cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-273-vnext-006",
+    "from_capability": "recursive-cycle-273-cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-274-vnext-001",
+    "from_capability": "recursive-cycle-274-cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-274-vnext-002",
+    "from_capability": "recursive-cycle-274-cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-274-vnext-003",
+    "from_capability": "recursive-cycle-274-cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-274-vnext-004",
+    "from_capability": "recursive-cycle-274-cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-274-vnext-005",
+    "from_capability": "recursive-cycle-274-cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-274-vnext-006",
+    "from_capability": "recursive-cycle-274-cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-275-vnext-001",
+    "from_capability": "recursive-cycle-275-cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-275-vnext-002",
+    "from_capability": "recursive-cycle-275-cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-275-vnext-003",
+    "from_capability": "recursive-cycle-275-cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-275-vnext-004",
+    "from_capability": "recursive-cycle-275-cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-275-vnext-005",
+    "from_capability": "recursive-cycle-275-cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-275-vnext-006",
+    "from_capability": "recursive-cycle-275-cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-276-vnext-001",
+    "from_capability": "recursive-cycle-276-cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-276-vnext-002",
+    "from_capability": "recursive-cycle-276-cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-276-vnext-003",
+    "from_capability": "recursive-cycle-276-cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-276-vnext-004",
+    "from_capability": "recursive-cycle-276-cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-276-vnext-005",
+    "from_capability": "recursive-cycle-276-cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-276-vnext-006",
+    "from_capability": "recursive-cycle-276-cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-277-vnext-001",
+    "from_capability": "recursive-cycle-277-cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-277-vnext-002",
+    "from_capability": "recursive-cycle-277-cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-277-vnext-003",
+    "from_capability": "recursive-cycle-277-cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-277-vnext-004",
+    "from_capability": "recursive-cycle-277-cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-277-vnext-005",
+    "from_capability": "recursive-cycle-277-cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-277-vnext-006",
+    "from_capability": "recursive-cycle-277-cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-278-vnext-001",
+    "from_capability": "recursive-cycle-278-cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-278-vnext-002",
+    "from_capability": "recursive-cycle-278-cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-278-vnext-003",
+    "from_capability": "recursive-cycle-278-cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-278-vnext-004",
+    "from_capability": "recursive-cycle-278-cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-278-vnext-005",
+    "from_capability": "recursive-cycle-278-cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-278-vnext-006",
+    "from_capability": "recursive-cycle-278-cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-279-vnext-001",
+    "from_capability": "recursive-cycle-279-cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-279-vnext-002",
+    "from_capability": "recursive-cycle-279-cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-279-vnext-003",
+    "from_capability": "recursive-cycle-279-cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-279-vnext-004",
+    "from_capability": "recursive-cycle-279-cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-279-vnext-005",
+    "from_capability": "recursive-cycle-279-cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-279-vnext-006",
+    "from_capability": "recursive-cycle-279-cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-280-vnext-001",
+    "from_capability": "recursive-cycle-280-cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-280-vnext-002",
+    "from_capability": "recursive-cycle-280-cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-280-vnext-003",
+    "from_capability": "recursive-cycle-280-cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-280-vnext-004",
+    "from_capability": "recursive-cycle-280-cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-280-vnext-005",
+    "from_capability": "recursive-cycle-280-cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-280-vnext-006",
+    "from_capability": "recursive-cycle-280-cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-281-vnext-001",
+    "from_capability": "recursive-cycle-281-cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-281-vnext-002",
+    "from_capability": "recursive-cycle-281-cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-281-vnext-003",
+    "from_capability": "recursive-cycle-281-cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-281-vnext-004",
+    "from_capability": "recursive-cycle-281-cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-281-vnext-005",
+    "from_capability": "recursive-cycle-281-cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-281-vnext-006",
+    "from_capability": "recursive-cycle-281-cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-282-vnext-001",
+    "from_capability": "recursive-cycle-282-cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-282-vnext-002",
+    "from_capability": "recursive-cycle-282-cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-282-vnext-003",
+    "from_capability": "recursive-cycle-282-cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-282-vnext-004",
+    "from_capability": "recursive-cycle-282-cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-282-vnext-005",
+    "from_capability": "recursive-cycle-282-cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-282-vnext-006",
+    "from_capability": "recursive-cycle-282-cap-006",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-283-vnext-001",
+    "from_capability": "recursive-cycle-283-cap-001",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-283-vnext-002",
+    "from_capability": "recursive-cycle-283-cap-002",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-283-vnext-003",
+    "from_capability": "recursive-cycle-283-cap-003",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-283-vnext-004",
+    "from_capability": "recursive-cycle-283-cap-004",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-283-vnext-005",
+    "from_capability": "recursive-cycle-283-cap-005",
+    "status": "pending_human_review"
+  },
+  {
+    "candidate_id": "recursive-cycle-283-vnext-006",
+    "from_capability": "recursive-cycle-283-cap-006",
+    "status": "pending_human_review"
   }
 ]
