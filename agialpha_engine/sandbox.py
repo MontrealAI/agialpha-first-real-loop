@@ -36,6 +36,14 @@ def snapshot_tree(root: Path) -> dict[str, str]:
     return snapshot
 
 
+def _coerce_text_stream(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, bytes):
+        return value.decode("utf-8", errors="replace")
+    return str(value)
+
+
 class LocalSandbox:
     """A deterministic local-only execution boundary.
 
@@ -121,13 +129,13 @@ class LocalSandbox:
                 timeout=timeout_seconds,
                 check=False,
             )
-            stdout = result.stdout
-            stderr = result.stderr
+            stdout = _coerce_text_stream(result.stdout)
+            stderr = _coerce_text_stream(result.stderr)
             blocked_reason = "" if result.returncode == 0 else f"exit_code_{result.returncode}"
         except subprocess.TimeoutExpired as exc:
             timeout = True
-            stdout = exc.stdout or ""
-            stderr = exc.stderr or ""
+            stdout = _coerce_text_stream(exc.stdout)
+            stderr = _coerce_text_stream(exc.stderr)
             blocked_reason = "timeout_expired"
         elapsed_ms = int((time.time() - start) * 1000)
         files_after = snapshot_tree(root)
@@ -138,6 +146,10 @@ class LocalSandbox:
             rel for rel in changed_files
             if files_before.get(rel) != files_after.get(rel)
         ]
+        mutation_detected = len(changed_files) > 0
+        if mutation_detected and not blocked_reason:
+            blocked_reason = "repo_mutation_detected"
+        status = "pass" if (result is not None and result.returncode == 0 and not timeout and not mutation_detected) else "fail"
         return {
             "schema_version": "agialpha.engine.sandbox_record.v1",
             "sandbox_id": sandbox_id,
@@ -152,7 +164,7 @@ class LocalSandbox:
             "diff_summary": {"changed_files": len(changed_files), "changed_paths": changed_files},
             "stdout_hash": artifact_hash(stdout),
             "stderr_hash": artifact_hash(stderr),
-            "status": "pass" if (result is not None and result.returncode == 0 and not timeout) else "fail",
+            "status": status,
             "blocked_reason": blocked_reason,
             "timeout_ms": int(timeout_seconds * 1000),
             "elapsed_ms": elapsed_ms,
