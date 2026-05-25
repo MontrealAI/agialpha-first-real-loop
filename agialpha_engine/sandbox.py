@@ -3,7 +3,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import random
+import signal
 import subprocess
 import shutil
 import tempfile
@@ -123,6 +125,27 @@ class LocalSandbox:
         root = Path(allowed_root).resolve()
         if not root.exists() or not root.is_dir():
             raise ValueError("allowed_root must be an existing directory")
+        if not command:
+            return {
+                "schema_version": "agialpha.engine.sandbox_record.v1",
+                "sandbox_id": sandbox_id,
+                "allowed_root": str(root),
+                "seed": self.seed,
+                "network_disabled": True,
+                "repo_mutation_allowed": False,
+                "production_actuation_allowed": False,
+                "commands_run": [],
+                "files_before": {},
+                "files_after": {},
+                "diff_summary": {"changed_files": 0, "changed_paths": []},
+                "stdout_hash": artifact_hash(""),
+                "stderr_hash": artifact_hash("empty command"),
+                "status": "fail",
+                "blocked_reason": "empty_command",
+                "timeout_ms": int(timeout_seconds * 1000),
+                "elapsed_ms": 0,
+                **BOUNDARIES,
+            }
         if self.repo_root != root and self.repo_root not in root.parents:
             raise ValueError("allowed_root must stay within repo root")
         for arg in command:
@@ -148,18 +171,28 @@ class LocalSandbox:
                 "https_proxy": "",
                 "all_proxy": "",
             }
-            result = subprocess.run(
+            proc = subprocess.Popen(
                 command,
                 cwd=root,
-                capture_output=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
                 text=True,
-                timeout=timeout_seconds,
-                check=False,
                 env=safe_env,
+                start_new_session=True,
             )
-            stdout = _coerce_text_stream(result.stdout)
-            stderr = _coerce_text_stream(result.stderr)
-            blocked_reason = "" if result.returncode == 0 else f"exit_code_{result.returncode}"
+            try:
+                out, err = proc.communicate(timeout=timeout_seconds)
+                result = subprocess.CompletedProcess(command, proc.returncode, out, err)
+                stdout = _coerce_text_stream(result.stdout)
+                stderr = _coerce_text_stream(result.stderr)
+                blocked_reason = "" if result.returncode == 0 else f"exit_code_{result.returncode}"
+            except subprocess.TimeoutExpired as exc:
+                timeout = True
+                os.killpg(proc.pid, signal.SIGKILL)
+                out, err = proc.communicate()
+                stdout = _coerce_text_stream((exc.stdout or "") + (out or ""))
+                stderr = _coerce_text_stream((exc.stderr or "") + (err or ""))
+                blocked_reason = "timeout_expired"
         except subprocess.TimeoutExpired as exc:
             timeout = True
             stdout = _coerce_text_stream(exc.stdout)
