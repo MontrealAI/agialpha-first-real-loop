@@ -44,6 +44,12 @@ def _coerce_text_stream(value: Any) -> str:
     return str(value)
 
 
+def _contains_parent_segment(arg: str) -> bool:
+    normalized = arg.replace("\\", "/")
+    segments = [seg for seg in normalized.split("/") if seg not in ("", ".")]
+    return any(seg == ".." for seg in segments)
+
+
 class LocalSandbox:
     """A deterministic local-only execution boundary.
 
@@ -110,7 +116,9 @@ class LocalSandbox:
         root = Path(allowed_root).resolve()
         if not root.exists() or not root.is_dir():
             raise ValueError("allowed_root must be an existing directory")
-        if ".." in Path(*command).parts:
+        if root != self.repo_root and self.repo_root not in root.parents:
+            raise ValueError("allowed_root must stay within repo root")
+        if any(_contains_parent_segment(part) for part in command):
             raise ValueError("path traversal rejected in command")
         self.assert_safe_text(" ".join(command))
         files_before = snapshot_tree(root)
