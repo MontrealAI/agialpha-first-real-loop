@@ -14,6 +14,7 @@
   },
   "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
   "claim_gate_status": "supported_local_bounded",
+  "exponential_compounding_status": "Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.",
   "failed_reasons": [],
   "human_review_required": true,
   "no_auto_merge": true,
