@@ -13,8 +13,9 @@ BOUNDARIES={
 
 def atomic_write_json(path: Path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(path.suffix + '.tmp')
-    with tmp.open('w', encoding='utf-8') as f:
+    import tempfile
+    with tempfile.NamedTemporaryFile('w', encoding='utf-8', dir=str(path.parent), prefix=path.name + '.', suffix='.tmp', delete=False) as f:
+        tmp = Path(f.name)
         json.dump(data, f, indent=2, sort_keys=True)
         f.write('\n')
     tmp.replace(path)
