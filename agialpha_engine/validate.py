@@ -109,9 +109,10 @@ def validate_network_skill_run_minimum(run_dir: Path) -> dict[str, Any]:
     accepted_rows = accepted.get("accepted_skill_packages", [])
     import_rows = imports.get("skill_import_events", [])
     imported_agents = {
-        str(row.get("target_agent_id", "")).strip()
+        target_id.strip()
         for row in import_rows
-        if str(row.get("target_agent_id", "")).strip()
+        for target_id in [row.get("target_agent_id")]
+        if isinstance(target_id, str) and target_id.strip()
     }
     pass_flags = {
         "raw_task_results_present": len(raw_rows) >= 1,
