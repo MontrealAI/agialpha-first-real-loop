@@ -170,9 +170,31 @@ def run_network_compounding(args):
             sid=f"skill-{i+1}"
             accepted.append({"schema_version":"agialpha.skill_package.v1","skill_id":sid,"source_job_id":jid,"source_agent_id":aid,"skill_type":"workflow_template","skill_payload":{"template":"safe_replay_template"},"validated_on_task_ids":[jid],"raw_task_result_ids":[f"raw-{jid}"],"proofbundle_id":f"pb-{sid}","evidence_docket_id":f"ed-{sid}","replay_status":"pending","falsification_status":"pending","risk_tier":"low","allowed_import_scope":"sandbox_only","activation_policy":{"auto_activate_allowed":False,"human_review_required":True,"validator_required":True,"replay_required":True,"falsification_required":True},**_base()})
         elif i%3==1:
-            rejected.append({"candidate_id":f"cand-{jid}","source_job_id":jid,"reason":"low_validator_confidence",**_base()})
+            rejected.append({
+                "schema_version": "agialpha.rejected_skill_candidate.v1",
+                "candidate_id": f"cand-{jid}",
+                "source_job_id": jid,
+                "source_agent_id": aid,
+                "rejection_reason": "low_validator_confidence",
+                "quarantine_required": True,
+                "raw_task_result_ids": [f"raw-{jid}"],
+                **_base(),
+            })
         else:
-            failure.append({"failure_learning_id":f"fl-{jid}","source_job_id":jid,"reason":"replay_mismatch_warning",**_base()})
+            failure.append({
+                "schema_version": "agialpha.failure_learning_package.v1",
+                "failure_learning_id": f"fl-{jid}",
+                "source_job_id": jid,
+                "source_agent_id": aid,
+                "failure_category": "replay_mismatch",
+                "failure_type": "replay_mismatch_warning",
+                "failure_summary": "Candidate did not satisfy replay confidence threshold for promotion.",
+                "reusable_warning": "Re-run with tightened validator and sandbox replay tracing.",
+                "recommended_future_validator": "replay_consistency_validator",
+                "quarantine_required": True,
+                "raw_task_result_ids": [f"raw-{jid}"],
+                **_base(),
+            })
     if not accepted:
         raise SystemExit("at least one accepted skill required")
     skill=accepted[0]
