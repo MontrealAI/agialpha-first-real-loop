@@ -129,6 +129,12 @@ def _sync_run_to_registry(run: Path) -> None:
     atomic_write_json(reg/'latest.json',{'run_id': run.name, **_base()})
     existing_registry = _read(reg/'registry.json', {})
     atomic_write_json(reg/'registry.json', _next_registry_index(existing_registry, run.name))
+    run_registry_dir = reg / "runs" / run.name
+    replay_report = _read(run / '11_replay/replay_report.json', {"replay_pass": False, "replay_passes": 0, "status": "pending_replay_execution", **_base()})
+    falsification_report = _read(run / '12_falsification/falsification_audit.json', {"falsification_pass": False, "status": "pending_falsification_execution", **_base()})
+    atomic_write_json(run_registry_dir / "16_replay_report.json", replay_report)
+    atomic_write_json(run_registry_dir / "17_falsification_audit.json", falsification_report)
+    atomic_write_json(run_registry_dir / "18_claim_gate_decision.json", gate)
 
 def run_network_compounding(args):
     if args.heldout_tasks < 1:
