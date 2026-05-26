@@ -108,10 +108,18 @@ def validate_network_skill_run_minimum(run_dir: Path) -> dict[str, Any]:
     raw_rows = raw.get("raw_task_results", [])
     accepted_rows = accepted.get("accepted_skill_packages", [])
     import_rows = imports.get("skill_import_events", [])
+    imported_agents = set()
+    for row in import_rows:
+        if not isinstance(row, dict):
+            continue
+        target_id = row.get("target_agent_id")
+        if isinstance(target_id, str) and target_id.strip():
+            imported_agents.add(target_id.strip())
     pass_flags = {
         "raw_task_results_present": len(raw_rows) >= 1,
         "accepted_skills_link_raw_task_results": all(bool(r.get("raw_task_result_ids")) for r in accepted_rows),
         "imports_present": len(import_rows) >= 1,
+        "minimum_target_agents_imported": len(imported_agents) >= 3,
         "metrics_have_lift": "network_skill_propagation_lift" in metrics,
         "no_hardcoded_metrics": metrics.get("hard_coded_metric_count") == 0,
     }
