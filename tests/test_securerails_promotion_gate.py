@@ -30,3 +30,9 @@ class T(unittest.TestCase):
     gate["required_conditions"]=[]
     errs=validate_promotion_gate(gate)
     self.assertTrue(any("required_conditions must be an object" in e for e in errs))
+
+  def test_missing_human_review_status_defaults_pending_and_blocks(self):
+    gate=json.loads(Path("tests/fixtures/securerails_human_review/valid_promotion_gate_pass.json").read_text())
+    gate.pop("human_review_status", None)
+    errs=validate_promotion_gate(gate)
+    self.assertTrue(any("promotion pending human review" in e for e in errs))
