@@ -1,0 +1,11 @@
+{
+  "D_no_shared_skill": 0.5096,
+  "D_shared_skill_network": 0.5224,
+  "NetworkSkillPropagationLift": 0.0128,
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+  "human_review_required": true,
+  "no_auto_merge": true,
+  "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+  "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+}
