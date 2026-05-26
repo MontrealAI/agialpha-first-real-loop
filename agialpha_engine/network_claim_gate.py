@@ -32,6 +32,7 @@ def evaluate_network_compounding_claim(*, jobs_run:int, exact_one_outcome_per_jo
     ok = all(checks.values())
     return base_record({
         "claim_gate_status": supported_status(ok),
+        "exponential_compounding_status": "Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.",
         "supported_wording": (
             "We have demonstrated local bounded networked skill compounding: one agent’s proof-bound job produced a validated Skill Package that other agents imported and used to improve held-out adjacent work against no-shared-skill baselines."
             if ok else

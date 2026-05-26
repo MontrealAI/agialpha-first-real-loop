@@ -13,5 +13,6 @@ def base_record(extra=None):
 __doc__ = "Network skill metrics computation from raw logs."
 
 def compute_d_metric(rows):
-    if not rows: return None
+    if not rows:
+        return "not_reported"
     return sum(r["success_score"]*r["validator_pass"]*r["replay_pass"]*r["proofbundle"]*r["docket"]/max(1,r["cost_risk_proxy"]) for r in rows)/len(rows)
