@@ -428,7 +428,7 @@ def falsification_network_compounding(args):
         distinct_import_targets=distinct_targets,
         d_shared_skill_network=float(comparison.get('D_shared_skill_network',0)),
         d_no_shared_skill=float(comparison.get('D_no_shared_skill',0)),
-        replay_ok=fpass,
+        replay_ok=(replay_pass_field is True and replay_passes > 0),
         falsification_ok=fpass,
         critical_safety_incidents=int(m.get('critical_safety_incidents',0)),
     )
