@@ -31,4 +31,4 @@ def test_exponential_claim_remains_blocked_even_after_replay_and_falsification()
         subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
         metrics = json.loads((run / '07_metrics/network_skill_metrics.json').read_text())
         assert metrics['exponential_compounding_supported'] is False
-        assert metrics['compounding_exponent_proxy'] in {'not_supported', 'pending'} or isinstance(metrics['compounding_exponent_proxy'], (int, float))
+        assert metrics['compounding_exponent_proxy'] in {'not_supported', 'pending', 'unavailable', 'not_reported', 'skipped_with_reason'}
