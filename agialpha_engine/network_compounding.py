@@ -186,6 +186,7 @@ def run_network_compounding(args):
                 "failure_learning_id": f"fl-{jid}",
                 "source_job_id": jid,
                 "source_agent_id": aid,
+                "failure_category": "replay_mismatch",
                 "failure_type": "replay_mismatch_warning",
                 "failure_summary": "Candidate did not satisfy replay confidence threshold for promotion.",
                 "reusable_warning": "Re-run with tightened validator and sandbox replay tracing.",
