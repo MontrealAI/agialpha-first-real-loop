@@ -37,26 +37,26 @@ jobs:
           fi
 
           RESOLVED_PATH=$(python - <<'PY'
-import json
-from pathlib import Path
-latest_path = Path('agialpha_skill_network_registry/latest.json')
-if not latest_path.exists():
-    print("")
-    raise SystemExit(0)
-latest = json.loads(latest_path.read_text())
-run_id = latest.get('run_id')
-if not run_id:
-    print("")
-    raise SystemExit(0)
-candidates = [Path('agialpha_skill_network_registry') / 'runs' / run_id, Path('agialpha-engine-runs') / run_id]
-for path in candidates:
-    if path.exists() and path.is_dir():
-        print(path)
-        break
-else:
-    print("")
-PY
-)
+          import json
+          from pathlib import Path
+          latest_path = Path('agialpha_skill_network_registry/latest.json')
+          if not latest_path.exists():
+              print("")
+              raise SystemExit(0)
+          latest = json.loads(latest_path.read_text())
+          run_id = latest.get('run_id')
+          if not run_id:
+              print("")
+              raise SystemExit(0)
+          candidates = [Path('agialpha_skill_network_registry') / 'runs' / run_id, Path('agialpha-engine-runs') / run_id]
+          for path in candidates:
+              if path.exists() and path.is_dir():
+                  print(path)
+                  break
+          else:
+              print("")
+          PY
+          )
 
           if [ -z "$RESOLVED_PATH" ]; then
             echo "No runnable registry run found; creating deterministic local run for falsification audit."
