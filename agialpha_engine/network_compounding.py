@@ -131,12 +131,28 @@ def _sync_run_to_registry(run: Path) -> None:
     atomic_write_json(reg/'registry.json', _next_registry_index(existing_registry, run.name))
     run_registry_dir = reg / "runs" / run.name
     run_registry_dir.mkdir(parents=True, exist_ok=True)
+    run_manifest = _read(run / '00_manifest.json', {})
+    agent_registry = _read(run / '01_agents/agent_registry.json', {})
+    source_jobs = _read(run / '02_jobs/source_jobs.json', {})
+    raw_task_results = _read(run / '02_jobs/raw_task_results.json', {})
+    agent_skill_manifests = _read(run / '05_skill_import/agent_skill_manifests_after_import.json', {})
+    b5_results = _read(run / '06_heldout_reuse_tests/B5_no_shared_skill.json', {})
+    b6_results = _read(run / '06_heldout_reuse_tests/B6_shared_skill_network.json', {})
+    heldout_comparison = _read(run / '06_heldout_reuse_tests/comparison.json', {})
+    work_vault_receipts = _read(run / '08_work_vault/skill_work_vault_receipts.json', {})
     replay_report = _read(run / '11_replay/replay_report.json', {})
     falsification_audit = _read(run / '12_falsification/falsification_audit.json', {})
     accepted_skill_packages_doc = _read(run / '03_skill_extraction/accepted_skill_packages.json', {"accepted_skill_packages": [], **_base()})
     rejected_skill_candidates_doc = _read(run / '03_skill_extraction/rejected_skill_candidates.json', {"rejected_skill_candidates": [], **_base()})
     failure_learning_packages_doc = _read(run / '03_skill_extraction/failure_learning_packages.json', {"failure_learning_packages": [], **_base()})
     skill_import_events_doc = _read(run / '05_skill_import/skill_import_events.json', {"skill_import_events": [], **_base()})
+    atomic_write_json(run_registry_dir / "00_manifest.json", run_manifest if run_manifest else {"run_id": run.name, **_base()})
+    atomic_write_json(run_registry_dir / "01_agent_registry.json", agent_registry if agent_registry else {"agents": [], **_base()})
+    atomic_write_json(run_registry_dir / "02_job_results.json", {
+        "jobs": source_jobs.get("jobs", []),
+        "raw_task_results": raw_task_results.get("raw_task_results", []),
+        **_base(),
+    })
     atomic_write_json(run_registry_dir / "12_network_skill_metrics.json", metrics)
     atomic_write_json(run_registry_dir / "03_skill_extraction.json", {
         "accepted_skill_packages": accepted_skill_packages_doc.get("accepted_skill_packages", []),
@@ -148,10 +164,24 @@ def _sync_run_to_registry(run: Path) -> None:
     atomic_write_json(run_registry_dir / "05_rejected_skill_candidates.json", {"rejected_skill_candidates": rejected_skill_candidates_doc.get("rejected_skill_candidates", []), **_base()})
     atomic_write_json(run_registry_dir / "06_failure_learning_packages.json", {"failure_learning_packages": failure_learning_packages_doc.get("failure_learning_packages", []), **_base()})
     atomic_write_json(run_registry_dir / "07_network_skill_vault.json", {"skill_packages": accepted_skill_packages_doc.get("accepted_skill_packages", []), **_base()})
+    atomic_write_json(run_registry_dir / "08_agent_skill_manifests.json", {"manifests": agent_skill_manifests.get("manifests", []), **_base()})
     atomic_write_json(run_registry_dir / "09_skill_import_events.json", {"skill_import_events": skill_import_events_doc.get("skill_import_events", []), **_base()})
+    atomic_write_json(run_registry_dir / "10_heldout_reuse_tests.json", {
+        "B5_no_shared_skill": b5_results.get("results", []),
+        "B6_shared_skill_network": b6_results.get("results", []),
+        **_base(),
+    })
+    atomic_write_json(run_registry_dir / "11_b6_vs_b5_network_comparison.json", heldout_comparison if heldout_comparison else {"status": "not_reported", **_base()})
+    atomic_write_json(run_registry_dir / "13_work_vault_receipts.json", work_vault_receipts if work_vault_receipts else {"receipts": [], **_base()})
     atomic_write_json(run_registry_dir / "16_replay_report.json", replay_report if replay_report else {"status": "not_reported", **_base()})
     atomic_write_json(run_registry_dir / "17_falsification_audit.json", falsification_audit if falsification_audit else {"status": "not_reported", **_base()})
     atomic_write_json(run_registry_dir / "18_claim_gate_decision.json", gate)
+    (run_registry_dir / "19_public_summary.md").write_text(
+        "AGI ALPHA Engine-003 run summary.\n"
+        "Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.\n",
+        encoding="utf-8",
+    )
+    atomic_write_json(run_registry_dir / "evidence-run-manifest.json", {"run_id": run.name, "run": str(run), "registry": str(reg), **_base()})
 
 def run_network_compounding(args):
     if args.heldout_tasks < 1:
