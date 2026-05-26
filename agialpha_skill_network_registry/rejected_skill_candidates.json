@@ -11,8 +11,14 @@
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
       "human_review_required": true,
       "no_auto_merge": true,
-      "reason": "low_validator_confidence",
+      "quarantine_required": true,
+      "raw_task_result_ids": [
+        "raw-job-2"
+      ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "rejection_reason": "low_validator_confidence",
+      "schema_version": "agialpha.rejected_skill_candidate.v1",
+      "source_agent_id": "agent-1",
       "source_job_id": "job-2",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
     },
@@ -22,8 +28,14 @@
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
       "human_review_required": true,
       "no_auto_merge": true,
-      "reason": "low_validator_confidence",
+      "quarantine_required": true,
+      "raw_task_result_ids": [
+        "raw-job-5"
+      ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "rejection_reason": "low_validator_confidence",
+      "schema_version": "agialpha.rejected_skill_candidate.v1",
+      "source_agent_id": "agent-1",
       "source_job_id": "job-5",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
     }
