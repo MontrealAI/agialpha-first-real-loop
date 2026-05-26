@@ -1,0 +1,31 @@
+{
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+  "failure_learning_packages": [
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "failure_category": "replay_mismatch",
+      "failure_learning_id": "fl-job-3",
+      "failure_summary": "Candidate did not satisfy replay confidence threshold for promotion.",
+      "failure_type": "replay_mismatch_warning",
+      "human_review_required": true,
+      "no_auto_merge": true,
+      "quarantine_required": true,
+      "raw_task_result_ids": [
+        "raw-job-3"
+      ],
+      "recommended_future_validator": "replay_consistency_validator",
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "reusable_warning": "Re-run with tightened validator and sandbox replay tracing.",
+      "schema_version": "agialpha.failure_learning_package.v1",
+      "source_agent_id": "agent-1",
+      "source_job_id": "job-3",
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+    }
+  ],
+  "human_review_required": true,
+  "no_auto_merge": true,
+  "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+  "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+}
