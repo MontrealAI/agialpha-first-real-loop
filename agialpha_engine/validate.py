@@ -86,20 +86,22 @@ def validate_run(run_dir: Path) -> dict[str, Any]:
 
 def validate_network_skill_run_minimum(run_dir: Path) -> dict[str, Any]:
     """Lightweight semantic validation for ENGINE-003 run directories."""
+    # Keep this aligned with ENGINE-003 run writer paths in
+    # agialpha_engine/network_compounding.py.
     required = [
         "00_manifest.json",
-        "02_job_results/raw_task_results.json",
+        "02_jobs/raw_task_results.json",
         "03_skill_extraction/accepted_skill_packages.json",
-        "04_skill_vault/network_skill_vault.json",
+        "04_network_skill_vault/network_skill_vault.json",
         "05_skill_import/skill_import_events.json",
-        "06_heldout_reuse/b6_vs_b5_network_comparison.json",
+        "06_heldout_reuse_tests/comparison.json",
         "07_metrics/network_skill_metrics.json",
         "13_claim_gate/network_compounding_claim_gate.json",
     ]
     missing = [p for p in required if not (run_dir / p).exists()]
     if missing:
         return {"validation_pass": False, "missing_required_files": missing}
-    raw = read_json(run_dir / "02_job_results" / "raw_task_results.json")
+    raw = read_json(run_dir / "02_jobs" / "raw_task_results.json")
     accepted = read_json(run_dir / "03_skill_extraction" / "accepted_skill_packages.json")
     imports = read_json(run_dir / "05_skill_import" / "skill_import_events.json")
     metrics = read_json(run_dir / "07_metrics" / "network_skill_metrics.json")
