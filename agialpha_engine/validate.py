@@ -1,4 +1,7 @@
-"""Validation gates for AGI ALPHA ENGINE-002 proof runs."""
+"""Validation gates for AGI ALPHA ENGINE proof runs.
+
+Includes legacy ENGINE-002 validation and focused ENGINE-003 helpers.
+"""
 from __future__ import annotations
 
 import json
@@ -79,3 +82,41 @@ def validate_run(run_dir: Path) -> dict[str, Any]:
     }
     result["validation_pass"] = all(v is True for k, v in result.items() if k.endswith("_pass")) and support_consistent
     return result
+
+
+def validate_network_skill_run_minimum(run_dir: Path) -> dict[str, Any]:
+    """Lightweight semantic validation for ENGINE-003 run directories."""
+    # Keep this aligned with ENGINE-003 run writer paths in
+    # agialpha_engine/network_compounding.py.
+    required = [
+        "00_manifest.json",
+        "02_jobs/raw_task_results.json",
+        "03_skill_extraction/accepted_skill_packages.json",
+        "04_network_skill_vault/network_skill_vault.json",
+        "05_skill_import/skill_import_events.json",
+        "06_heldout_reuse_tests/comparison.json",
+        "07_metrics/network_skill_metrics.json",
+        "13_claim_gate/network_compounding_claim_gate.json",
+    ]
+    missing = [p for p in required if not (run_dir / p).exists()]
+    if missing:
+        return {"validation_pass": False, "missing_required_files": missing}
+    raw = read_json(run_dir / "02_jobs" / "raw_task_results.json")
+    accepted = read_json(run_dir / "03_skill_extraction" / "accepted_skill_packages.json")
+    imports = read_json(run_dir / "05_skill_import" / "skill_import_events.json")
+    metrics = read_json(run_dir / "07_metrics" / "network_skill_metrics.json")
+    raw_rows = raw.get("raw_task_results", [])
+    accepted_rows = accepted.get("accepted_skill_packages", [])
+    import_rows = imports.get("skill_import_events", [])
+    pass_flags = {
+        "raw_task_results_present": len(raw_rows) >= 1,
+        "accepted_skills_link_raw_task_results": all(bool(r.get("raw_task_result_ids")) for r in accepted_rows),
+        "imports_present": len(import_rows) >= 1,
+        "metrics_have_lift": "network_skill_propagation_lift" in metrics,
+        "no_hardcoded_metrics": metrics.get("hard_coded_metric_count") == 0,
+    }
+    return {
+        "validation_pass": all(pass_flags.values()),
+        "checks": pass_flags,
+        "missing_required_files": [],
+    }

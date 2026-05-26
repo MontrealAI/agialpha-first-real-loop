@@ -1,4 +1,7 @@
-"""ProofBundle creation and replay hash verification for Engine-002."""
+"""ProofBundle creation and replay hash verification helpers.
+
+Supports legacy ENGINE-002 proof artifacts and ENGINE-003 network-skill bundles.
+"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -39,3 +42,36 @@ def verify_proofbundle_hash(bundle: dict[str, Any]) -> bool:
     expected = bundle.get("proofbundle_hash")
     body = {k: v for k, v in bundle.items() if k != "proofbundle_hash"}
     return expected == artifact_hash(body)
+
+
+def make_network_skill_proofbundle(bundle_id: str, payload: dict[str, Any]) -> dict[str, Any]:
+    """Build deterministic Engine-003 network skill proofbundle payload."""
+    keys = [
+        "source_job_hash",
+        "source_agent_hash",
+        "raw_evaluator_log_hashes",
+        "validator_result_hashes",
+        "skill_package_hash",
+        "network_skill_vault_entry_hash",
+        "agent_skill_manifest_hashes",
+        "skill_import_event_hashes",
+        "heldout_test_hashes",
+        "b6_vs_b5_comparison_hash",
+        "replay_report_hash",
+        "falsification_audit_hash",
+        "claim_gate_hash",
+    ]
+    sections = {k: payload.get(k, "") for k in keys}
+    bundle = {
+        "schema_version": "agialpha.network_skill.proofbundle.v1",
+        "proofbundle_id": bundle_id,
+        "seed": payload.get("seed"),
+        "environment_info": payload.get("environment_info", {}),
+        "replay_command": payload.get("replay_command", ""),
+        "human_review_status": payload.get("human_review_status", "pending"),
+        **sections,
+        **BOUNDARIES,
+    }
+    bundle["complete"] = all(bool(bundle.get(k)) for k in keys)
+    bundle["proofbundle_hash"] = artifact_hash({k: v for k, v in bundle.items() if k != "proofbundle_hash"})
+    return bundle
