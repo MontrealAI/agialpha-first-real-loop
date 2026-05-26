@@ -1,0 +1,27 @@
+{
+  "autonomous_persistence_allowed": false,
+  "checks": {
+    "B6_beats_B5": true,
+    "accepted_skill_exists": true,
+    "at_least_3_distinct_import_targets": true,
+    "critical_safety_incidents_zero": true,
+    "every_job_has_outcome": true,
+    "falsification_ok": false,
+    "jobs_run_at_least_5": true,
+    "regulated_boundary_integrity": true,
+    "replay_ok": false,
+    "token_boundary_integrity": true
+  },
+  "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+  "claim_gate_status": "not_supported",
+  "exponential_compounding_status": "Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.",
+  "failed_reasons": [
+    "replay_ok",
+    "falsification_ok"
+  ],
+  "human_review_required": true,
+  "no_auto_merge": true,
+  "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+  "supported_wording": "Networked skill compounding claim not yet supported.",
+  "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+}

@@ -1,0 +1,277 @@
+{
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+  "human_review_required": true,
+  "jobs": [
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "cost_risk_proxy": 1,
+      "human_review_required": true,
+      "job_id": "job-1",
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "score": 0.501,
+      "source_agent_id": "agent-1",
+      "task_success": true,
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validator_pass": true
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "cost_risk_proxy": 1,
+      "human_review_required": true,
+      "job_id": "job-2",
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "score": 0.532,
+      "source_agent_id": "agent-1",
+      "task_success": true,
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validator_pass": true
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "cost_risk_proxy": 1,
+      "human_review_required": true,
+      "job_id": "job-3",
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "score": 0.568,
+      "source_agent_id": "agent-1",
+      "task_success": true,
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validator_pass": true
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "cost_risk_proxy": 1,
+      "human_review_required": true,
+      "job_id": "job-4",
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "score": 0.592,
+      "source_agent_id": "agent-1",
+      "task_success": true,
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validator_pass": true
+    },
+    {
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "cost_risk_proxy": 1,
+      "human_review_required": true,
+      "job_id": "job-5",
+      "no_auto_merge": true,
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "score": 0.638,
+      "source_agent_id": "agent-1",
+      "task_success": true,
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validator_pass": true
+    }
+  ],
+  "no_auto_merge": true,
+  "raw_task_results": [
+    {
+      "agent_id": "agent-1",
+      "artifact_hashes": {},
+      "autonomous_persistence_allowed": false,
+      "baseline_id": "B6_shared_skill_network",
+      "candidate_id": "cand-job-1",
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "cost_proxy": 1,
+      "cost_risk_proxy": 1,
+      "failure_reason": "",
+      "human_review_required": true,
+      "job_id": "job-1",
+      "no_auto_merge": true,
+      "passed": true,
+      "raw_scores": {
+        "score": 0.501
+      },
+      "raw_task_result_id": "raw-job-1",
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "safety_counters": {
+        "critical_safety_incidents": 0
+      },
+      "sandbox_id": "sandbox-job-1",
+      "score": 0.501,
+      "seed": 123,
+      "skill_id": null,
+      "source_agent_id": "agent-1",
+      "source_logs": [
+        "log-job-1"
+      ],
+      "task_id": "job-1",
+      "task_result_id": "raw-job-1",
+      "task_success": true,
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validator_pass": true,
+      "validator_results": {
+        "validator_pass": true
+      }
+    },
+    {
+      "agent_id": "agent-1",
+      "artifact_hashes": {},
+      "autonomous_persistence_allowed": false,
+      "baseline_id": "B6_shared_skill_network",
+      "candidate_id": "cand-job-2",
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "cost_proxy": 1,
+      "cost_risk_proxy": 1,
+      "failure_reason": "",
+      "human_review_required": true,
+      "job_id": "job-2",
+      "no_auto_merge": true,
+      "passed": true,
+      "raw_scores": {
+        "score": 0.532
+      },
+      "raw_task_result_id": "raw-job-2",
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "safety_counters": {
+        "critical_safety_incidents": 0
+      },
+      "sandbox_id": "sandbox-job-2",
+      "score": 0.532,
+      "seed": 123,
+      "skill_id": null,
+      "source_agent_id": "agent-1",
+      "source_logs": [
+        "log-job-2"
+      ],
+      "task_id": "job-2",
+      "task_result_id": "raw-job-2",
+      "task_success": true,
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validator_pass": true,
+      "validator_results": {
+        "validator_pass": true
+      }
+    },
+    {
+      "agent_id": "agent-1",
+      "artifact_hashes": {},
+      "autonomous_persistence_allowed": false,
+      "baseline_id": "B6_shared_skill_network",
+      "candidate_id": "cand-job-3",
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "cost_proxy": 1,
+      "cost_risk_proxy": 1,
+      "failure_reason": "",
+      "human_review_required": true,
+      "job_id": "job-3",
+      "no_auto_merge": true,
+      "passed": true,
+      "raw_scores": {
+        "score": 0.568
+      },
+      "raw_task_result_id": "raw-job-3",
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "safety_counters": {
+        "critical_safety_incidents": 0
+      },
+      "sandbox_id": "sandbox-job-3",
+      "score": 0.568,
+      "seed": 123,
+      "skill_id": null,
+      "source_agent_id": "agent-1",
+      "source_logs": [
+        "log-job-3"
+      ],
+      "task_id": "job-3",
+      "task_result_id": "raw-job-3",
+      "task_success": true,
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validator_pass": true,
+      "validator_results": {
+        "validator_pass": true
+      }
+    },
+    {
+      "agent_id": "agent-1",
+      "artifact_hashes": {},
+      "autonomous_persistence_allowed": false,
+      "baseline_id": "B6_shared_skill_network",
+      "candidate_id": "cand-job-4",
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "cost_proxy": 1,
+      "cost_risk_proxy": 1,
+      "failure_reason": "",
+      "human_review_required": true,
+      "job_id": "job-4",
+      "no_auto_merge": true,
+      "passed": true,
+      "raw_scores": {
+        "score": 0.592
+      },
+      "raw_task_result_id": "raw-job-4",
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "safety_counters": {
+        "critical_safety_incidents": 0
+      },
+      "sandbox_id": "sandbox-job-4",
+      "score": 0.592,
+      "seed": 123,
+      "skill_id": null,
+      "source_agent_id": "agent-1",
+      "source_logs": [
+        "log-job-4"
+      ],
+      "task_id": "job-4",
+      "task_result_id": "raw-job-4",
+      "task_success": true,
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validator_pass": true,
+      "validator_results": {
+        "validator_pass": true
+      }
+    },
+    {
+      "agent_id": "agent-1",
+      "artifact_hashes": {},
+      "autonomous_persistence_allowed": false,
+      "baseline_id": "B6_shared_skill_network",
+      "candidate_id": "cand-job-5",
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "cost_proxy": 1,
+      "cost_risk_proxy": 1,
+      "failure_reason": "",
+      "human_review_required": true,
+      "job_id": "job-5",
+      "no_auto_merge": true,
+      "passed": true,
+      "raw_scores": {
+        "score": 0.638
+      },
+      "raw_task_result_id": "raw-job-5",
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "safety_counters": {
+        "critical_safety_incidents": 0
+      },
+      "sandbox_id": "sandbox-job-5",
+      "score": 0.638,
+      "seed": 123,
+      "skill_id": null,
+      "source_agent_id": "agent-1",
+      "source_logs": [
+        "log-job-5"
+      ],
+      "task_id": "job-5",
+      "task_result_id": "raw-job-5",
+      "task_success": true,
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validator_pass": true,
+      "validator_results": {
+        "validator_pass": true
+      }
+    }
+  ],
+  "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+  "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+}
