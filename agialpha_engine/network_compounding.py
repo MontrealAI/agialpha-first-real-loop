@@ -130,28 +130,28 @@ def _sync_run_to_registry(run: Path) -> None:
     existing_registry = _read(reg/'registry.json', {})
     atomic_write_json(reg/'registry.json', _next_registry_index(existing_registry, run.name))
     run_registry_dir = reg / "runs" / run.name
-    if run_registry_dir.exists():
-        replay_report = _read(run / '11_replay/replay_report.json', {})
-        falsification_audit = _read(run / '12_falsification/falsification_audit.json', {})
-        accepted_skill_packages_doc = _read(run / '03_skill_extraction/accepted_skill_packages.json', {"accepted_skill_packages": [], **_base()})
-        rejected_skill_candidates_doc = _read(run / '03_skill_extraction/rejected_skill_candidates.json', {"rejected_skill_candidates": [], **_base()})
-        failure_learning_packages_doc = _read(run / '03_skill_extraction/failure_learning_packages.json', {"failure_learning_packages": [], **_base()})
-        skill_import_events_doc = _read(run / '05_skill_import/skill_import_events.json', {"skill_import_events": [], **_base()})
-        atomic_write_json(run_registry_dir / "12_network_skill_metrics.json", metrics)
-        atomic_write_json(run_registry_dir / "03_skill_extraction.json", {
-            "accepted_skill_packages": accepted_skill_packages_doc.get("accepted_skill_packages", []),
-            "rejected_skill_candidates": rejected_skill_candidates_doc.get("rejected_skill_candidates", []),
-            "failure_learning_packages": failure_learning_packages_doc.get("failure_learning_packages", []),
-            **_base(),
-        })
-        atomic_write_json(run_registry_dir / "04_skill_packages.json", {"skill_packages": accepted_skill_packages_doc.get("accepted_skill_packages", []), **_base()})
-        atomic_write_json(run_registry_dir / "05_rejected_skill_candidates.json", {"rejected_skill_candidates": rejected_skill_candidates_doc.get("rejected_skill_candidates", []), **_base()})
-        atomic_write_json(run_registry_dir / "06_failure_learning_packages.json", {"failure_learning_packages": failure_learning_packages_doc.get("failure_learning_packages", []), **_base()})
-        atomic_write_json(run_registry_dir / "07_network_skill_vault.json", {"skill_packages": accepted_skill_packages_doc.get("accepted_skill_packages", []), **_base()})
-        atomic_write_json(run_registry_dir / "09_skill_import_events.json", {"skill_import_events": skill_import_events_doc.get("skill_import_events", []), **_base()})
-        atomic_write_json(run_registry_dir / "16_replay_report.json", replay_report if replay_report else {"status": "not_reported", **_base()})
-        atomic_write_json(run_registry_dir / "17_falsification_audit.json", falsification_audit if falsification_audit else {"status": "not_reported", **_base()})
-        atomic_write_json(run_registry_dir / "18_claim_gate_decision.json", gate)
+    run_registry_dir.mkdir(parents=True, exist_ok=True)
+    replay_report = _read(run / '11_replay/replay_report.json', {})
+    falsification_audit = _read(run / '12_falsification/falsification_audit.json', {})
+    accepted_skill_packages_doc = _read(run / '03_skill_extraction/accepted_skill_packages.json', {"accepted_skill_packages": [], **_base()})
+    rejected_skill_candidates_doc = _read(run / '03_skill_extraction/rejected_skill_candidates.json', {"rejected_skill_candidates": [], **_base()})
+    failure_learning_packages_doc = _read(run / '03_skill_extraction/failure_learning_packages.json', {"failure_learning_packages": [], **_base()})
+    skill_import_events_doc = _read(run / '05_skill_import/skill_import_events.json', {"skill_import_events": [], **_base()})
+    atomic_write_json(run_registry_dir / "12_network_skill_metrics.json", metrics)
+    atomic_write_json(run_registry_dir / "03_skill_extraction.json", {
+        "accepted_skill_packages": accepted_skill_packages_doc.get("accepted_skill_packages", []),
+        "rejected_skill_candidates": rejected_skill_candidates_doc.get("rejected_skill_candidates", []),
+        "failure_learning_packages": failure_learning_packages_doc.get("failure_learning_packages", []),
+        **_base(),
+    })
+    atomic_write_json(run_registry_dir / "04_skill_packages.json", {"skill_packages": accepted_skill_packages_doc.get("accepted_skill_packages", []), **_base()})
+    atomic_write_json(run_registry_dir / "05_rejected_skill_candidates.json", {"rejected_skill_candidates": rejected_skill_candidates_doc.get("rejected_skill_candidates", []), **_base()})
+    atomic_write_json(run_registry_dir / "06_failure_learning_packages.json", {"failure_learning_packages": failure_learning_packages_doc.get("failure_learning_packages", []), **_base()})
+    atomic_write_json(run_registry_dir / "07_network_skill_vault.json", {"skill_packages": accepted_skill_packages_doc.get("accepted_skill_packages", []), **_base()})
+    atomic_write_json(run_registry_dir / "09_skill_import_events.json", {"skill_import_events": skill_import_events_doc.get("skill_import_events", []), **_base()})
+    atomic_write_json(run_registry_dir / "16_replay_report.json", replay_report if replay_report else {"status": "not_reported", **_base()})
+    atomic_write_json(run_registry_dir / "17_falsification_audit.json", falsification_audit if falsification_audit else {"status": "not_reported", **_base()})
+    atomic_write_json(run_registry_dir / "18_claim_gate_decision.json", gate)
 
 def run_network_compounding(args):
     if args.heldout_tasks < 1:
