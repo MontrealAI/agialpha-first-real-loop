@@ -60,6 +60,10 @@ jobs:
       - run: python -m agialpha_engine network-compounding-replay --run "$RUN_PATH"
       - run: python -m agialpha_engine network-compounding-falsification-audit --run "$RUN_PATH"
       - run: python -m agialpha_engine network-compounding-validate --run "$RUN_PATH"
+      - name: Verify claim gate + manifest outputs
+        run: |
+          test -f "$RUN_PATH/13_claim_gate/network_compounding_claim_gate.json"
+          test -f "$RUN_PATH/evidence-run-manifest.json"
       - name: Build generated data
         if: ${{ inputs.publish_skill_network_tab != 'false' }}
         run: python -m agialpha_engine network-compounding-build-data --registry agialpha_skill_network_registry --out docs/_generated/agialpha-skill-network
