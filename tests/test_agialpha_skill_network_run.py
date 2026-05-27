@@ -1,5 +1,6 @@
 import json, subprocess, tempfile
 from pathlib import Path
+from agialpha_engine.network_compounding import _compute_stream_payload, _h, _validate_sandbox_records
 
 
 def test_network_run_end_to_end():
@@ -234,6 +235,31 @@ def test_seed_changes_outputs():
         m1=json.loads((run1/'07_metrics/network_skill_metrics.json').read_text())
         m2=json.loads((run2/'07_metrics/network_skill_metrics.json').read_text())
         assert m1['network_skill_propagation_lift'] != m2['network_skill_propagation_lift']
+
+
+def test_sandbox_validation_requires_all_listed_validators_to_pass():
+    raw_row = {
+        "sandbox_id": "sandbox-job-1",
+        "task_id": "job-1",
+        "raw_scores": {"score": 0.75},
+        "validator_results": [
+            {"validator_id": "v1", "pass": True},
+            {"validator_id": "v2", "pass": False},
+        ],
+    }
+    stdout, stderr = _compute_stream_payload("job-1", 0.75, False)
+    sandbox_record = {
+        "sandbox_id": "sandbox-job-1",
+        "allowed_root": ".",
+        "stdout_hash": _h(stdout),
+        "stderr_hash": _h(stderr),
+        "network_disabled": True,
+        "repo_mutation_allowed": False,
+        "production_actuation_allowed": False,
+    }
+    ok, errors = _validate_sandbox_records([raw_row], [sandbox_record])
+    assert ok is True
+    assert errors == []
 
 
 def test_registry_skill_packages_synced_after_audits():

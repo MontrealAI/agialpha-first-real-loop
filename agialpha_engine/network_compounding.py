@@ -89,7 +89,14 @@ def _validate_sandbox_records(raw_task_results: list[dict], sandbox_records: lis
         )
         validator_results = row.get("validator_results")
         if isinstance(validator_results, list):
-            validator_pass_value = any(bool(v.get("pass")) for v in validator_results if isinstance(v, dict))
+            list_pass_values: list[bool] = []
+            for validator_row in validator_results:
+                if not isinstance(validator_row, dict):
+                    continue
+                pass_value = validator_row.get("pass")
+                if isinstance(pass_value, bool):
+                    list_pass_values.append(pass_value)
+            validator_pass_value = bool(list_pass_values) and all(list_pass_values)
         elif isinstance(validator_results, dict):
             validator_pass_value = validator_results.get("validator_pass", False)
         else:
