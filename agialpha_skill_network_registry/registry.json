@@ -1,12 +1,30 @@
 {
+  "append_only": true,
   "autonomous_persistence_allowed": false,
   "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
   "human_review_required": true,
   "latest_run_id": "agialpha-skill-network-test",
   "no_auto_merge": true,
+  "records": {
+    "agent_skill_manifests": "agent_skill_manifests.json",
+    "agents": "agents.json",
+    "claim_gate_decisions": "claim_gate_decisions.json",
+    "evidence_dockets": "evidence_dockets.json",
+    "failure_learning_packages": "failure_learning_packages.json",
+    "lineage_graph": "lineage_graph.json",
+    "network_skill_metrics": "network_skill_metrics.json",
+    "proofbundles": "proofbundles.json",
+    "rejected_skill_candidates": "rejected_skill_candidates.json",
+    "skill_imports": "skill_imports.json",
+    "skill_packages": "skill_packages.json",
+    "skill_propagation_events": "skill_propagation_events.json",
+    "work_vault_receipts": "work_vault_receipts.json"
+  },
   "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
   "runs": [
     "agialpha-skill-network-test"
   ],
+  "runs_path": "runs/",
+  "schema_version": "agialpha.skill_network.registry.v1",
   "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
 }
