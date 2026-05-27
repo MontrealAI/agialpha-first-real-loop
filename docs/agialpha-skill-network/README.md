@@ -6,7 +6,7 @@ One Agent learns, all Agents level up.
 
 > Instant sharing means sandboxed registration and importability. Production activation requires validators and human review.
 
-> Exponential compounding is a strategic target. Current evidence reports local bounded networked skill propagation only.
+> Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.
 
 This section documents ENGINE-003 networked skill compounding artifacts, gates, and boundaries.
 
