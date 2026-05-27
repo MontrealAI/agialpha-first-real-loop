@@ -167,6 +167,8 @@
     "agialpha_engine_registry/runs/engine-run-001/evidence-run-manifest.json",
     "agialpha_engine_registry/runs/engine-run-004/13_evidence_docket/00_manifest.json",
     "agialpha_engine_registry/runs/engine-run-005/13_evidence_docket/00_manifest.json",
+    "agialpha_skill_network_registry/runs/agialpha-skill-network-test/00_manifest.json",
+    "agialpha_skill_network_registry/runs/agialpha-skill-network-test/evidence-run-manifest.json",
     "agiga-foundry-runs/test/agiga-foundry-evidence-docket/00_manifest.json",
     "agiga-foundry-runs/test/agiga-foundry-evidence-docket/22_summary_tables/scoreboard.json",
     "agiga-foundry-runs/test/agiga-foundry-evidence-docket/evidence-run-manifest.json",
