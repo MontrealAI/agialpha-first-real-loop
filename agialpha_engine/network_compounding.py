@@ -87,8 +87,25 @@ def _validate_sandbox_records(raw_task_results: list[dict], sandbox_records: lis
             errors=errors,
             sandbox_id=sandbox_id or "unknown-sandbox",
         )
+        validator_results = row.get("validator_results")
+        if isinstance(validator_results, list):
+            validator_pass_entries: list[bool] = []
+            for v in validator_results:
+                if not isinstance(v, dict):
+                    errors.append(f"validator_results entries must be objects for {sandbox_id}")
+                    continue
+                pass_value = v.get("pass")
+                if not isinstance(pass_value, bool):
+                    errors.append(f"validator_results pass values must be boolean for {sandbox_id}")
+                    continue
+                validator_pass_entries.append(pass_value)
+            validator_pass_value = bool(validator_pass_entries) and all(validator_pass_entries)
+        elif isinstance(validator_results, dict):
+            validator_pass_value = validator_results.get("validator_pass", False)
+        else:
+            validator_pass_value = False
         row_validator_pass = _coerce_bool_strict(
-            row.get("validator_pass", row.get("validator_results", {}).get("validator_pass", False)),
+            row.get("validator_pass", validator_pass_value),
             field_name="validator_pass",
             errors=errors,
             sandbox_id=sandbox_id or "unknown-sandbox",
@@ -190,7 +207,7 @@ def run_network_compounding(args):
         jid=f"job-{i+1}"; aid=agents[0]["agent_id"]
         score=0.5 + i*0.03 + (rng.random()*0.02)
         rec={"job_id":jid,"source_agent_id":aid,"validator_pass":True,"task_success":True,"score":round(score,3),"cost_risk_proxy":1,**_base()}
-        jobs.append(rec); raw.append({"task_result_id":f"raw-{jid}","raw_task_result_id":f"raw-{jid}","task_id":jid,"candidate_id":f"cand-{jid}","baseline_id":"B6_shared_skill_network","agent_id":aid,"skill_id":None,"seed":args.seed,"sandbox_id":f"sandbox-{jid}","validator_results":{"validator_pass":True},"raw_scores":{"score":round(score,3)},"cost_proxy":1,"safety_counters":{"critical_safety_incidents":0},"artifact_hashes":{},"passed":True,"failure_reason":"","claim_boundary":BOUNDARIES["claim_boundary"],"token_boundary":BOUNDARIES["token_boundary"],"regulated_boundary":BOUNDARIES["regulated_boundary"],"source_logs":[f"log-{jid}"],**rec})
+        jobs.append(rec); raw.append({"schema_version":"agialpha.engine.raw_task_result.v1","task_result_id":f"raw-{jid}","raw_task_result_id":f"raw-{jid}","task_id":jid,"candidate_id":f"cand-{jid}","baseline_id":"B6_shared_skill_network","agent_id":aid,"skill_id":None,"seed":args.seed,"sandbox_id":f"sandbox-{jid}","validator_results":[{"validator_id":"default-local-validator","pass":True}],"raw_scores":{"score":round(score,3)},"cost_proxy":1,"safety_counters":{"critical_safety_incidents":0},"artifact_hashes":{},"passed":True,"failure_reason":"","claim_boundary":BOUNDARIES["claim_boundary"],"token_boundary":BOUNDARIES["token_boundary"],"regulated_boundary":BOUNDARIES["regulated_boundary"],"source_logs":[f"log-{jid}"],**rec})
         stdout_payload, stderr_payload = _compute_stream_payload(jid, rec["score"], rec["validator_pass"])
         sandbox_records.append({
             "schema_version": "agialpha.engine.sandbox_record.v1",
