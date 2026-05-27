@@ -96,8 +96,8 @@ def validate_network_skill_run_minimum(run_dir: Path) -> dict[str, Any]:
         "05_skill_import/skill_import_events.json",
         "06_heldout_reuse_tests/comparison.json",
         "07_metrics/network_skill_metrics.json",
-        "10_proofbundle/proofbundle.json",
-        "11_evidence_docket/docket.json",
+        "14_proofbundles/index.json",
+        "15_evidence_dockets/index.json",
         "13_claim_gate/network_compounding_claim_gate.json",
     ]
     missing = [p for p in required if not (run_dir / p).exists()]
@@ -118,7 +118,7 @@ def validate_network_skill_run_minimum(run_dir: Path) -> dict[str, Any]:
         target_id = row.get("target_agent_id")
         if isinstance(target_id, str) and target_id.strip():
             imported_agents.add(target_id.strip())
-        if row.get("active_outside_sandbox") is False:
+        if row.get("activation_status") == "inactive":
             imported_inactive += 1
     pass_flags = {
         "raw_task_results_present": len(raw_rows) >= 1,
