@@ -19,6 +19,6 @@ def render_skill_network_summary(metrics: dict[str, Any], claim_gate: dict[str, 
             f"- NetworkSkillPropagationLift: {metrics.get('network_skill_propagation_lift', 'not_reported')}",
             f"- Claim gate status: {claim_gate.get('claim_gate_status', 'not_supported')}",
             "",
-            "Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.",
+            "Exponential compounding is a strategic target. Current evidence reports local bounded networked skill propagation only.",
         ]
     )
