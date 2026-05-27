@@ -24,7 +24,13 @@ def _next_registry_index(existing: dict, run_id: str) -> dict:
     runs = [r for r in previous_runs if isinstance(r, str) and r]
     if run_id not in runs:
         runs.append(run_id)
-    return {"latest_run_id": run_id, "runs": runs, **_base()}
+    merged = dict(existing) if isinstance(existing, dict) else {}
+    merged.update({
+        "latest_run_id": run_id,
+        "runs": runs,
+        **_base(),
+    })
+    return merged
 
 
 def _compute_stream_payload(job_id: str, score: float, validator_pass: bool) -> tuple[str, str]:
@@ -380,7 +386,31 @@ def run_network_compounding(args):
     # registry + generated placeholders
     atomic_write_json(reg/'latest.json',{"run_id":run_id,**_base()}); atomic_write_json(reg/'agents.json',{"agents":agents,**_base()}); atomic_write_json(reg/'agent_skill_manifests.json',{"manifests":manifests,**_base()}); atomic_write_json(reg/'skill_packages.json',{"skill_packages":accepted,**_base()}); atomic_write_json(reg/'rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(reg/'failure_learning_packages.json',{"failure_learning_packages":failure,**_base()}); atomic_write_json(reg/'skill_imports.json',{"skill_imports":imports,**_base()}); atomic_write_json(reg/'skill_propagation_events.json',{"skill_propagation_events":imports,**_base()}); atomic_write_json(reg/'network_skill_metrics.json',metrics); atomic_write_json(reg/'claim_gate_decisions.json',gate); atomic_write_json(reg/'work_vault_receipts.json',{"receipts":[receipt],**_base()}); atomic_write_json(reg/'lineage_graph.json',{"edges":[{"from":s['source_job_id'],"to":s['skill_id']} for s in accepted],**_base()}); atomic_write_json(reg/'proofbundles.json',{"proofbundles":proofbundles,**_base()}); atomic_write_json(reg/'evidence_dockets.json',{"evidence_dockets":dockets,**_base()})
     existing_registry = _read(reg/'registry.json', {})
-    atomic_write_json(reg/'registry.json', _next_registry_index(existing_registry, run_id))
+    registry_contract = {
+        "schema_version":"agialpha.skill_network.registry.v1",
+        "latest_run_id":run_id,
+        "runs_path":"runs/",
+        "append_only":True,
+        "records":{
+            "agents":"agents.json",
+            "agent_skill_manifests":"agent_skill_manifests.json",
+            "skill_packages":"skill_packages.json",
+            "rejected_skill_candidates":"rejected_skill_candidates.json",
+            "failure_learning_packages":"failure_learning_packages.json",
+            "skill_imports":"skill_imports.json",
+            "skill_propagation_events":"skill_propagation_events.json",
+            "network_skill_metrics":"network_skill_metrics.json",
+            "claim_gate_decisions":"claim_gate_decisions.json",
+            "work_vault_receipts":"work_vault_receipts.json",
+            "proofbundles":"proofbundles.json",
+            "evidence_dockets":"evidence_dockets.json",
+            "lineage_graph":"lineage_graph.json"
+        },
+        **_base()
+    }
+    if isinstance(existing_registry, dict):
+        registry_contract["runs"] = existing_registry.get("runs", [])
+    atomic_write_json(reg/'registry.json', _next_registry_index({**existing_registry, **registry_contract}, run_id))
     run_registry_dir = reg / "runs" / run_id
     atomic_write_json(run_registry_dir / "00_manifest.json", {"run_id": run_id, **_base()})
     atomic_write_json(run_registry_dir / "01_agent_registry.json", {"agents": agents, **_base()})
