@@ -16,7 +16,7 @@ def supported_status(ok:bool)->str:
     return "supported_local_bounded" if ok else "not_supported"
 
 
-def evaluate_network_compounding_claim(*, jobs_run:int, exact_one_outcome_per_job:bool, accepted_skill_packages:int, distinct_import_targets:int, d_shared_skill_network:float, d_no_shared_skill:float, replay_ok:bool, falsification_ok:bool, critical_safety_incidents:int=0, token_boundary_integrity:bool=True, regulated_boundary_integrity:bool=True)->dict:
+def evaluate_network_compounding_claim(*, jobs_run:int, exact_one_outcome_per_job:bool, accepted_skill_packages:int, distinct_import_targets:int, d_shared_skill_network:float, d_no_shared_skill:float, replay_ok:bool, falsification_ok:bool, critical_safety_incidents:int=0, token_boundary_integrity:bool=True, regulated_boundary_integrity:bool=True, proofbundle_complete: bool = True, evidence_docket_complete: bool = True, imported_skill_inactive_outside_sandbox: bool = True, metrics_computed_from_raw_logs: bool = True, human_review_required_outside_sandbox: bool = True)->dict:
     checks = {
         "jobs_run_at_least_5": jobs_run >= 5,
         "every_job_has_outcome": exact_one_outcome_per_job,
@@ -25,6 +25,11 @@ def evaluate_network_compounding_claim(*, jobs_run:int, exact_one_outcome_per_jo
         "B6_beats_B5": d_shared_skill_network > d_no_shared_skill,
         "replay_ok": replay_ok,
         "falsification_ok": falsification_ok,
+        "proofbundle_complete": proofbundle_complete,
+        "evidence_docket_complete": evidence_docket_complete,
+        "imported_skill_inactive_outside_sandbox": imported_skill_inactive_outside_sandbox,
+        "metrics_computed_from_raw_logs": metrics_computed_from_raw_logs,
+        "human_review_required_outside_sandbox": human_review_required_outside_sandbox,
         "critical_safety_incidents_zero": critical_safety_incidents == 0,
         "token_boundary_integrity": token_boundary_integrity,
         "regulated_boundary_integrity": regulated_boundary_integrity,
