@@ -9,7 +9,7 @@
   "autonomous_persistence_attempts_blocked": 0,
   "capability_compounding_rate": 0.6,
   "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
-  "compounding_exponent_proxy": "not_supported",
+  "compounding_exponent_proxy": 0.025118,
   "critical_safety_incidents": 0,
   "exploit_execution_count": 0,
   "exponential_compounding_status": "Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.",
