@@ -1,116 +1,86 @@
-{
-  "paths": [
-    "docs/_generated/ascension-os/archive_reuse.json",
-    "docs/_generated/ascension-os/capabilities.json",
-    "docs/_generated/ascension-os/capacity_reinvestment.json",
-    "docs/_generated/ascension-os/cycles.json",
-    "docs/_generated/ascension-os/enterprise_intakes.json",
-    "docs/_generated/ascension-os/gauntlet_runs.json",
-    "docs/_generated/ascension-os/latest.json",
-    "docs/_generated/ascension-os/open_rsi_eval.json",
-    "docs/_generated/ascension-os/open_rsi_eval_runs.json",
-    "docs/_generated/ascension-os/regulated_boundary_triage.json",
-    "docs/_generated/ascension-os/scorecards.json",
-    "docs/_generated/ascension-os/self_improvement_gauntlet_runs.json",
-    "docs/_generated/ascension-os/summary.json",
-    "docs/_generated/ascension-os/valuation_support.json",
-    "docs/_generated/ascension-os/value_to_capacity.json",
-    "docs/_generated/ascension-os/verified_enterprise_alpha.json",
-    "docs/_generated/ascension-scorecard/archive_reuse.json",
-    "docs/_generated/ascension-scorecard/latest.json",
-    "docs/_generated/ascension-scorecard/open_rsi_eval_runs.json",
-    "docs/_generated/ascension-scorecard/public_evidence_axes.json",
-    "docs/_generated/ascension-scorecard/scorecards.json",
-    "docs/_generated/ascension-scorecard/summary.json",
-    "docs/_generated/ascension-scorecard/value_to_capacity.json",
-    "docs/_generated/broken_links.json",
-    "docs/_generated/claim_audit.json",
-    "docs/_generated/documentation_inventory.json",
-    "docs/_generated/enterprise-pilot/commercial_readiness_scorecards.json",
-    "docs/_generated/enterprise-pilot/customer_reviews.json",
-    "docs/_generated/enterprise-pilot/evidence_dockets.json",
-    "docs/_generated/enterprise-pilot/external_replay_packets.json",
-    "docs/_generated/enterprise-pilot/latest.json",
-    "docs/_generated/enterprise-pilot/missing_evidence.json",
-    "docs/_generated/enterprise-pilot/pilot_readiness_scores.json",
-    "docs/_generated/enterprise-pilot/pilot_scopes.json",
-    "docs/_generated/enterprise-pilot/pilots.json",
-    "docs/_generated/enterprise-pilot/proofbundles.json",
-    "docs/_generated/enterprise-pilot/summary.json",
-    "docs/_generated/enterprise-pilot/valuation_support_feed.json",
-    "docs/_generated/enterprise-pilot/valuation_support_links.json",
-    "docs/_generated/enterprise-pilot/work_vaults.json",
-    "docs/_generated/freshness_report.json",
-    "docs/_generated/inventory.json",
-    "docs/_generated/public-experience/experience_index.json",
-    "docs/_generated/public-experience/experiment_index.json",
-    "docs/_generated/public-experience/route_manifest.json",
-    "docs/_generated/public-experience/site_manifest.json",
-    "docs/_generated/public-experience/workflow_index.json",
-    "docs/_generated/recursive-gauntlet/candidates.json",
-    "docs/_generated/recursive-gauntlet/evaluations.json",
-    "docs/_generated/recursive-gauntlet/heldout_tasks.json",
-    "docs/_generated/recursive-gauntlet/latest.json",
-    "docs/_generated/recursive-gauntlet/runs.json",
-    "docs/_generated/recursive-gauntlet/summary.json",
-    "docs/_generated/recursive-substrate/capabilities.json",
-    "docs/_generated/recursive-substrate/category_context.json",
-    "docs/_generated/recursive-substrate/cycles.json",
-    "docs/_generated/recursive-substrate/insights.json",
-    "docs/_generated/recursive-substrate/jobs.json",
-    "docs/_generated/recursive-substrate/latest.json",
-    "docs/_generated/recursive-substrate/nova_seeds.json",
-    "docs/_generated/recursive-substrate/research_reference_map.json",
-    "docs/_generated/recursive-substrate/summary.json",
-    "docs/_generated/recursive-substrate/vnext.json",
-    "docs/_generated/secure-rails/by_domain.json",
-    "docs/_generated/secure-rails/connectors/dispatches.json",
-    "docs/_generated/secure-rails/connectors/events.json",
-    "docs/_generated/secure-rails/connectors/installations.json",
-    "docs/_generated/secure-rails/connectors/summary.json",
-    "docs/_generated/secure-rails/customer-pilots/latest.json",
-    "docs/_generated/secure-rails/customer-pilots/pilot_runs.json",
-    "docs/_generated/secure-rails/customer-pilots/repos.json",
-    "docs/_generated/secure-rails/customer-pilots/summary.json",
-    "docs/_generated/secure-rails/decisions.json",
-    "docs/_generated/secure-rails/e2e-canary/latest.json",
-    "docs/_generated/secure-rails/e2e-canary/runs.json",
-    "docs/_generated/secure-rails/e2e-canary/summary.json",
-    "docs/_generated/secure-rails/human-review/decisions.json",
-    "docs/_generated/secure-rails/human-review/latest.json",
-    "docs/_generated/secure-rails/human-review/promotion_gates.json",
-    "docs/_generated/secure-rails/human-review/requests.json",
-    "docs/_generated/secure-rails/human-review/summary.json",
-    "docs/_generated/secure-rails/latest.json",
-    "docs/_generated/secure-rails/mark_allocations.json",
-    "docs/_generated/secure-rails/policy/by_domain.json",
-    "docs/_generated/secure-rails/policy/decisions.json",
-    "docs/_generated/secure-rails/policy/latest.json",
-    "docs/_generated/secure-rails/policy/summary.json",
-    "docs/_generated/secure-rails/releases/latest.json",
-    "docs/_generated/secure-rails/releases/releases.json",
-    "docs/_generated/secure-rails/repo-security/baselines.json",
-    "docs/_generated/secure-rails/repo-security/latest.json",
-    "docs/_generated/secure-rails/repo-security/summary.json",
-    "docs/_generated/secure-rails/settlements.json",
-    "docs/_generated/secure-rails/sovereigns.json",
-    "docs/_generated/secure-rails/summary.json",
-    "docs/_generated/secure-rails/trust-center/control_matrix.json",
-    "docs/_generated/secure-rails/trust-center/disclosure_status.json",
-    "docs/_generated/secure-rails/trust-center/latest_incidents.json",
-    "docs/_generated/secure-rails/trust-center/status.json",
-    "docs/_generated/secure-rails/work_vaults.json",
-    "docs/_generated/valuation-support/commercial_readiness.json",
-    "docs/_generated/valuation-support/evidence_inventory.json",
-    "docs/_generated/valuation-support/implementation_comparison.json",
-    "docs/_generated/valuation-support/implementation_equivalence_score.json",
-    "docs/_generated/valuation-support/latest.json",
-    "docs/_generated/valuation-support/market_equivalence_sensitivity.json",
-    "docs/_generated/valuation-support/missing_evidence.json",
-    "docs/_generated/valuation-support/moat_assessment.json",
-    "docs/_generated/valuation-support/public_comparables.json",
-    "docs/_generated/valuation-support/risk_boundary.json",
-    "docs/_generated/valuation-support/summary.json",
-    "docs/_generated/valuation-support/valuation_support_scorecard.json"
-  ]
-}
+# Documentation Index
+
+Generated index of top-level docs pages.
+
+| Document | Link |
+|---|---|
+| ADDING NEW EXPERIMENTS | [ADDING_NEW_EXPERIMENTS.md](ADDING_NEW_EXPERIMENTS.md) |
+| ADDING NEW WORKFLOWS | [ADDING_NEW_WORKFLOWS.md](ADDING_NEW_WORKFLOWS.md) |
+| ARTIFACTS AND REGISTRY | [ARTIFACTS_AND_REGISTRY.md](ARTIFACTS_AND_REGISTRY.md) |
+| ASCENSION 001 OPERATOR GUIDE | [ASCENSION_001_OPERATOR_GUIDE.md](ASCENSION_001_OPERATOR_GUIDE.md) |
+| BENCHMARK GAUNTLET | [BENCHMARK_GAUNTLET.md](BENCHMARK_GAUNTLET.md) |
+| CLAIM BOUNDARIES | [CLAIM_BOUNDARIES.md](CLAIM_BOUNDARIES.md) |
+| CLAIM BOUNDARY QUICK REFERENCE | [CLAIM_BOUNDARY_QUICK_REFERENCE.md](CLAIM_BOUNDARY_QUICK_REFERENCE.md) |
+| CLAIM BOUNDARY STYLE GUIDE | [CLAIM_BOUNDARY_STYLE_GUIDE.md](CLAIM_BOUNDARY_STYLE_GUIDE.md) |
+| CLAIM LEVELS | [CLAIM_LEVELS.md](CLAIM_LEVELS.md) |
+| CONTENT PRESERVATION LEDGER | [CONTENT_PRESERVATION_LEDGER.md](CONTENT_PRESERVATION_LEDGER.md) |
+| CONTRIBUTOR GUIDE | [CONTRIBUTOR_GUIDE.md](CONTRIBUTOR_GUIDE.md) |
+| CYBER SOVEREIGN | [CYBER_SOVEREIGN.md](CYBER_SOVEREIGN.md) |
+| DEBUGGING GUIDE | [DEBUGGING_GUIDE.md](DEBUGGING_GUIDE.md) |
+| DEPLOYMENT REVIEW GUIDE | [DEPLOYMENT_REVIEW_GUIDE.md](DEPLOYMENT_REVIEW_GUIDE.md) |
+| DEVELOPER GUIDE | [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) |
+| DOCUMENTATION INDEX | [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md) |
+| EVIDENCE DOCKETS | [EVIDENCE_DOCKETS.md](EVIDENCE_DOCKETS.md) |
+| EVIDENCE DOCKET INDEX | [EVIDENCE_DOCKET_INDEX.md](EVIDENCE_DOCKET_INDEX.md) |
+| EVIDENCE DOCKET STANDARD | [EVIDENCE_DOCKET_STANDARD.md](EVIDENCE_DOCKET_STANDARD.md) |
+| EVIDENCE GUIDE | [EVIDENCE_GUIDE.md](EVIDENCE_GUIDE.md) |
+| EVIDENCE HUB ARCHITECTURE | [EVIDENCE_HUB_ARCHITECTURE.md](EVIDENCE_HUB_ARCHITECTURE.md) |
+| EVIDENCE MISSION CONTROL | [EVIDENCE_MISSION_CONTROL.md](EVIDENCE_MISSION_CONTROL.md) |
+| EXPERIMENT CATALOG | [EXPERIMENT_CATALOG.md](EXPERIMENT_CATALOG.md) |
+| EXPERIMENT GUIDE | [EXPERIMENT_GUIDE.md](EXPERIMENT_GUIDE.md) |
+| EXPERIMENT INDEX | [EXPERIMENT_INDEX.md](EXPERIMENT_INDEX.md) |
+| EXTERNAL REPLAY | [EXTERNAL_REPLAY.md](EXTERNAL_REPLAY.md) |
+| EXTERNAL REVIEWER PROTOCOL | [EXTERNAL_REVIEWER_PROTOCOL.md](EXTERNAL_REVIEWER_PROTOCOL.md) |
+| FALSIFICATION AUDITS | [FALSIFICATION_AUDITS.md](FALSIFICATION_AUDITS.md) |
+| FAQ | [FAQ.md](FAQ.md) |
+| GITHUB PAGES DISPLAY GUIDE | [GITHUB_PAGES_DISPLAY_GUIDE.md](GITHUB_PAGES_DISPLAY_GUIDE.md) |
+| GITHUB PAGES SETTINGS | [GITHUB_PAGES_SETTINGS.md](GITHUB_PAGES_SETTINGS.md) |
+| GLOSSARY | [GLOSSARY.md](GLOSSARY.md) |
+| HELIOS | [HELIOS.md](HELIOS.md) |
+| HOW TO ADD EXPERIMENT | [HOW_TO_ADD_EXPERIMENT.md](HOW_TO_ADD_EXPERIMENT.md) |
+| HOW TO READ RESULTS | [HOW_TO_READ_RESULTS.md](HOW_TO_READ_RESULTS.md) |
+| HOW TO RUN WORKFLOW | [HOW_TO_RUN_WORKFLOW.md](HOW_TO_RUN_WORKFLOW.md) |
+| MANIFEST SCHEMA | [MANIFEST_SCHEMA.md](MANIFEST_SCHEMA.md) |
+| NON TECHNICAL OPERATOR GUIDE | [NON_TECHNICAL_OPERATOR_GUIDE.md](NON_TECHNICAL_OPERATOR_GUIDE.md) |
+| OMEGA GAUNTLET | [OMEGA_GAUNTLET.md](OMEGA_GAUNTLET.md) |
+| OPERATOR GUIDE | [OPERATOR_GUIDE.md](OPERATOR_GUIDE.md) |
+| OPERATOR QUICKSTART | [OPERATOR_QUICKSTART.md](OPERATOR_QUICKSTART.md) |
+| PAGES DEPLOYMENT DIAGNOSIS | [PAGES_DEPLOYMENT_DIAGNOSIS.md](PAGES_DEPLOYMENT_DIAGNOSIS.md) |
+| PAPER MAPPING | [PAPER_MAPPING.md](PAPER_MAPPING.md) |
+| PHOENIX HUB | [PHOENIX_HUB.md](PHOENIX_HUB.md) |
+| PROOFBUNDLES | [PROOFBUNDLES.md](PROOFBUNDLES.md) |
+| PROOFBUNDLE INDEX | [PROOFBUNDLE_INDEX.md](PROOFBUNDLE_INDEX.md) |
+| PUBLICATION ALIGNMENT | [PUBLICATION_ALIGNMENT.md](PUBLICATION_ALIGNMENT.md) |
+| PUBLIC EXPERIENCE REGISTRY | [PUBLIC_EXPERIENCE_REGISTRY.md](PUBLIC_EXPERIENCE_REGISTRY.md) |
+| PUBLIC SITE GUIDE | [PUBLIC_SITE_GUIDE.md](PUBLIC_SITE_GUIDE.md) |
+| QUICKSTART GITHUB UI | [QUICKSTART_GITHUB_UI.md](QUICKSTART_GITHUB_UI.md) |
+| RAW DATA INDEX | [RAW_DATA_INDEX.md](RAW_DATA_INDEX.md) |
+| README | [README.md](README.md) |
+| REPOSITORY MAP | [REPOSITORY_MAP.md](REPOSITORY_MAP.md) |
+| REPO HEALTH AUDIT | [REPO_HEALTH_AUDIT.md](REPO_HEALTH_AUDIT.md) |
+| RESEARCH REVIEWER GUIDE | [RESEARCH_REVIEWER_GUIDE.md](RESEARCH_REVIEWER_GUIDE.md) |
+| REVIEWER REPLAY GUIDE | [REVIEWER_REPLAY_GUIDE.md](REVIEWER_REPLAY_GUIDE.md) |
+| SAFETY LEDGERS | [SAFETY_LEDGERS.md](SAFETY_LEDGERS.md) |
+| SECURERAILS OVERVIEW | [SECURERAILS_OVERVIEW.md](SECURERAILS_OVERVIEW.md) |
+| SECURERAILS WORK VAULTS | [SECURERAILS_WORK_VAULTS.md](SECURERAILS_WORK_VAULTS.md) |
+| SECURITY BOUNDARIES | [SECURITY_BOUNDARIES.md](SECURITY_BOUNDARIES.md) |
+| SECURITY COMPLIANCE REVIEWER GUIDE | [SECURITY_COMPLIANCE_REVIEWER_GUIDE.md](SECURITY_COMPLIANCE_REVIEWER_GUIDE.md) |
+| START HERE | [START_HERE.md](START_HERE.md) |
+| STYLE GUIDE | [STYLE_GUIDE.md](STYLE_GUIDE.md) |
+| TROUBLESHOOTING | [TROUBLESHOOTING.md](TROUBLESHOOTING.md) |
+| WHAT IS AGI ALPHA | [WHAT_IS_AGI_ALPHA.md](WHAT_IS_AGI_ALPHA.md) |
+| WORKFLOW CATALOG | [WORKFLOW_CATALOG.md](WORKFLOW_CATALOG.md) |
+| WORKFLOW LAUNCHPAD | [WORKFLOW_LAUNCHPAD.md](WORKFLOW_LAUNCHPAD.md) |
+| claim boundary | [claim_boundary.md](claim_boundary.md) |
+| evidence docket standard | [evidence_docket_standard.md](evidence_docket_standard.md) |
+| evidence hub migration audit | [evidence_hub_migration_audit.md](evidence_hub_migration_audit.md) |
+| evidence mission control v3 audit | [evidence_mission_control_v3_audit.md](evidence_mission_control_v3_audit.md) |
+| first real loop runbook | [first_real_loop_runbook.md](first_real_loop_runbook.md) |
+| github web interface | [github_web_interface.md](github_web_interface.md) |
+| index | [index.md](index.md) |
+| one page summary | [one_page_summary.md](one_page_summary.md) |
+| references | [references.md](references.md) |
+| rsi governor 001 preflight audit | [rsi_governor_001_preflight_audit.md](rsi_governor_001_preflight_audit.md) |
+| safety boundaries | [safety_boundaries.md](safety_boundaries.md) |
+
+No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
