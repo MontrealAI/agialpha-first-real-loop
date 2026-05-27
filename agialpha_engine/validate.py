@@ -96,6 +96,8 @@ def validate_network_skill_run_minimum(run_dir: Path) -> dict[str, Any]:
         "05_skill_import/skill_import_events.json",
         "06_heldout_reuse_tests/comparison.json",
         "07_metrics/network_skill_metrics.json",
+        "10_proofbundle/proofbundle.json",
+        "11_evidence_docket/docket.json",
         "13_claim_gate/network_compounding_claim_gate.json",
     ]
     missing = [p for p in required if not (run_dir / p).exists()]
@@ -109,17 +111,21 @@ def validate_network_skill_run_minimum(run_dir: Path) -> dict[str, Any]:
     accepted_rows = accepted.get("accepted_skill_packages", [])
     import_rows = imports.get("skill_import_events", [])
     imported_agents = set()
+    imported_inactive = 0
     for row in import_rows:
         if not isinstance(row, dict):
             continue
         target_id = row.get("target_agent_id")
         if isinstance(target_id, str) and target_id.strip():
             imported_agents.add(target_id.strip())
+        if row.get("active_outside_sandbox") is False:
+            imported_inactive += 1
     pass_flags = {
         "raw_task_results_present": len(raw_rows) >= 1,
         "accepted_skills_link_raw_task_results": all(bool(r.get("raw_task_result_ids")) for r in accepted_rows),
         "imports_present": len(import_rows) >= 1,
         "minimum_target_agents_imported": len(imported_agents) >= 3,
+        "imports_inactive_outside_sandbox": imported_inactive == len(import_rows),
         "metrics_have_lift": "network_skill_propagation_lift" in metrics,
         "no_hardcoded_metrics": metrics.get("hard_coded_metric_count") == 0,
     }
