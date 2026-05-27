@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Any
+
 from .context import BOUNDARIES
 
 
@@ -15,4 +17,75 @@ __doc__ = "Network skill metrics computation from raw logs."
 def compute_d_metric(rows):
     if not rows:
         return "not_reported"
-    return sum(r["success_score"]*r["validator_pass"]*r["replay_pass"]*r["proofbundle"]*r["docket"]/max(1,r["cost_risk_proxy"]) for r in rows)/len(rows)
+    return sum(_row_factor(r) for r in rows)/len(rows)
+
+
+def _num(value: Any, default: float = 0.0) -> float:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return default
+
+
+def _row_factor(row: dict[str, Any]) -> float:
+    return (
+        _num(row.get("success_score"), 0.0)
+        * _num(row.get("validator_pass"), 0.0)
+        * _num(row.get("replay_pass"), 0.0)
+        * _num(row.get("proofbundle"), 0.0)
+        * _num(row.get("docket"), 0.0)
+        * _num(row.get("skill_import_success_rate"), 1.0)
+        * _num(row.get("skill_activation_safety"), 1.0)
+        * _num(row.get("operator_usefulness_score"), 1.0)
+        * _num(row.get("reviewer_usefulness_score"), 1.0)
+        * _num(row.get("claim_boundary_integrity"), 1.0)
+        * _num(row.get("token_boundary_integrity"), 1.0)
+        * _num(row.get("regulated_boundary_integrity"), 1.0)
+        * _num(row.get("redaction_integrity"), 1.0)
+        / max(1.0, _num(row.get("cost_risk_proxy"), 1.0))
+    )
+
+
+def compute_network_skill_metrics(
+    *,
+    jobs_run: int,
+    jobs_with_skill_extraction: int,
+    accepted_skill_packages: int,
+    rejected_skill_candidates: int,
+    failure_learning_packages: int,
+    skills_published_to_vault: int,
+    agents_registered: int,
+    skill_import_events: int,
+    target_agents_with_imported_skill: int,
+    heldout_rows_b5: list[dict[str, Any]],
+    heldout_rows_b6: list[dict[str, Any]],
+    raw_task_result_ids: list[str],
+) -> dict[str, Any]:
+    d_b5 = compute_d_metric(heldout_rows_b5)
+    d_b6 = compute_d_metric(heldout_rows_b6)
+    if isinstance(d_b5, float) and isinstance(d_b6, float):
+        delta = round(d_b6 - d_b5, 6)
+        b6_beats = d_b6 > d_b5
+    else:
+        delta = "not_reported"
+        b6_beats = "not_reported"
+    return base_record({
+        "jobs_run": jobs_run,
+        "jobs_with_skill_extraction": jobs_with_skill_extraction,
+        "accepted_skill_packages": accepted_skill_packages,
+        "rejected_skill_candidates": rejected_skill_candidates,
+        "failure_learning_packages": failure_learning_packages,
+        "skills_published_to_vault": skills_published_to_vault,
+        "agents_registered": agents_registered,
+        "skill_import_events": skill_import_events,
+        "target_agents_with_imported_skill": target_agents_with_imported_skill,
+        "heldout_tasks_evaluated": len(heldout_rows_b6),
+        "B6_shared_skill_beats_B5_no_shared_skill": b6_beats,
+        "B6_shared_skill_advantage_delta": delta,
+        "network_skill_propagation_lift": delta,
+        "network_skill_multiplier": (round((d_b6 / d_b5), 6) if isinstance(d_b5, float) and d_b5 > 0 and isinstance(d_b6, float) else "not_reported"),
+        "capability_compounding_rate": delta,
+        "raw_task_result_ids": raw_task_result_ids if raw_task_result_ids else "not_reported",
+        "D_no_shared_skill_B5": d_b5,
+        "D_shared_skill_network_B6": d_b6,
+    })
