@@ -30,6 +30,17 @@ def stable_skill_id(source_job_id: str, source_agent_id: str, skill_type: str) -
     return f"skill-{digest}"
 
 
+MISSING_EVIDENCE_IDS = {"", "pending", "not_reported", "unavailable", "skipped_with_reason"}
+
+
+def evidence_id_present(value: Any) -> bool:
+    """Return True only for concrete evidence identifiers, not placeholders."""
+    if value is None:
+        return False
+    text = str(value).strip()
+    return bool(text) and text.lower() not in MISSING_EVIDENCE_IDS
+
+
 def build_skill_package(*, source_job_id: str, source_agent_id: str, skill_type: str, skill_payload: dict[str, Any], raw_task_result_ids: list[str], proofbundle_id: str = "pending", evidence_docket_id: str = "pending") -> dict[str, Any]:
     if skill_type not in SKILL_TYPES:
         raise ValueError(f"unsupported skill_type: {skill_type}")
@@ -47,8 +58,8 @@ def build_skill_package(*, source_job_id: str, source_agent_id: str, skill_type:
         "raw_task_result_ids": list(raw_task_result_ids),
         "proofbundle_id": proofbundle_id,
         "evidence_docket_id": evidence_docket_id,
-        "replay_status": "pass" if proofbundle_id != "pending" else "pending",
-        "falsification_status": "pass" if evidence_docket_id != "pending" else "pending",
+        "replay_status": "pass" if evidence_id_present(proofbundle_id) else "pending",
+        "falsification_status": "pass" if evidence_id_present(evidence_docket_id) else "pending",
         "risk_tier": "low",
         "allowed_import_scope": "sandbox_only",
         "activation_policy": "inactive_outside_sandbox_until_human_review",
@@ -59,7 +70,18 @@ def build_skill_package(*, source_job_id: str, source_agent_id: str, skill_type:
 
 
 def has_required_evidence(package: dict[str, Any]) -> bool:
-    return bool(package.get("raw_task_result_ids")) and package.get("proofbundle_id") not in (None, "", "pending") and package.get("evidence_docket_id") not in (None, "", "pending")
+    return (
+        bool(package.get("raw_task_result_ids"))
+        and evidence_id_present(package.get("proofbundle_id"))
+        and evidence_id_present(package.get("evidence_docket_id"))
+    )
 
 
-__all__ = ["SKILL_TYPES", "base_record", "stable_skill_id", "build_skill_package", "has_required_evidence"]
+__all__ = [
+    "SKILL_TYPES",
+    "base_record",
+    "stable_skill_id",
+    "evidence_id_present",
+    "build_skill_package",
+    "has_required_evidence",
+]

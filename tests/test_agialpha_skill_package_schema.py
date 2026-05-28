@@ -24,3 +24,21 @@ class TestSkillPackageSchema(unittest.TestCase):
             build_skill_package(source_job_id="job", source_agent_id="agent", skill_type="bad", skill_payload={}, raw_task_result_ids=["raw"])
         with self.assertRaises(ValueError):
             build_skill_package(source_job_id="job", source_agent_id="agent", skill_type="capability_package", skill_payload={}, raw_task_result_ids=[])
+
+    def test_pending_blank_and_none_evidence_ids_do_not_mark_package_as_replayed(self):
+        for proofbundle_id, evidence_docket_id in [("pending", "pending"), ("", "ed-001"), (None, "ed-001"), ("pb-001", ""), ("  pending  ", "ed-001")]:
+            package = build_skill_package(
+                source_job_id="job-missing-evidence",
+                source_agent_id="agent-source",
+                skill_type="capability_package",
+                skill_payload={"sandbox_only": True},
+                raw_task_result_ids=["raw-001"],
+                proofbundle_id=proofbundle_id,
+                evidence_docket_id=evidence_docket_id,
+            )
+            self.assertIs(has_required_evidence(package), False)
+            if proofbundle_id in ("pending", "", None, "  pending  "):
+                self.assertEqual(package["replay_status"], "pending")
+            if evidence_docket_id in ("pending", "", None, "  pending  "):
+                self.assertEqual(package["falsification_status"], "pending")
+

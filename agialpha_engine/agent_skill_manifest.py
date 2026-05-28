@@ -5,6 +5,7 @@ import json
 from typing import Iterable
 
 from .context import BOUNDARIES
+from .skill_package import evidence_id_present
 
 
 def base_record(extra=None):
@@ -44,7 +45,7 @@ def build_manifest(agent: dict, native_skills: Iterable[str] | None = None) -> d
 
 def import_skill_into_manifest(manifest: dict, skill_id: str, *, proofbundle_id: str, evidence_docket_id: str) -> dict:
     updated = json.loads(json.dumps(manifest, sort_keys=True))
-    if not proofbundle_id or not evidence_docket_id:
+    if not (evidence_id_present(proofbundle_id) and evidence_id_present(evidence_docket_id)):
         updated.setdefault("quarantined_skills", []).append(skill_id)
     elif skill_id not in updated.setdefault("imported_skills", []):
         updated["imported_skills"].append(skill_id)

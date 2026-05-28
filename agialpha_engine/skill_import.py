@@ -4,6 +4,7 @@ import hashlib
 import json
 
 from .context import BOUNDARIES
+from .skill_package import evidence_id_present
 
 
 def base_record(extra=None):
@@ -19,7 +20,7 @@ def base_record(extra=None):
 
 
 def build_skill_import_event(*, skill_id: str, source_agent_id: str, target_agent_id: str, proofbundle_id: str, evidence_docket_id: str, seed: int) -> dict:
-    has_evidence = bool(proofbundle_id and evidence_docket_id)
+    has_evidence = evidence_id_present(proofbundle_id) and evidence_id_present(evidence_docket_id)
     status = "imported" if has_evidence else "quarantined_missing_evidence"
     event = base_record({
         "schema_version": "agialpha.engine.skill_import.v1",

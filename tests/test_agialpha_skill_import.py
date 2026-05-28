@@ -23,3 +23,19 @@ class TestSkillImport(unittest.TestCase):
         event = build_skill_import_event(skill_id="skill-002", source_agent_id="agent-source", target_agent_id="agent-target", proofbundle_id="", evidence_docket_id="", seed=1)
         self.assertEqual(event["import_status"], "quarantined_missing_evidence")
         self.assertIs(event["poisoned_skill_quarantined"], True)
+
+    def test_skill_import_treats_pending_evidence_as_missing(self):
+        agent = build_agent_registry(1, seed=123)[0]
+        event = build_skill_import_event(
+            skill_id="skill-pending", source_agent_id="agent-source", target_agent_id=agent["agent_id"],
+            proofbundle_id="pending", evidence_docket_id="pending", seed=123
+        )
+        manifest = import_skill_into_manifest(
+            build_manifest(agent), event["skill_id"],
+            proofbundle_id=event["proofbundle_id"], evidence_docket_id=event["evidence_docket_id"]
+        )
+        self.assertEqual(event["import_status"], "quarantined_missing_evidence")
+        self.assertIs(event["poisoned_skill_quarantined"], True)
+        self.assertNotIn("skill-pending", manifest["imported_skills"])
+        self.assertIn("skill-pending", manifest["quarantined_skills"])
+
