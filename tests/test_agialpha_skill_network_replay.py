@@ -69,3 +69,30 @@ def test_validate_rejects_tampered_standalone_proofbundle_file():
         )
         assert proc.returncode != 0
         assert "standalone proofbundle file mismatch" in (proc.stderr + proc.stdout)
+
+
+def test_validate_rejects_stale_proofbundle_when_source_job_changes():
+    with tempfile.TemporaryDirectory() as td:
+        run = Path(td) / "run"
+        reg = Path(td) / "reg"
+        subprocess.check_call([
+            "python", "-m", "agialpha_engine", "network-compounding-run",
+            "--repo-root", ".", "--registry", str(reg), "--out", str(run),
+            "--jobs", "5", "--target-agents", "3", "--heldout-tasks", "5", "--seed", "123",
+        ])
+        subprocess.check_call(["python", "-m", "agialpha_engine", "network-compounding-replay", "--run", str(run)])
+        subprocess.check_call(["python", "-m", "agialpha_engine", "network-compounding-falsification-audit", "--run", str(run)])
+
+        source_jobs_path = run / "02_jobs" / "source_jobs.json"
+        source_jobs = _read(source_jobs_path)
+        source_jobs["jobs"][0]["score"] = round(float(source_jobs["jobs"][0]["score"]) + 0.001, 3)
+        source_jobs_path.write_text(json.dumps(source_jobs), encoding="utf-8")
+
+        proc = subprocess.run(
+            ["python", "-m", "agialpha_engine", "network-compounding-validate", "--run", str(run)],
+            capture_output=True,
+            text=True,
+        )
+        assert proc.returncode != 0
+        assert "stale evidence hashes" in (proc.stderr + proc.stdout)
+        assert "source_job_hash" in (proc.stderr + proc.stdout)

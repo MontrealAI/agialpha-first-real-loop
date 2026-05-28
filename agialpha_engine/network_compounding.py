@@ -779,9 +779,12 @@ def validate_network_compounding(args):
     jobs=_read(run/'02_jobs/source_jobs.json',{}).get('jobs',[])
     accepted=_read(run/'03_skill_extraction/accepted_skill_packages.json',{}).get('accepted_skill_packages',[])
     imports=_read(run/'05_skill_import/skill_import_events.json',{}).get('skill_import_events',[])
+    agents=_read(run/'01_agents/agent_registry.json',{}).get('agents',[])
     manifests_obj=_read(run/'05_skill_import/agent_skill_manifests_after_import.json',{})
     manifests=manifests_obj.get('agent_skill_manifests', manifests_obj.get('manifests', []))
     comparison=_read(run/'06_heldout_reuse_tests/comparison.json',{})
+    b5_results=_read(run/'06_heldout_reuse_tests/B5_no_shared_skill.json',{}).get('results',[])
+    b6_results=_read(run/'06_heldout_reuse_tests/B6_shared_skill_network.json',{}).get('results',[])
     metrics=_read(run/'07_metrics/network_skill_metrics.json',{})
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
     failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
@@ -821,6 +824,7 @@ def validate_network_compounding(args):
     if len(indexed_bundles) != len(accepted):
         proofbundle_errors.append(f"proofbundle index count {len(indexed_bundles)} does not match accepted skills {len(accepted)}")
     indexed_ids=set()
+    accepted_by_proofbundle_id={skill.get('proofbundle_id'): skill for skill in accepted if skill.get('proofbundle_id')}
     for proofbundle in indexed_bundles:
         proofbundle_id=proofbundle.get('proofbundle_id')
         if not isinstance(proofbundle_id, str) or not proofbundle_id.strip():
@@ -845,6 +849,29 @@ def validate_network_compounding(args):
             proofbundle_errors.append(f"{proofbundle_id} falsification_audit_hash stale")
         if proofbundle.get('claim_gate_hash') != _h(gate):
             proofbundle_errors.append(f"{proofbundle_id} claim_gate_hash stale")
+        source_skill=accepted_by_proofbundle_id.get(proofbundle_id)
+        if source_skill is None:
+            proofbundle_errors.append(f"{proofbundle_id} has no matching accepted skill")
+        else:
+            expected_proofbundle=_build_network_proofbundle(
+                run=run,
+                skill=source_skill,
+                existing_bundle=proofbundle,
+                jobs=jobs,
+                agents=agents,
+                raw_rows_all=raw_task_results,
+                manifests=manifests,
+                imports=imports,
+                b5=b5_results,
+                b6=b6_results,
+                comparison=comparison,
+                replay_report=replay,
+                falsification_audit=falsification,
+                claim_gate=gate,
+            )
+            mismatched_fields=[key for key, value in expected_proofbundle.items() if proofbundle.get(key) != value]
+            if mismatched_fields:
+                proofbundle_errors.append(f"{proofbundle_id} stale evidence hashes: {sorted(mismatched_fields)}")
     standalone_ids={path.stem for path in (run/'14_proofbundles').glob('*.json') if path.name != 'index.json'}
     extra_standalone_ids=standalone_ids-indexed_ids
     if extra_standalone_ids:
