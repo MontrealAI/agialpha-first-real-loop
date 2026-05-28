@@ -14,14 +14,14 @@
       "autonomous_persistence_allowed": false,
       "b6_vs_b5_comparison_hash": "4eb2a4ea28966466c7513ab387853165b9500452e3ca6ca5ceb661cf69724fe8",
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
-      "claim_gate_hash": "9a21b4127b0034627b2003345627897e62f00f3005ac1e9f32664a51ab94abe7",
+      "claim_gate_hash": "48b9e434af184efe8a008ef2188fa7846cbf9af83ec5644fcfa6351002109ec3",
       "complete": true,
       "deterministic_seed": 123,
       "environment_info": {
         "network_calls_enabled": false,
         "python_standard_library_only": true
       },
-      "falsification_audit_hash": "e94aa392e7789cd031f6bd5ae18a8df66e930f1c7ec74b73d18056c04c54d7f0",
+      "falsification_audit_hash": "1441403ef7f9e9210d9d492491057a7d8944df1cfe4bf02d1892575e9d9f2de2",
       "heldout_test_hashes": [
         "5241e357c0f4495b16180817ef844963dadcb183ddefa0072e0cb3b474ae954e",
         "923848b5d70c3559818bceadda20ae794d77a29259cb5c005b9672833384f31c"
@@ -30,7 +30,7 @@
       "human_review_status": "pending",
       "network_skill_vault_entry_hash": "33b0689cb2320601fdc2104d4f03750c5e4da2a548a5a3852fe8fa2f71c554b0",
       "no_auto_merge": true,
-      "proofbundle_hash": "0f42e86689514ca13e14758781b080b14d2b6b58b6eebd0ac843368b9054b71b",
+      "proofbundle_hash": "5a3f75046f41d8a7657643c1e6d8d30cae61816247ab8e11cbd92ac1bd46d595",
       "proofbundle_id": "pb-skill-1",
       "raw_evaluator_log_hashes": [
         "0c255240cf2ed179f4695355fcf755c1bc59aa6634c018477c52267f4d60e798"
@@ -40,7 +40,7 @@
       ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_command": "python -m agialpha_engine network-compounding-replay --run /tmp/agialpha-skill-network-test",
-      "replay_report_hash": "d833ed3bb8c806f83a18e11ecdcf7515740e95feb0a562982e282eab5bcf6bd1",
+      "replay_report_hash": "92f211045861d99de4c7134c2046d7e0753bda64fd08bbc08cc609f4b1fe9556",
       "schema_version": "agialpha.engine003.proofbundle.v1",
       "seed": 123,
       "skill_id": "skill-1",
@@ -49,7 +49,7 @@
         "6607c12592b621a256341e8a05569eb7f80eda40d19b0668bb941fc5c40afad3",
         "78a948baff56f62ce650aad18d94c2e854177997509a18841eb7832f5c666127"
       ],
-      "skill_package_hash": "989a2b214f5de97d4eb2757486627eb3b574a39982e7890cf181fd00ed63185b",
+      "skill_package_hash": "c09ca3a786ae1e768fca7971086b90966dfcd7bc1fdfb4285291cd22e4064f15",
       "source_agent_hash": "d750edec1d55b107c5e1c9f8047d0ea01908e136f23716bfc87641e3200f7b33",
       "source_agent_id": "agent-1",
       "source_job_hash": "69f6dcda68b6e067c3202854f432c59edc40ac46d12f3e708fff48b5bb2886c1",
@@ -69,14 +69,14 @@
       "autonomous_persistence_allowed": false,
       "b6_vs_b5_comparison_hash": "4eb2a4ea28966466c7513ab387853165b9500452e3ca6ca5ceb661cf69724fe8",
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
-      "claim_gate_hash": "9a21b4127b0034627b2003345627897e62f00f3005ac1e9f32664a51ab94abe7",
+      "claim_gate_hash": "48b9e434af184efe8a008ef2188fa7846cbf9af83ec5644fcfa6351002109ec3",
       "complete": true,
       "deterministic_seed": 123,
       "environment_info": {
         "network_calls_enabled": false,
         "python_standard_library_only": true
       },
-      "falsification_audit_hash": "e94aa392e7789cd031f6bd5ae18a8df66e930f1c7ec74b73d18056c04c54d7f0",
+      "falsification_audit_hash": "1441403ef7f9e9210d9d492491057a7d8944df1cfe4bf02d1892575e9d9f2de2",
       "heldout_test_hashes": [
         "5241e357c0f4495b16180817ef844963dadcb183ddefa0072e0cb3b474ae954e",
         "923848b5d70c3559818bceadda20ae794d77a29259cb5c005b9672833384f31c"
@@ -85,7 +85,7 @@
       "human_review_status": "pending",
       "network_skill_vault_entry_hash": "75797dea9ecf172ea893e5c3c58821ea35cbe1b624e9296c71b6f559ca1bb047",
       "no_auto_merge": true,
-      "proofbundle_hash": "9fa44142a42251dbda7c2570f06938ad8331e6536725da946da4ab916561cb15",
+      "proofbundle_hash": "7fad5a9609b9882151419c8531d941768b8511f9471dfd99205e9a21ce1e1308",
       "proofbundle_id": "pb-skill-4",
       "raw_evaluator_log_hashes": [
         "d3c1ecec26b76bb614fecb6774c1ccd7e739472e9c8a2f033eda8dd0468a61ec"
@@ -95,7 +95,7 @@
       ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_command": "python -m agialpha_engine network-compounding-replay --run /tmp/agialpha-skill-network-test",
-      "replay_report_hash": "d833ed3bb8c806f83a18e11ecdcf7515740e95feb0a562982e282eab5bcf6bd1",
+      "replay_report_hash": "92f211045861d99de4c7134c2046d7e0753bda64fd08bbc08cc609f4b1fe9556",
       "schema_version": "agialpha.engine003.proofbundle.v1",
       "seed": 123,
       "skill_id": "skill-4",
@@ -104,7 +104,7 @@
         "d3f98c0e4a6f02578fce32913c1665299a7e95b998a512a5b2fe627fa46acd77",
         "df58e8b844e9d2919688572928f8ca8e1087b2fa136b3681f3ae9d645540b3ce"
       ],
-      "skill_package_hash": "ece92bf6155df03fda7d4527f6ee4dc4fb2340f35aa1c305fbecfbd323233668",
+      "skill_package_hash": "d6e383f41f9af31d1b567ab4dfe10ad943ac35fc489aafe20c552e24147f379a",
       "source_agent_hash": "d750edec1d55b107c5e1c9f8047d0ea01908e136f23716bfc87641e3200f7b33",
       "source_agent_id": "agent-1",
       "source_job_hash": "f1b4baffd53e1b0cf4a55d81adf0504d00fb06a98567ddc8e23a069b76b56915",

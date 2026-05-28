@@ -130,6 +130,84 @@ def _validate_sandbox_records(raw_task_results: list[dict], sandbox_records: lis
     return len(errors) == 0, errors
 
 
+def _rebuild_network_proofbundles(run: Path) -> list[dict]:
+    """Rebind Engine-003 proofbundles to the current replay/audit/gate artifacts."""
+    accepted = _read(run / '03_skill_extraction/accepted_skill_packages.json', {}).get('accepted_skill_packages', [])
+    jobs = _read(run / '02_jobs/source_jobs.json', {}).get('jobs', [])
+    raw_rows = _read(run / '02_jobs/raw_task_results.json', {}).get('raw_task_results', [])
+    agents = _read(run / '01_agents/agent_registry.json', {}).get('agents', [])
+    manifests_obj = _read(run / '05_skill_import/agent_skill_manifests_after_import.json', {})
+    manifests = manifests_obj.get('manifests', manifests_obj.get('agent_skill_manifests', []))
+    imports = _read(run / '05_skill_import/skill_import_events.json', {}).get('skill_import_events', [])
+    b5 = _read(run / '06_heldout_reuse_tests/B5_no_shared_skill.json', {}).get('results', [])
+    b6 = _read(run / '06_heldout_reuse_tests/B6_shared_skill_network.json', {}).get('results', [])
+    comparison = _read(run / '06_heldout_reuse_tests/comparison.json', {})
+    replay_report = _read(run / '11_replay/replay_report.json', {"status": "not_reported", **_base()})
+    falsification_audit = _read(run / '12_falsification/falsification_audit.json', {"status": "not_reported", **_base()})
+    gate = _read(run / '13_claim_gate/network_compounding_claim_gate.json', {"status": "not_reported", **_base()})
+
+    by_job = {j.get('job_id'): j for j in jobs}
+    by_agent = {a.get('agent_id'): a for a in agents}
+    by_raw = {r.get('raw_task_result_id', r.get('task_result_id')): r for r in raw_rows}
+    existing = {
+        p.get('proofbundle_id'): p
+        for p in _read(run / '14_proofbundles/index.json', {}).get('proofbundles', [])
+        if p.get('proofbundle_id')
+    }
+    proofbundles = []
+    for sk in accepted:
+        proofbundle_id = sk.get('proofbundle_id') or f"pb-{sk.get('skill_id', 'unknown')}"
+        skill_raw_rows = [by_raw[rid] for rid in sk.get('raw_task_result_ids', []) if rid in by_raw]
+        prior = existing.get(proofbundle_id, {})
+        pb = {
+            "schema_version": prior.get("schema_version", "agialpha.engine003.proofbundle.v1"),
+            "proofbundle_id": proofbundle_id,
+            "skill_id": sk.get("skill_id"),
+            "source_job_id": sk.get("source_job_id"),
+            "source_agent_id": sk.get("source_agent_id"),
+            "raw_task_result_ids": sk.get("raw_task_result_ids", []),
+            "source_job_hash": _h(by_job.get(sk.get("source_job_id"), {})),
+            "source_agent_hash": _h(by_agent.get(sk.get("source_agent_id"), {})),
+            "raw_evaluator_log_hashes": [_h(r) for r in skill_raw_rows],
+            "validator_result_hashes": [_h(r.get("validator_results", [])) for r in skill_raw_rows],
+            "skill_package_hash": _h(sk),
+            "network_skill_vault_entry_hash": _h({"skill_id": sk.get("skill_id"), "published": True, "allowed_import_scope": sk.get("allowed_import_scope")}),
+            "agent_skill_manifest_hashes": [_h(m) for m in manifests],
+            "skill_import_event_hashes": [_h(i) for i in imports if i.get("skill_id") == sk.get("skill_id")],
+            "heldout_test_hashes": [_h(b5), _h(b6)],
+            "b6_vs_b5_comparison_hash": _h({"D_no_shared_skill": comparison.get("D_no_shared_skill"), "D_shared_skill_network": comparison.get("D_shared_skill_network"), "NetworkSkillPropagationLift": comparison.get("NetworkSkillPropagationLift")}),
+            "replay_report_hash": _h(replay_report),
+            "falsification_audit_hash": _h(falsification_audit),
+            "claim_gate_hash": _h(gate),
+            "seed": prior.get("seed", (skill_raw_rows[0].get("seed") if skill_raw_rows else None)),
+            "environment_info": prior.get("environment_info", {"python_standard_library_only": True, "network_calls_enabled": False}),
+            "deterministic_seed": prior.get("deterministic_seed", (skill_raw_rows[0].get("seed") if skill_raw_rows else None)),
+            "replay_command": prior.get("replay_command", f"python -m agialpha_engine network-compounding-replay --run {run}"),
+            "human_review_status": prior.get("human_review_status", "pending"),
+            **_base(),
+        }
+        pb["complete"] = all([
+            pb["source_job_hash"],
+            pb["source_agent_hash"],
+            pb["raw_evaluator_log_hashes"],
+            pb["validator_result_hashes"],
+            pb["skill_package_hash"],
+            pb["network_skill_vault_entry_hash"],
+            pb["agent_skill_manifest_hashes"],
+            pb["skill_import_event_hashes"],
+            pb["heldout_test_hashes"],
+            pb["b6_vs_b5_comparison_hash"],
+            pb["replay_report_hash"],
+            pb["falsification_audit_hash"],
+            pb["claim_gate_hash"],
+        ])
+        pb["proofbundle_hash"] = _h({k: v for k, v in pb.items() if k != "proofbundle_hash"})
+        proofbundles.append(pb)
+        atomic_write_json(run / '14_proofbundles' / f'{proofbundle_id}.json', pb)
+    atomic_write_json(run / '14_proofbundles/index.json', {"proofbundles": proofbundles, **_base()})
+    return proofbundles
+
+
 def _sync_run_to_registry(run: Path) -> None:
     manifest=_read(run/'evidence-run-manifest.json',{})
     reg_path=manifest.get('registry')
@@ -536,6 +614,7 @@ def replay_network_compounding(args):
     for sk in skills:
         sk['replay_status']='pass' if ok else 'fail'
     atomic_write_json(run/'03_skill_extraction/accepted_skill_packages.json',{'accepted_skill_packages':skills, **_base()})
+    _rebuild_network_proofbundles(run)
     _sync_run_to_registry(run)
 
 
@@ -620,6 +699,7 @@ def falsification_network_compounding(args):
         critical_safety_incidents=int(m.get('critical_safety_incidents',0)),
     )
     atomic_write_json(run/'13_claim_gate/network_compounding_claim_gate.json',gate)
+    _rebuild_network_proofbundles(run)
     _sync_run_to_registry(run)
 
 def validate_network_compounding(args):
@@ -653,6 +733,16 @@ def validate_network_compounding(args):
     if not falsification_ok:
         raise SystemExit('network-compounding-validate failed: falsification audit did not pass')
     gate=_read(run/'13_claim_gate/network_compounding_claim_gate.json',{})
+    proofbundles=_read(run/'14_proofbundles/index.json',{}).get('proofbundles',[])
+    for pb in proofbundles:
+        if pb.get('replay_report_hash') != _h(replay):
+            raise SystemExit('network-compounding-validate failed: proofbundle replay_report_hash does not match final replay report')
+        if pb.get('falsification_audit_hash') != _h(falsification):
+            raise SystemExit('network-compounding-validate failed: proofbundle falsification_audit_hash does not match final falsification audit')
+        if pb.get('claim_gate_hash') != _h(gate):
+            raise SystemExit('network-compounding-validate failed: proofbundle claim_gate_hash does not match final claim gate; claim gate status mismatch')
+        if pb.get('proofbundle_hash') != _h({k: v for k, v in pb.items() if k != 'proofbundle_hash'}):
+            raise SystemExit('network-compounding-validate failed: proofbundle_hash mismatch')
 
     jobs=_read(run/'02_jobs/source_jobs.json',{}).get('jobs',[])
     accepted=_read(run/'03_skill_extraction/accepted_skill_packages.json',{}).get('accepted_skill_packages',[])
