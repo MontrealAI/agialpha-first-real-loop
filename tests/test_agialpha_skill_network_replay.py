@@ -95,3 +95,33 @@ def test_validate_rejects_stale_source_job_hash_after_source_job_tamper():
         )
         assert proc.returncode != 0
         assert "does not match current run artifacts" in (proc.stderr + proc.stdout)
+
+
+def test_validate_rejects_missing_declared_raw_task_result_after_refresh():
+    with tempfile.TemporaryDirectory() as td:
+        run = Path(td) / "run"
+        reg = Path(td) / "reg"
+        subprocess.check_call([
+            "python", "-m", "agialpha_engine", "network-compounding-run",
+            "--repo-root", ".", "--registry", str(reg), "--out", str(run),
+            "--jobs", "5", "--target-agents", "3", "--heldout-tasks", "5", "--seed", "123",
+        ])
+        skills_path = run / "03_skill_extraction" / "accepted_skill_packages.json"
+        skills_doc = _read(skills_path)
+        skills_doc["accepted_skill_packages"][0]["raw_task_result_ids"].append("raw-missing-for-coverage")
+        skills_path.write_text(json.dumps(skills_doc), encoding="utf-8")
+
+        subprocess.check_call(["python", "-m", "agialpha_engine", "network-compounding-replay", "--run", str(run)])
+        subprocess.check_call(["python", "-m", "agialpha_engine", "network-compounding-falsification-audit", "--run", str(run)])
+
+        bundle = _read(run / "14_proofbundles" / "index.json")["proofbundles"][0]
+        assert bundle["raw_task_result_id_coverage_complete"] is False
+        assert bundle["raw_task_result_ids_missing"] == ["raw-missing-for-coverage"]
+
+        proc = subprocess.run(
+            ["python", "-m", "agialpha_engine", "network-compounding-validate", "--run", str(run)],
+            capture_output=True,
+            text=True,
+        )
+        assert proc.returncode != 0
+        assert "incomplete" in (proc.stderr + proc.stdout)

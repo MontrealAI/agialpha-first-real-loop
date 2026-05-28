@@ -30,14 +30,19 @@
       "human_review_status": "pending",
       "network_skill_vault_entry_hash": "33b0689cb2320601fdc2104d4f03750c5e4da2a548a5a3852fe8fa2f71c554b0",
       "no_auto_merge": true,
-      "proofbundle_hash": "e4bde95643118c2158b83f9dc243c9d3e319f72e884f34df285378ca1752c613",
+      "proofbundle_hash": "7c83c6526ba80eb5105c10cf0b68dfca1c9ca40601a07c11fb0803f7eef60748",
       "proofbundle_id": "pb-skill-1",
       "raw_evaluator_log_hashes": [
         "0c255240cf2ed179f4695355fcf755c1bc59aa6634c018477c52267f4d60e798"
       ],
+      "raw_task_result_id_coverage_complete": true,
       "raw_task_result_ids": [
         "raw-job-1"
       ],
+      "raw_task_result_ids_covered": [
+        "raw-job-1"
+      ],
+      "raw_task_result_ids_missing": [],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_command": "python -m agialpha_engine network-compounding-replay --run /tmp/agialpha-skill-network-test",
       "replay_report_hash": "92f211045861d99de4c7134c2046d7e0753bda64fd08bbc08cc609f4b1fe9556",
@@ -85,14 +90,19 @@
       "human_review_status": "pending",
       "network_skill_vault_entry_hash": "75797dea9ecf172ea893e5c3c58821ea35cbe1b624e9296c71b6f559ca1bb047",
       "no_auto_merge": true,
-      "proofbundle_hash": "b830de91cd810b9cbbe5e530e35aafa1062f390527fffb4e6959860cd57023da",
+      "proofbundle_hash": "dfec9ba634a2400624a8ddeb10b11d2f90faf81a731f17e1ad8a7368463eac87",
       "proofbundle_id": "pb-skill-4",
       "raw_evaluator_log_hashes": [
         "d3c1ecec26b76bb614fecb6774c1ccd7e739472e9c8a2f033eda8dd0468a61ec"
       ],
+      "raw_task_result_id_coverage_complete": true,
       "raw_task_result_ids": [
         "raw-job-4"
       ],
+      "raw_task_result_ids_covered": [
+        "raw-job-4"
+      ],
+      "raw_task_result_ids_missing": [],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_command": "python -m agialpha_engine network-compounding-replay --run /tmp/agialpha-skill-network-test",
       "replay_report_hash": "92f211045861d99de4c7134c2046d7e0753bda64fd08bbc08cc609f4b1fe9556",

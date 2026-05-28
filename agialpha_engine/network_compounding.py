@@ -151,15 +151,21 @@ def _build_network_proofbundle(
 ) -> dict:
     source_job = next((j for j in jobs if j.get("job_id") == skill.get("source_job_id")), {})
     source_agent = next((a for a in agents if a.get("agent_id") == skill.get("source_agent_id")), {})
-    raw_ids = set(skill.get("raw_task_result_ids", []))
+    declared_raw_ids = [str(raw_id) for raw_id in skill.get("raw_task_result_ids", []) if str(raw_id)]
+    raw_ids = set(declared_raw_ids)
     raw_rows = [r for r in raw_rows_all if r.get("raw_task_result_id") in raw_ids or r.get("task_result_id") in raw_ids]
+    matched_raw_ids = sorted({str(r.get("raw_task_result_id") or r.get("task_result_id")) for r in raw_rows if r.get("raw_task_result_id") or r.get("task_result_id")})
+    raw_task_result_id_coverage_complete = sorted(raw_ids) == matched_raw_ids and len(declared_raw_ids) == len(raw_ids)
     bundle = {
         "schema_version": "agialpha.engine003.proofbundle.v1",
         "proofbundle_id": skill.get("proofbundle_id", existing_bundle.get("proofbundle_id", "")),
         "skill_id": skill.get("skill_id", existing_bundle.get("skill_id", "")),
         "source_job_id": skill.get("source_job_id", existing_bundle.get("source_job_id", "")),
         "source_agent_id": skill.get("source_agent_id", existing_bundle.get("source_agent_id", "")),
-        "raw_task_result_ids": skill.get("raw_task_result_ids", existing_bundle.get("raw_task_result_ids", [])),
+        "raw_task_result_ids": declared_raw_ids,
+        "raw_task_result_ids_covered": matched_raw_ids,
+        "raw_task_result_ids_missing": sorted(raw_ids - set(matched_raw_ids)),
+        "raw_task_result_id_coverage_complete": raw_task_result_id_coverage_complete,
         "source_job_hash": _h(source_job),
         "source_agent_hash": _h(source_agent),
         "raw_evaluator_log_hashes": [_h(r) for r in raw_rows],
@@ -183,6 +189,7 @@ def _build_network_proofbundle(
     required = [
         "source_job_hash",
         "source_agent_hash",
+        "raw_task_result_id_coverage_complete",
         "raw_evaluator_log_hashes",
         "validator_result_hashes",
         "skill_package_hash",
