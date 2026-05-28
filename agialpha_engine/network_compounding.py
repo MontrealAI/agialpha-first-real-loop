@@ -130,6 +130,122 @@ def _validate_sandbox_records(raw_task_results: list[dict], sandbox_records: lis
     return len(errors) == 0, errors
 
 
+
+
+def _build_network_proofbundle(
+    *,
+    run: Path,
+    skill: dict,
+    existing_bundle: dict,
+    jobs: list[dict],
+    agents: list[dict],
+    raw_rows_all: list[dict],
+    manifests: list[dict],
+    imports: list[dict],
+    b5: list[dict],
+    b6: list[dict],
+    comparison: dict,
+    replay_report: dict,
+    falsification_audit: dict,
+    claim_gate: dict,
+) -> dict:
+    source_job = next((j for j in jobs if j.get("job_id") == skill.get("source_job_id")), {})
+    source_agent = next((a for a in agents if a.get("agent_id") == skill.get("source_agent_id")), {})
+    raw_ids = set(skill.get("raw_task_result_ids", []))
+    raw_rows = [r for r in raw_rows_all if r.get("raw_task_result_id") in raw_ids or r.get("task_result_id") in raw_ids]
+    bundle = {
+        "schema_version": "agialpha.engine003.proofbundle.v1",
+        "proofbundle_id": skill.get("proofbundle_id", existing_bundle.get("proofbundle_id", "")),
+        "skill_id": skill.get("skill_id", existing_bundle.get("skill_id", "")),
+        "source_job_id": skill.get("source_job_id", existing_bundle.get("source_job_id", "")),
+        "source_agent_id": skill.get("source_agent_id", existing_bundle.get("source_agent_id", "")),
+        "raw_task_result_ids": skill.get("raw_task_result_ids", existing_bundle.get("raw_task_result_ids", [])),
+        "source_job_hash": _h(source_job),
+        "source_agent_hash": _h(source_agent),
+        "raw_evaluator_log_hashes": [_h(r) for r in raw_rows],
+        "validator_result_hashes": [_h(r.get("validator_results", [])) for r in raw_rows],
+        "skill_package_hash": _h(skill),
+        "network_skill_vault_entry_hash": _h({"skill_id": skill.get("skill_id"), "published": True, "allowed_import_scope": skill.get("allowed_import_scope")}),
+        "agent_skill_manifest_hashes": [_h(m) for m in manifests],
+        "skill_import_event_hashes": [_h(i) for i in imports if i.get("skill_id") == skill.get("skill_id")],
+        "heldout_test_hashes": [_h(b5), _h(b6)],
+        "b6_vs_b5_comparison_hash": _h(comparison),
+        "replay_report_hash": _h(replay_report),
+        "falsification_audit_hash": _h(falsification_audit),
+        "claim_gate_hash": _h(claim_gate),
+        "seed": existing_bundle.get("seed", existing_bundle.get("deterministic_seed")),
+        "environment_info": existing_bundle.get("environment_info", {"python_standard_library_only": True, "network_calls_enabled": False}),
+        "deterministic_seed": existing_bundle.get("deterministic_seed", existing_bundle.get("seed")),
+        "replay_command": existing_bundle.get("replay_command", f"python -m agialpha_engine network-compounding-replay --run {run}"),
+        "human_review_status": existing_bundle.get("human_review_status", "pending"),
+        **_base(),
+    }
+    required = [
+        "source_job_hash",
+        "source_agent_hash",
+        "raw_evaluator_log_hashes",
+        "validator_result_hashes",
+        "skill_package_hash",
+        "network_skill_vault_entry_hash",
+        "agent_skill_manifest_hashes",
+        "skill_import_event_hashes",
+        "heldout_test_hashes",
+        "b6_vs_b5_comparison_hash",
+        "replay_report_hash",
+        "falsification_audit_hash",
+        "claim_gate_hash",
+    ]
+    bundle["complete"] = all(bool(bundle.get(k)) for k in required)
+    bundle["proofbundle_hash"] = _h({k: v for k, v in bundle.items() if k != "proofbundle_hash"})
+    return bundle
+
+
+def _refresh_network_proofbundles(run: Path) -> list[dict]:
+    """Rebuild Engine-003 ProofBundles against current replay/audit/gate artifacts."""
+    existing_doc = _read(run / '14_proofbundles/index.json', {"proofbundles": [], **_base()})
+    existing_by_id = {p.get("proofbundle_id"): p for p in existing_doc.get("proofbundles", []) if isinstance(p, dict)}
+    skills = _read(run / '03_skill_extraction/accepted_skill_packages.json', {"accepted_skill_packages": [], **_base()}).get('accepted_skill_packages', [])
+    jobs = _read(run / '02_jobs/source_jobs.json', {"jobs": [], **_base()}).get('jobs', [])
+    agents = _read(run / '01_agents/agent_registry.json', {"agents": [], **_base()}).get('agents', [])
+    raw_rows = _read(run / '02_jobs/raw_task_results.json', {"raw_task_results": [], **_base()}).get('raw_task_results', [])
+    manifests_obj = _read(run / '05_skill_import/agent_skill_manifests_after_import.json', {"manifests": [], **_base()})
+    manifests = manifests_obj.get('manifests', manifests_obj.get('agent_skill_manifests', []))
+    imports = _read(run / '05_skill_import/skill_import_events.json', {"skill_import_events": [], **_base()}).get('skill_import_events', [])
+    b5 = _read(run / '06_heldout_reuse_tests/B5_no_shared_skill.json', {"results": [], **_base()}).get('results', [])
+    b6 = _read(run / '06_heldout_reuse_tests/B6_shared_skill_network.json', {"results": [], **_base()}).get('results', [])
+    comparison = _read(run / '06_heldout_reuse_tests/comparison.json', {"status": "not_reported", **_base()})
+    replay_report = _read(run / '11_replay/replay_report.json', {"status": "not_reported", **_base()})
+    falsification_audit = _read(run / '12_falsification/falsification_audit.json', {"status": "not_reported", **_base()})
+    claim_gate = _read(run / '13_claim_gate/network_compounding_claim_gate.json', {"status": "not_reported", **_base()})
+    proofbundles = []
+    for skill in skills:
+        existing = existing_by_id.get(skill.get("proofbundle_id"), {})
+        bundle = _build_network_proofbundle(
+            run=run,
+            skill=skill,
+            existing_bundle=existing,
+            jobs=jobs,
+            agents=agents,
+            raw_rows_all=raw_rows,
+            manifests=manifests,
+            imports=imports,
+            b5=b5,
+            b6=b6,
+            comparison=comparison,
+            replay_report=replay_report,
+            falsification_audit=falsification_audit,
+            claim_gate=claim_gate,
+        )
+        proofbundles.append(bundle)
+        atomic_write_json(run / '14_proofbundles' / f'{bundle["proofbundle_id"]}.json', bundle)
+    atomic_write_json(run / '14_proofbundles/index.json', {"proofbundles": proofbundles, **_base()})
+    docket_root = run / "network-skill-evidence-docket"
+    if docket_root.exists():
+        atomic_write_json(docket_root / "16_replay_report.json", replay_report)
+        atomic_write_json(docket_root / "17_falsification_audit.json", falsification_audit)
+        atomic_write_json(docket_root / "21_claim_gate_decision.json", claim_gate)
+    return proofbundles
+
 def _sync_run_to_registry(run: Path) -> None:
     manifest=_read(run/'evidence-run-manifest.json',{})
     reg_path=manifest.get('registry')
@@ -201,6 +317,11 @@ def _sync_run_to_registry(run: Path) -> None:
     atomic_write_json(run_registry_dir / "10_heldout_reuse_tests.json", {"B5_no_shared_skill": b5_results.get("results", []), "B6_shared_skill_network": b6_results.get("results", []), **_base()})
     atomic_write_json(run_registry_dir / "11_b6_vs_b5_network_comparison.json", heldout_comparison)
     atomic_write_json(run_registry_dir / "13_work_vault_receipts.json", work_vault_receipts)
+    atomic_write_json(run_registry_dir / "14_proofbundles" / "index.json", {"proofbundles": proofbundles, **_base()})
+    for proofbundle in proofbundles:
+        proofbundle_id = proofbundle.get("proofbundle_id")
+        if proofbundle_id:
+            atomic_write_json(run_registry_dir / "14_proofbundles" / f"{proofbundle_id}.json", proofbundle)
     atomic_write_json(run_registry_dir / "16_replay_report.json", replay_report if replay_report else {"status": "not_reported", **_base()})
     atomic_write_json(run_registry_dir / "17_falsification_audit.json", falsification_audit if falsification_audit else {"status": "not_reported", **_base()})
     atomic_write_json(run_registry_dir / "18_claim_gate_decision.json", gate)
@@ -278,18 +399,18 @@ def run_network_compounding(args):
             })
     if not accepted:
         raise SystemExit("at least one accepted skill required")
-    skill=accepted[0]
     target_agents=[a["agent_id"] for a in agents[1:1+args.target_agents]]
     manifests_before_import=json.loads(json.dumps(manifests, sort_keys=True))
     imports=[]
     manifest_by_agent={m['agent_id']:m for m in manifests}
-    for t in target_agents:
-        imports.append({"schema_version":"agialpha.skill_import.v1","import_id":f"import-{skill['skill_id']}-{t}","skill_id":skill['skill_id'],"source_agent_id":skill['source_agent_id'],"target_agent_id":t,"import_status":"imported","activation_status":"inactive","reason":"imported_for_sandbox_validation","validators_required":["validator-pass"],"heldout_tests_required":["B6_vs_B5"],**_base()})
-        manifest=manifest_by_agent.get(t)
-        if manifest is not None:
-            manifest.setdefault('imported_skills',[])
-            if skill['skill_id'] not in manifest['imported_skills']:
-                manifest['imported_skills'].append(skill['skill_id'])
+    for imported_skill in accepted:
+        for t in target_agents:
+            imports.append({"schema_version":"agialpha.skill_import.v1","import_id":f"import-{imported_skill['skill_id']}-{t}","skill_id":imported_skill['skill_id'],"source_agent_id":imported_skill['source_agent_id'],"target_agent_id":t,"import_status":"imported","activation_status":"inactive","reason":"imported_for_sandbox_validation","validators_required":["validator-pass"],"heldout_tests_required":["B6_vs_B5"],**_base()})
+            manifest=manifest_by_agent.get(t)
+            if manifest is not None:
+                manifest.setdefault('imported_skills',[])
+                if imported_skill['skill_id'] not in manifest['imported_skills']:
+                    manifest['imported_skills'].append(imported_skill['skill_id'])
     b5=[];b6=[]
     for i in range(args.heldout_tasks):
         base=0.5+0.01*(i%3)+(rng.random()*0.01)
@@ -343,10 +464,20 @@ def run_network_compounding(args):
     atomic_write_json(out/'05_skill_import/skill_import_events.json',{"skill_import_events":imports,**_base()}); atomic_write_json(out/'05_skill_import/agent_skill_manifests_after_import.json',{"manifests":manifests,**_base()})
     atomic_write_json(out/'06_heldout_reuse_tests/B5_no_shared_skill.json',{"results":b5,**_base()}); atomic_write_json(out/'06_heldout_reuse_tests/B6_shared_skill_network.json',{"results":b6,**_base()}); atomic_write_json(out/'06_heldout_reuse_tests/comparison.json',{"D_no_shared_skill":d5,"D_shared_skill_network":d6,"NetworkSkillPropagationLift":lift,**_base()})
     atomic_write_json(out/'07_metrics/network_skill_metrics.json',metrics); atomic_write_json(out/'07_metrics/network_skill_propagation_lift.json',{"network_skill_propagation_lift":lift,**_base()}); atomic_write_json(out/'07_metrics/compounding_exponent_proxy.json',{"compounding_exponent_proxy":"not_supported",**_base()})
-    receipt={"schema_version":"agialpha.skill_network.work_vault_receipt.v1","receipt_id":"receipt-1","skill_id":skill['skill_id'],"source_job_id":skill['source_job_id'],"source_agent_id":skill['source_agent_id'],"target_agent_ids":target_agents,"utility_budget_units":100,"alpha_work_units_estimated":42,"validator_fee_units":8,"replay_fee_units":5,"proofbundle_fee_units":3,"evidence_docket_fee_units":3,"skill_publication_fee_units":2,"skill_import_fee_units":len(target_agents),"unused_budget_refund_units":100-42-8-5-3-3-2-len(target_agents),"settlement_mode":"synthetic_local_json_receipt_only","wallet_used":False,"custody_used":False,"payment_executed":False,"token_price_used":False,"investment_claim_made":False,"receipt_note":"Synthetic local utility receipt only. No wallet, custody, payment, trading, KYC/AML, money transmission, securities functionality, token price, token value, token appreciation, or investment return.",**_base()}
-    atomic_write_json(out/'08_work_vault/skill_work_vault_receipts.json',{"receipts":[receipt],**_base()})
+    receipts=[]
+    for receipt_index, receipt_skill in enumerate(accepted, start=1):
+        skill_imports=[i for i in imports if i.get("skill_id") == receipt_skill["skill_id"]]
+        receipt_target_agents=[i["target_agent_id"] for i in skill_imports if i.get("target_agent_id")]
+        import_fee_units=len(skill_imports)
+        receipts.append({"schema_version":"agialpha.skill_network.work_vault_receipt.v1","receipt_id":f"receipt-{receipt_index}-{receipt_skill['skill_id']}","skill_id":receipt_skill['skill_id'],"source_job_id":receipt_skill['source_job_id'],"source_agent_id":receipt_skill['source_agent_id'],"target_agent_ids":receipt_target_agents,"covered_import_ids":[i["import_id"] for i in skill_imports if i.get("import_id")],"utility_budget_units":100,"alpha_work_units_estimated":42,"validator_fee_units":8,"replay_fee_units":5,"proofbundle_fee_units":3,"evidence_docket_fee_units":3,"skill_publication_fee_units":2,"skill_import_fee_units":import_fee_units,"unused_budget_refund_units":100-42-8-5-3-3-2-import_fee_units,"settlement_mode":"synthetic_local_json_receipt_only","wallet_used":False,"custody_used":False,"payment_executed":False,"token_price_used":False,"investment_claim_made":False,"receipt_note":"Synthetic local utility receipt only. No wallet, custody, payment, trading, KYC/AML, money transmission, securities functionality, token price, token value, token appreciation, or investment return.",**_base()})
+    atomic_write_json(out/'08_work_vault/skill_work_vault_receipts.json',{"receipts":receipts,"receipt_count":len(receipts),"covered_import_count":sum(len(r.get("covered_import_ids", [])) for r in receipts),**_base()})
+    pending_replay_report = {"replay_pass": False, "replay_passes": 0, "status": "pending_replay_execution", **_base()}
+    pending_falsification_audit = {"falsification_pass": False, "status": "pending_falsification_execution", "adversarial_checks": ["fake skill metric rejected", "forbidden claim injection rejected", "regulated-domain skill blocked", "token-value skill blocked", "raw secret-like string redacted", "auto-merge attempt rejected", "replay mismatch detected", "missing skill evidence detected", "baseline regression detected", "poisoned skill import quarantined"], **_base()}
     proofbundles=[]
     for sk in accepted:
+        source_job = next((j for j in jobs if j.get("job_id") == sk["source_job_id"]), {})
+        source_agent = next((a for a in agents if a.get("agent_id") == sk["source_agent_id"]), {})
+        raw_rows = [r for r in raw if r.get("raw_task_result_id") in sk.get("raw_task_result_ids", [])]
         pb={
             "schema_version":"agialpha.engine003.proofbundle.v1",
             "proofbundle_id":sk["proofbundle_id"],
@@ -354,11 +485,28 @@ def run_network_compounding(args):
             "source_job_id":sk["source_job_id"],
             "source_agent_id":sk["source_agent_id"],
             "raw_task_result_ids":sk["raw_task_result_ids"],
+            "source_job_hash": _h(source_job),
+            "source_agent_hash": _h(source_agent),
+            "raw_evaluator_log_hashes": [_h(r) for r in raw_rows],
+            "validator_result_hashes": [_h(r.get("validator_results", [])) for r in raw_rows],
+            "skill_package_hash": _h(sk),
+            "network_skill_vault_entry_hash": _h({"skill_id": sk["skill_id"], "published": True, "allowed_import_scope": sk.get("allowed_import_scope")}),
+            "agent_skill_manifest_hashes": [_h(m) for m in manifests],
+            "skill_import_event_hashes": [_h(i) for i in imports if i.get("skill_id") == sk["skill_id"]],
+            "heldout_test_hashes": [_h(b5), _h(b6)],
+            "b6_vs_b5_comparison_hash": _h({"D_no_shared_skill": d5, "D_shared_skill_network": d6, "NetworkSkillPropagationLift": lift}),
+            "replay_report_hash": _h(pending_replay_report),
+            "falsification_audit_hash": _h(pending_falsification_audit),
+            "claim_gate_hash": _h(gate),
+            "seed": args.seed,
+            "environment_info": {"python_standard_library_only": True, "network_calls_enabled": False},
             "deterministic_seed":args.seed,
             "replay_command":f"python -m agialpha_engine network-compounding-replay --run {out}",
             "human_review_status":"pending",
             **_base(),
         }
+        pb["complete"] = all([pb["source_job_hash"], pb["source_agent_hash"], pb["raw_evaluator_log_hashes"], pb["validator_result_hashes"], pb["skill_package_hash"], pb["network_skill_vault_entry_hash"], pb["agent_skill_manifest_hashes"], pb["skill_import_event_hashes"], pb["heldout_test_hashes"], pb["b6_vs_b5_comparison_hash"], pb["replay_report_hash"], pb["falsification_audit_hash"], pb["claim_gate_hash"]])
+        pb["proofbundle_hash"] = _h({k: v for k, v in pb.items() if k != "proofbundle_hash"})
         proofbundles.append(pb)
         atomic_write_json(out/'14_proofbundles'/f'{sk["proofbundle_id"]}.json',pb)
     atomic_write_json(out/'14_proofbundles/index.json',{"proofbundles":proofbundles,**_base()})
@@ -379,12 +527,42 @@ def run_network_compounding(args):
         dockets.append(docket)
         atomic_write_json(out/'15_evidence_dockets'/f'{sk["evidence_docket_id"]}.json',docket)
     atomic_write_json(out/'15_evidence_dockets/index.json',{"evidence_dockets":dockets,**_base()})
-    atomic_write_json(out/'11_replay/replay_report.json',{"replay_pass":False,"replay_passes":0,"status":"pending_replay_execution",**_base()})
-    atomic_write_json(out/'12_falsification/falsification_audit.json',{"falsification_pass":False,"status":"pending_falsification_execution","adversarial_checks":["fake skill metric rejected","forbidden claim injection rejected","regulated-domain skill blocked","token-value skill blocked","raw secret-like string redacted","auto-merge attempt rejected","replay mismatch detected","missing skill evidence detected","baseline regression detected","poisoned skill import quarantined"],**_base()})
+    docket_root = out / "network-skill-evidence-docket"
+    atomic_write_json(docket_root / "00_manifest.json", {"run_id": run_id, "evidence_docket_type": "network_skill_compounding", **_base()})
+    atomic_write_json(docket_root / "01_claims_matrix.json", {"supported_claim": gate.get("claim_gate_status"), "exponential_compounding_supported": False, **_base()})
+    (docket_root / "02_scope_and_claim_boundary.md").parent.mkdir(parents=True, exist_ok=True)
+    (docket_root / "02_scope_and_claim_boundary.md").write_text(BOUNDARIES["claim_boundary"], encoding="utf-8")
+    (docket_root / "03_token_boundary.md").write_text(BOUNDARIES["token_boundary"], encoding="utf-8")
+    (docket_root / "04_regulated_boundary.md").write_text(BOUNDARIES["regulated_boundary"], encoding="utf-8")
+    docket_json_sections = {
+        "05_source_jobs/source_jobs.json": {"jobs": jobs, **_base()},
+        "06_raw_evaluator_logs/raw_task_results.json": {"raw_task_results": raw, **_base()},
+        "07_skill_extraction/skill_extraction_report.json": {"accepted_skill_packages": accepted, "rejected_skill_candidates": rejected, "failure_learning_packages": failure, **_base()},
+        "08_skill_packages/accepted_skill_packages.json": {"accepted_skill_packages": accepted, **_base()},
+        "09_rejected_skill_candidates/rejected_skill_candidates.json": {"rejected_skill_candidates": rejected, **_base()},
+        "10_failure_learning_packages/failure_learning_packages.json": {"failure_learning_packages": failure, **_base()},
+        "11_network_skill_vault/network_skill_vault.json": {"skill_packages": accepted, **_base()},
+        "12_agent_skill_manifests/agent_skill_manifests.json": {"manifests": manifests, **_base()},
+        "13_skill_import_events/skill_import_events.json": {"skill_import_events": imports, **_base()},
+        "14_heldout_reuse_tests/heldout_reuse_tests.json": {"B5_no_shared_skill": b5, "B6_shared_skill_network": b6, **_base()},
+        "15_b6_vs_b5_comparison.json": {"D_no_shared_skill": d5, "D_shared_skill_network": d6, "NetworkSkillPropagationLift": lift, **_base()},
+        "16_replay_report.json": pending_replay_report,
+        "17_falsification_audit.json": pending_falsification_audit,
+        "18_safety_ledger.json": {**derived_safety_counters, **_base()},
+        "19_cost_ledger.json": {"receipts": receipts, "receipt_count": len(receipts), "covered_import_count": sum(len(r.get("covered_import_ids", [])) for r in receipts), **_base()},
+        "20_network_skill_metrics.json": metrics,
+        "21_claim_gate_decision.json": gate,
+    }
+    for rel_path, payload in docket_json_sections.items():
+        atomic_write_json(docket_root / rel_path, payload)
+    (docket_root / "22_human_review_required.md").write_text("Human review status: pending. Production activation is blocked until accepted human review.", encoding="utf-8")
+    (docket_root / "23_next_best_actions.md").write_text("Replay, falsify, review, and only then consider sandbox-to-production activation.", encoding="utf-8")
+    atomic_write_json(out/'11_replay/replay_report.json', pending_replay_report)
+    atomic_write_json(out/'12_falsification/falsification_audit.json', pending_falsification_audit)
     atomic_write_json(out/'13_claim_gate/network_compounding_claim_gate.json',gate)
     atomic_write_json(out/'evidence-run-manifest.json',{"run":str(out),"run_id":run_id,"registry":str(reg),**_base()})
     # registry + generated placeholders
-    atomic_write_json(reg/'latest.json',{"run_id":run_id,**_base()}); atomic_write_json(reg/'agents.json',{"agents":agents,**_base()}); atomic_write_json(reg/'agent_skill_manifests.json',{"manifests":manifests,**_base()}); atomic_write_json(reg/'skill_packages.json',{"skill_packages":accepted,**_base()}); atomic_write_json(reg/'rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(reg/'failure_learning_packages.json',{"failure_learning_packages":failure,**_base()}); atomic_write_json(reg/'skill_imports.json',{"skill_imports":imports,**_base()}); atomic_write_json(reg/'skill_propagation_events.json',{"skill_propagation_events":imports,**_base()}); atomic_write_json(reg/'network_skill_metrics.json',metrics); atomic_write_json(reg/'claim_gate_decisions.json',gate); atomic_write_json(reg/'work_vault_receipts.json',{"receipts":[receipt],**_base()}); atomic_write_json(reg/'lineage_graph.json',{"edges":[{"from":s['source_job_id'],"to":s['skill_id']} for s in accepted],**_base()}); atomic_write_json(reg/'proofbundles.json',{"proofbundles":proofbundles,**_base()}); atomic_write_json(reg/'evidence_dockets.json',{"evidence_dockets":dockets,**_base()})
+    atomic_write_json(reg/'latest.json',{"run_id":run_id,**_base()}); atomic_write_json(reg/'agents.json',{"agents":agents,**_base()}); atomic_write_json(reg/'agent_skill_manifests.json',{"manifests":manifests,**_base()}); atomic_write_json(reg/'skill_packages.json',{"skill_packages":accepted,**_base()}); atomic_write_json(reg/'rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(reg/'failure_learning_packages.json',{"failure_learning_packages":failure,**_base()}); atomic_write_json(reg/'skill_imports.json',{"skill_imports":imports,**_base()}); atomic_write_json(reg/'skill_propagation_events.json',{"skill_propagation_events":imports,**_base()}); atomic_write_json(reg/'network_skill_metrics.json',metrics); atomic_write_json(reg/'claim_gate_decisions.json',gate); atomic_write_json(reg/'work_vault_receipts.json',{"receipts":receipts,"receipt_count":len(receipts),"covered_import_count":sum(len(r.get("covered_import_ids", [])) for r in receipts),**_base()}); atomic_write_json(reg/'lineage_graph.json',{"edges":[{"from":s['source_job_id'],"to":s['skill_id']} for s in accepted],**_base()}); atomic_write_json(reg/'proofbundles.json',{"proofbundles":proofbundles,**_base()}); atomic_write_json(reg/'evidence_dockets.json',{"evidence_dockets":dockets,**_base()})
     existing_registry = _read(reg/'registry.json', {})
     registry_contract = {
         "schema_version":"agialpha.skill_network.registry.v1",
@@ -425,7 +603,7 @@ def run_network_compounding(args):
     atomic_write_json(run_registry_dir / "10_heldout_reuse_tests.json", {"B5_no_shared_skill": b5, "B6_shared_skill_network": b6, **_base()})
     atomic_write_json(run_registry_dir / "11_b6_vs_b5_network_comparison.json", {"D_no_shared_skill": d5, "D_shared_skill_network": d6, "NetworkSkillPropagationLift": lift, **_base()})
     atomic_write_json(run_registry_dir / "12_network_skill_metrics.json", metrics)
-    atomic_write_json(run_registry_dir / "13_work_vault_receipts.json", {"receipts": [receipt], **_base()})
+    atomic_write_json(run_registry_dir / "13_work_vault_receipts.json", {"receipts": receipts, "receipt_count": len(receipts), "covered_import_count": sum(len(r.get("covered_import_ids", [])) for r in receipts), **_base()})
     atomic_write_json(run_registry_dir / "16_replay_report.json", {"replay_pass": False, "replay_passes": 0, "status": "pending_replay_execution", **_base()})
     atomic_write_json(run_registry_dir / "17_falsification_audit.json", {"falsification_pass": False, "status": "pending_falsification_execution", **_base()})
     atomic_write_json(run_registry_dir / "18_claim_gate_decision.json", gate)
@@ -479,6 +657,7 @@ def replay_network_compounding(args):
     for sk in skills:
         sk['replay_status']='pass' if ok else 'fail'
     atomic_write_json(run/'03_skill_extraction/accepted_skill_packages.json',{'accepted_skill_packages':skills, **_base()})
+    _refresh_network_proofbundles(run)
     _sync_run_to_registry(run)
 
 
@@ -563,11 +742,12 @@ def falsification_network_compounding(args):
         critical_safety_incidents=int(m.get('critical_safety_incidents',0)),
     )
     atomic_write_json(run/'13_claim_gate/network_compounding_claim_gate.json',gate)
+    _refresh_network_proofbundles(run)
     _sync_run_to_registry(run)
 
 def validate_network_compounding(args):
     run=Path(args.run)
-    req=['00_manifest.json','02_jobs/source_jobs.json','02_jobs/raw_task_results.json','02_jobs/sandbox_records.json','03_skill_extraction/accepted_skill_packages.json','03_skill_extraction/rejected_skill_candidates.json','03_skill_extraction/failure_learning_packages.json','05_skill_import/skill_import_events.json','06_heldout_reuse_tests/comparison.json','07_metrics/network_skill_metrics.json','11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/network_compounding_claim_gate.json']
+    req=['00_manifest.json','02_jobs/source_jobs.json','02_jobs/raw_task_results.json','02_jobs/sandbox_records.json','03_skill_extraction/accepted_skill_packages.json','03_skill_extraction/rejected_skill_candidates.json','03_skill_extraction/failure_learning_packages.json','05_skill_import/skill_import_events.json','06_heldout_reuse_tests/comparison.json','07_metrics/network_skill_metrics.json','11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/network_compounding_claim_gate.json','14_proofbundles/index.json']
     miss=[x for x in req if not (run/x).exists()]
     if miss:
         raise SystemExit(f'missing artifacts: {miss}')
@@ -596,7 +776,6 @@ def validate_network_compounding(args):
     if not falsification_ok:
         raise SystemExit('network-compounding-validate failed: falsification audit did not pass')
     gate=_read(run/'13_claim_gate/network_compounding_claim_gate.json',{})
-
     jobs=_read(run/'02_jobs/source_jobs.json',{}).get('jobs',[])
     accepted=_read(run/'03_skill_extraction/accepted_skill_packages.json',{}).get('accepted_skill_packages',[])
     imports=_read(run/'05_skill_import/skill_import_events.json',{}).get('skill_import_events',[])
@@ -636,6 +815,42 @@ def validate_network_compounding(args):
         raise SystemExit('network-compounding-validate failed: claim gate status mismatch with recomputed evidence')
     if expected_gate_status != 'supported_local_bounded':
         raise SystemExit('network-compounding-validate failed: claim gate not supported_local_bounded')
+    proofbundle_doc=_read(run/'14_proofbundles/index.json',{})
+    proofbundle_errors=[]
+    indexed_bundles=proofbundle_doc.get('proofbundles', [])
+    if len(indexed_bundles) != len(accepted):
+        proofbundle_errors.append(f"proofbundle index count {len(indexed_bundles)} does not match accepted skills {len(accepted)}")
+    indexed_ids=set()
+    for proofbundle in indexed_bundles:
+        proofbundle_id=proofbundle.get('proofbundle_id')
+        if not isinstance(proofbundle_id, str) or not proofbundle_id.strip():
+            proofbundle_errors.append('indexed proofbundle missing proofbundle_id')
+            continue
+        indexed_ids.add(proofbundle_id)
+        proofbundle_file=run/'14_proofbundles'/f'{proofbundle_id}.json'
+        if not proofbundle_file.exists():
+            proofbundle_errors.append(f"{proofbundle_id} standalone proofbundle file missing")
+        else:
+            standalone=_read(proofbundle_file,{})
+            if standalone != proofbundle:
+                proofbundle_errors.append(f"{proofbundle_id} standalone proofbundle file mismatch")
+        if proofbundle.get('complete') is not True:
+            proofbundle_errors.append(f"{proofbundle_id} incomplete")
+        expected_hash=_h({k: v for k, v in proofbundle.items() if k != 'proofbundle_hash'})
+        if proofbundle.get('proofbundle_hash') != expected_hash:
+            proofbundle_errors.append(f"{proofbundle_id} proofbundle_hash mismatch")
+        if proofbundle.get('replay_report_hash') != _h(replay):
+            proofbundle_errors.append(f"{proofbundle_id} replay_report_hash stale")
+        if proofbundle.get('falsification_audit_hash') != _h(falsification):
+            proofbundle_errors.append(f"{proofbundle_id} falsification_audit_hash stale")
+        if proofbundle.get('claim_gate_hash') != _h(gate):
+            proofbundle_errors.append(f"{proofbundle_id} claim_gate_hash stale")
+    standalone_ids={path.stem for path in (run/'14_proofbundles').glob('*.json') if path.name != 'index.json'}
+    extra_standalone_ids=standalone_ids-indexed_ids
+    if extra_standalone_ids:
+        proofbundle_errors.append(f"unexpected standalone proofbundle files: {sorted(extra_standalone_ids)}")
+    if proofbundle_errors:
+        raise SystemExit(f"network-compounding-validate failed: proofbundle integrity errors ({proofbundle_errors})")
 
 def build_network_data(args):
     reg=Path(args.registry); out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
