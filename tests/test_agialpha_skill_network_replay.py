@@ -41,3 +41,31 @@ def test_proofbundles_rehash_to_final_replay_and_falsification_artifacts():
             assert bundle["claim_gate_hash"] == _h(gate)
             body = {k: v for k, v in bundle.items() if k != "proofbundle_hash"}
             assert bundle["proofbundle_hash"] == _h(body)
+
+
+def test_validate_rejects_tampered_standalone_proofbundle_file():
+    with tempfile.TemporaryDirectory() as td:
+        run = Path(td) / "run"
+        reg = Path(td) / "reg"
+        subprocess.check_call([
+            "python", "-m", "agialpha_engine", "network-compounding-run",
+            "--repo-root", ".", "--registry", str(reg), "--out", str(run),
+            "--jobs", "5", "--target-agents", "3", "--heldout-tasks", "5", "--seed", "123",
+        ])
+        subprocess.check_call(["python", "-m", "agialpha_engine", "network-compounding-replay", "--run", str(run)])
+        subprocess.check_call(["python", "-m", "agialpha_engine", "network-compounding-falsification-audit", "--run", str(run)])
+
+        index = _read(run / "14_proofbundles" / "index.json")
+        proofbundle_id = index["proofbundles"][0]["proofbundle_id"]
+        standalone_path = run / "14_proofbundles" / f"{proofbundle_id}.json"
+        standalone = _read(standalone_path)
+        standalone["complete"] = False
+        standalone_path.write_text(json.dumps(standalone), encoding="utf-8")
+
+        proc = subprocess.run(
+            ["python", "-m", "agialpha_engine", "network-compounding-validate", "--run", str(run)],
+            capture_output=True,
+            text=True,
+        )
+        assert proc.returncode != 0
+        assert "standalone proofbundle file mismatch" in (proc.stderr + proc.stdout)

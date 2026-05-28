@@ -18,7 +18,7 @@ PATTERNS = {
     "slack_token": re.compile(r"\bxox[baprs]-[A-Za-z0-9-]{16,}\b"),
     "stripe_key": re.compile(r"\b(?:sk|pk)_(?:live|test)_[A-Za-z0-9]{16,}\b"),
     "phone_pii": re.compile(r"(?<!\d)(?:\+?1[-.\s]?)?(?:\(?[2-9][0-9]{2}\)?[-.\s]?)[0-9]{3}[-.\s]?[0-9]{4}(?!\d)"),
-    "high_entropy_string": re.compile(r"\b(?=[A-Za-z0-9_/-]{32,}\b)(?=(?:.*[A-Z]){2,})(?=(?:.*[a-z]){2,})(?=(?:.*[0-9]){2,})[A-Za-z0-9_/-]{32,}\b"),
+    "high_entropy_string": re.compile(r"\b(?=[A-Za-z0-9_/-]{32,}\b)(?=(?:[A-Za-z0-9_/-]*[A-Z]){2})(?=(?:[A-Za-z0-9_/-]*[a-z]){2})(?=(?:[A-Za-z0-9_/-]*[0-9]){2})[A-Za-z0-9_/-]{32,}\b"),
 }
 
 

@@ -818,6 +818,16 @@ def validate_network_compounding(args):
     proofbundle_doc=_read(run/'14_proofbundles/index.json',{})
     proofbundle_errors=[]
     for proofbundle in proofbundle_doc.get('proofbundles', []):
+        proofbundle_id=proofbundle.get('proofbundle_id')
+        standalone_path=run/'14_proofbundles'/f"{proofbundle_id}.json" if proofbundle_id else None
+        if not proofbundle_id:
+            proofbundle_errors.append("indexed proofbundle missing proofbundle_id")
+        elif standalone_path is None or not standalone_path.exists():
+            proofbundle_errors.append(f"{proofbundle_id} standalone proofbundle file missing")
+        else:
+            standalone_bundle=_read(standalone_path,{})
+            if standalone_bundle != proofbundle:
+                proofbundle_errors.append(f"{proofbundle_id} standalone proofbundle file mismatch")
         if proofbundle.get('complete') is not True:
             proofbundle_errors.append(f"{proofbundle.get('proofbundle_id')} incomplete")
         expected_hash=_h({k: v for k, v in proofbundle.items() if k != 'proofbundle_hash'})
