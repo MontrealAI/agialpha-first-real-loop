@@ -70,6 +70,72 @@
       "validators_required": [
         "validator-pass"
       ]
+    },
+    {
+      "activation_status": "inactive",
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "heldout_tests_required": [
+        "B6_vs_B5"
+      ],
+      "human_review_required": true,
+      "import_id": "import-skill-4-agent-2",
+      "import_status": "imported",
+      "no_auto_merge": true,
+      "reason": "imported_for_sandbox_validation",
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "schema_version": "agialpha.skill_import.v1",
+      "skill_id": "skill-4",
+      "source_agent_id": "agent-1",
+      "target_agent_id": "agent-2",
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validators_required": [
+        "validator-pass"
+      ]
+    },
+    {
+      "activation_status": "inactive",
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "heldout_tests_required": [
+        "B6_vs_B5"
+      ],
+      "human_review_required": true,
+      "import_id": "import-skill-4-agent-3",
+      "import_status": "imported",
+      "no_auto_merge": true,
+      "reason": "imported_for_sandbox_validation",
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "schema_version": "agialpha.skill_import.v1",
+      "skill_id": "skill-4",
+      "source_agent_id": "agent-1",
+      "target_agent_id": "agent-3",
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validators_required": [
+        "validator-pass"
+      ]
+    },
+    {
+      "activation_status": "inactive",
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "heldout_tests_required": [
+        "B6_vs_B5"
+      ],
+      "human_review_required": true,
+      "import_id": "import-skill-4-agent-4",
+      "import_status": "imported",
+      "no_auto_merge": true,
+      "reason": "imported_for_sandbox_validation",
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "schema_version": "agialpha.skill_import.v1",
+      "skill_id": "skill-4",
+      "source_agent_id": "agent-1",
+      "target_agent_id": "agent-4",
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validators_required": [
+        "validator-pass"
+      ]
     }
   ],
   "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
