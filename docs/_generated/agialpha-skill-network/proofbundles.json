@@ -5,42 +5,114 @@
   "no_auto_merge": true,
   "proofbundles": [
     {
+      "agent_skill_manifest_hashes": [
+        "86e8f6d4e6075b47d05d0d40b6ea0da669cb6b5f08900c82f8c7e3eb6171bf5f",
+        "e4cb93c592ce20752501caa957e2081a43e408ba08b54a7465a6f24d5b6abb68",
+        "69f30199143bee2d05110630b1c179ea7e059e501d53794e3bbd16d0357075a9",
+        "b1f2bddf7b6bc1a9217c59d6f4ad3beeb052e33844219d832b2e3964a06bbbe5"
+      ],
       "autonomous_persistence_allowed": false,
+      "b6_vs_b5_comparison_hash": "4eb2a4ea28966466c7513ab387853165b9500452e3ca6ca5ceb661cf69724fe8",
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "claim_gate_hash": "9a21b4127b0034627b2003345627897e62f00f3005ac1e9f32664a51ab94abe7",
+      "complete": true,
       "deterministic_seed": 123,
+      "environment_info": {
+        "network_calls_enabled": false,
+        "python_standard_library_only": true
+      },
+      "falsification_audit_hash": "e94aa392e7789cd031f6bd5ae18a8df66e930f1c7ec74b73d18056c04c54d7f0",
+      "heldout_test_hashes": [
+        "5241e357c0f4495b16180817ef844963dadcb183ddefa0072e0cb3b474ae954e",
+        "923848b5d70c3559818bceadda20ae794d77a29259cb5c005b9672833384f31c"
+      ],
       "human_review_required": true,
       "human_review_status": "pending",
+      "network_skill_vault_entry_hash": "33b0689cb2320601fdc2104d4f03750c5e4da2a548a5a3852fe8fa2f71c554b0",
       "no_auto_merge": true,
+      "proofbundle_hash": "0f42e86689514ca13e14758781b080b14d2b6b58b6eebd0ac843368b9054b71b",
       "proofbundle_id": "pb-skill-1",
+      "raw_evaluator_log_hashes": [
+        "0c255240cf2ed179f4695355fcf755c1bc59aa6634c018477c52267f4d60e798"
+      ],
       "raw_task_result_ids": [
         "raw-job-1"
       ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_command": "python -m agialpha_engine network-compounding-replay --run /tmp/agialpha-skill-network-test",
+      "replay_report_hash": "d833ed3bb8c806f83a18e11ecdcf7515740e95feb0a562982e282eab5bcf6bd1",
       "schema_version": "agialpha.engine003.proofbundle.v1",
+      "seed": 123,
       "skill_id": "skill-1",
+      "skill_import_event_hashes": [
+        "9e96c646f1e1764c32a74bb3ea9644a6dba802f9f75639786121b6df7e5bcfa1",
+        "6607c12592b621a256341e8a05569eb7f80eda40d19b0668bb941fc5c40afad3",
+        "78a948baff56f62ce650aad18d94c2e854177997509a18841eb7832f5c666127"
+      ],
+      "skill_package_hash": "989a2b214f5de97d4eb2757486627eb3b574a39982e7890cf181fd00ed63185b",
+      "source_agent_hash": "d750edec1d55b107c5e1c9f8047d0ea01908e136f23716bfc87641e3200f7b33",
       "source_agent_id": "agent-1",
+      "source_job_hash": "69f6dcda68b6e067c3202854f432c59edc40ac46d12f3e708fff48b5bb2886c1",
       "source_job_id": "job-1",
-      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validator_result_hashes": [
+        "3cebbf8e4ca2ee26bb00515629f002106cb050a7a19e16f0f24fdd0212a9dab4"
+      ]
     },
     {
+      "agent_skill_manifest_hashes": [
+        "86e8f6d4e6075b47d05d0d40b6ea0da669cb6b5f08900c82f8c7e3eb6171bf5f",
+        "e4cb93c592ce20752501caa957e2081a43e408ba08b54a7465a6f24d5b6abb68",
+        "69f30199143bee2d05110630b1c179ea7e059e501d53794e3bbd16d0357075a9",
+        "b1f2bddf7b6bc1a9217c59d6f4ad3beeb052e33844219d832b2e3964a06bbbe5"
+      ],
       "autonomous_persistence_allowed": false,
+      "b6_vs_b5_comparison_hash": "4eb2a4ea28966466c7513ab387853165b9500452e3ca6ca5ceb661cf69724fe8",
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "claim_gate_hash": "9a21b4127b0034627b2003345627897e62f00f3005ac1e9f32664a51ab94abe7",
+      "complete": true,
       "deterministic_seed": 123,
+      "environment_info": {
+        "network_calls_enabled": false,
+        "python_standard_library_only": true
+      },
+      "falsification_audit_hash": "e94aa392e7789cd031f6bd5ae18a8df66e930f1c7ec74b73d18056c04c54d7f0",
+      "heldout_test_hashes": [
+        "5241e357c0f4495b16180817ef844963dadcb183ddefa0072e0cb3b474ae954e",
+        "923848b5d70c3559818bceadda20ae794d77a29259cb5c005b9672833384f31c"
+      ],
       "human_review_required": true,
       "human_review_status": "pending",
+      "network_skill_vault_entry_hash": "75797dea9ecf172ea893e5c3c58821ea35cbe1b624e9296c71b6f559ca1bb047",
       "no_auto_merge": true,
+      "proofbundle_hash": "9fa44142a42251dbda7c2570f06938ad8331e6536725da946da4ab916561cb15",
       "proofbundle_id": "pb-skill-4",
+      "raw_evaluator_log_hashes": [
+        "d3c1ecec26b76bb614fecb6774c1ccd7e739472e9c8a2f033eda8dd0468a61ec"
+      ],
       "raw_task_result_ids": [
         "raw-job-4"
       ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_command": "python -m agialpha_engine network-compounding-replay --run /tmp/agialpha-skill-network-test",
+      "replay_report_hash": "d833ed3bb8c806f83a18e11ecdcf7515740e95feb0a562982e282eab5bcf6bd1",
       "schema_version": "agialpha.engine003.proofbundle.v1",
+      "seed": 123,
       "skill_id": "skill-4",
+      "skill_import_event_hashes": [
+        "4da02c11dbf07746282916fffe70138e3bc2e6cb623fe2aec2f51fe5af8938d7",
+        "d3f98c0e4a6f02578fce32913c1665299a7e95b998a512a5b2fe627fa46acd77",
+        "df58e8b844e9d2919688572928f8ca8e1087b2fa136b3681f3ae9d645540b3ce"
+      ],
+      "skill_package_hash": "ece92bf6155df03fda7d4527f6ee4dc4fb2340f35aa1c305fbecfbd323233668",
+      "source_agent_hash": "d750edec1d55b107c5e1c9f8047d0ea01908e136f23716bfc87641e3200f7b33",
       "source_agent_id": "agent-1",
+      "source_job_hash": "f1b4baffd53e1b0cf4a55d81adf0504d00fb06a98567ddc8e23a069b76b56915",
       "source_job_id": "job-4",
-      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+      "validator_result_hashes": [
+        "3cebbf8e4ca2ee26bb00515629f002106cb050a7a19e16f0f24fdd0212a9dab4"
+      ]
     }
   ],
   "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",

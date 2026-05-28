@@ -283,13 +283,14 @@ def run_network_compounding(args):
     manifests_before_import=json.loads(json.dumps(manifests, sort_keys=True))
     imports=[]
     manifest_by_agent={m['agent_id']:m for m in manifests}
-    for t in target_agents:
-        imports.append({"schema_version":"agialpha.skill_import.v1","import_id":f"import-{skill['skill_id']}-{t}","skill_id":skill['skill_id'],"source_agent_id":skill['source_agent_id'],"target_agent_id":t,"import_status":"imported","activation_status":"inactive","reason":"imported_for_sandbox_validation","validators_required":["validator-pass"],"heldout_tests_required":["B6_vs_B5"],**_base()})
-        manifest=manifest_by_agent.get(t)
-        if manifest is not None:
-            manifest.setdefault('imported_skills',[])
-            if skill['skill_id'] not in manifest['imported_skills']:
-                manifest['imported_skills'].append(skill['skill_id'])
+    for imported_skill in accepted:
+        for t in target_agents:
+            imports.append({"schema_version":"agialpha.skill_import.v1","import_id":f"import-{imported_skill['skill_id']}-{t}","skill_id":imported_skill['skill_id'],"source_agent_id":imported_skill['source_agent_id'],"target_agent_id":t,"import_status":"imported","activation_status":"inactive","reason":"imported_for_sandbox_validation","validators_required":["validator-pass"],"heldout_tests_required":["B6_vs_B5"],**_base()})
+            manifest=manifest_by_agent.get(t)
+            if manifest is not None:
+                manifest.setdefault('imported_skills',[])
+                if imported_skill['skill_id'] not in manifest['imported_skills']:
+                    manifest['imported_skills'].append(imported_skill['skill_id'])
     b5=[];b6=[]
     for i in range(args.heldout_tasks):
         base=0.5+0.01*(i%3)+(rng.random()*0.01)
@@ -345,8 +346,13 @@ def run_network_compounding(args):
     atomic_write_json(out/'07_metrics/network_skill_metrics.json',metrics); atomic_write_json(out/'07_metrics/network_skill_propagation_lift.json',{"network_skill_propagation_lift":lift,**_base()}); atomic_write_json(out/'07_metrics/compounding_exponent_proxy.json',{"compounding_exponent_proxy":"not_supported",**_base()})
     receipt={"schema_version":"agialpha.skill_network.work_vault_receipt.v1","receipt_id":"receipt-1","skill_id":skill['skill_id'],"source_job_id":skill['source_job_id'],"source_agent_id":skill['source_agent_id'],"target_agent_ids":target_agents,"utility_budget_units":100,"alpha_work_units_estimated":42,"validator_fee_units":8,"replay_fee_units":5,"proofbundle_fee_units":3,"evidence_docket_fee_units":3,"skill_publication_fee_units":2,"skill_import_fee_units":len(target_agents),"unused_budget_refund_units":100-42-8-5-3-3-2-len(target_agents),"settlement_mode":"synthetic_local_json_receipt_only","wallet_used":False,"custody_used":False,"payment_executed":False,"token_price_used":False,"investment_claim_made":False,"receipt_note":"Synthetic local utility receipt only. No wallet, custody, payment, trading, KYC/AML, money transmission, securities functionality, token price, token value, token appreciation, or investment return.",**_base()}
     atomic_write_json(out/'08_work_vault/skill_work_vault_receipts.json',{"receipts":[receipt],**_base()})
+    pending_replay_report = {"replay_pass": False, "replay_passes": 0, "status": "pending_replay_execution", **_base()}
+    pending_falsification_audit = {"falsification_pass": False, "status": "pending_falsification_execution", "adversarial_checks": ["fake skill metric rejected", "forbidden claim injection rejected", "regulated-domain skill blocked", "token-value skill blocked", "raw secret-like string redacted", "auto-merge attempt rejected", "replay mismatch detected", "missing skill evidence detected", "baseline regression detected", "poisoned skill import quarantined"], **_base()}
     proofbundles=[]
     for sk in accepted:
+        source_job = next((j for j in jobs if j.get("job_id") == sk["source_job_id"]), {})
+        source_agent = next((a for a in agents if a.get("agent_id") == sk["source_agent_id"]), {})
+        raw_rows = [r for r in raw if r.get("raw_task_result_id") in sk.get("raw_task_result_ids", [])]
         pb={
             "schema_version":"agialpha.engine003.proofbundle.v1",
             "proofbundle_id":sk["proofbundle_id"],
@@ -354,11 +360,28 @@ def run_network_compounding(args):
             "source_job_id":sk["source_job_id"],
             "source_agent_id":sk["source_agent_id"],
             "raw_task_result_ids":sk["raw_task_result_ids"],
+            "source_job_hash": _h(source_job),
+            "source_agent_hash": _h(source_agent),
+            "raw_evaluator_log_hashes": [_h(r) for r in raw_rows],
+            "validator_result_hashes": [_h(r.get("validator_results", [])) for r in raw_rows],
+            "skill_package_hash": _h(sk),
+            "network_skill_vault_entry_hash": _h({"skill_id": sk["skill_id"], "published": True, "allowed_import_scope": sk.get("allowed_import_scope")}),
+            "agent_skill_manifest_hashes": [_h(m) for m in manifests],
+            "skill_import_event_hashes": [_h(i) for i in imports if i.get("skill_id") == sk["skill_id"]],
+            "heldout_test_hashes": [_h(b5), _h(b6)],
+            "b6_vs_b5_comparison_hash": _h({"D_no_shared_skill": d5, "D_shared_skill_network": d6, "NetworkSkillPropagationLift": lift}),
+            "replay_report_hash": _h(pending_replay_report),
+            "falsification_audit_hash": _h(pending_falsification_audit),
+            "claim_gate_hash": _h(gate),
+            "seed": args.seed,
+            "environment_info": {"python_standard_library_only": True, "network_calls_enabled": False},
             "deterministic_seed":args.seed,
             "replay_command":f"python -m agialpha_engine network-compounding-replay --run {out}",
             "human_review_status":"pending",
             **_base(),
         }
+        pb["complete"] = all([pb["source_job_hash"], pb["source_agent_hash"], pb["raw_evaluator_log_hashes"], pb["validator_result_hashes"], pb["skill_package_hash"], pb["network_skill_vault_entry_hash"], pb["agent_skill_manifest_hashes"], pb["skill_import_event_hashes"], pb["heldout_test_hashes"], pb["b6_vs_b5_comparison_hash"], pb["replay_report_hash"], pb["falsification_audit_hash"], pb["claim_gate_hash"]])
+        pb["proofbundle_hash"] = _h({k: v for k, v in pb.items() if k != "proofbundle_hash"})
         proofbundles.append(pb)
         atomic_write_json(out/'14_proofbundles'/f'{sk["proofbundle_id"]}.json',pb)
     atomic_write_json(out/'14_proofbundles/index.json',{"proofbundles":proofbundles,**_base()})
@@ -379,8 +402,38 @@ def run_network_compounding(args):
         dockets.append(docket)
         atomic_write_json(out/'15_evidence_dockets'/f'{sk["evidence_docket_id"]}.json',docket)
     atomic_write_json(out/'15_evidence_dockets/index.json',{"evidence_dockets":dockets,**_base()})
-    atomic_write_json(out/'11_replay/replay_report.json',{"replay_pass":False,"replay_passes":0,"status":"pending_replay_execution",**_base()})
-    atomic_write_json(out/'12_falsification/falsification_audit.json',{"falsification_pass":False,"status":"pending_falsification_execution","adversarial_checks":["fake skill metric rejected","forbidden claim injection rejected","regulated-domain skill blocked","token-value skill blocked","raw secret-like string redacted","auto-merge attempt rejected","replay mismatch detected","missing skill evidence detected","baseline regression detected","poisoned skill import quarantined"],**_base()})
+    docket_root = out / "network-skill-evidence-docket"
+    atomic_write_json(docket_root / "00_manifest.json", {"run_id": run_id, "evidence_docket_type": "network_skill_compounding", **_base()})
+    atomic_write_json(docket_root / "01_claims_matrix.json", {"supported_claim": gate.get("claim_gate_status"), "exponential_compounding_supported": False, **_base()})
+    (docket_root / "02_scope_and_claim_boundary.md").parent.mkdir(parents=True, exist_ok=True)
+    (docket_root / "02_scope_and_claim_boundary.md").write_text(BOUNDARIES["claim_boundary"], encoding="utf-8")
+    (docket_root / "03_token_boundary.md").write_text(BOUNDARIES["token_boundary"], encoding="utf-8")
+    (docket_root / "04_regulated_boundary.md").write_text(BOUNDARIES["regulated_boundary"], encoding="utf-8")
+    docket_json_sections = {
+        "05_source_jobs/source_jobs.json": {"jobs": jobs, **_base()},
+        "06_raw_evaluator_logs/raw_task_results.json": {"raw_task_results": raw, **_base()},
+        "07_skill_extraction/skill_extraction_report.json": {"accepted_skill_packages": accepted, "rejected_skill_candidates": rejected, "failure_learning_packages": failure, **_base()},
+        "08_skill_packages/accepted_skill_packages.json": {"accepted_skill_packages": accepted, **_base()},
+        "09_rejected_skill_candidates/rejected_skill_candidates.json": {"rejected_skill_candidates": rejected, **_base()},
+        "10_failure_learning_packages/failure_learning_packages.json": {"failure_learning_packages": failure, **_base()},
+        "11_network_skill_vault/network_skill_vault.json": {"skill_packages": accepted, **_base()},
+        "12_agent_skill_manifests/agent_skill_manifests.json": {"manifests": manifests, **_base()},
+        "13_skill_import_events/skill_import_events.json": {"skill_import_events": imports, **_base()},
+        "14_heldout_reuse_tests/heldout_reuse_tests.json": {"B5_no_shared_skill": b5, "B6_shared_skill_network": b6, **_base()},
+        "15_b6_vs_b5_comparison.json": {"D_no_shared_skill": d5, "D_shared_skill_network": d6, "NetworkSkillPropagationLift": lift, **_base()},
+        "16_replay_report.json": pending_replay_report,
+        "17_falsification_audit.json": pending_falsification_audit,
+        "18_safety_ledger.json": {**derived_safety_counters, **_base()},
+        "19_cost_ledger.json": {"receipts": [receipt], **_base()},
+        "20_network_skill_metrics.json": metrics,
+        "21_claim_gate_decision.json": gate,
+    }
+    for rel_path, payload in docket_json_sections.items():
+        atomic_write_json(docket_root / rel_path, payload)
+    (docket_root / "22_human_review_required.md").write_text("Human review status: pending. Production activation is blocked until accepted human review.", encoding="utf-8")
+    (docket_root / "23_next_best_actions.md").write_text("Replay, falsify, review, and only then consider sandbox-to-production activation.", encoding="utf-8")
+    atomic_write_json(out/'11_replay/replay_report.json', pending_replay_report)
+    atomic_write_json(out/'12_falsification/falsification_audit.json', pending_falsification_audit)
     atomic_write_json(out/'13_claim_gate/network_compounding_claim_gate.json',gate)
     atomic_write_json(out/'evidence-run-manifest.json',{"run":str(out),"run_id":run_id,"registry":str(reg),**_base()})
     # registry + generated placeholders
