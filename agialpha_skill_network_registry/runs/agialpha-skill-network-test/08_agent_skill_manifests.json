@@ -32,7 +32,8 @@
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
       "human_review_required": true,
       "imported_skills": [
-        "skill-1"
+        "skill-1",
+        "skill-4"
       ],
       "last_updated": "seed-123",
       "native_skills": [],
@@ -56,7 +57,8 @@
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
       "human_review_required": true,
       "imported_skills": [
-        "skill-1"
+        "skill-1",
+        "skill-4"
       ],
       "last_updated": "seed-123",
       "native_skills": [],
@@ -80,7 +82,8 @@
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
       "human_review_required": true,
       "imported_skills": [
-        "skill-1"
+        "skill-1",
+        "skill-4"
       ],
       "last_updated": "seed-123",
       "native_skills": [],
