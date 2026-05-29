@@ -64,6 +64,15 @@ def test_initial_proofbundle_hashes_persisted_comparison_artifact():
             standalone_path = reg / "runs" / run.name / "14_proofbundles" / f"{bundle['proofbundle_id']}.json"
             assert _read(standalone_path) == bundle
         for bundle in run_bundles + registry_bundles + archived_bundles:
+        run_id = _read(reg / "latest.json")["run_id"]
+        archived_index_path = reg / "runs" / run_id / "14_proofbundles" / "index.json"
+        archived_bundles = _read(archived_index_path)["proofbundles"]
+
+        assert run_bundles
+        assert archived_bundles == run_bundles
+        for bundle in run_bundles + registry_bundles + archived_bundles:
+            standalone = _read(reg / "runs" / run_id / "14_proofbundles" / f"{bundle['proofbundle_id']}.json")
+            assert standalone == bundle
             assert bundle["complete"] is True
             assert bundle["b6_vs_b5_comparison_hash"] == _h(persisted_comparison)
 
