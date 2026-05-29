@@ -799,9 +799,16 @@ def validate_network_compounding(args):
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
     failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
     active_imports=[imp for imp in imports if imp.get('import_status') in {'imported', 'imported_inactive_outside_sandbox'}]
-    inactive_outside_sandbox=[imp for imp in active_imports if imp.get('activation_status')=='inactive']
-    if len(inactive_outside_sandbox)!=len(active_imports):
-        raise SystemExit('network-compounding-validate failed: imported skills must remain inactive outside sandbox by default')
+    unsafe_imports=[]
+    for imp in active_imports:
+        if imp.get('activation_status') != 'inactive':
+            unsafe_imports.append(f"{imp.get('import_id', 'unknown')}: activation_status must be inactive")
+        if imp.get('active_outside_sandbox') is not False:
+            unsafe_imports.append(f"{imp.get('import_id', 'unknown')}: active_outside_sandbox must be false")
+        if imp.get('production_activation_allowed') is not False:
+            unsafe_imports.append(f"{imp.get('import_id', 'unknown')}: production_activation_allowed must be false")
+    if unsafe_imports:
+        raise SystemExit(f"network-compounding-validate failed: imported skills must remain inactive outside sandbox by default ({unsafe_imports})")
     imported_skill_ids={imp.get('skill_id') for imp in active_imports if imp.get('skill_id')}
     manifest_import_agent_ids=set()
     for manifest in manifests:
