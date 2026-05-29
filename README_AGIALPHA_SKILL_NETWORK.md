@@ -12,6 +12,8 @@ One Agent learns, all Agents level up.
 
 “Instant sharing” means **sandboxed registration and importability** through the Network Skill Vault. It does **not** mean production activation without validators and human review.
 
+Instant sharing means sandboxed registration and importability. Production activation requires validators and human review. Exponential compounding is a strategic target unless the exponential claim gate passes.
+
 ## Canonical doctrine
 
 No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.
@@ -25,6 +27,8 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 ## What this does not claim
 
 This experiment does **not** claim achieved AGI, ASI, superintelligence, empirical SOTA, official benchmark victory, certification, legal exemption, safe autonomy, token value, token appreciation, or investment return.
+
+$AGIALPHA remains utility-only. Work Vault records are synthetic local utility-accounting receipts only; no wallet, custody, payment, trading, KYC/AML, token price, token value, ROI, yield, or investment return is implemented or claimed.
 
 ## Quickstart
 
