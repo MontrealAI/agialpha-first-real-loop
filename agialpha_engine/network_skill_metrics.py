@@ -14,8 +14,22 @@ def base_record(extra=None):
 
 __doc__ = "Network skill metrics computation from raw logs."
 
+REQUIRED_D_FIELDS = (
+    "success_score",
+    "validator_pass",
+    "replay_pass",
+    "proofbundle",
+    "docket",
+    "cost_risk_proxy",
+)
+
+
 def compute_d_metric(rows):
     if not rows:
+        return "not_reported"
+    if any(not isinstance(row, dict) for row in rows):
+        return "not_reported"
+    if any(any(field not in row for field in REQUIRED_D_FIELDS) for row in rows):
         return "not_reported"
     return sum(_row_factor(r) for r in rows)/len(rows)
 
