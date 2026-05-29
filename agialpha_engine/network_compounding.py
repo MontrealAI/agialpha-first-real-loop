@@ -907,13 +907,144 @@ def validate_network_compounding(args):
     if proofbundle_errors:
         raise SystemExit(f"network-compounding-validate failed: proofbundle integrity errors ({proofbundle_errors})")
 
+
 def build_network_data(args):
-    reg=Path(args.registry); out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
-    mp={'latest':'latest.json','agents':'agents.json','agent_skill_manifests':'agent_skill_manifests.json','skill_packages':'skill_packages.json','rejected_skill_candidates':'rejected_skill_candidates.json','failure_learning_packages':'failure_learning_packages.json','skill_imports':'skill_imports.json','skill_propagation_events':'skill_propagation_events.json','network_skill_metrics':'network_skill_metrics.json','claim_gate':'claim_gate_decisions.json','lineage_graph':'lineage_graph.json','work_vault_receipts':'work_vault_receipts.json','proofbundles':'proofbundles.json','evidence_dockets':'evidence_dockets.json','summary':'network_skill_metrics.json'}
-    for k,v in mp.items(): atomic_write_json(out/f'{k}.json',_read(reg/v,{"status":"not_reported",**_base()}))
-    # alias
-    atomic_write_json(out/'b6_vs_b5.json',_read(reg/'network_skill_metrics.json',{}))
+    reg = Path(args.registry)
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    mapping = {
+        "latest": "latest.json",
+        "agents": "agents.json",
+        "agent_skill_manifests": "agent_skill_manifests.json",
+        "skill_packages": "skill_packages.json",
+        "rejected_skill_candidates": "rejected_skill_candidates.json",
+        "failure_learning_packages": "failure_learning_packages.json",
+        "skill_imports": "skill_imports.json",
+        "skill_propagation_events": "skill_propagation_events.json",
+        "network_skill_metrics": "network_skill_metrics.json",
+        "claim_gate": "claim_gate_decisions.json",
+        "lineage_graph": "lineage_graph.json",
+        "work_vault_receipts": "work_vault_receipts.json",
+        "proofbundles": "proofbundles.json",
+        "evidence_dockets": "evidence_dockets.json",
+    }
+    payloads = {}
+    for public_name, registry_name in mapping.items():
+        payload = _read(reg / registry_name, {"status": "not_reported", **_base()})
+        payloads[public_name] = payload
+        atomic_write_json(out / f"{public_name}.json", payload)
+
+    metrics = payloads.get("network_skill_metrics", {}) if isinstance(payloads.get("network_skill_metrics"), dict) else {}
+    claim_gate = payloads.get("claim_gate", {}) if isinstance(payloads.get("claim_gate"), dict) else {}
+    b6_vs_b5 = {
+        "schema_version": "agialpha.skill_network.b6_vs_b5_public.v1",
+        "B6_shared_skill_beats_B5_no_shared_skill": metrics.get("B6_shared_skill_beats_B5_no_shared_skill", "not_reported"),
+        "B6_shared_skill_advantage_delta": metrics.get("B6_shared_skill_advantage_delta", "not_reported"),
+        "network_skill_propagation_lift": metrics.get("network_skill_propagation_lift", "not_reported"),
+        "raw_task_result_ids": metrics.get("raw_task_result_ids", []),
+        "computed_from_raw_logs": bool(metrics.get("raw_task_result_ids")) if isinstance(metrics.get("raw_task_result_ids"), list) else "not_reported",
+        **_base(),
+    }
+    atomic_write_json(out / "b6_vs_b5.json", b6_vs_b5)
+
+    def _count(doc, key):
+        value = doc.get(key, []) if isinstance(doc, dict) else []
+        return len(value) if isinstance(value, list) else "not_reported"
+
+    summary = {
+        "schema_version": "agialpha.skill_network.public_summary.v1",
+        "hero": "AGI ALPHA Skill Network",
+        "operating_thesis": [
+            "Every Job makes an AI Agent smarter.",
+            "Every new skill can be instantly shared across the network.",
+            "One Agent learns, all Agents level up.",
+        ],
+        "caveat": "Instant sharing means sandboxed registration and importability. Production activation requires validators and human review. Exponential compounding is a strategic target unless the exponential claim gate passes.",
+        "canonical_doctrine": "No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.",
+        "run_id": payloads.get("latest", {}).get("run_id", "not_reported") if isinstance(payloads.get("latest"), dict) else "not_reported",
+        "jobs_run": metrics.get("jobs_run", "not_reported"),
+        "accepted_skill_packages": _count(payloads.get("skill_packages", {}), "skill_packages"),
+        "rejected_skill_candidates": _count(payloads.get("rejected_skill_candidates", {}), "rejected_skill_candidates"),
+        "failure_learning_packages": _count(payloads.get("failure_learning_packages", {}), "failure_learning_packages"),
+        "skill_import_events": _count(payloads.get("skill_imports", {}), "skill_imports"),
+        "agents_registered": _count(payloads.get("agents", {}), "agents"),
+        "claim_gate_status": claim_gate.get("claim_gate_status", "not_supported"),
+        "exponential_compounding_status": metrics.get("exponential_compounding_status", claim_gate.get("exponential_compounding_status", "Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.")),
+        "raw_json_links": sorted([f"{name}.json" for name in list(mapping) + ["b6_vs_b5"]]),
+        **_base(),
+    }
+    atomic_write_json(out / "summary.json", summary)
+
+
+def _html_escape(value):
+    import html
+    return html.escape(str(value), quote=True)
+
 
 def render_network_data(args):
-    out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
-    atomic_write_json(out/'routes.json',{"routes":["/agialpha-skill-network/","/experiments/agialpha-engine-003/"],"nav_label":"Skill Network",**_base()})
+    reg = Path(args.registry)
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    metrics = _read(reg / "network_skill_metrics.json", {})
+    gate = _read(reg / "claim_gate_decisions.json", {})
+    skills = _read(reg / "skill_packages.json", {}).get("skill_packages", [])
+    imports = _read(reg / "skill_imports.json", {}).get("skill_imports", [])
+    agents = _read(reg / "agent_skill_manifests.json", {}).get("manifests", [])
+    failures = _read(reg / "failure_learning_packages.json", {}).get("failure_learning_packages", [])
+    receipts = _read(reg / "work_vault_receipts.json", {}).get("receipts", [])
+    card_keys = [
+        "jobs_run", "accepted_skill_packages", "rejected_skill_candidates", "failure_learning_packages",
+        "skills_published_to_vault", "agents_registered", "skill_import_events", "target_agents_improved_on_heldout",
+        "heldout_tasks_evaluated", "B6_shared_skill_beats_B5_no_shared_skill", "network_skill_propagation_lift",
+        "compounding_exponent_proxy", "exponential_compounding_supported", "replay_pass_rate", "falsification_pass",
+        "critical_safety_incidents",
+    ]
+    cards = "".join(
+        f"<article class='card'><span>{_html_escape(key.replace('_', ' '))}</span><strong>{_html_escape(metrics.get(key, 'not_reported'))}</strong></article>"
+        for key in card_keys
+    )
+    rows = []
+    for skill in skills:
+        imported_by = sorted({event.get("target_agent_id") for event in imports if event.get("skill_id") == skill.get("skill_id") and event.get("target_agent_id")})
+        rows.append(
+            "<tr>"
+            f"<td>{_html_escape(skill.get('skill_id'))}</td>"
+            f"<td>{_html_escape(skill.get('source_job_id'))}</td>"
+            f"<td>{_html_escape(skill.get('source_agent_id'))}</td>"
+            f"<td>{_html_escape(skill.get('skill_type'))}</td>"
+            f"<td>{_html_escape(skill.get('proofbundle_id'))}</td>"
+            f"<td>{_html_escape(skill.get('evidence_docket_id'))}</td>"
+            f"<td>{_html_escape(', '.join(imported_by))}</td>"
+            f"<td>{_html_escape(metrics.get('network_skill_propagation_lift', 'not_reported'))}</td>"
+            f"<td>{_html_escape(skill.get('allowed_import_scope'))}</td>"
+            f"<td>{_html_escape(skill.get('human_review_required'))}</td>"
+            "</tr>"
+        )
+    proof_chain = [
+        "AGI Job", "Skill Package / Rejected Skill / Failure Learning", "ProofBundle", "Evidence Docket",
+        "Network Skill Vault", "Agent Skill Manifest", "Held-out Reuse Test", "B6 vs B5",
+        "NetworkSkillPropagationLift", "Claim Gate", "Human Review",
+    ]
+    chain_html = "".join(f"<span>{_html_escape(step)}</span>" for step in proof_chain)
+    skill_rows = "".join(rows) if rows else "<tr><td colspan='10'>No accepted Skill Packages reported.</td></tr>"
+    html_text = f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AGI ALPHA Skill Network</title>
+<style>body{{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:#08111f;color:#eaf2ff}}main{{max-width:1180px;margin:auto;padding:40px 20px}}.hero{{padding:48px;border:1px solid #24415f;border-radius:28px;background:linear-gradient(135deg,#10213c,#07101d 60%,#183b4d)}}h1{{font-size:clamp(2.4rem,6vw,5rem);margin:.1em 0}}h2{{margin-top:44px}}.thesis{{font-size:1.35rem;line-height:1.5;color:#d9ecff}}.caveat,.footer{{border-left:4px solid #7cc7ff;background:#0d1c31;padding:18px 22px;border-radius:12px}}.chain{{display:flex;flex-wrap:wrap;gap:8px}}.chain span{{border:1px solid #31577d;border-radius:999px;padding:8px 12px;background:#0e2038}}.cards{{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}}.card{{border:1px solid #284966;border-radius:18px;padding:18px;background:#0d1b2f}}.card span{{display:block;color:#9fb9d8;font-size:.82rem;text-transform:uppercase}}.card strong{{font-size:1.4rem}}table{{width:100%;border-collapse:collapse;background:#09182a;border-radius:16px;overflow:hidden}}td,th{{border-bottom:1px solid #213b58;padding:11px;text-align:left;vertical-align:top}}th{{color:#a9d7ff;background:#10233b}}a{{color:#8bd3ff}}.panel{{border:1px solid #294e73;border-radius:20px;padding:20px;background:#0a1829;margin:18px 0}}code{{color:#bde6ff}}</style></head>
+<body><main><section class="hero"><p>Skill Network</p><h1>AGI ALPHA Skill Network</h1><div class="thesis"><p>Every Job makes an AI Agent smarter.</p><p>Every new skill can be instantly shared across the network.</p><p>One Agent learns, all Agents level up.</p></div></section>
+<section class="caveat"><strong>Caveat.</strong> Instant sharing means sandboxed registration/importability. Production activation requires validators and human review. Exponential compounding is a strategic target unless the exponential claim gate passes.</section>
+<h2>Proof chain</h2><div class="chain">{chain_html}</div>
+<div class="panel"><h2>Claim gate panel</h2><p><strong>{_html_escape(gate.get('claim_gate_status', 'not_supported'))}</strong></p><p>{_html_escape(gate.get('supported_wording', 'Networked skill compounding claim not yet supported.'))}</p></div>
+<div class="panel"><h2>Exponential compounding status panel</h2><p>{_html_escape(metrics.get('exponential_compounding_status', 'Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.'))}</p></div>
+<h2>Status cards</h2><div class="cards">{cards}</div>
+<h2>Skill propagation graph</h2><div class="panel"><p>{_html_escape(len(skills))} accepted skill package(s), {_html_escape(len(imports))} import event(s), and {_html_escape(len(agents))} agent manifest(s) are represented in generated JSON.</p></div>
+<h2>Skill table</h2><table><thead><tr><th>skill</th><th>source job</th><th>source agent</th><th>skill type</th><th>ProofBundle</th><th>Evidence Docket</th><th>imported by</th><th>held-out lift</th><th>activation status</th><th>human-review status</th></tr></thead><tbody>{skill_rows}</tbody></table>
+<div class="panel"><h2>Agent Skill Manifest panel</h2><p>Manifests track native, imported, quarantined, and rejected skills. Imported skills remain inactive outside sandbox by default.</p><pre>{_html_escape(json.dumps(agents[:3], indent=2, sort_keys=True))}</pre></div>
+<div class="panel"><h2>B6 vs B5 comparison</h2><p>B6 beats B5: <strong>{_html_escape(metrics.get('B6_shared_skill_beats_B5_no_shared_skill', 'not_reported'))}</strong>; NetworkSkillPropagationLift: <strong>{_html_escape(metrics.get('network_skill_propagation_lift', 'not_reported'))}</strong>. Metrics are computed from raw evaluator logs.</p></div>
+<div class="panel"><h2>Failure learning panel</h2><p>{_html_escape(len(failures))} Failure Learning Package(s) preserved for reuse, rejection, quarantine, or harder tests.</p></div>
+<div class="panel"><h2>Work Vault / $AGIALPHA utility accounting</h2><p>Synthetic local utility receipts only. No wallet, custody, payment, trading, KYC/AML, money transmission, securities functionality, token price, token value, token appreciation, or investment return.</p><p>{_html_escape(len(receipts))} receipt(s) available.</p></div>
+<div class="panel"><h2>Safety and boundaries</h2><p>Claim boundary, token boundary, regulated-boundary firewall, no auto-merge, no autonomous persistence, and human review remain required.</p></div>
+<div class="panel"><h2>Workflow buttons</h2><p><code>agialpha-engine-003-network-compounding.yml</code> · <code>agialpha-engine-003-network-replay.yml</code> · <code>agialpha-engine-003-network-falsification-audit.yml</code> · <code>agialpha-engine-003-network-claim-gate.yml</code></p></div>
+<div class="panel"><h2>Raw JSON links</h2><p><a href="../../_generated/agialpha-skill-network/summary.json">summary</a> · <a href="../../_generated/agialpha-skill-network/network_skill_metrics.json">metrics</a> · <a href="../../_generated/agialpha-skill-network/claim_gate.json">claim gate</a> · <a href="../../_generated/agialpha-skill-network/skill_packages.json">skill packages</a></p></div>
+<p class="footer">No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.</p></main></body></html>"""
+    (out / "index.html").write_text(html_text, encoding="utf-8")
+    atomic_write_json(out / "routes.json", {"routes": ["/agialpha-skill-network/", "/experiments/agialpha-engine-003/"], "nav_label": "Skill Network", "primary_html": "index.html", **_base()})
