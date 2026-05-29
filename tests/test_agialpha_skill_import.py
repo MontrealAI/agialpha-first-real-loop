@@ -39,3 +39,15 @@ def test_skill_import_schema_requires_production_activation_block():
 
     assert schema["properties"]["production_activation_allowed"] == {"const": False, "type": "boolean"}
     assert "production_activation_allowed" in schema["required"]
+
+
+def test_skill_import_schema_accepts_legacy_imported_status():
+    import json
+    from pathlib import Path
+
+    schema = json.loads(Path("schemas/agialpha_skill_import.schema.json").read_text())
+    enum = schema["properties"]["import_status"]["enum"]
+
+    assert "imported" in enum
+    assert "imported_inactive_outside_sandbox" in enum
+

@@ -36,6 +36,7 @@
     },
     "import_status": {
       "enum": [
+        "imported",
         "imported_inactive_outside_sandbox",
         "quarantined_missing_evidence",
         "regulated_boundary_blocked",
