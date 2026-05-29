@@ -798,17 +798,26 @@ def validate_network_compounding(args):
     metrics=_read(run/'07_metrics/network_skill_metrics.json',{})
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
     failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
-    active_imports=[imp for imp in imports if imp.get('import_status') in {'imported', 'imported_inactive_outside_sandbox'}]
+    imported_statuses={'imported', 'imported_inactive_outside_sandbox'}
+    non_imported_safe_statuses={'quarantined_missing_evidence', 'regulated_boundary_blocked', 'documentation_only_human_review_required'}
+    active_imports=[imp for imp in imports if imp.get('import_status') in imported_statuses]
     unsafe_imports=[]
-    for imp in active_imports:
-        if imp.get('activation_status') != 'inactive':
-            unsafe_imports.append(f"{imp.get('import_id', 'unknown')}: activation_status must be inactive")
+    for imp in imports:
+        import_id=imp.get('import_id', 'unknown')
+        import_status=imp.get('import_status')
+        activation_status=imp.get('activation_status')
+        if import_status not in imported_statuses | non_imported_safe_statuses:
+            unsafe_imports.append(f"{import_id}: import_status is not allowed")
+        if import_status in imported_statuses and activation_status != 'inactive':
+            unsafe_imports.append(f"{import_id}: activation_status must be inactive for imported skills")
+        if import_status in non_imported_safe_statuses and activation_status not in {'inactive', 'quarantined'}:
+            unsafe_imports.append(f"{import_id}: activation_status must be inactive or quarantined for non-imported skill events")
         if imp.get('active_outside_sandbox') is not False:
-            unsafe_imports.append(f"{imp.get('import_id', 'unknown')}: active_outside_sandbox must be false")
+            unsafe_imports.append(f"{import_id}: active_outside_sandbox must be false")
         if imp.get('production_activation_allowed') is not False:
-            unsafe_imports.append(f"{imp.get('import_id', 'unknown')}: production_activation_allowed must be false")
+            unsafe_imports.append(f"{import_id}: production_activation_allowed must be false")
     if unsafe_imports:
-        raise SystemExit(f"network-compounding-validate failed: imported skills must remain inactive outside sandbox by default ({unsafe_imports})")
+        raise SystemExit(f"network-compounding-validate failed: skill import events must remain sandbox-only ({unsafe_imports})")
     imported_skill_ids={imp.get('skill_id') for imp in active_imports if imp.get('skill_id')}
     manifest_import_agent_ids=set()
     for manifest in manifests:
