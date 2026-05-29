@@ -893,7 +893,7 @@ def validate_network_compounding(args):
 
 def build_network_data(args):
     reg=Path(args.registry); out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
-    mp={'latest':'latest.json','agents':'agents.json','skill_packages':'skill_packages.json','rejected_skill_candidates':'rejected_skill_candidates.json','failure_learning_packages':'failure_learning_packages.json','skill_imports':'skill_imports.json','skill_propagation_events':'skill_propagation_events.json','network_skill_metrics':'network_skill_metrics.json','claim_gate':'claim_gate_decisions.json','lineage_graph':'lineage_graph.json','work_vault_receipts':'work_vault_receipts.json','proofbundles':'proofbundles.json','evidence_dockets':'evidence_dockets.json','summary':'network_skill_metrics.json'}
+    mp={'latest':'latest.json','agents':'agents.json','agent_skill_manifests':'agent_skill_manifests.json','skill_packages':'skill_packages.json','rejected_skill_candidates':'rejected_skill_candidates.json','failure_learning_packages':'failure_learning_packages.json','skill_imports':'skill_imports.json','skill_propagation_events':'skill_propagation_events.json','network_skill_metrics':'network_skill_metrics.json','claim_gate':'claim_gate_decisions.json','lineage_graph':'lineage_graph.json','work_vault_receipts':'work_vault_receipts.json','proofbundles':'proofbundles.json','evidence_dockets':'evidence_dockets.json','summary':'network_skill_metrics.json'}
     for k,v in mp.items(): atomic_write_json(out/f'{k}.json',_read(reg/v,{"status":"not_reported",**_base()}))
     # alias
     atomic_write_json(out/'b6_vs_b5.json',_read(reg/'network_skill_metrics.json',{}))

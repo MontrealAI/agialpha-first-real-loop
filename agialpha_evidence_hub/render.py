@@ -19,6 +19,7 @@ def page(title,body):
       <a href="/agialpha-first-real-loop/runs/">Runs</a>
       <a href="/agialpha-first-real-loop/launchpad/">Launchpad</a>
       <a href="/agialpha-first-real-loop/strong-rsi/">Strong RSI</a>
+      <a href="/agialpha-first-real-loop/agialpha-skill-network/">Skill Network</a>
     </nav>
   </header>
   <main class="container">

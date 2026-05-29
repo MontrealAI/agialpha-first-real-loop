@@ -1,0 +1,107 @@
+{
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+  "human_review_required": true,
+  "manifests": [
+    {
+      "agent_id": "agent-1",
+      "agent_role": "Reviewer Agent",
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "human_review_required": true,
+      "imported_skills": [],
+      "last_updated": "seed-123",
+      "native_skills": [],
+      "no_auto_merge": true,
+      "quarantined_skills": [],
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "rejected_skills": [],
+      "schema_version": "agialpha.agent_skill_manifest.v1",
+      "skill_import_policy": {
+        "auto_activate_allowed": false,
+        "auto_import_allowed": true,
+        "human_review_required_for_activation": true,
+        "regulated_boundary_block_required": true
+      },
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+    },
+    {
+      "agent_id": "agent-2",
+      "agent_role": "Validator Agent",
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "human_review_required": true,
+      "imported_skills": [
+        "skill-1",
+        "skill-4"
+      ],
+      "last_updated": "seed-123",
+      "native_skills": [],
+      "no_auto_merge": true,
+      "quarantined_skills": [],
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "rejected_skills": [],
+      "schema_version": "agialpha.agent_skill_manifest.v1",
+      "skill_import_policy": {
+        "auto_activate_allowed": false,
+        "auto_import_allowed": true,
+        "human_review_required_for_activation": true,
+        "regulated_boundary_block_required": true
+      },
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+    },
+    {
+      "agent_id": "agent-3",
+      "agent_role": "Operator Agent",
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "human_review_required": true,
+      "imported_skills": [
+        "skill-1",
+        "skill-4"
+      ],
+      "last_updated": "seed-123",
+      "native_skills": [],
+      "no_auto_merge": true,
+      "quarantined_skills": [],
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "rejected_skills": [],
+      "schema_version": "agialpha.agent_skill_manifest.v1",
+      "skill_import_policy": {
+        "auto_activate_allowed": false,
+        "auto_import_allowed": true,
+        "human_review_required_for_activation": true,
+        "regulated_boundary_block_required": true
+      },
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+    },
+    {
+      "agent_id": "agent-4",
+      "agent_role": "Documentation Agent",
+      "autonomous_persistence_allowed": false,
+      "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "human_review_required": true,
+      "imported_skills": [
+        "skill-1",
+        "skill-4"
+      ],
+      "last_updated": "seed-123",
+      "native_skills": [],
+      "no_auto_merge": true,
+      "quarantined_skills": [],
+      "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "rejected_skills": [],
+      "schema_version": "agialpha.agent_skill_manifest.v1",
+      "skill_import_policy": {
+        "auto_activate_allowed": false,
+        "auto_import_allowed": true,
+        "human_review_required_for_activation": true,
+        "regulated_boundary_block_required": true
+      },
+      "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+    }
+  ],
+  "no_auto_merge": true,
+  "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+  "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+}
