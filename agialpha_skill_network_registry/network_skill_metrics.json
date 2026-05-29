@@ -25,6 +25,7 @@
   "jobs_run": 5,
   "jobs_with_skill_extraction": 5,
   "malware_generation_count": 0,
+  "measured_compounding_exponent_proxy": 0.025118,
   "network_skill_multiplier": 1.0251,
   "network_skill_propagation_lift": 0.0128,
   "no_auto_merge": true,
