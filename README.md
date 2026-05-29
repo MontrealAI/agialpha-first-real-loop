@@ -15,6 +15,7 @@ SecureRails → Enterprise Pilot → ProofBundles → Evidence Dockets → Work 
 | Home | Evidence Mission Control overview | `/` | `evidence-mission-control-publisher.yml` | partial |
 | SecureRails | governance and policy guardrails | `/secure-rails/` | `secure-rails-compliance-guard.yml` | complete |
 | Enterprise Pilot | pilot evidence and dockets | `/enterprise-pilot/` | `agialpha-enterprise-pilot-001.yml` | partial |
+| Skill Network | ENGINE-003 networked skill compounding evidence | `/agialpha-skill-network/` | `agialpha-engine-003-network-compounding.yml` | local bounded |
 
 ## How to run from GitHub UI
 Actions → choose workflow from [docs/WORKFLOW_LAUNCHPAD.md](docs/WORKFLOW_LAUNCHPAD.md) → **Run workflow**.

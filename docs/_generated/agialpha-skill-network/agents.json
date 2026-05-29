@@ -8,6 +8,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "role": "Reviewer Agent",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
     },
     {
@@ -18,6 +19,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "role": "Validator Agent",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
     },
     {
@@ -28,6 +30,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "role": "Operator Agent",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
     },
     {
@@ -38,6 +41,7 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+      "role": "Documentation Agent",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
     }
   ],

@@ -1,1 +1,72 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object"}
+{
+  "$id": "https://montreal.ai/schemas/agialpha_network_claim_gate.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "autonomous_persistence_allowed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "checks": {
+      "type": "object"
+    },
+    "claim_boundary": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "claim_gate_status": {
+      "enum": [
+        "supported_local_bounded",
+        "not_supported"
+      ],
+      "type": "string"
+    },
+    "exponential_compounding_status": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "exponential_compounding_supported": {
+      "type": "boolean"
+    },
+    "failed_reasons": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "human_review_required": {
+      "const": true,
+      "type": "boolean"
+    },
+    "no_auto_merge": {
+      "const": true,
+      "type": "boolean"
+    },
+    "regulated_boundary": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "supported_wording": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "token_boundary": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "claim_gate_status",
+    "checks",
+    "supported_wording",
+    "exponential_compounding_status",
+    "claim_boundary",
+    "token_boundary",
+    "regulated_boundary",
+    "human_review_required",
+    "autonomous_persistence_allowed",
+    "no_auto_merge"
+  ],
+  "title": "AGI ALPHA Network Compounding Claim Gate",
+  "type": "object"
+}

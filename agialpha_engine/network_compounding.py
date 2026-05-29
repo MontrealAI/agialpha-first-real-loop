@@ -356,10 +356,10 @@ def run_network_compounding(args):
     out=Path(args.out); reg=Path(args.registry); out.mkdir(parents=True,exist_ok=True); reg.mkdir(parents=True,exist_ok=True)
     run_id=out.name
     jobs=[]; raw=[]; accepted=[]; rejected=[]; failure=[]; sandbox_records=[]
-    agents=[{"agent_id":f"agent-{i+1}","agent_role":ROLES[i%len(ROLES)],**_base()} for i in range(max(args.target_agents+1,4))]
+    agents=[{"agent_id":f"agent-{i+1}","agent_role":ROLES[i%len(ROLES)],"role":ROLES[i%len(ROLES)],**_base()} for i in range(max(args.target_agents+1,4))]
     manifests=[]
     for a in agents:
-        manifests.append({"schema_version":"agialpha.agent_skill_manifest.v1","agent_id":a['agent_id'],"agent_role":a['agent_role'],"native_skills":[],"imported_skills":[],"quarantined_skills":[],"rejected_skills":[],"skill_import_policy":{"auto_import_allowed":True,"auto_activate_allowed":False,"human_review_required_for_activation":True,"regulated_boundary_block_required":True},"last_updated":f"seed-{args.seed}",**_base()})
+        manifests.append({"schema_version":"agialpha.agent_skill_manifest.v1","agent_id":a['agent_id'],"agent_role":a['agent_role'],"native_skills":[],"imported_skills":[],"quarantined_skills":[],"rejected_skills":[],"activation_status":"sandbox_registered_inactive_outside_sandbox","production_activation_allowed":False,"human_review_status":"pending","skill_import_policy":{"auto_import_allowed":True,"auto_activate_allowed":False,"human_review_required_for_activation":True,"regulated_boundary_block_required":True},"last_updated":f"seed-{args.seed}",**_base()})
     for i in range(args.jobs):
         jid=f"job-{i+1}"; aid=agents[0]["agent_id"]
         score=0.5 + i*0.03 + (rng.random()*0.02)
@@ -422,7 +422,7 @@ def run_network_compounding(args):
     manifest_by_agent={m['agent_id']:m for m in manifests}
     for imported_skill in accepted:
         for t in target_agents:
-            imports.append({"schema_version":"agialpha.skill_import.v1","import_id":f"import-{imported_skill['skill_id']}-{t}","skill_id":imported_skill['skill_id'],"source_agent_id":imported_skill['source_agent_id'],"target_agent_id":t,"import_status":"imported","activation_status":"inactive","reason":"imported_for_sandbox_validation","validators_required":["validator-pass"],"heldout_tests_required":["B6_vs_B5"],**_base()})
+            imports.append({"schema_version":"agialpha.skill_import.v1","import_id":f"import-{imported_skill['skill_id']}-{t}","skill_id":imported_skill['skill_id'],"source_agent_id":imported_skill['source_agent_id'],"target_agent_id":t,"import_status":"imported_inactive_outside_sandbox","activation_status":"inactive","active_outside_sandbox":False,"production_activation_allowed":False,"proofbundle_id":imported_skill["proofbundle_id"],"evidence_docket_id":imported_skill["evidence_docket_id"],"reason":"imported_for_sandbox_validation","validators_required":["validator-pass"],"heldout_tests_required":["B6_vs_B5"],**_base()})
             manifest=manifest_by_agent.get(t)
             if manifest is not None:
                 manifest.setdefault('imported_skills',[])
@@ -798,10 +798,17 @@ def validate_network_compounding(args):
     metrics=_read(run/'07_metrics/network_skill_metrics.json',{})
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
     failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
-    active_imports=[imp for imp in imports if imp.get('import_status')=='imported']
-    inactive_outside_sandbox=[imp for imp in active_imports if imp.get('activation_status')=='inactive']
-    if len(inactive_outside_sandbox)!=len(active_imports):
-        raise SystemExit('network-compounding-validate failed: imported skills must remain inactive outside sandbox by default')
+    active_imports=[imp for imp in imports if imp.get('import_status') in {'imported', 'imported_inactive_outside_sandbox'}]
+    unsafe_imports=[]
+    for imp in active_imports:
+        if imp.get('activation_status') != 'inactive':
+            unsafe_imports.append(f"{imp.get('import_id', 'unknown')}: activation_status must be inactive")
+        if imp.get('active_outside_sandbox') is not False:
+            unsafe_imports.append(f"{imp.get('import_id', 'unknown')}: active_outside_sandbox must be false")
+        if imp.get('production_activation_allowed') is not False:
+            unsafe_imports.append(f"{imp.get('import_id', 'unknown')}: production_activation_allowed must be false")
+    if unsafe_imports:
+        raise SystemExit(f"network-compounding-validate failed: imported skills must remain inactive outside sandbox by default ({unsafe_imports})")
     imported_skill_ids={imp.get('skill_id') for imp in active_imports if imp.get('skill_id')}
     manifest_import_agent_ids=set()
     for manifest in manifests:

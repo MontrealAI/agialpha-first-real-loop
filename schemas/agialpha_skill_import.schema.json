@@ -1,1 +1,100 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object"}
+{
+  "$id": "https://montreal.ai/schemas/agialpha_skill_import.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "activation_status": {
+      "enum": [
+        "inactive",
+        "quarantined"
+      ],
+      "type": "string"
+    },
+    "active_outside_sandbox": {
+      "const": false,
+      "type": "boolean"
+    },
+    "autonomous_persistence_allowed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "claim_boundary": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "evidence_docket_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "human_review_required": {
+      "const": true,
+      "type": "boolean"
+    },
+    "import_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "import_status": {
+      "enum": [
+        "imported_inactive_outside_sandbox",
+        "quarantined_missing_evidence",
+        "regulated_boundary_blocked",
+        "documentation_only_human_review_required"
+      ],
+      "type": "string"
+    },
+    "no_auto_merge": {
+      "const": true,
+      "type": "boolean"
+    },
+    "production_activation_allowed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "proofbundle_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "quarantine_reason": {
+      "type": "string"
+    },
+    "regulated_boundary": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "skill_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "target_agent_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "token_boundary": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "import_id",
+    "skill_id",
+    "target_agent_id",
+    "import_status",
+    "activation_status",
+    "active_outside_sandbox",
+    "production_activation_allowed",
+    "proofbundle_id",
+    "evidence_docket_id",
+    "claim_boundary",
+    "token_boundary",
+    "regulated_boundary",
+    "human_review_required",
+    "autonomous_persistence_allowed",
+    "no_auto_merge"
+  ],
+  "title": "AGI ALPHA Skill Import Event",
+  "type": "object"
+}

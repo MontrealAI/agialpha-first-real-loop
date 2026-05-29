@@ -1,1 +1,185 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object"}
+{
+  "$id": "https://montreal.ai/schemas/agialpha_network_skill_metrics.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "B6_shared_skill_advantage_delta": {
+      "type": [
+        "number",
+        "string"
+      ]
+    },
+    "B6_shared_skill_beats_B5_no_shared_skill": {
+      "type": [
+        "boolean",
+        "string"
+      ]
+    },
+    "accepted_skill_packages": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "agent_skill_manifests_created": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "agents_registered": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "autonomous_persistence_allowed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "capability_compounding_rate": {
+      "type": [
+        "number",
+        "string"
+      ]
+    },
+    "claim_boundary": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "compounding_exponent_proxy": {
+      "type": [
+        "number",
+        "string"
+      ]
+    },
+    "exponential_compounding_status": {
+      "type": "string"
+    },
+    "exponential_compounding_supported": {
+      "type": "boolean"
+    },
+    "failure_learning_packages": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "fake_zero_metric_count": {
+      "const": 0,
+      "type": "integer"
+    },
+    "falsification_pass": {
+      "type": [
+        "boolean",
+        "string"
+      ]
+    },
+    "hard_coded_metric_count": {
+      "const": 0,
+      "type": "integer"
+    },
+    "heldout_tasks_evaluated": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "human_review_required": {
+      "const": true,
+      "type": "boolean"
+    },
+    "jobs_run": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "jobs_with_skill_extraction": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "network_skill_multiplier": {
+      "type": [
+        "number",
+        "string"
+      ]
+    },
+    "network_skill_propagation_lift": {
+      "type": [
+        "number",
+        "string"
+      ]
+    },
+    "no_auto_merge": {
+      "const": true,
+      "type": "boolean"
+    },
+    "raw_task_result_ids": {
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "string"
+      ]
+    },
+    "regulated_boundary": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "rejected_skill_candidates": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "replay_pass_rate": {
+      "type": [
+        "number",
+        "string"
+      ]
+    },
+    "semantic_tests_passed": {
+      "type": [
+        "boolean",
+        "string"
+      ]
+    },
+    "skill_import_events": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "skills_published_to_vault": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "target_agents_improved_on_heldout": {
+      "type": [
+        "integer",
+        "string"
+      ]
+    },
+    "target_agents_with_imported_skill": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "token_boundary": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "jobs_run",
+    "jobs_with_skill_extraction",
+    "accepted_skill_packages",
+    "rejected_skill_candidates",
+    "failure_learning_packages",
+    "skills_published_to_vault",
+    "agents_registered",
+    "agent_skill_manifests_created",
+    "skill_import_events",
+    "target_agents_with_imported_skill",
+    "heldout_tasks_evaluated",
+    "B6_shared_skill_beats_B5_no_shared_skill",
+    "B6_shared_skill_advantage_delta",
+    "network_skill_propagation_lift",
+    "raw_task_result_ids",
+    "hard_coded_metric_count",
+    "fake_zero_metric_count",
+    "claim_boundary",
+    "token_boundary",
+    "regulated_boundary",
+    "human_review_required",
+    "autonomous_persistence_allowed",
+    "no_auto_merge"
+  ],
+  "title": "AGI ALPHA Network Skill Metrics",
+  "type": "object"
+}

@@ -1,1 +1,99 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object"}
+{
+  "$id": "https://montreal.ai/schemas/agialpha_agent_skill_manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "activation_status": {
+      "enum": [
+        "sandbox_registered_inactive_outside_sandbox",
+        "not_active_failure_learning_only",
+        "quarantined"
+      ],
+      "type": "string"
+    },
+    "agent_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "autonomous_persistence_allowed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "claim_boundary": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "human_review_required": {
+      "const": true,
+      "type": "boolean"
+    },
+    "human_review_status": {
+      "enum": [
+        "pending",
+        "accepted",
+        "needs_changes",
+        "rejected"
+      ],
+      "type": "string"
+    },
+    "imported_skills": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "native_skills": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "no_auto_merge": {
+      "const": true,
+      "type": "boolean"
+    },
+    "production_activation_allowed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "quarantined_skills": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "regulated_boundary": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "rejected_skills": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "token_boundary": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "agent_id",
+    "native_skills",
+    "imported_skills",
+    "quarantined_skills",
+    "rejected_skills",
+    "activation_status",
+    "claim_boundary",
+    "token_boundary",
+    "regulated_boundary",
+    "human_review_required",
+    "autonomous_persistence_allowed",
+    "no_auto_merge"
+  ],
+  "title": "AGI ALPHA Agent Skill Manifest",
+  "type": "object"
+}
