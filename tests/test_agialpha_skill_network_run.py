@@ -14,9 +14,15 @@ def test_network_run_end_to_end():
         assert m['jobs_run']>=3 and m['accepted_skill_packages']>=1
         acc=json.loads((run/'03_skill_extraction/accepted_skill_packages.json').read_text())['accepted_skill_packages'][0]
         assert acc['raw_task_result_ids'] and acc['proofbundle_id'] and acc['evidence_docket_id']
+        agents=json.loads((run/'01_agents/agent_registry.json').read_text())['agents']
+        assert all(a.get('role') == a.get('agent_role') for a in agents)
         imp=json.loads((run/'05_skill_import/skill_import_events.json').read_text())['skill_import_events']
         assert len(imp)>=3 and all(i['activation_status']=='inactive' for i in imp)
+        assert all(i['import_status']=='imported_inactive_outside_sandbox' for i in imp)
+        assert all(i.get('active_outside_sandbox') is False for i in imp)
+        assert all(i.get('proofbundle_id') and i.get('evidence_docket_id') for i in imp)
         manifests=json.loads((run/'05_skill_import/agent_skill_manifests_after_import.json').read_text())['manifests']
+        assert all(mm.get('activation_status') == 'sandbox_registered_inactive_outside_sandbox' for mm in manifests)
         imported_agents=[mm for mm in manifests if mm.get('imported_skills')]
         assert len(imported_agents) >= 3
         assert 'network_skill_propagation_lift' in m
@@ -255,3 +261,56 @@ def test_falsification_requires_boolean_replay_status():
         proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)], capture_output=True, text=True)
         assert proc.returncode != 0
         assert 'replay_pass must be boolean' in (proc.stderr + proc.stdout)
+
+
+def test_validate_rejects_import_active_outside_sandbox_or_production_activation():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        path=run/'05_skill_import/skill_import_events.json'
+        doc=json.loads(path.read_text())
+        doc['skill_import_events'][0]['active_outside_sandbox']=True
+        doc['skill_import_events'][1]['production_activation_allowed']=True
+        path.write_text(json.dumps(doc))
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        output=proc.stderr + proc.stdout
+        assert proc.returncode != 0
+        assert 'active_outside_sandbox must be false' in output
+        assert 'production_activation_allowed must be false' in output
+
+
+def test_validate_rejects_unsafe_quarantined_import_event():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        path=run/'05_skill_import/skill_import_events.json'
+        doc=json.loads(path.read_text())
+        doc['skill_import_events'].append({
+            'schema_version':'agialpha.skill_import.v1',
+            'import_id':'import-quarantined-unsafe',
+            'skill_id':'skill-poisoned',
+            'target_agent_id':'agent-2',
+            'import_status':'quarantined_missing_evidence',
+            'activation_status':'active',
+            'active_outside_sandbox':True,
+            'production_activation_allowed':True,
+            'proofbundle_id':'unavailable',
+            'evidence_docket_id':'unavailable',
+            'claim_boundary':'local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required',
+            'token_boundary':'$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading',
+            'regulated_boundary':'regulated-domain firewall enabled; blocked_human_review_required for regulated tasks',
+            'human_review_required':True,
+            'autonomous_persistence_allowed':False,
+            'no_auto_merge':True,
+        })
+        path.write_text(json.dumps(doc))
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        output=proc.stderr + proc.stdout
+        assert proc.returncode != 0
+        assert 'activation_status must be inactive or quarantined for non-imported skill events' in output
+        assert 'active_outside_sandbox must be false' in output
+        assert 'production_activation_allowed must be false' in output

@@ -44,3 +44,7 @@ Use lifecycle workflow to generate local bounded recursive substrate evidence.
 - AGI ALPHA Docs and Pages UX 001: `.github/workflows/agialpha-docs-pages-ux-001.yml`
 
 - **AGI ALPHA Engine 002 / Measured Recursive Machine Labor Proof** — run `agialpha-engine-002-measured-recursive-proof.yml` for frozen-capability treatment/control proof artifacts. No direct Pages deploy or auto-merge.
+
+## Engine 003 Skill Network
+
+Run `agialpha-engine-003-network-compounding.yml` for the deterministic networked skill compounding loop, then use replay, falsification-audit, and claim-gate workflows. These workflows upload evidence artifacts only; they never auto-merge or deploy Pages directly.

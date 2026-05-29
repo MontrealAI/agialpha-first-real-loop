@@ -18,6 +18,8 @@ def test_agent_manifests_include_required_skill_lists_and_policy():
         for m in manifests:
             for key in ['native_skills','imported_skills','quarantined_skills','rejected_skills']:
                 assert key in m and isinstance(m[key], list)
+            assert m['activation_status'] == 'sandbox_registered_inactive_outside_sandbox'
+            assert m['production_activation_allowed'] is False
             assert m['skill_import_policy']
             assert m['claim_boundary'] and m['token_boundary'] and m['regulated_boundary']
 
@@ -34,4 +36,7 @@ def test_imported_skills_are_inactive_outside_sandbox_by_default():
         imports = json.loads((run / '05_skill_import/skill_import_events.json').read_text())['skill_import_events']
         assert len(imports) >= 3
         assert all(e['activation_status'] == 'inactive' for e in imports)
+        assert all(e['import_status'] == 'imported_inactive_outside_sandbox' for e in imports)
+        assert all(e.get('active_outside_sandbox') is False for e in imports)
+        assert all(e.get('proofbundle_id') and e.get('evidence_docket_id') for e in imports)
         assert all(e.get('autonomous_persistence_allowed') is False for e in imports)
