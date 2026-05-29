@@ -78,3 +78,28 @@ def test_network_d_metric_does_not_render_missing_values_as_zero():
         }
     ])
     assert measured_zero == 0
+
+
+def test_manifest_helper_imports_are_inactive_outside_sandbox_by_default():
+    from agialpha_engine.agent_skill_manifest import create_agent_skill_manifest
+
+    manifest = create_agent_skill_manifest("agent-reviewer", imported_skills=["skill-b", "skill-a"])
+    assert manifest["schema_version"] == "agialpha.agent_skill_manifest.v1"
+    assert manifest["imported_skills"] == ["skill-a", "skill-b"]
+    assert manifest["activation_status"] == "sandbox_registered_inactive_outside_sandbox"
+    assert manifest["production_activation_allowed"] is False
+    assert manifest["human_review_status"] == "pending"
+    assert manifest["autonomous_persistence_allowed"] is False
+    assert manifest["no_auto_merge"] is True
+    assert manifest["manifest_hash"]
+
+
+def test_manifest_helper_add_imported_skill_preserves_inactive_activation_policy():
+    from agialpha_engine.agent_skill_manifest import add_imported_skill, create_agent_skill_manifest
+
+    manifest = create_agent_skill_manifest("agent-operator", native_skills=["native-safe"])
+    updated = add_imported_skill(manifest, "skill-shared")
+    assert updated["native_skills"] == ["native-safe"]
+    assert updated["imported_skills"] == ["skill-shared"]
+    assert updated["activation_status"] == "sandbox_registered_inactive_outside_sandbox"
+    assert updated["production_activation_allowed"] is False

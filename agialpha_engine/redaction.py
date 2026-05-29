@@ -23,17 +23,41 @@ PATTERNS = {
 
 
 def _stable_run_salt(run_id: str, root_hash: str) -> str:
+    """Return a replayable run-scoped salt; reports expose only its hash."""
     return hashlib.sha256(f"{run_id}:{root_hash}:redaction-run-salt".encode()).hexdigest()
+
+
+def _salt_hash(salt: str) -> str:
+    return hashlib.sha256(f"{salt}:salt-hash".encode()).hexdigest()
 
 
 def redact_text(text: str, run_id: str, root_hash: str) -> tuple[str, list[dict[str, Any]]]:
     salt = _stable_run_salt(run_id, root_hash)
+    salt_hash = _salt_hash(salt)
     findings = []
     out = text
     for name, pattern in PATTERNS.items():
         for m in list(pattern.finditer(out)):
             secret = m.group(0)
             digest = hashlib.sha256((salt + secret).encode()).hexdigest()[:16]
-            findings.append({"finding_type": name, "salted_hash": digest, "redacted_preview": "[REDACTED]"})
+            findings.append({"finding_type": name, "salt_hash": salt_hash, "salted_hash": digest, "redacted_preview": "[REDACTED]"})
             out = out.replace(secret, "[REDACTED]")
     return out, findings
+
+
+def redact_document(text: str, *, run_id: str, root_hash: str, path: str) -> dict[str, Any]:
+    """Redact a fixture/report while retaining only type/path/line/salted digest metadata."""
+    redacted_lines: list[str] = []
+    findings: list[dict[str, Any]] = []
+    for line_number, line in enumerate(text.splitlines(), start=1):
+        redacted_line, line_findings = redact_text(line, run_id, root_hash)
+        redacted_lines.append(redacted_line)
+        for finding in line_findings:
+            findings.append({**finding, "path": path, "line": line_number})
+    return {
+        "schema_version": "agialpha.engine.redaction_report.v1",
+        "path": path,
+        "redacted_text": "\n".join(redacted_lines),
+        "findings": findings,
+        "raw_secret_values_stored": False,
+    }
