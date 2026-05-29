@@ -85,6 +85,7 @@
     "import_status",
     "activation_status",
     "active_outside_sandbox",
+    "production_activation_allowed",
     "proofbundle_id",
     "evidence_docket_id",
     "claim_boundary",

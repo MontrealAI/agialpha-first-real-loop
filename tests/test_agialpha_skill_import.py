@@ -29,3 +29,12 @@ def test_create_skill_import_event_quarantines_missing_evidence_without_empty_sc
     assert event["proofbundle_id"] == "unavailable"
     assert event["evidence_docket_id"] == "unavailable"
     assert "missing ProofBundle" in event["quarantine_reason"]
+
+
+def test_skill_import_schema_requires_production_activation_block():
+    import json
+    from pathlib import Path
+
+    schema = json.loads(Path("schemas/agialpha_skill_import.schema.json").read_text())
+    assert "production_activation_allowed" in schema["required"]
+    assert schema["properties"]["production_activation_allowed"] == {"const": False, "type": "boolean"}
