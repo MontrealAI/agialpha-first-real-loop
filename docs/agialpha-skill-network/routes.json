@@ -1,20 +1,14 @@
 {
-  "B6_shared_skill_advantage_delta": 0.0128,
-  "B6_shared_skill_beats_B5_no_shared_skill": true,
   "autonomous_persistence_allowed": false,
   "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
-  "computed_from_raw_logs": true,
   "human_review_required": true,
-  "network_skill_propagation_lift": 0.0128,
+  "nav_label": "Skill Network",
   "no_auto_merge": true,
-  "raw_task_result_ids": [
-    "raw-job-1",
-    "raw-job-2",
-    "raw-job-3",
-    "raw-job-4",
-    "raw-job-5"
-  ],
+  "primary_html": "index.html",
   "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
-  "schema_version": "agialpha.skill_network.b6_vs_b5_public.v1",
+  "routes": [
+    "/agialpha-skill-network/",
+    "/experiments/agialpha-engine-003/"
+  ],
   "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
 }
