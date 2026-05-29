@@ -612,6 +612,11 @@ def run_network_compounding(args):
     atomic_write_json(run_registry_dir / "11_b6_vs_b5_network_comparison.json", comparison_payload)
     atomic_write_json(run_registry_dir / "12_network_skill_metrics.json", metrics)
     atomic_write_json(run_registry_dir / "13_work_vault_receipts.json", {"receipts": receipts, "receipt_count": len(receipts), "covered_import_count": sum(len(r.get("covered_import_ids", [])) for r in receipts), **_base()})
+    atomic_write_json(run_registry_dir / "14_proofbundles" / "index.json", {"proofbundles": proofbundles, **_base()})
+    for proofbundle in proofbundles:
+        proofbundle_id = proofbundle.get("proofbundle_id")
+        if proofbundle_id:
+            atomic_write_json(run_registry_dir / "14_proofbundles" / f"{proofbundle_id}.json", proofbundle)
     atomic_write_json(run_registry_dir / "16_replay_report.json", {"replay_pass": False, "replay_passes": 0, "status": "pending_replay_execution", **_base()})
     atomic_write_json(run_registry_dir / "17_falsification_audit.json", {"falsification_pass": False, "status": "pending_falsification_execution", **_base()})
     atomic_write_json(run_registry_dir / "18_claim_gate_decision.json", gate)
