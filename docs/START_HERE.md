@@ -48,3 +48,7 @@ This guide serves three audiences: non-technical operators, technical contributo
 ## Engine 002 proof quick start
 
 For measured recursive machine labor evidence, run the Engine 002 proof commands in `README_AGIALPHA_ENGINE_PROOF.md`. A supported result requires Evidence Dockets, ProofBundles, replay, falsification, treatment/control metrics, and human review before promotion.
+
+## Engine 003 Skill Network quick start
+
+Run the ENGINE-003 network-compounding commands in `README_AGIALPHA_SKILL_NETWORK.md` to produce local bounded network skill propagation evidence. Every job must yield an accepted Skill Package, rejected candidate, or Failure Learning Package. Instant sharing means sandboxed registration/importability; production activation requires validators and human review.

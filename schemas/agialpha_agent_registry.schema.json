@@ -1,1 +1,81 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object"}
+{
+  "$id": "https://montreal.ai/schemas/agialpha_agent_registry.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "agent_count": {
+      "minimum": 3,
+      "type": "integer"
+    },
+    "agents": {
+      "items": {
+        "properties": {
+          "agent_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "imported_skills_inactive_outside_sandbox": {
+            "const": true,
+            "type": "boolean"
+          },
+          "network_imports_allowed": {
+            "type": "boolean"
+          },
+          "production_activation_allowed": {
+            "const": false,
+            "type": "boolean"
+          },
+          "role": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "agent_id",
+          "role"
+        ],
+        "type": "object"
+      },
+      "minItems": 3,
+      "type": "array"
+    },
+    "autonomous_persistence_allowed": {
+      "const": false,
+      "type": "boolean"
+    },
+    "claim_boundary": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "human_review_required": {
+      "const": true,
+      "type": "boolean"
+    },
+    "no_auto_merge": {
+      "const": true,
+      "type": "boolean"
+    },
+    "regulated_boundary": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "token_boundary": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "agents",
+    "claim_boundary",
+    "token_boundary",
+    "regulated_boundary",
+    "human_review_required",
+    "autonomous_persistence_allowed",
+    "no_auto_merge"
+  ],
+  "title": "AGI ALPHA Agent Registry",
+  "type": "object"
+}

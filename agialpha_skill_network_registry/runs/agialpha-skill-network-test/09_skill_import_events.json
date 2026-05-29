@@ -7,15 +7,19 @@
   "skill_import_events": [
     {
       "activation_status": "inactive",
+      "active_outside_sandbox": false,
       "autonomous_persistence_allowed": false,
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "evidence_docket_id": "ed-skill-1",
       "heldout_tests_required": [
         "B6_vs_B5"
       ],
       "human_review_required": true,
       "import_id": "import-skill-1-agent-2",
-      "import_status": "imported",
+      "import_status": "imported_inactive_outside_sandbox",
       "no_auto_merge": true,
+      "production_activation_allowed": false,
+      "proofbundle_id": "pb-skill-1",
       "reason": "imported_for_sandbox_validation",
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "schema_version": "agialpha.skill_import.v1",
@@ -29,15 +33,19 @@
     },
     {
       "activation_status": "inactive",
+      "active_outside_sandbox": false,
       "autonomous_persistence_allowed": false,
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "evidence_docket_id": "ed-skill-1",
       "heldout_tests_required": [
         "B6_vs_B5"
       ],
       "human_review_required": true,
       "import_id": "import-skill-1-agent-3",
-      "import_status": "imported",
+      "import_status": "imported_inactive_outside_sandbox",
       "no_auto_merge": true,
+      "production_activation_allowed": false,
+      "proofbundle_id": "pb-skill-1",
       "reason": "imported_for_sandbox_validation",
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "schema_version": "agialpha.skill_import.v1",
@@ -51,15 +59,19 @@
     },
     {
       "activation_status": "inactive",
+      "active_outside_sandbox": false,
       "autonomous_persistence_allowed": false,
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "evidence_docket_id": "ed-skill-1",
       "heldout_tests_required": [
         "B6_vs_B5"
       ],
       "human_review_required": true,
       "import_id": "import-skill-1-agent-4",
-      "import_status": "imported",
+      "import_status": "imported_inactive_outside_sandbox",
       "no_auto_merge": true,
+      "production_activation_allowed": false,
+      "proofbundle_id": "pb-skill-1",
       "reason": "imported_for_sandbox_validation",
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "schema_version": "agialpha.skill_import.v1",
@@ -73,15 +85,19 @@
     },
     {
       "activation_status": "inactive",
+      "active_outside_sandbox": false,
       "autonomous_persistence_allowed": false,
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "evidence_docket_id": "ed-skill-4",
       "heldout_tests_required": [
         "B6_vs_B5"
       ],
       "human_review_required": true,
       "import_id": "import-skill-4-agent-2",
-      "import_status": "imported",
+      "import_status": "imported_inactive_outside_sandbox",
       "no_auto_merge": true,
+      "production_activation_allowed": false,
+      "proofbundle_id": "pb-skill-4",
       "reason": "imported_for_sandbox_validation",
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "schema_version": "agialpha.skill_import.v1",
@@ -95,15 +111,19 @@
     },
     {
       "activation_status": "inactive",
+      "active_outside_sandbox": false,
       "autonomous_persistence_allowed": false,
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "evidence_docket_id": "ed-skill-4",
       "heldout_tests_required": [
         "B6_vs_B5"
       ],
       "human_review_required": true,
       "import_id": "import-skill-4-agent-3",
-      "import_status": "imported",
+      "import_status": "imported_inactive_outside_sandbox",
       "no_auto_merge": true,
+      "production_activation_allowed": false,
+      "proofbundle_id": "pb-skill-4",
       "reason": "imported_for_sandbox_validation",
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "schema_version": "agialpha.skill_import.v1",
@@ -117,15 +137,19 @@
     },
     {
       "activation_status": "inactive",
+      "active_outside_sandbox": false,
       "autonomous_persistence_allowed": false,
       "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+      "evidence_docket_id": "ed-skill-4",
       "heldout_tests_required": [
         "B6_vs_B5"
       ],
       "human_review_required": true,
       "import_id": "import-skill-4-agent-4",
-      "import_status": "imported",
+      "import_status": "imported_inactive_outside_sandbox",
       "no_auto_merge": true,
+      "production_activation_allowed": false,
+      "proofbundle_id": "pb-skill-4",
       "reason": "imported_for_sandbox_validation",
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "schema_version": "agialpha.skill_import.v1",

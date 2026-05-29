@@ -1,9 +1,9 @@
 {
   "agent_skill_manifest_hashes": [
-    "86e8f6d4e6075b47d05d0d40b6ea0da669cb6b5f08900c82f8c7e3eb6171bf5f",
-    "e4cb93c592ce20752501caa957e2081a43e408ba08b54a7465a6f24d5b6abb68",
-    "69f30199143bee2d05110630b1c179ea7e059e501d53794e3bbd16d0357075a9",
-    "b1f2bddf7b6bc1a9217c59d6f4ad3beeb052e33844219d832b2e3964a06bbbe5"
+    "b70dacccdb197f946a855b2cca82e7962f6a65b00cf8c1011064a121f54410b7",
+    "5cee32609ca71f4b7b3b9d90eb68d9fde1100555ad5923c336131b30d7093dee",
+    "398bde48276929f175ed2cb7322784a9680fb48867718dcc5f7e97ede3929cfb",
+    "e576248685d06a8699974b27b9d6c52ca35964833839ef2e70227b666bf58088"
   ],
   "autonomous_persistence_allowed": false,
   "b6_vs_b5_comparison_hash": "e7b6534065644344221effa32f67c628e0f4fafc47545238680e7abce82b7f0e",
@@ -25,7 +25,7 @@
   "missing_raw_task_result_ids": [],
   "network_skill_vault_entry_hash": "33b0689cb2320601fdc2104d4f03750c5e4da2a548a5a3852fe8fa2f71c554b0",
   "no_auto_merge": true,
-  "proofbundle_hash": "2853d49c91cd98dea97e67f9118fef582610f21b4fcdce15f6ab71b59808fe22",
+  "proofbundle_hash": "37d0b32e354ca29687c6ca0b8d5d569503c9b3653db6140200d1198b67252d80",
   "proofbundle_id": "pb-skill-1",
   "raw_evaluator_log_hashes": [
     "0c255240cf2ed179f4695355fcf755c1bc59aa6634c018477c52267f4d60e798"
@@ -44,12 +44,12 @@
   "seed": 123,
   "skill_id": "skill-1",
   "skill_import_event_hashes": [
-    "9e96c646f1e1764c32a74bb3ea9644a6dba802f9f75639786121b6df7e5bcfa1",
-    "6607c12592b621a256341e8a05569eb7f80eda40d19b0668bb941fc5c40afad3",
-    "78a948baff56f62ce650aad18d94c2e854177997509a18841eb7832f5c666127"
+    "2d2809718c44715057c89b415194b32e2c714e0413c520bde6d6e7f2e07280d7",
+    "7852dd2b54c95f5e29786ac81ff0d53e96e77bbe3394162d999d80af8c32627b",
+    "dc1198825afc2aae1490b92674a381f85f2e7bb9cc4b91b0321205bed08a0122"
   ],
   "skill_package_hash": "c09ca3a786ae1e768fca7971086b90966dfcd7bc1fdfb4285291cd22e4064f15",
-  "source_agent_hash": "d750edec1d55b107c5e1c9f8047d0ea01908e136f23716bfc87641e3200f7b33",
+  "source_agent_hash": "6aeaa877adb3095fb58cc9827b05d70a056ca4c556a31f33d26d60b5c6509493",
   "source_agent_id": "agent-1",
   "source_job_hash": "69f6dcda68b6e067c3202854f432c59edc40ac46d12f3e708fff48b5bb2886c1",
   "source_job_id": "job-1",
