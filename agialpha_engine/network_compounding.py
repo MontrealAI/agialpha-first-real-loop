@@ -479,7 +479,8 @@ def run_network_compounding(args):
     atomic_write_json(out/'03_skill_extraction/skill_extraction_report.json',{"jobs_processed":len(jobs),**_base()}); atomic_write_json(out/'03_skill_extraction/accepted_skill_packages.json',{"accepted_skill_packages":accepted,**_base()}); atomic_write_json(out/'03_skill_extraction/rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(out/'03_skill_extraction/failure_learning_packages.json',{"failure_learning_packages":failure,**_base()})
     atomic_write_json(out/'04_network_skill_vault/network_skill_vault.json',{"skill_packages":accepted,**_base()}); atomic_write_json(out/'04_network_skill_vault/skill_publication_events.json',{"events":[{"skill_id":s['skill_id']} for s in accepted],**_base()})
     atomic_write_json(out/'05_skill_import/skill_import_events.json',{"skill_import_events":imports,**_base()}); atomic_write_json(out/'05_skill_import/agent_skill_manifests_after_import.json',{"manifests":manifests,**_base()})
-    atomic_write_json(out/'06_heldout_reuse_tests/B5_no_shared_skill.json',{"results":b5,**_base()}); atomic_write_json(out/'06_heldout_reuse_tests/B6_shared_skill_network.json',{"results":b6,**_base()}); atomic_write_json(out/'06_heldout_reuse_tests/comparison.json',{"D_no_shared_skill":d5,"D_shared_skill_network":d6,"NetworkSkillPropagationLift":lift,**_base()})
+    comparison_artifact={"D_no_shared_skill":d5,"D_shared_skill_network":d6,"NetworkSkillPropagationLift":lift,**_base()}
+    atomic_write_json(out/'06_heldout_reuse_tests/B5_no_shared_skill.json',{"results":b5,**_base()}); atomic_write_json(out/'06_heldout_reuse_tests/B6_shared_skill_network.json',{"results":b6,**_base()}); atomic_write_json(out/'06_heldout_reuse_tests/comparison.json',comparison_artifact)
     atomic_write_json(out/'07_metrics/network_skill_metrics.json',metrics); atomic_write_json(out/'07_metrics/network_skill_propagation_lift.json',{"network_skill_propagation_lift":lift,**_base()}); atomic_write_json(out/'07_metrics/compounding_exponent_proxy.json',{"compounding_exponent_proxy":"not_supported",**_base()})
     receipts=[]
     for receipt_index, receipt_skill in enumerate(accepted, start=1):
@@ -492,41 +493,31 @@ def run_network_compounding(args):
     pending_falsification_audit = {"falsification_pass": False, "status": "pending_falsification_execution", "adversarial_checks": ["fake skill metric rejected", "forbidden claim injection rejected", "regulated-domain skill blocked", "token-value skill blocked", "raw secret-like string redacted", "auto-merge attempt rejected", "replay mismatch detected", "missing skill evidence detected", "baseline regression detected", "poisoned skill import quarantined"], **_base()}
     proofbundles=[]
     for sk in accepted:
-        source_job = next((j for j in jobs if j.get("job_id") == sk["source_job_id"]), {})
-        source_agent = next((a for a in agents if a.get("agent_id") == sk["source_agent_id"]), {})
-        raw_rows = [r for r in raw if r.get("raw_task_result_id") in sk.get("raw_task_result_ids", [])]
-        pb={
-            "schema_version":"agialpha.engine003.proofbundle.v1",
-            "proofbundle_id":sk["proofbundle_id"],
-            "skill_id":sk["skill_id"],
-            "source_job_id":sk["source_job_id"],
-            "source_agent_id":sk["source_agent_id"],
-            "raw_task_result_ids":sk["raw_task_result_ids"],
-            "source_job_hash": _h(source_job),
-            "source_agent_hash": _h(source_agent),
-            "raw_evaluator_log_hashes": [_h(r) for r in raw_rows],
-            "validator_result_hashes": [_h(r.get("validator_results", [])) for r in raw_rows],
-            "skill_package_hash": _h(sk),
-            "network_skill_vault_entry_hash": _h({"skill_id": sk["skill_id"], "published": True, "allowed_import_scope": sk.get("allowed_import_scope")}),
-            "agent_skill_manifest_hashes": [_h(m) for m in manifests],
-            "skill_import_event_hashes": [_h(i) for i in imports if i.get("skill_id") == sk["skill_id"]],
-            "heldout_test_hashes": [_h(b5), _h(b6)],
-            "b6_vs_b5_comparison_hash": _h({"D_no_shared_skill": d5, "D_shared_skill_network": d6, "NetworkSkillPropagationLift": lift}),
-            "replay_report_hash": _h(pending_replay_report),
-            "falsification_audit_hash": _h(pending_falsification_audit),
-            "claim_gate_hash": _h(gate),
-            "seed": args.seed,
-            "environment_info": {"python_standard_library_only": True, "network_calls_enabled": False},
-            "deterministic_seed":args.seed,
-            "replay_command":f"python -m agialpha_engine network-compounding-replay --run {out}",
-            "human_review_status":"pending",
-            **_base(),
-        }
-        pb["complete"] = all([pb["source_job_hash"], pb["source_agent_hash"], pb["raw_evaluator_log_hashes"], pb["validator_result_hashes"], pb["skill_package_hash"], pb["network_skill_vault_entry_hash"], pb["agent_skill_manifest_hashes"], pb["skill_import_event_hashes"], pb["heldout_test_hashes"], pb["b6_vs_b5_comparison_hash"], pb["replay_report_hash"], pb["falsification_audit_hash"], pb["claim_gate_hash"]])
-        pb["proofbundle_hash"] = _h({k: v for k, v in pb.items() if k != "proofbundle_hash"})
+        pb = _build_network_proofbundle(
+            run=out,
+            skill=sk,
+            existing_bundle={
+                "seed": args.seed,
+                "deterministic_seed": args.seed,
+                "environment_info": {"python_standard_library_only": True, "network_calls_enabled": False},
+                "replay_command": f"python -m agialpha_engine network-compounding-replay --run {out}",
+                "human_review_status": "pending",
+            },
+            jobs=jobs,
+            agents=agents,
+            raw_rows_all=raw,
+            manifests=manifests,
+            imports=imports,
+            b5=b5,
+            b6=b6,
+            comparison=comparison_artifact,
+            replay_report=pending_replay_report,
+            falsification_audit=pending_falsification_audit,
+            claim_gate=gate,
+        )
         proofbundles.append(pb)
         atomic_write_json(out/'14_proofbundles'/f'{sk["proofbundle_id"]}.json',pb)
-    atomic_write_json(out/'14_proofbundles/index.json',{"proofbundles":proofbundles,**_base()})
+    atomic_write_json(out/'14_proofbundles/index.json', {"proofbundles": proofbundles, **_base()})
     dockets=[]
     for sk in accepted:
         docket={

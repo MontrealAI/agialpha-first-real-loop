@@ -13,6 +13,25 @@ def _read(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def test_initial_run_proofbundle_hashes_persisted_comparison_artifact():
+    with tempfile.TemporaryDirectory() as td:
+        run = Path(td) / "run"
+        reg = Path(td) / "reg"
+        subprocess.check_call([
+            "python", "-m", "agialpha_engine", "network-compounding-run",
+            "--repo-root", ".", "--registry", str(reg), "--out", str(run),
+            "--jobs", "5", "--target-agents", "3", "--heldout-tasks", "5", "--seed", "123",
+        ])
+
+        comparison = _read(run / "06_heldout_reuse_tests" / "comparison.json")
+        bundles = _read(run / "14_proofbundles" / "index.json")["proofbundles"]
+
+        assert bundles
+        for bundle in bundles:
+            assert bundle["b6_vs_b5_comparison_hash"] == _h(comparison)
+            assert bundle["raw_task_result_coverage_complete"] is True
+            assert bundle["missing_raw_task_result_ids"] == []
+
 def test_proofbundles_rehash_to_final_replay_and_falsification_artifacts():
     with tempfile.TemporaryDirectory() as td:
         run = Path(td) / "run"
