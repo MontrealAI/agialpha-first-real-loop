@@ -23,17 +23,80 @@ PATTERNS = {
 
 
 def _stable_run_salt(run_id: str, root_hash: str) -> str:
+    """Return a replayable run-scoped salt; reports expose only its hash."""
     return hashlib.sha256(f"{run_id}:{root_hash}:redaction-run-salt".encode()).hexdigest()
 
 
-def redact_text(text: str, run_id: str, root_hash: str) -> tuple[str, list[dict[str, Any]]]:
+def _salt_hash(salt: str) -> str:
+    return hashlib.sha256(f"{salt}:salt-hash".encode()).hexdigest()
+
+
+def _redact_with_findings(text: str, run_id: str, root_hash: str) -> tuple[str, list[dict[str, Any]]]:
     salt = _stable_run_salt(run_id, root_hash)
-    findings = []
-    out = text
+    salt_hash = _salt_hash(salt)
+    candidates: list[dict[str, Any]] = []
     for name, pattern in PATTERNS.items():
-        for m in list(pattern.finditer(out)):
-            secret = m.group(0)
+        for match in pattern.finditer(text):
+            secret = match.group(0)
             digest = hashlib.sha256((salt + secret).encode()).hexdigest()[:16]
-            findings.append({"finding_type": name, "salted_hash": digest, "redacted_preview": "[REDACTED]"})
-            out = out.replace(secret, "[REDACTED]")
-    return out, findings
+            candidates.append(
+                {
+                    "finding_type": name,
+                    "salt_hash": salt_hash,
+                    "salted_hash": digest,
+                    "redacted_preview": "[REDACTED]",
+                    "start": match.start(),
+                    "end": match.end(),
+                    "line": text.count("\n", 0, match.start()) + 1,
+                }
+            )
+
+    selected: list[dict[str, Any]] = []
+    occupied: list[tuple[int, int]] = []
+    for candidate in sorted(candidates, key=lambda c: (c["start"], -(c["end"] - c["start"]))):
+        span = (candidate["start"], candidate["end"])
+        if any(span[0] < used_end and span[1] > used_start for used_start, used_end in occupied):
+            continue
+        selected.append(candidate)
+        occupied.append(span)
+
+    redacted_parts: list[str] = []
+    cursor = 0
+    for finding in sorted(selected, key=lambda f: f["start"]):
+        redacted_parts.append(text[cursor:finding["start"]])
+        redacted_parts.append("[REDACTED]")
+        cursor = finding["end"]
+    redacted_parts.append(text[cursor:])
+
+    public_findings = [
+        {
+            "finding_type": finding["finding_type"],
+            "salt_hash": finding["salt_hash"],
+            "salted_hash": finding["salted_hash"],
+            "redacted_preview": finding["redacted_preview"],
+            "line": finding["line"],
+        }
+        for finding in sorted(selected, key=lambda f: f["start"])
+    ]
+    return "".join(redacted_parts), public_findings
+
+
+def redact_text(text: str, run_id: str, root_hash: str) -> tuple[str, list[dict[str, Any]]]:
+    redacted, findings = _redact_with_findings(text, run_id, root_hash)
+    return redacted, [
+        {k: v for k, v in finding.items() if k != "line"}
+        for finding in findings
+    ]
+
+
+def redact_document(text: str, *, run_id: str, root_hash: str, path: str) -> dict[str, Any]:
+    """Redact a fixture/report while retaining only type/path/line/salted digest metadata."""
+    redacted_text, raw_findings = _redact_with_findings(text, run_id, root_hash)
+    findings = [{**finding, "path": path} for finding in raw_findings]
+    return {
+        "schema_version": "agialpha.engine.redaction_report.v1",
+        "path": path,
+        "redacted_text": redacted_text,
+        "findings": findings,
+        "raw_secret_values_stored": False,
+    }
