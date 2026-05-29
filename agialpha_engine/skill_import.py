@@ -24,17 +24,19 @@ def create_skill_import_event(import_id: str, skill_package: dict[str, Any], tar
     skill_id = skill_package.get("skill_id")
     has_evidence = bool(skill_package.get("proofbundle_id") and skill_package.get("evidence_docket_id") and skill_package.get("raw_task_result_ids"))
     status = "imported_inactive_outside_sandbox" if has_evidence else "quarantined_missing_evidence"
+    activation_status = "inactive" if has_evidence else "quarantined"
     event = {
         "schema_version": "agialpha.skill_import.v1",
         "import_id": import_id,
         "skill_id": skill_id,
         "target_agent_id": target_agent_id,
         "import_status": status,
+        "activation_status": activation_status,
         "active_outside_sandbox": False,
         "production_activation_allowed": False,
         "quarantine_reason": "" if has_evidence else "missing ProofBundle, Evidence Docket, or raw task result ids",
-        "proofbundle_id": skill_package.get("proofbundle_id"),
-        "evidence_docket_id": skill_package.get("evidence_docket_id"),
+        "proofbundle_id": skill_package.get("proofbundle_id") or "unavailable",
+        "evidence_docket_id": skill_package.get("evidence_docket_id") or "unavailable",
         **base_record(),
     }
     event["skill_import_hash"] = _hash(event)

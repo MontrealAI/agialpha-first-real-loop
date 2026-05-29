@@ -3,6 +3,13 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "properties": {
+    "activation_status": {
+      "enum": [
+        "inactive",
+        "quarantined"
+      ],
+      "type": "string"
+    },
     "active_outside_sandbox": {
       "const": false,
       "type": "boolean"
@@ -76,6 +83,7 @@
     "skill_id",
     "target_agent_id",
     "import_status",
+    "activation_status",
     "active_outside_sandbox",
     "proofbundle_id",
     "evidence_docket_id",
