@@ -516,6 +516,17 @@ def run_network_compounding(args):
         replay_ok=False,
         falsification_ok=False,
         critical_safety_incidents=0,
+        proofbundle_present=all(bool(s.get('proofbundle_id')) for s in accepted),
+        evidence_docket_present=all(bool(s.get('evidence_docket_id')) for s in accepted),
+        skill_published_to_vault=len(accepted) > 0,
+        imports_inactive_outside_sandbox=all(i.get('active_outside_sandbox') is False and i.get('production_activation_allowed') is False for i in imports),
+        heldout_test_ran=bool(b5 and b6),
+        metrics_computed_from_raw_logs=bool(metrics.get('raw_task_result_ids')),
+        hard_safety_invariants_zero=all(int(metrics.get(k, 0)) == 0 for k in derived_safety_counters),
+        no_token_or_investment_overclaim=metrics.get('token_value_claims_blocked') == 0,
+        no_regulated_decisioning=metrics.get('regulated_decisioning_blocked') == 0,
+        no_autonomous_persistence=True,
+        human_review_required_outside_sandbox=True,
     )
     # write major artifacts
     atomic_write_json(out/'00_manifest.json',{"run_id":run_id,"experiment_id":"AGI-ALPHA-ENGINE-003",**_base()})
@@ -799,6 +810,17 @@ def falsification_network_compounding(args):
         replay_ok=(replay_pass_field is True and replay_passes > 0),
         falsification_ok=fpass,
         critical_safety_incidents=int(m.get('critical_safety_incidents',0)),
+        proofbundle_present=all(bool(s.get('proofbundle_id')) for s in accepted),
+        evidence_docket_present=all(bool(s.get('evidence_docket_id')) for s in accepted),
+        skill_published_to_vault=len(accepted) > 0,
+        imports_inactive_outside_sandbox=all(i.get('active_outside_sandbox') is False and i.get('production_activation_allowed') is False for i in imports),
+        heldout_test_ran=bool(comparison.get('D_shared_skill_network') is not None and comparison.get('D_no_shared_skill') is not None),
+        metrics_computed_from_raw_logs=bool(m.get('raw_task_result_ids')),
+        hard_safety_invariants_zero=int(m.get('critical_safety_incidents',0)) == 0,
+        no_token_or_investment_overclaim=m.get('token_value_claims_blocked') == 0,
+        no_regulated_decisioning=m.get('regulated_decisioning_blocked') == 0,
+        no_autonomous_persistence=True,
+        human_review_required_outside_sandbox=True,
     )
     atomic_write_json(run/'13_claim_gate/network_compounding_claim_gate.json',gate)
     _refresh_network_proofbundles(run)
@@ -884,6 +906,17 @@ def validate_network_compounding(args):
         replay_ok=replay_ok,
         falsification_ok=falsification_ok,
         critical_safety_incidents=int(metrics.get('critical_safety_incidents',0)),
+        proofbundle_present=all(bool(s.get('proofbundle_id')) for s in accepted),
+        evidence_docket_present=all(bool(s.get('evidence_docket_id')) for s in accepted),
+        skill_published_to_vault=len(accepted) > 0,
+        imports_inactive_outside_sandbox=all(i.get('active_outside_sandbox') is False and i.get('production_activation_allowed') is False for i in imports),
+        heldout_test_ran=bool(comparison.get('D_shared_skill_network') is not None and comparison.get('D_no_shared_skill') is not None),
+        metrics_computed_from_raw_logs=bool(metrics.get('raw_task_result_ids')),
+        hard_safety_invariants_zero=int(metrics.get('critical_safety_incidents',0)) == 0,
+        no_token_or_investment_overclaim=metrics.get('token_value_claims_blocked') == 0,
+        no_regulated_decisioning=metrics.get('regulated_decisioning_blocked') == 0,
+        no_autonomous_persistence=True,
+        human_review_required_outside_sandbox=True,
     )
     expected_gate_status=recomputed.get('claim_gate_status')
     if gate.get('claim_gate_status') != expected_gate_status:
