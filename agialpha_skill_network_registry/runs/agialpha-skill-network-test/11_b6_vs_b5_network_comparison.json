@@ -1,7 +1,7 @@
 {
-  "D_no_shared_skill": 0.5096,
-  "D_shared_skill_network": 0.5224,
-  "NetworkSkillPropagationLift": 0.0128,
+  "D_no_shared_skill": 0.5118,
+  "D_shared_skill_network": 0.524,
+  "NetworkSkillPropagationLift": 0.0122,
   "autonomous_persistence_allowed": false,
   "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
   "human_review_required": true,

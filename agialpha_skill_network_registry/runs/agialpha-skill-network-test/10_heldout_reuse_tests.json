@@ -8,6 +8,10 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "proofbundle": 1,
+      "raw_task_result_ids": [
+        "raw-job-1",
+        "raw-job-4"
+      ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_pass": 1,
       "success_score": 0.5,
@@ -23,9 +27,13 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "proofbundle": 1,
+      "raw_task_result_ids": [
+        "raw-job-1",
+        "raw-job-4"
+      ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_pass": 1,
-      "success_score": 0.513,
+      "success_score": 0.515,
       "task_id": "heldout-2",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
       "validator_pass": 1
@@ -38,9 +46,13 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "proofbundle": 1,
+      "raw_task_result_ids": [
+        "raw-job-1",
+        "raw-job-4"
+      ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_pass": 1,
-      "success_score": 0.522,
+      "success_score": 0.523,
       "task_id": "heldout-3",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
       "validator_pass": 1
@@ -53,9 +65,13 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "proofbundle": 1,
+      "raw_task_result_ids": [
+        "raw-job-1",
+        "raw-job-4"
+      ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_pass": 1,
-      "success_score": 0.503,
+      "success_score": 0.509,
       "task_id": "heldout-4",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
       "validator_pass": 1
@@ -68,9 +84,13 @@
       "human_review_required": true,
       "no_auto_merge": true,
       "proofbundle": 1,
+      "raw_task_result_ids": [
+        "raw-job-1",
+        "raw-job-4"
+      ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_pass": 1,
-      "success_score": 0.51,
+      "success_score": 0.512,
       "task_id": "heldout-5",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
       "validator_pass": 1
@@ -83,10 +103,16 @@
       "cost_risk_proxy": 1,
       "docket": 1,
       "human_review_required": true,
+      "measured_reuse_delta": 0.013485,
       "no_auto_merge": true,
       "proofbundle": 1,
+      "raw_task_result_ids": [
+        "raw-job-1",
+        "raw-job-4"
+      ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_pass": 1,
+      "reuse_delta_source": "accepted_raw_skill_scores_x_import_coverage_x_validator_coverage",
       "success_score": 0.514,
       "task_id": "heldout-1",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
@@ -98,11 +124,17 @@
       "cost_risk_proxy": 1,
       "docket": 1,
       "human_review_required": true,
+      "measured_reuse_delta": 0.01488,
       "no_auto_merge": true,
       "proofbundle": 1,
+      "raw_task_result_ids": [
+        "raw-job-1",
+        "raw-job-4"
+      ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_pass": 1,
-      "success_score": 0.532,
+      "reuse_delta_source": "accepted_raw_skill_scores_x_import_coverage_x_validator_coverage",
+      "success_score": 0.53,
       "task_id": "heldout-2",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
       "validator_pass": 1
@@ -113,11 +145,17 @@
       "cost_risk_proxy": 1,
       "docket": 1,
       "human_review_required": true,
+      "measured_reuse_delta": 0.0093,
       "no_auto_merge": true,
       "proofbundle": 1,
+      "raw_task_result_ids": [
+        "raw-job-1",
+        "raw-job-4"
+      ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_pass": 1,
-      "success_score": 0.532,
+      "reuse_delta_source": "accepted_raw_skill_scores_x_import_coverage_x_validator_coverage",
+      "success_score": 0.533,
       "task_id": "heldout-3",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
       "validator_pass": 1
@@ -128,11 +166,17 @@
       "cost_risk_proxy": 1,
       "docket": 1,
       "human_review_required": true,
+      "measured_reuse_delta": 0.010695,
       "no_auto_merge": true,
       "proofbundle": 1,
+      "raw_task_result_ids": [
+        "raw-job-1",
+        "raw-job-4"
+      ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_pass": 1,
-      "success_score": 0.512,
+      "reuse_delta_source": "accepted_raw_skill_scores_x_import_coverage_x_validator_coverage",
+      "success_score": 0.519,
       "task_id": "heldout-4",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
       "validator_pass": 1
@@ -143,11 +187,17 @@
       "cost_risk_proxy": 1,
       "docket": 1,
       "human_review_required": true,
+      "measured_reuse_delta": 0.01209,
       "no_auto_merge": true,
       "proofbundle": 1,
+      "raw_task_result_ids": [
+        "raw-job-1",
+        "raw-job-4"
+      ],
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "replay_pass": 1,
-      "success_score": 0.522,
+      "reuse_delta_source": "accepted_raw_skill_scores_x_import_coverage_x_validator_coverage",
+      "success_score": 0.524,
       "task_id": "heldout-5",
       "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
       "validator_pass": 1
