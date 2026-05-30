@@ -6,6 +6,7 @@
     "accepted_skill_exists": true,
     "accepted_skill_has_evidence_docket": true,
     "accepted_skill_has_proofbundle": true,
+    "accepted_skill_ids_present_in_network_skill_vault": true,
     "accepted_skills_have_raw_task_results": true,
     "at_least_3_distinct_import_targets": true,
     "autonomous_persistence_attempts_blocked_counter_non_negative": true,

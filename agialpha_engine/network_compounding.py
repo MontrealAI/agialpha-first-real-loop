@@ -24,6 +24,53 @@ def _read(p,d):
     if not p.exists(): return d
     return json.loads(p.read_text())
 
+
+def _skill_id_set(rows) -> set[str]:
+    return {str(row.get("skill_id")).strip() for row in rows if isinstance(row, dict) and str(row.get("skill_id", "")).strip()}
+
+
+def _vault_publication_status_from_docs(
+    accepted: list[dict],
+    vault_doc: dict | None,
+    publication_doc: dict | None,
+) -> tuple[int, bool, list[str]]:
+    """Return measured vault publication count/coverage/errors for accepted skills."""
+    errors: list[str] = []
+    accepted_ids = _skill_id_set(accepted)
+    if not accepted_ids:
+        return 0, False, ["no accepted skill ids to verify in Network Skill Vault"]
+    if not isinstance(vault_doc, dict):
+        vault_doc = {}
+        errors.append("04_network_skill_vault/network_skill_vault.json missing or invalid")
+    if not isinstance(publication_doc, dict):
+        publication_doc = {}
+        errors.append("04_network_skill_vault/skill_publication_events.json missing or invalid")
+    vault_skill_ids = _skill_id_set(vault_doc.get("skill_packages", []))
+    event_skill_ids = _skill_id_set(publication_doc.get("events", []))
+    missing_from_vault = sorted(accepted_ids - vault_skill_ids)
+    missing_from_events = sorted(accepted_ids - event_skill_ids)
+    if missing_from_vault:
+        errors.append(f"accepted skill ids missing from Network Skill Vault: {missing_from_vault}")
+    if missing_from_events:
+        errors.append(f"accepted skill ids missing from skill publication events: {missing_from_events}")
+    published_ids = accepted_ids & vault_skill_ids & event_skill_ids
+    return len(published_ids), not errors and published_ids == accepted_ids, errors
+
+
+def _vault_publication_status_from_run(run: Path, accepted: list[dict]) -> tuple[int, bool, list[str]]:
+    vault_path = run / "04_network_skill_vault" / "network_skill_vault.json"
+    events_path = run / "04_network_skill_vault" / "skill_publication_events.json"
+    errors: list[str] = []
+    if not vault_path.exists():
+        errors.append("04_network_skill_vault/network_skill_vault.json missing")
+    if not events_path.exists():
+        errors.append("04_network_skill_vault/skill_publication_events.json missing")
+    vault_doc = _read(vault_path, {}) if vault_path.exists() else {}
+    publication_doc = _read(events_path, {}) if events_path.exists() else {}
+    count, ok, doc_errors = _vault_publication_status_from_docs(accepted, vault_doc, publication_doc)
+    errors.extend(doc_errors)
+    return count, ok, errors
+
 def _base(extra=None):
     d={**BOUNDARIES,"human_review_required":True,"autonomous_persistence_allowed":False,"no_auto_merge":True}
     if extra: d.update(extra)
@@ -503,7 +550,14 @@ def run_network_compounding(args):
             [r for r in sandbox_records if r.get("autonomous_persistence_attempt_blocked") is True]
         ),
     }
-    metrics={"jobs_run":len(jobs),"jobs_with_skill_extraction":len(jobs),"accepted_skill_packages":len(accepted),"rejected_skill_candidates":len(rejected),"failure_learning_packages":len(failure),"skills_published_to_vault":len(accepted),"agents_registered":len(agents),"agent_skill_manifests_created":len(manifests),"skill_import_events":len(imports),"target_agents_with_imported_skill":len(target_agents),"target_agents_improved_on_heldout":target_agents_improved,"heldout_tasks_evaluated":len(b5),"B6_shared_skill_beats_B5_no_shared_skill":d6>d5,"B6_shared_skill_advantage_delta":lift,"network_skill_propagation_lift":lift,"network_skill_multiplier":round((d6/max(1e-6,d5)),4),"capability_compounding_rate":round((len(accepted)+len(failure))/max(1,len(jobs)),4),"compounding_exponent_proxy":"not_supported","exponential_compounding_supported":False,"exponential_compounding_status":"Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.","raw_task_result_ids":[r['raw_task_result_id'] for r in raw],"replay_pass_rate":"pending","falsification_pass":"pending","semantic_tests_passed":"pending","adversarial_failures_caught":"not_reported","hard_coded_metric_count":0,"fake_zero_metric_count":0,"unsafe_claims_blocked":0,"token_value_claims_blocked":0,"regulated_decisioning_blocked":0,"human_review_required_count":len(imports)+len(jobs),**derived_safety_counters,**_base()}
+    network_skill_vault_doc = {"skill_packages": accepted, **_base()}
+    skill_publication_events_doc = {"events": [{"skill_id": s["skill_id"]} for s in accepted], **_base()}
+    vault_publication_count, vault_publication_ok, _vault_publication_errors = _vault_publication_status_from_docs(
+        accepted,
+        network_skill_vault_doc,
+        skill_publication_events_doc,
+    )
+    metrics={"jobs_run":len(jobs),"jobs_with_skill_extraction":len(jobs),"accepted_skill_packages":len(accepted),"rejected_skill_candidates":len(rejected),"failure_learning_packages":len(failure),"skills_published_to_vault":vault_publication_count,"agents_registered":len(agents),"agent_skill_manifests_created":len(manifests),"skill_import_events":len(imports),"target_agents_with_imported_skill":len(target_agents),"target_agents_improved_on_heldout":target_agents_improved,"heldout_tasks_evaluated":len(b5),"B6_shared_skill_beats_B5_no_shared_skill":d6>d5,"B6_shared_skill_advantage_delta":lift,"network_skill_propagation_lift":lift,"network_skill_multiplier":round((d6/max(1e-6,d5)),4),"capability_compounding_rate":round((len(accepted)+len(failure))/max(1,len(jobs)),4),"compounding_exponent_proxy":"not_supported","exponential_compounding_supported":False,"exponential_compounding_status":"Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.","raw_task_result_ids":[r['raw_task_result_id'] for r in raw],"replay_pass_rate":"pending","falsification_pass":"pending","semantic_tests_passed":"pending","adversarial_failures_caught":"not_reported","hard_coded_metric_count":0,"fake_zero_metric_count":0,"unsafe_claims_blocked":0,"token_value_claims_blocked":0,"regulated_decisioning_blocked":0,"human_review_required_count":len(imports)+len(jobs),**derived_safety_counters,**_base()}
     metrics["hard_coded_metric_count"]=0
     metrics["fake_zero_metric_count"]=0
     gate=evaluate_network_compounding_claim(
@@ -519,7 +573,8 @@ def run_network_compounding(args):
         accepted_skills_have_raw_results=all(bool(sk.get('raw_task_result_ids')) for sk in accepted),
         proofbundle_present=all(bool(sk.get('proofbundle_id')) for sk in accepted),
         evidence_docket_present=all(bool(sk.get('evidence_docket_id')) for sk in accepted),
-        skills_published_to_vault=len(accepted),
+        skills_published_to_vault=vault_publication_count,
+        accepted_skills_published_to_vault=vault_publication_ok,
         imported_skills_inactive_outside_sandbox=all(i.get('active_outside_sandbox') is False and i.get('activation_status') == 'inactive' for i in imports),
         heldout_comparison_ran=bool(b5 and b6),
         metrics_computed_from_raw_logs=bool(raw),
@@ -531,7 +586,7 @@ def run_network_compounding(args):
     atomic_write_json(out/'02_jobs/source_jobs.json',{"jobs":jobs,**_base()}); atomic_write_json(out/'02_jobs/raw_task_results.json',{"raw_task_results":raw,**_base()})
     atomic_write_json(out/'02_jobs/sandbox_records.json',{"sandbox_records":sandbox_records,**_base()})
     atomic_write_json(out/'03_skill_extraction/skill_extraction_report.json',{"jobs_processed":len(jobs),**_base()}); atomic_write_json(out/'03_skill_extraction/accepted_skill_packages.json',{"accepted_skill_packages":accepted,**_base()}); atomic_write_json(out/'03_skill_extraction/rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(out/'03_skill_extraction/failure_learning_packages.json',{"failure_learning_packages":failure,**_base()})
-    atomic_write_json(out/'04_network_skill_vault/network_skill_vault.json',{"skill_packages":accepted,**_base()}); atomic_write_json(out/'04_network_skill_vault/skill_publication_events.json',{"events":[{"skill_id":s['skill_id']} for s in accepted],**_base()})
+    atomic_write_json(out/'04_network_skill_vault/network_skill_vault.json',network_skill_vault_doc); atomic_write_json(out/'04_network_skill_vault/skill_publication_events.json',skill_publication_events_doc)
     atomic_write_json(out/'05_skill_import/skill_import_events.json',{"skill_import_events":imports,**_base()}); atomic_write_json(out/'05_skill_import/agent_skill_manifests_after_import.json',{"manifests":manifests,**_base()})
     comparison_payload = {"D_no_shared_skill": d5, "D_shared_skill_network": d6, "NetworkSkillPropagationLift": lift, **_base()}
     atomic_write_json(out/'06_heldout_reuse_tests/B5_no_shared_skill.json',{"results":b5,**_base()}); atomic_write_json(out/'06_heldout_reuse_tests/B6_shared_skill_network.json',{"results":b6,**_base()}); atomic_write_json(out/'06_heldout_reuse_tests/comparison.json',comparison_payload)
@@ -797,6 +852,7 @@ def falsification_network_compounding(args):
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
     failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
     exact_one_outcome_per_job=_job_outcome_coverage(jobs, accepted, rejected, failures)
+    vault_publication_count, vault_publication_ok, _vault_publication_errors = _vault_publication_status_from_run(run, accepted)
     gate=evaluate_network_compounding_claim(
         jobs_run=len(jobs),
         exact_one_outcome_per_job=exact_one_outcome_per_job,
@@ -810,7 +866,8 @@ def falsification_network_compounding(args):
         accepted_skills_have_raw_results=all(bool(sk.get('raw_task_result_ids')) for sk in accepted),
         proofbundle_present=all(bool(sk.get('proofbundle_id')) for sk in accepted),
         evidence_docket_present=all(bool(sk.get('evidence_docket_id')) for sk in accepted),
-        skills_published_to_vault=len(accepted),
+        skills_published_to_vault=vault_publication_count,
+        accepted_skills_published_to_vault=vault_publication_ok,
         imported_skills_inactive_outside_sandbox=all(i.get('active_outside_sandbox') is False and i.get('activation_status') == 'inactive' for i in imports),
         heldout_comparison_ran=bool(comparison.get('NetworkSkillPropagationLift') is not None),
         metrics_computed_from_raw_logs=bool(m.get('raw_task_result_ids')),
@@ -827,7 +884,7 @@ def falsification_network_compounding(args):
 
 def validate_network_compounding(args):
     run=Path(args.run)
-    req=['00_manifest.json','02_jobs/source_jobs.json','02_jobs/raw_task_results.json','02_jobs/sandbox_records.json','03_skill_extraction/accepted_skill_packages.json','03_skill_extraction/rejected_skill_candidates.json','03_skill_extraction/failure_learning_packages.json','05_skill_import/skill_import_events.json','06_heldout_reuse_tests/comparison.json','07_metrics/network_skill_metrics.json','11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/network_compounding_claim_gate.json','14_proofbundles/index.json']
+    req=['00_manifest.json','02_jobs/source_jobs.json','02_jobs/raw_task_results.json','02_jobs/sandbox_records.json','03_skill_extraction/accepted_skill_packages.json','03_skill_extraction/rejected_skill_candidates.json','03_skill_extraction/failure_learning_packages.json','04_network_skill_vault/network_skill_vault.json','04_network_skill_vault/skill_publication_events.json','05_skill_import/skill_import_events.json','06_heldout_reuse_tests/comparison.json','07_metrics/network_skill_metrics.json','11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/network_compounding_claim_gate.json','14_proofbundles/index.json']
     miss=[x for x in req if not (run/x).exists()]
     if miss:
         raise SystemExit(f'missing artifacts: {miss}')
@@ -895,6 +952,9 @@ def validate_network_compounding(args):
     if len(manifest_import_agent_ids) < 3:
         raise SystemExit('network-compounding-validate failed: at least 3 agent manifests must reflect imported skills')
     exact_one_outcome_per_job=_job_outcome_coverage(jobs, accepted, rejected, failures)
+    vault_publication_count, vault_publication_ok, vault_publication_errors = _vault_publication_status_from_run(run, accepted)
+    if not vault_publication_ok:
+        raise SystemExit(f'network-compounding-validate failed: Network Skill Vault publication integrity failed ({vault_publication_errors})')
     recomputed=evaluate_network_compounding_claim(
         jobs_run=len(jobs),
         exact_one_outcome_per_job=exact_one_outcome_per_job,
@@ -908,7 +968,8 @@ def validate_network_compounding(args):
         accepted_skills_have_raw_results=all(bool(sk.get('raw_task_result_ids')) for sk in accepted),
         proofbundle_present=all(bool(sk.get('proofbundle_id')) for sk in accepted),
         evidence_docket_present=all(bool(sk.get('evidence_docket_id')) for sk in accepted),
-        skills_published_to_vault=len(accepted),
+        skills_published_to_vault=vault_publication_count,
+        accepted_skills_published_to_vault=vault_publication_ok,
         imported_skills_inactive_outside_sandbox=all(i.get('active_outside_sandbox') is False and i.get('activation_status') == 'inactive' for i in imports),
         heldout_comparison_ran=bool(comparison.get('NetworkSkillPropagationLift') is not None),
         metrics_computed_from_raw_logs=bool(metrics.get('raw_task_result_ids')),
