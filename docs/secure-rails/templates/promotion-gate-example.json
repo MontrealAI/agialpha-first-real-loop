@@ -14,5 +14,6 @@
   },
   "gate_status": "pass",
   "failure_reasons": [],
-  "claim_boundary": "Promotion gates enforce human-governed SecureRails promotion. Passing a gate is not a security certification."
+  "claim_boundary": "Promotion gates enforce human-governed SecureRails promotion. Passing a gate is not a security certification.",
+  "human_review_status": "accepted"
 }
