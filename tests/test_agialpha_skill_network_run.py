@@ -406,3 +406,21 @@ def test_validate_fails_when_publication_events_contain_unaccepted_skill():
         proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
         assert proc.returncode != 0
         assert 'unaccepted skills present in skill publication events' in (proc.stderr + proc.stdout)
+
+
+def test_registry_run_preserves_proofbundles_and_evidence_dockets():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        registry_run=reg/'runs'/run.name
+        proof_index=registry_run/'14_proofbundles/index.json'
+        docket_index=registry_run/'15_evidence_dockets/index.json'
+        assert proof_index.exists()
+        assert docket_index.exists()
+        proofbundles=json.loads(proof_index.read_text())['proofbundles']
+        dockets=json.loads(docket_index.read_text())['evidence_dockets']
+        assert proofbundles and dockets
+        assert all((registry_run/'14_proofbundles'/f"{pb['proofbundle_id']}.json").exists() for pb in proofbundles)
+        assert all((registry_run/'15_evidence_dockets'/f"{d['evidence_docket_id']}.json").exists() for d in dockets)

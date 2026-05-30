@@ -1,0 +1,17 @@
+{
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+  "evidence_docket_id": "ed-skill-4",
+  "human_review_required": true,
+  "includes_baseline_regressions": true,
+  "includes_evaluator_disagreement": true,
+  "includes_failures": true,
+  "includes_falsification_attempts": true,
+  "includes_rejected_claims": true,
+  "includes_successes": true,
+  "no_auto_merge": true,
+  "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+  "schema_version": "agialpha.engine003.evidence_docket.v1",
+  "skill_id": "skill-4",
+  "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
+}
