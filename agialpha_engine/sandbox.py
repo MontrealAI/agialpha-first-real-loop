@@ -257,6 +257,7 @@ class LocalSandbox:
             "stderr_hash": artifact_hash(stderr),
             "status": status,
             "blocked_reason": blocked_reason,
+            "timeout": timeout,
             "timeout_ms": int(timeout_seconds * 1000),
             "elapsed_ms": elapsed_ms,
             **BOUNDARIES,

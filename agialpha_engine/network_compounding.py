@@ -233,6 +233,10 @@ def _validate_sandbox_records(raw_task_results: list[dict], sandbox_records: lis
             errors.append(f"repo_mutation_allowed must be false for {sandbox_id}")
         if record.get("production_actuation_allowed") is not False:
             errors.append(f"production_actuation_allowed must be false for {sandbox_id}")
+        if not isinstance(record.get("timeout"), bool):
+            errors.append(f"timeout must be boolean for {sandbox_id}")
+        if not isinstance(record.get("timeout_ms"), int) or record.get("timeout_ms", 0) <= 0:
+            errors.append(f"timeout_ms must be a positive integer for {sandbox_id}")
         allowed_root = record.get("allowed_root")
         if isinstance(allowed_root, str) and allowed_root:
             root_path = Path(allowed_root)
@@ -551,6 +555,8 @@ def run_network_compounding(args):
             "stderr_hash": _h(stderr_payload),
             "status": "pass",
             "blocked_reason": "",
+            "timeout": False,
+            "timeout_ms": 5000,
             "autonomous_persistence_attempt_blocked": False,
             **_base(),
         })
