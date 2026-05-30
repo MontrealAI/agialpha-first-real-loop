@@ -314,3 +314,34 @@ def test_validate_rejects_unsafe_quarantined_import_event():
         assert 'activation_status must be inactive or quarantined for non-imported skill events' in output
         assert 'active_outside_sandbox must be false' in output
         assert 'production_activation_allowed must be false' in output
+
+
+def test_validate_rejects_missing_network_skill_vault_publication_artifacts():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        for child in (run/'04_network_skill_vault').glob('*'):
+            child.unlink()
+        (run/'04_network_skill_vault').rmdir()
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        output=proc.stderr + proc.stdout
+        assert proc.returncode != 0
+        assert '04_network_skill_vault/network_skill_vault.json' in output
+
+
+def test_validate_rejects_vault_missing_accepted_skill_id():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        vault_path=run/'04_network_skill_vault/network_skill_vault.json'
+        doc=json.loads(vault_path.read_text())
+        doc['skill_packages']=doc['skill_packages'][1:]
+        vault_path.write_text(json.dumps(doc))
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        output=proc.stderr + proc.stdout
+        assert proc.returncode != 0
+        assert 'accepted skill ids missing from Network Skill Vault' in output

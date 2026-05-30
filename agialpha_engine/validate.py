@@ -93,6 +93,7 @@ def validate_network_skill_run_minimum(run_dir: Path) -> dict[str, Any]:
         "02_jobs/raw_task_results.json",
         "03_skill_extraction/accepted_skill_packages.json",
         "04_network_skill_vault/network_skill_vault.json",
+        "04_network_skill_vault/skill_publication_events.json",
         "05_skill_import/skill_import_events.json",
         "06_heldout_reuse_tests/comparison.json",
         "07_metrics/network_skill_metrics.json",
@@ -106,10 +107,15 @@ def validate_network_skill_run_minimum(run_dir: Path) -> dict[str, Any]:
     raw = read_json(run_dir / "02_jobs" / "raw_task_results.json")
     accepted = read_json(run_dir / "03_skill_extraction" / "accepted_skill_packages.json")
     imports = read_json(run_dir / "05_skill_import" / "skill_import_events.json")
+    vault = read_json(run_dir / "04_network_skill_vault" / "network_skill_vault.json")
+    publication_events = read_json(run_dir / "04_network_skill_vault" / "skill_publication_events.json")
     metrics = read_json(run_dir / "07_metrics" / "network_skill_metrics.json")
     raw_rows = raw.get("raw_task_results", [])
     accepted_rows = accepted.get("accepted_skill_packages", [])
     import_rows = imports.get("skill_import_events", [])
+    accepted_skill_ids = {row.get("skill_id") for row in accepted_rows if isinstance(row, dict) and row.get("skill_id")}
+    vault_skill_ids = {row.get("skill_id") for row in vault.get("skill_packages", []) if isinstance(row, dict) and row.get("skill_id")}
+    publication_skill_ids = {row.get("skill_id") for row in publication_events.get("events", []) if isinstance(row, dict) and row.get("skill_id")}
     imported_agents = set()
     imported_inactive = 0
     for row in import_rows:
@@ -123,6 +129,7 @@ def validate_network_skill_run_minimum(run_dir: Path) -> dict[str, Any]:
     pass_flags = {
         "raw_task_results_present": len(raw_rows) >= 1,
         "accepted_skills_link_raw_task_results": all(bool(r.get("raw_task_result_ids")) for r in accepted_rows),
+        "accepted_skills_published_to_network_skill_vault": bool(accepted_skill_ids) and accepted_skill_ids <= vault_skill_ids and accepted_skill_ids <= publication_skill_ids,
         "imports_present": len(import_rows) >= 1,
         "minimum_target_agents_imported": len(imported_agents) >= 3,
         "imports_inactive_outside_sandbox": imported_inactive == len(import_rows),
