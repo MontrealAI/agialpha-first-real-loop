@@ -356,6 +356,8 @@ def run_network_compounding(args):
     out=Path(args.out); reg=Path(args.registry); out.mkdir(parents=True,exist_ok=True); reg.mkdir(parents=True,exist_ok=True)
     run_id=out.name
     jobs=[]; raw=[]; accepted=[]; rejected=[]; failure=[]; sandbox_records=[]
+    sandbox_workspace = (out / "02_jobs" / "local_sandbox_workspace").resolve()
+    sandbox_workspace.mkdir(parents=True, exist_ok=True)
     agents=[{"agent_id":f"agent-{i+1}","agent_role":ROLES[i%len(ROLES)],"role":ROLES[i%len(ROLES)],**_base()} for i in range(max(args.target_agents+1,4))]
     manifests=[]
     for a in agents:
@@ -366,18 +368,22 @@ def run_network_compounding(args):
         rec={"job_id":jid,"source_agent_id":aid,"validator_pass":True,"task_success":True,"score":round(score,3),"cost_risk_proxy":1,**_base()}
         jobs.append(rec); raw.append({"schema_version":"agialpha.engine.raw_task_result.v1","task_result_id":f"raw-{jid}","raw_task_result_id":f"raw-{jid}","task_id":jid,"candidate_id":f"cand-{jid}","baseline_id":"B6_shared_skill_network","agent_id":aid,"skill_id":None,"seed":args.seed,"sandbox_id":f"sandbox-{jid}","validator_results":[{"validator_id":"default-local-validator","pass":True}],"raw_scores":{"score":round(score,3)},"cost_proxy":1,"safety_counters":{"critical_safety_incidents":0},"artifact_hashes":{},"passed":True,"failure_reason":"","claim_boundary":BOUNDARIES["claim_boundary"],"token_boundary":BOUNDARIES["token_boundary"],"regulated_boundary":BOUNDARIES["regulated_boundary"],"source_logs":[f"log-{jid}"],**rec})
         stdout_payload, stderr_payload = _compute_stream_payload(jid, rec["score"], rec["validator_pass"])
+        fixture_rel = f"safe_fixture_{jid}.json"
+        before_fixture = {"job_id": jid, "seed": args.seed, "candidate_id": f"cand-{jid}", "stage": "before_validation", **_base()}
+        after_fixture = {**before_fixture, "stage": "after_validation", "validator_pass": rec["validator_pass"], "score": rec["score"]}
+        (sandbox_workspace / fixture_rel).write_text(json.dumps(after_fixture, sort_keys=True, indent=2), encoding="utf-8")
         sandbox_records.append({
             "schema_version": "agialpha.engine.sandbox_record.v1",
             "sandbox_id": f"sandbox-{jid}",
-            "allowed_root": str(Path(args.repo_root).resolve()),
+            "allowed_root": str(sandbox_workspace),
             "seed": args.seed,
             "network_disabled": True,
             "repo_mutation_allowed": False,
             "production_actuation_allowed": False,
             "commands_run": [f"evaluate {jid}"],
-            "files_before": {},
-            "files_after": {},
-            "diff_summary": {"changed_files": 0},
+            "files_before": {fixture_rel: _h(before_fixture)},
+            "files_after": {fixture_rel: _h(after_fixture)},
+            "diff_summary": {"changed_files": 1, "changed_paths": [fixture_rel], "repo_source_mutated": False},
             "stdout_hash": _h(stdout_payload),
             "stderr_hash": _h(stderr_payload),
             "status": "pass",
