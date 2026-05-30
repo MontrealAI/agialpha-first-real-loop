@@ -516,6 +516,14 @@ def run_network_compounding(args):
         replay_ok=False,
         falsification_ok=False,
         critical_safety_incidents=0,
+        accepted_skills_have_raw_results=all(bool(sk.get('raw_task_result_ids')) for sk in accepted),
+        proofbundle_present=all(bool(sk.get('proofbundle_id')) for sk in accepted),
+        evidence_docket_present=all(bool(sk.get('evidence_docket_id')) for sk in accepted),
+        skills_published_to_vault=len(accepted),
+        imported_skills_inactive_outside_sandbox=all(i.get('active_outside_sandbox') is False and i.get('activation_status') == 'inactive' for i in imports),
+        heldout_comparison_ran=bool(b5 and b6),
+        metrics_computed_from_raw_logs=bool(raw),
+        human_review_required_outside_sandbox=True,
     )
     # write major artifacts
     atomic_write_json(out/'00_manifest.json',{"run_id":run_id,"experiment_id":"AGI-ALPHA-ENGINE-003",**_base()})
@@ -799,6 +807,19 @@ def falsification_network_compounding(args):
         replay_ok=(replay_pass_field is True and replay_passes > 0),
         falsification_ok=fpass,
         critical_safety_incidents=int(m.get('critical_safety_incidents',0)),
+        accepted_skills_have_raw_results=all(bool(sk.get('raw_task_result_ids')) for sk in accepted),
+        proofbundle_present=all(bool(sk.get('proofbundle_id')) for sk in accepted),
+        evidence_docket_present=all(bool(sk.get('evidence_docket_id')) for sk in accepted),
+        skills_published_to_vault=len(accepted),
+        imported_skills_inactive_outside_sandbox=all(i.get('active_outside_sandbox') is False and i.get('activation_status') == 'inactive' for i in imports),
+        heldout_comparison_ran=bool(comparison.get('NetworkSkillPropagationLift') is not None),
+        metrics_computed_from_raw_logs=bool(m.get('raw_task_result_ids')),
+        falsification_covers_required_injections=adversarial_failures_caught >= 8,
+        unsafe_claims_blocked=int(m.get('unsafe_claims_blocked', 0)),
+        token_value_claims_blocked=int(m.get('token_value_claims_blocked', 0)),
+        regulated_decisioning_blocked=int(m.get('regulated_decisioning_blocked', 0)),
+        autonomous_persistence_attempts_blocked=int(m.get('autonomous_persistence_attempts_blocked', 0)),
+        human_review_required_outside_sandbox=all(i.get('human_review_required') is True for i in imports),
     )
     atomic_write_json(run/'13_claim_gate/network_compounding_claim_gate.json',gate)
     _refresh_network_proofbundles(run)
@@ -884,6 +905,19 @@ def validate_network_compounding(args):
         replay_ok=replay_ok,
         falsification_ok=falsification_ok,
         critical_safety_incidents=int(metrics.get('critical_safety_incidents',0)),
+        accepted_skills_have_raw_results=all(bool(sk.get('raw_task_result_ids')) for sk in accepted),
+        proofbundle_present=all(bool(sk.get('proofbundle_id')) for sk in accepted),
+        evidence_docket_present=all(bool(sk.get('evidence_docket_id')) for sk in accepted),
+        skills_published_to_vault=len(accepted),
+        imported_skills_inactive_outside_sandbox=all(i.get('active_outside_sandbox') is False and i.get('activation_status') == 'inactive' for i in imports),
+        heldout_comparison_ran=bool(comparison.get('NetworkSkillPropagationLift') is not None),
+        metrics_computed_from_raw_logs=bool(metrics.get('raw_task_result_ids')),
+        falsification_covers_required_injections=int(metrics.get('adversarial_failures_caught', 0)) >= 8,
+        unsafe_claims_blocked=int(metrics.get('unsafe_claims_blocked', 0)),
+        token_value_claims_blocked=int(metrics.get('token_value_claims_blocked', 0)),
+        regulated_decisioning_blocked=int(metrics.get('regulated_decisioning_blocked', 0)),
+        autonomous_persistence_attempts_blocked=int(metrics.get('autonomous_persistence_attempts_blocked', 0)),
+        human_review_required_outside_sandbox=all(i.get('human_review_required') is True for i in imports),
     )
     expected_gate_status=recomputed.get('claim_gate_status')
     if gate.get('claim_gate_status') != expected_gate_status:

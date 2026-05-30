@@ -2,36 +2,88 @@ from __future__ import annotations
 
 from .context import BOUNDARIES
 
-
-def base_record(extra=None):
-    rec={**BOUNDARIES}
-    if extra:
-        rec.update(extra)
-    rec.update({"human_review_required":True,"autonomous_persistence_allowed":False,"no_auto_merge":True})
-    return rec
-
 __doc__ = "Network claim gate evaluation."
 
-def supported_status(ok:bool)->str:
+
+def base_record(extra=None):
+    rec = {**BOUNDARIES}
+    if extra:
+        rec.update(extra)
+    rec.update({"human_review_required": True, "autonomous_persistence_allowed": False, "no_auto_merge": True})
+    return rec
+
+
+def supported_status(ok: bool) -> str:
     return "supported_local_bounded" if ok else "not_supported"
 
 
-def evaluate_network_compounding_claim(*, jobs_run:int, exact_one_outcome_per_job:bool, accepted_skill_packages:int, distinct_import_targets:int, d_shared_skill_network:float, d_no_shared_skill:float, replay_ok:bool, falsification_ok:bool, critical_safety_incidents:int=0, token_boundary_integrity:bool=True, regulated_boundary_integrity:bool=True)->dict:
+def evaluate_network_compounding_claim(
+    *,
+    jobs_run: int,
+    exact_one_outcome_per_job: bool,
+    accepted_skill_packages: int,
+    distinct_import_targets: int,
+    d_shared_skill_network: float,
+    d_no_shared_skill: float,
+    replay_ok: bool,
+    falsification_ok: bool,
+    critical_safety_incidents: int = 0,
+    token_boundary_integrity: bool = True,
+    regulated_boundary_integrity: bool = True,
+    accepted_skills_have_raw_results: bool = True,
+    proofbundle_present: bool = True,
+    evidence_docket_present: bool = True,
+    skills_published_to_vault: int | None = None,
+    imported_skills_inactive_outside_sandbox: bool = True,
+    heldout_comparison_ran: bool = True,
+    metrics_computed_from_raw_logs: bool = True,
+    falsification_covers_required_injections: bool = True,
+    unsafe_claims_blocked: int = 0,
+    token_value_claims_blocked: int = 0,
+    regulated_decisioning_blocked: int = 0,
+    autonomous_persistence_attempts_blocked: int = 0,
+    human_review_required_outside_sandbox: bool = True,
+) -> dict:
+    """Evaluate the Engine-003 networked skill-compounding claim gate.
+
+    The function deliberately accepts measured booleans/counters from run artifacts
+    rather than inferring success from mere file presence.  Defaults preserve the
+    older call contract, while callers that have richer evidence can pass the full
+    gate surface.  A supported result is limited to local bounded networked skill
+    compounding; exponential wording is always held behind a separate multi-cycle
+    evidence gate.
+    """
+
+    published_count = accepted_skill_packages if skills_published_to_vault is None else skills_published_to_vault
     checks = {
         "jobs_run_at_least_5": jobs_run >= 5,
         "every_job_has_outcome": exact_one_outcome_per_job,
         "accepted_skill_exists": accepted_skill_packages >= 1,
+        "accepted_skills_have_raw_task_results": accepted_skills_have_raw_results,
+        "accepted_skill_has_proofbundle": proofbundle_present,
+        "accepted_skill_has_evidence_docket": evidence_docket_present,
+        "skill_published_to_network_skill_vault": published_count >= 1,
         "at_least_3_distinct_import_targets": distinct_import_targets >= 3,
+        "imported_skills_inactive_outside_sandbox": imported_skills_inactive_outside_sandbox,
+        "B6_vs_B5_heldout_test_ran": heldout_comparison_ran,
         "B6_beats_B5": d_shared_skill_network > d_no_shared_skill,
+        "metrics_computed_from_raw_logs": metrics_computed_from_raw_logs,
         "replay_ok": replay_ok,
         "falsification_ok": falsification_ok,
+        "falsification_covers_required_injections": falsification_covers_required_injections,
         "critical_safety_incidents_zero": critical_safety_incidents == 0,
+        "unsafe_claims_blocked_counter_zero": unsafe_claims_blocked == 0,
+        "token_value_claims_blocked_counter_zero": token_value_claims_blocked == 0,
+        "regulated_decisioning_blocked_counter_zero": regulated_decisioning_blocked == 0,
+        "autonomous_persistence_attempts_blocked_counter_non_negative": autonomous_persistence_attempts_blocked >= 0,
         "token_boundary_integrity": token_boundary_integrity,
         "regulated_boundary_integrity": regulated_boundary_integrity,
+        "human_review_required_outside_sandbox": human_review_required_outside_sandbox,
     }
     ok = all(checks.values())
     return base_record({
         "claim_gate_status": supported_status(ok),
+        "exponential_compounding_supported": False,
         "exponential_compounding_status": "Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.",
         "supported_wording": (
             "We have demonstrated local bounded networked skill compounding: one agent’s proof-bound job produced a validated Skill Package that other agents imported and used to improve held-out adjacent work against no-shared-skill baselines."
