@@ -96,7 +96,13 @@
       "raw_task_result_id": "raw-job-1",
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "safety_counters": {
-        "critical_safety_incidents": 0
+        "critical_safety_incidents": 0,
+        "exploit_execution_count": 0,
+        "external_target_scan_count": 0,
+        "malware_generation_count": 0,
+        "raw_secret_leak_count": 0,
+        "social_engineering_content_count": 0,
+        "unsafe_automerge_count": 0
       },
       "sandbox_id": "sandbox-job-1",
       "schema_version": "agialpha.engine.raw_task_result.v1",
@@ -139,7 +145,13 @@
       "raw_task_result_id": "raw-job-2",
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "safety_counters": {
-        "critical_safety_incidents": 0
+        "critical_safety_incidents": 0,
+        "exploit_execution_count": 0,
+        "external_target_scan_count": 0,
+        "malware_generation_count": 0,
+        "raw_secret_leak_count": 0,
+        "social_engineering_content_count": 0,
+        "unsafe_automerge_count": 0
       },
       "sandbox_id": "sandbox-job-2",
       "schema_version": "agialpha.engine.raw_task_result.v1",
@@ -182,7 +194,13 @@
       "raw_task_result_id": "raw-job-3",
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "safety_counters": {
-        "critical_safety_incidents": 0
+        "critical_safety_incidents": 0,
+        "exploit_execution_count": 0,
+        "external_target_scan_count": 0,
+        "malware_generation_count": 0,
+        "raw_secret_leak_count": 0,
+        "social_engineering_content_count": 0,
+        "unsafe_automerge_count": 0
       },
       "sandbox_id": "sandbox-job-3",
       "schema_version": "agialpha.engine.raw_task_result.v1",
@@ -225,7 +243,13 @@
       "raw_task_result_id": "raw-job-4",
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "safety_counters": {
-        "critical_safety_incidents": 0
+        "critical_safety_incidents": 0,
+        "exploit_execution_count": 0,
+        "external_target_scan_count": 0,
+        "malware_generation_count": 0,
+        "raw_secret_leak_count": 0,
+        "social_engineering_content_count": 0,
+        "unsafe_automerge_count": 0
       },
       "sandbox_id": "sandbox-job-4",
       "schema_version": "agialpha.engine.raw_task_result.v1",
@@ -268,7 +292,13 @@
       "raw_task_result_id": "raw-job-5",
       "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
       "safety_counters": {
-        "critical_safety_incidents": 0
+        "critical_safety_incidents": 0,
+        "exploit_execution_count": 0,
+        "external_target_scan_count": 0,
+        "malware_generation_count": 0,
+        "raw_secret_leak_count": 0,
+        "social_engineering_content_count": 0,
+        "unsafe_automerge_count": 0
       },
       "sandbox_id": "sandbox-job-5",
       "schema_version": "agialpha.engine.raw_task_result.v1",

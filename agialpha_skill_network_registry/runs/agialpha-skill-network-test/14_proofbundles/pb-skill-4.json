@@ -25,10 +25,10 @@
   "missing_raw_task_result_ids": [],
   "network_skill_vault_entry_hash": "75797dea9ecf172ea893e5c3c58821ea35cbe1b624e9296c71b6f559ca1bb047",
   "no_auto_merge": true,
-  "proofbundle_hash": "7970d9e722b3ef741d97394eaebf1bacf590ee998efd0e1a3a96ac901d20a8f2",
+  "proofbundle_hash": "b0e608c2bae5e45649033f9140f107a3570722a5e3576324b9078317dc48881d",
   "proofbundle_id": "pb-skill-4",
   "raw_evaluator_log_hashes": [
-    "d3c1ecec26b76bb614fecb6774c1ccd7e739472e9c8a2f033eda8dd0468a61ec"
+    "97f35d0d97b7b73512a1a40d479a76f1d7d7b23cf1da5e8699e0837db35d8767"
   ],
   "raw_task_result_coverage_complete": true,
   "raw_task_result_ids": [

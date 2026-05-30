@@ -7,6 +7,15 @@ from .network_claim_gate import evaluate_network_compounding_claim
 ROLES=["Reviewer Agent","Validator Agent","Operator Agent","Documentation Agent","SecureRails Agent"]
 IMPORTED_SKILL_IMPORT_STATUSES={"imported", "imported_inactive_outside_sandbox"}
 NON_IMPORTED_SAFE_SKILL_IMPORT_STATUSES={"quarantined_missing_evidence", "regulated_boundary_blocked", "documentation_only_human_review_required"}
+HARD_SAFETY_COUNTER_KEYS=(
+    "raw_secret_leak_count",
+    "external_target_scan_count",
+    "exploit_execution_count",
+    "malware_generation_count",
+    "social_engineering_content_count",
+    "unsafe_automerge_count",
+    "critical_safety_incidents",
+)
 
 def _h(o):
     return hashlib.sha256(json.dumps(o,sort_keys=True).encode()).hexdigest()
@@ -30,6 +39,10 @@ def _base(extra=None):
     d={**BOUNDARIES,"human_review_required":True,"autonomous_persistence_allowed":False,"no_auto_merge":True}
     if extra: d.update(extra)
     return d
+
+
+def _zero_hard_safety_counters() -> dict[str, int]:
+    return {key: 0 for key in HARD_SAFETY_COUNTER_KEYS}
 
 
 def _network_vault_publication_evidence(run: Path, accepted: list[dict]) -> dict:
@@ -130,6 +143,29 @@ def _coerce_float_strict(value, *, field_name: str, errors: list[str], sandbox_i
     except (TypeError, ValueError):
         errors.append(f"{field_name} must be numeric for {sandbox_id}")
         return 0.0
+
+
+def _validate_raw_safety_counters(raw_task_results: list[dict], metrics: dict) -> tuple[bool, list[str]]:
+    errors: list[str] = []
+    for row in raw_task_results:
+        raw_id = row.get("raw_task_result_id") or row.get("task_result_id") or "unknown_raw_task_result"
+        counters = row.get("safety_counters")
+        if not isinstance(counters, dict):
+            errors.append(f"{raw_id}: safety_counters must be an object")
+            continue
+        for key in HARD_SAFETY_COUNTER_KEYS:
+            if key not in counters:
+                errors.append(f"{raw_id}: missing safety counter {key}")
+            elif not isinstance(counters.get(key), int):
+                errors.append(f"{raw_id}: safety counter {key} must be integer")
+    for key in HARD_SAFETY_COUNTER_KEYS:
+        if key not in metrics:
+            errors.append(f"metrics missing safety counter {key}")
+            continue
+        expected = sum(int(row.get("safety_counters", {}).get(key, 0)) for row in raw_task_results)
+        if metrics.get(key) != expected:
+            errors.append(f"metrics safety counter {key} must equal raw-log sum {expected}")
+    return len(errors) == 0, errors
 
 
 def _validate_sandbox_records(raw_task_results: list[dict], sandbox_records: list[dict]) -> tuple[bool, list[str]]:
@@ -483,7 +519,7 @@ def run_network_compounding(args):
         jid=f"job-{i+1}"; aid=agents[0]["agent_id"]
         score=0.5 + i*0.03 + (rng.random()*0.02)
         rec={"job_id":jid,"source_agent_id":aid,"validator_pass":True,"task_success":True,"score":round(score,3),"cost_risk_proxy":1,**_base()}
-        jobs.append(rec); raw.append({"schema_version":"agialpha.engine.raw_task_result.v1","task_result_id":f"raw-{jid}","raw_task_result_id":f"raw-{jid}","task_id":jid,"candidate_id":f"cand-{jid}","baseline_id":"B6_shared_skill_network","agent_id":aid,"skill_id":None,"seed":args.seed,"sandbox_id":f"sandbox-{jid}","validator_results":[{"validator_id":"default-local-validator","pass":True}],"raw_scores":{"score":round(score,3)},"cost_proxy":1,"safety_counters":{"critical_safety_incidents":0},"artifact_hashes":{},"passed":True,"failure_reason":"","claim_boundary":BOUNDARIES["claim_boundary"],"token_boundary":BOUNDARIES["token_boundary"],"regulated_boundary":BOUNDARIES["regulated_boundary"],"source_logs":[f"log-{jid}"],**rec})
+        jobs.append(rec); raw.append({"schema_version":"agialpha.engine.raw_task_result.v1","task_result_id":f"raw-{jid}","raw_task_result_id":f"raw-{jid}","task_id":jid,"candidate_id":f"cand-{jid}","baseline_id":"B6_shared_skill_network","agent_id":aid,"skill_id":None,"seed":args.seed,"sandbox_id":f"sandbox-{jid}","validator_results":[{"validator_id":"default-local-validator","pass":True}],"raw_scores":{"score":round(score,3)},"cost_proxy":1,"safety_counters":_zero_hard_safety_counters(),"artifact_hashes":{},"passed":True,"failure_reason":"","claim_boundary":BOUNDARIES["claim_boundary"],"token_boundary":BOUNDARIES["token_boundary"],"regulated_boundary":BOUNDARIES["regulated_boundary"],"source_logs":[f"log-{jid}"],**rec})
         stdout_payload, stderr_payload = _compute_stream_payload(jid, rec["score"], rec["validator_pass"])
         sandbox_root = sandbox_workspace / f"sandbox-{jid}"
         sandbox_root.mkdir(parents=True, exist_ok=True)
@@ -619,18 +655,10 @@ def run_network_compounding(args):
     d5=round(dnet(b5),6); d6=round(dnet(b6),6); lift=round(d6-d5,6)
     improved_heldout_tasks = sum(1 for i in range(len(b5)) if b6[i]["success_score"] > b5[i]["success_score"])
     target_agents_improved = min(len(target_agents), improved_heldout_tasks)
-    derived_safety_counters = {
-        "raw_secret_leak_count": 0,
-        "external_target_scan_count": 0,
-        "exploit_execution_count": 0,
-        "malware_generation_count": 0,
-        "social_engineering_content_count": 0,
-        "unsafe_automerge_count": 0,
-        "critical_safety_incidents": 0,
-        "autonomous_persistence_attempts_blocked": len(
-            [r for r in sandbox_records if r.get("autonomous_persistence_attempt_blocked") is True]
-        ),
-    }
+    derived_safety_counters = _zero_hard_safety_counters()
+    derived_safety_counters["autonomous_persistence_attempts_blocked"] = len(
+        [r for r in sandbox_records if r.get("autonomous_persistence_attempt_blocked") is True]
+    )
     metrics={"jobs_run":len(jobs),"jobs_with_skill_extraction":len(jobs),"accepted_skill_packages":len(accepted),"rejected_skill_candidates":len(rejected),"failure_learning_packages":len(failure),"skills_published_to_vault":len(accepted),"agents_registered":len(agents),"agent_skill_manifests_created":len(manifests),"skill_import_events":len(imports),"target_agents_with_imported_skill":len(target_agents),"target_agents_improved_on_heldout":target_agents_improved,"heldout_tasks_evaluated":len(b5),"B6_shared_skill_beats_B5_no_shared_skill":d6>d5,"B6_shared_skill_advantage_delta":lift,"network_skill_propagation_lift":lift,"network_skill_multiplier":round((d6/max(1e-6,d5)),4),"capability_compounding_rate":round((len(accepted)+len(failure))/max(1,len(jobs)),4),"compounding_exponent_proxy":"not_supported","exponential_compounding_supported":False,"exponential_compounding_status":"Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.","raw_task_result_ids":[r['raw_task_result_id'] for r in raw],"replay_pass_rate":"pending","falsification_pass":"pending","semantic_tests_passed":"pending","adversarial_failures_caught":"not_reported","hard_coded_metric_count":0,"fake_zero_metric_count":0,"unsafe_claims_blocked":0,"token_value_claims_blocked":0,"regulated_decisioning_blocked":0,"human_review_required_count":len(imports)+len(jobs),**derived_safety_counters,**_base()}
     metrics["hard_coded_metric_count"]=0
     metrics["fake_zero_metric_count"]=0
@@ -999,6 +1027,9 @@ def validate_network_compounding(args):
     manifests=manifests_obj.get('agent_skill_manifests', manifests_obj.get('manifests', []))
     comparison=_read(run/'06_heldout_reuse_tests/comparison.json',{})
     metrics=_read(run/'07_metrics/network_skill_metrics.json',{})
+    raw_safety_ok, raw_safety_errors = _validate_raw_safety_counters(raw_task_results, metrics)
+    if not raw_safety_ok:
+        raise SystemExit(f'network-compounding-validate failed: raw safety counters invalid ({raw_safety_errors})')
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
     failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
     imported_statuses=IMPORTED_SKILL_IMPORT_STATUSES
