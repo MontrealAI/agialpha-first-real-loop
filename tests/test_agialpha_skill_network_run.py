@@ -216,6 +216,8 @@ def test_no_blocked_persistence_attempts_when_none_recorded():
         metrics=json.loads((run/'07_metrics/network_skill_metrics.json').read_text())
         sandbox_records=json.loads((run/'02_jobs/sandbox_records.json').read_text())['sandbox_records']
         assert all(r.get('repo_mutation_allowed') is False for r in sandbox_records)
+        assert all(r.get('timeout') is False for r in sandbox_records)
+        assert all(isinstance(r.get('timeout_ms'), int) and r.get('timeout_ms') > 0 for r in sandbox_records)
         assert all(r.get('autonomous_persistence_attempt_blocked') is False for r in sandbox_records)
         assert metrics['autonomous_persistence_attempts_blocked'] == 0
 
