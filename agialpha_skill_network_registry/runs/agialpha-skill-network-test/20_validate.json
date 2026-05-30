@@ -1,0 +1,17 @@
+{
+  "agent_manifest_import_coverage_pass": true,
+  "autonomous_persistence_allowed": false,
+  "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
+  "claim_gate_status": "supported_local_bounded",
+  "falsification_ok": true,
+  "human_review_required": true,
+  "network_skill_vault_publication_pass": true,
+  "no_auto_merge": true,
+  "proofbundle_integrity_pass": true,
+  "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+  "replay_ok": true,
+  "sandbox_record_integrity_pass": true,
+  "schema_version": "agialpha.skill_network.validation_report.v1",
+  "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading",
+  "validation_pass": true
+}
