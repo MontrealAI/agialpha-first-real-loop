@@ -430,6 +430,11 @@ def _sync_run_to_registry(run: Path) -> None:
         proofbundle_id = proofbundle.get("proofbundle_id")
         if proofbundle_id:
             atomic_write_json(run_registry_dir / "14_proofbundles" / f"{proofbundle_id}.json", proofbundle)
+    atomic_write_json(run_registry_dir / "15_evidence_dockets" / "index.json", {"evidence_dockets": evidence_dockets, **_base()})
+    for docket in evidence_dockets:
+        evidence_docket_id = docket.get("evidence_docket_id")
+        if evidence_docket_id:
+            atomic_write_json(run_registry_dir / "15_evidence_dockets" / f"{evidence_docket_id}.json", docket)
     atomic_write_json(run_registry_dir / "16_replay_report.json", replay_report if replay_report else {"status": "not_reported", **_base()})
     atomic_write_json(run_registry_dir / "17_falsification_audit.json", falsification_audit if falsification_audit else {"status": "not_reported", **_base()})
     atomic_write_json(run_registry_dir / "18_claim_gate_decision.json", gate)
@@ -733,6 +738,11 @@ def run_network_compounding(args):
         proofbundle_id = proofbundle.get("proofbundle_id")
         if proofbundle_id:
             atomic_write_json(run_registry_dir / "14_proofbundles" / f"{proofbundle_id}.json", proofbundle)
+    atomic_write_json(run_registry_dir / "15_evidence_dockets" / "index.json", {"evidence_dockets": dockets, **_base()})
+    for docket in dockets:
+        evidence_docket_id = docket.get("evidence_docket_id")
+        if evidence_docket_id:
+            atomic_write_json(run_registry_dir / "15_evidence_dockets" / f"{evidence_docket_id}.json", docket)
     atomic_write_json(run_registry_dir / "16_replay_report.json", {"replay_pass": False, "replay_passes": 0, "status": "pending_replay_execution", **_base()})
     atomic_write_json(run_registry_dir / "17_falsification_audit.json", {"falsification_pass": False, "status": "pending_falsification_execution", **_base()})
     atomic_write_json(run_registry_dir / "18_claim_gate_decision.json", gate)
