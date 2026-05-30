@@ -1065,6 +1065,19 @@ def validate_network_compounding(args):
         proofbundle_errors.append(f"unexpected standalone proofbundle files: {sorted(extra_standalone_ids)}")
     if proofbundle_errors:
         raise SystemExit(f"network-compounding-validate failed: proofbundle integrity errors ({proofbundle_errors})")
+    atomic_write_json(run/'validate.json', {
+        "schema_version": "agialpha.skill_network.validation_report.v1",
+        "validation_pass": True,
+        "replay_ok": replay_ok,
+        "falsification_ok": falsification_ok,
+        "claim_gate_status": expected_gate_status,
+        "proofbundle_integrity_pass": True,
+        "sandbox_record_integrity_pass": True,
+        "network_skill_vault_publication_pass": True,
+        "agent_manifest_import_coverage_pass": True,
+        **_base(),
+    })
+    _sync_run_to_registry(run)
 
 
 def build_network_data(args):
