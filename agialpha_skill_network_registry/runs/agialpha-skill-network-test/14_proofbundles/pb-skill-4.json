@@ -15,7 +15,7 @@
     "network_calls_enabled": false,
     "python_standard_library_only": true
   },
-  "falsification_audit_hash": "1441403ef7f9e9210d9d492491057a7d8944df1cfe4bf02d1892575e9d9f2de2",
+  "falsification_audit_hash": "0ab44293fda14f08141e47b294c1d05647c4912b6e04029d9587fa3a323276a3",
   "heldout_test_hashes": [
     "5241e357c0f4495b16180817ef844963dadcb183ddefa0072e0cb3b474ae954e",
     "923848b5d70c3559818bceadda20ae794d77a29259cb5c005b9672833384f31c"
@@ -25,7 +25,7 @@
   "missing_raw_task_result_ids": [],
   "network_skill_vault_entry_hash": "75797dea9ecf172ea893e5c3c58821ea35cbe1b624e9296c71b6f559ca1bb047",
   "no_auto_merge": true,
-  "proofbundle_hash": "f6a0c2821c9efa45714f29003b09763bca6378ff1364c5cdde5fcd4d09cdbe1e",
+  "proofbundle_hash": "2415b39c2474ab9b7114bfa7ac8b8b79a2ccf82a105a9ba417dcfaecc9d0a503",
   "proofbundle_id": "pb-skill-4",
   "raw_evaluator_log_hashes": [
     "d3c1ecec26b76bb614fecb6774c1ccd7e739472e9c8a2f033eda8dd0468a61ec"

@@ -1,18 +1,19 @@
 {
-  "schema_version": "securerails.promotion_gate.v1",
+  "claim_boundary": "Promotion gates enforce human-governed SecureRails promotion. Passing a gate is not a security certification.",
+  "failure_reasons": [],
+  "gate_status": "pass",
+  "human_review_status": "accepted",
   "promotion_gate_id": "sr-promotion-gate-2026-0001",
-  "source_decision_id": "sr-review-decision-2026-0001",
   "promotion_target": "safe_pr",
   "required_conditions": {
-    "human_review_decision_present": true,
-    "evidence_docket_present": true,
-    "proofbundle_present": true,
-    "safety_ledger_present": true,
+    "auto_merge_allowed": false,
     "claim_boundary_present": true,
+    "evidence_docket_present": true,
     "hard_safety_counters_zero": true,
-    "auto_merge_allowed": false
+    "human_review_decision_present": true,
+    "proofbundle_present": true,
+    "safety_ledger_present": true
   },
-  "gate_status": "pass",
-  "failure_reasons": [],
-  "claim_boundary": "Promotion gates enforce human-governed SecureRails promotion. Passing a gate is not a security certification."
+  "schema_version": "securerails.promotion_gate.v1",
+  "source_decision_id": "sr-review-decision-2026-0001"
 }
