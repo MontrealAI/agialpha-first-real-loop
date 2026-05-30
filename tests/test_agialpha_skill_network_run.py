@@ -426,3 +426,24 @@ def test_registry_run_preserves_proofbundles_and_evidence_dockets():
         assert proofbundles and dockets
         assert all((registry_run/'14_proofbundles'/f"{pb['proofbundle_id']}.json").exists() for pb in proofbundles)
         assert all((registry_run/'15_evidence_dockets'/f"{d['evidence_docket_id']}.json").exists() for d in dockets)
+
+
+def test_minimum_validator_requires_every_job_learning_outcome():
+    from agialpha_engine.validate import validate_network_skill_run_minimum
+
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        assert validate_network_skill_run_minimum(run)['validation_pass'] is True
+
+        failure_path=run/'03_skill_extraction/failure_learning_packages.json'
+        failure_doc=json.loads(failure_path.read_text())
+        failure_doc['failure_learning_packages']=[]
+        failure_path.write_text(json.dumps(failure_doc, sort_keys=True))
+
+        validation=validate_network_skill_run_minimum(run)
+        assert validation['validation_pass'] is False
+        assert validation['checks']['every_job_produces_exactly_one_learning_outcome'] is False
+        assert validation['outcome_counts_by_job']['job-3'] == 0
