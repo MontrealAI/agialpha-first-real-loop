@@ -354,7 +354,19 @@ def _refresh_network_proofbundles(run: Path) -> list[dict]:
         atomic_write_json(docket_root / "21_claim_gate_decision.json", claim_gate)
     return proofbundles
 
-def _sync_run_to_registry(run: Path) -> None:
+def _registry_index_preserving_latest(existing: dict, run_id: str) -> dict:
+    previous_runs = existing.get("runs", []) if isinstance(existing, dict) else []
+    runs = [r for r in previous_runs if isinstance(r, str) and r]
+    if run_id not in runs:
+        runs.append(run_id)
+    merged = dict(existing) if isinstance(existing, dict) else {}
+    if "latest_run_id" not in merged and runs:
+        merged["latest_run_id"] = runs[-1]
+    merged.update({"runs": runs, **_base()})
+    return merged
+
+
+def _sync_run_to_registry(run: Path, *, publish_latest: bool = True) -> None:
     manifest=_read(run/'evidence-run-manifest.json',{})
     reg_path=manifest.get('registry')
     if not reg_path:
@@ -372,23 +384,29 @@ def _sync_run_to_registry(run: Path) -> None:
     work_vault_receipts = _read(run / '08_work_vault/skill_work_vault_receipts.json', {"receipts": [], **_base()})
     rejected_skill_candidates_doc = _read(run / '03_skill_extraction/rejected_skill_candidates.json', {"rejected_skill_candidates": [], **_base()})
     failure_learning_packages_doc = _read(run / '03_skill_extraction/failure_learning_packages.json', {"failure_learning_packages": [], **_base()})
-    atomic_write_json(reg/'network_skill_metrics.json',metrics)
-    atomic_write_json(reg/'claim_gate_decisions.json',gate)
-    atomic_write_json(reg/'agents.json', {'agents': agent_registry.get('agents', []), **_base()})
-    atomic_write_json(reg/'agent_skill_manifests.json', {'manifests': manifests_after_import.get('manifests', manifests_after_import.get('agent_skill_manifests', [])), **_base()})
-    atomic_write_json(reg/'skill_packages.json',{'skill_packages': skill_packages, **_base()})
-    atomic_write_json(reg/'rejected_skill_candidates.json', {'rejected_skill_candidates': rejected_skill_candidates_doc.get('rejected_skill_candidates', []), **_base()})
-    atomic_write_json(reg/'failure_learning_packages.json', {'failure_learning_packages': failure_learning_packages_doc.get('failure_learning_packages', []), **_base()})
-    skill_import_events = _read(run/'05_skill_import/skill_import_events.json',{}).get('skill_import_events',[])
-    atomic_write_json(reg/'skill_imports.json', {'skill_imports': skill_import_events, **_base()})
-    atomic_write_json(reg/'skill_propagation_events.json',{'skill_propagation_events': skill_import_events, **_base()})
-    atomic_write_json(reg/'work_vault_receipts.json', work_vault_receipts)
-    atomic_write_json(reg/'lineage_graph.json', {'edges': [{'from': row.get('source_job_id'), 'to': row.get('skill_id')} for row in skill_packages], **_base()})
-    atomic_write_json(reg/'proofbundles.json',{'proofbundles': proofbundles, **_base()})
-    atomic_write_json(reg/'evidence_dockets.json',{'evidence_dockets': evidence_dockets, **_base()})
-    atomic_write_json(reg/'latest.json',{'run_id': run.name, **_base()})
+    existing_latest = _read(reg/'latest.json', {})
     existing_registry = _read(reg/'registry.json', {})
-    atomic_write_json(reg/'registry.json', _next_registry_index(existing_registry, run.name))
+    current_latest_run_id = existing_latest.get('run_id') or existing_registry.get('latest_run_id')
+    should_publish_latest = publish_latest or current_latest_run_id in (None, '', run.name)
+    skill_import_events = _read(run/'05_skill_import/skill_import_events.json',{}).get('skill_import_events',[])
+    if should_publish_latest:
+        atomic_write_json(reg/'network_skill_metrics.json',metrics)
+        atomic_write_json(reg/'claim_gate_decisions.json',gate)
+        atomic_write_json(reg/'agents.json', {'agents': agent_registry.get('agents', []), **_base()})
+        atomic_write_json(reg/'agent_skill_manifests.json', {'manifests': manifests_after_import.get('manifests', manifests_after_import.get('agent_skill_manifests', [])), **_base()})
+        atomic_write_json(reg/'skill_packages.json',{'skill_packages': skill_packages, **_base()})
+        atomic_write_json(reg/'rejected_skill_candidates.json', {'rejected_skill_candidates': rejected_skill_candidates_doc.get('rejected_skill_candidates', []), **_base()})
+        atomic_write_json(reg/'failure_learning_packages.json', {'failure_learning_packages': failure_learning_packages_doc.get('failure_learning_packages', []), **_base()})
+        atomic_write_json(reg/'skill_imports.json', {'skill_imports': skill_import_events, **_base()})
+        atomic_write_json(reg/'skill_propagation_events.json',{'skill_propagation_events': skill_import_events, **_base()})
+        atomic_write_json(reg/'work_vault_receipts.json', work_vault_receipts)
+        atomic_write_json(reg/'lineage_graph.json', {'edges': [{'from': row.get('source_job_id'), 'to': row.get('skill_id')} for row in skill_packages], **_base()})
+        atomic_write_json(reg/'proofbundles.json',{'proofbundles': proofbundles, **_base()})
+        atomic_write_json(reg/'evidence_dockets.json',{'evidence_dockets': evidence_dockets, **_base()})
+        atomic_write_json(reg/'latest.json',{'run_id': run.name, **_base()})
+        atomic_write_json(reg/'registry.json', _next_registry_index(existing_registry, run.name))
+    else:
+        atomic_write_json(reg/'registry.json', _registry_index_preserving_latest(existing_registry, run.name))
     run_registry_dir = reg / "runs" / run.name
     run_registry_dir.mkdir(parents=True, exist_ok=True)
     replay_report = _read(run / '11_replay/replay_report.json', {})
@@ -438,6 +456,9 @@ def _sync_run_to_registry(run: Path) -> None:
     atomic_write_json(run_registry_dir / "16_replay_report.json", replay_report if replay_report else {"status": "not_reported", **_base()})
     atomic_write_json(run_registry_dir / "17_falsification_audit.json", falsification_audit if falsification_audit else {"status": "not_reported", **_base()})
     atomic_write_json(run_registry_dir / "18_claim_gate_decision.json", gate)
+    validate_report = _read(run / "validate.json", {})
+    if validate_report:
+        atomic_write_json(run_registry_dir / "20_validate.json", validate_report)
     public_summary_text = (
         "AGI ALPHA Engine-003 run summary.\n"
         "Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.\n"
@@ -1077,7 +1098,7 @@ def validate_network_compounding(args):
         "agent_manifest_import_coverage_pass": True,
         **_base(),
     })
-    _sync_run_to_registry(run)
+    _sync_run_to_registry(run, publish_latest=False)
 
 
 def build_network_data(args):

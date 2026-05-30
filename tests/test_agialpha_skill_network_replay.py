@@ -147,3 +147,38 @@ def test_validate_rejects_missing_declared_raw_task_result_id():
         )
         assert proc.returncode != 0
         assert "does not match current run artifacts" in (proc.stderr + proc.stdout)
+
+
+def _run_validated_network_lifecycle(run: Path, reg: Path, seed: str) -> None:
+    subprocess.check_call([
+        "python", "-m", "agialpha_engine", "network-compounding-run",
+        "--repo-root", ".", "--registry", str(reg), "--out", str(run),
+        "--jobs", "5", "--target-agents", "3", "--heldout-tasks", "5", "--seed", seed,
+    ])
+    subprocess.check_call(["python", "-m", "agialpha_engine", "network-compounding-replay", "--run", str(run)])
+    subprocess.check_call(["python", "-m", "agialpha_engine", "network-compounding-falsification-audit", "--run", str(run)])
+    subprocess.check_call(["python", "-m", "agialpha_engine", "network-compounding-validate", "--run", str(run)])
+
+
+def test_validating_older_run_does_not_rewind_registry_latest():
+    with tempfile.TemporaryDirectory() as td:
+        reg = Path(td) / "reg"
+        run1 = Path(td) / "run1"
+        run2 = Path(td) / "run2"
+
+        _run_validated_network_lifecycle(run1, reg, "123")
+        _run_validated_network_lifecycle(run2, reg, "124")
+        latest_before = _read(reg / "latest.json")
+        registry_before = _read(reg / "registry.json")
+        assert latest_before["run_id"] == "run2"
+        assert registry_before["latest_run_id"] == "run2"
+
+        subprocess.check_call(["python", "-m", "agialpha_engine", "network-compounding-validate", "--run", str(run1)])
+
+        latest_after = _read(reg / "latest.json")
+        registry_after = _read(reg / "registry.json")
+        assert latest_after["run_id"] == "run2"
+        assert registry_after["latest_run_id"] == "run2"
+        assert "run1" in registry_after["runs"]
+        assert (reg / "runs" / "run1" / "20_validate.json").exists()
+        assert _read(reg / "runs" / "run1" / "20_validate.json")["validation_pass"] is True
