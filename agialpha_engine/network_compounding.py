@@ -5,6 +5,8 @@ from .context import BOUNDARIES, atomic_write_json
 from .network_claim_gate import evaluate_network_compounding_claim
 
 ROLES=["Reviewer Agent","Validator Agent","Operator Agent","Documentation Agent","SecureRails Agent"]
+IMPORTED_SKILL_IMPORT_STATUSES={"imported", "imported_inactive_outside_sandbox"}
+NON_IMPORTED_SAFE_SKILL_IMPORT_STATUSES={"quarantined_missing_evidence", "regulated_boundary_blocked", "documentation_only_human_review_required"}
 
 def _h(o):
     return hashlib.sha256(json.dumps(o,sort_keys=True).encode()).hexdigest()
@@ -67,6 +69,19 @@ def _network_vault_publication_evidence(run: Path, accepted: list[dict]) -> dict
         "errors": errors,
     }
 
+
+def _imported_skills_are_inactive_outside_sandbox(imports: list[dict]) -> bool:
+    imported_events = [imp for imp in imports if imp.get("import_status") in IMPORTED_SKILL_IMPORT_STATUSES]
+    return all(
+        imp.get("activation_status") == "inactive"
+        and imp.get("active_outside_sandbox") is False
+        and imp.get("production_activation_allowed") is False
+        for imp in imported_events
+    )
+
+
+def _active_skill_imports(imports: list[dict]) -> list[dict]:
+    return [imp for imp in imports if imp.get("import_status") in IMPORTED_SKILL_IMPORT_STATUSES]
 
 def _next_registry_index(existing: dict, run_id: str) -> dict:
     previous_runs = existing.get("runs", []) if isinstance(existing, dict) else []
@@ -559,7 +574,7 @@ def run_network_compounding(args):
         evidence_docket_present=all(bool(sk.get('evidence_docket_id')) for sk in accepted),
         skills_published_to_vault=0,
         skill_vault_contains_accepted_skill_ids=False,
-        imported_skills_inactive_outside_sandbox=all(i.get('active_outside_sandbox') is False and i.get('activation_status') == 'inactive' for i in imports),
+        imported_skills_inactive_outside_sandbox=_imported_skills_are_inactive_outside_sandbox(imports),
         heldout_comparison_ran=bool(b5 and b6),
         metrics_computed_from_raw_logs=bool(raw),
         human_review_required_outside_sandbox=True,
@@ -832,7 +847,8 @@ def falsification_network_compounding(args):
     manifests_obj=_read(run/'05_skill_import/agent_skill_manifests_after_import.json',{})
     manifests=manifests_obj.get('agent_skill_manifests', manifests_obj.get('manifests', []))
     comparison=_read(run/'06_heldout_reuse_tests/comparison.json',{})
-    distinct_targets=len({i.get('target_agent_id') for i in imports if i.get('target_agent_id')})
+    active_imports=_active_skill_imports(imports)
+    distinct_targets=len({i.get('target_agent_id') for i in active_imports if i.get('target_agent_id')})
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
     failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
     exact_one_outcome_per_job=_job_outcome_coverage(jobs, accepted, rejected, failures)
@@ -852,7 +868,7 @@ def falsification_network_compounding(args):
         evidence_docket_present=all(bool(sk.get('evidence_docket_id')) for sk in accepted),
         skills_published_to_vault=vault_publication_evidence["published_count"],
         skill_vault_contains_accepted_skill_ids=vault_publication_evidence["all_accepted_skills_published"],
-        imported_skills_inactive_outside_sandbox=all(i.get('active_outside_sandbox') is False and i.get('activation_status') == 'inactive' for i in imports),
+        imported_skills_inactive_outside_sandbox=_imported_skills_are_inactive_outside_sandbox(imports),
         heldout_comparison_ran=bool(comparison.get('NetworkSkillPropagationLift') is not None),
         metrics_computed_from_raw_logs=bool(m.get('raw_task_result_ids')),
         falsification_covers_required_injections=adversarial_failures_caught >= 8,
@@ -906,9 +922,9 @@ def validate_network_compounding(args):
     metrics=_read(run/'07_metrics/network_skill_metrics.json',{})
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
     failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
-    imported_statuses={'imported', 'imported_inactive_outside_sandbox'}
-    non_imported_safe_statuses={'quarantined_missing_evidence', 'regulated_boundary_blocked', 'documentation_only_human_review_required'}
-    active_imports=[imp for imp in imports if imp.get('import_status') in imported_statuses]
+    imported_statuses=IMPORTED_SKILL_IMPORT_STATUSES
+    non_imported_safe_statuses=NON_IMPORTED_SAFE_SKILL_IMPORT_STATUSES
+    active_imports=_active_skill_imports(imports)
     unsafe_imports=[]
     for imp in imports:
         import_id=imp.get('import_id', 'unknown')
@@ -943,7 +959,7 @@ def validate_network_compounding(args):
         jobs_run=len(jobs),
         exact_one_outcome_per_job=exact_one_outcome_per_job,
         accepted_skill_packages=len(accepted),
-        distinct_import_targets=len({i.get('target_agent_id') for i in imports if i.get('target_agent_id')}),
+        distinct_import_targets=len({i.get('target_agent_id') for i in active_imports if i.get('target_agent_id')}),
         d_shared_skill_network=float(comparison.get('D_shared_skill_network',0)),
         d_no_shared_skill=float(comparison.get('D_no_shared_skill',0)),
         replay_ok=replay_ok,
@@ -954,7 +970,7 @@ def validate_network_compounding(args):
         evidence_docket_present=all(bool(sk.get('evidence_docket_id')) for sk in accepted),
         skills_published_to_vault=vault_publication_evidence["published_count"],
         skill_vault_contains_accepted_skill_ids=vault_publication_evidence["all_accepted_skills_published"],
-        imported_skills_inactive_outside_sandbox=all(i.get('active_outside_sandbox') is False and i.get('activation_status') == 'inactive' for i in imports),
+        imported_skills_inactive_outside_sandbox=_imported_skills_are_inactive_outside_sandbox(imports),
         heldout_comparison_ran=bool(comparison.get('NetworkSkillPropagationLift') is not None),
         metrics_computed_from_raw_logs=bool(metrics.get('raw_task_result_ids')),
         falsification_covers_required_injections=int(metrics.get('adversarial_failures_caught', 0)) >= 8,

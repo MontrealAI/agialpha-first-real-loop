@@ -281,6 +281,39 @@ def test_validate_rejects_import_active_outside_sandbox_or_production_activation
         assert 'production_activation_allowed must be false' in output
 
 
+def test_validate_allows_safe_quarantined_non_import_event():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        path=run/'05_skill_import/skill_import_events.json'
+        doc=json.loads(path.read_text())
+        doc['skill_import_events'].append({
+            'schema_version':'agialpha.skill_import.v1',
+            'import_id':'import-quarantined-safe',
+            'skill_id':'skill-poisoned',
+            'target_agent_id':'agent-2',
+            'import_status':'quarantined_missing_evidence',
+            'activation_status':'quarantined',
+            'active_outside_sandbox':False,
+            'production_activation_allowed':False,
+            'proofbundle_id':'unavailable',
+            'evidence_docket_id':'unavailable',
+            'claim_boundary':'local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required',
+            'token_boundary':'$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading',
+            'regulated_boundary':'regulated-domain firewall enabled; blocked_human_review_required for regulated tasks',
+            'human_review_required':True,
+            'autonomous_persistence_allowed':False,
+            'no_auto_merge':True,
+        })
+        path.write_text(json.dumps(doc))
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)])
+        gate=json.loads((run/'13_claim_gate/network_compounding_claim_gate.json').read_text())
+        assert gate['checks']['imported_skills_inactive_outside_sandbox'] is True
+        assert gate['claim_gate_status'] == 'supported_local_bounded'
+
+
 def test_validate_rejects_unsafe_quarantined_import_event():
     with tempfile.TemporaryDirectory() as td:
         run=Path(td)/'run'; reg=Path(td)/'reg'
