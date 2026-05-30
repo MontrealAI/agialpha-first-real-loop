@@ -3,6 +3,7 @@
   "promotion_gate_id": "sr-promotion-gate-2026-0001",
   "source_decision_id": "sr-review-decision-2026-0001",
   "promotion_target": "safe_pr",
+  "human_review_status": "accepted",
   "required_conditions": {
     "human_review_decision_present": true,
     "evidence_docket_present": true,
