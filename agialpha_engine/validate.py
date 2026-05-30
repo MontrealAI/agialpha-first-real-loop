@@ -105,10 +105,50 @@ def validate_network_skill_run_minimum(run_dir: Path) -> dict[str, Any]:
         return {"validation_pass": False, "missing_required_files": missing}
     raw = read_json(run_dir / "02_jobs" / "raw_task_results.json")
     accepted = read_json(run_dir / "03_skill_extraction" / "accepted_skill_packages.json")
+    rejected = read_json(run_dir / "03_skill_extraction" / "rejected_skill_candidates.json")
+    failure = read_json(run_dir / "03_skill_extraction" / "failure_learning_packages.json")
     imports = read_json(run_dir / "05_skill_import" / "skill_import_events.json")
+    comparison = read_json(run_dir / "06_heldout_reuse_tests" / "comparison.json")
+    b5_rows = read_json(run_dir / "06_heldout_reuse_tests" / "B5_no_shared_skill.json")
+    b6_rows = read_json(run_dir / "06_heldout_reuse_tests" / "B6_shared_skill_network.json")
     metrics = read_json(run_dir / "07_metrics" / "network_skill_metrics.json")
+    proofbundles = read_json(run_dir / "14_proofbundles" / "index.json")
+    evidence_dockets = read_json(run_dir / "15_evidence_dockets" / "index.json")
+
     raw_rows = raw.get("raw_task_results", [])
+    raw_ids = {r.get("raw_task_result_id") for r in raw_rows if isinstance(r, dict)}
+    job_ids = {r.get("task_id") or r.get("job_id") for r in raw_rows if isinstance(r, dict)}
     accepted_rows = accepted.get("accepted_skill_packages", [])
+    rejected_rows = rejected.get("rejected_skill_candidates", [])
+    failure_rows = failure.get("failure_learning_packages", [])
+    learning_rows = [*accepted_rows, *rejected_rows, *failure_rows]
+    outcome_counts: dict[str, int] = {job_id: 0 for job_id in job_ids if isinstance(job_id, str)}
+    for row in learning_rows:
+        source_job_id = row.get("source_job_id") if isinstance(row, dict) else None
+        if source_job_id in outcome_counts:
+            outcome_counts[source_job_id] += 1
+    proofbundle_ids = {r.get("proofbundle_id") for r in proofbundles.get("proofbundles", []) if isinstance(r, dict)}
+    evidence_docket_ids = {r.get("evidence_docket_id") for r in evidence_dockets.get("evidence_dockets", []) if isinstance(r, dict)}
+    accepted_refs_ok = all(
+        isinstance(r, dict)
+        and bool(r.get("raw_task_result_ids"))
+        and set(r.get("raw_task_result_ids", [])).issubset(raw_ids)
+        and r.get("proofbundle_id") in proofbundle_ids
+        and r.get("evidence_docket_id") in evidence_docket_ids
+        for r in accepted_rows
+    )
+    heldout_result_rows = [*b5_rows.get("results", []), *b6_rows.get("results", [])]
+    heldout_source_raw_ids = {
+        raw_id
+        for row in heldout_result_rows
+        if isinstance(row, dict)
+        for raw_id in row.get("raw_task_result_ids", [])
+    }
+    b5_scores = [float(row.get("success_score", 0.0)) for row in b5_rows.get("results", []) if isinstance(row, dict)]
+    b6_scores = [float(row.get("success_score", 0.0)) for row in b6_rows.get("results", []) if isinstance(row, dict)]
+    d_b5 = round(sum(b5_scores) / len(b5_scores), 4) if b5_scores else None
+    d_b6 = round(sum(b6_scores) / len(b6_scores), 4) if b6_scores else None
+    lift = round(d_b6 - d_b5, 4) if d_b5 is not None and d_b6 is not None else None
     import_rows = imports.get("skill_import_events", [])
     imported_agents = set()
     imported_inactive = 0
@@ -118,19 +158,28 @@ def validate_network_skill_run_minimum(run_dir: Path) -> dict[str, Any]:
         target_id = row.get("target_agent_id")
         if isinstance(target_id, str) and target_id.strip():
             imported_agents.add(target_id.strip())
-        if row.get("activation_status") == "inactive":
+        if (
+            row.get("activation_status") == "inactive"
+            and row.get("active_outside_sandbox") is False
+            and row.get("production_activation_allowed") is False
+        ):
             imported_inactive += 1
     pass_flags = {
         "raw_task_results_present": len(raw_rows) >= 1,
-        "accepted_skills_link_raw_task_results": all(bool(r.get("raw_task_result_ids")) for r in accepted_rows),
+        "every_job_produces_exactly_one_learning_outcome": bool(outcome_counts) and all(count == 1 for count in outcome_counts.values()),
+        "accepted_skills_link_raw_task_results_and_evidence": accepted_refs_ok,
         "imports_present": len(import_rows) >= 1,
         "minimum_target_agents_imported": len(imported_agents) >= 3,
         "imports_inactive_outside_sandbox": imported_inactive == len(import_rows),
         "metrics_have_lift": "network_skill_propagation_lift" in metrics,
+        "metrics_reference_raw_task_results": bool(heldout_source_raw_ids) and heldout_source_raw_ids.issubset(set(metrics.get("raw_task_result_ids", []))),
+        "b6_vs_b5_computed_from_raw_logs": d_b5 == comparison.get("D_no_shared_skill") and d_b6 == comparison.get("D_shared_skill_network") and lift == comparison.get("NetworkSkillPropagationLift"),
         "no_hardcoded_metrics": metrics.get("hard_coded_metric_count") == 0,
+        "no_fake_zero_metrics": metrics.get("fake_zero_metric_count") == 0,
     }
     return {
         "validation_pass": all(pass_flags.values()),
         "checks": pass_flags,
         "missing_required_files": [],
+        "outcome_counts_by_job": outcome_counts,
     }
