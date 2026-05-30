@@ -9,6 +9,17 @@ ROLES=["Reviewer Agent","Validator Agent","Operator Agent","Documentation Agent"
 def _h(o):
     return hashlib.sha256(json.dumps(o,sort_keys=True).encode()).hexdigest()
 
+
+def _file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _snapshot_tree(root: Path) -> dict[str, str]:
+    return {
+        str(path.relative_to(root)): _file_sha256(path)
+        for path in sorted(p for p in root.rglob("*") if p.is_file())
+    }
+
 def _read(p,d):
     if not p.exists(): return d
     return json.loads(p.read_text())
@@ -78,8 +89,6 @@ def _validate_sandbox_records(raw_task_results: list[dict], sandbox_records: lis
     roots = {r.get("allowed_root") for r in sandbox_records}
     if any(root in (None, "") for root in roots):
         errors.append("sandbox allowed_root must be present for every record")
-    if len(roots) != 1:
-        errors.append("sandbox allowed_root values must be consistent")
     for row in raw_task_results:
         sandbox_id = row.get("sandbox_id")
         task_id = row.get("task_id", "")
@@ -127,6 +136,27 @@ def _validate_sandbox_records(raw_task_results: list[dict], sandbox_records: lis
             errors.append(f"repo_mutation_allowed must be false for {sandbox_id}")
         if record.get("production_actuation_allowed") is not False:
             errors.append(f"production_actuation_allowed must be false for {sandbox_id}")
+        allowed_root = record.get("allowed_root")
+        if isinstance(allowed_root, str) and allowed_root:
+            root_path = Path(allowed_root)
+            if root_path.exists():
+                actual_after = _snapshot_tree(root_path)
+                if record.get("files_after") != actual_after:
+                    errors.append(f"files_after snapshot mismatch for {sandbox_id}")
+        before_snapshot = record.get("files_before")
+        after_snapshot = record.get("files_after")
+        if not isinstance(before_snapshot, dict) or not isinstance(after_snapshot, dict):
+            errors.append(f"files_before/files_after must be full snapshot objects for {sandbox_id}")
+        else:
+            changed_paths = sorted(
+                rel for rel in set(before_snapshot) | set(after_snapshot)
+                if before_snapshot.get(rel) != after_snapshot.get(rel)
+            )
+            diff_summary = record.get("diff_summary", {})
+            if diff_summary.get("changed_paths") != changed_paths:
+                errors.append(f"diff_summary changed_paths mismatch for {sandbox_id}")
+            if diff_summary.get("changed_files") != len(changed_paths):
+                errors.append(f"diff_summary changed_files mismatch for {sandbox_id}")
     return len(errors) == 0, errors
 
 
@@ -356,6 +386,8 @@ def run_network_compounding(args):
     out=Path(args.out); reg=Path(args.registry); out.mkdir(parents=True,exist_ok=True); reg.mkdir(parents=True,exist_ok=True)
     run_id=out.name
     jobs=[]; raw=[]; accepted=[]; rejected=[]; failure=[]; sandbox_records=[]
+    sandbox_workspace = (out / "02_jobs" / "local_sandbox_workspace").resolve()
+    sandbox_workspace.mkdir(parents=True, exist_ok=True)
     agents=[{"agent_id":f"agent-{i+1}","agent_role":ROLES[i%len(ROLES)],"role":ROLES[i%len(ROLES)],**_base()} for i in range(max(args.target_agents+1,4))]
     manifests=[]
     for a in agents:
@@ -366,18 +398,32 @@ def run_network_compounding(args):
         rec={"job_id":jid,"source_agent_id":aid,"validator_pass":True,"task_success":True,"score":round(score,3),"cost_risk_proxy":1,**_base()}
         jobs.append(rec); raw.append({"schema_version":"agialpha.engine.raw_task_result.v1","task_result_id":f"raw-{jid}","raw_task_result_id":f"raw-{jid}","task_id":jid,"candidate_id":f"cand-{jid}","baseline_id":"B6_shared_skill_network","agent_id":aid,"skill_id":None,"seed":args.seed,"sandbox_id":f"sandbox-{jid}","validator_results":[{"validator_id":"default-local-validator","pass":True}],"raw_scores":{"score":round(score,3)},"cost_proxy":1,"safety_counters":{"critical_safety_incidents":0},"artifact_hashes":{},"passed":True,"failure_reason":"","claim_boundary":BOUNDARIES["claim_boundary"],"token_boundary":BOUNDARIES["token_boundary"],"regulated_boundary":BOUNDARIES["regulated_boundary"],"source_logs":[f"log-{jid}"],**rec})
         stdout_payload, stderr_payload = _compute_stream_payload(jid, rec["score"], rec["validator_pass"])
+        sandbox_root = sandbox_workspace / f"sandbox-{jid}"
+        sandbox_root.mkdir(parents=True, exist_ok=True)
+        fixture_rel = f"safe_fixture_{jid}.json"
+        fixture_path = sandbox_root / fixture_rel
+        before_fixture = {"job_id": jid, "seed": args.seed, "candidate_id": f"cand-{jid}", "stage": "before_validation", **_base()}
+        after_fixture = {**before_fixture, "stage": "after_validation", "validator_pass": rec["validator_pass"], "score": rec["score"]}
+        fixture_path.write_text(json.dumps(before_fixture, sort_keys=True, indent=2), encoding="utf-8")
+        before_snapshot = _snapshot_tree(sandbox_root)
+        fixture_path.write_text(json.dumps(after_fixture, sort_keys=True, indent=2), encoding="utf-8")
+        after_snapshot = _snapshot_tree(sandbox_root)
+        changed_paths = sorted(
+            rel for rel in set(before_snapshot) | set(after_snapshot)
+            if before_snapshot.get(rel) != after_snapshot.get(rel)
+        )
         sandbox_records.append({
             "schema_version": "agialpha.engine.sandbox_record.v1",
             "sandbox_id": f"sandbox-{jid}",
-            "allowed_root": str(Path(args.repo_root).resolve()),
+            "allowed_root": str(sandbox_root),
             "seed": args.seed,
             "network_disabled": True,
             "repo_mutation_allowed": False,
             "production_actuation_allowed": False,
             "commands_run": [f"evaluate {jid}"],
-            "files_before": {},
-            "files_after": {},
-            "diff_summary": {"changed_files": 0},
+            "files_before": before_snapshot,
+            "files_after": after_snapshot,
+            "diff_summary": {"changed_files": len(changed_paths), "changed_paths": changed_paths, "repo_source_mutated": False},
             "stdout_hash": _h(stdout_payload),
             "stderr_hash": _h(stderr_payload),
             "status": "pass",
