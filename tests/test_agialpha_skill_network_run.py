@@ -191,7 +191,7 @@ def test_build_data_uses_post_replay_falsification_truth():
         gate=json.loads((out/'claim_gate.json').read_text())
         assert metrics['replay_pass_rate'] == 1.0
         assert metrics['falsification_pass'] is True
-        assert metrics['adversarial_failures_caught'] == 8
+        assert metrics['adversarial_failures_caught'] >= 10
         assert gate['claim_gate_status'] == 'supported_local_bounded'
 
 
@@ -206,7 +206,7 @@ def test_falsification_syncs_adversarial_counter_to_metrics():
         post_metrics=json.loads((run/'07_metrics/network_skill_metrics.json').read_text())
         audit=json.loads((run/'12_falsification/falsification_audit.json').read_text())
         assert post_metrics['adversarial_failures_caught'] == audit['adversarial_failures_caught']
-        assert post_metrics['adversarial_failures_caught'] == 8
+        assert post_metrics['adversarial_failures_caught'] >= 10
 
 
 def test_no_blocked_persistence_attempts_when_none_recorded():

@@ -632,7 +632,7 @@ def run_network_compounding(args):
         receipts.append({"schema_version":"agialpha.skill_network.work_vault_receipt.v1","receipt_id":f"receipt-{receipt_index}-{receipt_skill['skill_id']}","skill_id":receipt_skill['skill_id'],"source_job_id":receipt_skill['source_job_id'],"source_agent_id":receipt_skill['source_agent_id'],"target_agent_ids":receipt_target_agents,"covered_import_ids":[i["import_id"] for i in skill_imports if i.get("import_id")],"utility_budget_units":100,"alpha_work_units_estimated":42,"validator_fee_units":8,"replay_fee_units":5,"proofbundle_fee_units":3,"evidence_docket_fee_units":3,"skill_publication_fee_units":2,"skill_import_fee_units":import_fee_units,"unused_budget_refund_units":100-42-8-5-3-3-2-import_fee_units,"settlement_mode":"synthetic_local_json_receipt_only","wallet_used":False,"custody_used":False,"payment_executed":False,"token_price_used":False,"investment_claim_made":False,"receipt_note":"Synthetic local utility receipt only. No wallet, custody, payment, trading, KYC/AML, money transmission, securities functionality, token price, token value, token appreciation, or investment return.",**_base()})
     atomic_write_json(out/'08_work_vault/skill_work_vault_receipts.json',{"receipts":receipts,"receipt_count":len(receipts),"covered_import_count":sum(len(r.get("covered_import_ids", [])) for r in receipts),**_base()})
     pending_replay_report = {"replay_pass": False, "replay_passes": 0, "status": "pending_replay_execution", **_base()}
-    pending_falsification_audit = {"falsification_pass": False, "status": "pending_falsification_execution", "adversarial_checks": ["fake skill metric rejected", "forbidden claim injection rejected", "regulated-domain skill blocked", "token-value skill blocked", "raw secret-like string redacted", "auto-merge attempt rejected", "replay mismatch detected", "missing skill evidence detected", "baseline regression detected", "poisoned skill import quarantined"], **_base()}
+    pending_falsification_audit = {"falsification_pass": False, "status": "pending_falsification_execution", "adversarial_checks": ["fake skill metric rejected", "forbidden claim injection rejected", "regulated-domain skill blocked", "token-value skill blocked", "raw secret-like string redacted", "auto-merge attempt rejected", "replay mismatch detected", "missing skill evidence detected", "missing ProofBundle detected", "missing Evidence Docket detected", "skill import without ProofBundle/Evidence Docket rejected", "poisoned skill import quarantined"], **_base()}
     proofbundles=[]
     for sk in accepted:
         pb = _build_network_proofbundle(
@@ -857,13 +857,12 @@ def falsification_network_compounding(args):
         "auto-merge attempt rejected",
         "replay mismatch detected",
         "missing skill evidence detected",
-        "baseline regression detected",
+        "missing ProofBundle detected",
+        "missing Evidence Docket detected",
+        "skill import without ProofBundle/Evidence Docket rejected",
         "poisoned skill import quarantined",
     ]
-    # Lifecycle tests currently assert the historical counter contract (8).
-    # Keep that contract stable while still emitting the full check list for
-    # transparent audit content.
-    adversarial_failures_caught=8
+    adversarial_failures_caught=len(adversarial_checks)
     atomic_write_json(run/'12_falsification/falsification_audit.json',{
         "falsification_pass":fpass,
         "adversarial_failures_caught":adversarial_failures_caught,
@@ -910,7 +909,7 @@ def falsification_network_compounding(args):
         imported_skills_inactive_outside_sandbox=_imported_skills_are_inactive_outside_sandbox(imports),
         heldout_comparison_ran=bool(comparison.get('NetworkSkillPropagationLift') is not None),
         metrics_computed_from_raw_logs=bool(m.get('raw_task_result_ids')),
-        falsification_covers_required_injections=adversarial_failures_caught >= 8,
+        falsification_covers_required_injections=adversarial_failures_caught >= 10,
         unsafe_claims_blocked=int(m.get('unsafe_claims_blocked', 0)),
         token_value_claims_blocked=int(m.get('token_value_claims_blocked', 0)),
         regulated_decisioning_blocked=int(m.get('regulated_decisioning_blocked', 0)),
@@ -1012,7 +1011,7 @@ def validate_network_compounding(args):
         imported_skills_inactive_outside_sandbox=_imported_skills_are_inactive_outside_sandbox(imports),
         heldout_comparison_ran=bool(comparison.get('NetworkSkillPropagationLift') is not None),
         metrics_computed_from_raw_logs=bool(metrics.get('raw_task_result_ids')),
-        falsification_covers_required_injections=int(metrics.get('adversarial_failures_caught', 0)) >= 8,
+        falsification_covers_required_injections=int(metrics.get('adversarial_failures_caught', 0)) >= 10,
         unsafe_claims_blocked=int(metrics.get('unsafe_claims_blocked', 0)),
         token_value_claims_blocked=int(metrics.get('token_value_claims_blocked', 0)),
         regulated_decisioning_blocked=int(metrics.get('regulated_decisioning_blocked', 0)),
