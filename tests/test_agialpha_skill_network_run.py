@@ -1,4 +1,4 @@
-import json, subprocess, tempfile
+import json, shutil, subprocess, tempfile
 from pathlib import Path
 
 
@@ -281,6 +281,39 @@ def test_validate_rejects_import_active_outside_sandbox_or_production_activation
         assert 'production_activation_allowed must be false' in output
 
 
+def test_validate_allows_safe_quarantined_non_import_event():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        path=run/'05_skill_import/skill_import_events.json'
+        doc=json.loads(path.read_text())
+        doc['skill_import_events'].append({
+            'schema_version':'agialpha.skill_import.v1',
+            'import_id':'import-quarantined-safe',
+            'skill_id':'skill-poisoned',
+            'target_agent_id':'agent-2',
+            'import_status':'quarantined_missing_evidence',
+            'activation_status':'quarantined',
+            'active_outside_sandbox':False,
+            'production_activation_allowed':False,
+            'proofbundle_id':'unavailable',
+            'evidence_docket_id':'unavailable',
+            'claim_boundary':'local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required',
+            'token_boundary':'$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading',
+            'regulated_boundary':'regulated-domain firewall enabled; blocked_human_review_required for regulated tasks',
+            'human_review_required':True,
+            'autonomous_persistence_allowed':False,
+            'no_auto_merge':True,
+        })
+        path.write_text(json.dumps(doc))
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)])
+        gate=json.loads((run/'13_claim_gate/network_compounding_claim_gate.json').read_text())
+        assert gate['checks']['imported_skills_inactive_outside_sandbox'] is True
+        assert gate['claim_gate_status'] == 'supported_local_bounded'
+
+
 def test_validate_rejects_unsafe_quarantined_import_event():
     with tempfile.TemporaryDirectory() as td:
         run=Path(td)/'run'; reg=Path(td)/'reg'
@@ -314,3 +347,67 @@ def test_validate_rejects_unsafe_quarantined_import_event():
         assert 'activation_status must be inactive or quarantined for non-imported skill events' in output
         assert 'active_outside_sandbox must be false' in output
         assert 'production_activation_allowed must be false' in output
+
+
+def test_validate_fails_when_network_skill_vault_missing():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        shutil.rmtree(run/'04_network_skill_vault')
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        assert proc.returncode != 0
+        assert 'network skill vault publication evidence invalid' in (proc.stderr + proc.stdout)
+
+
+def test_validate_fails_when_accepted_skill_missing_from_vault():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        vault_path=run/'04_network_skill_vault/network_skill_vault.json'
+        vault=json.loads(vault_path.read_text())
+        vault['skill_packages']=vault['skill_packages'][:1]
+        vault_path.write_text(json.dumps(vault, sort_keys=True))
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        assert proc.returncode != 0
+        assert 'accepted skills missing from network skill vault' in (proc.stderr + proc.stdout)
+
+
+def test_validate_fails_when_vault_contains_unaccepted_skill():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        vault_path=run/'04_network_skill_vault/network_skill_vault.json'
+        vault=json.loads(vault_path.read_text())
+        unsafe_skill=dict(vault['skill_packages'][0])
+        unsafe_skill['skill_id']='skill-unaccepted-poisoned'
+        unsafe_skill['source_job_id']='job-unaccepted'
+        vault['skill_packages'].append(unsafe_skill)
+        vault_path.write_text(json.dumps(vault, sort_keys=True))
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        output=proc.stderr + proc.stdout
+        assert proc.returncode != 0
+        assert 'unaccepted skills present in network skill vault' in output
+        assert 'skill-unaccepted-poisoned' in output
+
+
+def test_validate_fails_when_publication_events_contain_unaccepted_skill():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        publication_path=run/'04_network_skill_vault/skill_publication_events.json'
+        publications=json.loads(publication_path.read_text())
+        publications['events'].append({'skill_id':'skill-unaccepted-poisoned'})
+        publication_path.write_text(json.dumps(publications, sort_keys=True))
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        output=proc.stderr + proc.stdout
+        assert proc.returncode != 0
+        assert 'unaccepted skills present in skill publication events' in output
+        assert 'skill-unaccepted-poisoned' in output

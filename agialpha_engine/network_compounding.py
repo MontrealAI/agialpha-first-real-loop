@@ -5,6 +5,8 @@ from .context import BOUNDARIES, atomic_write_json
 from .network_claim_gate import evaluate_network_compounding_claim
 
 ROLES=["Reviewer Agent","Validator Agent","Operator Agent","Documentation Agent","SecureRails Agent"]
+IMPORTED_SKILL_IMPORT_STATUSES={"imported", "imported_inactive_outside_sandbox"}
+NON_IMPORTED_SAFE_SKILL_IMPORT_STATUSES={"quarantined_missing_evidence", "regulated_boundary_blocked", "documentation_only_human_review_required"}
 
 def _h(o):
     return hashlib.sha256(json.dumps(o,sort_keys=True).encode()).hexdigest()
@@ -29,6 +31,65 @@ def _base(extra=None):
     if extra: d.update(extra)
     return d
 
+
+def _network_vault_publication_evidence(run: Path, accepted: list[dict]) -> dict:
+    accepted_ids = {skill.get("skill_id") for skill in accepted if skill.get("skill_id")}
+    errors: list[str] = []
+    if len(accepted_ids) != len(accepted):
+        errors.append("accepted skill packages must have unique skill_id values")
+    vault_path = run / "04_network_skill_vault" / "network_skill_vault.json"
+    publication_path = run / "04_network_skill_vault" / "skill_publication_events.json"
+    if not vault_path.exists():
+        errors.append("04_network_skill_vault/network_skill_vault.json missing")
+        vault_doc = {}
+    else:
+        vault_doc = _read(vault_path, {})
+    if not publication_path.exists():
+        errors.append("04_network_skill_vault/skill_publication_events.json missing")
+        publication_doc = {}
+    else:
+        publication_doc = _read(publication_path, {})
+    vault_ids = {row.get("skill_id") for row in vault_doc.get("skill_packages", []) if isinstance(row, dict) and row.get("skill_id")}
+    publication_rows = publication_doc.get("events", publication_doc.get("skill_publication_events", []))
+    publication_ids = {row.get("skill_id") for row in publication_rows if isinstance(row, dict) and row.get("skill_id")}
+    missing_from_vault = sorted(accepted_ids - vault_ids)
+    missing_from_publications = sorted(accepted_ids - publication_ids)
+    unexpected_vault_ids = sorted(vault_ids - accepted_ids)
+    unexpected_publication_ids = sorted(publication_ids - accepted_ids)
+    if missing_from_vault:
+        errors.append(f"accepted skills missing from network skill vault: {missing_from_vault}")
+    if missing_from_publications:
+        errors.append(f"accepted skills missing from skill publication events: {missing_from_publications}")
+    if unexpected_vault_ids:
+        errors.append(f"unaccepted skills present in network skill vault: {unexpected_vault_ids}")
+    if unexpected_publication_ids:
+        errors.append(f"unaccepted skills present in skill publication events: {unexpected_publication_ids}")
+    published_ids = accepted_ids & vault_ids & publication_ids
+    return {
+        "published_skill_ids": sorted(published_ids),
+        "published_count": len(published_ids),
+        "accepted_skill_ids": sorted(accepted_ids),
+        "vault_skill_ids": sorted(vault_ids),
+        "publication_event_skill_ids": sorted(publication_ids),
+        "unexpected_vault_skill_ids": unexpected_vault_ids,
+        "unexpected_publication_event_skill_ids": unexpected_publication_ids,
+        "all_accepted_skills_published": bool(accepted_ids) and not errors and published_ids == accepted_ids,
+        "errors": errors,
+    }
+
+
+def _imported_skills_are_inactive_outside_sandbox(imports: list[dict]) -> bool:
+    imported_events = [imp for imp in imports if imp.get("import_status") in IMPORTED_SKILL_IMPORT_STATUSES]
+    return all(
+        imp.get("activation_status") == "inactive"
+        and imp.get("active_outside_sandbox") is False
+        and imp.get("production_activation_allowed") is False
+        for imp in imported_events
+    )
+
+
+def _active_skill_imports(imports: list[dict]) -> list[dict]:
+    return [imp for imp in imports if imp.get("import_status") in IMPORTED_SKILL_IMPORT_STATUSES]
 
 def _next_registry_index(existing: dict, run_id: str) -> dict:
     previous_runs = existing.get("runs", []) if isinstance(existing, dict) else []
@@ -516,6 +577,15 @@ def run_network_compounding(args):
         replay_ok=False,
         falsification_ok=False,
         critical_safety_incidents=0,
+        accepted_skills_have_raw_results=all(bool(sk.get('raw_task_result_ids')) for sk in accepted),
+        proofbundle_present=all(bool(sk.get('proofbundle_id')) for sk in accepted),
+        evidence_docket_present=all(bool(sk.get('evidence_docket_id')) for sk in accepted),
+        skills_published_to_vault=0,
+        skill_vault_contains_accepted_skill_ids=False,
+        imported_skills_inactive_outside_sandbox=_imported_skills_are_inactive_outside_sandbox(imports),
+        heldout_comparison_ran=bool(b5 and b6),
+        metrics_computed_from_raw_logs=bool(raw),
+        human_review_required_outside_sandbox=True,
     )
     # write major artifacts
     atomic_write_json(out/'00_manifest.json',{"run_id":run_id,"experiment_id":"AGI-ALPHA-ENGINE-003",**_base()})
@@ -785,10 +855,12 @@ def falsification_network_compounding(args):
     manifests_obj=_read(run/'05_skill_import/agent_skill_manifests_after_import.json',{})
     manifests=manifests_obj.get('agent_skill_manifests', manifests_obj.get('manifests', []))
     comparison=_read(run/'06_heldout_reuse_tests/comparison.json',{})
-    distinct_targets=len({i.get('target_agent_id') for i in imports if i.get('target_agent_id')})
+    active_imports=_active_skill_imports(imports)
+    distinct_targets=len({i.get('target_agent_id') for i in active_imports if i.get('target_agent_id')})
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
     failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
     exact_one_outcome_per_job=_job_outcome_coverage(jobs, accepted, rejected, failures)
+    vault_publication_evidence=_network_vault_publication_evidence(run, accepted)
     gate=evaluate_network_compounding_claim(
         jobs_run=len(jobs),
         exact_one_outcome_per_job=exact_one_outcome_per_job,
@@ -799,6 +871,20 @@ def falsification_network_compounding(args):
         replay_ok=(replay_pass_field is True and replay_passes > 0),
         falsification_ok=fpass,
         critical_safety_incidents=int(m.get('critical_safety_incidents',0)),
+        accepted_skills_have_raw_results=all(bool(sk.get('raw_task_result_ids')) for sk in accepted),
+        proofbundle_present=all(bool(sk.get('proofbundle_id')) for sk in accepted),
+        evidence_docket_present=all(bool(sk.get('evidence_docket_id')) for sk in accepted),
+        skills_published_to_vault=vault_publication_evidence["published_count"],
+        skill_vault_contains_accepted_skill_ids=vault_publication_evidence["all_accepted_skills_published"],
+        imported_skills_inactive_outside_sandbox=_imported_skills_are_inactive_outside_sandbox(imports),
+        heldout_comparison_ran=bool(comparison.get('NetworkSkillPropagationLift') is not None),
+        metrics_computed_from_raw_logs=bool(m.get('raw_task_result_ids')),
+        falsification_covers_required_injections=adversarial_failures_caught >= 8,
+        unsafe_claims_blocked=int(m.get('unsafe_claims_blocked', 0)),
+        token_value_claims_blocked=int(m.get('token_value_claims_blocked', 0)),
+        regulated_decisioning_blocked=int(m.get('regulated_decisioning_blocked', 0)),
+        autonomous_persistence_attempts_blocked=int(m.get('autonomous_persistence_attempts_blocked', 0)),
+        human_review_required_outside_sandbox=all(i.get('human_review_required') is True for i in imports),
     )
     atomic_write_json(run/'13_claim_gate/network_compounding_claim_gate.json',gate)
     _refresh_network_proofbundles(run)
@@ -844,9 +930,9 @@ def validate_network_compounding(args):
     metrics=_read(run/'07_metrics/network_skill_metrics.json',{})
     rejected=_read(run/'03_skill_extraction/rejected_skill_candidates.json',{}).get('rejected_skill_candidates',[])
     failures=_read(run/'03_skill_extraction/failure_learning_packages.json',{}).get('failure_learning_packages',[])
-    imported_statuses={'imported', 'imported_inactive_outside_sandbox'}
-    non_imported_safe_statuses={'quarantined_missing_evidence', 'regulated_boundary_blocked', 'documentation_only_human_review_required'}
-    active_imports=[imp for imp in imports if imp.get('import_status') in imported_statuses]
+    imported_statuses=IMPORTED_SKILL_IMPORT_STATUSES
+    non_imported_safe_statuses=NON_IMPORTED_SAFE_SKILL_IMPORT_STATUSES
+    active_imports=_active_skill_imports(imports)
     unsafe_imports=[]
     for imp in imports:
         import_id=imp.get('import_id', 'unknown')
@@ -874,16 +960,33 @@ def validate_network_compounding(args):
     if len(manifest_import_agent_ids) < 3:
         raise SystemExit('network-compounding-validate failed: at least 3 agent manifests must reflect imported skills')
     exact_one_outcome_per_job=_job_outcome_coverage(jobs, accepted, rejected, failures)
+    vault_publication_evidence=_network_vault_publication_evidence(run, accepted)
+    if not vault_publication_evidence["all_accepted_skills_published"]:
+        raise SystemExit(f"network-compounding-validate failed: network skill vault publication evidence invalid ({vault_publication_evidence['errors']})")
     recomputed=evaluate_network_compounding_claim(
         jobs_run=len(jobs),
         exact_one_outcome_per_job=exact_one_outcome_per_job,
         accepted_skill_packages=len(accepted),
-        distinct_import_targets=len({i.get('target_agent_id') for i in imports if i.get('target_agent_id')}),
+        distinct_import_targets=len({i.get('target_agent_id') for i in active_imports if i.get('target_agent_id')}),
         d_shared_skill_network=float(comparison.get('D_shared_skill_network',0)),
         d_no_shared_skill=float(comparison.get('D_no_shared_skill',0)),
         replay_ok=replay_ok,
         falsification_ok=falsification_ok,
         critical_safety_incidents=int(metrics.get('critical_safety_incidents',0)),
+        accepted_skills_have_raw_results=all(bool(sk.get('raw_task_result_ids')) for sk in accepted),
+        proofbundle_present=all(bool(sk.get('proofbundle_id')) for sk in accepted),
+        evidence_docket_present=all(bool(sk.get('evidence_docket_id')) for sk in accepted),
+        skills_published_to_vault=vault_publication_evidence["published_count"],
+        skill_vault_contains_accepted_skill_ids=vault_publication_evidence["all_accepted_skills_published"],
+        imported_skills_inactive_outside_sandbox=_imported_skills_are_inactive_outside_sandbox(imports),
+        heldout_comparison_ran=bool(comparison.get('NetworkSkillPropagationLift') is not None),
+        metrics_computed_from_raw_logs=bool(metrics.get('raw_task_result_ids')),
+        falsification_covers_required_injections=int(metrics.get('adversarial_failures_caught', 0)) >= 8,
+        unsafe_claims_blocked=int(metrics.get('unsafe_claims_blocked', 0)),
+        token_value_claims_blocked=int(metrics.get('token_value_claims_blocked', 0)),
+        regulated_decisioning_blocked=int(metrics.get('regulated_decisioning_blocked', 0)),
+        autonomous_persistence_attempts_blocked=int(metrics.get('autonomous_persistence_attempts_blocked', 0)),
+        human_review_required_outside_sandbox=all(i.get('human_review_required') is True for i in imports),
     )
     expected_gate_status=recomputed.get('claim_gate_status')
     if gate.get('claim_gate_status') != expected_gate_status:
