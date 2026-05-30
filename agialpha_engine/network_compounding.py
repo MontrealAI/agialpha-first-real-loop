@@ -1,7 +1,7 @@
 from __future__ import annotations
 import hashlib, json, random
 from pathlib import Path
-from .context import BOUNDARIES, atomic_write_json
+from .context import BOUNDARIES, atomic_write_json, atomic_write_text
 from .network_claim_gate import evaluate_network_compounding_claim
 
 ROLES=["Reviewer Agent","Validator Agent","Operator Agent","Documentation Agent","SecureRails Agent"]
@@ -500,10 +500,14 @@ def _sync_run_to_registry(run: Path, *, publish_latest: bool = True) -> None:
     if validate_report:
         atomic_write_json(run_registry_dir / "20_validate.json", validate_report)
     public_summary_text = (
-        "AGI ALPHA Engine-003 run summary.\n"
+        "# AGI ALPHA Engine-003 run summary\n\n"
+        "Every Job makes an AI Agent smarter. Every new skill can be instantly shared across the network. "
+        "One Agent learns, all Agents level up.\n\n"
+        "Instant sharing means sandboxed registration/importability. Production activation requires validators "
+        "and human review. Exponential compounding is a strategic target unless the exponential claim gate passes.\n\n"
         "Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.\n"
     )
-    (run_registry_dir / "19_public_summary.md").write_text(public_summary_text, encoding="utf-8")
+    atomic_write_text(run_registry_dir / "19_public_summary.md", public_summary_text)
     atomic_write_json(run_registry_dir / "evidence-run-manifest.json", {"run_id": run.name, "registry": str(reg), "run": str(run), **_base()})
 
 def run_network_compounding(args):
@@ -1316,5 +1320,5 @@ def render_network_data(args):
 <div class="panel"><h2>Workflow buttons</h2><p><code>agialpha-engine-003-network-compounding.yml</code> · <code>agialpha-engine-003-network-replay.yml</code> · <code>agialpha-engine-003-network-falsification-audit.yml</code> · <code>agialpha-engine-003-network-claim-gate.yml</code></p></div>
 <div class="panel"><h2>Raw JSON links</h2><p><a href="../../_generated/agialpha-skill-network/summary.json">summary</a> · <a href="../../_generated/agialpha-skill-network/network_skill_metrics.json">metrics</a> · <a href="../../_generated/agialpha-skill-network/claim_gate.json">claim gate</a> · <a href="../../_generated/agialpha-skill-network/skill_packages.json">skill packages</a></p></div>
 <p class="footer">No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.</p></main></body></html>"""
-    (out / "index.html").write_text(html_text, encoding="utf-8")
+    atomic_write_text(out / "index.html", html_text)
     atomic_write_json(out / "routes.json", {"routes": ["/agialpha-skill-network/", "/experiments/agialpha-engine-003/"], "nav_label": "Skill Network", "primary_html": "index.html", **_base()})
