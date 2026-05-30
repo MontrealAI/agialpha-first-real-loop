@@ -54,10 +54,16 @@ def _network_vault_publication_evidence(run: Path, accepted: list[dict]) -> dict
     publication_ids = {row.get("skill_id") for row in publication_rows if isinstance(row, dict) and row.get("skill_id")}
     missing_from_vault = sorted(accepted_ids - vault_ids)
     missing_from_publications = sorted(accepted_ids - publication_ids)
+    unexpected_vault_ids = sorted(vault_ids - accepted_ids)
+    unexpected_publication_ids = sorted(publication_ids - accepted_ids)
     if missing_from_vault:
         errors.append(f"accepted skills missing from network skill vault: {missing_from_vault}")
     if missing_from_publications:
         errors.append(f"accepted skills missing from skill publication events: {missing_from_publications}")
+    if unexpected_vault_ids:
+        errors.append(f"unaccepted skills present in network skill vault: {unexpected_vault_ids}")
+    if unexpected_publication_ids:
+        errors.append(f"unaccepted skills present in skill publication events: {unexpected_publication_ids}")
     published_ids = accepted_ids & vault_ids & publication_ids
     return {
         "published_skill_ids": sorted(published_ids),
@@ -65,6 +71,8 @@ def _network_vault_publication_evidence(run: Path, accepted: list[dict]) -> dict
         "accepted_skill_ids": sorted(accepted_ids),
         "vault_skill_ids": sorted(vault_ids),
         "publication_event_skill_ids": sorted(publication_ids),
+        "unexpected_vault_skill_ids": unexpected_vault_ids,
+        "unexpected_publication_event_skill_ids": unexpected_publication_ids,
         "all_accepted_skills_published": bool(accepted_ids) and not errors and published_ids == accepted_ids,
         "errors": errors,
     }

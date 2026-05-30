@@ -374,3 +374,40 @@ def test_validate_fails_when_accepted_skill_missing_from_vault():
         proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
         assert proc.returncode != 0
         assert 'accepted skills missing from network skill vault' in (proc.stderr + proc.stdout)
+
+
+def test_validate_fails_when_vault_contains_unaccepted_skill():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        vault_path=run/'04_network_skill_vault/network_skill_vault.json'
+        vault=json.loads(vault_path.read_text())
+        unsafe_skill=dict(vault['skill_packages'][0])
+        unsafe_skill['skill_id']='skill-unaccepted-poisoned'
+        unsafe_skill['source_job_id']='job-unaccepted'
+        vault['skill_packages'].append(unsafe_skill)
+        vault_path.write_text(json.dumps(vault, sort_keys=True))
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        output=proc.stderr + proc.stdout
+        assert proc.returncode != 0
+        assert 'unaccepted skills present in network skill vault' in output
+        assert 'skill-unaccepted-poisoned' in output
+
+
+def test_validate_fails_when_publication_events_contain_unaccepted_skill():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        publication_path=run/'04_network_skill_vault/skill_publication_events.json'
+        publications=json.loads(publication_path.read_text())
+        publications['events'].append({'skill_id':'skill-unaccepted-poisoned'})
+        publication_path.write_text(json.dumps(publications, sort_keys=True))
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        output=proc.stderr + proc.stdout
+        assert proc.returncode != 0
+        assert 'unaccepted skills present in skill publication events' in output
+        assert 'skill-unaccepted-poisoned' in output
