@@ -9,6 +9,10 @@ ROLES=["Reviewer Agent","Validator Agent","Operator Agent","Documentation Agent"
 def _h(o):
     return hashlib.sha256(json.dumps(o,sort_keys=True).encode()).hexdigest()
 
+
+def _file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
 def _read(p,d):
     if not p.exists(): return d
     return json.loads(p.read_text())
@@ -369,9 +373,13 @@ def run_network_compounding(args):
         jobs.append(rec); raw.append({"schema_version":"agialpha.engine.raw_task_result.v1","task_result_id":f"raw-{jid}","raw_task_result_id":f"raw-{jid}","task_id":jid,"candidate_id":f"cand-{jid}","baseline_id":"B6_shared_skill_network","agent_id":aid,"skill_id":None,"seed":args.seed,"sandbox_id":f"sandbox-{jid}","validator_results":[{"validator_id":"default-local-validator","pass":True}],"raw_scores":{"score":round(score,3)},"cost_proxy":1,"safety_counters":{"critical_safety_incidents":0},"artifact_hashes":{},"passed":True,"failure_reason":"","claim_boundary":BOUNDARIES["claim_boundary"],"token_boundary":BOUNDARIES["token_boundary"],"regulated_boundary":BOUNDARIES["regulated_boundary"],"source_logs":[f"log-{jid}"],**rec})
         stdout_payload, stderr_payload = _compute_stream_payload(jid, rec["score"], rec["validator_pass"])
         fixture_rel = f"safe_fixture_{jid}.json"
+        fixture_path = sandbox_workspace / fixture_rel
         before_fixture = {"job_id": jid, "seed": args.seed, "candidate_id": f"cand-{jid}", "stage": "before_validation", **_base()}
         after_fixture = {**before_fixture, "stage": "after_validation", "validator_pass": rec["validator_pass"], "score": rec["score"]}
-        (sandbox_workspace / fixture_rel).write_text(json.dumps(after_fixture, sort_keys=True, indent=2), encoding="utf-8")
+        fixture_path.write_text(json.dumps(before_fixture, sort_keys=True, indent=2), encoding="utf-8")
+        before_fixture_hash = _file_sha256(fixture_path)
+        fixture_path.write_text(json.dumps(after_fixture, sort_keys=True, indent=2), encoding="utf-8")
+        after_fixture_hash = _file_sha256(fixture_path)
         sandbox_records.append({
             "schema_version": "agialpha.engine.sandbox_record.v1",
             "sandbox_id": f"sandbox-{jid}",
@@ -381,8 +389,8 @@ def run_network_compounding(args):
             "repo_mutation_allowed": False,
             "production_actuation_allowed": False,
             "commands_run": [f"evaluate {jid}"],
-            "files_before": {fixture_rel: _h(before_fixture)},
-            "files_after": {fixture_rel: _h(after_fixture)},
+            "files_before": {fixture_rel: before_fixture_hash},
+            "files_after": {fixture_rel: after_fixture_hash},
             "diff_summary": {"changed_files": 1, "changed_paths": [fixture_rel], "repo_source_mutated": False},
             "stdout_hash": _h(stdout_payload),
             "stderr_hash": _h(stderr_payload),
