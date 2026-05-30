@@ -1,11 +1,11 @@
 {
-  "B6_shared_skill_advantage_delta": 0.0128,
+  "B6_shared_skill_advantage_delta": 0.0122,
   "B6_shared_skill_beats_B5_no_shared_skill": true,
   "autonomous_persistence_allowed": false,
   "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
   "computed_from_raw_logs": true,
   "human_review_required": true,
-  "network_skill_propagation_lift": 0.0128,
+  "network_skill_propagation_lift": 0.0122,
   "no_auto_merge": true,
   "raw_task_result_ids": [
     "raw-job-1",
