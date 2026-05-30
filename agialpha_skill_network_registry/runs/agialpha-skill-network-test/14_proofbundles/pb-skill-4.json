@@ -8,7 +8,7 @@
   "autonomous_persistence_allowed": false,
   "b6_vs_b5_comparison_hash": "e7b6534065644344221effa32f67c628e0f4fafc47545238680e7abce82b7f0e",
   "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
-  "claim_gate_hash": "48b9e434af184efe8a008ef2188fa7846cbf9af83ec5644fcfa6351002109ec3",
+  "claim_gate_hash": "4ca99582d5d72b27b58bd5b880188ab508465b3bfe4a0f9d7bd77abb57b91c15",
   "complete": true,
   "deterministic_seed": 123,
   "environment_info": {
@@ -25,7 +25,7 @@
   "missing_raw_task_result_ids": [],
   "network_skill_vault_entry_hash": "75797dea9ecf172ea893e5c3c58821ea35cbe1b624e9296c71b6f559ca1bb047",
   "no_auto_merge": true,
-  "proofbundle_hash": "6745f89b519867055ef7870ea2967bda6eda260d0da3215e15289d84eeaf99dc",
+  "proofbundle_hash": "22cad5a0f36f1f3fafe0b3712e9000453884661afbab64c7fb69fb68dde16af9",
   "proofbundle_id": "pb-skill-4",
   "raw_evaluator_log_hashes": [
     "d3c1ecec26b76bb614fecb6774c1ccd7e739472e9c8a2f033eda8dd0468a61ec"
