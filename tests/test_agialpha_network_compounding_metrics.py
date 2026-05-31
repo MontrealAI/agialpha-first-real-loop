@@ -67,6 +67,197 @@ def test_network_compounding_metrics_computed_from_raw_logs_without_fixed_wins()
         assert metrics["hard_coded_metric_count"] >= metrics["fake_zero_metric_count"] >= 0
 
 
+def test_network_skill_metrics_helper_reports_required_engine003_fields_without_fake_missing_zeroes():
+    from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
+
+    metrics = compute_network_skill_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        agent_skill_manifests_created=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[{
+            "success_score": 0.5, "validator_pass": 1, "replay_pass": 1,
+            "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+        }],
+        heldout_rows_b6=[{
+            "success_score": 0.6, "validator_pass": 1, "replay_pass": 1,
+            "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+        }],
+        raw_task_result_ids=["raw-heldout-1"],
+    )
+
+    assert metrics["agent_skill_manifests_created"] == 3
+    assert metrics["target_agents_improved_on_heldout"] == 1
+    assert metrics["compounding_exponent_proxy"] == "not_supported"
+    assert metrics["exponential_compounding_supported"] is False
+    assert metrics["replay_pass_rate"] == "pending"
+    assert metrics["hard_coded_metric_count"] == 0
+    assert metrics["fake_zero_metric_count"] == 0
+    assert metrics["raw_secret_leak_count"] == "not_reported"
+    assert metrics["autonomous_persistence_allowed"] is False
+
+
+def test_network_skill_metrics_counts_improvement_with_full_d_row_factor():
+    from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
+
+    metrics = compute_network_skill_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        agent_skill_manifests_created=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[{
+            "success_score": 0.5, "validator_pass": 1, "replay_pass": 1,
+            "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+        }],
+        heldout_rows_b6=[{
+            "success_score": 0.9, "validator_pass": 1, "replay_pass": 0,
+            "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+        }],
+        raw_task_result_ids=["raw-heldout-regression"],
+    )
+
+    assert metrics["D_no_shared_skill_B5"] == 0.5
+    assert metrics["D_shared_skill_network_B6"] == 0.0
+    assert metrics["network_skill_propagation_lift"] == -0.5
+    assert metrics["B6_shared_skill_beats_B5_no_shared_skill"] is False
+    assert metrics["target_agents_improved_on_heldout"] == 0
+
+
+def test_network_skill_metrics_does_not_count_improvements_for_unpaired_heldout_sets():
+    from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
+
+    complete_b5 = {
+        "task_id": "heldout-1", "success_score": 0.5, "validator_pass": 1,
+        "replay_pass": 1, "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+    }
+    complete_b6 = {
+        "task_id": "heldout-1", "success_score": 0.7, "validator_pass": 1,
+        "replay_pass": 1, "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+    }
+    extra_b6 = {**complete_b6, "task_id": "heldout-2", "success_score": 0.8}
+
+    metrics = compute_network_skill_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        agent_skill_manifests_created=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[complete_b5],
+        heldout_rows_b6=[complete_b6, extra_b6],
+        raw_task_result_ids=["raw-heldout-unpaired"],
+    )
+
+    assert metrics["D_no_shared_skill_B5"] == 0.5
+    assert metrics["D_shared_skill_network_B6"] == 0.75
+    assert metrics["network_skill_propagation_lift"] == 0.25
+    assert metrics["target_agents_improved_on_heldout"] == "not_reported"
+
+
+def test_network_skill_metrics_does_not_count_improvements_for_task_id_mismatch():
+    from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
+
+    metrics = compute_network_skill_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        agent_skill_manifests_created=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[{
+            "task_id": "heldout-a", "success_score": 0.5, "validator_pass": 1,
+            "replay_pass": 1, "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+        }],
+        heldout_rows_b6=[{
+            "task_id": "heldout-b", "success_score": 0.8, "validator_pass": 1,
+            "replay_pass": 1, "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+        }],
+        raw_task_result_ids=["raw-heldout-task-mismatch"],
+    )
+
+    assert metrics["B6_shared_skill_beats_B5_no_shared_skill"] is True
+    assert metrics["target_agents_improved_on_heldout"] == "not_reported"
+
+
+def test_network_skill_metrics_helper_does_not_claim_improvement_or_manifests_without_evidence():
+    from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
+
+    metrics = compute_network_skill_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[{"success_score": 0.1}],
+        heldout_rows_b6=[{"success_score": 0.9}],
+        raw_task_result_ids=["raw-incomplete-heldout"],
+    )
+
+    assert metrics["D_no_shared_skill_B5"] == "not_reported"
+    assert metrics["D_shared_skill_network_B6"] == "not_reported"
+    assert metrics["network_skill_propagation_lift"] == "not_reported"
+    assert metrics["B6_shared_skill_beats_B5_no_shared_skill"] == "not_reported"
+    assert metrics["target_agents_improved_on_heldout"] == "not_reported"
+    assert metrics["agent_skill_manifests_created"] == "not_reported"
+
+
+def test_network_skill_metrics_schema_allows_not_reported_manifest_count():
+    schema = json.loads(Path("schemas/agialpha_network_skill_metrics.schema.json").read_text())
+    manifest_schema = schema["properties"]["agent_skill_manifests_created"]
+
+    assert "agent_skill_manifests_created" in schema["required"]
+    assert manifest_schema["oneOf"] == [
+        {"type": "integer", "minimum": 0},
+        {"type": "string", "enum": ["not_reported"]},
+    ]
+
+    from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
+
+    metrics = compute_network_skill_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[{"success_score": 0.1}],
+        heldout_rows_b6=[{"success_score": 0.9}],
+        raw_task_result_ids=["raw-incomplete-heldout"],
+    )
+
+    assert metrics["agent_skill_manifests_created"] == "not_reported"
+    assert metrics["agent_skill_manifests_created"] in manifest_schema["oneOf"][1]["enum"]
+    assert "three" not in manifest_schema["oneOf"][1]["enum"]
+    assert "-1" not in manifest_schema["oneOf"][1]["enum"]
+
+
 class NetworkCompoundingNoFixedMetricRegressionTest(unittest.TestCase):
     def test_cli_does_not_reintroduce_fixed_b6_or_vrci_metrics(self):
         """Regression guard for ENGINE-003: no literal B6 win or fixed vRCI shortcuts."""
