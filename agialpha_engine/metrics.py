@@ -139,7 +139,18 @@ def compute_network_skill_propagation_metrics(
         semantic_tests_passed=semantic_tests_passed,
         safety_counters=safety_counters,
     )
+    reportable_metric_keys = (
+        "D_no_shared_skill_B5",
+        "D_shared_skill_network_B6",
+        "network_skill_propagation_lift",
+    )
     metrics["metrics_computed_from_raw_logs"] = bool(
-        raw_task_result_ids and heldout_rows_b5 and heldout_rows_b6
+        raw_task_result_ids
+        and heldout_rows_b5
+        and heldout_rows_b6
+        and all(
+            type(metrics.get(key)) in (int, float)
+            for key in reportable_metric_keys
+        )
     )
     return metrics

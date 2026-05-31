@@ -292,6 +292,30 @@ def test_top_level_metrics_module_exposes_engine003_network_propagation_adapter(
     assert metrics["fake_zero_metric_count"] == 0
 
 
+def test_top_level_metrics_adapter_does_not_badge_incomplete_raw_rows_as_computed():
+    from agialpha_engine.metrics import compute_network_skill_propagation_metrics
+
+    metrics = compute_network_skill_propagation_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[{"success_score": 0.4}],
+        heldout_rows_b6=[{"success_score": 0.7}],
+        raw_task_result_ids=["raw-incomplete-b5", "raw-incomplete-b6"],
+    )
+
+    assert metrics["D_no_shared_skill_B5"] == "not_reported"
+    assert metrics["D_shared_skill_network_B6"] == "not_reported"
+    assert metrics["network_skill_propagation_lift"] == "not_reported"
+    assert metrics["metrics_computed_from_raw_logs"] is False
+
+
 class NetworkCompoundingNoFixedMetricRegressionTest(unittest.TestCase):
     def test_cli_does_not_reintroduce_fixed_b6_or_vrci_metrics(self):
         """Regression guard for ENGINE-003: no literal B6 win or fixed vRCI shortcuts."""
