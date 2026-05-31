@@ -2,6 +2,7 @@ import json
 import subprocess
 import tempfile
 import sys
+import unittest
 from pathlib import Path
 
 
@@ -64,3 +65,30 @@ def test_network_compounding_metrics_computed_from_raw_logs_without_fixed_wins()
         assert isinstance(metrics["hard_coded_metric_count"], int)
         assert isinstance(metrics["fake_zero_metric_count"], int)
         assert metrics["hard_coded_metric_count"] >= metrics["fake_zero_metric_count"] >= 0
+
+
+class NetworkCompoundingNoFixedMetricRegressionTest(unittest.TestCase):
+    def test_cli_does_not_reintroduce_fixed_b6_or_vrci_metrics(self):
+        """Regression guard for ENGINE-003: no literal B6 win or fixed vRCI shortcuts."""
+        cli_text = Path("agialpha_engine/cli.py").read_text(encoding="utf-8")
+        network_text = Path("agialpha_engine/network_compounding.py").read_text(encoding="utf-8")
+        combined = cli_text + "\n" + network_text
+        forbidden_snippets = [
+            "baseline_B6_beats_B5=True",
+            "baseline_B6_beats_B5 = True",
+            "'baseline_B6_beats_B5': True",
+            '"baseline_B6_beats_B5": True',
+            "vRCI=5",
+            "vRCI = 5",
+            "'vRCI': 5",
+            '"vRCI": 5',
+            "'vRCI_value': 5",
+            '"vRCI_value": 5',
+            "B6_shared_skill_beats_B5_no_shared_skill=True",
+            "B6_shared_skill_beats_B5_no_shared_skill = True",
+        ]
+        for snippet in forbidden_snippets:
+            self.assertNotIn(snippet, combined)
+        self.assertIn("B6_shared_skill_beats_B5_no_shared_skill", network_text)
+        self.assertIn("D_shared_skill_network", network_text)
+        self.assertIn("D_no_shared_skill", network_text)
