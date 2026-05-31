@@ -20,12 +20,19 @@
       "type": "integer"
     },
     "agent_skill_manifests_created": {
-      "minimum": 0,
-      "type": [
-        "integer",
-        "string"
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "string",
+          "enum": [
+            "not_reported"
+          ]
+        }
       ],
-      "description": "Integer count when manifest evidence is supplied; otherwise not_reported to avoid fabricating counts."
+      "description": "Integer count when manifest evidence is supplied; otherwise only the not_reported sentinel is allowed to avoid fabricating counts."
     },
     "agents_registered": {
       "minimum": 0,

@@ -166,8 +166,10 @@ def test_network_skill_metrics_schema_allows_not_reported_manifest_count():
     manifest_schema = schema["properties"]["agent_skill_manifests_created"]
 
     assert "agent_skill_manifests_created" in schema["required"]
-    assert set(manifest_schema["type"]) == {"integer", "string"}
-    assert manifest_schema["minimum"] == 0
+    assert manifest_schema["oneOf"] == [
+        {"type": "integer", "minimum": 0},
+        {"type": "string", "enum": ["not_reported"]},
+    ]
 
     from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
 
@@ -187,8 +189,9 @@ def test_network_skill_metrics_schema_allows_not_reported_manifest_count():
     )
 
     assert metrics["agent_skill_manifests_created"] == "not_reported"
-    observed_json_type = "string" if isinstance(metrics["agent_skill_manifests_created"], str) else "integer"
-    assert observed_json_type in manifest_schema["type"]
+    assert metrics["agent_skill_manifests_created"] in manifest_schema["oneOf"][1]["enum"]
+    assert "three" not in manifest_schema["oneOf"][1]["enum"]
+    assert "-1" not in manifest_schema["oneOf"][1]["enum"]
 
 
 class NetworkCompoundingNoFixedMetricRegressionTest(unittest.TestCase):
