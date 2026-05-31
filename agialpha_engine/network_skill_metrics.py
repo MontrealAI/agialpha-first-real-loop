@@ -60,6 +60,24 @@ def _row_factor(row: dict[str, Any]) -> float:
     )
 
 
+def _heldout_pair_population_matches(
+    heldout_rows_b5: list[dict[str, Any]],
+    heldout_rows_b6: list[dict[str, Any]],
+) -> bool:
+    if len(heldout_rows_b5) != len(heldout_rows_b6):
+        return False
+    task_ids_b5 = [row.get("task_id") for row in heldout_rows_b5]
+    task_ids_b6 = [row.get("task_id") for row in heldout_rows_b6]
+    if any(task_id is not None for task_id in task_ids_b5 + task_ids_b6):
+        return all(
+            task_id_b5 is not None
+            and task_id_b6 is not None
+            and task_id_b5 == task_id_b6
+            for task_id_b5, task_id_b6 in zip(task_ids_b5, task_ids_b6)
+        )
+    return True
+
+
 def compute_network_skill_metrics(
     *,
     jobs_run: int,
@@ -86,15 +104,18 @@ def compute_network_skill_metrics(
     if heldout_metrics_reportable:
         delta = round(d_b6 - d_b5, 6)
         b6_beats = d_b6 > d_b5
-        paired_heldout_rows = zip(heldout_rows_b5, heldout_rows_b6)
-        improved_heldout_tasks = sum(
-            1
-            for b5, b6 in paired_heldout_rows
-            if _row_factor(b6) > _row_factor(b5)
-        )
-        target_agents_improved_on_heldout: int | str = min(
-            target_agents_with_imported_skill, improved_heldout_tasks
-        )
+        if _heldout_pair_population_matches(heldout_rows_b5, heldout_rows_b6):
+            paired_heldout_rows = zip(heldout_rows_b5, heldout_rows_b6)
+            improved_heldout_tasks = sum(
+                1
+                for b5, b6 in paired_heldout_rows
+                if _row_factor(b6) > _row_factor(b5)
+            )
+            target_agents_improved_on_heldout: int | str = min(
+                target_agents_with_imported_skill, improved_heldout_tasks
+            )
+        else:
+            target_agents_improved_on_heldout = "not_reported"
     else:
         delta = "not_reported"
         b6_beats = "not_reported"

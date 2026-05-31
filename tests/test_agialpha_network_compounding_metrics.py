@@ -135,6 +135,70 @@ def test_network_skill_metrics_counts_improvement_with_full_d_row_factor():
     assert metrics["target_agents_improved_on_heldout"] == 0
 
 
+def test_network_skill_metrics_does_not_count_improvements_for_unpaired_heldout_sets():
+    from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
+
+    complete_b5 = {
+        "task_id": "heldout-1", "success_score": 0.5, "validator_pass": 1,
+        "replay_pass": 1, "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+    }
+    complete_b6 = {
+        "task_id": "heldout-1", "success_score": 0.7, "validator_pass": 1,
+        "replay_pass": 1, "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+    }
+    extra_b6 = {**complete_b6, "task_id": "heldout-2", "success_score": 0.8}
+
+    metrics = compute_network_skill_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        agent_skill_manifests_created=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[complete_b5],
+        heldout_rows_b6=[complete_b6, extra_b6],
+        raw_task_result_ids=["raw-heldout-unpaired"],
+    )
+
+    assert metrics["D_no_shared_skill_B5"] == 0.5
+    assert metrics["D_shared_skill_network_B6"] == 0.75
+    assert metrics["network_skill_propagation_lift"] == 0.25
+    assert metrics["target_agents_improved_on_heldout"] == "not_reported"
+
+
+def test_network_skill_metrics_does_not_count_improvements_for_task_id_mismatch():
+    from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
+
+    metrics = compute_network_skill_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        agent_skill_manifests_created=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[{
+            "task_id": "heldout-a", "success_score": 0.5, "validator_pass": 1,
+            "replay_pass": 1, "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+        }],
+        heldout_rows_b6=[{
+            "task_id": "heldout-b", "success_score": 0.8, "validator_pass": 1,
+            "replay_pass": 1, "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+        }],
+        raw_task_result_ids=["raw-heldout-task-mismatch"],
+    )
+
+    assert metrics["B6_shared_skill_beats_B5_no_shared_skill"] is True
+    assert metrics["target_agents_improved_on_heldout"] == "not_reported"
+
+
 def test_network_skill_metrics_helper_does_not_claim_improvement_or_manifests_without_evidence():
     from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
 
