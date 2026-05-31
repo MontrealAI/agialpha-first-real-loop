@@ -161,6 +161,36 @@ def test_network_skill_metrics_helper_does_not_claim_improvement_or_manifests_wi
     assert metrics["agent_skill_manifests_created"] == "not_reported"
 
 
+def test_network_skill_metrics_schema_allows_not_reported_manifest_count():
+    schema = json.loads(Path("schemas/agialpha_network_skill_metrics.schema.json").read_text())
+    manifest_schema = schema["properties"]["agent_skill_manifests_created"]
+
+    assert "agent_skill_manifests_created" in schema["required"]
+    assert set(manifest_schema["type"]) == {"integer", "string"}
+    assert manifest_schema["minimum"] == 0
+
+    from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
+
+    metrics = compute_network_skill_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[{"success_score": 0.1}],
+        heldout_rows_b6=[{"success_score": 0.9}],
+        raw_task_result_ids=["raw-incomplete-heldout"],
+    )
+
+    assert metrics["agent_skill_manifests_created"] == "not_reported"
+    observed_json_type = "string" if isinstance(metrics["agent_skill_manifests_created"], str) else "integer"
+    assert observed_json_type in manifest_schema["type"]
+
+
 class NetworkCompoundingNoFixedMetricRegressionTest(unittest.TestCase):
     def test_cli_does_not_reintroduce_fixed_b6_or_vrci_metrics(self):
         """Regression guard for ENGINE-003: no literal B6 win or fixed vRCI shortcuts."""

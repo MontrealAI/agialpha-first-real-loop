@@ -21,7 +21,11 @@
     },
     "agent_skill_manifests_created": {
       "minimum": 0,
-      "type": "integer"
+      "type": [
+        "integer",
+        "string"
+      ],
+      "description": "Integer count when manifest evidence is supplied; otherwise not_reported to avoid fabricating counts."
     },
     "agents_registered": {
       "minimum": 0,
