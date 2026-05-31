@@ -103,6 +103,32 @@ def test_network_skill_metrics_helper_reports_required_engine003_fields_without_
     assert metrics["autonomous_persistence_allowed"] is False
 
 
+def test_network_skill_metrics_helper_preserves_absent_heldout_and_manifest_evidence():
+    from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
+
+    metrics = compute_network_skill_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[{"success_score": 0.2}],
+        heldout_rows_b6=[{"success_score": 0.9}],
+        raw_task_result_ids=["raw-incomplete-heldout"],
+    )
+
+    assert metrics["D_no_shared_skill_B5"] == "not_reported"
+    assert metrics["D_shared_skill_network_B6"] == "not_reported"
+    assert metrics["B6_shared_skill_beats_B5_no_shared_skill"] == "not_reported"
+    assert metrics["network_skill_propagation_lift"] == "not_reported"
+    assert metrics["target_agents_improved_on_heldout"] == "not_reported"
+    assert metrics["agent_skill_manifests_created"] == "not_reported"
+
+
 class NetworkCompoundingNoFixedMetricRegressionTest(unittest.TestCase):
     def test_cli_does_not_reintroduce_fixed_b6_or_vrci_metrics(self):
         """Regression guard for ENGINE-003: no literal B6 win or fixed vRCI shortcuts."""

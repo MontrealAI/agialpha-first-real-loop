@@ -88,15 +88,19 @@ def compute_network_skill_metrics(
     else:
         delta = "not_reported"
         b6_beats = "not_reported"
-    paired_heldout_rows = zip(heldout_rows_b5, heldout_rows_b6)
-    improved_heldout_tasks = sum(
-        1
-        for b5, b6 in paired_heldout_rows
-        if _num(b6.get("success_score"), -1.0) > _num(b5.get("success_score"), -1.0)
-    )
-    target_agents_improved_on_heldout = min(
-        target_agents_with_imported_skill, improved_heldout_tasks
-    )
+    if isinstance(d_b5, float) and isinstance(d_b6, float):
+        paired_heldout_rows = zip(heldout_rows_b5, heldout_rows_b6)
+        improved_heldout_tasks = sum(
+            1
+            for b5, b6 in paired_heldout_rows
+            if _num(b6.get("success_score"), -1.0)
+            > _num(b5.get("success_score"), -1.0)
+        )
+        target_agents_improved_on_heldout = min(
+            target_agents_with_imported_skill, improved_heldout_tasks
+        )
+    else:
+        target_agents_improved_on_heldout = "not_reported"
     counters = safety_counters or {}
     hard_counter_defaults = {
         "autonomous_persistence_attempts_blocked": "not_reported",
@@ -124,7 +128,7 @@ def compute_network_skill_metrics(
         "skills_published_to_vault": skills_published_to_vault,
         "agents_registered": agents_registered,
         "agent_skill_manifests_created": (
-            agents_registered
+            "not_reported"
             if agent_skill_manifests_created is None
             else agent_skill_manifests_created
         ),
