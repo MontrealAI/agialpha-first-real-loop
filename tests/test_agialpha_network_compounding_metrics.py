@@ -67,6 +67,42 @@ def test_network_compounding_metrics_computed_from_raw_logs_without_fixed_wins()
         assert metrics["hard_coded_metric_count"] >= metrics["fake_zero_metric_count"] >= 0
 
 
+def test_network_skill_metrics_helper_reports_required_engine003_fields_without_fake_missing_zeroes():
+    from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
+
+    metrics = compute_network_skill_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        agent_skill_manifests_created=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[{
+            "success_score": 0.5, "validator_pass": 1, "replay_pass": 1,
+            "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+        }],
+        heldout_rows_b6=[{
+            "success_score": 0.6, "validator_pass": 1, "replay_pass": 1,
+            "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+        }],
+        raw_task_result_ids=["raw-heldout-1"],
+    )
+
+    assert metrics["agent_skill_manifests_created"] == 3
+    assert metrics["target_agents_improved_on_heldout"] == 1
+    assert metrics["compounding_exponent_proxy"] == "not_supported"
+    assert metrics["exponential_compounding_supported"] is False
+    assert metrics["replay_pass_rate"] == "pending"
+    assert metrics["hard_coded_metric_count"] == 0
+    assert metrics["fake_zero_metric_count"] == 0
+    assert metrics["raw_secret_leak_count"] == "not_reported"
+    assert metrics["autonomous_persistence_allowed"] is False
+
+
 class NetworkCompoundingNoFixedMetricRegressionTest(unittest.TestCase):
     def test_cli_does_not_reintroduce_fixed_b6_or_vrci_metrics(self):
         """Regression guard for ENGINE-003: no literal B6 win or fixed vRCI shortcuts."""
