@@ -258,6 +258,40 @@ def test_network_skill_metrics_schema_allows_not_reported_manifest_count():
     assert "-1" not in manifest_schema["oneOf"][1]["enum"]
 
 
+def test_top_level_metrics_module_exposes_engine003_network_propagation_adapter():
+    from agialpha_engine.metrics import compute_network_skill_propagation_metrics
+
+    metrics = compute_network_skill_propagation_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        agent_skill_manifests_created=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[{
+            "task_id": "heldout-a", "success_score": 0.4, "validator_pass": 1,
+            "replay_pass": 1, "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+        }],
+        heldout_rows_b6=[{
+            "task_id": "heldout-a", "success_score": 0.7, "validator_pass": 1,
+            "replay_pass": 1, "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+        }],
+        raw_task_result_ids=["raw-heldout-a-b5", "raw-heldout-a-b6"],
+    )
+
+    assert metrics["D_no_shared_skill_B5"] == 0.4
+    assert metrics["D_shared_skill_network_B6"] == 0.7
+    assert metrics["network_skill_propagation_lift"] == 0.3
+    assert metrics["B6_shared_skill_beats_B5_no_shared_skill"] is True
+    assert metrics["metrics_computed_from_raw_logs"] is True
+    assert metrics["hard_coded_metric_count"] == 0
+    assert metrics["fake_zero_metric_count"] == 0
+
+
 class NetworkCompoundingNoFixedMetricRegressionTest(unittest.TestCase):
     def test_cli_does_not_reintroduce_fixed_b6_or_vrci_metrics(self):
         """Regression guard for ENGINE-003: no literal B6 win or fixed vRCI shortcuts."""
