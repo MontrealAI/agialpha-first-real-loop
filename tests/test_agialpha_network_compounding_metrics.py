@@ -103,6 +103,38 @@ def test_network_skill_metrics_helper_reports_required_engine003_fields_without_
     assert metrics["autonomous_persistence_allowed"] is False
 
 
+def test_network_skill_metrics_counts_improvement_with_full_d_row_factor():
+    from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
+
+    metrics = compute_network_skill_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        agent_skill_manifests_created=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[{
+            "success_score": 0.5, "validator_pass": 1, "replay_pass": 1,
+            "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+        }],
+        heldout_rows_b6=[{
+            "success_score": 0.9, "validator_pass": 1, "replay_pass": 0,
+            "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+        }],
+        raw_task_result_ids=["raw-heldout-regression"],
+    )
+
+    assert metrics["D_no_shared_skill_B5"] == 0.5
+    assert metrics["D_shared_skill_network_B6"] == 0.0
+    assert metrics["network_skill_propagation_lift"] == -0.5
+    assert metrics["B6_shared_skill_beats_B5_no_shared_skill"] is False
+    assert metrics["target_agents_improved_on_heldout"] == 0
+
+
 def test_network_skill_metrics_helper_does_not_claim_improvement_or_manifests_without_evidence():
     from agialpha_engine.network_skill_metrics import compute_network_skill_metrics
 

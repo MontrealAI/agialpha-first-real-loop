@@ -90,10 +90,7 @@ def compute_network_skill_metrics(
         improved_heldout_tasks = sum(
             1
             for b5, b6 in paired_heldout_rows
-            if (
-                _num(b6.get("success_score"), -1.0)
-                > _num(b5.get("success_score"), -1.0)
-            )
+            if _row_factor(b6) > _row_factor(b5)
         )
         target_agents_improved_on_heldout: int | str = min(
             target_agents_with_imported_skill, improved_heldout_tasks
