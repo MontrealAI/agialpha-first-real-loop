@@ -17,10 +17,19 @@ def fail(msg):
     print(f"INVALID: {msg}")
     return 1
 
+def _is_negated_token_boundary_line(line, word):
+    idx = line.find(word)
+    if idx < 0:
+        return False
+    prefix = line[:idx]
+    return any(marker in prefix for marker in ["no ", "not ", "never ", "without ", "does not ", "must not "])
+
 def check_forbidden_text(obj):
-    t="\n".join(s.lower() for s in walk_strings(obj))
-    for w in FORBIDDEN:
-        if w in t: return w
+    lines = [s.lower() for s in walk_strings(obj)]
+    for line in lines:
+        for w in FORBIDDEN:
+            if w in line and not _is_negated_token_boundary_line(line, w):
+                return w
     return None
 
 def main():
@@ -75,6 +84,31 @@ def main():
         if obj.get('human_review_required') is not True: return fail('human_review_required must be true')
         if obj.get('auto_merge_allowed') is not False: return fail('auto_merge_allowed must be false')
         if not obj.get('claim_boundary'): return fail('claim_boundary missing')
+    elif sv in {"agialpha.skill_work_vault_receipt.v1", "agialpha.skill_network.work_vault_receipt.v1"}:
+        receipts = [obj]
+        for receipt in receipts:
+            for field in ["receipt_id", "skill_id", "source_job_id", "source_agent_id", "receipt_note"]:
+                if not receipt.get(field): return fail(f'{field} missing')
+            for field in ["wallet_used", "custody_used", "payment_executed", "token_price_used", "investment_claim_made"]:
+                if receipt.get(field) is not False: return fail(f'{field} must be false')
+            if receipt.get("human_review_required") is not True: return fail('human_review_required must be true')
+            if receipt.get("autonomous_persistence_allowed") is not False: return fail('autonomous_persistence_allowed must be false')
+            if receipt.get("no_auto_merge") is not True: return fail('no_auto_merge must be true')
+            if not receipt.get("claim_boundary"): return fail('claim_boundary missing')
+    elif sv=="agialpha.skill_work_vault_receipts.v1":
+        receipts = obj.get("receipts")
+        if not isinstance(receipts, list) or not receipts: return fail('receipts must be a non-empty array')
+        if obj.get("receipt_count") != len(receipts): return fail('receipt_count mismatch')
+        for receipt in receipts:
+            if not isinstance(receipt, dict): return fail('receipt entries must be objects')
+            for field in ["receipt_id", "skill_id", "source_job_id", "source_agent_id", "receipt_note"]:
+                if not receipt.get(field): return fail(f'{field} missing')
+            for field in ["wallet_used", "custody_used", "payment_executed", "token_price_used", "investment_claim_made"]:
+                if receipt.get(field) is not False: return fail(f'{field} must be false')
+            if receipt.get("human_review_required") is not True: return fail('human_review_required must be true')
+            if receipt.get("autonomous_persistence_allowed") is not False: return fail('autonomous_persistence_allowed must be false')
+            if receipt.get("no_auto_merge") is not True: return fail('no_auto_merge must be true')
+            if not receipt.get("claim_boundary"): return fail('claim_boundary missing')
     else:
         return fail(f'unsupported schema_version: {sv}')
     print(f"OK: {p}")

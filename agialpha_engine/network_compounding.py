@@ -705,7 +705,8 @@ def run_network_compounding(args):
         receipt_target_agents=[i["target_agent_id"] for i in skill_imports if i.get("target_agent_id")]
         import_fee_units=len(skill_imports)
         receipts.append({"schema_version":"agialpha.skill_network.work_vault_receipt.v1","receipt_id":f"receipt-{receipt_index}-{receipt_skill['skill_id']}","skill_id":receipt_skill['skill_id'],"source_job_id":receipt_skill['source_job_id'],"source_agent_id":receipt_skill['source_agent_id'],"target_agent_ids":receipt_target_agents,"covered_import_ids":[i["import_id"] for i in skill_imports if i.get("import_id")],"utility_budget_units":100,"alpha_work_units_estimated":42,"validator_fee_units":8,"replay_fee_units":5,"proofbundle_fee_units":3,"evidence_docket_fee_units":3,"skill_publication_fee_units":2,"skill_import_fee_units":import_fee_units,"unused_budget_refund_units":100-42-8-5-3-3-2-import_fee_units,"settlement_mode":"synthetic_local_json_receipt_only","wallet_used":False,"custody_used":False,"payment_executed":False,"token_price_used":False,"investment_claim_made":False,"receipt_note":"Synthetic local utility receipt only. No wallet, custody, payment, trading, KYC/AML, money transmission, securities functionality, token price, token value, token appreciation, or investment return.",**_base()})
-    atomic_write_json(out/'08_work_vault/skill_work_vault_receipts.json',{"receipts":receipts,"receipt_count":len(receipts),"covered_import_count":sum(len(r.get("covered_import_ids", [])) for r in receipts),**_base()})
+    receipt_ledger_payload = {"schema_version":"agialpha.skill_work_vault_receipts.v1","receipts":receipts,"receipt_count":len(receipts),"covered_import_count":sum(len(r.get("covered_import_ids", [])) for r in receipts),**_base()}
+    atomic_write_json(out/'08_work_vault/skill_work_vault_receipts.json', receipt_ledger_payload)
     pending_replay_report = {"replay_pass": False, "replay_passes": 0, "status": "pending_replay_execution", **_base()}
     pending_falsification_audit = {"falsification_pass": False, "status": "pending_falsification_execution", "adversarial_checks": ["fake skill metric rejected", "forbidden claim injection rejected", "regulated-domain skill blocked", "token-value skill blocked", "raw secret-like string redacted", "auto-merge attempt rejected", "replay mismatch detected", "missing skill evidence detected", "missing ProofBundle detected", "missing Evidence Docket detected", "skill import without ProofBundle/Evidence Docket rejected", "poisoned skill import quarantined"], **_base()}
     proofbundles=[]
@@ -774,7 +775,7 @@ def run_network_compounding(args):
         "16_replay_report.json": pending_replay_report,
         "17_falsification_audit.json": pending_falsification_audit,
         "18_safety_ledger.json": {**derived_safety_counters, **_base()},
-        "19_cost_ledger.json": {"receipts": receipts, "receipt_count": len(receipts), "covered_import_count": sum(len(r.get("covered_import_ids", [])) for r in receipts), **_base()},
+        "19_cost_ledger.json": receipt_ledger_payload,
         "20_network_skill_metrics.json": metrics,
         "21_claim_gate_decision.json": gate,
     }
@@ -787,7 +788,7 @@ def run_network_compounding(args):
     atomic_write_json(out/'13_claim_gate/network_compounding_claim_gate.json',gate)
     atomic_write_json(out/'evidence-run-manifest.json',{"run":str(out),"run_id":run_id,"registry":str(reg),**_base()})
     # registry + generated placeholders
-    atomic_write_json(reg/'latest.json',{"run_id":run_id,**_base()}); atomic_write_json(reg/'agents.json',{"agents":agents,**_base()}); atomic_write_json(reg/'agent_skill_manifests.json',{"manifests":manifests,**_base()}); atomic_write_json(reg/'skill_packages.json',{"skill_packages":accepted,**_base()}); atomic_write_json(reg/'rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(reg/'failure_learning_packages.json',{"failure_learning_packages":failure,**_base()}); atomic_write_json(reg/'skill_imports.json',{"skill_imports":imports,**_base()}); atomic_write_json(reg/'skill_propagation_events.json',{"skill_propagation_events":imports,**_base()}); atomic_write_json(reg/'network_skill_metrics.json',metrics); atomic_write_json(reg/'claim_gate_decisions.json',gate); atomic_write_json(reg/'work_vault_receipts.json',{"receipts":receipts,"receipt_count":len(receipts),"covered_import_count":sum(len(r.get("covered_import_ids", [])) for r in receipts),**_base()}); atomic_write_json(reg/'lineage_graph.json',{"edges":[{"from":s['source_job_id'],"to":s['skill_id']} for s in accepted],**_base()}); atomic_write_json(reg/'proofbundles.json',{"proofbundles":proofbundles,**_base()}); atomic_write_json(reg/'evidence_dockets.json',{"evidence_dockets":dockets,**_base()})
+    atomic_write_json(reg/'latest.json',{"run_id":run_id,**_base()}); atomic_write_json(reg/'agents.json',{"agents":agents,**_base()}); atomic_write_json(reg/'agent_skill_manifests.json',{"manifests":manifests,**_base()}); atomic_write_json(reg/'skill_packages.json',{"skill_packages":accepted,**_base()}); atomic_write_json(reg/'rejected_skill_candidates.json',{"rejected_skill_candidates":rejected,**_base()}); atomic_write_json(reg/'failure_learning_packages.json',{"failure_learning_packages":failure,**_base()}); atomic_write_json(reg/'skill_imports.json',{"skill_imports":imports,**_base()}); atomic_write_json(reg/'skill_propagation_events.json',{"skill_propagation_events":imports,**_base()}); atomic_write_json(reg/'network_skill_metrics.json',metrics); atomic_write_json(reg/'claim_gate_decisions.json',gate); atomic_write_json(reg/'work_vault_receipts.json', receipt_ledger_payload); atomic_write_json(reg/'lineage_graph.json',{"edges":[{"from":s['source_job_id'],"to":s['skill_id']} for s in accepted],**_base()}); atomic_write_json(reg/'proofbundles.json',{"proofbundles":proofbundles,**_base()}); atomic_write_json(reg/'evidence_dockets.json',{"evidence_dockets":dockets,**_base()})
     existing_registry = _read(reg/'registry.json', {})
     registry_contract = {
         "schema_version":"agialpha.skill_network.registry.v1",
@@ -828,7 +829,7 @@ def run_network_compounding(args):
     atomic_write_json(run_registry_dir / "10_heldout_reuse_tests.json", {"B5_no_shared_skill": b5, "B6_shared_skill_network": b6, **_base()})
     atomic_write_json(run_registry_dir / "11_b6_vs_b5_network_comparison.json", comparison_payload)
     atomic_write_json(run_registry_dir / "12_network_skill_metrics.json", metrics)
-    atomic_write_json(run_registry_dir / "13_work_vault_receipts.json", {"receipts": receipts, "receipt_count": len(receipts), "covered_import_count": sum(len(r.get("covered_import_ids", [])) for r in receipts), **_base()})
+    atomic_write_json(run_registry_dir / "13_work_vault_receipts.json", receipt_ledger_payload)
     atomic_write_json(run_registry_dir / "14_proofbundles" / "index.json", {"proofbundles": proofbundles, **_base()})
     for proofbundle in proofbundles:
         proofbundle_id = proofbundle.get("proofbundle_id")
