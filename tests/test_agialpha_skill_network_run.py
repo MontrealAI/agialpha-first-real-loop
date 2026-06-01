@@ -10,6 +10,8 @@ def test_network_run_end_to_end():
         subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
         subprocess.check_call(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)])
         subprocess.check_call(['python','-m','agialpha_engine','network-compounding-build-data','--registry',str(reg),'--out',str(out)])
+        raw=json.loads((run/'02_jobs/raw_task_results.json').read_text())['raw_task_results']
+        assert raw and all(isinstance(row.get('skill_id'), str) for row in raw)
         m=json.loads((run/'07_metrics/network_skill_metrics.json').read_text())
         assert m['jobs_run']>=3 and m['accepted_skill_packages']>=1
         acc=json.loads((run/'03_skill_extraction/accepted_skill_packages.json').read_text())['accepted_skill_packages'][0]

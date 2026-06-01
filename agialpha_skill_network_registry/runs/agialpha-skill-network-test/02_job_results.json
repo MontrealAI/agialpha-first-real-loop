@@ -108,7 +108,7 @@
       "schema_version": "agialpha.engine.raw_task_result.v1",
       "score": 0.501,
       "seed": 123,
-      "skill_id": null,
+      "skill_id": "",
       "source_agent_id": "agent-1",
       "source_logs": [
         "log-job-1"
@@ -157,7 +157,7 @@
       "schema_version": "agialpha.engine.raw_task_result.v1",
       "score": 0.532,
       "seed": 123,
-      "skill_id": null,
+      "skill_id": "",
       "source_agent_id": "agent-1",
       "source_logs": [
         "log-job-2"
@@ -206,7 +206,7 @@
       "schema_version": "agialpha.engine.raw_task_result.v1",
       "score": 0.568,
       "seed": 123,
-      "skill_id": null,
+      "skill_id": "",
       "source_agent_id": "agent-1",
       "source_logs": [
         "log-job-3"
@@ -255,7 +255,7 @@
       "schema_version": "agialpha.engine.raw_task_result.v1",
       "score": 0.592,
       "seed": 123,
-      "skill_id": null,
+      "skill_id": "",
       "source_agent_id": "agent-1",
       "source_logs": [
         "log-job-4"
@@ -304,7 +304,7 @@
       "schema_version": "agialpha.engine.raw_task_result.v1",
       "score": 0.638,
       "seed": 123,
-      "skill_id": null,
+      "skill_id": "",
       "source_agent_id": "agent-1",
       "source_logs": [
         "log-job-5"
