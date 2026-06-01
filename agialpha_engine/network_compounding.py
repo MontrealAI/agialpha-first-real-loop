@@ -1024,7 +1024,7 @@ def validate_network_compounding(args):
         'network-skill-evidence-docket/22_human_review_required.md',
         'network-skill-evidence-docket/23_next_best_actions.md',
     ]
-    miss=[x for x in req + docket_req if not (run/x).exists()]
+    miss=[x for x in req + docket_req if not (run/x).is_file()]
     if miss:
         raise SystemExit(f'missing artifacts: {miss}')
     replay=_read(run/'11_replay/replay_report.json',{})
