@@ -998,7 +998,33 @@ def falsification_network_compounding(args):
 def validate_network_compounding(args):
     run=Path(args.run)
     req=['00_manifest.json','02_jobs/source_jobs.json','02_jobs/raw_task_results.json','02_jobs/sandbox_records.json','03_skill_extraction/accepted_skill_packages.json','03_skill_extraction/rejected_skill_candidates.json','03_skill_extraction/failure_learning_packages.json','05_skill_import/skill_import_events.json','06_heldout_reuse_tests/comparison.json','07_metrics/network_skill_metrics.json','11_replay/replay_report.json','12_falsification/falsification_audit.json','13_claim_gate/network_compounding_claim_gate.json','14_proofbundles/index.json']
-    miss=[x for x in req if not (run/x).exists()]
+    docket_req=[
+        'network-skill-evidence-docket/00_manifest.json',
+        'network-skill-evidence-docket/01_claims_matrix.json',
+        'network-skill-evidence-docket/02_scope_and_claim_boundary.md',
+        'network-skill-evidence-docket/03_token_boundary.md',
+        'network-skill-evidence-docket/04_regulated_boundary.md',
+        'network-skill-evidence-docket/05_source_jobs/source_jobs.json',
+        'network-skill-evidence-docket/06_raw_evaluator_logs/raw_task_results.json',
+        'network-skill-evidence-docket/07_skill_extraction/skill_extraction_report.json',
+        'network-skill-evidence-docket/08_skill_packages/accepted_skill_packages.json',
+        'network-skill-evidence-docket/09_rejected_skill_candidates/rejected_skill_candidates.json',
+        'network-skill-evidence-docket/10_failure_learning_packages/failure_learning_packages.json',
+        'network-skill-evidence-docket/11_network_skill_vault/network_skill_vault.json',
+        'network-skill-evidence-docket/12_agent_skill_manifests/agent_skill_manifests.json',
+        'network-skill-evidence-docket/13_skill_import_events/skill_import_events.json',
+        'network-skill-evidence-docket/14_heldout_reuse_tests/heldout_reuse_tests.json',
+        'network-skill-evidence-docket/15_b6_vs_b5_comparison.json',
+        'network-skill-evidence-docket/16_replay_report.json',
+        'network-skill-evidence-docket/17_falsification_audit.json',
+        'network-skill-evidence-docket/18_safety_ledger.json',
+        'network-skill-evidence-docket/19_cost_ledger.json',
+        'network-skill-evidence-docket/20_network_skill_metrics.json',
+        'network-skill-evidence-docket/21_claim_gate_decision.json',
+        'network-skill-evidence-docket/22_human_review_required.md',
+        'network-skill-evidence-docket/23_next_best_actions.md',
+    ]
+    miss=[x for x in req + docket_req if not (run/x).is_file()]
     if miss:
         raise SystemExit(f'missing artifacts: {miss}')
     replay=_read(run/'11_replay/replay_report.json',{})
@@ -1173,6 +1199,7 @@ def validate_network_compounding(args):
         "sandbox_record_integrity_pass": True,
         "network_skill_vault_publication_pass": True,
         "agent_manifest_import_coverage_pass": True,
+        "evidence_docket_required_files_present": len(docket_req),
         **_base(),
     })
     _sync_run_to_registry(run, publish_latest=False)
