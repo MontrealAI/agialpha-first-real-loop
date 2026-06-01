@@ -449,3 +449,16 @@ def test_minimum_validator_requires_every_job_learning_outcome():
         assert validation['validation_pass'] is False
         assert validation['checks']['every_job_produces_exactly_one_learning_outcome'] is False
         assert validation['outcome_counts_by_job']['job-3'] == 0
+
+
+def test_validate_fails_when_evidence_docket_section_missing():
+    with tempfile.TemporaryDirectory() as td:
+        run=Path(td)/'run'; reg=Path(td)/'reg'
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-run','--repo-root','.','--registry',str(reg),'--out',str(run),'--jobs','5','--target-agents','3','--heldout-tasks','5','--seed','123'])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call(['python','-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        missing=run/'network-skill-evidence-docket'/'20_network_skill_metrics.json'
+        missing.unlink()
+        proc=subprocess.run(['python','-m','agialpha_engine','network-compounding-validate','--run',str(run)], capture_output=True, text=True)
+        assert proc.returncode != 0
+        assert 'network-skill-evidence-docket/20_network_skill_metrics.json' in (proc.stderr + proc.stdout)

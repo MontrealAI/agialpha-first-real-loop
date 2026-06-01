@@ -3,6 +3,7 @@
   "autonomous_persistence_allowed": false,
   "claim_boundary": "local bounded public evidence; proof-gated recursive experiment engine; human-reviewed promotion required",
   "claim_gate_status": "supported_local_bounded",
+  "evidence_docket_required_files_present": 24,
   "falsification_ok": true,
   "human_review_required": true,
   "network_skill_vault_publication_pass": true,
