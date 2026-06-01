@@ -118,7 +118,10 @@ def compute_network_skill_propagation_metrics(
     held-out row references and returns ``not_reported`` for incomplete row
     inputs rather than fabricating zeroes.
     """
-    from .network_skill_metrics import compute_network_skill_metrics
+    from .network_skill_metrics import (
+        _heldout_pair_population_matches,
+        compute_network_skill_metrics,
+    )
 
     metrics = compute_network_skill_metrics(
         jobs_run=jobs_run,
@@ -148,6 +151,7 @@ def compute_network_skill_propagation_metrics(
         raw_task_result_ids
         and heldout_rows_b5
         and heldout_rows_b6
+        and _heldout_pair_population_matches(heldout_rows_b5, heldout_rows_b6)
         and all(
             type(metrics.get(key)) in (int, float)
             for key in reportable_metric_keys

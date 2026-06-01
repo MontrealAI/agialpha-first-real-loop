@@ -316,6 +316,75 @@ def test_top_level_metrics_adapter_does_not_badge_incomplete_raw_rows_as_compute
     assert metrics["metrics_computed_from_raw_logs"] is False
 
 
+def test_top_level_metrics_adapter_does_not_badge_unmatched_heldout_populations_as_computed():
+    from agialpha_engine.metrics import compute_network_skill_propagation_metrics
+
+    complete_b5 = {
+        "task_id": "heldout-a", "success_score": 0.4, "validator_pass": 1,
+        "replay_pass": 1, "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+    }
+    complete_b6 = {
+        "task_id": "heldout-b", "success_score": 0.7, "validator_pass": 1,
+        "replay_pass": 1, "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+    }
+
+    metrics = compute_network_skill_propagation_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[complete_b5],
+        heldout_rows_b6=[complete_b6],
+        raw_task_result_ids=["raw-heldout-a-b5", "raw-heldout-b-b6"],
+    )
+
+    assert metrics["D_no_shared_skill_B5"] == 0.4
+    assert metrics["D_shared_skill_network_B6"] == 0.7
+    assert metrics["network_skill_propagation_lift"] == 0.3
+    assert metrics["target_agents_improved_on_heldout"] == "not_reported"
+    assert metrics["metrics_computed_from_raw_logs"] is False
+
+
+def test_top_level_metrics_adapter_does_not_badge_different_row_counts_as_computed():
+    from agialpha_engine.metrics import compute_network_skill_propagation_metrics
+
+    complete_b5 = {
+        "task_id": "heldout-a", "success_score": 0.4, "validator_pass": 1,
+        "replay_pass": 1, "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+    }
+    complete_b6_a = {
+        "task_id": "heldout-a", "success_score": 0.7, "validator_pass": 1,
+        "replay_pass": 1, "proofbundle": 1, "docket": 1, "cost_risk_proxy": 1,
+    }
+    complete_b6_b = {**complete_b6_a, "task_id": "heldout-b", "success_score": 0.8}
+
+    metrics = compute_network_skill_propagation_metrics(
+        jobs_run=5,
+        jobs_with_skill_extraction=5,
+        accepted_skill_packages=1,
+        rejected_skill_candidates=2,
+        failure_learning_packages=2,
+        skills_published_to_vault=1,
+        agents_registered=3,
+        skill_import_events=3,
+        target_agents_with_imported_skill=3,
+        heldout_rows_b5=[complete_b5],
+        heldout_rows_b6=[complete_b6_a, complete_b6_b],
+        raw_task_result_ids=["raw-heldout-a-b5", "raw-heldout-a-b6", "raw-heldout-b-b6"],
+    )
+
+    assert metrics["D_no_shared_skill_B5"] == 0.4
+    assert metrics["D_shared_skill_network_B6"] == 0.75
+    assert metrics["network_skill_propagation_lift"] == 0.35
+    assert metrics["target_agents_improved_on_heldout"] == "not_reported"
+    assert metrics["metrics_computed_from_raw_logs"] is False
+
+
 class NetworkCompoundingNoFixedMetricRegressionTest(unittest.TestCase):
     def test_cli_does_not_reintroduce_fixed_b6_or_vrci_metrics(self):
         """Regression guard for ENGINE-003: no literal B6 win or fixed vRCI shortcuts."""
