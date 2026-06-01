@@ -88,3 +88,73 @@ def stronger_claim_supported(metrics: dict[str, Any]) -> bool:
     ]
     safety_ok = all(metrics.get(k) == 0 for k in SAFETY_COUNTERS)
     return all(bool_gates) and safety_ok
+
+
+def compute_network_skill_propagation_metrics(
+    *,
+    heldout_rows_b5: list[dict[str, Any]],
+    heldout_rows_b6: list[dict[str, Any]],
+    raw_task_result_ids: list[str],
+    jobs_run: int = 0,
+    jobs_with_skill_extraction: int = 0,
+    accepted_skill_packages: int = 0,
+    rejected_skill_candidates: int = 0,
+    failure_learning_packages: int = 0,
+    skills_published_to_vault: int = 0,
+    agents_registered: int = 0,
+    agent_skill_manifests_created: int | None = None,
+    skill_import_events: int = 0,
+    target_agents_with_imported_skill: int = 0,
+    replay_pass_rate: float | str = "pending",
+    falsification_pass: bool | str = "pending",
+    semantic_tests_passed: bool | str = "pending",
+    safety_counters: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Compute ENGINE-003 network-skill propagation metrics from raw held-out rows.
+
+    This adapter keeps the top-level metrics module useful for Engine-003 while
+    delegating the actual D_network and lift formulas to
+    :mod:`agialpha_engine.network_skill_metrics`.  It intentionally requires raw
+    held-out row references and returns ``not_reported`` for incomplete row
+    inputs rather than fabricating zeroes.
+    """
+    from .network_skill_metrics import (
+        _heldout_pair_population_matches,
+        compute_network_skill_metrics,
+    )
+
+    metrics = compute_network_skill_metrics(
+        jobs_run=jobs_run,
+        jobs_with_skill_extraction=jobs_with_skill_extraction,
+        accepted_skill_packages=accepted_skill_packages,
+        rejected_skill_candidates=rejected_skill_candidates,
+        failure_learning_packages=failure_learning_packages,
+        skills_published_to_vault=skills_published_to_vault,
+        agents_registered=agents_registered,
+        agent_skill_manifests_created=agent_skill_manifests_created,
+        skill_import_events=skill_import_events,
+        target_agents_with_imported_skill=target_agents_with_imported_skill,
+        heldout_rows_b5=heldout_rows_b5,
+        heldout_rows_b6=heldout_rows_b6,
+        raw_task_result_ids=raw_task_result_ids,
+        replay_pass_rate=replay_pass_rate,
+        falsification_pass=falsification_pass,
+        semantic_tests_passed=semantic_tests_passed,
+        safety_counters=safety_counters,
+    )
+    reportable_metric_keys = (
+        "D_no_shared_skill_B5",
+        "D_shared_skill_network_B6",
+        "network_skill_propagation_lift",
+    )
+    metrics["metrics_computed_from_raw_logs"] = bool(
+        raw_task_result_ids
+        and heldout_rows_b5
+        and heldout_rows_b6
+        and _heldout_pair_population_matches(heldout_rows_b5, heldout_rows_b6)
+        and all(
+            type(metrics.get(key)) in (int, float)
+            for key in reportable_metric_keys
+        )
+    )
+    return metrics
