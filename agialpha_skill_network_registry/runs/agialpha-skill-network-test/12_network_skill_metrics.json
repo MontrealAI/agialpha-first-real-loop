@@ -1,6 +1,8 @@
 {
   "B6_shared_skill_advantage_delta": 0.0122,
   "B6_shared_skill_beats_B5_no_shared_skill": true,
+  "D_no_shared_skill_B5": 0.5118,
+  "D_shared_skill_network_B6": 0.524,
   "accepted_skill_packages": 2,
   "adversarial_failures_caught": 12,
   "agent_skill_manifests_created": 4,
@@ -25,7 +27,7 @@
   "jobs_run": 5,
   "jobs_with_skill_extraction": 5,
   "malware_generation_count": 0,
-  "network_skill_multiplier": 1.0238,
+  "network_skill_multiplier": 1.023837,
   "network_skill_propagation_lift": 0.0122,
   "no_auto_merge": true,
   "raw_secret_leak_count": 0,

@@ -17,15 +17,15 @@
   },
   "falsification_audit_hash": "0ab44293fda14f08141e47b294c1d05647c4912b6e04029d9587fa3a323276a3",
   "heldout_test_hashes": [
-    "b2c931c65a14216ee1065a4cb18d316665ae1302ac29c71af50c20437acba67a",
-    "994e80b9c3f344b329129a54c678adada455f049551d68080600f19b32167102"
+    "e4e80af67b754046e7496b6f45a949592a0153676c038e9ea6c2533d4bd9d31c",
+    "c621227429736026a7402f94e25b2db39844701b0d001cc2e948c54a7df6c078"
   ],
   "human_review_required": true,
   "human_review_status": "pending",
   "missing_raw_task_result_ids": [],
   "network_skill_vault_entry_hash": "75797dea9ecf172ea893e5c3c58821ea35cbe1b624e9296c71b6f559ca1bb047",
   "no_auto_merge": true,
-  "proofbundle_hash": "ecb7ccdad2b1d0f398daf93218012d23375ad8a7992c853f2ab36298b17215f9",
+  "proofbundle_hash": "d08eb3eb3560668a97983e4b8d55f6eeb8d06f72c6a571d8baf0c6e0cf1b790c",
   "proofbundle_id": "pb-skill-4",
   "raw_evaluator_log_hashes": [
     "07442442f6aa67049e81b05591184ae0d93ef341ac020e92726ccbef92fe8ea0"

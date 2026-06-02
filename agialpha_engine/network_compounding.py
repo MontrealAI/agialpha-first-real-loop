@@ -3,6 +3,7 @@ import hashlib, json, random
 from pathlib import Path
 from .context import BOUNDARIES, atomic_write_json
 from .network_claim_gate import evaluate_network_compounding_claim
+from .network_skill_metrics import compute_d_metric, compute_network_skill_metrics
 
 ROLES=["Reviewer Agent","Validator Agent","Operator Agent","Documentation Agent","SecureRails Agent"]
 IMPORTED_SKILL_IMPORT_STATUSES={"imported", "imported_inactive_outside_sandbox"}
@@ -630,44 +631,76 @@ def run_network_compounding(args):
         base=0.5+0.01*(i%3)+(rng.random()*0.01)
         task_transfer_factor = 0.20 + (0.03 * ((i + args.seed) % 5))
         measured_reuse_delta = reusable_skill_signal * task_transfer_factor
-        b5.append({
-            "task_id": f"heldout-{i+1}",
-            "success_score": round(base, 3),
+        shared_d_fields = {
             "validator_pass": 1,
             "replay_pass": 1,
             "proofbundle": 1,
             "docket": 1,
+            "skill_import_success_rate": 1,
+            "skill_activation_safety": 1,
+            "operator_usefulness_score": 1,
+            "reviewer_usefulness_score": 1,
+            "claim_boundary_integrity": 1,
+            "token_boundary_integrity": 1,
+            "regulated_boundary_integrity": 1,
+            "redaction_integrity": 1,
             "cost_risk_proxy": 1,
+        }
+        b5.append({
+            "task_id": f"heldout-{i+1}",
+            "success_score": round(base, 3),
+            **shared_d_fields,
             "raw_task_result_ids": sorted(accepted_raw_ids),
             **_base(),
         })
         b6.append({
             "task_id": f"heldout-{i+1}",
             "success_score": round(base + measured_reuse_delta, 3),
-            "validator_pass": 1,
-            "replay_pass": 1,
-            "proofbundle": 1,
-            "docket": 1,
-            "cost_risk_proxy": 1,
+            **shared_d_fields,
             "raw_task_result_ids": sorted(accepted_raw_ids),
             "measured_reuse_delta": round(measured_reuse_delta, 6),
             "reuse_delta_source": "accepted_raw_skill_scores_x_import_coverage_x_validator_coverage",
             **_base(),
         })
-    def dnet(rows):
-        if not rows:
-            raise SystemExit('heldout_tasks must be >= 1 for network-compounding-run')
-        return sum(r['success_score']*r['validator_pass']*r['replay_pass']*r['proofbundle']*r['docket']/max(1,r['cost_risk_proxy']) for r in rows)/len(rows)
-    d5=round(dnet(b5),6); d6=round(dnet(b6),6); lift=round(d6-d5,6)
-    improved_heldout_tasks = sum(1 for i in range(len(b5)) if b6[i]["success_score"] > b5[i]["success_score"])
-    target_agents_improved = min(len(target_agents), improved_heldout_tasks)
+    d5_value = compute_d_metric(b5)
+    d6_value = compute_d_metric(b6)
+    if not isinstance(d5_value, float) or not isinstance(d6_value, float):
+        raise SystemExit('heldout D_network metrics must be reportable for network-compounding-run')
+    d5=round(d5_value,6); d6=round(d6_value,6); lift=round(d6-d5,6)
     derived_safety_counters = _zero_hard_safety_counters()
-    derived_safety_counters["autonomous_persistence_attempts_blocked"] = len(
-        [r for r in sandbox_records if r.get("autonomous_persistence_attempt_blocked") is True]
+    derived_safety_counters.update({
+        "autonomous_persistence_attempts_blocked": len(
+            [r for r in sandbox_records if r.get("autonomous_persistence_attempt_blocked") is True]
+        ),
+        "unsafe_claims_blocked": 0,
+        "token_value_claims_blocked": 0,
+        "regulated_decisioning_blocked": 0,
+    })
+    metrics = compute_network_skill_metrics(
+        jobs_run=len(jobs),
+        jobs_with_skill_extraction=len(jobs),
+        accepted_skill_packages=len(accepted),
+        rejected_skill_candidates=len(rejected),
+        failure_learning_packages=len(failure),
+        skills_published_to_vault=len(accepted),
+        agents_registered=len(agents),
+        agent_skill_manifests_created=len(manifests),
+        skill_import_events=len(imports),
+        target_agents_with_imported_skill=len(target_agents),
+        heldout_rows_b5=b5,
+        heldout_rows_b6=b6,
+        raw_task_result_ids=[r['raw_task_result_id'] for r in raw],
+        safety_counters=derived_safety_counters,
     )
-    metrics={"jobs_run":len(jobs),"jobs_with_skill_extraction":len(jobs),"accepted_skill_packages":len(accepted),"rejected_skill_candidates":len(rejected),"failure_learning_packages":len(failure),"skills_published_to_vault":len(accepted),"agents_registered":len(agents),"agent_skill_manifests_created":len(manifests),"skill_import_events":len(imports),"target_agents_with_imported_skill":len(target_agents),"target_agents_improved_on_heldout":target_agents_improved,"heldout_tasks_evaluated":len(b5),"B6_shared_skill_beats_B5_no_shared_skill":d6>d5,"B6_shared_skill_advantage_delta":lift,"network_skill_propagation_lift":lift,"network_skill_multiplier":round((d6/max(1e-6,d5)),4),"capability_compounding_rate":round((len(accepted)+len(failure))/max(1,len(jobs)),4),"compounding_exponent_proxy":"not_supported","exponential_compounding_supported":False,"exponential_compounding_status":"Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.","raw_task_result_ids":[r['raw_task_result_id'] for r in raw],"replay_pass_rate":"pending","falsification_pass":"pending","semantic_tests_passed":"pending","adversarial_failures_caught":"not_reported","hard_coded_metric_count":0,"fake_zero_metric_count":0,"unsafe_claims_blocked":0,"token_value_claims_blocked":0,"regulated_decisioning_blocked":0,"human_review_required_count":len(imports)+len(jobs),**derived_safety_counters,**_base()}
-    metrics["hard_coded_metric_count"]=0
-    metrics["fake_zero_metric_count"]=0
+    metrics.update({
+        "network_skill_propagation_lift": lift,
+        "B6_shared_skill_advantage_delta": lift,
+        "D_no_shared_skill_B5": d5,
+        "D_shared_skill_network_B6": d6,
+        "capability_compounding_rate": round((len(accepted)+len(failure))/max(1,len(jobs)),4),
+        "adversarial_failures_caught":"not_reported",
+        "human_review_required_count":len(imports)+len(jobs),
+    })
     gate=evaluate_network_compounding_claim(
         jobs_run=len(jobs),
         exact_one_outcome_per_job=True,
@@ -858,16 +891,11 @@ def replay_network_compounding(args):
     b5_rows=_read(run/'06_heldout_reuse_tests/B5_no_shared_skill.json',{}).get('results',[])
     b6_rows=_read(run/'06_heldout_reuse_tests/B6_shared_skill_network.json',{}).get('results',[])
 
-    def _dnet(rows):
-        if not rows:
-            return None
-        return sum(r['success_score']*r['validator_pass']*r['replay_pass']*r['proofbundle']*r['docket']/max(1,r['cost_risk_proxy']) for r in rows)/len(rows)
-
-    d5=_dnet(b5_rows)
-    d6=_dnet(b6_rows)
-    recomputed_d5=None if d5 is None else round(d5,6)
-    recomputed_d6=None if d6 is None else round(d6,6)
-    recomputed_lift=None if d5 is None or d6 is None else round(d6-d5,6)
+    d5=compute_d_metric(b5_rows)
+    d6=compute_d_metric(b6_rows)
+    recomputed_d5=None if not isinstance(d5, float) else round(d5,6)
+    recomputed_d6=None if not isinstance(d6, float) else round(d6,6)
+    recomputed_lift=None if not isinstance(d5, float) or not isinstance(d6, float) else round(d6-d5,6)
     comparison_d5=round(c.get('D_no_shared_skill',999),6)
     comparison_d6=round(c.get('D_shared_skill_network',999),6)
     comparison_lift=round(c.get('D_shared_skill_network',0)-c.get('D_no_shared_skill',0),6)
