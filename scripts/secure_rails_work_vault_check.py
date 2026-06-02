@@ -19,7 +19,9 @@ def fail(msg):
 
 NEGATION_MARKERS = ("does not", "must not", "without", "never", "not", "no")
 NEGATION_CLAUSE_DELIMITERS = ".;\n"
-NEGATED_LIST_CONNECTOR_RE = re.compile(r"(?<![a-z0-9])(?:grants?|gives?|issues?|offers?|provides?|promises?|pays?|earns?|receives?|conveys?|creates?|includes?|entitles?)\b")
+POSITIVE_CLAIM_CONNECTOR = r"(?:grants?|gives?|issues?|offers?|provides?|promises?|pays?|earns?|receives?|conveys?|creates?|includes?|entitles?)"
+NEGATED_LIST_CONNECTOR_RE = re.compile(r"(?<![a-z0-9])" + POSITIVE_CLAIM_CONNECTOR + r"\b")
+COMMA_CLAIM_CONNECTOR_RE = re.compile(r",\s*" + POSITIVE_CLAIM_CONNECTOR + r"\b")
 POSITIVE_NOT_CONSTRUCTION_RE = re.compile(r"^\s*(?:only|merely|just|simply)\b|(?<![a-z0-9])but\s+also(?![a-z0-9])")
 FORBIDDEN_TERM_PATTERNS = {
     "equity": r"equity|equities",
@@ -47,6 +49,8 @@ def _marker_pattern(marker):
 def _marker_negates_term(marker, marker_end, line, start):
     span = line[marker_end:start]
     if marker in {"not", "does not", "must not"} and POSITIVE_NOT_CONSTRUCTION_RE.search(span):
+        return False
+    if COMMA_CLAIM_CONNECTOR_RE.search(span):
         return False
     if marker in {"does not", "must not", "never"}:
         return len(span) <= 96

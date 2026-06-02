@@ -92,6 +92,18 @@ class T(unittest.TestCase):
         self.assertNotEqual(r.returncode,0)
         self.assertIn('forbidden token language: equity',r.stdout)
 
+    def test_multiword_negation_before_unrelated_comma_claim_does_not_clear_claim(self):
+        base=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        for claim in [
+            'This work does not use a wallet, grants equity to holders.',
+            'This work must not use a wallet, grants equity to holders.',
+        ]:
+            obj=json.loads(json.dumps(base))
+            obj['claim_boundary']=claim
+            r=self.run_check(obj)
+            self.assertNotEqual(r.returncode,0)
+            self.assertIn('forbidden token language: equity',r.stdout)
+
     def test_direct_verb_negation_can_clear_forbidden_term(self):
         obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
         obj['claim_boundary']='Utility-only accounting does not grant equity to holders'
