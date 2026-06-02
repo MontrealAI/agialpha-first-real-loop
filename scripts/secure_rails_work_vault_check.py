@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json, sys
+import json, re, sys
 from pathlib import Path
 
 FORBIDDEN = ["equity","debt","yield","dividend","ownership","profit right","passive income","guaranteed return","investment return","token appreciation","financial product","claim on revenue","claim on assets"]
@@ -17,18 +17,32 @@ def fail(msg):
     print(f"INVALID: {msg}")
     return 1
 
-def _is_negated_token_boundary_line(line, word):
-    idx = line.find(word)
+NEGATION_MARKERS = ("no", "not", "never", "without", "does not", "must not")
+CLAUSE_DELIMITERS = ";.\n"
+
+def _clause_prefix_before_term(line, idx):
+    clause_start = max(line.rfind(delimiter, 0, idx) for delimiter in CLAUSE_DELIMITERS) + 1
+    return line[clause_start:idx]
+
+def _is_negated_token_boundary_line(line, word, idx=None):
+    if idx is None:
+        idx = line.find(word)
     if idx < 0:
         return False
-    prefix = line[:idx]
-    return any(marker in prefix for marker in ["no ", "not ", "never ", "without ", "does not ", "must not "])
+    prefix = _clause_prefix_before_term(line, idx)
+    return any(re.search(rf"(?:^|\b){re.escape(marker)}(?:\b|\s)", prefix) for marker in NEGATION_MARKERS)
+
+def _has_unnegated_forbidden_term(line, word):
+    for match in re.finditer(re.escape(word), line):
+        if not _is_negated_token_boundary_line(line, word, match.start()):
+            return True
+    return False
 
 def check_forbidden_text(obj):
     lines = [s.lower() for s in walk_strings(obj)]
     for line in lines:
         for w in FORBIDDEN:
-            if w in line and not _is_negated_token_boundary_line(line, w):
+            if _has_unnegated_forbidden_term(line, w):
                 return w
     return None
 

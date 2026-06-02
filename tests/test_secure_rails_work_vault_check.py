@@ -21,6 +21,27 @@ class T(unittest.TestCase):
         obj['hard_safety_counters']['exploit_execution_count']=1
         self.assertNotEqual(self.run_check(obj).returncode,0)
 
+
+    def test_unrelated_negated_clause_does_not_hide_later_forbidden_claim(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['claim_boundary']='No token appreciation; grants equity to holders.'
+        r=self.run_check(obj)
+        self.assertNotEqual(r.returncode,0)
+        self.assertIn('forbidden token language: equity',r.stdout)
+
+    def test_repeated_term_after_negated_clause_still_fails(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['claim_boundary']='No equity rights; equity grants are available.'
+        r=self.run_check(obj)
+        self.assertNotEqual(r.returncode,0)
+        self.assertIn('forbidden token language: equity',r.stdout)
+
+    def test_negated_utility_boundary_list_remains_allowed(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['claim_boundary']='No token appreciation, investment return, equity, debt, yield, dividends, or ownership rights.'
+        r=self.run_check(obj)
+        self.assertEqual(r.returncode,0,r.stdout+r.stderr)
+
     def test_mark_validators_required_must_be_array(self):
         obj=json.loads(Path('docs/secure-rails/templates/mark-allocation-example.json').read_text())
         obj['validators_required']='claim_boundary_validator'
