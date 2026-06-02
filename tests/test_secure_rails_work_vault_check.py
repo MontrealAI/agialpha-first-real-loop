@@ -77,6 +77,20 @@ class T(unittest.TestCase):
         r=self.run_check(obj)
         self.assertEqual(r.returncode,0,r.stdout+r.stderr)
 
+    def test_not_only_positive_construction_does_not_negate_forbidden_claim(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['claim_boundary']='This work offers not only equity but also dividend rights to holders.'
+        r=self.run_check(obj)
+        self.assertNotEqual(r.returncode,0)
+        self.assertIn('forbidden token language: equity',r.stdout)
+
+    def test_not_only_single_forbidden_term_fails_without_second_term(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['claim_boundary']='This work offers not only dividend rights to holders.'
+        r=self.run_check(obj)
+        self.assertNotEqual(r.returncode,0)
+        self.assertIn('forbidden token language: dividend',r.stdout)
+
     def test_utility_only_negated_receipt_note_passes_forbidden_text_check(self):
         obj={
             'schema_version':'agialpha.skill_network.work_vault_receipt.v1',

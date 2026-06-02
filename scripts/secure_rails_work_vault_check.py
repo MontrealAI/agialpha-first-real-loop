@@ -20,6 +20,7 @@ def fail(msg):
 NEGATION_MARKERS = ("does not", "must not", "without", "never", "not", "no")
 NEGATION_CLAUSE_DELIMITERS = ".;\n"
 NEGATED_LIST_CONNECTOR_RE = re.compile(r"(?<![a-z0-9])(?:grants?|gives?|issues?|offers?|provides?|promises?|pays?|earns?|receives?|conveys?|creates?|includes?|entitles?)\b")
+POSITIVE_BARE_NEGATION_RE = re.compile(r"^\s*(?:only|just|merely|solely|also)\b")
 
 def _term_pattern(word):
     return re.compile(r"(?<![a-z0-9])" + re.escape(word) + r"(?![a-z0-9])")
@@ -31,6 +32,8 @@ def _marker_negates_term(marker, marker_end, line, start):
     span = line[marker_end:start]
     if marker in {"does not", "must not", "never"}:
         return len(span) <= 96
+    if marker == "not" and POSITIVE_BARE_NEGATION_RE.search(span):
+        return False
     if NEGATED_LIST_CONNECTOR_RE.search(span):
         return False
     return len(span) <= 160
