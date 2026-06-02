@@ -56,3 +56,58 @@ class T(unittest.TestCase):
             obj=json.loads(json.dumps(base))
             obj.pop(field,None)
             self.assertNotEqual(self.run_check(obj).returncode,0)
+
+    def test_negated_clause_does_not_clear_later_positive_forbidden_claim(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['claim_boundary']='No token appreciation; grants equity to holders'
+        r=self.run_check(obj)
+        self.assertNotEqual(r.returncode,0)
+        self.assertIn('forbidden token language: equity',r.stdout)
+
+    def test_unrelated_comma_negation_does_not_clear_positive_forbidden_claim(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['claim_boundary']='No wallet, grants equity to holders'
+        r=self.run_check(obj)
+        self.assertNotEqual(r.returncode,0)
+        self.assertIn('forbidden token language: equity',r.stdout)
+
+    def test_direct_verb_negation_can_clear_forbidden_term(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['claim_boundary']='Utility-only accounting does not grant equity to holders'
+        r=self.run_check(obj)
+        self.assertEqual(r.returncode,0,r.stdout+r.stderr)
+
+    def test_not_only_positive_construction_does_not_negate_forbidden_claim(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['claim_boundary']='This work offers not only equity but also dividend rights to holders.'
+        r=self.run_check(obj)
+        self.assertNotEqual(r.returncode,0)
+        self.assertIn('forbidden token language: equity',r.stdout)
+
+    def test_not_only_single_forbidden_term_fails_without_second_term(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['claim_boundary']='This work offers not only dividend rights to holders.'
+        r=self.run_check(obj)
+        self.assertNotEqual(r.returncode,0)
+        self.assertIn('forbidden token language: dividend',r.stdout)
+
+    def test_utility_only_negated_receipt_note_passes_forbidden_text_check(self):
+        obj={
+            'schema_version':'agialpha.skill_network.work_vault_receipt.v1',
+            'receipt_id':'receipt-test',
+            'skill_id':'skill-test',
+            'source_job_id':'job-test',
+            'source_agent_id':'agent-test',
+            'receipt_note':'Synthetic local utility receipt only. No wallet, custody, payment, trading, KYC/AML, money transmission, securities functionality, token price, token value, token appreciation, or investment return.',
+            'wallet_used':False,
+            'custody_used':False,
+            'payment_executed':False,
+            'token_price_used':False,
+            'investment_claim_made':False,
+            'human_review_required':True,
+            'autonomous_persistence_allowed':False,
+            'no_auto_merge':True,
+            'claim_boundary':'local bounded public evidence'
+        }
+        r=self.run_check(obj)
+        self.assertEqual(r.returncode,0,r.stdout+r.stderr)

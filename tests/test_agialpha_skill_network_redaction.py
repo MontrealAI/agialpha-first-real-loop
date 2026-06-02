@@ -1,4 +1,4 @@
-from agialpha_engine.redaction import redact_document, redact_text
+from agialpha_engine.redaction import generate_run_redaction_salt, redact_document, redact_text
 
 
 def test_network_redaction_report_stores_salt_hash_not_raw_secret():
@@ -39,3 +39,17 @@ contact reviewer@example.com
     assert private_key_findings[0]["line"] == 2
     assert private_key_findings[0]["path"] == "fixture.pem"
     assert all("raw-private-key-material" not in str(finding) for finding in report["findings"])
+
+
+def test_network_redaction_supports_per_run_random_salt_without_storing_it():
+    secret = "ghp_abcdefghijklmnopqrstuvwxyz"
+    salt_a = generate_run_redaction_salt()
+    salt_b = generate_run_redaction_salt()
+    assert salt_a != salt_b
+    report_a = redact_document(secret, run_id="run-003", root_hash="root", path="fixture.txt", salt=salt_a)
+    report_b = redact_document(secret, run_id="run-003", root_hash="root", path="fixture.txt", salt=salt_b)
+    assert secret not in str(report_a)
+    assert secret not in str(report_b)
+    assert report_a["findings"][0]["salt_hash"] != report_b["findings"][0]["salt_hash"]
+    assert salt_a not in str(report_a)
+    assert salt_b not in str(report_b)
