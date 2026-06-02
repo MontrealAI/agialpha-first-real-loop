@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+import secrets
 from typing import Any
 
 PATTERNS = {
@@ -22,8 +23,13 @@ PATTERNS = {
 }
 
 
-def _stable_run_salt(run_id: str, root_hash: str) -> str:
-    """Return a replayable run-scoped salt; reports expose only its hash."""
+def generate_run_redaction_salt() -> str:
+    """Return a per-run random redaction salt; callers must not persist it directly."""
+    return secrets.token_hex(32)
+
+
+def _fallback_run_salt(run_id: str, root_hash: str) -> str:
+    """Return a deterministic fallback salt for legacy callers without run state."""
     return hashlib.sha256(f"{run_id}:{root_hash}:redaction-run-salt".encode()).hexdigest()
 
 
@@ -31,8 +37,8 @@ def _salt_hash(salt: str) -> str:
     return hashlib.sha256(f"{salt}:salt-hash".encode()).hexdigest()
 
 
-def _redact_with_findings(text: str, run_id: str, root_hash: str) -> tuple[str, list[dict[str, Any]]]:
-    salt = _stable_run_salt(run_id, root_hash)
+def _redact_with_findings(text: str, run_id: str, root_hash: str, salt: str | None = None) -> tuple[str, list[dict[str, Any]]]:
+    salt = salt or _fallback_run_salt(run_id, root_hash)
     salt_hash = _salt_hash(salt)
     candidates: list[dict[str, Any]] = []
     for name, pattern in PATTERNS.items():
@@ -81,17 +87,22 @@ def _redact_with_findings(text: str, run_id: str, root_hash: str) -> tuple[str, 
     return "".join(redacted_parts), public_findings
 
 
-def redact_text(text: str, run_id: str, root_hash: str) -> tuple[str, list[dict[str, Any]]]:
-    redacted, findings = _redact_with_findings(text, run_id, root_hash)
+def redact_text(text: str, run_id: str, root_hash: str, *, salt: str | None = None) -> tuple[str, list[dict[str, Any]]]:
+    redacted, findings = _redact_with_findings(text, run_id, root_hash, salt=salt)
     return redacted, [
         {k: v for k, v in finding.items() if k != "line"}
         for finding in findings
     ]
 
 
-def redact_document(text: str, *, run_id: str, root_hash: str, path: str) -> dict[str, Any]:
-    """Redact a fixture/report while retaining only type/path/line/salted digest metadata."""
-    redacted_text, raw_findings = _redact_with_findings(text, run_id, root_hash)
+def redact_document(text: str, *, run_id: str, root_hash: str, path: str, salt: str | None = None) -> dict[str, Any]:
+    """Redact a fixture/report while retaining only type/path/line/salted digest metadata.
+
+    Engine runs should pass a per-run random salt from ``generate_run_redaction_salt``;
+    legacy callers get a deterministic fallback so replay tests remain stable.  Reports
+    expose only salt hashes and salted digests, never the raw salt or raw secret value.
+    """
+    redacted_text, raw_findings = _redact_with_findings(text, run_id, root_hash, salt=salt)
     findings = [{**finding, "path": path} for finding in raw_findings]
     return {
         "schema_version": "agialpha.engine.redaction_report.v1",

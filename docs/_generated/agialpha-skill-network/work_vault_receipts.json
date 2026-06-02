@@ -86,5 +86,6 @@
     }
   ],
   "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
+  "schema_version": "agialpha.skill_work_vault_receipts.v1",
   "token_boundary": "$AGIALPHA utility-only accounting; no wallet/custody/payment/KYC/AML/trading"
 }
