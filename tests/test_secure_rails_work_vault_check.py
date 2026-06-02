@@ -64,6 +64,19 @@ class T(unittest.TestCase):
         self.assertNotEqual(r.returncode,0)
         self.assertIn('forbidden token language: equity',r.stdout)
 
+    def test_unrelated_comma_negation_does_not_clear_positive_forbidden_claim(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['claim_boundary']='No wallet, grants equity to holders'
+        r=self.run_check(obj)
+        self.assertNotEqual(r.returncode,0)
+        self.assertIn('forbidden token language: equity',r.stdout)
+
+    def test_direct_verb_negation_can_clear_forbidden_term(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['claim_boundary']='Utility-only accounting does not grant equity to holders'
+        r=self.run_check(obj)
+        self.assertEqual(r.returncode,0,r.stdout+r.stderr)
+
     def test_utility_only_negated_receipt_note_passes_forbidden_text_check(self):
         obj={
             'schema_version':'agialpha.skill_network.work_vault_receipt.v1',

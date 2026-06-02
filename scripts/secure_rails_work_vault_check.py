@@ -17,24 +17,40 @@ def fail(msg):
     print(f"INVALID: {msg}")
     return 1
 
-NEGATION_MARKERS = ("no", "not", "never", "without", "does not", "must not")
+NEGATION_MARKERS = ("does not", "must not", "without", "never", "not", "no")
 NEGATION_CLAUSE_DELIMITERS = ".;\n"
+NEGATED_LIST_CONNECTOR_RE = re.compile(r"(?<![a-z0-9])(?:grants?|gives?|issues?|offers?|provides?|promises?|pays?|earns?|receives?|conveys?|creates?|includes?|entitles?)\b")
 
 def _term_pattern(word):
     return re.compile(r"(?<![a-z0-9])" + re.escape(word) + r"(?![a-z0-9])")
 
-def _is_negated_token_boundary_occurrence(line, start):
-    """Return true only when the forbidden term is negated in its own clause.
+def _marker_pattern(marker):
+    return re.compile(r"(?<![a-z0-9])" + re.escape(marker) + r"(?![a-z0-9])")
 
-    Negation markers from an earlier sentence or semicolon-separated clause must
-    not clear a later positive forbidden claim such as
-    ``No token appreciation; grants equity to holders``.  Commas are not clause
-    delimiters here because utility-only receipts use comma-separated lists like
-    ``No wallet, custody, ..., token appreciation, or investment return``.
+def _marker_negates_term(marker, marker_end, line, start):
+    span = line[marker_end:start]
+    if marker in {"does not", "must not", "never"}:
+        return len(span) <= 96
+    if NEGATED_LIST_CONNECTOR_RE.search(span):
+        return False
+    return len(span) <= 160
+
+def _is_negated_token_boundary_occurrence(line, start):
+    """Return true only when the forbidden term is negated by a governing marker.
+
+    Negation markers from an earlier sentence, semicolon-delimited clause, or an
+    unrelated comma item must not clear a later positive forbidden claim such as
+    ``No wallet, grants equity to holders``.  Utility-only receipts still allow
+    comma-separated negative lists such as ``No wallet, ..., token appreciation``.
     """
     clause_start = max(line.rfind(delimiter, 0, start) for delimiter in NEGATION_CLAUSE_DELIMITERS) + 1
     prefix = line[clause_start:start]
-    return any(re.search(r"(?<![a-z0-9])" + re.escape(marker) + r"(?![a-z0-9])", prefix) for marker in NEGATION_MARKERS)
+    for marker in NEGATION_MARKERS:
+        matches = list(_marker_pattern(marker).finditer(prefix))
+        for match in reversed(matches):
+            if _marker_negates_term(marker, clause_start + match.end(), line, start):
+                return True
+    return False
 
 def check_forbidden_text(obj):
     lines = [s.lower() for s in walk_strings(obj)]
