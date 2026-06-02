@@ -21,16 +21,32 @@ NEGATION_MARKERS = ("does not", "must not", "without", "never", "not", "no")
 NEGATION_CLAUSE_DELIMITERS = ".;\n"
 NEGATED_LIST_CONNECTOR_RE = re.compile(r"(?<![a-z0-9])(?:grants?|gives?|issues?|offers?|provides?|promises?|pays?|earns?|receives?|conveys?|creates?|includes?|entitles?)\b")
 POSITIVE_NOT_CONSTRUCTION_RE = re.compile(r"^\s*(?:only|merely|just|simply)\b|(?<![a-z0-9])but\s+also(?![a-z0-9])")
+FORBIDDEN_TERM_PATTERNS = {
+    "equity": r"equity|equities",
+    "debt": r"debts?",
+    "yield": r"yields?",
+    "dividend": r"dividends?",
+    "ownership": r"ownership(?:\s+rights?)?",
+    "profit right": r"profit\s+rights?",
+    "passive income": r"passive\s+income",
+    "guaranteed return": r"guaranteed\s+returns?",
+    "investment return": r"investment\s+returns?",
+    "token appreciation": r"token\s+appreciation",
+    "financial product": r"financial\s+products?",
+    "claim on revenue": r"claims?\s+on\s+revenue",
+    "claim on assets": r"claims?\s+on\s+assets",
+}
 
 def _term_pattern(word):
-    return re.compile(r"(?<![a-z0-9])" + re.escape(word) + r"(?![a-z0-9])")
+    pattern = FORBIDDEN_TERM_PATTERNS.get(word, re.escape(word))
+    return re.compile(r"(?<![a-z0-9])(?:" + pattern + r")(?![a-z0-9])")
 
 def _marker_pattern(marker):
     return re.compile(r"(?<![a-z0-9])" + re.escape(marker) + r"(?![a-z0-9])")
 
 def _marker_negates_term(marker, marker_end, line, start):
     span = line[marker_end:start]
-    if marker == "not" and POSITIVE_NOT_CONSTRUCTION_RE.search(span):
+    if marker in {"not", "does not", "must not"} and POSITIVE_NOT_CONSTRUCTION_RE.search(span):
         return False
     if marker in {"does not", "must not", "never"}:
         return len(span) <= 96

@@ -78,6 +78,20 @@ class T(unittest.TestCase):
         self.assertNotEqual(r.returncode,0)
         self.assertIn('forbidden token language: equity',r.stdout)
 
+    def test_plural_forbidden_terms_are_rejected(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['claim_boundary']='This work pays dividends to holders.'
+        r=self.run_check(obj)
+        self.assertNotEqual(r.returncode,0)
+        self.assertIn('forbidden token language: dividend',r.stdout)
+
+    def test_multiword_not_only_positive_construction_does_not_negate_claims(self):
+        obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
+        obj['claim_boundary']='This work does not only grant equity; it also pays dividends to holders.'
+        r=self.run_check(obj)
+        self.assertNotEqual(r.returncode,0)
+        self.assertIn('forbidden token language: equity',r.stdout)
+
     def test_direct_verb_negation_can_clear_forbidden_term(self):
         obj=json.loads(Path('docs/secure-rails/templates/work-vault-example.json').read_text())
         obj['claim_boundary']='Utility-only accounting does not grant equity to holders'
