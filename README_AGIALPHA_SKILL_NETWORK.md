@@ -49,6 +49,10 @@ python -m agialpha_engine network-compounding-build-data \
   --out docs/_generated/agialpha-skill-network
 ```
 
+## Operator acceptance checks
+
+A completed ENGINE-003 evidence run is accepted only after the deterministic run, replay, falsification audit, validation, generated-data build, tests, and available SecureRails boundary checks have been executed. Validation is semantic: it recomputes B6 vs B5, NetworkSkillPropagationLift, ProofBundle hashes, Evidence Docket presence, sandbox-only skill imports, and claim-gate status from raw evaluator logs rather than trusting file existence.
+
 ## Workflow publication boundary
 
 ENGINE-003 workflows must never deploy GitHub Pages directly; they only emit artifacts and can signal a central Evidence Mission Control publisher when repository convention supports it.
