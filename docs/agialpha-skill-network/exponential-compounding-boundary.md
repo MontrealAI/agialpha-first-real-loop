@@ -8,7 +8,7 @@ Required evidence for measured exponential wording:
 - Replay passes for all referenced cycle metrics and hashes.
 - Falsification audits pass with no unresolved critical boundary violations.
 - Claim-boundary, token-boundary, and regulated-boundary gates all pass.
-- Hard safety counters remain zero, including no unsafe claim, token-value claim, regulated decisioning, raw-secret leak, external scan, exploit, malware, social-engineering, auto-merge, or critical incident.
+- Hard safety counters must be explicitly reported and zero, including no unsafe claim, token-value claim, regulated decisioning, raw-secret leak, external scan, exploit, malware, social-engineering, auto-merge, or critical incident. Missing safety-ledger counters are treated as unknown evidence and cannot unlock measured exponential wording.
 
 Default wording when evidence is insufficient:
 
