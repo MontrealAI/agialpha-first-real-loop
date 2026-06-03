@@ -1296,7 +1296,8 @@ def build_network_data(args):
         "agents_registered": _count(payloads.get("agents", {}), "agents"),
         "claim_gate_status": claim_gate.get("claim_gate_status", "not_supported"),
         "exponential_compounding_status": metrics.get("exponential_compounding_status", claim_gate.get("exponential_compounding_status", "Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.")),
-        "raw_json_links": sorted([f"{name}.json" for name in list(mapping) + ["b6_vs_b5"]]),
+        "raw_json_secondary": True,
+        "raw_json_links": sorted([f"{name}.json" for name in list(mapping) + ["b6_vs_b5", "summary"]]),
         **_base(),
     }
     atomic_write_json(out / "summary.json", summary)
@@ -1370,7 +1371,7 @@ def render_network_data(args):
 <div class="panel"><h2>Work Vault / $AGIALPHA utility accounting</h2><p>Synthetic local utility receipts only. No wallet, custody, payment, trading, KYC/AML, money transmission, securities functionality, token price, token value, token appreciation, or investment return.</p><p>{_html_escape(len(receipts))} receipt(s) available.</p></div>
 <div class="panel"><h2>Safety and boundaries</h2><p>Claim boundary, token boundary, regulated-boundary firewall, no auto-merge, no autonomous persistence, and human review remain required.</p></div>
 <div class="panel"><h2>Workflow buttons</h2><p><code>agialpha-engine-003-network-compounding.yml</code> · <code>agialpha-engine-003-network-replay.yml</code> · <code>agialpha-engine-003-network-falsification-audit.yml</code> · <code>agialpha-engine-003-network-claim-gate.yml</code></p></div>
-<div class="panel"><h2>Raw JSON links</h2><p><a href="../../_generated/agialpha-skill-network/summary.json">summary</a> · <a href="../../_generated/agialpha-skill-network/network_skill_metrics.json">metrics</a> · <a href="../../_generated/agialpha-skill-network/claim_gate.json">claim gate</a> · <a href="../../_generated/agialpha-skill-network/skill_packages.json">skill packages</a></p></div>
+<div class="panel"><h2>Raw JSON links</h2><p>Raw JSON is secondary to the proof-chain UI.</p><p><a href="../../_generated/agialpha-skill-network/summary.json">summary</a> · <a href="../../_generated/agialpha-skill-network/network_skill_metrics.json">metrics</a> · <a href="../../_generated/agialpha-skill-network/claim_gate.json">claim gate</a> · <a href="../../_generated/agialpha-skill-network/skill_packages.json">skill packages</a></p></div>
 <p class="footer">No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is allowed; autonomous claim promotion is not.</p></main></body></html>"""
     (out / "index.html").write_text(html_text, encoding="utf-8")
     atomic_write_json(out / "routes.json", {"routes": ["/agialpha-skill-network/", "/experiments/agialpha-engine-003/"], "nav_label": "Skill Network", "primary_html": "index.html", **_base()})

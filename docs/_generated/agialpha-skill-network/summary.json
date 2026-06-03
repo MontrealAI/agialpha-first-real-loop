@@ -32,8 +32,10 @@
     "skill_imports.json",
     "skill_packages.json",
     "skill_propagation_events.json",
+    "summary.json",
     "work_vault_receipts.json"
   ],
+  "raw_json_secondary": true,
   "regulated_boundary": "regulated-domain firewall enabled; blocked_human_review_required for regulated tasks",
   "rejected_skill_candidates": 2,
   "run_id": "agialpha-skill-network-test",
