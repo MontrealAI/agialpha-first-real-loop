@@ -22,7 +22,7 @@ No Evidence Docket, no empirical SOTA claim. Autonomous evidence production is a
 
 - Claim gate status: supported_local_bounded.
 - Claim gate status: not_supported. Networked skill compounding claim not yet supported.
-- Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.
+- Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only. Measured exponential wording requires at least three raw-log-backed cycles with superlinear lift, cycle raw IDs that match the run raw evaluator log set, replay and falsification passing, metrics from raw logs, and no boundary violation.
 
 ## What this does not claim
 
