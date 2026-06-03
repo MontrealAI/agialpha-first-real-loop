@@ -78,6 +78,89 @@ def _heldout_pair_population_matches(
     return True
 
 
+def evaluate_exponential_compounding_gate(
+    *,
+    compounding_cycles: list[dict[str, Any]] | None = None,
+    replay_pass: bool = False,
+    falsification_pass: bool = False,
+    metrics_computed_from_raw_logs: bool = False,
+    safety_counters: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Evaluate whether measured exponential wording is allowed.
+
+    The gate is intentionally separate from local bounded propagation.  It only
+    supports exponential wording when at least three replayed cycles have
+    raw-log-backed, strictly positive, superlinear lift growth and no boundary
+    violations.  Otherwise it returns the required strategic-target caveat.
+    """
+    cycles = compounding_cycles or []
+    status_text = (
+        "Exponential compounding is a strategic target. Current evidence reports "
+        "local bounded network skill propagation only."
+    )
+    numeric_lifts: list[float] = []
+    raw_backed = True
+    for cycle in cycles:
+        lift = cycle.get("network_skill_propagation_lift")
+        raw_ids = cycle.get("raw_task_result_ids")
+        if not isinstance(lift, (int, float)) or not raw_ids:
+            raw_backed = False
+            continue
+        numeric_lifts.append(float(lift))
+    increments = [round(b - a, 12) for a, b in zip(numeric_lifts, numeric_lifts[1:])]
+    superlinear = (
+        len(numeric_lifts) >= 3
+        and all(lift > 0 for lift in numeric_lifts)
+        and len(increments) >= 2
+        and all(delta > 0 for delta in increments)
+        and all(next_delta > delta for delta, next_delta in zip(increments, increments[1:]))
+    )
+    counters = safety_counters or {}
+    hard_safety_ok = all(
+        counters.get(key, 0) == 0
+        for key in (
+            "raw_secret_leak_count",
+            "external_target_scan_count",
+            "exploit_execution_count",
+            "malware_generation_count",
+            "social_engineering_content_count",
+            "unsafe_automerge_count",
+            "critical_safety_incidents",
+            "unsafe_claims_blocked",
+            "token_value_claims_blocked",
+            "regulated_decisioning_blocked",
+        )
+    )
+    supported = bool(
+        superlinear
+        and raw_backed
+        and replay_pass
+        and falsification_pass
+        and metrics_computed_from_raw_logs
+        and hard_safety_ok
+    )
+    exponent_proxy: float | str = "not_supported"
+    if supported:
+        first_increment = increments[0]
+        last_increment = increments[-1]
+        exponent_proxy = round(1.0 + (last_increment / max(first_increment, 1e-12)), 6)
+        status_text = (
+            "Measured exponential compounding language is supported for this "
+            "local bounded multi-cycle evidence docket only."
+        )
+    return base_record({
+        "exponential_compounding_supported": supported,
+        "exponential_compounding_status": status_text,
+        "compounding_exponent_proxy": exponent_proxy,
+        "cycles_evaluated": len(cycles),
+        "superlinear_growth_observed": superlinear,
+        "metrics_computed_from_raw_logs": metrics_computed_from_raw_logs,
+        "replay_pass": replay_pass,
+        "falsification_pass": falsification_pass,
+        "hard_safety_ok": hard_safety_ok,
+    })
+
+
 def compute_network_skill_metrics(
     *,
     jobs_run: int,
@@ -97,7 +180,15 @@ def compute_network_skill_metrics(
     falsification_pass: bool | str = "pending",
     semantic_tests_passed: bool | str = "pending",
     safety_counters: dict[str, Any] | None = None,
+    compounding_cycles: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
+    exponential_gate = evaluate_exponential_compounding_gate(
+        compounding_cycles=compounding_cycles,
+        replay_pass=replay_pass_rate is True or replay_pass_rate == 1 or replay_pass_rate == 1.0,
+        falsification_pass=falsification_pass is True,
+        metrics_computed_from_raw_logs=bool(raw_task_result_ids),
+        safety_counters=safety_counters,
+    )
     d_b5 = compute_d_metric(heldout_rows_b5)
     d_b6 = compute_d_metric(heldout_rows_b6)
     heldout_metrics_reportable = isinstance(d_b5, float) and isinstance(d_b6, float)
@@ -164,12 +255,9 @@ def compute_network_skill_metrics(
             else "not_reported"
         ),
         "capability_compounding_rate": delta,
-        "compounding_exponent_proxy": "not_supported",
-        "exponential_compounding_supported": False,
-        "exponential_compounding_status": (
-            "Exponential compounding is a strategic target. Current evidence reports "
-            "local bounded network skill propagation only."
-        ),
+        "compounding_exponent_proxy": exponential_gate["compounding_exponent_proxy"],
+        "exponential_compounding_supported": exponential_gate["exponential_compounding_supported"],
+        "exponential_compounding_status": exponential_gate["exponential_compounding_status"],
         "raw_task_result_ids": raw_task_result_ids if raw_task_result_ids else "not_reported",
         "replay_pass_rate": replay_pass_rate,
         "falsification_pass": falsification_pass,
