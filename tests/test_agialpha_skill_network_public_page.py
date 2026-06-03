@@ -45,6 +45,12 @@ class TestAgialphaSkillNetworkPublicPage(unittest.TestCase):
             self.assertIn("Skill Network", index)
             self.assertIn("/agialpha-first-real-loop/agialpha-skill-network/", index)
 
+    def test_canonical_page_links_generated_data_under_docs_root(self):
+        html = Path("docs/agialpha-skill-network/index.html").read_text(encoding="utf-8")
+        self.assertIn("../_generated/agialpha-skill-network/summary.json", html)
+        self.assertIn("../_generated/agialpha-skill-network/network_skill_metrics.json", html)
+        self.assertNotIn("../../_generated/agialpha-skill-network", html)
+
 
 if __name__ == "__main__":
     unittest.main()
