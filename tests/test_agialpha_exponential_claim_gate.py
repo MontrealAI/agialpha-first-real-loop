@@ -12,6 +12,10 @@ def zero_exponential_gate_safety_counters(**overrides):
     return counters
 
 
+def actual_raw_ids():
+    return ["raw-1", "raw-2", "raw-3"]
+
+
 def test_exponential_claim_defaults_to_strategic_target_without_multicycle_evidence():
     with tempfile.TemporaryDirectory() as td:
         run = Path(td) / 'run'
@@ -54,6 +58,7 @@ def test_exponential_gate_requires_three_raw_log_backed_superlinear_cycles():
         falsification_pass=True,
         metrics_computed_from_raw_logs=True,
         safety_counters=zero_exponential_gate_safety_counters(),
+        available_raw_task_result_ids=actual_raw_ids(),
     )
     assert blocked["exponential_compounding_supported"] is False
     assert blocked["compounding_exponent_proxy"] == "not_supported"
@@ -69,6 +74,7 @@ def test_exponential_gate_requires_three_raw_log_backed_superlinear_cycles():
         falsification_pass=True,
         metrics_computed_from_raw_logs=True,
         safety_counters=zero_exponential_gate_safety_counters(),
+        available_raw_task_result_ids=actual_raw_ids(),
     )
     assert supported["exponential_compounding_supported"] is True
     assert supported["superlinear_growth_observed"] is True
@@ -88,6 +94,7 @@ def test_exponential_gate_blocks_boundary_violations_and_missing_raw_ids():
         falsification_pass=True,
         metrics_computed_from_raw_logs=True,
         safety_counters=zero_exponential_gate_safety_counters(critical_safety_incidents=1),
+        available_raw_task_result_ids=actual_raw_ids(),
     )
     assert gate["exponential_compounding_supported"] is False
     assert gate["hard_safety_ok"] is False
@@ -108,6 +115,7 @@ def test_exponential_gate_requires_complete_reported_zero_safety_ledger():
         falsification_pass=True,
         metrics_computed_from_raw_logs=True,
         safety_counters=None,
+        available_raw_task_result_ids=actual_raw_ids(),
     )
     assert omitted["exponential_compounding_supported"] is False
     assert set(omitted["missing_hard_safety_counters"]) == set(EXPONENTIAL_GATE_HARD_SAFETY_COUNTERS)
@@ -121,6 +129,7 @@ def test_exponential_gate_requires_complete_reported_zero_safety_ledger():
         falsification_pass=True,
         metrics_computed_from_raw_logs=True,
         safety_counters=incomplete_counters,
+        available_raw_task_result_ids=actual_raw_ids(),
     )
     assert incomplete["exponential_compounding_supported"] is False
     assert incomplete["missing_hard_safety_counters"] == ["unsafe_automerge_count"]
@@ -139,8 +148,49 @@ def test_exponential_gate_rejects_sentinel_or_non_collection_raw_ids():
         falsification_pass=True,
         metrics_computed_from_raw_logs=True,
         safety_counters=zero_exponential_gate_safety_counters(),
+        available_raw_task_result_ids=actual_raw_ids(),
     )
     assert gate["exponential_compounding_supported"] is False
     assert gate["raw_cycle_evidence_valid"] is False
     assert gate["invalid_raw_cycle_evidence"] == [0, 1]
     assert "strategic target" in gate["exponential_compounding_status"]
+
+
+def test_exponential_gate_requires_cycle_ids_to_match_actual_raw_log_universe():
+    from agialpha_engine.network_skill_metrics import evaluate_exponential_compounding_gate
+
+    gate = evaluate_exponential_compounding_gate(
+        compounding_cycles=[
+            {"network_skill_propagation_lift": 0.01, "raw_task_result_ids": ["raw-1"]},
+            {"network_skill_propagation_lift": 0.03, "raw_task_result_ids": ["raw-does-not-exist"]},
+            {"network_skill_propagation_lift": 0.08, "raw_task_result_ids": ["raw-3"]},
+        ],
+        replay_pass=True,
+        falsification_pass=True,
+        metrics_computed_from_raw_logs=True,
+        safety_counters=zero_exponential_gate_safety_counters(),
+        available_raw_task_result_ids=actual_raw_ids(),
+    )
+    assert gate["exponential_compounding_supported"] is False
+    assert gate["raw_cycle_evidence_valid"] is False
+    assert gate["invalid_raw_cycle_evidence"] == [1]
+    assert gate["unknown_raw_task_result_ids"] == ["raw-does-not-exist"]
+
+
+def test_exponential_gate_requires_reported_actual_raw_log_universe():
+    from agialpha_engine.network_skill_metrics import evaluate_exponential_compounding_gate
+
+    gate = evaluate_exponential_compounding_gate(
+        compounding_cycles=[
+            {"network_skill_propagation_lift": 0.01, "raw_task_result_ids": ["raw-1"]},
+            {"network_skill_propagation_lift": 0.03, "raw_task_result_ids": ["raw-2"]},
+            {"network_skill_propagation_lift": 0.08, "raw_task_result_ids": ["raw-3"]},
+        ],
+        replay_pass=True,
+        falsification_pass=True,
+        metrics_computed_from_raw_logs=True,
+        safety_counters=zero_exponential_gate_safety_counters(),
+    )
+    assert gate["exponential_compounding_supported"] is False
+    assert gate["raw_log_universe_reported"] is False
+    assert gate["available_raw_task_result_ids"] == "not_reported"

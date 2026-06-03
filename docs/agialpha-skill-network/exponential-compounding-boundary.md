@@ -4,6 +4,7 @@ Exponential compounding language is **strategic-target only** unless the exponen
 
 Required evidence for measured exponential wording:
 - At least 3 completed cycles with raw-task-result-backed, strictly positive lift.
+- Every cycle raw_task_result_id must match the run's actual reported raw evaluator log ID set; sentinel or unknown IDs do not count as evidence.
 - Successive lift increments must increase, so the observed cycle series is superlinear rather than merely positive.
 - Replay passes for all referenced cycle metrics and hashes.
 - Falsification audits pass with no unresolved critical boundary violations.

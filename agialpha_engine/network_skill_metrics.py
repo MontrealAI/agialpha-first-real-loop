@@ -39,6 +39,23 @@ EXPONENTIAL_GATE_HARD_SAFETY_COUNTERS = (
 RAW_ID_SENTINELS = {"", "not_reported", "unavailable", "pending", "skipped_with_reason"}
 
 
+def _valid_raw_id_collection(raw_ids: Any) -> bool:
+    return (
+        isinstance(raw_ids, (list, tuple, set))
+        and bool(raw_ids)
+        and all(
+            isinstance(raw_id, str) and raw_id.strip() not in RAW_ID_SENTINELS
+            for raw_id in raw_ids
+        )
+    )
+
+
+def _raw_id_set(raw_ids: Any) -> set[str]:
+    if not _valid_raw_id_collection(raw_ids):
+        return set()
+    return {raw_id.strip() for raw_id in raw_ids}
+
+
 def compute_d_metric(rows):
     if not rows:
         return "not_reported"
@@ -100,6 +117,7 @@ def evaluate_exponential_compounding_gate(
     falsification_pass: bool = False,
     metrics_computed_from_raw_logs: bool = False,
     safety_counters: dict[str, Any] | None = None,
+    available_raw_task_result_ids: list[str] | tuple[str, ...] | set[str] | None = None,
 ) -> dict[str, Any]:
     """Evaluate whether measured exponential wording is allowed.
 
@@ -113,18 +131,26 @@ def evaluate_exponential_compounding_gate(
         "Exponential compounding is a strategic target. Current evidence reports "
         "local bounded network skill propagation only."
     )
+    actual_raw_task_result_id_set = _raw_id_set(available_raw_task_result_ids)
+    raw_log_universe_reported = bool(actual_raw_task_result_id_set)
     numeric_lifts: list[float] = []
-    raw_backed = True
+    raw_backed = raw_log_universe_reported
     invalid_raw_cycle_evidence: list[int] = []
+    unknown_raw_task_result_ids: list[str] = []
     for index, cycle in enumerate(cycles):
         lift = cycle.get("network_skill_propagation_lift")
         raw_ids = cycle.get("raw_task_result_ids")
-        raw_ids_valid = (
-            isinstance(raw_ids, (list, tuple, set))
-            and bool(raw_ids)
-            and all(isinstance(raw_id, str) and raw_id.strip() not in RAW_ID_SENTINELS for raw_id in raw_ids)
-        )
-        if not isinstance(lift, (int, float)) or isinstance(lift, bool) or not raw_ids_valid:
+        raw_ids_valid = _valid_raw_id_collection(raw_ids)
+        cycle_raw_id_set = _raw_id_set(raw_ids)
+        missing_cycle_raw_ids = sorted(cycle_raw_id_set - actual_raw_task_result_id_set)
+        if missing_cycle_raw_ids:
+            unknown_raw_task_result_ids.extend(missing_cycle_raw_ids)
+        if (
+            not isinstance(lift, (int, float))
+            or isinstance(lift, bool)
+            or not raw_ids_valid
+            or missing_cycle_raw_ids
+        ):
             raw_backed = False
             invalid_raw_cycle_evidence.append(index)
             continue
@@ -177,7 +203,10 @@ def evaluate_exponential_compounding_gate(
         "missing_hard_safety_counters": missing_hard_safety_counters,
         "nonzero_hard_safety_counters": nonzero_hard_safety_counters,
         "raw_cycle_evidence_valid": raw_backed,
+        "raw_log_universe_reported": raw_log_universe_reported,
+        "available_raw_task_result_ids": sorted(actual_raw_task_result_id_set) if actual_raw_task_result_id_set else "not_reported",
         "invalid_raw_cycle_evidence": invalid_raw_cycle_evidence,
+        "unknown_raw_task_result_ids": sorted(set(unknown_raw_task_result_ids)),
     })
 
 
@@ -208,6 +237,7 @@ def compute_network_skill_metrics(
         falsification_pass=falsification_pass is True,
         metrics_computed_from_raw_logs=bool(raw_task_result_ids),
         safety_counters=safety_counters,
+        available_raw_task_result_ids=raw_task_result_ids,
     )
     d_b5 = compute_d_metric(heldout_rows_b5)
     d_b6 = compute_d_metric(heldout_rows_b6)
