@@ -25,7 +25,7 @@ class TestAgialphaSkillNetworkPublicPage(unittest.TestCase):
                 "Every Job makes an AI Agent smarter",
                 "Every new skill can be instantly shared across the network",
                 "One Agent learns, all Agents level up",
-                "Instant sharing means sandboxed registration/importability",
+                "Instant sharing means sandboxed registration and importability",
                 "Proof chain",
                 "Claim gate",
                 "Exponential compounding is a strategic target",

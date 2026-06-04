@@ -149,7 +149,7 @@ def _render_skill_network_page(repo_root: Path, out_root: Path):
       <p class='kicker'>AGI ALPHA Skill Network</p>
       <h2>Operating thesis</h2>
       <p><strong>Every Job makes an AI Agent smarter.</strong><br />Every new skill can be instantly shared across the network.<br />One Agent learns, all Agents level up.</p>
-      <p class='warning'>Instant sharing means sandboxed registration/importability. Production activation requires validators and human review. Exponential compounding is a strategic target unless the exponential claim gate passes.</p>
+      <p class='warning'>Instant sharing means sandboxed registration and importability. Production activation requires validators and human review. Exponential compounding is a strategic target unless the exponential claim gate passes.</p>
       <h2>Proof chain</h2><p>{html.escape(proof_chain)}</p>
       <h2>Claim gate</h2><p><strong>Claim gate status:</strong> {html.escape(str(claim_gate.get('claim_gate_status', 'not_supported')))}</p><p>{html.escape(str(claim_gate.get('supported_wording', 'Networked skill compounding claim not yet supported.')))}</p>
       <h2>Exponential compounding status</h2><p>{html.escape(str(claim_gate.get('exponential_compounding_status', 'Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.')))}</p>
