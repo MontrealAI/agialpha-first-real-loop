@@ -48,9 +48,16 @@ jobs:
           if not run_id:
               print("")
               raise SystemExit(0)
-          candidates = [Path('agialpha_skill_network_registry') / 'runs' / run_id, Path('agialpha-engine-runs') / run_id]
+          candidates = [Path('agialpha-engine-runs') / run_id, Path('agialpha_skill_network_registry') / 'runs' / run_id]
+          required = [
+              Path('02_jobs/source_jobs.json'),
+              Path('02_jobs/raw_task_results.json'),
+              Path('03_skill_extraction/accepted_skill_packages.json'),
+              Path('06_heldout_reuse_tests/comparison.json'),
+              Path('13_claim_gate/network_compounding_claim_gate.json'),
+          ]
           for path in candidates:
-              if path.exists() and path.is_dir():
+              if path.exists() and path.is_dir() and all((path / rel).exists() for rel in required):
                   print(path)
                   break
           else:

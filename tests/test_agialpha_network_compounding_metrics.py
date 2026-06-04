@@ -410,3 +410,22 @@ class NetworkCompoundingNoFixedMetricRegressionTest(unittest.TestCase):
         self.assertIn("B6_shared_skill_beats_B5_no_shared_skill", network_text)
         self.assertIn("D_shared_skill_network", network_text)
         self.assertIn("D_no_shared_skill", network_text)
+
+    def test_replay_sidecar_workflows_do_not_select_registry_mirror_without_full_run_layout(self):
+        """Replay/falsification/claim-gate workflows must create a full run when latest points at registry mirror indexes."""
+        for workflow in [
+            Path(".github/workflows/agialpha-engine-003-network-replay.yml"),
+            Path(".github/workflows/agialpha-engine-003-network-falsification-audit.yml"),
+            Path(".github/workflows/agialpha-engine-003-network-claim-gate.yml"),
+        ]:
+            text = workflow.read_text(encoding="utf-8")
+            self.assertIn("Path('02_jobs/source_jobs.json')", text)
+            self.assertIn("Path('02_jobs/raw_task_results.json')", text)
+            self.assertIn("Path('03_skill_extraction/accepted_skill_packages.json')", text)
+            self.assertIn("Path('06_heldout_reuse_tests/comparison.json')", text)
+            self.assertIn("Path('13_claim_gate/network_compounding_claim_gate.json')", text)
+            self.assertIn("all((path / rel).exists() for rel in required)", text)
+            self.assertLess(
+                text.index("Path('agialpha-engine-runs') / run_id"),
+                text.index("Path('agialpha_skill_network_registry') / 'runs' / run_id"),
+            )
