@@ -11,6 +11,15 @@ BOUNDARIES={
   "autonomous_persistence_allowed":False,
 }
 
+def atomic_write_text(path: Path, text: str):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    import tempfile
+    with tempfile.NamedTemporaryFile('w', encoding='utf-8', dir=str(path.parent), prefix=path.name + '.', suffix='.tmp', delete=False) as f:
+        tmp = Path(f.name)
+        f.write(text)
+    tmp.replace(path)
+
+
 def atomic_write_json(path: Path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
     import tempfile
