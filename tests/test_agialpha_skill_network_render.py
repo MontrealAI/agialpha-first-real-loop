@@ -1,4 +1,5 @@
 import unittest
+from pathlib import Path
 
 from agialpha_engine.render import render_skill_network_summary
 
@@ -24,6 +25,18 @@ class SkillNetworkRenderTest(unittest.TestCase):
         self.assertIn("No Evidence Docket, no empirical SOTA claim", text)
         self.assertIn("unsafe_automerge_count: 0", text)
         self.assertNotIn("empirical SOTA claim supported", text)
+
+
+    def test_public_skill_network_route_exists_with_required_nav_and_caveat(self):
+        page = Path("agialpha-skill-network/index.html")
+        self.assertTrue(page.exists())
+        text = page.read_text(encoding="utf-8")
+        self.assertIn("Skill Network", text)
+        self.assertIn("Every Job makes an AI Agent smarter.", text)
+        self.assertIn("Instant sharing means sandboxed registration and importability", text)
+        self.assertIn("AGI Job</span><span>Skill Package / Rejected Skill / Failure Learning", text)
+        self.assertIn("NetworkSkillPropagationLift", text)
+        self.assertIn("No Evidence Docket, no empirical SOTA claim", text)
 
 
 if __name__ == "__main__":
