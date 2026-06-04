@@ -1218,6 +1218,68 @@ def validate_network_compounding(args):
         proofbundle_errors.append(f"unexpected standalone proofbundle files: {sorted(extra_standalone_ids)}")
     if proofbundle_errors:
         raise SystemExit(f"network-compounding-validate failed: proofbundle integrity errors ({proofbundle_errors})")
+    evidence_docket_doc=_read(run/'15_evidence_dockets/index.json',{})
+    evidence_docket_errors=[]
+    indexed_dockets=evidence_docket_doc.get('evidence_dockets', [])
+    if len(indexed_dockets) != len(accepted):
+        evidence_docket_errors.append(f"evidence docket index count {len(indexed_dockets)} does not match accepted skills {len(accepted)}")
+    accepted_by_skill_id={skill.get('skill_id'): skill for skill in accepted if skill.get('skill_id')}
+    indexed_docket_ids=set()
+    required_docket_flags=(
+        'includes_successes',
+        'includes_failures',
+        'includes_rejected_claims',
+        'includes_evaluator_disagreement',
+        'includes_baseline_regressions',
+        'includes_falsification_attempts',
+    )
+    for docket in indexed_dockets:
+        if not isinstance(docket, dict):
+            evidence_docket_errors.append('indexed evidence docket must be an object')
+            continue
+        docket_id=docket.get('evidence_docket_id')
+        skill_id=docket.get('skill_id')
+        if not isinstance(docket_id, str) or not docket_id.strip():
+            evidence_docket_errors.append('indexed evidence docket missing evidence_docket_id')
+            continue
+        indexed_docket_ids.add(docket_id)
+        docket_file=run/'15_evidence_dockets'/f'{docket_id}.json'
+        if not docket_file.exists():
+            evidence_docket_errors.append(f"{docket_id} standalone evidence docket file missing")
+        else:
+            standalone_docket=_read(docket_file,{})
+            if standalone_docket != docket:
+                evidence_docket_errors.append(f"{docket_id} standalone evidence docket file mismatch")
+        skill=accepted_by_skill_id.get(skill_id)
+        if skill is None:
+            evidence_docket_errors.append(f"{docket_id} has no matching accepted skill")
+        elif skill.get('evidence_docket_id') != docket_id:
+            evidence_docket_errors.append(f"{docket_id} does not match accepted skill evidence_docket_id")
+        for flag in required_docket_flags:
+            if docket.get(flag) is not True:
+                evidence_docket_errors.append(f"{docket_id} missing required true flag {flag}")
+        for boundary_key in ('claim_boundary', 'token_boundary', 'regulated_boundary'):
+            if not docket.get(boundary_key):
+                evidence_docket_errors.append(f"{docket_id} missing {boundary_key}")
+        if docket.get('human_review_required') is not True:
+            evidence_docket_errors.append(f"{docket_id} must require human review")
+        if docket.get('autonomous_persistence_allowed') is not False:
+            evidence_docket_errors.append(f"{docket_id} must block autonomous persistence")
+        if docket.get('no_auto_merge') is not True:
+            evidence_docket_errors.append(f"{docket_id} must block auto-merge")
+    expected_docket_ids={skill.get('evidence_docket_id') for skill in accepted if skill.get('evidence_docket_id')}
+    missing_docket_ids=expected_docket_ids-indexed_docket_ids
+    if missing_docket_ids:
+        evidence_docket_errors.append(f"accepted skills missing evidence dockets: {sorted(missing_docket_ids)}")
+    extra_docket_ids=indexed_docket_ids-expected_docket_ids
+    if extra_docket_ids:
+        evidence_docket_errors.append(f"unexpected evidence dockets: {sorted(extra_docket_ids)}")
+    standalone_docket_ids={path.stem for path in (run/'15_evidence_dockets').glob('*.json') if path.name != 'index.json'}
+    extra_standalone_docket_ids=standalone_docket_ids-indexed_docket_ids
+    if extra_standalone_docket_ids:
+        evidence_docket_errors.append(f"unexpected standalone evidence docket files: {sorted(extra_standalone_docket_ids)}")
+    if evidence_docket_errors:
+        raise SystemExit(f"network-compounding-validate failed: evidence docket integrity errors ({evidence_docket_errors})")
     atomic_write_json(run/'validate.json', {
         "schema_version": "agialpha.skill_network.validation_report.v1",
         "validation_pass": True,
@@ -1225,6 +1287,7 @@ def validate_network_compounding(args):
         "falsification_ok": falsification_ok,
         "claim_gate_status": expected_gate_status,
         "proofbundle_integrity_pass": True,
+        "evidence_docket_integrity_pass": True,
         "sandbox_record_integrity_pass": True,
         "network_skill_vault_publication_pass": True,
         "agent_manifest_import_coverage_pass": True,
