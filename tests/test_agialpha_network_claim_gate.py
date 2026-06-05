@@ -66,3 +66,27 @@ def test_validate_report_records_evidence_docket_integrity_pass():
         assert validate_report['validation_pass'] is True
         assert validate_report['proofbundle_integrity_pass'] is True
         assert validate_report['evidence_docket_integrity_pass'] is True
+
+
+def test_validate_rejects_evidence_docket_id_path_separator_escape():
+    with tempfile.TemporaryDirectory() as td:
+        run = Path(td) / 'run'
+        reg = Path(td) / 'reg'
+        _run_full(run, reg)
+        subprocess.check_call([sys.executable,'-m','agialpha_engine','network-compounding-replay','--run',str(run)])
+        subprocess.check_call([sys.executable,'-m','agialpha_engine','network-compounding-falsification-audit','--run',str(run)])
+        docket_index_path = run / '15_evidence_dockets' / 'index.json'
+        docket_index = json.loads(docket_index_path.read_text())
+        escaped_docket = dict(docket_index['evidence_dockets'][0])
+        escaped_docket['evidence_docket_id'] = '../escaped-docket'
+        docket_index['evidence_dockets'][0] = escaped_docket
+        docket_index_path.write_text(json.dumps(docket_index, indent=2, sort_keys=True) + '\n')
+        (run / 'escaped-docket.json').write_text(json.dumps(escaped_docket, indent=2, sort_keys=True) + '\n')
+
+        completed = subprocess.run(
+            [sys.executable,'-m','agialpha_engine','network-compounding-validate','--run',str(run)],
+            text=True,
+            capture_output=True,
+        )
+        assert completed.returncode != 0
+        assert 'unsafe evidence_docket_id path segment' in completed.stderr

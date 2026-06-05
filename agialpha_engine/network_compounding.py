@@ -1225,6 +1225,7 @@ def validate_network_compounding(args):
         evidence_docket_errors.append(f"evidence docket index count {len(indexed_dockets)} does not match accepted skills {len(accepted)}")
     accepted_by_skill_id={skill.get('skill_id'): skill for skill in accepted if skill.get('skill_id')}
     indexed_docket_ids=set()
+    evidence_docket_dir=(run/'15_evidence_dockets').resolve()
     required_docket_flags=(
         'includes_successes',
         'includes_failures',
@@ -1242,8 +1243,15 @@ def validate_network_compounding(args):
         if not isinstance(docket_id, str) or not docket_id.strip():
             evidence_docket_errors.append('indexed evidence docket missing evidence_docket_id')
             continue
-        indexed_docket_ids.add(docket_id)
+        if '/' in docket_id or '\\' in docket_id or Path(docket_id).name != docket_id or Path(docket_id).is_absolute():
+            evidence_docket_errors.append(f"{docket_id} has unsafe evidence_docket_id path segment")
+            continue
         docket_file=run/'15_evidence_dockets'/f'{docket_id}.json'
+        resolved_docket_file=docket_file.resolve(strict=False)
+        if resolved_docket_file.parent != evidence_docket_dir:
+            evidence_docket_errors.append(f"{docket_id} standalone evidence docket path escapes 15_evidence_dockets")
+            continue
+        indexed_docket_ids.add(docket_id)
         if not docket_file.exists():
             evidence_docket_errors.append(f"{docket_id} standalone evidence docket file missing")
         else:
