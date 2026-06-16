@@ -56,6 +56,14 @@ def test_initial_proofbundle_hashes_persisted_comparison_artifact():
         persisted_comparison = _read(run / "06_heldout_reuse_tests" / "comparison.json")
         run_bundles = _read(run / "14_proofbundles" / "index.json")["proofbundles"]
         registry_bundles = _read(reg / "proofbundles.json")["proofbundles"]
+        archived_bundles = _read(reg / "runs" / run.name / "14_proofbundles" / "index.json")["proofbundles"]
+
+        assert run_bundles
+        assert len(archived_bundles) == len(run_bundles)
+        for bundle in archived_bundles:
+            standalone_path = reg / "runs" / run.name / "14_proofbundles" / f"{bundle['proofbundle_id']}.json"
+            assert _read(standalone_path) == bundle
+        for bundle in run_bundles + registry_bundles + archived_bundles:
         run_id = _read(reg / "latest.json")["run_id"]
         archived_index_path = reg / "runs" / run_id / "14_proofbundles" / "index.json"
         archived_bundles = _read(archived_index_path)["proofbundles"]
