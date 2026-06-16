@@ -1,0 +1,18 @@
+{
+  "created_at_epoch": 1777839690,
+  "observed_reuse_lift_percent": 66.67,
+  "parent_claim_level": "L3",
+  "parent_docket_id": "ColdChain-Energy-Loop-001",
+  "proposal": {
+    "action": "run_next_seed_matrix_and_full_baselines",
+    "claim_boundary": "This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+    "required_gates": [
+      "cost_ledger",
+      "safety_ledger",
+      "baseline_suite",
+      "clean_replay",
+      "independent_review"
+    ]
+  },
+  "schema": "agialpha.next_seed_proposal.v1"
+}
