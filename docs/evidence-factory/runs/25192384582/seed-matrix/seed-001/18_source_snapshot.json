@@ -1,0 +1,13 @@
+{
+  "actor": "MontrealAI",
+  "branch": "main",
+  "claim_boundary": "This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+  "commit": "bbcaa7158b6e43e1c3ebc634e5b7a370ac8e152a",
+  "dirty_status": "M evidence_registry/discovered.json\n?? agialpha_benchmark_gauntlet/__pycache__/\n?? agialpha_cyber_sovereign2/__pycache__/\n?? agialpha_evidence_factory/__pycache__/\n?? agialpha_evidence_hub/__pycache__/\n?? agialpha_first_loop/__pycache__/\n?? agialpha_helios/__pycache__/\n?? agialpha_helios2/__pycache__/\n?? agialpha_helios3/__pycache__/\n?? agialpha_l4_l7/__pycache__/\n?? agialpha_omega_gauntlet/__pycache__/\n?? agialpha_seed_runner/__pycache__/\n?? agialpha_sovereign_capstone/__pycache__/\n?? agialpha_usefulness_frontier/__pycache__/\n?? runs/\n?? tests/__pycache__/",
+  "generated_at_epoch": 1777587973,
+  "repository": "MontrealAI/agialpha-first-real-loop",
+  "run_attempt": "1",
+  "run_id": "25192384582",
+  "schema": "agialpha.source_snapshot.v1",
+  "workflow": "AGI ALPHA Evidence Factory / Autonomous"
+}
