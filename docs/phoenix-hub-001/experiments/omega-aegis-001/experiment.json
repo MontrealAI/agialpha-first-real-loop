@@ -1,0 +1,17 @@
+{
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+  "experiment_name": "OMEGA AEGIS 001",
+  "experiment_slug": "omega-aegis-001",
+  "family": "Omega Gauntlet",
+  "latest_status": "discovered",
+  "metrics": {},
+  "page_path": "experiments/omega-aegis-001/index.html",
+  "sources": [
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA OMEGA-AEGIS-001 / Autonomous",
+      "path": ".github/workflows/omega-aegis-001-autonomous.yml",
+      "type": "workflow"
+    }
+  ]
+}

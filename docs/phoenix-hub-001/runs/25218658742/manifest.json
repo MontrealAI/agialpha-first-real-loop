@@ -1,0 +1,62 @@
+{
+  "actor": "MontrealAI",
+  "artifact_ids": [],
+  "artifact_names": [],
+  "artifact_urls": [],
+  "branch": "main",
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+  "claim_level": "historical-local",
+  "commit_sha": "8fd3eb6998da74ef87a521a417c4b2525f7ae04b",
+  "conclusion": "unknown",
+  "event": "workflow_dispatch",
+  "evidence_docket_path": "",
+  "experiment_family": "Other / Discovered",
+  "experiment_name": "SEED 010",
+  "experiment_slug": "seed-010",
+  "external_review": {
+    "attestations": "not_reported",
+    "issue_url": null,
+    "status": "ready"
+  },
+  "generated_at": "2026-05-01T14:43:25Z",
+  "links": {
+    "experiment_page": "experiments/seed-010/",
+    "public_page": "experiments/seed-010/",
+    "raw_json": "experiments/seed-010/runs/25218658742/manifest.json",
+    "run_page": "runs/25218658742/"
+  },
+  "metrics": {
+    "B6_beats_B5_count": "not_reported",
+    "B6_beats_all_count": "not_reported",
+    "baseline_count": "not_reported",
+    "capability_reuse_lift_pct": "not_reported",
+    "critical_safety_incidents": "not_reported",
+    "exploit_execution_count": "not_reported",
+    "external_target_scan_count": "not_reported",
+    "malware_generation_count": "not_reported",
+    "mean_advantage_delta_vs_B5": "not_reported",
+    "policy_violations": "not_reported",
+    "raw_secret_leak_count": "not_reported",
+    "replay_passes": "not_reported",
+    "reuse_lift_pct": "not_reported",
+    "safety_incidents": "not_reported",
+    "social_engineering_content_count": "not_reported",
+    "task_count": "not_reported",
+    "unsafe_automerge_count": "not_reported",
+    "valid_findings_count": "not_reported"
+  },
+  "pr_review": {
+    "pr_url": null,
+    "status": "not_applicable"
+  },
+  "root_hash": "5713c2033bd87389",
+  "run_attempt": "1",
+  "run_id": "25218658742",
+  "run_url": "https://github.com/MontrealAI/agialpha-first-real-loop/actions/runs/25218658742",
+  "schema_version": "agialpha.evidence_run.v1",
+  "scoreboard_path": "",
+  "source": "phoenix_dynamic_discovery",
+  "status": "discovered",
+  "workflow_file": ".github/workflows/phoenix-hub-001-autonomous.yml",
+  "workflow_name": "PHOENIX-HUB-001 Discovery"
+}

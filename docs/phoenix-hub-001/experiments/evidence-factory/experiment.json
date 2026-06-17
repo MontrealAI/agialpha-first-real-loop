@@ -1,0 +1,136 @@
+{
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+  "claim_boundary_visible": true,
+  "experiment_name": "EVIDENCE FACTORY",
+  "experiment_slug": "evidence-factory",
+  "family": "Evidence Infrastructure",
+  "has_evidence_docket": true,
+  "has_public_page": true,
+  "latest_status": "discovered",
+  "metrics": {},
+  "page_path": "experiments/evidence-factory/index.html",
+  "sources": [
+    {
+      "direct_pages_deploy": false,
+      "name": "AGI ALPHA Evidence Factory / Autonomous",
+      "path": ".github/workflows/evidence-factory-autonomous.yml",
+      "type": "workflow"
+    },
+    {
+      "metrics_tables": 1,
+      "path": "docs/evidence-factory/index.html",
+      "placeholder_like": false,
+      "type": "page"
+    },
+    {
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/evidence-docket/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/evidence-docket",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-001/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-001",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-002/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-002",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-003/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-003",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-004/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-004",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-005/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-005",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-006/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-006",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-007/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-007",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-008/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-008",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-009/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-009",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-010/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-010",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "docs/evidence-factory/runs/25189773749/evidence-docket/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/evidence-docket",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-001/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-001",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-002/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-002",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-003/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-003",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-004/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-004",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-005/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-005",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-006/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-006",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-007/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-007",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-008/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-008",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-009/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-009",
+      "type": "docket"
+    },
+    {
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-010/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-010",
+      "type": "docket"
+    }
+  ]
+}

@@ -1,0 +1,3128 @@
+{
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+  "dockets": [
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "04085bbe2df12971",
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/evidence-docket/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/evidence-docket",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "bf6c254e58c4e2b4",
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-001/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-001",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "450f8a3b5a477214",
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-002/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-002",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "e818836fd0fb7946",
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-003/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-003",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "aa0cca6919d49784",
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-004/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-004",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "aa29216dfef9cde1",
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-005/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-005",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "4befbda274e37238",
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-006/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-006",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "4aebc905db821ac8",
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-007/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-007",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "1764e0ffd2296d25",
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-008/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-008",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "0bf267783468dfd3",
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-009/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-009",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "46cd6499c6c1616d",
+      "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-010/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-010",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "25189773749",
+      "hash": "04085bbe2df12971",
+      "manifest_file": "autonomous/evidence_runs/25189773749/runs/completed/25189773749/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/runs/completed/25189773749",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "seed-001",
+      "hash": "bf6c254e58c4e2b4",
+      "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-001/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-001",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "seed-002",
+      "hash": "450f8a3b5a477214",
+      "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-002/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-002",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "seed-003",
+      "hash": "e818836fd0fb7946",
+      "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-003/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-003",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "seed-004",
+      "hash": "aa0cca6919d49784",
+      "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-004/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-004",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "seed-005",
+      "hash": "aa29216dfef9cde1",
+      "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-005/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-005",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "seed-006",
+      "hash": "4befbda274e37238",
+      "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-006/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-006",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "seed-007",
+      "hash": "4aebc905db821ac8",
+      "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-007/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-007",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "seed-008",
+      "hash": "1764e0ffd2296d25",
+      "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-008/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-008",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "seed-009",
+      "hash": "0bf267783468dfd3",
+      "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-009/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-009",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "seed-010",
+      "hash": "46cd6499c6c1616d",
+      "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-010/00_manifest.json",
+      "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-010",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "04085bbe2df12971",
+      "manifest_file": "docs/evidence-factory/runs/25189773749/evidence-docket/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/evidence-docket",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "bf6c254e58c4e2b4",
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-001/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-001",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "450f8a3b5a477214",
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-002/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-002",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "e818836fd0fb7946",
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-003/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-003",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "aa0cca6919d49784",
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-004/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-004",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "aa29216dfef9cde1",
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-005/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-005",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "4befbda274e37238",
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-006/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-006",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "4aebc905db821ac8",
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-007/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-007",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "1764e0ffd2296d25",
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-008/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-008",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "0bf267783468dfd3",
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-009/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-009",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-factory",
+      "hash": "46cd6499c6c1616d",
+      "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-010/00_manifest.json",
+      "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-010",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "evidence-docket",
+      "hash": "4a9d122e793e9322",
+      "manifest_file": "evidence-docket/00_manifest.json",
+      "path": "evidence-docket",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "coldchain-energy-loop-001",
+      "hash": "87f96c936ef0d3e0",
+      "manifest_file": "sample_outputs/coldchain-energy-loop-001/00_manifest.json",
+      "path": "sample_outputs/coldchain-energy-loop-001",
+      "source": "00_manifest.json"
+    },
+    {
+      "claim_boundary_present": false,
+      "experiment_slug": "rsi-forge-002",
+      "hash": "d45c54334d5417d2",
+      "manifest_file": "sample_outputs/rsi-forge-002/00_manifest.json",
+      "path": "sample_outputs/rsi-forge-002",
+      "source": "00_manifest.json"
+    }
+  ],
+  "experiment_count": 42,
+  "experiments": [
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "BENCHMARK GAUNTLET 001",
+      "experiment_slug": "benchmark-gauntlet-001",
+      "family": "Benchmark Gauntlet",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/benchmark-gauntlet-001/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Benchmark Gauntlet 001 / Autonomous",
+          "path": ".github/workflows/benchmark-gauntlet-001-autonomous.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Benchmark Gauntlet 001 / External Challenge Pack",
+          "path": ".github/workflows/benchmark-gauntlet-001-challenge-pack.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Benchmark Gauntlet 001 / External Replay L4",
+          "path": ".github/workflows/benchmark-gauntlet-001-external-replay.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Benchmark Gauntlet 001 / Falsification Audit",
+          "path": ".github/workflows/benchmark-gauntlet-001-falsification-audit.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Benchmark Gauntlet 001 / Safe PR Proposal",
+          "path": ".github/workflows/benchmark-gauntlet-001-safe-pr.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Benchmark Gauntlet 001 / L6 Scaling Proxy",
+          "path": ".github/workflows/benchmark-gauntlet-001-scaling.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "CYBER SOVEREIGN 001",
+      "experiment_slug": "cyber-sovereign-001",
+      "family": "Cyber Sovereign",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/cyber-sovereign-001/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Cybersecurity Sovereign 001 / Autonomous",
+          "path": ".github/workflows/cyber-sovereign-001-autonomous.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Cybersecurity Sovereign 001 Delayed Outcome Sentinel",
+          "path": ".github/workflows/cyber-sovereign-001-delayed-outcome.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Cybersecurity Sovereign 001 External Replay / L4",
+          "path": ".github/workflows/cyber-sovereign-001-external-replay.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Cybersecurity Sovereign 001 Falsification Audit",
+          "path": ".github/workflows/cyber-sovereign-001-falsification-audit.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Cybersecurity Sovereign 001 Scaling / L6 Proxy",
+          "path": ".github/workflows/cyber-sovereign-001-scaling.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "CYBER SOVEREIGN 002",
+      "experiment_slug": "cyber-sovereign-002",
+      "family": "Cyber Sovereign",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/cyber-sovereign-002/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Cybersecurity Sovereign 002 / Autonomous",
+          "path": ".github/workflows/cyber-sovereign-002-autonomous.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Cybersecurity Sovereign 002 Delayed Outcome Sentinel",
+          "path": ".github/workflows/cyber-sovereign-002-delayed-outcome.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Cybersecurity Sovereign 002 External Replay / L4",
+          "path": ".github/workflows/cyber-sovereign-002-external-replay.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Cybersecurity Sovereign 002 Falsification Audit",
+          "path": ".github/workflows/cyber-sovereign-002-falsification-audit.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Cybersecurity Sovereign 002 Safe PR Proposal",
+          "path": ".github/workflows/cyber-sovereign-002-safe-pr-proposal.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Cybersecurity Sovereign 002 Scaling / L6 Proxy",
+          "path": ".github/workflows/cyber-sovereign-002-scaling.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "EDGE SEED RUNNER",
+      "experiment_slug": "edge-seed-runner",
+      "family": "Evidence Infrastructure",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/edge-seed-runner/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Edge Seed Runner / Autonomous",
+          "path": ".github/workflows/seed-runner-autonomous.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "claim_boundary_visible": true,
+      "experiment_name": "EVIDENCE FACTORY",
+      "experiment_slug": "evidence-factory",
+      "family": "Evidence Infrastructure",
+      "has_evidence_docket": true,
+      "has_public_page": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/evidence-factory/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Evidence Factory / Autonomous",
+          "path": ".github/workflows/evidence-factory-autonomous.yml",
+          "type": "workflow"
+        },
+        {
+          "metrics_tables": 1,
+          "path": "docs/evidence-factory/index.html",
+          "placeholder_like": false,
+          "type": "page"
+        },
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/evidence-docket/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/evidence-docket",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-001/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-001",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-002/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-002",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-003/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-003",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-004/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-004",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-005/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-005",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-006/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-006",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-007/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-007",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-008/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-008",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-009/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-009",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-010/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/docs/evidence-factory/runs/25189773749/seed-matrix/seed-010",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "docs/evidence-factory/runs/25189773749/evidence-docket/00_manifest.json",
+          "path": "docs/evidence-factory/runs/25189773749/evidence-docket",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-001/00_manifest.json",
+          "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-001",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-002/00_manifest.json",
+          "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-002",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-003/00_manifest.json",
+          "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-003",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-004/00_manifest.json",
+          "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-004",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-005/00_manifest.json",
+          "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-005",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-006/00_manifest.json",
+          "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-006",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-007/00_manifest.json",
+          "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-007",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-008/00_manifest.json",
+          "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-008",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-009/00_manifest.json",
+          "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-009",
+          "type": "docket"
+        },
+        {
+          "manifest_file": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-010/00_manifest.json",
+          "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-010",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "FALSIFICATION AUDIT",
+      "experiment_slug": "falsification-audit",
+      "family": "Evidence Infrastructure",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/falsification-audit/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA ASCENSION-001 / Falsification Audit",
+          "path": ".github/workflows/ascension-001-falsification-audit.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Falsification Audit / Autonomous",
+          "path": ".github/workflows/falsification-audit-autonomous.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA OMEGA-AEGIS-001 / Falsification Audit",
+          "path": ".github/workflows/omega-aegis-001-falsification-audit.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "RSI Forge 001 Falsification Audit",
+          "path": ".github/workflows/rsi-forge-001-falsification-audit.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA RSI-FORGE-002 / Falsification Audit",
+          "path": ".github/workflows/rsi-forge-002-falsification-audit.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "FIRST RSI LOOP",
+      "experiment_slug": "first-rsi-loop",
+      "family": "Evidence Infrastructure",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/first-rsi-loop/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "Replay First Real Loop",
+          "path": ".github/workflows/replay.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "INDEPENDENT REPLAY",
+      "experiment_slug": "independent-replay",
+      "family": "Evidence Infrastructure",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/independent-replay/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA ASCENSION-001 / Independent Replay",
+          "path": ".github/workflows/ascension-001-independent-replay.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Independent Replay / Autonomous",
+          "path": ".github/workflows/independent-replay-autonomous.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "RSI Forge 001 Independent Replay",
+          "path": ".github/workflows/rsi-forge-001-independent-replay.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA RSI-FORGE-002 / Independent Replay",
+          "path": ".github/workflows/rsi-forge-002-independent-replay.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "HELIOS 001",
+      "experiment_slug": "helios-001",
+      "family": "HELIOS",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/helios-001/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-001 / Autonomous",
+          "path": ".github/workflows/helios-001-autonomous.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-001 Falsification Audit / Autonomous",
+          "path": ".github/workflows/helios-001-falsification-audit.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-001 Independent Replay / Autonomous",
+          "path": ".github/workflows/helios-001-independent-replay.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-001 vNext Transfer / Autonomous",
+          "path": ".github/workflows/helios-001-vnext-transfer.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "HELIOS 002",
+      "experiment_slug": "helios-002",
+      "family": "HELIOS",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/helios-002/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-002 / Autonomous",
+          "path": ".github/workflows/helios-002-autonomous.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-002 Benchmark Adapters / Autonomous",
+          "path": ".github/workflows/helios-002-benchmark-adapters.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-002 External Replay / Autonomous",
+          "path": ".github/workflows/helios-002-external-replay.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-002 Falsification Audit / Autonomous",
+          "path": ".github/workflows/helios-002-falsification-audit.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-002 Scaling / Autonomous",
+          "path": ".github/workflows/helios-002-scaling.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "HELIOS 003",
+      "experiment_slug": "helios-003",
+      "family": "HELIOS",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/helios-003/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-003 / Autonomous",
+          "path": ".github/workflows/helios-003-autonomous.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-003 Public Benchmark Adapters",
+          "path": ".github/workflows/helios-003-benchmark-adapters.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-003 Delayed Outcome Sentinel",
+          "path": ".github/workflows/helios-003-delayed-outcome.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-003 External Replay / L4+",
+          "path": ".github/workflows/helios-003-external-replay.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-003 Falsification Audit",
+          "path": ".github/workflows/helios-003-falsification-audit.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-003 Scaling / L6 Proxy",
+          "path": ".github/workflows/helios-003-scaling.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "HELIOS 004",
+      "experiment_slug": "helios-004",
+      "family": "HELIOS",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/helios-004/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA HELIOS-004 Completion / Autonomous",
+          "path": ".github/workflows/helios-004-completion.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "OMEGA AEGIS 001",
+      "experiment_slug": "omega-aegis-001",
+      "family": "Omega Gauntlet",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/omega-aegis-001/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA OMEGA-AEGIS-001 / Autonomous",
+          "path": ".github/workflows/omega-aegis-001-autonomous.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "OMEGA AEGIS 001 EXTERNAL REPLAY",
+      "experiment_slug": "omega-aegis-001-external-replay",
+      "family": "Omega Gauntlet",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/omega-aegis-001-external-replay/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA OMEGA-AEGIS-001 / External Replay",
+          "path": ".github/workflows/omega-aegis-001-external-replay.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "OMEGA AEGIS 001 VNEXT TRANSFER",
+      "experiment_slug": "omega-aegis-001-vnext-transfer",
+      "family": "Omega Gauntlet",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/omega-aegis-001-vnext-transfer/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA OMEGA-AEGIS-001 / vNext Transfer",
+          "path": ".github/workflows/omega-aegis-001-vnext-transfer.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "OMEGA GAUNTLET 001",
+      "experiment_slug": "omega-gauntlet-001",
+      "family": "Omega Gauntlet",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/omega-gauntlet-001/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA OMEGA-GAUNTLET-001 / Autonomous",
+          "path": ".github/workflows/omega-gauntlet-001-autonomous.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA OMEGA-GAUNTLET-001 / External Challenge Pack",
+          "path": ".github/workflows/omega-gauntlet-001-challenge-pack.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA OMEGA-GAUNTLET-001 / External Replay L4",
+          "path": ".github/workflows/omega-gauntlet-001-external-replay.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA OMEGA-GAUNTLET-001 / Falsification Audit",
+          "path": ".github/workflows/omega-gauntlet-001-falsification-audit.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA OMEGA-GAUNTLET-001 / Safe PR Proposal",
+          "path": ".github/workflows/omega-gauntlet-001-safe-pr.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA OMEGA-GAUNTLET-001 / L6 Scaling Proxy",
+          "path": ".github/workflows/omega-gauntlet-001-scaling.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "25189773749",
+      "experiment_slug": "25189773749",
+      "family": "Other / Discovered",
+      "has_evidence_docket": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/25189773749/index.html",
+      "sources": [
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/runs/completed/25189773749/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/runs/completed/25189773749",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "ASCENSION 001",
+      "experiment_slug": "ascension-001",
+      "family": "Other / Discovered",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/ascension-001/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA ASCENSION-001 / Autonomous RSI Compounding",
+          "path": ".github/workflows/ascension-001-autonomous.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "ASCENSION 001 VNEXT",
+      "experiment_slug": "ascension-001-vnext",
+      "family": "Other / Discovered",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/ascension-001-vnext/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA ASCENSION-001 / vNext Transfer",
+          "path": ".github/workflows/ascension-001-vnext.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "COLDCHAIN ENERGY LOOP 001",
+      "experiment_slug": "coldchain-energy-loop-001",
+      "family": "Other / Discovered",
+      "has_evidence_docket": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/coldchain-energy-loop-001/index.html",
+      "sources": [
+        {
+          "manifest_file": "sample_outputs/coldchain-energy-loop-001/00_manifest.json",
+          "path": "sample_outputs/coldchain-energy-loop-001",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "DOCS AUDIT",
+      "experiment_slug": "docs-audit",
+      "family": "Other / Discovered",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/docs-audit/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "docs-audit",
+          "path": ".github/workflows/docs-audit.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "EVIDENCE DOCKET",
+      "experiment_slug": "evidence-docket",
+      "family": "Other / Discovered",
+      "has_evidence_docket": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/evidence-docket/index.html",
+      "sources": [
+        {
+          "manifest_file": "evidence-docket/00_manifest.json",
+          "path": "evidence-docket",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "EVIDENCE HUB PUBLISH",
+      "experiment_slug": "evidence-hub-publish",
+      "family": "Other / Discovered",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/evidence-hub-publish/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": true,
+          "name": "evidence-hub-publish",
+          "path": ".github/workflows/evidence-hub-publish.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "FRONTIER EXTERNAL REVIEW",
+      "experiment_slug": "frontier-external-review",
+      "family": "Other / Discovered",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/frontier-external-review/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Frontier External Review / L4+",
+          "path": ".github/workflows/frontier-external-review.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "FRONTIER USEFULNESS",
+      "experiment_slug": "frontier-usefulness",
+      "family": "Other / Discovered",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/frontier-usefulness/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA Frontier Usefulness / Autonomous",
+          "path": ".github/workflows/frontier-usefulness-autonomous.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "L4 EXTERNAL REVIEWER REPLAY",
+      "experiment_slug": "l4-external-reviewer-replay",
+      "family": "Other / Discovered",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/l4-external-reviewer-replay/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA External Reviewer Replay / L4",
+          "path": ".github/workflows/l4-external-reviewer-replay.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "L4 L7 EVIDENCE AUTOPILOT",
+      "experiment_slug": "l4-l7-evidence-autopilot",
+      "family": "Other / Discovered",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/l4-l7-evidence-autopilot/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA L4-L7 Evidence Autopilot",
+          "path": ".github/workflows/l4-l7-evidence-autopilot.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "RSI FORGE 001",
+      "experiment_slug": "rsi-forge-001",
+      "family": "Other / Discovered",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/rsi-forge-001/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "RSI Forge 001 Autonomous",
+          "path": ".github/workflows/rsi-forge-001-autonomous.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "RSI FORGE 001 SAFE PR",
+      "experiment_slug": "rsi-forge-001-safe-pr",
+      "family": "Other / Discovered",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/rsi-forge-001-safe-pr/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "RSI Forge 001 Safe PR",
+          "path": ".github/workflows/rsi-forge-001-safe-pr.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "RSI FORGE 001 VNEXT TRANSFER",
+      "experiment_slug": "rsi-forge-001-vnext-transfer",
+      "family": "Other / Discovered",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/rsi-forge-001-vnext-transfer/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "RSI Forge 001 VNext Transfer",
+          "path": ".github/workflows/rsi-forge-001-vnext-transfer.yml",
+          "type": "workflow"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "RSI FORGE 002",
+      "experiment_slug": "rsi-forge-002",
+      "family": "Other / Discovered",
+      "has_evidence_docket": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/rsi-forge-002/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA RSI-FORGE-002 / Autonomous",
+          "path": ".github/workflows/rsi-forge-002-autonomous.yml",
+          "type": "workflow"
+        },
+        {
+          "manifest_file": "sample_outputs/rsi-forge-002/00_manifest.json",
+          "path": "sample_outputs/rsi-forge-002",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "SEED 001",
+      "experiment_slug": "seed-001",
+      "family": "Other / Discovered",
+      "has_evidence_docket": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/seed-001/index.html",
+      "sources": [
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-001/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-001",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "SEED 002",
+      "experiment_slug": "seed-002",
+      "family": "Other / Discovered",
+      "has_evidence_docket": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/seed-002/index.html",
+      "sources": [
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-002/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-002",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "SEED 003",
+      "experiment_slug": "seed-003",
+      "family": "Other / Discovered",
+      "has_evidence_docket": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/seed-003/index.html",
+      "sources": [
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-003/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-003",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "SEED 004",
+      "experiment_slug": "seed-004",
+      "family": "Other / Discovered",
+      "has_evidence_docket": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/seed-004/index.html",
+      "sources": [
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-004/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-004",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "SEED 005",
+      "experiment_slug": "seed-005",
+      "family": "Other / Discovered",
+      "has_evidence_docket": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/seed-005/index.html",
+      "sources": [
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-005/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-005",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "SEED 006",
+      "experiment_slug": "seed-006",
+      "family": "Other / Discovered",
+      "has_evidence_docket": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/seed-006/index.html",
+      "sources": [
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-006/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-006",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "SEED 007",
+      "experiment_slug": "seed-007",
+      "family": "Other / Discovered",
+      "has_evidence_docket": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/seed-007/index.html",
+      "sources": [
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-007/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-007",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "SEED 008",
+      "experiment_slug": "seed-008",
+      "family": "Other / Discovered",
+      "has_evidence_docket": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/seed-008/index.html",
+      "sources": [
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-008/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-008",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "SEED 009",
+      "experiment_slug": "seed-009",
+      "family": "Other / Discovered",
+      "has_evidence_docket": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/seed-009/index.html",
+      "sources": [
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-009/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-009",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "SEED 010",
+      "experiment_slug": "seed-010",
+      "family": "Other / Discovered",
+      "has_evidence_docket": true,
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/seed-010/index.html",
+      "sources": [
+        {
+          "manifest_file": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-010/00_manifest.json",
+          "path": "autonomous/evidence_runs/25189773749/runs/seed-matrix/25189773749/seed-010",
+          "type": "docket"
+        }
+      ]
+    },
+    {
+      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+      "experiment_name": "PHOENIX HUB 001",
+      "experiment_slug": "phoenix-hub-001",
+      "family": "Phoenix Hub",
+      "latest_status": "discovered",
+      "metrics": {},
+      "page_path": "experiments/phoenix-hub-001/index.html",
+      "sources": [
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA PHOENIX-HUB-001 / Autonomous",
+          "path": ".github/workflows/phoenix-hub-001-autonomous.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA PHOENIX-HUB-001 / Reviewer Challenge Pack",
+          "path": ".github/workflows/phoenix-hub-001-challenge-pack.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA PHOENIX-HUB-001 / External Replay",
+          "path": ".github/workflows/phoenix-hub-001-external-replay.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA PHOENIX-HUB-001 / Falsification Audit",
+          "path": ".github/workflows/phoenix-hub-001-falsification-audit.yml",
+          "type": "workflow"
+        },
+        {
+          "direct_pages_deploy": false,
+          "name": "AGI ALPHA PHOENIX-HUB-001 / Safe PR Proposal",
+          "path": ".github/workflows/phoenix-hub-001-safe-pr.yml",
+          "type": "workflow"
+        }
+      ]
+    }
+  ],
+  "generated_at": "2026-05-01T14:43:25Z",
+  "pages": [
+    {
+      "bytes": 5272,
+      "claim_boundary_present": true,
+      "hash": "136653189fb508a1",
+      "metrics_tables": 1,
+      "path": "docs/evidence-factory/index.html",
+      "placeholder_like": false,
+      "root": "docs",
+      "slug": "evidence-factory",
+      "title": "AGI ALPHA Evidence Factory Scoreboard"
+    }
+  ],
+  "run_count": 42,
+  "schema_version": "agialpha.evidence_registry.v1",
+  "workflows": [
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Generate",
+        "Run",
+        "Set",
+        "Upload",
+        "ascension-001-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "ascension-001",
+      "family": "Other / Discovered",
+      "file_name": "ascension-001-autonomous.yml",
+      "hash": "9ee78eedfe5a0a25",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/ascension-001-autonomous.yml",
+      "workflow_name": "AGI ALPHA ASCENSION-001 / Autonomous RSI Compounding"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "ASCENSION-001",
+        "Checkout",
+        "Generate",
+        "Set",
+        "Upload",
+        "ascension-001-falsification-audit-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "falsification-audit",
+      "family": "Evidence Infrastructure",
+      "file_name": "ascension-001-falsification-audit.yml",
+      "hash": "ef3bc2a3779c2a6d",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/ascension-001-falsification-audit.yml",
+      "workflow_name": "AGI ALPHA ASCENSION-001 / Falsification Audit"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Independent",
+        "Prepare",
+        "Replay",
+        "Set",
+        "Try",
+        "Upload",
+        "ascension-001-${{",
+        "ascension-001-independent-replay-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "independent-replay",
+      "family": "Evidence Infrastructure",
+      "file_name": "ascension-001-independent-replay.yml",
+      "hash": "3d8468aebebc890e",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/ascension-001-independent-replay.yml",
+      "workflow_name": "AGI ALPHA ASCENSION-001 / Independent Replay"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "ASCENSION-001",
+        "Checkout",
+        "Run",
+        "Set",
+        "Upload",
+        "ascension-001-vnext-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "ascension-001-vnext",
+      "family": "Other / Discovered",
+      "file_name": "ascension-001-vnext.yml",
+      "hash": "e68b112fe3f773c5",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "repository",
+        "transfer"
+      ],
+      "workflow_file": ".github/workflows/ascension-001-vnext.yml",
+      "workflow_name": "AGI ALPHA ASCENSION-001 / vNext Transfer"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Deploy",
+        "Generate",
+        "Publish",
+        "Run",
+        "Set",
+        "Upload",
+        "benchmark-gauntlet-001-${{",
+        "github-pages"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "benchmark-gauntlet-001",
+      "family": "Benchmark Gauntlet",
+      "file_name": "benchmark-gauntlet-001-autonomous.yml",
+      "hash": "c2eee6f22ea8219b",
+      "output_path_hints": [
+        "$OUT",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/benchmark-gauntlet-001-autonomous.yml",
+      "workflow_name": "AGI ALPHA Benchmark Gauntlet 001 / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Run",
+        "Set",
+        "Upload",
+        "benchmark-gauntlet-001-challenge-pack-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "benchmark-gauntlet-001",
+      "family": "Benchmark Gauntlet",
+      "file_name": "benchmark-gauntlet-001-challenge-pack.yml",
+      "hash": "e1a10dc4e76d73ea",
+      "output_path_hints": [
+        "$OUT",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/benchmark-gauntlet-001-challenge-pack.yml",
+      "workflow_name": "AGI ALPHA Benchmark Gauntlet 001 / External Challenge Pack"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Clean-checkout",
+        "External",
+        "Set",
+        "Upload",
+        "benchmark-gauntlet-001-external-replay-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "benchmark-gauntlet-001",
+      "family": "Benchmark Gauntlet",
+      "file_name": "benchmark-gauntlet-001-external-replay.yml",
+      "hash": "536a966e62b2725e",
+      "output_path_hints": [
+        "$OUT",
+        "replay",
+        "repository",
+        "shell"
+      ],
+      "workflow_file": ".github/workflows/benchmark-gauntlet-001-external-replay.yml",
+      "workflow_name": "AGI ALPHA Benchmark Gauntlet 001 / External Replay L4"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Falsification",
+        "Run",
+        "Set",
+        "Upload",
+        "benchmark-gauntlet-001-falsification-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "benchmark-gauntlet-001",
+      "family": "Benchmark Gauntlet",
+      "file_name": "benchmark-gauntlet-001-falsification-audit.yml",
+      "hash": "ca9244a542d439c4",
+      "output_path_hints": [
+        "$OUT",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/benchmark-gauntlet-001-falsification-audit.yml",
+      "workflow_name": "AGI ALPHA Benchmark Gauntlet 001 / Falsification Audit"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Create",
+        "Open",
+        "Set",
+        "description"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "benchmark-gauntlet-001",
+      "family": "Benchmark Gauntlet",
+      "file_name": "benchmark-gauntlet-001-safe-pr.yml",
+      "hash": "346af4d1b5393334",
+      "output_path_hints": [
+        "-b",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/benchmark-gauntlet-001-safe-pr.yml",
+      "workflow_name": "AGI ALPHA Benchmark Gauntlet 001 / Safe PR Proposal"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "CI",
+        "Run",
+        "benchmark-gauntlet-001-scaling-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "benchmark-gauntlet-001",
+      "family": "Benchmark Gauntlet",
+      "file_name": "benchmark-gauntlet-001-scaling.yml",
+      "hash": "f22a6475e2016c10",
+      "output_path_hints": [
+        "$OUT"
+      ],
+      "workflow_file": ".github/workflows/benchmark-gauntlet-001-scaling.yml",
+      "workflow_name": "AGI ALPHA Benchmark Gauntlet 001 / L6 Scaling Proxy"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Deploy",
+        "Generate",
+        "Prepare",
+        "Publish",
+        "Resolve",
+        "Run",
+        "Upload",
+        "cyber-sovereign-001-${{",
+        "github-pages"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "cyber-sovereign-001",
+      "family": "Cyber Sovereign",
+      "file_name": "cyber-sovereign-001-autonomous.yml",
+      "hash": "3fed2ed5aa396c2b",
+      "output_path_hints": [
+        "$OUT",
+        "${{",
+        "pages-branch-disabled",
+        "}}"
+      ],
+      "workflow_file": ".github/workflows/cyber-sovereign-001-autonomous.yml",
+      "workflow_name": "AGI ALPHA Cybersecurity Sovereign 001 / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Generate",
+        "Upload",
+        "cyber-sovereign-delayed-outcome-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "cyber-sovereign-001",
+      "family": "Cyber Sovereign",
+      "file_name": "cyber-sovereign-001-delayed-outcome.yml",
+      "hash": "0d55f7428d9c973e",
+      "output_path_hints": [
+        "runs/cyber-sovereign-delayed/${{"
+      ],
+      "workflow_file": ".github/workflows/cyber-sovereign-001-delayed-outcome.yml",
+      "workflow_name": "AGI ALPHA Cybersecurity Sovereign 001 Delayed Outcome Sentinel"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Clean",
+        "Resolve",
+        "Run",
+        "Try",
+        "Upload",
+        "cyber-sovereign-external-replay-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "cyber-sovereign-001",
+      "family": "Cyber Sovereign",
+      "file_name": "cyber-sovereign-001-external-replay.yml",
+      "hash": "cdaf46bbd248d00d",
+      "output_path_hints": [
+        "$OUT"
+      ],
+      "workflow_file": ".github/workflows/cyber-sovereign-001-external-replay.yml",
+      "workflow_name": "AGI ALPHA Cybersecurity Sovereign 001 External Replay / L4"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Audit",
+        "Resolve",
+        "Run",
+        "Upload",
+        "cyber-sovereign-falsification-audit-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "cyber-sovereign-001",
+      "family": "Cyber Sovereign",
+      "file_name": "cyber-sovereign-001-falsification-audit.yml",
+      "hash": "c72e94e4d4a91053",
+      "output_path_hints": [
+        "$OUT"
+      ],
+      "workflow_file": ".github/workflows/cyber-sovereign-001-falsification-audit.yml",
+      "workflow_name": "AGI ALPHA Cybersecurity Sovereign 001 Falsification Audit"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Generate",
+        "Upload",
+        "cyber-sovereign-scaling-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "cyber-sovereign-001",
+      "family": "Cyber Sovereign",
+      "file_name": "cyber-sovereign-001-scaling.yml",
+      "hash": "02e812d4fcf47220",
+      "output_path_hints": [
+        "runs/cyber-sovereign-scaling/${{"
+      ],
+      "workflow_file": ".github/workflows/cyber-sovereign-001-scaling.yml",
+      "workflow_name": "AGI ALPHA Cybersecurity Sovereign 001 Scaling / L6 Proxy"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Build",
+        "Checkout",
+        "Deploy",
+        "Generate",
+        "Prepare",
+        "Publish",
+        "Resolve",
+        "Run",
+        "Set",
+        "Upload",
+        "cyber-sovereign-002-${{",
+        "github-pages"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "cyber-sovereign-002",
+      "family": "Cyber Sovereign",
+      "file_name": "cyber-sovereign-002-autonomous.yml",
+      "hash": "aff66d477a14953f",
+      "output_path_hints": [
+        "$DEFAULT_OUTPUT_DIR",
+        "$DOCKET_DIR",
+        "$SITE_DIR",
+        "${{",
+        "pages-branch-disabled",
+        "repository",
+        "}}"
+      ],
+      "workflow_file": ".github/workflows/cyber-sovereign-002-autonomous.yml",
+      "workflow_name": "AGI ALPHA Cybersecurity Sovereign 002 / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Generate",
+        "Run",
+        "Set",
+        "Upload",
+        "cyber-sovereign-002-delayed-outcome-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "cyber-sovereign-002",
+      "family": "Cyber Sovereign",
+      "file_name": "cyber-sovereign-002-delayed-outcome.yml",
+      "hash": "19c5fc593f914049",
+      "output_path_hints": [
+        "$DELAYED_DIR",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/cyber-sovereign-002-delayed-outcome.yml",
+      "workflow_name": "AGI ALPHA Cybersecurity Sovereign 002 Delayed Outcome Sentinel"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Clean",
+        "Generate",
+        "Replay",
+        "Set",
+        "Upload",
+        "cyber-sovereign-002-external-replay-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "cyber-sovereign-002",
+      "family": "Cyber Sovereign",
+      "file_name": "cyber-sovereign-002-external-replay.yml",
+      "hash": "c3ee40d8dfc000b7",
+      "output_path_hints": [
+        "$DEFAULT_DOCKET_DIR",
+        "$DOCKET_DIR",
+        "$REPLAY_DIR",
+        "${{",
+        "repository",
+        "runs/cyber-sovereign-002-external/${{"
+      ],
+      "workflow_file": ".github/workflows/cyber-sovereign-002-external-replay.yml",
+      "workflow_name": "AGI ALPHA Cybersecurity Sovereign 002 External Replay / L4"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Audit",
+        "Checkout",
+        "Generate",
+        "Run",
+        "Set",
+        "Upload",
+        "cyber-sovereign-002-falsification-audit-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "cyber-sovereign-002",
+      "family": "Cyber Sovereign",
+      "file_name": "cyber-sovereign-002-falsification-audit.yml",
+      "hash": "7c03cf20d98198cf",
+      "output_path_hints": [
+        "$AUDIT_DIR",
+        "$DEFAULT_DOCKET_DIR",
+        "$DOCKET_DIR",
+        "${{",
+        "repository",
+        "runs/cyber-sovereign-002-audit/${{"
+      ],
+      "workflow_file": ".github/workflows/cyber-sovereign-002-falsification-audit.yml",
+      "workflow_name": "AGI ALPHA Cybersecurity Sovereign 002 Falsification Audit"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Create",
+        "Generate",
+        "Set",
+        "Upload",
+        "cyber-sovereign-002-safe-pr-proposal-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "cyber-sovereign-002",
+      "family": "Cyber Sovereign",
+      "file_name": "cyber-sovereign-002-safe-pr-proposal.yml",
+      "hash": "27e14604e832b295",
+      "output_path_hints": [
+        "$DEFAULT_DOCKET_DIR",
+        "$DOCKET_DIR",
+        "$PR_DIR",
+        "${{",
+        "-b",
+        "repository",
+        "runs/cyber-sovereign-002-pr/${{"
+      ],
+      "workflow_file": ".github/workflows/cyber-sovereign-002-safe-pr-proposal.yml",
+      "workflow_name": "AGI ALPHA Cybersecurity Sovereign 002 Safe PR Proposal"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Generate",
+        "Run",
+        "Set",
+        "Upload",
+        "cyber-sovereign-002-scaling-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "cyber-sovereign-002",
+      "family": "Cyber Sovereign",
+      "file_name": "cyber-sovereign-002-scaling.yml",
+      "hash": "63585553d3957226",
+      "output_path_hints": [
+        "$SCALING_DIR",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/cyber-sovereign-002-scaling.yml",
+      "workflow_name": "AGI ALPHA Cybersecurity Sovereign 002 Scaling / L6 Proxy"
+    },
+    {
+      "artifact_name_hints": [
+        "docs-audit"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "docs-audit",
+      "family": "Other / Discovered",
+      "file_name": "docs-audit.yml",
+      "hash": "9e5f9abb7651c17b",
+      "output_path_hints": [
+        "docs/_generated/inventory.json"
+      ],
+      "workflow_file": ".github/workflows/docs-audit.yml",
+      "workflow_name": "docs-audit"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Autonomous",
+        "Build",
+        "Checkout",
+        "Complete",
+        "Create",
+        "Deploy",
+        "Download",
+        "Extract",
+        "Generate",
+        "Internal",
+        "Lint",
+        "Open",
+        "Prepare",
+        "Publish",
+        "Resolve",
+        "Run",
+        "Set",
+        "Upload",
+        "evidence-docket-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "evidence-factory",
+      "family": "Evidence Infrastructure",
+      "file_name": "evidence-factory-autonomous.yml",
+      "hash": "617d3fe272a856d1",
+      "output_path_hints": [
+        "$COMPLETED_DOCKET",
+        "$DEFAULT_COMPLETED_DIR",
+        "$DEFAULT_DOCKET_DIR",
+        "$DOCKET_DIR",
+        "$DOCS_DIR",
+        "${DOCKET_DIR}",
+        "${{",
+        "-b",
+        "autonomous/next_seed_proposals",
+        "docs/evidence-factory",
+        "independent",
+        "is",
+        "repository",
+        "runs/docket_lint_${{",
+        "runs/evidence/${{",
+        "runs/scaling/${{",
+        "runs/seed-matrix/${{",
+        "}}",
+        "}}/"
+      ],
+      "workflow_file": ".github/workflows/evidence-factory-autonomous.yml",
+      "workflow_name": "AGI ALPHA Evidence Factory / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "Architecture",
+        "Backfill",
+        "Build",
+        "Deploy",
+        "Discover",
+        "Ensure",
+        "Linkcheck",
+        "PR",
+        "Upload",
+        "Validate",
+        "evidence-hub-publish",
+        "evidence-hub-site-preview",
+        "github-pages"
+      ],
+      "direct_pages_deploy": true,
+      "experiment_slug": "evidence-hub-publish",
+      "family": "Other / Discovered",
+      "file_name": "evidence-hub-publish.yml",
+      "hash": "c2624f02bad9759b",
+      "output_path_hints": [
+        "_site",
+        "evidence_registry/discovered.json"
+      ],
+      "workflow_file": ".github/workflows/evidence-hub-publish.yml",
+      "workflow_name": "evidence-hub-publish"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Deploy",
+        "Download",
+        "Publish",
+        "Resolve",
+        "Run",
+        "Set",
+        "Upload",
+        "falsification-audit-report",
+        "github-pages"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "falsification-audit",
+      "family": "Evidence Infrastructure",
+      "file_name": "falsification-audit-autonomous.yml",
+      "hash": "f9fe97aea469b140",
+      "output_path_hints": [
+        "$AUDIT_OUT",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/falsification-audit-autonomous.yml",
+      "workflow_name": "AGI ALPHA Falsification Audit / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Clean",
+        "Replay",
+        "Resolve",
+        "Set",
+        "Upload",
+        "frontier-external-review-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "frontier-external-review",
+      "family": "Other / Discovered",
+      "file_name": "frontier-external-review.yml",
+      "hash": "e258e6306107f23c",
+      "output_path_hints": [
+        "external-review/frontier-usefulness-${{",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/frontier-external-review.yml",
+      "workflow_name": "AGI ALPHA Frontier External Review / L4+"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Deploy",
+        "Generate",
+        "Prepare",
+        "Publish",
+        "Replay",
+        "Resolve",
+        "Run",
+        "Set",
+        "Upload",
+        "frontier-usefulness-${{",
+        "github-pages"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "frontier-usefulness",
+      "family": "Other / Discovered",
+      "file_name": "frontier-usefulness-autonomous.yml",
+      "hash": "e50837f8b24406d3",
+      "output_path_hints": [
+        "$OUTPUT_DIR",
+        "repository",
+        "runs/frontier-usefulness-replay/${{"
+      ],
+      "workflow_file": ".github/workflows/frontier-usefulness-autonomous.yml",
+      "workflow_name": "AGI ALPHA Frontier Usefulness / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Deploy",
+        "Falsification",
+        "Generate",
+        "Notify",
+        "Prepare",
+        "Replay",
+        "Resolve",
+        "Run",
+        "Set",
+        "Upload",
+        "github-pages",
+        "helios-001-evidence"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-001",
+      "family": "HELIOS",
+      "file_name": "helios-001-autonomous.yml",
+      "hash": "651727128f88e8e2",
+      "output_path_hints": [
+        "$HELIOS_DIR",
+        "docs",
+        "pages-branch-disabled",
+        "repository",
+        "runs/helios-audit/${{",
+        "runs/helios-replay/${{"
+      ],
+      "workflow_file": ".github/workflows/helios-001-autonomous.yml",
+      "workflow_name": "AGI ALPHA HELIOS-001 / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Download",
+        "Falsification",
+        "Resolve",
+        "Run",
+        "Set",
+        "Upload",
+        "helios-001-falsification-audit-report"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-001",
+      "family": "HELIOS",
+      "file_name": "helios-001-falsification-audit.yml",
+      "hash": "ecc4570596f18ef7",
+      "output_path_hints": [
+        "$SOURCE",
+        "repository",
+        "runs/helios-falsification-audit/${{"
+      ],
+      "workflow_file": ".github/workflows/helios-001-falsification-audit.yml",
+      "workflow_name": "AGI ALPHA HELIOS-001 Falsification Audit / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Download",
+        "Independent",
+        "Replay",
+        "Resolve",
+        "Set",
+        "Upload",
+        "helios-001-independent-replay-report"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-001",
+      "family": "HELIOS",
+      "file_name": "helios-001-independent-replay.yml",
+      "hash": "d99028acd44999d3",
+      "output_path_hints": [
+        "repository",
+        "runs/helios-independent-replay/${{"
+      ],
+      "workflow_file": ".github/workflows/helios-001-independent-replay.yml",
+      "workflow_name": "AGI ALPHA HELIOS-001 Independent Replay / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Download",
+        "Resolve",
+        "Run",
+        "Set",
+        "Upload",
+        "helios-001-vnext-transfer",
+        "vNext"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-001",
+      "family": "HELIOS",
+      "file_name": "helios-001-vnext-transfer.yml",
+      "hash": "04e7feab14565a59",
+      "output_path_hints": [
+        "$SOURCE",
+        "repository",
+        "runs/helios-vnext/${{"
+      ],
+      "workflow_file": ".github/workflows/helios-001-vnext-transfer.yml",
+      "workflow_name": "AGI ALPHA HELIOS-001 vNext Transfer / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Deploy",
+        "Generate",
+        "Prepare",
+        "Publish",
+        "Resolve",
+        "Run",
+        "Set",
+        "Upload",
+        "github-pages",
+        "helios-002-evidence-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-002",
+      "family": "HELIOS",
+      "file_name": "helios-002-autonomous.yml",
+      "hash": "b5c5b4ac1e16e52b",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "${DOCS_DIR}",
+        "docs",
+        "pages-branch-disabled",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/helios-002-autonomous.yml",
+      "workflow_name": "AGI ALPHA HELIOS-002 / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Deploy",
+        "Generate",
+        "Resolve",
+        "Set",
+        "Upload",
+        "github-pages",
+        "helios-002-benchmark-adapters-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-002",
+      "family": "HELIOS",
+      "file_name": "helios-002-benchmark-adapters.yml",
+      "hash": "eb42d3a20e042caf",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "${DOCS_DIR}",
+        "docs",
+        "repository",
+        "}}"
+      ],
+      "workflow_file": ".github/workflows/helios-002-benchmark-adapters.yml",
+      "workflow_name": "AGI ALPHA HELIOS-002 Benchmark Adapters / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Clean",
+        "Resolve",
+        "Run",
+        "Set",
+        "Upload",
+        "helios-002-external-replay-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-002",
+      "family": "HELIOS",
+      "file_name": "helios-002-external-replay.yml",
+      "hash": "7fdadf26a58e25b1",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/helios-002-external-replay.yml",
+      "workflow_name": "AGI ALPHA HELIOS-002 External Replay / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Resolve",
+        "Run",
+        "Set",
+        "Upload",
+        "helios-002-falsification-audit-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-002",
+      "family": "HELIOS",
+      "file_name": "helios-002-falsification-audit.yml",
+      "hash": "f88b64ebe82a73d7",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/helios-002-falsification-audit.yml",
+      "workflow_name": "AGI ALPHA HELIOS-002 Falsification Audit / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Deploy",
+        "Generate",
+        "Resolve",
+        "Run",
+        "Set",
+        "Upload",
+        "github-pages",
+        "helios-002-scaling-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-002",
+      "family": "HELIOS",
+      "file_name": "helios-002-scaling.yml",
+      "hash": "56263e15c4866543",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "${DOCS_DIR}",
+        "docs",
+        "repository",
+        "}}"
+      ],
+      "workflow_file": ".github/workflows/helios-002-scaling.yml",
+      "workflow_name": "AGI ALPHA HELIOS-002 Scaling / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Build",
+        "Checkout",
+        "Deploy",
+        "Falsification",
+        "Generate",
+        "Prepare",
+        "Publish",
+        "Replay",
+        "Resolve",
+        "Run",
+        "Set",
+        "Upload",
+        "github-pages",
+        "helios-003-evidence-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-003",
+      "family": "HELIOS",
+      "file_name": "helios-003-autonomous.yml",
+      "hash": "3f28ff0085121db3",
+      "output_path_hints": [
+        "$OUTPUT_DIR",
+        "$OUTPUT_DIR/replay_report.json",
+        "docs",
+        "pages-branch-disabled",
+        "repository",
+        "}}"
+      ],
+      "workflow_file": ".github/workflows/helios-003-autonomous.yml",
+      "workflow_name": "AGI ALPHA HELIOS-003 / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Generate",
+        "Upload",
+        "helios-003-benchmark-adapters-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-003",
+      "family": "HELIOS",
+      "file_name": "helios-003-benchmark-adapters.yml",
+      "hash": "1065eb7dba18bae1",
+      "output_path_hints": [
+        "$OUT"
+      ],
+      "workflow_file": ".github/workflows/helios-003-benchmark-adapters.yml",
+      "workflow_name": "AGI ALPHA HELIOS-003 Public Benchmark Adapters"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Generate",
+        "Run",
+        "Upload",
+        "helios-003-delayed-outcome-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-003",
+      "family": "HELIOS",
+      "file_name": "helios-003-delayed-outcome.yml",
+      "hash": "fa3899ae85f4f46e",
+      "output_path_hints": [
+        "$ROOT",
+        "$ROOT/delayed_outcome_sentinel_report.json"
+      ],
+      "workflow_file": ".github/workflows/helios-003-delayed-outcome.yml",
+      "workflow_name": "AGI ALPHA HELIOS-003 Delayed Outcome Sentinel"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "External-reviewer-style",
+        "Replay",
+        "Resolve",
+        "Set",
+        "Upload",
+        "helios-003-external-replay-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-003",
+      "family": "HELIOS",
+      "file_name": "helios-003-external-replay.yml",
+      "hash": "481a24dedc0bcc3d",
+      "output_path_hints": [
+        "$REPLAY_ROOT/external_replay_report.json",
+        "$ROOT",
+        "repository",
+        "used"
+      ],
+      "workflow_file": ".github/workflows/helios-003-external-replay.yml",
+      "workflow_name": "AGI ALPHA HELIOS-003 External Replay / L4+"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Audit",
+        "Generate",
+        "Upload",
+        "helios-003-falsification-audit-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-003",
+      "family": "HELIOS",
+      "file_name": "helios-003-falsification-audit.yml",
+      "hash": "1089eb125644e4b3",
+      "output_path_hints": [
+        "$ROOT"
+      ],
+      "workflow_file": ".github/workflows/helios-003-falsification-audit.yml",
+      "workflow_name": "AGI ALPHA HELIOS-003 Falsification Audit"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Generate",
+        "Run",
+        "Upload",
+        "helios-003-scaling-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-003",
+      "family": "HELIOS",
+      "file_name": "helios-003-scaling.yml",
+      "hash": "2841cc9d36ea4d9b",
+      "output_path_hints": [
+        "$OUT"
+      ],
+      "workflow_file": ".github/workflows/helios-003-scaling.yml",
+      "workflow_name": "AGI ALPHA HELIOS-003 Scaling / L6 Proxy"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Complete",
+        "Deploy",
+        "Generate",
+        "Prepare",
+        "Publish",
+        "Resolve",
+        "Upload",
+        "github-pages",
+        "helios-004-completion-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "helios-004",
+      "family": "HELIOS",
+      "file_name": "helios-004-completion.yml",
+      "hash": "8580118016fef4af",
+      "output_path_hints": [
+        "$OUT",
+        "pages-branch-disabled"
+      ],
+      "workflow_file": ".github/workflows/helios-004-completion.yml",
+      "workflow_name": "AGI ALPHA HELIOS-004 Completion / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Clean",
+        "Deploy",
+        "Download",
+        "Publish",
+        "Resolve",
+        "Run",
+        "Set",
+        "Upload",
+        "github-pages",
+        "independent-replay-report"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "independent-replay",
+      "family": "Evidence Infrastructure",
+      "file_name": "independent-replay-autonomous.yml",
+      "hash": "3387ea11e4c5ddf1",
+      "output_path_hints": [
+        "$REPLAY_OUT",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/independent-replay-autonomous.yml",
+      "workflow_name": "AGI ALPHA Independent Replay / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "External",
+        "Generate",
+        "Replay",
+        "Set",
+        "Upload",
+        "Write",
+        "description",
+        "external-reviewer-replay-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "l4-external-reviewer-replay",
+      "family": "Other / Discovered",
+      "file_name": "l4-external-reviewer-replay.yml",
+      "hash": "77bb934de452e08c",
+      "output_path_hints": [
+        "$RUN_DIR/portfolio",
+        "$RUN_DIR/replay_report",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/l4-external-reviewer-replay.yml",
+      "workflow_name": "AGI ALPHA External Reviewer Replay / L4"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Deploy",
+        "Generate",
+        "Publish",
+        "Run",
+        "Sanity-check",
+        "Set",
+        "Upload",
+        "github-pages",
+        "l4-l7-evidence-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "l4-l7-evidence-autopilot",
+      "family": "Other / Discovered",
+      "file_name": "l4-l7-evidence-autopilot.yml",
+      "hash": "c08f2b2c47e24aa8",
+      "output_path_hints": [
+        "$RUN_DIR",
+        "$RUN_DIR/falsification_audit",
+        "$RUN_DIR/l4_ci_replay",
+        "docs/l4-l7",
+        "repository",
+        "}}"
+      ],
+      "workflow_file": ".github/workflows/l4-l7-evidence-autopilot.yml",
+      "workflow_name": "AGI ALPHA L4-L7 Evidence Autopilot"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Commit",
+        "Generate",
+        "Run",
+        "Set",
+        "Trigger",
+        "Upload",
+        "omega-aegis-001-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "omega-aegis-001",
+      "family": "Omega Gauntlet",
+      "file_name": "omega-aegis-001-autonomous.yml",
+      "hash": "3933f0d853014b1b",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "$OUT_DIR/falsification_audit.json",
+        "$OUT_DIR/replay_verification.json",
+        "docs/omega-aegis-001",
+        "repository",
+        "}}"
+      ],
+      "workflow_file": ".github/workflows/omega-aegis-001-autonomous.yml",
+      "workflow_name": "AGI ALPHA OMEGA-AEGIS-001 / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Clean-checkout",
+        "Rebuild",
+        "Set",
+        "Upload",
+        "omega-aegis-001-external-replay-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "omega-aegis-001-external-replay",
+      "family": "Omega Gauntlet",
+      "file_name": "omega-aegis-001-external-replay.yml",
+      "hash": "d321f7b04812fffa",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "$OUT_DIR/external_replay_report.json",
+        "replay",
+        "repository",
+        "shell",
+        "used"
+      ],
+      "workflow_file": ".github/workflows/omega-aegis-001-external-replay.yml",
+      "workflow_name": "AGI ALPHA OMEGA-AEGIS-001 / External Replay"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Audit",
+        "Checkout",
+        "Generate",
+        "Set",
+        "Upload",
+        "omega-aegis-001-falsification-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "falsification-audit",
+      "family": "Evidence Infrastructure",
+      "file_name": "omega-aegis-001-falsification-audit.yml",
+      "hash": "a3fc6d5e643ccb79",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "$OUT_DIR/falsification_audit.json",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/omega-aegis-001-falsification-audit.yml",
+      "workflow_name": "AGI ALPHA OMEGA-AEGIS-001 / Falsification Audit"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Run",
+        "Set",
+        "Test",
+        "Upload",
+        "omega-aegis-001-vnext-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "omega-aegis-001-vnext-transfer",
+      "family": "Omega Gauntlet",
+      "file_name": "omega-aegis-001-vnext-transfer.yml",
+      "hash": "736d7999794d9274",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "$OUT_DIR/vnext_audit.json",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/omega-aegis-001-vnext-transfer.yml",
+      "workflow_name": "AGI ALPHA OMEGA-AEGIS-001 / vNext Transfer"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Deploy",
+        "Falsification",
+        "Generate",
+        "Prepare",
+        "Publish",
+        "Replay",
+        "Run",
+        "Scaling",
+        "Set",
+        "Upload",
+        "github-pages",
+        "omega-gauntlet-001-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "omega-gauntlet-001",
+      "family": "Omega Gauntlet",
+      "file_name": "omega-gauntlet-001-autonomous.yml",
+      "hash": "edaf7d06b2b92c2b",
+      "output_path_hints": [
+        "$DOCKET_DIR",
+        "$DOCKET_DIR/falsification_audit_report.json",
+        "$DOCKET_DIR/replay_report.json",
+        "$DOCKET_DIR/scaling_proxy",
+        "repository",
+        "runs/omega-gauntlet-${{",
+        "}}"
+      ],
+      "workflow_file": ".github/workflows/omega-gauntlet-001-autonomous.yml",
+      "workflow_name": "AGI ALPHA OMEGA-GAUNTLET-001 / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Audit",
+        "Replay",
+        "Run",
+        "omega-gauntlet-001-challenge-pack-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "omega-gauntlet-001",
+      "family": "Omega Gauntlet",
+      "file_name": "omega-gauntlet-001-challenge-pack.yml",
+      "hash": "97d5f26b484997bc",
+      "output_path_hints": [
+        "$DOCKET_DIR",
+        "runs/omega-challenge-${{",
+        "}}"
+      ],
+      "workflow_file": ".github/workflows/omega-gauntlet-001-challenge-pack.yml",
+      "workflow_name": "AGI ALPHA OMEGA-GAUNTLET-001 / External Challenge Pack"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Audit",
+        "Checkout",
+        "Clean",
+        "Generate",
+        "Replay",
+        "Set",
+        "Upload",
+        "omega-gauntlet-001-external-replay-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "omega-gauntlet-001",
+      "family": "Omega Gauntlet",
+      "file_name": "omega-gauntlet-001-external-replay.yml",
+      "hash": "324b80db81b3e82d",
+      "output_path_hints": [
+        "$REPLAY_DOCKET",
+        "$REPLAY_DOCKET/external_audit_report.json",
+        "$REPLAY_DOCKET/external_replay_report.json",
+        "external",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/omega-gauntlet-001-external-replay.yml",
+      "workflow_name": "AGI ALPHA OMEGA-GAUNTLET-001 / External Replay L4"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Falsification",
+        "Generate",
+        "Run",
+        "omega-gauntlet-001-falsification-audit-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "omega-gauntlet-001",
+      "family": "Omega Gauntlet",
+      "file_name": "omega-gauntlet-001-falsification-audit.yml",
+      "hash": "841fc0a20e639a37",
+      "output_path_hints": [
+        "$AUDIT_DOCKET",
+        "$AUDIT_DOCKET/falsification_audit_report.json"
+      ],
+      "workflow_file": ".github/workflows/omega-gauntlet-001-falsification-audit.yml",
+      "workflow_name": "AGI ALPHA OMEGA-GAUNTLET-001 / Falsification Audit"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Commit",
+        "Create",
+        "Generate",
+        "Open",
+        "Prepare"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "omega-gauntlet-001",
+      "family": "Omega Gauntlet",
+      "file_name": "omega-gauntlet-001-safe-pr.yml",
+      "hash": "74d53049b046c2ea",
+      "output_path_hints": [
+        "$DOCKET_DIR",
+        "-b",
+        "docs/omega-gauntlet-001",
+        "runs/omega-safe-pr-${{"
+      ],
+      "workflow_file": ".github/workflows/omega-gauntlet-001-safe-pr.yml",
+      "workflow_name": "AGI ALPHA OMEGA-GAUNTLET-001 / Safe PR Proposal"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Generate",
+        "omega-gauntlet-001-scaling-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "omega-gauntlet-001",
+      "family": "Omega Gauntlet",
+      "file_name": "omega-gauntlet-001-scaling.yml",
+      "hash": "05d2efbebe058b55",
+      "output_path_hints": [
+        "runs/omega-scaling-${{"
+      ],
+      "workflow_file": ".github/workflows/omega-gauntlet-001-scaling.yml",
+      "workflow_name": "AGI ALPHA OMEGA-GAUNTLET-001 / L6 Scaling Proxy"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Falsification",
+        "Generate",
+        "Optional",
+        "Replay",
+        "Run",
+        "Set",
+        "Upload",
+        "phoenix-hub-001-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "phoenix-hub-001",
+      "family": "Phoenix Hub",
+      "file_name": "phoenix-hub-001-autonomous.yml",
+      "hash": "5d4ad02db87cfa3f",
+      "output_path_hints": [
+        "$DOCKET_DIR",
+        "$DOCKET_DIR/16_replay_check",
+        "$DOCKET_DIR/17_audit_check",
+        "$SITE_DIR",
+        "-b",
+        "repository",
+        "runs/phoenix-hub-001/${{",
+        "}}"
+      ],
+      "workflow_file": ".github/workflows/phoenix-hub-001-autonomous.yml",
+      "workflow_name": "AGI ALPHA PHOENIX-HUB-001 / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Run",
+        "Set",
+        "Upload",
+        "phoenix-hub-001-challenge-pack-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "phoenix-hub-001",
+      "family": "Phoenix Hub",
+      "file_name": "phoenix-hub-001-challenge-pack.yml",
+      "hash": "8c7da59d051e0e00",
+      "output_path_hints": [
+        "challenge_docket",
+        "challenge_docket/audit",
+        "challenge_site",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/phoenix-hub-001-challenge-pack.yml",
+      "workflow_name": "AGI ALPHA PHOENIX-HUB-001 / Reviewer Challenge Pack"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Download",
+        "Replay",
+        "Set",
+        "Upload",
+        "phoenix-hub-001-external-replay-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "phoenix-hub-001",
+      "family": "Phoenix Hub",
+      "file_name": "phoenix-hub-001-external-replay.yml",
+      "hash": "3a5f5b7c866f36bc",
+      "output_path_hints": [
+        "external_replay_out",
+        "external_replay_out/audit",
+        "repository",
+        "retention-days"
+      ],
+      "workflow_file": ".github/workflows/phoenix-hub-001-external-replay.yml",
+      "workflow_name": "AGI ALPHA PHOENIX-HUB-001 / External Replay"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Audit",
+        "Checkout",
+        "Prepare",
+        "Set",
+        "Upload",
+        "phoenix-hub-001-falsification-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "phoenix-hub-001",
+      "family": "Phoenix Hub",
+      "file_name": "phoenix-hub-001-falsification-audit.yml",
+      "hash": "37927ed667c8b91a",
+      "output_path_hints": [
+        "falsification_audit",
+        "fresh_docket",
+        "fresh_site",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/phoenix-hub-001-falsification-audit.yml",
+      "workflow_name": "AGI ALPHA PHOENIX-HUB-001 / Falsification Audit"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Create",
+        "Generate",
+        "Set"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "phoenix-hub-001",
+      "family": "Phoenix Hub",
+      "file_name": "phoenix-hub-001-safe-pr.yml",
+      "hash": "d8d660a3be3fd4df",
+      "output_path_hints": [
+        "-b",
+        "phoenix_safe_pr_docket",
+        "phoenix_safe_pr_site",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/phoenix-hub-001-safe-pr.yml",
+      "workflow_name": "AGI ALPHA PHOENIX-HUB-001 / Safe PR Proposal"
+    },
+    {
+      "artifact_name_hints": [
+        "Checkout",
+        "Replay",
+        "Run",
+        "Set",
+        "Upload",
+        "evidence-docket-ci-loop"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "first-rsi-loop",
+      "family": "Evidence Infrastructure",
+      "file_name": "replay.yml",
+      "hash": "e8bfe837d6d50694",
+      "output_path_hints": [
+        "runs/ci-loop",
+        "uses"
+      ],
+      "workflow_file": ".github/workflows/replay.yml",
+      "workflow_name": "Replay First Real Loop"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Emit",
+        "Generate",
+        "RSI",
+        "Run",
+        "Set",
+        "Upload",
+        "rsi-forge-001-${{",
+        "rsi-forge-001-manifest"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "rsi-forge-001",
+      "family": "Other / Discovered",
+      "file_name": "rsi-forge-001-autonomous.yml",
+      "hash": "4a329200956c6ddb",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "evidence-run-manifest.json",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/rsi-forge-001-autonomous.yml",
+      "workflow_name": "RSI Forge 001 Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Falsification",
+        "Generate",
+        "RSI",
+        "rsi-forge-001-falsification-audit-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "falsification-audit",
+      "family": "Evidence Infrastructure",
+      "file_name": "rsi-forge-001-falsification-audit.yml",
+      "hash": "1d13c5b609f3f55c",
+      "output_path_hints": [
+        "$OUT_DIR"
+      ],
+      "workflow_file": ".github/workflows/rsi-forge-001-falsification-audit.yml",
+      "workflow_name": "RSI Forge 001 Falsification Audit"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Clean",
+        "RSI",
+        "Regenerate",
+        "rsi-forge-001-independent-replay-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "independent-replay",
+      "family": "Evidence Infrastructure",
+      "file_name": "rsi-forge-001-independent-replay.yml",
+      "hash": "0a68b1535087a562",
+      "output_path_hints": [
+        "$OUT_DIR"
+      ],
+      "workflow_file": ".github/workflows/rsi-forge-001-independent-replay.yml",
+      "workflow_name": "RSI Forge 001 Independent Replay"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Create",
+        "Generate",
+        "Open",
+        "Prepare",
+        "RSI",
+        "rsi-forge-001-safe-pr-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "rsi-forge-001-safe-pr",
+      "family": "Other / Discovered",
+      "file_name": "rsi-forge-001-safe-pr.yml",
+      "hash": "d974b2e2cca5dc3a",
+      "output_path_hints": [
+        "$OUT_DIR",
+        "-b"
+      ],
+      "workflow_file": ".github/workflows/rsi-forge-001-safe-pr.yml",
+      "workflow_name": "RSI Forge 001 Safe PR"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Generate",
+        "RSI",
+        "rsi-forge-001-vnext-transfer-${{",
+        "vNext"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "rsi-forge-001-vnext-transfer",
+      "family": "Other / Discovered",
+      "file_name": "rsi-forge-001-vnext-transfer.yml",
+      "hash": "f2d797ffbaeec7c2",
+      "output_path_hints": [
+        "$OUT_DIR"
+      ],
+      "workflow_file": ".github/workflows/rsi-forge-001-vnext-transfer.yml",
+      "workflow_name": "RSI Forge 001 VNext Transfer"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Dispatch",
+        "Initialize",
+        "Open",
+        "Run",
+        "Set",
+        "Upload",
+        "rsi-forge-002-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "rsi-forge-002",
+      "family": "Other / Discovered",
+      "file_name": "rsi-forge-002-autonomous.yml",
+      "hash": "0ec8b6ae0ffe802b",
+      "output_path_hints": [
+        "$OUT",
+        "-b",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/rsi-forge-002-autonomous.yml",
+      "workflow_name": "AGI ALPHA RSI-FORGE-002 / Autonomous"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Download",
+        "Falsify",
+        "rsi-forge-002-falsification-audit-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "falsification-audit",
+      "family": "Evidence Infrastructure",
+      "file_name": "rsi-forge-002-falsification-audit.yml",
+      "hash": "d492e50aadc1410a",
+      "output_path_hints": [
+        "gh",
+        "{"
+      ],
+      "workflow_file": ".github/workflows/rsi-forge-002-falsification-audit.yml",
+      "workflow_name": "AGI ALPHA RSI-FORGE-002 / Falsification Audit"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Checkout",
+        "Download",
+        "Independent",
+        "Locate",
+        "Set",
+        "Upload",
+        "rsi-forge-002-independent-replay-${{"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "independent-replay",
+      "family": "Evidence Infrastructure",
+      "file_name": "rsi-forge-002-independent-replay.yml",
+      "hash": "7deaf57807f7f7f8",
+      "output_path_hints": [
+        "replay",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/rsi-forge-002-independent-replay.yml",
+      "workflow_name": "AGI ALPHA RSI-FORGE-002 / Independent Replay"
+    },
+    {
+      "artifact_name_hints": [
+        "AGI",
+        "Build",
+        "Checkout",
+        "Complete",
+        "Deploy",
+        "Publish",
+        "Run",
+        "Set",
+        "Upload",
+        "github-pages",
+        "seed-dockets"
+      ],
+      "direct_pages_deploy": false,
+      "experiment_slug": "edge-seed-runner",
+      "family": "Evidence Infrastructure",
+      "file_name": "seed-runner-autonomous.yml",
+      "hash": "e9c6cdae79710cdb",
+      "output_path_hints": [
+        "$SEED_ROOT",
+        "repository"
+      ],
+      "workflow_file": ".github/workflows/seed-runner-autonomous.yml",
+      "workflow_name": "AGI ALPHA Edge Seed Runner / Autonomous"
+    }
+  ]
+}
