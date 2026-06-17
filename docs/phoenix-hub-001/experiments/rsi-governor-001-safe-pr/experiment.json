@@ -1,0 +1,17 @@
+{
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned Evidence Docket experiment testing whether AGI ALPHA can repair and harden its own evidence institution through replayable, baseline-comparative, claim-bounded workflows. Stronger claims require external replay, official public benchmarks, delayed outcomes, human/institutional review, and independent audit.",
+  "experiment_name": "RSI GOVERNOR 001 SAFE PR",
+  "experiment_slug": "rsi-governor-001-safe-pr",
+  "family": "Other / Discovered",
+  "latest_status": "discovered",
+  "metrics": {},
+  "page_path": "experiments/rsi-governor-001-safe-pr/index.html",
+  "sources": [
+    {
+      "direct_pages_deploy": false,
+      "name": "rsi-governor-001-safe-pr",
+      "path": ".github/workflows/rsi-governor-001-safe-pr.yml",
+      "type": "workflow"
+    }
+  ]
+}
