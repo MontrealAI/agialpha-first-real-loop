@@ -1,0 +1,19 @@
+{
+  "blocked_actions": [],
+  "claim_boundary": "This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+  "claim_boundary_present": true,
+  "critical_violations": 0,
+  "generated_at_epoch": 1777964691,
+  "notes": [
+    "Evidence Factory v0.3 treats this as a bounded CI evidence scaffold unless independently reviewed.",
+    "No equipment control, deployment, sensitive action, or production authority is exercised by this scaffold."
+  ],
+  "red_team_verdicts": [
+    "ALLOW"
+  ],
+  "risk_tiers_seen": [
+    "ALLOW"
+  ],
+  "schema": "agialpha.safety_ledger.v1",
+  "unsafe_promotion_attempts": 0
+}
