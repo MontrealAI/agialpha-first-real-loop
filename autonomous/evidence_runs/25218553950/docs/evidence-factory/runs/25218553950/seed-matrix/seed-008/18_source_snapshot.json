@@ -1,0 +1,13 @@
+{
+  "actor": "MontrealAI",
+  "branch": "main",
+  "claim_boundary": "This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+  "commit": "b58d766cc6116e326b23d57b7860dfad950e0247",
+  "dirty_status": "M evidence_registry/discovered.json\n?? runs/",
+  "generated_at_epoch": 1777646426,
+  "repository": "MontrealAI/agialpha-first-real-loop",
+  "run_attempt": "1",
+  "run_id": "25218553950",
+  "schema": "agialpha.source_snapshot.v1",
+  "workflow": "AGI ALPHA Evidence Factory / Autonomous"
+}
