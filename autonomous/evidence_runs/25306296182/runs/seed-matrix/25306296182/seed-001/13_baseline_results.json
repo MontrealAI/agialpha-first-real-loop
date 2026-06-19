@@ -1,0 +1,42 @@
+{
+  "advantage_delta_vs_B0": 0.2,
+  "baseline_win_against_B0": true,
+  "baselines": [
+    {
+      "description": "Seed/control without compiler reuse.",
+      "id": "B0_no_compiler_reuse",
+      "score": 0.3,
+      "status": "observed_scaffold"
+    },
+    {
+      "description": "Manual reuse heuristic baseline.",
+      "id": "B1_manual_reuse_heuristic",
+      "score": null,
+      "status": "pending_execution"
+    },
+    {
+      "description": "Single-agent compiler extraction.",
+      "id": "B2_single_agent_compiler_extraction",
+      "score": null,
+      "status": "pending_execution"
+    },
+    {
+      "description": "Deterministic loop without MARK review.",
+      "id": "B3_loop_without_MARK",
+      "score": null,
+      "status": "pending_execution"
+    },
+    {
+      "description": "Full first-loop scaffold with MARK and Evidence Docket.",
+      "id": "B4_full_loop_MARK_Evidence_Docket",
+      "score": 0.5,
+      "status": "observed_scaffold"
+    }
+  ],
+  "claim_boundary": "B0 and B4 may be represented by the current scaffold. B1-B3 must be executed for publication-grade baseline-comparative evidence. This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
+  "full_baseline_suite_executed": false,
+  "generated_at_epoch": 1777879266,
+  "primary_metric": "accepted_useful_interventions / total_cost_units",
+  "reuse_lift_percent_vs_B0": 66.67,
+  "schema": "agialpha.baseline_results.v1"
+}
