@@ -1,0 +1,32 @@
+{
+  "baselines": [
+    "B0_null",
+    "B1_single_agent",
+    "B2_fixed_workflow",
+    "B3_unstructured_swarm",
+    "B4_agialpha_no_rsi",
+    "B5_rsi_no_archive",
+    "B6_rsi_forge_archive_reuse"
+  ],
+  "container_digest": "github-actions-ubuntu-latest-python-stdlib",
+  "dependency_pins": "python-stdlib-only",
+  "proof_bundle_id": "rsi-forge-002-proofbundle",
+  "replay_result": "pass",
+  "seeds": [
+    37
+  ],
+  "state_hashes": [
+    "46a2c53189f3c6945b97af925de3f5e521625028463b149b7bc5d5348ebabd54",
+    "37a137543cd15f9c6d52613cf473d99b88df4fb8bea9f1c869b518944bb91b79",
+    "609fb26f94db2ab634db96d386dbcfa83f60d8cc07d9801238993183c158daf5",
+    "b25078b9ae00e68644c24f504ced225659b62192365d57c88745da3b18b6acda",
+    "09d3fbef0f3aee17636c21b1aa488cd6d3293ce9ce92a01434cab8866775f77c"
+  ],
+  "validator_attestations": [
+    {
+      "timestamp": "2026-06-26T07:34:53Z",
+      "validator": "deterministic-ci-validator",
+      "verdict": "pass"
+    }
+  ]
+}
