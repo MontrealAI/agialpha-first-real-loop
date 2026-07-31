@@ -1,0 +1,32 @@
+{
+  "B6_advantage_delta_vs_B5": 0.1113,
+  "B6_beats_all_count": 6,
+  "accepted_kernel_versions": 5,
+  "candidate_kernels_executed": 90,
+  "candidates_per_cycle": 18,
+  "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
+  "claim_level": "L5-local-RSI-proxy",
+  "cycle_index_final": 5,
+  "cycles_executed": 5,
+  "eci_events": 5,
+  "experiment": "RSI-FORGE-002",
+  "generated_at": "2026-05-02T06:53:14Z",
+  "move37_dossier_count": 5,
+  "promotion_passed": true,
+  "replay_passes": 11,
+  "safety_counters": {
+    "critical_safety_incidents": 0,
+    "exploit_execution_count": 0,
+    "external_target_scan_count": 0,
+    "malware_generation_count": 0,
+    "policy_violations": 0,
+    "raw_secret_leak_count": 0,
+    "safety_incidents": 0,
+    "social_engineering_content_count": 0,
+    "unsafe_automerge_count": 0
+  },
+  "state_hash_continuity": true,
+  "state_payload_hash": "fa4753f2f4ce4760517bfa36d1f89a343160635af8d9b70a26fcbde9d1b7865b",
+  "title": "Self-Amending Evidence Kernel for Governed Recursive Self-Improvement",
+  "vnext_advantage_delta_vs_B5": 0.1419
+}
