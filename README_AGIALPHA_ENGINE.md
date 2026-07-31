@@ -16,6 +16,8 @@ python -m agialpha_engine network-compounding-run \
 python -m agialpha_engine network-compounding-replay --run /tmp/agialpha-skill-network-test
 python -m agialpha_engine network-compounding-falsification-audit --run /tmp/agialpha-skill-network-test
 python -m agialpha_engine network-compounding-validate --run /tmp/agialpha-skill-network-test
+
+Exponential compounding is a strategic target. Current evidence reports local bounded network skill propagation only.
 ```
 
 ## Boundary doctrine
