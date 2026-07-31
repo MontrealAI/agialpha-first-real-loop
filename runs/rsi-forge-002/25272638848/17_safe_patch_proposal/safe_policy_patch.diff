@@ -1,0 +1,349 @@
+--- data/rsi_forge_002/current_kernel.json
++++ data/rsi_forge_002/current_kernel.json
+@@ -1,28 +1,26 @@
+ {
+   "gates": {
+-    "max_risk": 0.3,
++    "max_risk": 0.314,
+     "min_advantage_vs_B5": 0.012,
+     "min_eci_for_promotion": 0.6,
+-    "min_replay": 0.72,
+-    "min_safety": 0.76
++    "min_replay": 0.735,
++    "min_safety": 0.782
+   },
+-  "kernel_id": "EvidenceKernel-v0",
+-  "provenance": {
+-    "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
+-    "created_by": "rsi-forge-002"
+-  },
++  "kernel_id": "EvidenceKernel-c5-k13",
++  "mutation_seed": 183586257,
++  "parent_kernel_id": "EvidenceKernel-c4-k16",
+   "schema_version": "agialpha.rsi_kernel.v1",
+-  "version": 0,
++  "version": 5,
+   "weights": {
+-    "cost": 0.42,
+-    "decomposition": 0.45,
+-    "evidence": 0.54,
+-    "novelty": 0.36,
+-    "replay": 0.54,
+-    "reuse": 0.4,
+-    "safety": 0.58,
+-    "state_memory": 0.38,
+-    "strictness": 0.5,
+-    "validator_redundancy": 0.44
++    "cost": 0.5692,
++    "decomposition": 0.5973,
++    "evidence": 0.7589,
++    "novelty": 0.3637,
++    "replay": 0.8632,
++    "reuse": 0.7129,
++    "safety": 0.9362,
++    "state_memory": 0.6368,
++    "strictness": 0.7049,
++    "validator_redundancy": 0.658
+   }
+ }--- data/rsi_forge_002/latest_state.json
++++ data/rsi_forge_002/latest_state.json
+@@ -1,7 +1,79 @@
+ {
+   "archive": {
+-    "accepted_kernels": [],
+-    "candidates": [],
++    "accepted_kernels": [
++      {
++        "advantage_delta_vs_B5": 0.0511,
++        "cycle_index": 1,
++        "kernel_id": "EvidenceKernel-c1-k07",
++        "parent": "EvidenceKernel-v0",
++        "state_hash_before": "0bcbcb09b085eb434cb9b3677d73409a7413abb495a4f4b9f7f7ec3debe626c1"
++      },
++      {
++        "advantage_delta_vs_B5": 0.0617,
++        "cycle_index": 2,
++        "kernel_id": "EvidenceKernel-c2-k15",
++        "parent": "EvidenceKernel-c1-k07",
++        "state_hash_before": "010cb1b40088fce03de3449c1607e43ec7cb917ab17da9efdb61161827c6a1d3"
++      },
++      {
++        "advantage_delta_vs_B5": 0.0823,
++        "cycle_index": 3,
++        "kernel_id": "EvidenceKernel-c3-k16",
++        "parent": "EvidenceKernel-c2-k15",
++        "state_hash_before": "ea5779976e007591ee7906982544894454ce753ea774cf595d3295fe9016eab8"
++      },
++      {
++        "advantage_delta_vs_B5": 0.1106,
++        "cycle_index": 4,
++        "kernel_id": "EvidenceKernel-c4-k16",
++        "parent": "EvidenceKernel-c3-k16",
++        "state_hash_before": "aa40048ed05ce2abdc1ee92d713b5e5d01c82c272c1c99f5d726c15c5878f588"
++      },
++      {
++        "advantage_delta_vs_B5": 0.1434,
++        "cycle_index": 5,
++        "kernel_id": "EvidenceKernel-c5-k13",
++        "parent": "EvidenceKernel-c4-k16",
++        "state_hash_before": "715c9e15e0ae154bd7a9de7e94b711d029a4fc11730f7ab7a00e4c1788a1b75a"
++      }
++    ],
++    "candidates": [
++      {
++        "D_real": 0.1341,
++        "advantage_delta_vs_B5": 0.0511,
++        "candidate_id": "EvidenceKernel-c1-k07",
++        "cycle_index": 1,
++        "eligible": true
++      },
++      {
++        "D_real": 0.1665,
++        "advantage_delta_vs_B5": 0.0617,
++        "candidate_id": "EvidenceKernel-c2-k15",
++        "cycle_index": 2,
++        "eligible": true
++      },
++      {
++        "D_real": 0.2103,
++        "advantage_delta_vs_B5": 0.0823,
++        "candidate_id": "EvidenceKernel-c3-k16",
++        "cycle_index": 3,
++        "eligible": true
++      },
++      {
++        "D_real": 0.2674,
++        "advantage_delta_vs_B5": 0.1106,
++        "candidate_id": "EvidenceKernel-c4-k16",
++        "cycle_index": 4,
++        "eligible": true
++      },
++      {
++        "D_real": 0.3305,
++        "advantage_delta_vs_B5": 0.1434,
++        "candidate_id": "EvidenceKernel-c5-k13",
++        "cycle_index": 5,
++        "eligible": true
++      }
++    ],
+     "cells": {}
+   },
+   "causal_atlas": {
+@@ -11,40 +83,191 @@
+   "created_at": "2026-05-01T13:57:05Z",
+   "current_kernel": {
+     "gates": {
+-      "max_risk": 0.3,
++      "max_risk": 0.314,
+       "min_advantage_vs_B5": 0.012,
+       "min_eci_for_promotion": 0.6,
+-      "min_replay": 0.72,
+-      "min_safety": 0.76
+-    },
+-    "kernel_id": "EvidenceKernel-v0",
+-    "provenance": {
+-      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
+-      "created_by": "rsi-forge-002"
+-    },
++      "min_replay": 0.735,
++      "min_safety": 0.782
++    },
++    "kernel_id": "EvidenceKernel-c5-k13",
++    "mutation_seed": 183586257,
++    "parent_kernel_id": "EvidenceKernel-c4-k16",
+     "schema_version": "agialpha.rsi_kernel.v1",
+-    "version": 0,
++    "version": 5,
+     "weights": {
+-      "cost": 0.42,
+-      "decomposition": 0.45,
+-      "evidence": 0.54,
+-      "novelty": 0.36,
+-      "replay": 0.54,
+-      "reuse": 0.4,
+-      "safety": 0.58,
+-      "state_memory": 0.38,
+-      "strictness": 0.5,
+-      "validator_redundancy": 0.44
++      "cost": 0.5692,
++      "decomposition": 0.5973,
++      "evidence": 0.7589,
++      "novelty": 0.3637,
++      "replay": 0.8632,
++      "reuse": 0.7129,
++      "safety": 0.9362,
++      "state_memory": 0.6368,
++      "strictness": 0.7049,
++      "validator_redundancy": 0.658
+     }
+   },
+-  "cycle_index": 0,
+-  "eci_ledger": [],
+-  "lineage": [],
+-  "move37_dossiers": [],
++  "cycle_index": 5,
++  "eci_ledger": [
++    {
++      "advantage_delta_vs_B5": 0.0511,
++      "baseline_comparative": true,
++      "candidate_id": "EvidenceKernel-c1-k07",
++      "cycle_index": 1,
++      "eci_level": "E3_REPLAYED",
++      "executed_tasks": 8,
++      "replayed": true,
++      "timestamp": "2026-05-03T07:04:25Z"
++    },
++    {
++      "advantage_delta_vs_B5": 0.0617,
++      "baseline_comparative": true,
++      "candidate_id": "EvidenceKernel-c2-k15",
++      "cycle_index": 2,
++      "eci_level": "E3_REPLAYED",
++      "executed_tasks": 8,
++      "replayed": true,
++      "timestamp": "2026-05-03T07:04:25Z"
++    },
++    {
++      "advantage_delta_vs_B5": 0.0823,
++      "baseline_comparative": true,
++      "candidate_id": "EvidenceKernel-c3-k16",
++      "cycle_index": 3,
++      "eci_level": "E3_REPLAYED",
++      "executed_tasks": 8,
++      "replayed": true,
++      "timestamp": "2026-05-03T07:04:25Z"
++    },
++    {
++      "advantage_delta_vs_B5": 0.1106,
++      "baseline_comparative": true,
++      "candidate_id": "EvidenceKernel-c4-k16",
++      "cycle_index": 4,
++      "eci_level": "E3_REPLAYED",
++      "executed_tasks": 8,
++      "replayed": true,
++      "timestamp": "2026-05-03T07:04:25Z"
++    },
++    {
++      "advantage_delta_vs_B5": 0.1434,
++      "baseline_comparative": true,
++      "candidate_id": "EvidenceKernel-c5-k13",
++      "cycle_index": 5,
++      "eci_level": "E3_REPLAYED",
++      "executed_tasks": 8,
++      "replayed": true,
++      "timestamp": "2026-05-03T07:04:25Z"
++    }
++  ],
++  "lineage": [
++    {
++      "cycle_index": 1,
++      "previous_state_hash": "0bcbcb09b085eb434cb9b3677d73409a7413abb495a4f4b9f7f7ec3debe626c1",
++      "selected_kernel": "EvidenceKernel-c1-k07"
++    },
++    {
++      "cycle_index": 2,
++      "previous_state_hash": "010cb1b40088fce03de3449c1607e43ec7cb917ab17da9efdb61161827c6a1d3",
++      "selected_kernel": "EvidenceKernel-c2-k15"
++    },
++    {
++      "cycle_index": 3,
++      "previous_state_hash": "ea5779976e007591ee7906982544894454ce753ea774cf595d3295fe9016eab8",
++      "selected_kernel": "EvidenceKernel-c3-k16"
++    },
++    {
++      "cycle_index": 4,
++      "previous_state_hash": "aa40048ed05ce2abdc1ee92d713b5e5d01c82c272c1c99f5d726c15c5878f588",
++      "selected_kernel": "EvidenceKernel-c4-k16"
++    },
++    {
++      "cycle_index": 5,
++      "previous_state_hash": "715c9e15e0ae154bd7a9de7e94b711d029a4fc11730f7ab7a00e4c1788a1b75a",
++      "selected_kernel": "EvidenceKernel-c5-k13"
++    }
++  ],
++  "move37_dossiers": [
++    {
++      "advantage_delta_vs_B5": 0.0511,
++      "candidate_id": "EvidenceKernel-c1-k07",
++      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
++      "decision": "accepted for governed kernel promotion",
++      "dossier_id": "move37-cycle-1-EvidenceKernel-c1-k07",
++      "eci_level": "E3_REPLAYED",
++      "novelty_distance": 0.057,
++      "stress_tests": [
++        "alternate seeds",
++        "nearby baseline",
++        "policy shock",
++        "replay determinism"
++      ]
++    },
++    {
++      "advantage_delta_vs_B5": 0.0617,
++      "candidate_id": "EvidenceKernel-c2-k15",
++      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
++      "decision": "accepted for governed kernel promotion",
++      "dossier_id": "move37-cycle-2-EvidenceKernel-c2-k15",
++      "eci_level": "E3_REPLAYED",
++      "novelty_distance": 0.0498,
++      "stress_tests": [
++        "alternate seeds",
++        "nearby baseline",
++        "policy shock",
++        "replay determinism"
++      ]
++    },
++    {
++      "advantage_delta_vs_B5": 0.0823,
++      "candidate_id": "EvidenceKernel-c3-k16",
++      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
++      "decision": "accepted for governed kernel promotion",
++      "dossier_id": "move37-cycle-3-EvidenceKernel-c3-k16",
++      "eci_level": "E3_REPLAYED",
++      "novelty_distance": 0.0594,
++      "stress_tests": [
++        "alternate seeds",
++        "nearby baseline",
++        "policy shock",
++        "replay determinism"
++      ]
++    },
++    {
++      "advantage_delta_vs_B5": 0.1106,
++      "candidate_id": "EvidenceKernel-c4-k16",
++      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
++      "decision": "accepted for governed kernel promotion",
++      "dossier_id": "move37-cycle-4-EvidenceKernel-c4-k16",
++      "eci_level": "E3_REPLAYED",
++      "novelty_distance": 0.0599,
++      "stress_tests": [
++        "alternate seeds",
++        "nearby baseline",
++        "policy shock",
++        "replay determinism"
++      ]
++    },
++    {
++      "advantage_delta_vs_B5": 0.1434,
++      "candidate_id": "EvidenceKernel-c5-k13",
++      "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
++      "decision": "accepted for governed kernel promotion",
++      "dossier_id": "move37-cycle-5-EvidenceKernel-c5-k13",
++      "eci_level": "E3_REPLAYED",
++      "novelty_distance": 0.0539,
++      "stress_tests": [
++        "alternate seeds",
++        "nearby baseline",
++        "policy shock",
++        "replay determinism"
++      ]
++    }
++  ],
+   "proof_bundles": [],
+   "safety_ledger": [],
+   "scaffolds": [],
+   "schema_version": "agialpha.rsi_state.v1",
+-  "state_payload_hash": "0bcbcb09b085eb434cb9b3677d73409a7413abb495a4f4b9f7f7ec3debe626c1",
+-  "updated_at": "2026-05-01T13:57:05Z"
++  "state_payload_hash": "e71214b06efd660c0035895498cca722eee30e2f29038fca851756ef6803ce97",
++  "updated_at": "2026-05-03T07:04:25Z"
+ }
