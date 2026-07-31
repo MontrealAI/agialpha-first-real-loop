@@ -1,0 +1,44 @@
+{
+  "id": "ColdChain-Energy-Seed-001",
+  "type": "alpha_agi_nova_seed",
+  "domain": "cold-chain energy efficiency",
+  "foresight_genome": [
+    "Cold-chain energy efficiency is a high-leverage opportunity because facilities have repeated refrigeration energy sinks.",
+    "Many interventions are low-capex or operational-review interventions.",
+    "Public evidence exists from government, utility, institutional, engineering, manufacturer, and standards sources.",
+    "Recommendations can be reviewed through evidence traces and safety gates.",
+    "Workflows should transfer to adjacent cold-chain facilities."
+  ],
+  "fusion_plan": [
+    "Build a facility model",
+    "Discover credible evidence",
+    "Generate candidate interventions",
+    "Causalize each intervention",
+    "Score and red-team each intervention",
+    "Rank final recommendations",
+    "Produce an Evidence Docket",
+    "Extract reusable capability package"
+  ],
+  "job_graph": [
+    "J1",
+    "J2",
+    "J3",
+    "J4",
+    "J5"
+  ],
+  "risk_envelope": [
+    "no unsupported savings claims",
+    "no food-safety changes without review",
+    "no refrigerant-handling recommendations",
+    "no claims without citations",
+    "no recommendation requiring major shutdown",
+    "advisory only; facility professionals must review before implementation"
+  ],
+  "promotion_criteria": [
+    "at least 5 useful interventions are produced",
+    "each accepted intervention has at least 3 credible evidence traces",
+    "no hallucinated sources",
+    "reviewer accepts at least 3 interventions",
+    "one reusable workflow or rubric is extracted"
+  ]
+}
