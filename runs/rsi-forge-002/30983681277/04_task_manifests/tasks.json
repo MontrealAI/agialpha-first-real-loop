@@ -1,0 +1,101 @@
+[
+  {
+    "difficulty": 0.42,
+    "family": "evidence infrastructure",
+    "id": "evidence-hub-recovery",
+    "needs": [
+      "replay",
+      "evidence",
+      "strictness",
+      "state_memory"
+    ],
+    "reuse": 0.55,
+    "risk": 0.08
+  },
+  {
+    "difficulty": 0.5,
+    "family": "workflow safety",
+    "id": "workflow-guard-hardening",
+    "needs": [
+      "safety",
+      "strictness",
+      "validator_redundancy"
+    ],
+    "reuse": 0.48,
+    "risk": 0.18
+  },
+  {
+    "difficulty": 0.46,
+    "family": "proof settlement",
+    "id": "proofbundle-completeness",
+    "needs": [
+      "evidence",
+      "replay",
+      "validator_redundancy"
+    ],
+    "reuse": 0.5,
+    "risk": 0.12
+  },
+  {
+    "difficulty": 0.63,
+    "family": "RSI governance",
+    "id": "eci-inflation-resistance",
+    "needs": [
+      "evidence",
+      "strictness",
+      "safety"
+    ],
+    "reuse": 0.64,
+    "risk": 0.22
+  },
+  {
+    "difficulty": 0.68,
+    "family": "RSI state integrity",
+    "id": "drift-sentinel-continuity",
+    "needs": [
+      "replay",
+      "state_memory",
+      "strictness"
+    ],
+    "reuse": 0.7,
+    "risk": 0.2
+  },
+  {
+    "difficulty": 0.72,
+    "family": "breakthrough governance",
+    "id": "move37-dossier-packaging",
+    "needs": [
+      "novelty",
+      "evidence",
+      "safety",
+      "validator_redundancy"
+    ],
+    "reuse": 0.76,
+    "risk": 0.28
+  },
+  {
+    "difficulty": 0.57,
+    "family": "comparative evidence",
+    "id": "baseline-ladder-selection",
+    "needs": [
+      "decomposition",
+      "evidence",
+      "cost"
+    ],
+    "reuse": 0.46,
+    "risk": 0.11
+  },
+  {
+    "difficulty": 0.74,
+    "family": "future task generation",
+    "id": "vnext-transfer-seed",
+    "needs": [
+      "reuse",
+      "state_memory",
+      "novelty",
+      "replay"
+    ],
+    "reuse": 0.82,
+    "risk": 0.16
+  }
+]
