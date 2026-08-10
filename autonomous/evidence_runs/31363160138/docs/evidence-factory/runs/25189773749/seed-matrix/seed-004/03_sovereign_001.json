@@ -1,0 +1,14 @@
+{
+  "id": "ColdChain-Energy-Sovereign-001",
+  "type": "mini_alpha_agi_sovereign",
+  "mission": "Produce a validated cold-chain energy efficiency recommendation package.",
+  "budget_equivalent_usd": 500,
+  "risk_class": "advisory_low_risk",
+  "authority_boundary": [
+    "may research and recommend",
+    "may not operate equipment",
+    "may not instruct unsafe changes",
+    "may not claim guaranteed savings",
+    "requires human reviewer acceptance"
+  ]
+}
