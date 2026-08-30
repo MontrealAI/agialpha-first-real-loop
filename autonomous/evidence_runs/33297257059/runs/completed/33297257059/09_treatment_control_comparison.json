@@ -1,0 +1,11 @@
+{
+  "primary_metric": "accepted_useful_interventions / total_cost_units",
+  "control_yield": 0.3,
+  "treatment_yield": 0.5,
+  "reuse_lift": 0.6667,
+  "reuse_lift_percent": 66.67,
+  "hallucination_delta": 0,
+  "safety_delta": 0,
+  "passed": true,
+  "claim_boundary": "This treatment/control result is deterministic first-loop evidence. External proof requires independent reviewer replication and archived source verification."
+}
