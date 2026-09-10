@@ -1,0 +1,28 @@
+{
+  "gates": {
+    "max_risk": 0.3,
+    "min_advantage_vs_B5": 0.012,
+    "min_eci_for_promotion": 0.6,
+    "min_replay": 0.72,
+    "min_safety": 0.76
+  },
+  "kernel_id": "EvidenceKernel-v0",
+  "provenance": {
+    "claim_boundary": "This experiment does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, real-world certification, guaranteed economic return, or civilization-scale capability. It is a bounded, repo-owned RSI Evidence Docket experiment testing whether a schema-bound, replayable, baseline-comparative kernel can improve its own future evidence-production policy under drift sentinels, ECI gates, ProofBundles, safety ledgers, and human-governed promotion.",
+    "created_by": "rsi-forge-002"
+  },
+  "schema_version": "agialpha.rsi_kernel.v1",
+  "version": 0,
+  "weights": {
+    "cost": 0.42,
+    "decomposition": 0.45,
+    "evidence": 0.54,
+    "novelty": 0.36,
+    "replay": 0.54,
+    "reuse": 0.4,
+    "safety": 0.58,
+    "state_memory": 0.38,
+    "strictness": 0.5,
+    "validator_redundancy": 0.44
+  }
+}
