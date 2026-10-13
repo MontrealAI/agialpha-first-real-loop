@@ -1,10 +1,10 @@
 {
   "claim_boundary": "This artifact does not claim achieved AGI, ASI, empirical SOTA, safe autonomy, standard-setting control, guaranteed economic return, or civilization-scale capability. It records a bounded Evidence Docket. Stronger claims require independent replay, full baselines, cost/safety ledger review, delayed outcomes, and independent audit.",
   "experiments": {
-    "ColdChain-Energy-Loop": 2,
-    "ColdChain-Energy-Loop-001-seed": 10
+    "ColdChain-Energy-Loop": 3,
+    "ColdChain-Energy-Loop-001-seed": 20
   },
-  "generated_at_epoch": 1777583844,
+  "generated_at_epoch": 1791874477,
   "runs": [
     {
       "baseline_win_against_B0": true,
@@ -22,10 +22,21 @@
       "claim_level": "L3",
       "critical_safety_violations": 0,
       "full_baseline_suite_executed": false,
-      "path": "runs/completed/25189773749",
+      "path": "docs/evidence-factory/runs/38358881224/evidence-docket",
       "replay_status": "fail",
       "reuse_lift_percent": 66.67,
-      "root_sha256": "97b4e9a342ebc097f3e35410d4818f0011bf116a0d1092e593a5a60218a28465",
+      "root_sha256": "b486e5dc3976ff102fa5ec96034f08a9d095f4040a2a4e5454ca1781a8e350a0",
+      "run_id": "ColdChain-Energy-Loop-001"
+    },
+    {
+      "baseline_win_against_B0": true,
+      "claim_level": "L3",
+      "critical_safety_violations": 0,
+      "full_baseline_suite_executed": false,
+      "path": "runs/completed/38358881224",
+      "replay_status": "fail",
+      "reuse_lift_percent": 66.67,
+      "root_sha256": "b486e5dc3976ff102fa5ec96034f08a9d095f4040a2a4e5454ca1781a8e350a0",
       "run_id": "ColdChain-Energy-Loop-001"
     },
     {
@@ -44,10 +55,32 @@
       "claim_level": "L3",
       "critical_safety_violations": 0,
       "full_baseline_suite_executed": false,
+      "path": "docs/evidence-factory/runs/38358881224/seed-matrix/seed-001",
+      "replay_status": "pending",
+      "reuse_lift_percent": 66.67,
+      "root_sha256": "f27780f81729d661a4c55228e86caaea670c84affea5a7278e247d4104ea511e",
+      "run_id": "ColdChain-Energy-Loop-001-seed-001"
+    },
+    {
+      "baseline_win_against_B0": true,
+      "claim_level": "L3",
+      "critical_safety_violations": 0,
+      "full_baseline_suite_executed": false,
       "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-002",
       "replay_status": "pending",
       "reuse_lift_percent": 66.67,
       "root_sha256": "e9533f04f65b9d39faec213aa5c9632ba54f0474ec48fbc700b49ad3a4796d9a",
+      "run_id": "ColdChain-Energy-Loop-001-seed-002"
+    },
+    {
+      "baseline_win_against_B0": true,
+      "claim_level": "L3",
+      "critical_safety_violations": 0,
+      "full_baseline_suite_executed": false,
+      "path": "docs/evidence-factory/runs/38358881224/seed-matrix/seed-002",
+      "replay_status": "pending",
+      "reuse_lift_percent": 66.67,
+      "root_sha256": "602dac63244691134383c480dbaef877dfc8b489f00117ef337854549845c69e",
       "run_id": "ColdChain-Energy-Loop-001-seed-002"
     },
     {
@@ -66,10 +99,32 @@
       "claim_level": "L3",
       "critical_safety_violations": 0,
       "full_baseline_suite_executed": false,
+      "path": "docs/evidence-factory/runs/38358881224/seed-matrix/seed-003",
+      "replay_status": "pending",
+      "reuse_lift_percent": 66.67,
+      "root_sha256": "92ef306704ff003cfadbd4f2dfe876a8bad3e9c908798f9b7d91ea305c783c9b",
+      "run_id": "ColdChain-Energy-Loop-001-seed-003"
+    },
+    {
+      "baseline_win_against_B0": true,
+      "claim_level": "L3",
+      "critical_safety_violations": 0,
+      "full_baseline_suite_executed": false,
       "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-004",
       "replay_status": "pending",
       "reuse_lift_percent": 66.67,
       "root_sha256": "e9cee6a606c3c502df1d80222cd67a81a5befda57b9e48b2d2a2a2001b36e45e",
+      "run_id": "ColdChain-Energy-Loop-001-seed-004"
+    },
+    {
+      "baseline_win_against_B0": true,
+      "claim_level": "L3",
+      "critical_safety_violations": 0,
+      "full_baseline_suite_executed": false,
+      "path": "docs/evidence-factory/runs/38358881224/seed-matrix/seed-004",
+      "replay_status": "pending",
+      "reuse_lift_percent": 66.67,
+      "root_sha256": "cc99f831ef2abf1ad66abc1724938b6ae038142c32f6874387f16657e24564ee",
       "run_id": "ColdChain-Energy-Loop-001-seed-004"
     },
     {
@@ -88,10 +143,32 @@
       "claim_level": "L3",
       "critical_safety_violations": 0,
       "full_baseline_suite_executed": false,
+      "path": "docs/evidence-factory/runs/38358881224/seed-matrix/seed-005",
+      "replay_status": "pending",
+      "reuse_lift_percent": 66.67,
+      "root_sha256": "c72960b3f642515d218d465ef907e10cdece1aa2d75f269a912f70d8bed15bce",
+      "run_id": "ColdChain-Energy-Loop-001-seed-005"
+    },
+    {
+      "baseline_win_against_B0": true,
+      "claim_level": "L3",
+      "critical_safety_violations": 0,
+      "full_baseline_suite_executed": false,
       "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-006",
       "replay_status": "pending",
       "reuse_lift_percent": 66.67,
       "root_sha256": "a27ca0f112670ffcaa3684140578e28b5f9c48207dfcd0aca370a05b81b44d6c",
+      "run_id": "ColdChain-Energy-Loop-001-seed-006"
+    },
+    {
+      "baseline_win_against_B0": true,
+      "claim_level": "L3",
+      "critical_safety_violations": 0,
+      "full_baseline_suite_executed": false,
+      "path": "docs/evidence-factory/runs/38358881224/seed-matrix/seed-006",
+      "replay_status": "pending",
+      "reuse_lift_percent": 66.67,
+      "root_sha256": "e5434d916bf079230c01513df649ad0f55236f77be576e915ff3979a7c965a5a",
       "run_id": "ColdChain-Energy-Loop-001-seed-006"
     },
     {
@@ -110,10 +187,32 @@
       "claim_level": "L3",
       "critical_safety_violations": 0,
       "full_baseline_suite_executed": false,
+      "path": "docs/evidence-factory/runs/38358881224/seed-matrix/seed-007",
+      "replay_status": "pending",
+      "reuse_lift_percent": 66.67,
+      "root_sha256": "91f445d75b01bdb851079f8e289b4db50367d95668f4ea1b0f23a670be485807",
+      "run_id": "ColdChain-Energy-Loop-001-seed-007"
+    },
+    {
+      "baseline_win_against_B0": true,
+      "claim_level": "L3",
+      "critical_safety_violations": 0,
+      "full_baseline_suite_executed": false,
       "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-008",
       "replay_status": "pending",
       "reuse_lift_percent": 66.67,
       "root_sha256": "013cf1c93e5ab58eb3002f6262142bb3fef98b0469eb70b314b605a14afe50cb",
+      "run_id": "ColdChain-Energy-Loop-001-seed-008"
+    },
+    {
+      "baseline_win_against_B0": true,
+      "claim_level": "L3",
+      "critical_safety_violations": 0,
+      "full_baseline_suite_executed": false,
+      "path": "docs/evidence-factory/runs/38358881224/seed-matrix/seed-008",
+      "replay_status": "pending",
+      "reuse_lift_percent": 66.67,
+      "root_sha256": "03609012d65bb0a2abdb7d6ed87bd7559e02ca37d057ef56f446548fc6513903",
       "run_id": "ColdChain-Energy-Loop-001-seed-008"
     },
     {
@@ -132,10 +231,32 @@
       "claim_level": "L3",
       "critical_safety_violations": 0,
       "full_baseline_suite_executed": false,
+      "path": "docs/evidence-factory/runs/38358881224/seed-matrix/seed-009",
+      "replay_status": "pending",
+      "reuse_lift_percent": 66.67,
+      "root_sha256": "1c2c061639c207467414ce0112cce447ecdcec61c6571c9f9a5c5accf59e14ba",
+      "run_id": "ColdChain-Energy-Loop-001-seed-009"
+    },
+    {
+      "baseline_win_against_B0": true,
+      "claim_level": "L3",
+      "critical_safety_violations": 0,
+      "full_baseline_suite_executed": false,
       "path": "docs/evidence-factory/runs/25189773749/seed-matrix/seed-010",
       "replay_status": "pending",
       "reuse_lift_percent": 66.67,
       "root_sha256": "f367e1d7124f61f4e2adb5da127318986164a4d70dfc837503a64f8058540aff",
+      "run_id": "ColdChain-Energy-Loop-001-seed-010"
+    },
+    {
+      "baseline_win_against_B0": true,
+      "claim_level": "L3",
+      "critical_safety_violations": 0,
+      "full_baseline_suite_executed": false,
+      "path": "docs/evidence-factory/runs/38358881224/seed-matrix/seed-010",
+      "replay_status": "pending",
+      "reuse_lift_percent": 66.67,
+      "root_sha256": "b3a2996abf0c8cb8cd0730185b8a8c6b3ca470642e13813e04bb70fdc5721354",
       "run_id": "ColdChain-Energy-Loop-001-seed-010"
     }
   ],
