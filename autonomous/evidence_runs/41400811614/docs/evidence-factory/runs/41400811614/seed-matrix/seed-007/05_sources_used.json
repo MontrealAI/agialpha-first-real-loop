@@ -1,0 +1,171 @@
+[
+  {
+    "id": "S001",
+    "title": "Industrial Refrigeration — Better Buildings / Better Plants",
+    "url": "https://betterbuildingssolutioncenter.energy.gov/better-plants/refrigeration",
+    "source_type": "government_or_public_institution",
+    "credibility": "government",
+    "supports": [
+      "system approach",
+      "condensing pressure",
+      "industrial refrigeration energy use"
+    ],
+    "relevance_score": 5
+  },
+  {
+    "id": "S002",
+    "title": "Energy Efficiency Opportunities in Industrial Refrigeration — US EPA",
+    "url": "https://www.epa.gov/p2/energy-efficiency-opportunities-industrial-refrigeration",
+    "source_type": "government_or_public_institution",
+    "credibility": "government",
+    "supports": [
+      "defrost optimization",
+      "floating head pressure",
+      "compressor heat recovery",
+      "infiltration management"
+    ],
+    "relevance_score": 5
+  },
+  {
+    "id": "S003",
+    "title": "Refrigeration — energy.gov.au",
+    "url": "https://www.energy.gov.au/business/equipment-guides/refrigeration",
+    "source_type": "government_or_public_institution",
+    "credibility": "government",
+    "supports": [
+      "metering",
+      "maintenance",
+      "defrost settings",
+      "insulation",
+      "strip curtains",
+      "head pressure control",
+      "heat recovery"
+    ],
+    "relevance_score": 5
+  },
+  {
+    "id": "S004",
+    "title": "Purchasing Energy-Efficient Commercial Refrigerators and Freezers — US DOE FEMP",
+    "url": "https://www.energy.gov/node/850871",
+    "source_type": "government_or_public_institution",
+    "credibility": "government",
+    "supports": [
+      "ENERGY STAR purchasing",
+      "right sizing",
+      "closed merchandisers",
+      "door configuration",
+      "compressor location"
+    ],
+    "relevance_score": 4
+  },
+  {
+    "id": "S005",
+    "title": "Self-contained commercial fridges and freezers — Natural Resources Canada",
+    "url": "https://natural-resources.canada.ca/energy-efficiency/energy-star/products/list-certified-products/self-contained-commercial-fridges-freezers",
+    "source_type": "government_or_public_institution",
+    "credibility": "government",
+    "supports": [
+      "ENERGY STAR",
+      "ECM fan motors",
+      "anti-sweat heaters",
+      "maintenance",
+      "airflow"
+    ],
+    "relevance_score": 4
+  },
+  {
+    "id": "S006",
+    "title": "Refrigeration System Controls — Energy Technology List",
+    "url": "https://etl.energysecurity.gov.uk/products/refrigeration-equipment/refrigeration-system-controls",
+    "source_type": "government_or_public_institution",
+    "credibility": "government",
+    "supports": [
+      "automatic controls",
+      "fan speeds",
+      "pressures",
+      "operating temperatures"
+    ],
+    "relevance_score": 4
+  },
+  {
+    "id": "S007",
+    "title": "Improving the Energy Efficiency of Industrial Refrigeration Systems by Means of Data-Driven Load Management",
+    "url": "https://www.mdpi.com/2227-9717/8/9/1106",
+    "source_type": "industry_or_engineering",
+    "credibility": "engineering",
+    "supports": [
+      "data-driven load management",
+      "industrial refrigeration efficiency"
+    ],
+    "relevance_score": 4
+  },
+  {
+    "id": "S008",
+    "title": "Cold Storage Facility Design — Engineering Guide for Refrigeration & Insulation",
+    "url": "https://www.cky.com.tw/en/insights/cold-storage-facility-design",
+    "source_type": "manufacturer_or_technical",
+    "credibility": "manufacturer",
+    "supports": [
+      "variable-speed compressors",
+      "floating head pressure",
+      "insulation",
+      "ROI framing"
+    ],
+    "relevance_score": 3
+  },
+  {
+    "id": "S009",
+    "title": "Cold Storage Energy Efficiency — Rinac",
+    "url": "https://rinac.com/blog/cold-storage-energy-efficiency/",
+    "source_type": "manufacturer_or_technical",
+    "credibility": "manufacturer",
+    "supports": [
+      "VFD compressors",
+      "controls",
+      "insulation",
+      "energy saving strategies"
+    ],
+    "relevance_score": 3
+  },
+  {
+    "id": "S010",
+    "title": "Maximise Efficiency in Refrigerated Storage Units — Dephna",
+    "url": "https://www.dephna.com/insights/how-to-maximise-efficiency-in-your-refrigerated-storage-unit/",
+    "source_type": "industry_or_engineering",
+    "credibility": "engineering",
+    "supports": [
+      "temperature settings",
+      "insulation",
+      "sealing",
+      "VSDs"
+    ],
+    "relevance_score": 3
+  },
+  {
+    "id": "S011",
+    "title": "Warehouse Refrigeration and Cold Storage Energy Savings",
+    "url": "https://shopenergyprices.com/articles/warehouse-refrigeration-and-cold-storage-efficiency.html",
+    "source_type": "industry_or_engineering",
+    "credibility": "engineering",
+    "supports": [
+      "door seals",
+      "demand control",
+      "system optimization",
+      "VFDs"
+    ],
+    "relevance_score": 3
+  },
+  {
+    "id": "S012",
+    "title": "Cold Storage Energy Management — Inertia Resources",
+    "url": "https://www.inertiaresourcesinc.com/cold-storage-energy.php",
+    "source_type": "industry_or_engineering",
+    "credibility": "engineering",
+    "supports": [
+      "cold storage energy profile",
+      "primary loads",
+      "peak demand"
+    ],
+    "relevance_score": 3
+  }
+]
