@@ -1,0 +1,157 @@
+[
+  {
+    "id": "I002",
+    "title": "Audit door seals, strip curtains, airlocks, and door discipline",
+    "target_energy_sink": "doors and infiltration",
+    "mechanism": "Reduce warm moist air infiltration so refrigeration load and frost formation decline.",
+    "capex_bucket": "low",
+    "source_ids": [
+      "S002",
+      "S003",
+      "S010",
+      "S011"
+    ],
+    "causal_chain": [
+      "less infiltration",
+      "less heat/moisture load",
+      "less compressor runtime and frost burden"
+    ],
+    "preconditions": [
+      "door traffic observation",
+      "seal inspection"
+    ],
+    "failure_modes": [
+      "curtains interfere with workflow",
+      "poor installation"
+    ],
+    "risk_notes": [
+      "must not compromise emergency egress or food handling workflow"
+    ],
+    "evidence_gaps": [
+      "door-open frequency data"
+    ],
+    "enough_sources": true,
+    "low_capex": true,
+    "unsupported_source_ids": false,
+    "risk_tier": "ALLOW",
+    "red_team_verdict": "ALLOW",
+    "allowed_for_ranking": true,
+    "quality_score": 4.18,
+    "reviewer_label": "accepted"
+  },
+  {
+    "id": "I005",
+    "title": "Switch off or schedule lighting and anti-condensation heaters where safe",
+    "target_energy_sink": "lighting and internal heat gain",
+    "mechanism": "Lights and heaters add direct electricity load and heat that refrigeration must remove.",
+    "capex_bucket": "no-cost",
+    "source_ids": [
+      "S003",
+      "S004",
+      "S005"
+    ],
+    "causal_chain": [
+      "less internal heat",
+      "less refrigeration load",
+      "less direct electricity use"
+    ],
+    "preconditions": [
+      "confirm safety, visibility, and condensation requirements"
+    ],
+    "failure_modes": [
+      "condensation risk",
+      "worker visibility issues"
+    ],
+    "risk_notes": [
+      "must preserve safety and product integrity"
+    ],
+    "evidence_gaps": [
+      "heater schedule and condensation observations"
+    ],
+    "enough_sources": true,
+    "low_capex": true,
+    "unsupported_source_ids": false,
+    "risk_tier": "ALLOW",
+    "red_team_verdict": "ALLOW",
+    "allowed_for_ranking": true,
+    "quality_score": 4.0,
+    "reviewer_label": "accepted"
+  },
+  {
+    "id": "I009",
+    "title": "Reduce overstocking and blocked air-grille conditions",
+    "target_energy_sink": "airflow and operations",
+    "mechanism": "Blocked grilles and overstocking impair airflow, increasing cooling time and temperature variability.",
+    "capex_bucket": "no-cost",
+    "source_ids": [
+      "S003",
+      "S005",
+      "S010"
+    ],
+    "causal_chain": [
+      "clear airflow",
+      "more uniform temperature",
+      "less excessive runtime"
+    ],
+    "preconditions": [
+      "warehouse layout review",
+      "operator training"
+    ],
+    "failure_modes": [
+      "operational noncompliance over time"
+    ],
+    "risk_notes": [
+      "advisory operational practice"
+    ],
+    "evidence_gaps": [
+      "layout photographs and walkthrough data"
+    ],
+    "enough_sources": true,
+    "low_capex": true,
+    "unsupported_source_ids": false,
+    "risk_tier": "ALLOW",
+    "red_team_verdict": "ALLOW",
+    "allowed_for_ranking": true,
+    "quality_score": 4.0,
+    "reviewer_label": "accepted"
+  },
+  {
+    "id": "I004",
+    "title": "Clean condenser and evaporator coils and verify airflow paths",
+    "target_energy_sink": "maintenance and coil cleanliness",
+    "mechanism": "Dirty coils and blocked airflow reduce heat-transfer efficiency and increase compressor/fan runtime.",
+    "capex_bucket": "low",
+    "source_ids": [
+      "S003",
+      "S005",
+      "S010"
+    ],
+    "causal_chain": [
+      "cleaner heat exchangers",
+      "better heat transfer",
+      "lower runtime for same cooling"
+    ],
+    "preconditions": [
+      "maintenance access",
+      "cleaning schedule"
+    ],
+    "failure_modes": [
+      "damage during cleaning",
+      "temporary downtime"
+    ],
+    "risk_notes": [
+      "maintenance should follow manufacturer and facility procedures"
+    ],
+    "evidence_gaps": [
+      "before/after temperature and amperage data"
+    ],
+    "enough_sources": true,
+    "low_capex": true,
+    "unsupported_source_ids": false,
+    "risk_tier": "ALLOW",
+    "red_team_verdict": "ALLOW",
+    "allowed_for_ranking": true,
+    "quality_score": 3.88,
+    "reviewer_label": "accepted"
+  }
+]
