@@ -1,0 +1,101 @@
+{
+  "B5": {
+    "aggregate": {
+      "D_real": 0.1572,
+      "mean_cost": 1.8242,
+      "replay_rate": 0.9384,
+      "safety_rate": 0.9421,
+      "success_rate": 0.5884
+    },
+    "baseline": "B5_rsi_no_archive",
+    "kernel_id": "B5_rsi_no_archive",
+    "tasks": [
+      {
+        "D_real": 0.1409,
+        "baseline": "B5_rsi_no_archive",
+        "cost": 1.8409,
+        "family": "held-out RSI transfer",
+        "quality": 0.5166,
+        "replay": 0.9386,
+        "safety": 0.9428,
+        "success": 0.5674,
+        "task_id": "novel-workflow-emergence",
+        "verified_work": 0.2594
+      },
+      {
+        "D_real": 0.1921,
+        "baseline": "B5_rsi_no_archive",
+        "cost": 1.881,
+        "family": "held-out policy promotion",
+        "quality": 0.6364,
+        "replay": 0.935,
+        "safety": 0.9296,
+        "success": 0.6532,
+        "task_id": "self-amendment-reviewability",
+        "verified_work": 0.3613
+      },
+      {
+        "D_real": 0.1387,
+        "baseline": "B5_rsi_no_archive",
+        "cost": 1.7508,
+        "family": "held-out archive economics",
+        "quality": 0.4965,
+        "replay": 0.9416,
+        "safety": 0.9538,
+        "success": 0.5447,
+        "task_id": "dossier-debt-compression",
+        "verified_work": 0.2429
+      }
+    ]
+  },
+  "B6": {
+    "aggregate": {
+      "D_real": 0.2991,
+      "mean_cost": 1.8242,
+      "replay_rate": 0.9384,
+      "safety_rate": 0.9421,
+      "success_rate": 0.8108
+    },
+    "baseline": "B6_rsi_forge_archive_reuse",
+    "kernel_id": "EvidenceKernel-c5-k13",
+    "tasks": [
+      {
+        "D_real": 0.3074,
+        "baseline": "B6_rsi_forge_archive_reuse",
+        "cost": 1.8409,
+        "family": "held-out RSI transfer",
+        "quality": 0.7714,
+        "replay": 0.9386,
+        "safety": 0.9428,
+        "success": 0.829,
+        "task_id": "novel-workflow-emergence",
+        "verified_work": 0.5659
+      },
+      {
+        "D_real": 0.29,
+        "baseline": "B6_rsi_forge_archive_reuse",
+        "cost": 1.881,
+        "family": "held-out policy promotion",
+        "quality": 0.7752,
+        "replay": 0.935,
+        "safety": 0.9296,
+        "success": 0.8096,
+        "task_id": "self-amendment-reviewability",
+        "verified_work": 0.5455
+      },
+      {
+        "D_real": 0.2999,
+        "baseline": "B6_rsi_forge_archive_reuse",
+        "cost": 1.7508,
+        "family": "held-out archive economics",
+        "quality": 0.7367,
+        "replay": 0.9416,
+        "safety": 0.9538,
+        "success": 0.7937,
+        "task_id": "dossier-debt-compression",
+        "verified_work": 0.5251
+      }
+    ]
+  },
+  "advantage_delta": 0.1419
+}
