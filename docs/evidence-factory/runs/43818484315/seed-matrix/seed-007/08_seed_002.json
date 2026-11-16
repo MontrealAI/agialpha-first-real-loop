@@ -1,0 +1,45 @@
+{
+  "id": "ColdChain-Energy-Seed-002",
+  "parent_seed_id": "ColdChain-Energy-Seed-001",
+  "mutation": "target facility changes from refrigerated warehouse to food-processing cold-chain facility",
+  "reused_capability": "ColdChain-Energy-Compiler-v0",
+  "added_constraints": [
+    "stronger food-safety review emphasis",
+    "stronger restriction on setpoint and defrost recommendations",
+    "recommend measurement and review before operational control changes"
+  ],
+  "foresight_genome": [
+    "Cold-chain energy efficiency is a high-leverage opportunity because facilities have repeated refrigeration energy sinks.",
+    "Many interventions are low-capex or operational-review interventions.",
+    "Public evidence exists from government, utility, institutional, engineering, manufacturer, and standards sources.",
+    "Recommendations can be reviewed through evidence traces and safety gates.",
+    "Workflows should transfer to adjacent cold-chain facilities.",
+    "Food-processing cold-chain facilities combine refrigeration loads with process, hygiene, scheduling, and product-safety constraints."
+  ],
+  "fusion_plan": [
+    "Build a facility model",
+    "Discover credible evidence",
+    "Generate candidate interventions",
+    "Causalize each intervention",
+    "Score and red-team each intervention",
+    "Rank final recommendations",
+    "Produce an Evidence Docket",
+    "Extract reusable capability package"
+  ],
+  "risk_envelope": [
+    "no unsupported savings claims",
+    "no food-safety changes without review",
+    "no refrigerant-handling recommendations",
+    "no claims without citations",
+    "no recommendation requiring major shutdown",
+    "advisory only; facility professionals must review before implementation",
+    "no food-safety-critical process recommendation without expert review"
+  ],
+  "promotion_criteria": [
+    "at least 5 useful interventions are produced",
+    "each accepted intervention has at least 3 credible evidence traces",
+    "no hallucinated sources",
+    "reviewer accepts at least 3 interventions",
+    "one reusable workflow or rubric is extracted"
+  ]
+}
