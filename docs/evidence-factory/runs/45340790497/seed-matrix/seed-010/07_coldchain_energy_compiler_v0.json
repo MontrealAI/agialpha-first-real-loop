@@ -1,0 +1,47 @@
+{
+  "id": "ColdChain-Energy-Compiler-v0",
+  "purpose": "Reusable cold-chain energy evidence workflow extracted from Seed-001.",
+  "source_discovery_rules": [
+    "prefer government, utility, institutional, engineering, manufacturer, and standards sources",
+    "require at least three evidence traces per accepted intervention",
+    "separate evidence for mechanism, implementation precondition, and risk boundary"
+  ],
+  "facility_model_schema": {
+    "facility_type": "string",
+    "major_energy_sinks": "list[string]",
+    "constraints": "list[string]",
+    "missing_assumptions": "list[string]",
+    "evidence_references": "list[source_id]"
+  },
+  "intervention_schema": {
+    "title": "string",
+    "target_energy_sink": "string",
+    "mechanism": "string",
+    "capex_bucket": "no-cost|low|low-to-moderate|moderate|high",
+    "source_ids": "list[source_id]",
+    "preconditions": "list[string]",
+    "failure_modes": "list[string]",
+    "risk_notes": "list[string]"
+  },
+  "causalization_rubric": [
+    "show how the intervention reduces load, runtime, lift, heat gain, or control waste",
+    "list preconditions and missing measurements",
+    "separate advisory recommendations from operational changes"
+  ],
+  "red_team_rules": [
+    "block refrigerant-handling recommendations",
+    "block food-safety-critical setpoint changes without expert review",
+    "block electrical work recommendations without licensed review",
+    "block guaranteed savings claims",
+    "label controls/defrost/head-pressure work as CAUTION unless framed as audit/review"
+  ],
+  "final_output_template": "ranked_interventions_with_evidence_and_risk_notes",
+  "evidence_docket_template": "templates/evidence_docket_template.json",
+  "extracted_from": [
+    "J1",
+    "J2",
+    "J3",
+    "J4",
+    "J5"
+  ]
+}
