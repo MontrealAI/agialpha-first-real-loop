@@ -1,0 +1,7 @@
+{
+  "auto_merge": false,
+  "claim_boundary_preserved": true,
+  "requires_human_review": true,
+  "scope": "repo-owned RSI policy/state only",
+  "unsafe_automerge_count": 0
+}
